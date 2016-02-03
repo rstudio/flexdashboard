@@ -9,7 +9,8 @@ keen_dashboard <- function(smart = TRUE,
                            includes = NULL,
                            lib_dir = NULL,
                            md_extensions = NULL,
-                           pandoc_args = NULL) {
+                           pandoc_args = NULL,
+                           ...) {
 
 
   # build pandoc args
@@ -43,7 +44,9 @@ keen_dashboard <- function(smart = TRUE,
                                      self_contained = self_contained,
                                      lib_dir = lib_dir, mathjax = NULL,
                                      template = "default",
-                                     pandoc_args = pandoc_args)
+                                     pandoc_args = pandoc_args,
+                                     bootstrap_compatible = TRUE,
+                                     ...)
   )
 
 }
