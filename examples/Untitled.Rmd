@@ -1,0 +1,66 @@
+---
+title: "Untitled"
+output: 
+  dashboards::keen_dashboard:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+library(dygraphs)
+```
+
+<div class="row">
+
+<div class="col-sm-6">
+<div class="chart-wrapper">
+<div class="chart-title">
+Pageviews by browser (past 24 hours)
+</div>
+<div class="chart-stage">
+
+```{r}
+dygraph(ldeaths)
+```
+
+</div>
+<div class="chart-notes">
+This is a sample text region to describe this chart.
+</div>
+</div>
+</div>
+
+<div class="col-sm-6">
+<div class="chart-wrapper">
+<div class="chart-title">
+Pageviews by browser (past 5 days)
+</div>
+<div class="chart-stage">
+
+
+</div>
+<div class="chart-notes">
+Notes go down here
+</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="col-sm-12">
+<div class="chart-wrapper">
+<div class="chart-title">
+Impressions by advertiser
+</div>
+<div class="chart-stage">
+
+</div>
+<div class="chart-notes">
+Notes go down here
+</div>
+</div>
+</div>
+
+</div>
