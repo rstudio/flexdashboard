@@ -1,16 +1,14 @@
 
 
-// TODO: bookmarking / push-state
-// TODO: auto-dismiss responsive menu
-// TODO: dygraphs visibilty
 // TODO: subtitle region
 
 // TODO: support for R plots
 // TODO: support for runtime: shiny
 
+
 $(document).ready(function () {
 
-  // layout a dashboard page
+  // function to layout a dashboard page
   function layoutDashboardPage(page) {
 
     // find all the level2 sections (those are the rows)
@@ -103,7 +101,13 @@ $(document).ready(function () {
   var pages = $(this).find('div.section.level1');
   if (pages.length > 0) {
 
-      // find the navbar
+      // find the navbar and collapse on clicked
+      var navbar = $(this).find('#navbar');
+      navbar.on("click", "a", null, function () {
+         navbar.collapse('hide');
+      });
+
+      // find the navbar list
       var navbarList = $(this).find('ul.navbar-nav');
 
       // find the main container and envelop it in a tab content div
@@ -148,5 +152,16 @@ $(document).ready(function () {
     // layout the entire page
     layoutDashboardPage($(this));
   }
+
+  // restore tab/page from bookmark
+  var hash = window.location.hash;
+  if (hash.length > 0)
+    $('ul.nav a[href="' + hash + '"]').tab('show');
+
+  // add a hash to the URL when the user clicks on a tab/page
+  $('a[data-toggle="tab"]').on('click', function(e) {
+    window.location.hash = $(this).attr('href');
+  });
 });
+
 
