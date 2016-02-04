@@ -69,15 +69,16 @@ $(document).ready(function () {
         chartTitle.html(chartTitleHTML);
         chartWrapper.prepend(chartTitle);
 
-        // if there is more than one top level elements in
-        // in chart stage then take the last element and
-        // convert it into the chart notes (otherwise just
-        // create an empty chart notes)
+        // if there is more than one top level visualization element
+        // (an image or an htmlwidget in chart stage then take the
+        // last element and convert it into the chart notes (otherwise
+        // just create an empty chart notes)
         var chartNotes = $('<div class="chart-notes"></div>');
         chartNotes.html('&nbsp;');
-        if (chartStage.children().length > 1) {
+        if (chartStage.find('img').length > 0 ||
+            chartStage.find('div[id^="htmlwidget-"]').length > 0) {
           var lastChild = chartStage.children().last();
-          if (lastChild.html().length > 0) {
+          if (lastChild.is("p") && (lastChild.html().length > 0)) {
             haveCaptions = true;
             chartNotes.html(lastChild.html());
           }
