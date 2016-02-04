@@ -1,6 +1,16 @@
 
-
-
+#'Convert to a grid oriented dashboard
+#'
+#'Format for converting an R Markdown document to grid oriented dashboard. Level
+#'1 headings are treated as pages; Level 2 headings as rows; and Level 3
+#'headings as columns.
+#'
+#'@inheritParams rmarkdown::html_document
+#'
+#'@param highlight Syntax highlighting style. Supported styles include
+#'  "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
+#'  and "haddock". Pass NULL to prevent syntax highlighting.
+#'
 #'@export
 grid_dashboard <- function(fig_width = 5,
                            fig_height = 3.5,
