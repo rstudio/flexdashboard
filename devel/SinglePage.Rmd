@@ -1,5 +1,5 @@
 ---
-title: "Single Page"
+title: "Deaths from Lung Cancer"
 output: 
   dashboards::grid_dashboard: 
     devel: true
@@ -11,21 +11,25 @@ library(dygraphs)
 
 ## Row 1
 
-### First Chart
+### Male Deaths
 
 ```{r}
-dygraph(ldeaths)
+dygraph(mdeaths)
 ```
 
-### Second Chart
+Here is some footer text.
+
+### Female Deaths
 
 ```{r}
-dygraph(ldeaths)
+dygraph(fdeaths)
 ```
+
+More footer text.
 
 ## Row 2
 
-### Only Chart
+### All Deaths
 
 ```{r}
 dygraph(ldeaths)
