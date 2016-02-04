@@ -1,4 +1,11 @@
 
+// TODO: stage things so user css works
+// TODO: theme support (if default then use color override for navbar)
+// TODO: support user layout of columns
+// TODO: test / research optimal column settings for mobile
+// TODO: multi-page support
+// TODO: subtitle region
+
 $(document).ready(function () {
 
   // find all the level2 sections (those are the rows)
