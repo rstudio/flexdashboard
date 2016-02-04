@@ -32,6 +32,17 @@ keen_dashboard <- function(smart = TRUE,
   # add template
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
 
+  # include dashboard.css and dashboard.js
+  dashboardAssets <- c('<style type="text/css">',
+                       readLines(resource("dashboard.css"), encoding = "UTF-8"),
+                       '</style>',
+                       '<script type="text/javascript">',
+                       readLines(resource("dashboard.js"), encoding = "UTF-8"),
+                       '</script>')
+  dashboardAssetsFile <- tempfile(fileext = ".html")
+  writeLines(dashboardAssets, dashboardAssetsFile)
+  args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
+
   # determine knitr options
   knitr_options <- knitr_options_html(4, 4, FALSE, FALSE, "png")
   knitr_options$opts_chunk$echo = FALSE
