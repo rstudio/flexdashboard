@@ -21,7 +21,7 @@ dygraph(ldeaths)
 ### Second Chart
 
 ```{r}
-dygraph(ldeaths, height = "350px")
+dygraph(ldeaths)
 ```
 
 ## Row 2
@@ -29,6 +29,6 @@ dygraph(ldeaths, height = "350px")
 ### Only Chart
 
 ```{r}
-dygraph(ldeaths, height = "350px")
+dygraph(ldeaths)
 ```
 

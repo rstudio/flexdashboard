@@ -48,7 +48,8 @@ keen_dashboard <- function(smart = TRUE,
   } else {
     dashboardAssets <- c(
       paste0('<script type="text/javascript" ',
-             'src="../inst/rmarkdown/templates/keen_dashboard/resources/dashboard.js">'))
+             'src="../inst/rmarkdown/templates/keen_dashboard/resources/dashboard.js">',
+             '</script>'))
   }
   dashboardAssetsFile <- tempfile(fileext = ".html")
   writeLines(dashboardAssets, dashboardAssetsFile)
