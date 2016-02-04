@@ -1,4 +1,9 @@
 
+/*
+ Dashboard CSS from Keen IO Dashboards
+ (https://github.com/keen/dashboards)
+*/
+
 body.application {
   background: #f2f2f2;
   padding: 60px 20px 0;
@@ -60,6 +65,12 @@ body.application hr {
   font-size: 12px;
   padding: 8px 10px 5px;
 }
+
+/*
+ CSS for handling dynamic sizing of htmlwidgets and other
+ content commonly produced within R Markdown documents
+*/
+
 
 .html-widget-static-bound {
   width: 100% !important;

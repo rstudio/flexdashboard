@@ -2,9 +2,13 @@ Package: dashboards
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
-Author: Who wrote it
+Authors@R: c(
+    person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
+    person(family = "RStudio", role = "cph"),
+    person(family = "Keen IO", role = c("aut", "cph"))
+  )
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: More about what it does (maybe more than one line)
-License: What license is it under?
 LazyData: TRUE
 RoxygenNote: 5.0.1
+License: MIT + file LICENSE
