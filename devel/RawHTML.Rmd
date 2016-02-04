@@ -1,7 +1,7 @@
 ---
 title: "Raw HTML"
 output: 
-  dashboards::keen_dashboard: 
+  dashboards::grid_dashboard: 
     self_contained: false
 ---
 

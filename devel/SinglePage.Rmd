@@ -1,8 +1,7 @@
 ---
 title: "Single Page"
 output: 
-  dashboards::keen_dashboard: 
-    self_contained: false
+  dashboards::grid_dashboard: 
     devel: true
 ---
 

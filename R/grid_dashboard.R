@@ -2,7 +2,7 @@
 
 
 #'@export
-keen_dashboard <- function(smart = TRUE,
+grid_dashboard <- function(smart = TRUE,
                            self_contained = TRUE,
                            theme = "default",
                            css = NULL,
@@ -15,7 +15,7 @@ keen_dashboard <- function(smart = TRUE,
 
   # function for resolving resources
   resource <- function(name) {
-    system.file("rmarkdown/templates/keen_dashboard/resources", name,
+    system.file("rmarkdown/templates/grid_dashboard/resources", name,
                 package = "dashboards")
   }
 
@@ -33,8 +33,13 @@ keen_dashboard <- function(smart = TRUE,
   # add template
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
 
-  # include dashboard.css and dashboard.js
-  if (!devel) {
+  # include dashboard.css and dashboard.js (but not in devel
+  # mode, in that case relative filesystem references to
+  # them are included in the template along with live reload)
+  if (devel) {
+    args <- c(args, pandoc_variable_arg("devel", "1"))
+    self_contained = FALSE
+  } else {
     dashboardAssets <- c('<style type="text/css">',
                          readLines(resource("dashboard.css")),
                          '</style>',
@@ -44,8 +49,6 @@ keen_dashboard <- function(smart = TRUE,
     dashboardAssetsFile <- tempfile(fileext = ".html")
     writeLines(dashboardAssets, dashboardAssetsFile)
     args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
-  } else {
-    args <- c(args, pandoc_variable_arg("devel", "1"))
   }
 
   # determine knitr options
