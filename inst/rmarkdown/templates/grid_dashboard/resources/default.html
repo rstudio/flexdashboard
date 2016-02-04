@@ -40,6 +40,20 @@ $for(include-before)$
 $include-before$
 $endfor$
 
+$if(theme_default)$
+<style type="text/css">
+.navbar-inverse {
+  background-color: #3d4a57;
+  border-color: #333;
+}
+
+.navbar-inverse .navbar-nav > li > a,
+.navbar .navbar-brand {
+  color: #fbfbfb;
+}
+</style>
+$endif$
+
 <div class="container-fluid">
 
 $body$

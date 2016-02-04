@@ -33,6 +33,10 @@ grid_dashboard <- function(smart = TRUE,
   # add template
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
 
+  # add flag if we using the default theme
+  if (identical(theme, "default"))
+    args <- c(args, pandoc_variable_arg("theme_default", "1"))
+
   # include dashboard.css and dashboard.js (but not in devel
   # mode, in that case relative filesystem references to
   # them are included in the template along with live reload)
