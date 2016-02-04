@@ -2,7 +2,11 @@
 
 
 #'@export
-grid_dashboard <- function(smart = TRUE,
+grid_dashboard <- function(fig_width = 6,
+                           fig_height = 4.5,
+                           fig_retina = 2,
+                           dev = "png",
+                           smart = TRUE,
                            self_contained = TRUE,
                            theme = "default",
                            css = NULL,
@@ -41,7 +45,11 @@ grid_dashboard <- function(smart = TRUE,
     args <- c(args, pandoc_variable_arg("theme_default", "1"))
 
   # determine knitr options
-  knitr_options <- knitr_options_html(4, 4, FALSE, FALSE, "png")
+  knitr_options <- knitr_options_html(fig_width = fig_width,
+                                      fig_height = fig_height,
+                                      fig_retina = fig_retina,
+                                      keep_md = FALSE,
+                                      dev = dev)
   knitr_options$opts_chunk$echo = FALSE
 
   # preprocessor

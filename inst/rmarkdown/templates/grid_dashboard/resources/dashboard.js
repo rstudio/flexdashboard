@@ -1,11 +1,4 @@
 
-
-// TODO: subtitle region
-
-// TODO: support for R plots
-// TODO: support for runtime: shiny
-
-
 $(document).ready(function () {
 
   // function to layout a dashboard page
@@ -17,6 +10,9 @@ $(document).ready(function () {
 
       // flag indicating whether we have any captions
       var haveCaptions = false;
+
+      // retain the maximum height for chart content
+      var maxChartHeight = 0;
 
       // remove the h2
       $(this).children('h2').remove();
@@ -88,12 +84,23 @@ $(document).ready(function () {
           lastChild.remove();
         }
         chartWrapper.append(chartNotes);
+
+        // take a measurement of the chart height and update the
+        // max height if necessary
+        var chartHeight = chartStage.outerHeight();
+        if (chartHeight > maxChartHeight)
+          maxChartHeight = chartHeight;
       });
 
       // if we don't have any captions in this row then remove
       // the chart notes divs
       if (!haveCaptions)
         $(this).find('.chart-notes').remove();
+
+      // pin the height of this row to the max-height of the grid cells
+      // (this prevents the height chaning when img auto-sizing occurs)
+      if (maxChartHeight > 0)
+        $(this).find('.chart-stage').css('min-height', maxChartHeight + 'px');
     });
   }
 

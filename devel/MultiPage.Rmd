@@ -9,21 +9,22 @@ output:
 
 ```{r setup, include=FALSE}
 library(dygraphs)
+library(ggplot2)
 ```
 
 # Page 1
 
 ## Row 1
 
-### Male Deaths {.col-md-7}
+### Male Deaths
 
 ```{r}
-dygraph(mdeaths)
+plot(cars)
 ```
 
 Here is some footer text.
 
-### Female Deaths {.col-md-5}
+### Female Deaths
 
 ```{r}
 dygraph(fdeaths)
