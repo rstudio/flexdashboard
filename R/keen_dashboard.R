@@ -12,6 +12,12 @@ keen_dashboard <- function(smart = TRUE,
                            pandoc_args = NULL,
                            ...) {
 
+  # function for resolving resources
+  resource <- function(name) {
+    system.file("rmarkdown/templates/keen_dashboard/resources", name,
+                package = "dashboards")
+  }
+
 
   # build pandoc args
   args <- c("--standalone")
@@ -24,9 +30,7 @@ keen_dashboard <- function(smart = TRUE,
     args <- c(args, "--css", pandoc_path_arg(css_file))
 
   # add template
-  args <- c(args, "--template",
-            pandoc_path_arg(system.file(package = "dashboards",
-              "rmarkdown/templates/keen_dashboard/resources/default.html")))
+  args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
 
   # determine knitr options
   knitr_options <- knitr_options_html(4, 4, FALSE, FALSE, "png")
