@@ -6,6 +6,9 @@
 // TODO: multi-page support
 // TODO: subtitle region
 
+// TODO: support for R plots
+// TODO: support for runtime: shiny
+
 $(document).ready(function () {
 
   // find all the level2 sections (those are the rows)
