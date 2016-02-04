@@ -1,0 +1,34 @@
+---
+title: "Single Page"
+output: 
+  dashboards::keen_dashboard: 
+    self_contained: false
+    devel: true
+---
+
+```{r setup, include=FALSE}
+library(dygraphs)
+```
+
+## Row 1
+
+### First Chart
+
+```{r}
+dygraph(ldeaths)
+```
+
+### Second Chart
+
+```{r}
+dygraph(ldeaths, height = "350px")
+```
+
+## Row 2
+
+### Only Chart
+
+```{r}
+dygraph(ldeaths, height = "350px")
+```
+

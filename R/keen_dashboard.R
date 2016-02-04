@@ -10,6 +10,7 @@ keen_dashboard <- function(smart = TRUE,
                            lib_dir = NULL,
                            md_extensions = NULL,
                            pandoc_args = NULL,
+                           devel = FALSE,
                            ...) {
 
   # function for resolving resources
@@ -25,6 +26,10 @@ keen_dashboard <- function(smart = TRUE,
   # use section divs
   args <- c(args, "--section-divs")
 
+  # dashboard.css for devel mode
+  if (devel)
+    args <- c(args, "--css", "../inst/rmarkdown/templates/keen_dashboard/resources/dashboard.css")
+
   # additional css
   for (css_file in css)
     args <- c(args, "--css", pandoc_path_arg(css_file))
@@ -33,12 +38,18 @@ keen_dashboard <- function(smart = TRUE,
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
 
   # include dashboard.css and dashboard.js
-  dashboardAssets <- c('<style type="text/css">',
-                       readLines(resource("dashboard.css"), encoding = "UTF-8"),
-                       '</style>',
-                       '<script type="text/javascript">',
-                       readLines(resource("dashboard.js"), encoding = "UTF-8"),
-                       '</script>')
+  if (!devel) {
+    dashboardAssets <- c('<style type="text/css">',
+                         readLines(resource("dashboard.css")),
+                         '</style>',
+                         '<script type="text/javascript">',
+                         readLines(resource("dashboard.js")),
+                         '</script>')
+  } else {
+    dashboardAssets <- c(
+      paste0('<script type="text/javascript" ',
+             'src="../inst/rmarkdown/templates/keen_dashboard/resources/dashboard.js">'))
+  }
   dashboardAssetsFile <- tempfile(fileext = ".html")
   writeLines(dashboardAssets, dashboardAssetsFile)
   args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))

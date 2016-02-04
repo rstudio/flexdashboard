@@ -1,7 +1,7 @@
 ---
-title: "Untitled"
+title: "Raw HTML"
 output: 
-  dashboards::keen_dashboard:
+  dashboards::keen_dashboard: 
     self_contained: false
 ---
 
@@ -10,7 +10,6 @@ library(dygraphs)
 ```
 
 <div class="row">
-
 <div class="col-sm-6">
 <div class="chart-wrapper">
 <div class="chart-title">
@@ -36,10 +35,13 @@ Pageviews by browser (past 5 days)
 </div>
 <div class="chart-stage">
 
+```{r}
+dygraph(ldeaths)
+```
 
 </div>
 <div class="chart-notes">
-Notes go down here
+This is a sample text region to describe this chart.
 </div>
 </div>
 </div>
@@ -55,10 +57,12 @@ Notes go down here
 Impressions by advertiser
 </div>
 <div class="chart-stage">
-
+```{r}
+dygraph(ldeaths)
+```
 </div>
 <div class="chart-notes">
-Notes go down here
+This is a sample text region to describe this chart.
 </div>
 </div>
 </div>
