@@ -2,7 +2,7 @@
 title: "Deaths from Lung Cancer"
 output: 
   dashboards::grid_dashboard: 
-    devel: true
+    devel: false
     self_contained: false
     theme: default
 ---

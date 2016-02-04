@@ -2,8 +2,8 @@
 
 
 #'@export
-grid_dashboard <- function(fig_width = 6,
-                           fig_height = 4.5,
+grid_dashboard <- function(fig_width = 5,
+                           fig_height = 3.5,
                            fig_retina = 2,
                            dev = "png",
                            smart = TRUE,
