@@ -2,7 +2,7 @@
 title: "Deaths from Lung Cancer"
 output: 
   dashboards::grid_dashboard: 
-    devel: false
+    devel: true
     self_contained: false
     theme: default
 ---
@@ -18,11 +18,19 @@ library(ggplot2)
 
 ### Male Deaths
 
-```{r}
-plot(cars)
-```
+Some free form content:
 
-Here is some footer text.
+- Point 1
+- Point 2
+- Point 3
+
+$x + y$
+
+```r
+foo <- function(x = 20) {
+
+}
+```
 
 ### Female Deaths
 

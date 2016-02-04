@@ -9,6 +9,8 @@ grid_dashboard <- function(fig_width = 5,
                            smart = TRUE,
                            self_contained = TRUE,
                            theme = "default",
+                           highlight = "default",
+                           mathjax = "default",
                            css = NULL,
                            includes = NULL,
                            lib_dir = NULL,
@@ -75,6 +77,9 @@ grid_dashboard <- function(fig_width = 5,
       args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
     }
 
+    # highlight
+    args <- c(args, pandoc_highlight_args(highlight, default = "pygments"))
+
     args
   }
 
@@ -89,7 +94,7 @@ grid_dashboard <- function(fig_width = 5,
     pre_processor = pre_processor,
     base_format = html_document_base(smart = smart, theme = theme,
                                      self_contained = self_contained,
-                                     lib_dir = lib_dir, mathjax = NULL,
+                                     lib_dir = lib_dir, mathjax = mathjax,
                                      template = "default",
                                      pandoc_args = pandoc_args,
                                      bootstrap_compatible = TRUE,
