@@ -26,10 +26,6 @@ keen_dashboard <- function(smart = TRUE,
   # use section divs
   args <- c(args, "--section-divs")
 
-  # dashboard.css for devel mode
-  if (devel)
-    args <- c(args, "--css", "../inst/rmarkdown/templates/keen_dashboard/resources/dashboard.css")
-
   # additional css
   for (css_file in css)
     args <- c(args, "--css", pandoc_path_arg(css_file))
@@ -45,15 +41,12 @@ keen_dashboard <- function(smart = TRUE,
                          '<script type="text/javascript">',
                          readLines(resource("dashboard.js")),
                          '</script>')
+    dashboardAssetsFile <- tempfile(fileext = ".html")
+    writeLines(dashboardAssets, dashboardAssetsFile)
+    args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
   } else {
-    dashboardAssets <- c(
-      paste0('<script type="text/javascript" ',
-             'src="../inst/rmarkdown/templates/keen_dashboard/resources/dashboard.js">',
-             '</script>'))
+    args <- c(args, pandoc_variable_arg("devel", "1"))
   }
-  dashboardAssetsFile <- tempfile(fileext = ".html")
-  writeLines(dashboardAssets, dashboardAssetsFile)
-  args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
 
   # determine knitr options
   knitr_options <- knitr_options_html(4, 4, FALSE, FALSE, "png")
