@@ -5,6 +5,9 @@ $(document).ready(function () {
   var rows = $('div.section.level2');
   rows.each(function () {
 
+    // flag indicating whether we have any captions
+    var haveCaptions = false;
+
     // remove the h2
     $(this).children('h2').remove();
 
@@ -25,6 +28,7 @@ $(document).ready(function () {
 
       // set the colClass
       $(this).addClass(colClass);
+      $(this).addClass('grid-element');
 
       // get a reference to the h3 and discover it's inner html
       var h3 = $(this).children('h3').first();
@@ -55,12 +59,19 @@ $(document).ready(function () {
       chartNotes.html('&nbsp;');
       if (chartStage.children().length > 1) {
         var lastChild = chartStage.children().last();
-        if (lastChild.html().length > 0)
+        if (lastChild.html().length > 0) {
+          haveCaptions = true;
           chartNotes.html(lastChild.html());
+        }
         lastChild.remove();
       }
       chartWrapper.append(chartNotes);
     });
+
+    // if we don't have any captions in this row then remove
+    // the chart notes divs
+    if (!haveCaptions)
+      $(this).find('.chart-notes').remove();
   });
 });
 

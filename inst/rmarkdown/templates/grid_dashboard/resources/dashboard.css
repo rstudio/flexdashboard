@@ -6,7 +6,7 @@
 
 body.application {
   background: #f2f2f2;
-  padding: 60px 20px 0;
+  padding: 70px 20px 0;
 }
 body.application > .container-fluid {
   padding-left: 0;
@@ -41,7 +41,7 @@ body.application hr {
   background: #fff;
   border: 1px solid #e2e2e2;
   border-radius: 3px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 .chart-wrapper .chart-title {
   border-bottom: 1px solid #d7d7d7;
@@ -67,10 +67,22 @@ body.application hr {
 }
 
 /*
+ CSS to tweak default sizing of grid elements
+*/
+body.application > .container-fluid {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+div .grid-element {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/*
  CSS for handling dynamic sizing of htmlwidgets and other
  content commonly produced within R Markdown documents
 */
-
 
 .html-widget-static-bound {
   width: 100% !important;
