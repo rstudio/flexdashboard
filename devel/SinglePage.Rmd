@@ -3,6 +3,8 @@ title: "Deaths from Lung Cancer"
 output: 
   dashboards::grid_dashboard: 
     devel: true
+    self_contained: false
+    theme: default
 ---
 
 ```{r setup, include=FALSE}
@@ -11,7 +13,7 @@ library(dygraphs)
 
 ## Row 1
 
-### Male Deaths
+### Male Deaths {.col-md-7}
 
 ```{r}
 dygraph(mdeaths)
@@ -19,7 +21,7 @@ dygraph(mdeaths)
 
 Here is some footer text.
 
-### Female Deaths
+### Female Deaths {.col-md-5}
 
 ```{r}
 dygraph(fdeaths)

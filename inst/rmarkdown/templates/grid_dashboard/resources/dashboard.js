@@ -1,8 +1,4 @@
 
-// TODO: stage things so user css works
-// TODO: theme support (if default then use color override for navbar)
-// TODO: support user layout of columns
-// TODO: test / research optimal column settings for mobile
 // TODO: multi-page support
 // TODO: subtitle region
 
@@ -27,17 +23,29 @@ $(document).ready(function () {
     // find all of the level 3 subheads
     var columns = $(this).children('div.section.level3');
 
-    // get length and use that to compute the column size
-    var numColumns = columns.length;
+    // see if need to compute a col-class
+    var colClass = null;
 
-    // col class
-    var colWidth = 12 / numColumns;
-    var colClass = "col-sm-" + colWidth;
+    // do any of them specify a col- explicitly? If so
+    // then the user is controlling the widths
+    var explicitWidths = columns.filter('[class*=" col-"]').length > 0;
+    if (!explicitWidths) {
+      // get length and use that to compute the column size
+      var numColumns = columns.length;
 
+      // compute the col class
+      var colWidth = 12 / numColumns;
+      colClass = "col-sm-" + colWidth;
+    }
+
+    // fixup the columns
     columns.each(function() {
 
       // set the colClass
-      $(this).addClass(colClass);
+      if (colClass !== null)
+        $(this).addClass(colClass);
+
+      // mark as a grid element for custom css
       $(this).addClass('grid-element');
 
       // get a reference to the h3 and discover it's inner html

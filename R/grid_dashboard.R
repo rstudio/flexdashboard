@@ -19,6 +19,9 @@ grid_dashboard <- function(smart = TRUE,
                 package = "dashboards")
   }
 
+  # force self_contained to FALSE in devel mode
+  if (devel)
+    self_contained <- FALSE
 
   # build pandoc args
   args <- c("--standalone")
@@ -37,27 +40,35 @@ grid_dashboard <- function(smart = TRUE,
   if (identical(theme, "default"))
     args <- c(args, pandoc_variable_arg("theme_default", "1"))
 
-  # include dashboard.css and dashboard.js (but not in devel
-  # mode, in that case relative filesystem references to
-  # them are included in the template along with live reload)
-  if (devel) {
-    args <- c(args, pandoc_variable_arg("devel", "1"))
-    self_contained = FALSE
-  } else {
-    dashboardAssets <- c('<style type="text/css">',
-                         readLines(resource("dashboard.css")),
-                         '</style>',
-                         '<script type="text/javascript">',
-                         readLines(resource("dashboard.js")),
-                         '</script>')
-    dashboardAssetsFile <- tempfile(fileext = ".html")
-    writeLines(dashboardAssets, dashboardAssetsFile)
-    args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
-  }
-
   # determine knitr options
   knitr_options <- knitr_options_html(4, 4, FALSE, FALSE, "png")
   knitr_options$opts_chunk$echo = FALSE
+
+  # preprocessor
+  pre_processor <- function (metadata, input_file, runtime, knit_meta,
+                             files_dir, output_dir) {
+
+    args <- c()
+
+    # include dashboard.css and dashboard.js (but not in devel
+    # mode, in that case relative filesystem references to
+    # them are included in the template along with live reload)
+    if (devel) {
+      args <- c(args, pandoc_variable_arg("devel", "1"))
+    } else {
+      dashboardAssets <- c('<style type="text/css">',
+                           readLines(resource("dashboard.css")),
+                           '</style>',
+                           '<script type="text/javascript">',
+                           readLines(resource("dashboard.js")),
+                           '</script>')
+      dashboardAssetsFile <- tempfile(fileext = ".html")
+      writeLines(dashboardAssets, dashboardAssetsFile)
+      args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
+    }
+
+    args
+  }
 
   # return format
   output_format(
@@ -67,6 +78,7 @@ grid_dashboard <- function(smart = TRUE,
                             args = args),
     keep_md = FALSE,
     clean_supporting = self_contained,
+    pre_processor = pre_processor,
     base_format = html_document_base(smart = smart, theme = theme,
                                      self_contained = self_contained,
                                      lib_dir = lib_dir, mathjax = NULL,
