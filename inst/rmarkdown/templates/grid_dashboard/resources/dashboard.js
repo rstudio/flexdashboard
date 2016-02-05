@@ -14,6 +14,9 @@ var GridDashboard = (function () {
     // extend default options
     $.extend(true, _options, options);
 
+    // find the main dashboard container
+    var dashboardContainer = $('#dashboard-container');
+
     // look for pages to layout
     var pages = $('div.section.level1');
     if (pages.length > 0) {
@@ -27,8 +30,7 @@ var GridDashboard = (function () {
         // find the navbar list
         var navbarList = $('ul.navbar-nav');
 
-        // find the main container and envelop it in a tab content div
-        var dashboardContainer = $('#dashboard-container');
+        // envelop the dashboard container in a tab content div
         dashboardContainer.wrapInner('<div class="tab-content"></div>');
 
         pages.each(function(index) {
@@ -67,7 +69,7 @@ var GridDashboard = (function () {
       $('#navbar-button').remove();
 
       // layout the entire page
-      layoutDashboardPage($(document));
+      layoutDashboardPage(dashboardContainer);
     }
 
     // handle location hash
@@ -123,13 +125,18 @@ var GridDashboard = (function () {
   }
 
   // layout a chart
-  function layoutChart(title, chart) {
+  function layoutChart(chart) {
 
     // state to return
     var result = {
       caption: false,
       height: null
     };
+
+    // get a reference to the h3, discover it's inner html, and remove it
+    var h3 = chart.children('h3').first();
+    var title = h3.html();
+    h3.remove();
 
     // mark as a grid element for custom css
     chart.addClass('grid-element');
@@ -200,13 +207,8 @@ var GridDashboard = (function () {
         if (colClasses[index] !== null)
           $(this).addClass(colClasses[index]);
 
-        // get a reference to the h3, discover it's inner html, and remove it
-        var h3 = $(this).children('h3').first();
-        var chartTitleHTML = h3.html();
-        h3.remove();
-
         // layout the chart
-        var result = layoutChart(chartTitleHTML, $(this));
+        var result = layoutChart($(this));
 
         // update state
         if (result.caption)
@@ -229,12 +231,54 @@ var GridDashboard = (function () {
 
   function layoutPageByColumns(page) {
 
+    // wrap the entire page in a row
+    page.wrapInner('<div class="row"></div>');
+
     // find all the level2 sections (those are the columns)
     var columns = page.find('div.section.level2');
-    columns.each(function () {
 
+    // compute column classes
+    var colClasses = computeColumnClasses(columns);
+
+    // track the max height of a column and pin the others to that height
+    var maxColumnHeight = 0;
+
+    // layout each column
+    columns.each(function (index) {
+
+      // remove the h2
+      $(this).children('h2').remove();
+
+      // set the colClass
+      if (colClasses[index] !== null)
+        $(this).addClass(colClasses[index]);
+
+      // find all the h3 elements, these are the chart cells
+      var rows = $(this).children('div.section.level3');
+      rows.each(function() {
+
+        // layout the chart
+        var result = layoutChart($(this));
+
+      });
+
+      // update max height
+      if ($(this).outerHeight() > maxColumnHeight)
+        maxColumnHeight = $(this).outerHeight();
     });
 
+    // make the min height equal to the maxHeight
+    if (maxColumnHeight > 0) {
+      columns.each(function() {
+
+        // set the minimum height
+        var minHeight = maxColumnHeight + 'px';
+        $(this).css('min-height', minHeight);
+
+
+      });
+
+    }
   }
 
   // extract chart notes from a chart-stage section
