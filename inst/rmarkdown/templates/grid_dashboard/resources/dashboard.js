@@ -162,6 +162,14 @@ var GridDashboard = (function () {
 
   // layout a dashboard page
   function layoutDashboardPage(page) {
+    if (_options.orientation === 'rows')
+      layoutPageByRows(page);
+    else if (_options.orientation == 'columns')
+      layoutPageByColumns(page);
+
+  }
+
+  function layoutPageByRows(page) {
 
     // find all the level2 sections (those are the rows)
     var rows = page.find('div.section.level2');
@@ -219,6 +227,16 @@ var GridDashboard = (function () {
     });
   }
 
+  function layoutPageByColumns(page) {
+
+    // find all the level2 sections (those are the columns)
+    var columns = page.find('div.section.level2');
+    columns.each(function () {
+
+    });
+
+  }
+
   // extract chart notes from a chart-stage section
   function extractChartNotes(chartStage, chartWrapper) {
 
@@ -259,9 +277,6 @@ var GridDashboard = (function () {
       window.scrollTo(0,0);
     });
   }
-
-
-  var _orientation = null;
 
   GridDashboard.prototype = {
     constructor: GridDashboard,

@@ -18,6 +18,7 @@ grid_dashboard <- function(fig_width = 5,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
+                           orientation = c("rows", "columns"),
                            theme = "default",
                            highlight = "default",
                            mathjax = "default",
@@ -55,6 +56,10 @@ grid_dashboard <- function(fig_width = 5,
   # add flag if we using the default theme
   if (identical(theme, "default"))
     args <- c(args, pandoc_variable_arg("theme_default", "1"))
+
+  # orientation variable
+  orientation = match.arg(orientation)
+  args <- c(args, pandoc_variable_arg("orientation", orientation))
 
   # determine knitr options
   knitr_options <- knitr_options_html(fig_width = fig_width,
