@@ -1,6 +1,34 @@
 
 $(document).ready(function () {
 
+  // extract chart notes from a chart-stage section
+  function extractChartNotes(chartStage, chartWrapper) {
+
+    // track whether we successfully extracted notes
+    var extracted = false;
+
+    // if there is more than one top level visualization element
+    // (an image or an htmlwidget in chart stage then take the
+    // last element and convert it into the chart notes (otherwise
+    // just create an empty chart notes)
+    var chartNotes = $('<div class="chart-notes"></div>');
+    chartNotes.html('&nbsp;');
+    if (chartStage.find('img').length > 0 ||
+        chartStage.find('div[id^="htmlwidget-"]').length > 0) {
+      var lastChild = chartStage.children().last();
+      if (lastChild.is("p") && (lastChild.html().length > 0)) {
+        extracted = true;
+        chartNotes.html(lastChild.html());
+      }
+      lastChild.remove();
+    }
+    chartWrapper.append(chartNotes);
+
+    // return status
+    return extracted;
+  }
+
+
   // layout a dashboard page
   function layoutDashboardPage(page) {
 
@@ -69,22 +97,9 @@ $(document).ready(function () {
         chartTitle.html(chartTitleHTML);
         chartWrapper.prepend(chartTitle);
 
-        // if there is more than one top level visualization element
-        // (an image or an htmlwidget in chart stage then take the
-        // last element and convert it into the chart notes (otherwise
-        // just create an empty chart notes)
-        var chartNotes = $('<div class="chart-notes"></div>');
-        chartNotes.html('&nbsp;');
-        if (chartStage.find('img').length > 0 ||
-            chartStage.find('div[id^="htmlwidget-"]').length > 0) {
-          var lastChild = chartStage.children().last();
-          if (lastChild.is("p") && (lastChild.html().length > 0)) {
-            haveCaptions = true;
-            chartNotes.html(lastChild.html());
-          }
-          lastChild.remove();
-        }
-        chartWrapper.append(chartNotes);
+        // extract notes
+        if (extractChartNotes(chartStage, chartWrapper))
+          haveCaptions = true;
 
         // take a measurement of the chart height and update the
         // max height if necessary
