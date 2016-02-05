@@ -76,6 +76,43 @@ $(document).ready(function () {
     return columnClasses;
   }
 
+  // layout a chart
+  function layoutChart(title, chart) {
+
+    // state to return
+    var result = {
+      caption: false,
+      height: null
+    };
+
+    // mark as a grid element for custom css
+    chart.addClass('grid-element');
+
+    // put all the content in a chart wrapper div
+    chart.wrapInner('<div class="chart-wrapper">' +
+                    '<div class="chart-stage"></div>' +
+                    '</div>');
+
+    // get a references to the chart wrapper and chart stage
+    var chartWrapper = chart.children('.chart-wrapper');
+    var chartStage = chartWrapper.children('.chart-stage');
+
+    // add the title
+    var chartTitle = $('<div class="chart-title"></div>');
+    chartTitle.html(title);
+    chartWrapper.prepend(chartTitle);
+
+    // extract notes
+    if (extractChartNotes(chartStage, chartWrapper))
+      result.caption = true;
+
+    // take a measurement of the chart height
+    result.height = chartStage.outerHeight();
+
+    // return result
+    return result;
+  }
+
 
   // layout a dashboard page
   function layoutDashboardPage(page) {
@@ -109,37 +146,19 @@ $(document).ready(function () {
         if (colClasses[index] !== null)
           $(this).addClass(colClasses[index]);
 
-        // mark as a grid element for custom css
-        $(this).addClass('grid-element');
-
         // get a reference to the h3, discover it's inner html, and remove it
         var h3 = $(this).children('h3').first();
         var chartTitleHTML = h3.html();
         h3.remove();
 
-        // put all the content in a chart wrapper div
-        $(this).wrapInner('<div class="chart-wrapper">' +
-                          '<div class="chart-stage"></div>' +
-                          '</div>');
+        // layout the chart
+        var result = layoutChart(chartTitleHTML, $(this));
 
-        // get a references to the chart wrapper and chart stage
-        var chartWrapper = $(this).children('.chart-wrapper');
-        var chartStage = chartWrapper.children('.chart-stage');
-
-        // add the title
-        var chartTitle = $('<div class="chart-title"></div>');
-        chartTitle.html(chartTitleHTML);
-        chartWrapper.prepend(chartTitle);
-
-        // extract notes
-        if (extractChartNotes(chartStage, chartWrapper))
+        // update state
+        if (result.caption)
           haveCaptions = true;
-
-        // take a measurement of the chart height and update the
-        // max height if necessary
-        var chartHeight = chartStage.outerHeight();
-        if (chartHeight > maxChartHeight)
-          maxChartHeight = chartHeight;
+        if (result.height > maxChartHeight)
+          maxChartHeight = result.height;
       });
 
       // if we don't have any captions in this row then remove
