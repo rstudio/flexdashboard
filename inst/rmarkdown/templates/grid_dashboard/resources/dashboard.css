@@ -61,22 +61,47 @@ body.application hr {
 }
 
 /*
- CSS to tweak default sizing of grid elements
+ CSS for handling flexbox layout
 */
-body.application > .container-fluid {
-  padding-left: 4px;
-  padding-right: 4px;
+
+.dashboard-row-orientation {
+  display: flex;
+  flex-direction: column;
 }
 
-div .grid-element {
-  padding-left: 8px;
-  padding-right: 8px;
+.dashboard-row {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
 }
 
-/*
- CSS for handling dynamic sizing of htmlwidgets and other
- content commonly produced within R Markdown documents
-*/
+.dashboard-column-orientation {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+
+.chart-stage {
+  flex: 1;
+  position: relative;
+}
+
+.chart-shim {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+}
 
 .chart-stage img {
   display: block;
@@ -86,26 +111,16 @@ div .grid-element {
   margin-right: auto;
 }
 
-.html-widget-static-bound {
+.dashboard-row-orientation .chart-stage .html-widget-static-bound {
   width: 100% !important;
+  height: auto;
 }
 
-.flex-direction-row {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -ms-flex-direction: row;
-  -webkit-flex-direction: row;
-  flex-direction: row;
+.dashboard-column-orientation .chart-stage .html-widget-static-bound {
+  height: 100% !important;
+  width: auto;
 }
 
-.flex-direction-column {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-}
+
 
 

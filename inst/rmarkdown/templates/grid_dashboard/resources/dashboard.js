@@ -99,6 +99,9 @@ var GridDashboard = (function () {
 
   function layoutPageByRows(page) {
 
+    // row orientation
+    page.addClass('dashboard-row-orientation');
+
     // find all the level2 sections (those are the rows)
     var rows = page.find('div.section.level2');
     rows.each(function () {
@@ -109,8 +112,8 @@ var GridDashboard = (function () {
       // remove the h2
       $(this).children('h2').remove();
 
-      // convert into a bootstrap row
-      $(this).addClass('row');
+      // make it a flexbox row
+      $(this).addClass('dashboard-row');
 
       // find all of the level 3 subheads
       var columns = $(this).children('div.section.level3');
@@ -142,6 +145,9 @@ var GridDashboard = (function () {
 
   function layoutPageByColumns(page) {
 
+    // column orientation
+    page.addClass('dashboard-column-orientation');
+
     // find all the level2 sections (those are the columns)
     var columns = page.find('div.section.level2');
 
@@ -153,6 +159,9 @@ var GridDashboard = (function () {
 
       // remove the h2
       $(this).children('h2').remove();
+
+      // make it a flexbox column
+      $(this).addClass('dashboard-column');
 
       // set the colClass
       if (colClasses[index] !== null)
@@ -181,6 +190,10 @@ var GridDashboard = (function () {
     for (var i = 0; i<columns.length; i++)
       columnClasses.push(null);
 
+    // for now return nothing until we sort out how to do this with flexbox
+    return columnClasses;
+
+    /*
     // are data-col attributes used, if so convert to col classes
     var columnsUsed = 0;
     var unallocatedColumns = [];
@@ -219,6 +232,7 @@ var GridDashboard = (function () {
 
     // return
     return columnClasses;
+    */
   }
 
   // layout a chart
@@ -234,25 +248,22 @@ var GridDashboard = (function () {
     var title = h3.html();
     h3.remove();
 
-    // mark as a grid element for custom css
-    chart.addClass('grid-element');
-
     // put all the content in a chart wrapper div
-    chart.wrapInner('<div class="chart-wrapper">' +
-                    '<div class="chart-stage"></div>' +
+    chart.addClass('chart-wrapper');
+    chart.wrapInner('<div class="chart-stage">' +
+                    '<div class="chart-shim"></div>' +
                     '</div>');
 
-    // get a references to the chart wrapper and chart stage
-    var chartWrapper = chart.children('.chart-wrapper');
-    var chartStage = chartWrapper.children('.chart-stage');
+    // get a reference to the chart shim
+    var chartShim = chart.find('.chart-shim');
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
     chartTitle.html(title);
-    chartWrapper.prepend(chartTitle);
+    chart.prepend(chartTitle);
 
     // extract notes
-    if (extractChartNotes(chartStage, chartWrapper))
+    if (extractChartNotes(chartShim, chart))
       result.caption = true;
 
     // return result
