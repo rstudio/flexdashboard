@@ -12,7 +12,7 @@ library(dygraphs)
 library(ggplot2)
 ```
 
-# Page 1 {data-orientation='rows'}
+# Page 1 
 
 ## Row 1
 

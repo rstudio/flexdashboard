@@ -27,58 +27,57 @@ var GridDashboard = (function () {
            navbar.collapse('hide');
         });
 
-        // find the navbar list
-        var navbarList = $('ul.navbar-nav');
-
         // envelop the dashboard container in a tab content div
         dashboardContainer.wrapInner('<div class="tab-content"></div>');
 
         pages.each(function(index) {
 
-          // capture the id
-          var id = $(this).attr('id');
-
-          // add the tab-pane class
-          $(this).addClass('tab-pane');
-          if (index === 0)
-            $(this).addClass('active');
-
-          // get a reference to the h1, discover it's id and title, then remove it
-          var h1 = $(this).children('h1').first();
-          var pageTitleHTML = h1.html();
-          h1.remove();
-
-          // add an item to the navbar for this tab
-          var li = $('<li></li>');
-          if (index === 0)
-            li.addClass('active');
-          var a = $('<a></a>');
-          a.attr('href', '#' + id);
-          a.attr('data-toggle', 'tab');
-          a.html(pageTitleHTML);
-          li.append(a);
-          navbarList.append(li);
-
-          // see if there is a data-orientation attribute
-          var orientation = $(this).attr('data-orientation');
-          if (orientation !== 'rows' && orientation != 'columns')
-            orientation = _options.orientation;
+          // add it to the navbar
+          addToNavbar($(this), index === 0);
 
           // lay it out
-          layoutDashboardPage($(this), orientation);
+          layoutDashboardPage($(this));
         });
 
     } else {
+
       // remove the navbar and navbar button
       $('#navbar').remove();
       $('#navbar-button').remove();
 
       // layout the entire page
-      layoutDashboardPage(dashboardContainer, _options.orientation);
+      layoutDashboardPage(dashboardContainer);
     }
 
     // handle location hash
     handleLocationHash();
+  }
+
+  function addToNavbar(page, active) {
+
+    // capture the id
+    var id = page.attr('id');
+
+    // add the tab-pane class
+    page.addClass('tab-pane');
+    if (active)
+      page.addClass('active');
+
+    // get a reference to the h1, discover it's id and title, then remove it
+    var h1 = page.children('h1').first();
+    var pageTitleHTML = h1.html();
+    h1.remove();
+
+    // add an item to the navbar for this tab
+    var li = $('<li></li>');
+    if (active)
+      li.addClass('active');
+    var a = $('<a></a>');
+    a.attr('href', '#' + id);
+    a.attr('data-toggle', 'tab');
+    a.html(pageTitleHTML);
+    li.append(a);
+    $('ul.navbar-nav').append(li);
   }
 
    // compute the width oriented classes for a set of columns
@@ -173,7 +172,13 @@ var GridDashboard = (function () {
 
 
   // layout a dashboard page
-  function layoutDashboardPage(page, orientation) {
+  function layoutDashboardPage(page) {
+
+    // determine orientation
+    var orientation = page.attr('data-orientation');
+    if (orientation !== 'rows' && orientation != 'columns')
+      orientation = _options.orientation;
+
     if (orientation === 'rows')
       layoutPageByRows(page);
     else if (orientation === 'columns')
