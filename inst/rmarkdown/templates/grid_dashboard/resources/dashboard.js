@@ -152,9 +152,6 @@ var GridDashboard = (function () {
 
   function layoutPageByColumns(page) {
 
-    // wrap the entire page in a row with equal height columns
-    page.wrapInner('<div class="row row-eq-height"></div>');
-
     // find all the level2 sections (those are the columns)
     var columns = page.find('div.section.level2');
 
