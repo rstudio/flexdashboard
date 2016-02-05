@@ -16,7 +16,7 @@ library(ggplot2)
 
 ## Row 1
 
-### Male Deaths
+### Male Deaths {.col-sm-7}
 
 Some free form content:
 
@@ -32,7 +32,7 @@ foo <- function(x = 20) {
 }
 ```
 
-### Female Deaths
+### Female Deaths {.col-sm-5}
 
 ```{r}
 dygraph(fdeaths)

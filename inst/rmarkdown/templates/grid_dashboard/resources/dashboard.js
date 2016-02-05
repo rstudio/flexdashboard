@@ -28,6 +28,33 @@ $(document).ready(function () {
     return extracted;
   }
 
+  // compute the width oriented classes for a set of columns
+  function computeColumnClasses(columns) {
+
+    // classes to return
+    var columnClasses = [];
+    for (var i = 0; i<columns.length; i++)
+      columnClasses.push(null);
+
+    // do any columns specify a col- explicitly? If so
+    // then the user is controlling the widths
+    var explicitWidths = columns.filter('[class*=" col-"]').length > 0;
+    if (!explicitWidths) {
+      // get length and use that to compute the column size
+      var numColumns = columns.length;
+
+      // compute the col class
+      var colWidth = 12 / numColumns;
+      var colClass = "col-sm-" + colWidth;
+
+      // apply it to every element
+      columnClasses = columnClasses.map(function() { return colClass; });
+    }
+
+    // return
+    return columnClasses;
+  }
+
 
   // layout a dashboard page
   function layoutDashboardPage(page) {
@@ -51,36 +78,22 @@ $(document).ready(function () {
       // find all of the level 3 subheads
       var columns = $(this).children('div.section.level3');
 
-      // see if need to compute a col-class
-      var colClass = null;
-
-      // do any of them specify a col- explicitly? If so
-      // then the user is controlling the widths
-      var explicitWidths = columns.filter('[class*=" col-"]').length > 0;
-      if (!explicitWidths) {
-        // get length and use that to compute the column size
-        var numColumns = columns.length;
-
-        // compute the col class
-        var colWidth = 12 / numColumns;
-        colClass = "col-sm-" + colWidth;
-      }
+      // compute column classes
+      var colClasses = computeColumnClasses(columns);
 
       // fixup the columns
-      columns.each(function() {
+      columns.each(function(index) {
 
         // set the colClass
-        if (colClass !== null)
-          $(this).addClass(colClass);
+        if (colClasses[index] !== null)
+          $(this).addClass(colClasses[index]);
 
         // mark as a grid element for custom css
         $(this).addClass('grid-element');
 
-        // get a reference to the h3 and discover it's inner html
+        // get a reference to the h3, discover it's inner html, and remove it
         var h3 = $(this).children('h3').first();
         var chartTitleHTML = h3.html();
-
-        // remove the h3
         h3.remove();
 
         // put all the content in a chart wrapper div
@@ -114,7 +127,7 @@ $(document).ready(function () {
         $(this).find('.chart-notes').remove();
 
       // pin the height of this row to the max-height of the grid cells
-      // (this prevents the height chaning when img auto-sizing occurs)
+      // (this prevents the height changing when img auto-sizing occurs)
       if (maxChartHeight > 0)
         $(this).find('.chart-stage').css('min-height', maxChartHeight + 'px');
     });
