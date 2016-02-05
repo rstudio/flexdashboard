@@ -266,6 +266,9 @@ var GridDashboard = (function () {
     if (extractChartNotes(chartShim, chart))
       result.caption = true;
 
+    // remove empty p nodes (artifacst of markdown rendering)
+    chartShim.find('p:empty').remove();
+
     // return result
     return result;
   }
