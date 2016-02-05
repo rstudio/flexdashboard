@@ -100,7 +100,11 @@ body.application hr {
 
 .chart-shim {
   position: absolute;
-  left: 0; top: 0; right: 0; bottom: 0;
+  left: 8px; top: 8px; right: 8px; bottom: 8px;
+}
+
+.chart-shim>p:empty {
+  display: none;
 }
 
 .chart-stage img {

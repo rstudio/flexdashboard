@@ -11,12 +11,15 @@ output:
 library(dygraphs)
 ```
 
+Here is some content.
+
 ## Row 1
 
 ### Male Deaths {data-col=3}
 
 ```{r}
-dygraph(mdeaths)
+library(d3heatmap)
+d3heatmap(mtcars, scale="column", colors="Blues")
 ```
 
 Here is some footer text.
