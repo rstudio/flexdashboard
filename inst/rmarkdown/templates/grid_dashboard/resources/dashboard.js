@@ -36,6 +36,15 @@ $(document).ready(function () {
     for (var i = 0; i<columns.length; i++)
       columnClasses.push(null);
 
+    // are data-col attributes used, if so convert to col classes
+    columns.each(function(index) {
+      var dataCol = $(this).attr('data-col');
+      if (dataCol) {
+        $(this).addClass('col-sm-' + dataCol);
+        $(this).removeAttr('data-col');
+      }
+    });
+
     // do any columns specify a col- explicitly? If so
     // then the user is controlling the widths
     var explicitWidths = columns.filter('[class*=" col-"]').length > 0;
