@@ -90,6 +90,24 @@ div .grid-element {
   width: 100% !important;
 }
 
+.flex-direction-row {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+.flex-direction-column {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
 .row-eq-height {
   display: -ms-flexbox;
   display: -webkit-flex;
