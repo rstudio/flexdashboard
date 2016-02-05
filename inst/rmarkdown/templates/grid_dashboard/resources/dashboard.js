@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-  // function to layout a dashboard page
+  // layout a dashboard page
   function layoutDashboardPage(page) {
 
     // find all the level2 sections (those are the rows)
@@ -105,72 +105,82 @@ $(document).ready(function () {
     });
   }
 
-  // look for pages to layout
-  var pages = $(this).find('div.section.level1');
-  if (pages.length > 0) {
+  // layout the dashboard based on level 1, 2, and 3 headings
+  function layoutDashboard() {
 
-      // find the navbar and collapse on clicked
-      var navbar = $(this).find('#navbar');
-      navbar.on("click", "a", null, function () {
-         navbar.collapse('hide');
-      });
+    // look for pages to layout
+    var pages = $('div.section.level1');
+    if (pages.length > 0) {
 
-      // find the navbar list
-      var navbarList = $(this).find('ul.navbar-nav');
+        // find the navbar and collapse on clicked
+        var navbar = $('#navbar');
+        navbar.on("click", "a", null, function () {
+           navbar.collapse('hide');
+        });
 
-      // find the main container and envelop it in a tab content div
-      var dashboardContainer = $('#dashboard-container');
-      dashboardContainer.wrapInner('<div class="tab-content"></div>');
+        // find the navbar list
+        var navbarList = $('ul.navbar-nav');
 
-      pages.each(function(index) {
+        // find the main container and envelop it in a tab content div
+        var dashboardContainer = $('#dashboard-container');
+        dashboardContainer.wrapInner('<div class="tab-content"></div>');
 
-        // capture the id
-        var id = $(this).attr('id');
+        pages.each(function(index) {
 
-        // add the tab-pane class
-        $(this).addClass('tab-pane');
-        if (index === 0)
-          $(this).addClass('active');
+          // capture the id
+          var id = $(this).attr('id');
 
-        // get a reference to the h1, discover it's id and title, then remove it
-        var h1 = $(this).children('h1').first();
-        var pageTitleHTML = h1.html();
-        h1.remove();
+          // add the tab-pane class
+          $(this).addClass('tab-pane');
+          if (index === 0)
+            $(this).addClass('active');
 
-        // add an item to the navbar for this tab
-        var li = $('<li></li>');
-        if (index === 0)
-          li.addClass('active');
-        var a = $('<a></a>');
-        a.attr('href', '#' + id);
-        a.attr('data-toggle', 'tab');
-        a.html(pageTitleHTML);
-        li.append(a);
-        navbarList.append(li);
+          // get a reference to the h1, discover it's id and title, then remove it
+          var h1 = $(this).children('h1').first();
+          var pageTitleHTML = h1.html();
+          h1.remove();
 
-        // lay it out
-        layoutDashboardPage($(this));
-      });
+          // add an item to the navbar for this tab
+          var li = $('<li></li>');
+          if (index === 0)
+            li.addClass('active');
+          var a = $('<a></a>');
+          a.attr('href', '#' + id);
+          a.attr('data-toggle', 'tab');
+          a.html(pageTitleHTML);
+          li.append(a);
+          navbarList.append(li);
 
-  } else {
-    // remove the navbar and navbar button
-    $('#navbar').remove();
-    $('#navbar-button').remove();
+          // lay it out
+          layoutDashboardPage($(this));
+        });
 
-    // layout the entire page
-    layoutDashboardPage($(this));
+    } else {
+      // remove the navbar and navbar button
+      $('#navbar').remove();
+      $('#navbar-button').remove();
+
+      // layout the entire page
+      layoutDashboardPage($(document));
+    }
   }
 
-  // restore tab/page from bookmark
-  var hash = window.location.hash;
-  if (hash.length > 0)
-    $('ul.nav a[href="' + hash + '"]').tab('show');
+  function handleLocationHash() {
+    // restore tab/page from bookmark
+    var hash = window.location.hash;
+    if (hash.length > 0)
+      $('ul.nav a[href="' + hash + '"]').tab('show');
 
-  // add a hash to the URL when the user clicks on a tab/page
-  $('a[data-toggle="tab"]').on('click', function(e) {
-    window.location.hash = $(this).attr('href');
-    window.scrollTo(0,0);
-  });
+    // add a hash to the URL when the user clicks on a tab/page
+    $('a[data-toggle="tab"]').on('click', function(e) {
+      window.location.hash = $(this).attr('href');
+      window.scrollTo(0,0);
+    });
+  }
+
+  // initialization
+  layoutDashboard();
+  handleLocationHash();
 });
 
 
