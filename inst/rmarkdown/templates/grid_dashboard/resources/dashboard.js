@@ -80,97 +80,6 @@ var GridDashboard = (function () {
     $('ul.navbar-nav').append(li);
   }
 
-   // compute the width oriented classes for a set of columns
-  function computeColumnClasses(columns) {
-
-    // classes to return
-    var columnClasses = [];
-    for (var i = 0; i<columns.length; i++)
-      columnClasses.push(null);
-
-    // are data-col attributes used, if so convert to col classes
-    var columnsUsed = 0;
-    var unallocatedColumns = [];
-    columns.each(function(index) {
-      var dataCol = parseInt($(this).attr('data-col'));
-      if (!isNaN(dataCol)) {
-        columnsUsed += dataCol;
-        $(this).addClass('col-sm-' + dataCol);
-        $(this).removeAttr('data-col');
-      } else {
-        unallocatedColumns.push($(this));
-      }
-    });
-
-    // if we've allocated some columns then auto-allocate the rest
-    if (columnsUsed > 0) {
-      var colWidth = (12 - columnsUsed) / unallocatedColumns.length;
-      unallocatedColumns.map(function(col) {
-        col.addClass('col-sm-' + colWidth);
-      });
-    }
-
-    // do any columns specify a col- explicitly? If so
-    // then the user is controlling the widths
-    var explicitWidths = columns.filter('[class*=" col-"]').length > 0;
-    if (!explicitWidths) {
-      // get length and use that to compute the column size
-      var numColumns = columns.length;
-
-      // compute the col class
-      var colClass = "col-sm-" + (12 / numColumns);
-
-      // apply it to every element
-      columnClasses = columnClasses.map(function() { return colClass; });
-    }
-
-    // return
-    return columnClasses;
-  }
-
-  // layout a chart
-  function layoutChart(chart) {
-
-    // state to return
-    var result = {
-      caption: false,
-      height: null
-    };
-
-    // get a reference to the h3, discover it's inner html, and remove it
-    var h3 = chart.children('h3').first();
-    var title = h3.html();
-    h3.remove();
-
-    // mark as a grid element for custom css
-    chart.addClass('grid-element');
-
-    // put all the content in a chart wrapper div
-    chart.wrapInner('<div class="chart-wrapper">' +
-                    '<div class="chart-stage"></div>' +
-                    '</div>');
-
-    // get a references to the chart wrapper and chart stage
-    var chartWrapper = chart.children('.chart-wrapper');
-    var chartStage = chartWrapper.children('.chart-stage');
-
-    // add the title
-    var chartTitle = $('<div class="chart-title"></div>');
-    chartTitle.html(title);
-    chartWrapper.prepend(chartTitle);
-
-    // extract notes
-    if (extractChartNotes(chartStage, chartWrapper))
-      result.caption = true;
-
-    // take a measurement of the chart height
-    result.height = chartStage.outerHeight();
-
-    // return result
-    return result;
-  }
-
-
   // layout a dashboard page
   function layoutDashboardPage(page) {
 
@@ -272,6 +181,99 @@ var GridDashboard = (function () {
       });
     });
   }
+
+
+   // compute the width oriented classes for a set of columns
+  function computeColumnClasses(columns) {
+
+    // classes to return
+    var columnClasses = [];
+    for (var i = 0; i<columns.length; i++)
+      columnClasses.push(null);
+
+    // are data-col attributes used, if so convert to col classes
+    var columnsUsed = 0;
+    var unallocatedColumns = [];
+    columns.each(function(index) {
+      var dataCol = parseInt($(this).attr('data-col'));
+      if (!isNaN(dataCol)) {
+        columnsUsed += dataCol;
+        $(this).addClass('col-sm-' + dataCol);
+        $(this).removeAttr('data-col');
+      } else {
+        unallocatedColumns.push($(this));
+      }
+    });
+
+    // if we've allocated some columns then auto-allocate the rest
+    if (columnsUsed > 0) {
+      var colWidth = (12 - columnsUsed) / unallocatedColumns.length;
+      unallocatedColumns.map(function(col) {
+        col.addClass('col-sm-' + colWidth);
+      });
+    }
+
+    // do any columns specify a col- explicitly? If so
+    // then the user is controlling the widths
+    var explicitWidths = columns.filter('[class*=" col-"]').length > 0;
+    if (!explicitWidths) {
+      // get length and use that to compute the column size
+      var numColumns = columns.length;
+
+      // compute the col class
+      var colClass = "col-sm-" + (12 / numColumns);
+
+      // apply it to every element
+      columnClasses = columnClasses.map(function() { return colClass; });
+    }
+
+    // return
+    return columnClasses;
+  }
+
+  // layout a chart
+  function layoutChart(chart) {
+
+    // state to return
+    var result = {
+      caption: false,
+      height: null
+    };
+
+    // get a reference to the h3, discover it's inner html, and remove it
+    var h3 = chart.children('h3').first();
+    var title = h3.html();
+    h3.remove();
+
+    // mark as a grid element for custom css
+    chart.addClass('grid-element');
+
+    // put all the content in a chart wrapper div
+    chart.wrapInner('<div class="chart-wrapper">' +
+                    '<div class="chart-stage"></div>' +
+                    '</div>');
+
+    // get a references to the chart wrapper and chart stage
+    var chartWrapper = chart.children('.chart-wrapper');
+    var chartStage = chartWrapper.children('.chart-stage');
+
+    // add the title
+    var chartTitle = $('<div class="chart-title"></div>');
+    chartTitle.html(title);
+    chartWrapper.prepend(chartTitle);
+
+    // extract notes
+    if (extractChartNotes(chartStage, chartWrapper))
+      result.caption = true;
+
+    // take a measurement of the chart height
+    result.height = chartStage.outerHeight();
+
+    // return result
+    return result;
+  }
+
+
 
   // extract chart notes from a chart-stage section
   function extractChartNotes(chartStage, chartWrapper) {
