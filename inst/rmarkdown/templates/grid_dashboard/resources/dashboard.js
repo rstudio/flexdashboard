@@ -59,8 +59,13 @@ var GridDashboard = (function () {
           li.append(a);
           navbarList.append(li);
 
+          // see if there is a data-orientation attribute
+          var orientation = $(this).attr('data-orientation');
+          if (orientation !== 'rows' && orientation != 'columns')
+            orientation = _options.orientation;
+
           // lay it out
-          layoutDashboardPage($(this));
+          layoutDashboardPage($(this), orientation);
         });
 
     } else {
@@ -69,7 +74,7 @@ var GridDashboard = (function () {
       $('#navbar-button').remove();
 
       // layout the entire page
-      layoutDashboardPage(dashboardContainer);
+      layoutDashboardPage(dashboardContainer, _options.orientation);
     }
 
     // handle location hash
@@ -168,12 +173,11 @@ var GridDashboard = (function () {
 
 
   // layout a dashboard page
-  function layoutDashboardPage(page) {
-    if (_options.orientation === 'rows')
+  function layoutDashboardPage(page, orientation) {
+    if (orientation === 'rows')
       layoutPageByRows(page);
-    else if (_options.orientation == 'columns')
+    else if (orientation === 'columns')
       layoutPageByColumns(page);
-
   }
 
   function layoutPageByRows(page) {

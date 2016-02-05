@@ -12,7 +12,7 @@ library(dygraphs)
 library(ggplot2)
 ```
 
-# Page 1
+# Page 1 {data-orientation='rows'}
 
 ## Row 1
 
@@ -48,11 +48,22 @@ More footer text.
 dygraph(ldeaths)
 ```
 
-# Page 2
+# Page 2 {data-orientation='columns'}
 
 ## Row 1
 
-### Male Deaths 2 {.col-md-7}
+### All Deaths
+
+```{r}
+dygraph(ldeaths)
+```
+
+
+
+
+## Row 2
+
+### Male Deaths 2 
 
 ```{r}
 dygraph(mdeaths)
@@ -60,19 +71,11 @@ dygraph(mdeaths)
 
 Here is some footer text.
 
-### Female Deaths 2 {.col-md-5}
+### Female Deaths 2 
 
 ```{r}
 dygraph(fdeaths)
 ```
 
 More footer text.
-
-## Row 2
-
-### All Deaths
-
-```{r}
-dygraph(ldeaths)
-```
 
