@@ -16,7 +16,7 @@ library(ggplot2)
 
 ## Row 1
 
-### Male Deaths {data-col=7}
+### Male Deaths {data-col=4}
 
 Some free form content:
 

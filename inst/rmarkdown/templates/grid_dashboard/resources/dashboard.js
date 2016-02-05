@@ -37,13 +37,26 @@ $(document).ready(function () {
       columnClasses.push(null);
 
     // are data-col attributes used, if so convert to col classes
+    var columnsUsed = 0;
+    var unallocatedColumns = [];
     columns.each(function(index) {
-      var dataCol = $(this).attr('data-col');
-      if (dataCol) {
+      var dataCol = parseInt($(this).attr('data-col'));
+      if (!isNaN(dataCol)) {
+        columnsUsed += dataCol;
         $(this).addClass('col-sm-' + dataCol);
         $(this).removeAttr('data-col');
+      } else {
+        unallocatedColumns.push($(this));
       }
     });
+
+    // if we've allocated some columns then auto-allocate the rest
+    if (columnsUsed > 0) {
+      var colWidth = (12 - columnsUsed) / unallocatedColumns.length;
+      unallocatedColumns.map(function(col) {
+        col.addClass('col-sm-' + colWidth);
+      });
+    }
 
     // do any columns specify a col- explicitly? If so
     // then the user is controlling the widths
@@ -53,8 +66,7 @@ $(document).ready(function () {
       var numColumns = columns.length;
 
       // compute the col class
-      var colWidth = 12 / numColumns;
-      var colClass = "col-sm-" + colWidth;
+      var colClass = "col-sm-" + (12 / numColumns);
 
       // apply it to every element
       columnClasses = columnClasses.map(function() { return colClass; });
