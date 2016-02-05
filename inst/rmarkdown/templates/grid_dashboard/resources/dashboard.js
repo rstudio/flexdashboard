@@ -1,4 +1,7 @@
 
+// flex dashboard jsfiddle: https://jsfiddle.net/13ofvvyg/
+
+
 var GridDashboard = (function () {
 
   var GridDashboard = function() {
