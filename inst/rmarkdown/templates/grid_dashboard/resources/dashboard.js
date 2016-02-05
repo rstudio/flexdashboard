@@ -231,17 +231,14 @@ var GridDashboard = (function () {
 
   function layoutPageByColumns(page) {
 
-    // wrap the entire page in a row
-    page.wrapInner('<div class="row"></div>');
+    // wrap the entire page in a row with equal height columns
+    page.wrapInner('<div class="row row-eq-height"></div>');
 
     // find all the level2 sections (those are the columns)
     var columns = page.find('div.section.level2');
 
     // compute column classes
     var colClasses = computeColumnClasses(columns);
-
-    // track the max height of a column and pin the others to that height
-    var maxColumnHeight = 0;
 
     // layout each column
     columns.each(function (index) {
@@ -260,25 +257,11 @@ var GridDashboard = (function () {
         // layout the chart
         var result = layoutChart($(this));
 
-      });
 
-      // update max height
-      if ($(this).outerHeight() > maxColumnHeight)
-        maxColumnHeight = $(this).outerHeight();
+
+
+      });
     });
-
-    // make the min height equal to the maxHeight
-    if (maxColumnHeight > 0) {
-      columns.each(function() {
-
-        // set the minimum height
-        var minHeight = maxColumnHeight + 'px';
-        $(this).css('min-height', minHeight);
-
-
-      });
-
-    }
   }
 
   // extract chart notes from a chart-stage section
