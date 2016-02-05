@@ -1,34 +1,80 @@
 
-$(document).ready(function () {
+var GridDashboard = (function () {
 
-  // extract chart notes from a chart-stage section
-  function extractChartNotes(chartStage, chartWrapper) {
+  var GridDashboard = function() {
 
-    // track whether we successfully extracted notes
-    var extracted = false;
+    // default options
+    _options = {
+      orientation: 'rows'
+    };
+  };
 
-    // if there is more than one top level visualization element
-    // (an image or an htmlwidget in chart stage then take the
-    // last element and convert it into the chart notes (otherwise
-    // just create an empty chart notes)
-    var chartNotes = $('<div class="chart-notes"></div>');
-    chartNotes.html('&nbsp;');
-    if (chartStage.find('img').length > 0 ||
-        chartStage.find('div[id^="htmlwidget-"]').length > 0) {
-      var lastChild = chartStage.children().last();
-      if (lastChild.is("p") && (lastChild.html().length > 0)) {
-        extracted = true;
-        chartNotes.html(lastChild.html());
-      }
-      lastChild.remove();
+  function init(options) {
+
+    // extend default options
+    $.extend(true, _options, options);
+
+    // look for pages to layout
+    var pages = $('div.section.level1');
+    if (pages.length > 0) {
+
+        // find the navbar and collapse on clicked
+        var navbar = $('#navbar');
+        navbar.on("click", "a", null, function () {
+           navbar.collapse('hide');
+        });
+
+        // find the navbar list
+        var navbarList = $('ul.navbar-nav');
+
+        // find the main container and envelop it in a tab content div
+        var dashboardContainer = $('#dashboard-container');
+        dashboardContainer.wrapInner('<div class="tab-content"></div>');
+
+        pages.each(function(index) {
+
+          // capture the id
+          var id = $(this).attr('id');
+
+          // add the tab-pane class
+          $(this).addClass('tab-pane');
+          if (index === 0)
+            $(this).addClass('active');
+
+          // get a reference to the h1, discover it's id and title, then remove it
+          var h1 = $(this).children('h1').first();
+          var pageTitleHTML = h1.html();
+          h1.remove();
+
+          // add an item to the navbar for this tab
+          var li = $('<li></li>');
+          if (index === 0)
+            li.addClass('active');
+          var a = $('<a></a>');
+          a.attr('href', '#' + id);
+          a.attr('data-toggle', 'tab');
+          a.html(pageTitleHTML);
+          li.append(a);
+          navbarList.append(li);
+
+          // lay it out
+          layoutDashboardPage($(this));
+        });
+
+    } else {
+      // remove the navbar and navbar button
+      $('#navbar').remove();
+      $('#navbar-button').remove();
+
+      // layout the entire page
+      layoutDashboardPage($(document));
     }
-    chartWrapper.append(chartNotes);
 
-    // return status
-    return extracted;
+    // handle location hash
+    handleLocationHash();
   }
 
-  // compute the width oriented classes for a set of columns
+   // compute the width oriented classes for a set of columns
   function computeColumnClasses(columns) {
 
     // classes to return
@@ -173,67 +219,35 @@ $(document).ready(function () {
     });
   }
 
-  // layout the dashboard based on level 1, 2, and 3 headings
-  function layoutDashboard() {
+  // extract chart notes from a chart-stage section
+  function extractChartNotes(chartStage, chartWrapper) {
 
-    // look for pages to layout
-    var pages = $('div.section.level1');
-    if (pages.length > 0) {
+    // track whether we successfully extracted notes
+    var extracted = false;
 
-        // find the navbar and collapse on clicked
-        var navbar = $('#navbar');
-        navbar.on("click", "a", null, function () {
-           navbar.collapse('hide');
-        });
-
-        // find the navbar list
-        var navbarList = $('ul.navbar-nav');
-
-        // find the main container and envelop it in a tab content div
-        var dashboardContainer = $('#dashboard-container');
-        dashboardContainer.wrapInner('<div class="tab-content"></div>');
-
-        pages.each(function(index) {
-
-          // capture the id
-          var id = $(this).attr('id');
-
-          // add the tab-pane class
-          $(this).addClass('tab-pane');
-          if (index === 0)
-            $(this).addClass('active');
-
-          // get a reference to the h1, discover it's id and title, then remove it
-          var h1 = $(this).children('h1').first();
-          var pageTitleHTML = h1.html();
-          h1.remove();
-
-          // add an item to the navbar for this tab
-          var li = $('<li></li>');
-          if (index === 0)
-            li.addClass('active');
-          var a = $('<a></a>');
-          a.attr('href', '#' + id);
-          a.attr('data-toggle', 'tab');
-          a.html(pageTitleHTML);
-          li.append(a);
-          navbarList.append(li);
-
-          // lay it out
-          layoutDashboardPage($(this));
-        });
-
-    } else {
-      // remove the navbar and navbar button
-      $('#navbar').remove();
-      $('#navbar-button').remove();
-
-      // layout the entire page
-      layoutDashboardPage($(document));
+    // if there is more than one top level visualization element
+    // (an image or an htmlwidget in chart stage then take the
+    // last element and convert it into the chart notes (otherwise
+    // just create an empty chart notes)
+    var chartNotes = $('<div class="chart-notes"></div>');
+    chartNotes.html('&nbsp;');
+    if (chartStage.find('img').length > 0 ||
+        chartStage.find('div[id^="htmlwidget-"]').length > 0) {
+      var lastChild = chartStage.children().last();
+      if (lastChild.is("p") && (lastChild.html().length > 0)) {
+        extracted = true;
+        chartNotes.html(lastChild.html());
+      }
+      lastChild.remove();
     }
+    chartWrapper.append(chartNotes);
+
+    // return status
+    return extracted;
   }
 
   function handleLocationHash() {
+
     // restore tab/page from bookmark
     var hash = window.location.hash;
     if (hash.length > 0)
@@ -246,9 +260,18 @@ $(document).ready(function () {
     });
   }
 
-  // initialization
-  layoutDashboard();
-  handleLocationHash();
-});
+
+  var _orientation = null;
+
+  GridDashboard.prototype = {
+    constructor: GridDashboard,
+    init: init
+  };
+
+  return GridDashboard;
+
+})();
+
+window.GridDashboard = new GridDashboard();
 
 
