@@ -13,7 +13,7 @@ library(dygraphs)
 
 ## Row 1
 
-### Male Deaths 
+### Male Deaths {data-col=3}
 
 ```{r}
 dygraph(mdeaths)
@@ -21,7 +21,7 @@ dygraph(mdeaths)
 
 Here is some footer text.
 
-### Female Deaths 
+### Female Deaths {data-col=2}
 
 ```{r}
 dygraph(fdeaths)

@@ -118,15 +118,13 @@ var GridDashboard = (function () {
       // find all of the level 3 subheads
       var columns = $(this).children('div.section.level3');
 
-      // compute column classes
-      var colClasses = computeColumnClasses(columns);
-
       // fixup the columns
       columns.each(function(index) {
 
-        // set the colClass
-        if (colClasses[index] !== null)
-          $(this).addClass(colClasses[index]);
+        // add any data-col as a flex value
+        var dataCol = $(this).attr('data-col');
+        if (dataCol)
+          $(this).css('flex', dataCol);
 
         // layout the chart
         var result = layoutChart($(this));
@@ -151,9 +149,6 @@ var GridDashboard = (function () {
     // find all the level2 sections (those are the columns)
     var columns = page.find('div.section.level2');
 
-    // compute column classes
-    var colClasses = computeColumnClasses(columns);
-
     // layout each column
     columns.each(function (index) {
 
@@ -163,9 +158,10 @@ var GridDashboard = (function () {
       // make it a flexbox column
       $(this).addClass('dashboard-column');
 
-      // set the colClass
-      if (colClasses[index] !== null)
-        $(this).addClass(colClasses[index]);
+      // add any data-col as a flex value
+      var dataCol = chart.attr('data-col');
+      if (dataCol)
+        $(this).css('flex', dataCol);
 
       // find all the h3 elements, these are the chart cells
       var rows = $(this).children('div.section.level3');
@@ -182,58 +178,6 @@ var GridDashboard = (function () {
   }
 
 
-   // compute the width oriented classes for a set of columns
-  function computeColumnClasses(columns) {
-
-    // classes to return
-    var columnClasses = [];
-    for (var i = 0; i<columns.length; i++)
-      columnClasses.push(null);
-
-    // for now return nothing until we sort out how to do this with flexbox
-    return columnClasses;
-
-    /*
-    // are data-col attributes used, if so convert to col classes
-    var columnsUsed = 0;
-    var unallocatedColumns = [];
-    columns.each(function(index) {
-      var dataCol = parseInt($(this).attr('data-col'));
-      if (!isNaN(dataCol)) {
-        columnsUsed += dataCol;
-        $(this).addClass('col-sm-' + dataCol);
-        $(this).removeAttr('data-col');
-      } else {
-        unallocatedColumns.push($(this));
-      }
-    });
-
-    // if we've allocated some columns then auto-allocate the rest
-    if (columnsUsed > 0) {
-      var colWidth = (12 - columnsUsed) / unallocatedColumns.length;
-      unallocatedColumns.map(function(col) {
-        col.addClass('col-sm-' + colWidth);
-      });
-    }
-
-    // do any columns specify a col- explicitly? If so
-    // then the user is controlling the widths
-    var explicitWidths = columns.filter('[class*=" col-"]').length > 0;
-    if (!explicitWidths) {
-      // get length and use that to compute the column size
-      var numColumns = columns.length;
-
-      // compute the col class
-      var colClass = "col-sm-" + (12 / numColumns);
-
-      // apply it to every element
-      columnClasses = columnClasses.map(function() { return colClass; });
-    }
-
-    // return
-    return columnClasses;
-    */
-  }
 
   // layout a chart
   function layoutChart(chart) {
