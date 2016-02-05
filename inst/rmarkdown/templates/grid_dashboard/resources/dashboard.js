@@ -106,9 +106,6 @@ var GridDashboard = (function () {
       // flag indicating whether we have any captions
       var haveCaptions = false;
 
-      // retain the maximum height for chart content
-      var maxChartHeight = 0;
-
       // remove the h2
       $(this).children('h2').remove();
 
@@ -134,19 +131,12 @@ var GridDashboard = (function () {
         // update state
         if (result.caption)
           haveCaptions = true;
-        if (result.height > maxChartHeight)
-          maxChartHeight = result.height;
       });
 
       // if we don't have any captions in this row then remove
       // the chart notes divs
       if (!haveCaptions)
         $(this).find('.chart-notes').remove();
-
-      // pin the height of this row to the max-height of the grid cells
-      // (this prevents the height changing when img auto-sizing occurs)
-      if (maxChartHeight > 0)
-        $(this).find('.chart-stage').css('min-height', maxChartHeight + 'px');
     });
   }
 
@@ -236,8 +226,7 @@ var GridDashboard = (function () {
 
     // state to return
     var result = {
-      caption: false,
-      height: null
+      caption: false
     };
 
     // get a reference to the h3, discover it's inner html, and remove it
@@ -265,9 +254,6 @@ var GridDashboard = (function () {
     // extract notes
     if (extractChartNotes(chartStage, chartWrapper))
       result.caption = true;
-
-    // take a measurement of the chart height
-    result.height = chartStage.outerHeight();
 
     // return result
     return result;
