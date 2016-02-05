@@ -11,15 +11,13 @@ output:
 library(dygraphs)
 ```
 
-Here is some content.
-
 ## Row 1
 
 ### Male Deaths {data-col=3}
 
 ```{r}
-library(d3heatmap)
-d3heatmap(mtcars, scale="column", colors="Blues")
+library(leaflet)
+leaflet() %>% addTiles()
 ```
 
 Here is some footer text.
@@ -27,7 +25,8 @@ Here is some footer text.
 ### Female Deaths {data-col=2}
 
 ```{r}
-dygraph(fdeaths)
+library(d3heatmap)
+d3heatmap(mtcars, scale="column", colors="Blues")
 ```
 
 More footer text.
