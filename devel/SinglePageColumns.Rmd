@@ -11,7 +11,7 @@ output:
 library(dygraphs)
 ```
 
-## Column 1 {data-col=7}
+## Column 1 {data-col=2}
 
 ### All Deaths 
 

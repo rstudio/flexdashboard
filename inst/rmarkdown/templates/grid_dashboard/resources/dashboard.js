@@ -159,7 +159,7 @@ var GridDashboard = (function () {
       $(this).addClass('dashboard-column');
 
       // add any data-col as a flex value
-      var dataCol = chart.attr('data-col');
+      var dataCol = $(this).attr('data-col');
       if (dataCol)
         $(this).css('flex', dataCol);
 
