@@ -113,12 +113,13 @@ body.application hr {
 
 .dashboard-row-orientation .chart-stage .html-widget-static-bound {
   width: 100% !important;
-  height: auto;
+  height: 100% !important;
+
 }
 
 .dashboard-column-orientation .chart-stage .html-widget-static-bound {
+  width: 100% !important;
   height: 100% !important;
-  width: auto;
 }
 
 
