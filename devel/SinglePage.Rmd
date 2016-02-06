@@ -9,7 +9,12 @@ output:
 
 ```{r setup, include=FALSE}
 library(dygraphs)
+# too big: journal, flatly, readable, paper, sandstone
+# too small: simplex, yeti
+# too light: lumen, readable
 ```
+
+
 
 ## Row 1
 
