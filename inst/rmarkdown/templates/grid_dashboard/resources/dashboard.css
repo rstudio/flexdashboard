@@ -6,7 +6,7 @@
 
 body.application {
   background: #f2f2f2;
-  padding: 70px 4px 0px 21px;
+  padding: 60px 0px 0px 8px;
 }
 body.application > .container-fluid {
   padding-left: 0;
@@ -35,7 +35,7 @@ body.application hr {
   background: #fff;
   border: 1px solid #e2e2e2;
   border-radius: 3px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 .chart-wrapper .chart-title {
   border-bottom: 1px solid #d7d7d7;
@@ -91,7 +91,7 @@ body.application hr {
   display: flex;
   flex-direction: column;
   height: 300px;
-  margin-right: 18px;
+  margin-right: 8px;
 }
 
 .chart-stage {
