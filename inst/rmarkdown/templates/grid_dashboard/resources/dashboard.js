@@ -1,6 +1,11 @@
 
 // flex dashboard jsfiddle: https://jsfiddle.net/13ofvvyg/
 
+// TODO: only use shim for htmlwidgets
+// TODO: figure out scheme for users influencing columns, height
+//       (implicit based on fig_width, fig_height would be good, does
+//        the page include this information statically at startup?)
+
 
 var GridDashboard = (function () {
 
