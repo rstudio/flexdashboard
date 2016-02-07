@@ -57,6 +57,9 @@ grid_dashboard <- function(fig_width = 5,
   if (identical(theme, "default"))
     args <- c(args, pandoc_variable_arg("theme_default", "1"))
 
+  # body padding based on theme
+  args <- c(args, pandoc_body_padding_variable_arg(theme))
+
   # orientation variable
   orientation = match.arg(orientation)
   args <- c(args, pandoc_variable_arg("orientation", orientation))
@@ -117,4 +120,32 @@ grid_dashboard <- function(fig_width = 5,
   )
 
 }
+
+
+# variable which controls body offset (depends on height of navbar in theme)
+pandoc_body_padding_variable_arg <- function(theme) {
+
+  # height of navbar in bootstrap 3.3.5
+  navbarHeights <- c("default" = 51,
+                     "cerulean" = 51,
+                     "journal" = 61 ,
+                     "flatly" = 60,
+                     "readable" = 66,
+                     "spacelab" = 52,
+                     "united" = 51,
+                     "cosmo" = 51,
+                     "lumen" = 54,
+                     "paper" = 64,
+                     "sandstone" = 61,
+                     "simplex" = 41,
+                     "yeti" = 45)
+
+  # body padding is navbar height + 9
+  bodyPadding <- navbarHeights[[theme]] + 9
+
+  # return variable
+  pandoc_variable_arg("body_padding", bodyPadding)
+}
+
+
 

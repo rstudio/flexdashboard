@@ -4,7 +4,8 @@ output:
   dashboards::grid_dashboard: 
     devel: true
     self_contained: false
-    theme: default
+    theme: default 
+knit: dashboards:::knit2browser
 ---
 
 ```{r setup, include=FALSE}
