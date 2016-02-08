@@ -99,12 +99,16 @@ body.application hr {
   position: relative;
 }
 
-.chart-shim {
+.htmlwidget-shim {
   position: absolute;
   left: 8px; top: 8px; right: 8px; bottom: 8px;
 }
 
-.chart-shim>p:empty {
+.htmlwidget-shim>p:empty {
+  display: none;
+}
+
+.chart-stage>p:empty {
   display: none;
 }
 

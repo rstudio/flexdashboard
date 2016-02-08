@@ -199,12 +199,14 @@ var GridDashboard = (function () {
 
     // put all the content in a chart wrapper div
     chart.addClass('chart-wrapper');
-    chart.wrapInner('<div class="chart-stage">' +
-                    '<div class="chart-shim"></div>' +
-                    '</div>');
+    chart.wrapInner('<div class="chart-stage"></div>');
+    var chartContent = chart.children('.chart-stage');
 
-    // get a reference to the chart shim
-    var chartShim = chart.find('.chart-shim');
+    // additional shim if there is an html widget
+    if (chartContent.has('div[id^="htmlwidget-"]').length) {
+      chartContent.wrapInner('<div class="htmlwidget-shim"></div>');
+      chartContent = chartContent.children('.htmlwidget-shim');
+    }
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
@@ -212,7 +214,7 @@ var GridDashboard = (function () {
     chart.prepend(chartTitle);
 
     // extract notes
-    if (extractChartNotes(chartShim, chart))
+    if (extractChartNotes(chartContent, chart))
       result.caption = true;
 
     // return result
