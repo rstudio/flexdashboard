@@ -285,6 +285,9 @@ var GridDashboard = (function () {
     var title = h3.html();
     h3.remove();
 
+    // auto-resizing treatment for image
+    autoResizeChartImage(chart);
+
     // put all the content in a chart wrapper div
     chart.addClass('chart-wrapper');
     chart.wrapInner('<div class="chart-stage"></div>');
@@ -307,6 +310,9 @@ var GridDashboard = (function () {
 
     // return result
     return result;
+  }
+
+  function autoResizeChartImage(chart) {
   }
 
   // extract chart notes from a chart-stage section
