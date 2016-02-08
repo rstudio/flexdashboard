@@ -13,14 +13,6 @@ body.application > .container-fluid {
   padding-left: 0;
   padding-right: 0;
 }
-body.application div[class^="col-"] {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-body.application div[class^="col-"] div[class^="col-"] {
-  padding-left: 15px;
-  padding-right: 15px;
-}
 
 body.application hr {
   border-color: #d7d7d7;
