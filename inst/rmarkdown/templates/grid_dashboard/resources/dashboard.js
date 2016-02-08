@@ -140,7 +140,7 @@ var GridDashboard = (function () {
 
         // set the column flex based on the figure width
         var chartWidth = figureSizes[index].width;
-        $(this).css('flex', chartWidth + ' ' + chartWidth + ' 0');
+        $(this).css('flex', chartWidth + ' ' + chartWidth + ' 0px');
       });
 
       // if we don't have any captions in this row then remove
@@ -152,7 +152,7 @@ var GridDashboard = (function () {
       // figure height + room for title and notes)
       var maxHeight = maxChartHeight(figureSizes, columns);
       if (_options.fillPage)
-        $(this).css('flex', maxHeight + ' ' + maxHeight + ' 0');
+        $(this).css('flex', maxHeight + ' ' + maxHeight + ' 0px');
       else
         $(this).css('height', maxHeight + 'px')
                .css('flex', '0 0 ' + maxHeight + 'px');
@@ -184,7 +184,7 @@ var GridDashboard = (function () {
 
       // column flex is the max row width
       var maxWidth = maxChartWidth(figureSizes);
-      $(this).css('flex', maxWidth + ' ' + maxWidth + ' 0');
+      $(this).css('flex', maxWidth + ' ' + maxWidth + ' 0px');
 
       // layout each chart
       rows.each(function(index) {
@@ -200,7 +200,7 @@ var GridDashboard = (function () {
         var chartHeight = figureSizes[index].height;
         chartHeight = adjustedHeight(chartHeight, $(this));
         if (_options.fillPage)
-          $(this).css('flex', chartHeight + ' ' + chartHeight + ' 0');
+          $(this).css('flex', chartHeight + ' ' + chartHeight + ' 0px');
         else
           $(this).css('height', chartHeight + 'px')
                  .css('flex', chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
