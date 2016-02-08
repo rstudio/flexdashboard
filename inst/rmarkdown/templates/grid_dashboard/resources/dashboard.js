@@ -1,7 +1,8 @@
 
 // flex dashboard jsfiddle: https://jsfiddle.net/13ofvvyg/
 
-// TODO: only use shim for htmlwidgets
+// TODO: automatic image resizing
+
 // TODO: figure out scheme for users influencing columns, height
 //       (implicit based on fig_width, fig_height would be good, does
 //        the page include this information statically at startup?)
@@ -13,7 +14,9 @@ var GridDashboard = (function () {
 
     // default options
     _options = {
-      orientation: 'rows'
+      orientation: 'rows',
+      defaultFigWidth: 5,
+      defaultFigHeight: 3.5
     };
   };
 
@@ -123,13 +126,11 @@ var GridDashboard = (function () {
       // find all of the level 3 subheads
       var columns = $(this).children('div.section.level3');
 
+      // determine figureSizes sizes
+      var figureSizes = chartFigureSizes(columns);
+
       // fixup the columns
       columns.each(function(index) {
-
-        // add any data-col as a flex value
-        var dataCol = $(this).attr('data-col');
-        if (dataCol)
-          $(this).css('flex', dataCol);
 
         // layout the chart
         var result = layoutChart($(this));
@@ -137,12 +138,20 @@ var GridDashboard = (function () {
         // update state
         if (result.caption)
           haveCaptions = true;
+
+        // set the column flex based on the figure width
+        $(this).css('flex', figureSizes[index].width);
       });
 
       // if we don't have any captions in this row then remove
       // the chart notes divs
       if (!haveCaptions)
         $(this).find('.chart-notes').remove();
+
+      // now we can set the height on all the wrappers (based on maximum
+      // figure height + room for title and notes)
+      var height = maxChartHeight(figureSizes, columns);
+      columns.css('height', height + 'px');
     });
   }
 
@@ -163,26 +172,95 @@ var GridDashboard = (function () {
       // make it a flexbox column
       $(this).addClass('dashboard-column');
 
-      // add any data-col as a flex value
-      var dataCol = $(this).attr('data-col');
-      if (dataCol)
-        $(this).css('flex', dataCol);
-
-      // find all the h3 elements, these are the chart cells
+      // find all the h3 elements
       var rows = $(this).children('div.section.level3');
-      rows.each(function() {
 
-        // layout the chart
+      // get the figure sizes for the rows
+      var figureSizes = chartFigureSizes(rows);
+
+      // column flex is the max row width
+      $(this).css('flex', maxChartWidth(figureSizes));
+
+      // layout each chart
+      rows.each(function(index) {
+
+        // perform the layout
         var result = layoutChart($(this));
 
+        // ice the notes if there are none
+        if (!result.caption)
+          $(this).find('.chart-notes').remove();
 
-
-
+        // set height based on figHeight, then adjust
+        var chartHeight = figureSizes[index].height;
+        chartHeight = adjustedHeight(chartHeight, $(this));
+        $(this).css('height', chartHeight + 'px');
       });
     });
   }
 
+  function chartFigureSizes(charts) {
 
+    // sizes
+    var figureSizes = new Array(charts.length);
+
+    // check each chart
+    charts.each(function(index) {
+
+      // start with default
+      figureSizes[index] = {
+        width: _options.defaultFigWidth,
+        height: _options.defaultFigHeight
+      };
+
+      // scrape knit options
+      var knitrOptions = $(this).find('.knitr-options:first');
+      if (knitrOptions) {
+        var figWidth = parseInt(knitrOptions.attr('data-fig-width'));
+        if (figWidth)
+          figureSizes[index].width = figWidth;
+        var figHeight = parseInt(knitrOptions.attr('data-fig-height'));
+        if (figHeight)
+          figureSizes[index].height = figHeight;
+      }
+    });
+
+    // return sizes
+    return figureSizes;
+  }
+
+  function maxChartHeight(figureSizes, charts) {
+
+    // first compute the maximum height
+    var maxHeight = _options.defaultFigHeight;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].height > maxHeight)
+        maxHeight = figureSizes[i].height;
+
+    // now add offests for chart title and chart notes
+    if (charts.length)
+      maxHeight = adjustedHeight(maxHeight, charts.first());
+
+    return maxHeight;
+  }
+
+  function adjustedHeight(height, chart) {
+    var chartTitle = chart.find('.chart-title');
+    if (chartTitle.length)
+      height += chartTitle.first().outerHeight();
+    var chartNotes = chart.find('.chart-notes');
+    if (chartNotes.length)
+      height += chartNotes.first().outerHeight();
+    return height;
+  }
+
+  function maxChartWidth(figureSizes) {
+    var maxWidth = _options.defaultFigWidth;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].width > maxWidth)
+        maxWidth = figureSizes[i].width;
+    return maxWidth;
+  }
 
   // layout a chart
   function layoutChart(chart) {
@@ -221,8 +299,6 @@ var GridDashboard = (function () {
     return result;
   }
 
-
-
   // extract chart notes from a chart-stage section
   function extractChartNotes(chartStage, chartWrapper) {
 
@@ -238,11 +314,14 @@ var GridDashboard = (function () {
     if (chartStage.find('img').length > 0 ||
         chartStage.find('div[id^="htmlwidget-"]').length > 0) {
       var lastChild = chartStage.children().last();
-      if (lastChild.is("p") && (lastChild.html().length > 0)) {
+      if (lastChild.is("p") &&
+          (lastChild.html().length > 0) &&
+          (lastChild.find('img').length === 0)) {
         extracted = true;
         chartNotes.html(lastChild.html());
+        lastChild.remove();
       }
-      lastChild.remove();
+
     }
     chartWrapper.append(chartNotes);
 

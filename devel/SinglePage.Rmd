@@ -5,6 +5,7 @@ output:
     devel: true
     self_contained: false
     theme: default 
+    orientation: columns
 knit: dashboards:::knit2browser
 ---
 
@@ -14,23 +15,23 @@ library(dygraphs)
 
 ## Row 1
 
-### Male Deaths {data-col=3}
+### Male Deaths 
 
-```{r}
-library(leaflet)
-leaflet() %>% addTiles()
+```{r, fig.width=9, fig.height=4}
+#library(leaflet)
+#leaflet() %>% addTiles()
+plot(cars)
 ```
 
-Here is some footer text.
+Here we go
 
-### Female Deaths {data-col=2}
+### Female Deaths 
 
 ```{r}
 library(d3heatmap)
 d3heatmap(mtcars, scale="column", colors="Blues")
 ```
 
-More footer text.
 
 ## Row 2
 
@@ -40,3 +41,4 @@ More footer text.
 dygraph(ldeaths)
 ```
 
+asfasd

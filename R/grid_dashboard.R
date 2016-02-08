@@ -63,6 +63,10 @@ grid_dashboard <- function(fig_width = 5,
   orientation = match.arg(orientation)
   args <- c(args, pandoc_variable_arg("orientation", orientation))
 
+  # default fig_width and fig_height variables
+  args <- c(args, pandoc_variable_arg("default_fig_width", fig_width))
+  args <- c(args, pandoc_variable_arg("default_fig_height", fig_height))
+
   # determine knitr options
   knitr_options <- knitr_options_html(fig_width = fig_width,
                                       fig_height = fig_height,
@@ -70,6 +74,19 @@ grid_dashboard <- function(fig_width = 5,
                                       keep_md = FALSE,
                                       dev = dev)
   knitr_options$opts_chunk$echo = FALSE
+
+  # add hook to capture fig.width and fig.height and serialized
+  # them into the DOM
+  knitr_options$knit_hooks <- list()
+  knitr_options$knit_hooks$chunk  <- function(x, options) {
+    knitrOptions <- paste0(
+      '<div class="knitr-options" ',
+           'data-fig-width="', as.integer(options$fig.width * 96), '" ',
+           'data-fig-height="', as.integer(options$fig.height * 96), '">',
+      '</div>'
+    )
+    paste(knitrOptions, x, sep = '\n')
+  }
 
   # preprocessor
   pre_processor <- function (metadata, input_file, runtime, knit_meta,
