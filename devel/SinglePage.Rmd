@@ -17,11 +17,11 @@ library(dygraphs)
 
 ### Male Deaths 
 
-```{r, fig.width=7, fig.height=4}
+```{r}
 plot(cars)
 ```
 
-Here we go
+A plot caption.
 
 ### Female Deaths 
 
@@ -39,4 +39,4 @@ d3heatmap(mtcars, scale="column", colors="Blues")
 dygraph(ldeaths)
 ```
 
-asfasd
+Another plot caption.
