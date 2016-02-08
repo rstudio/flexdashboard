@@ -17,6 +17,7 @@ grid_dashboard <- function(fig_width = 5,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
+                           fill_page = FALSE,
                            orientation = c("rows", "columns"),
                            theme = "default",
                            highlight = "default",
@@ -58,6 +59,10 @@ grid_dashboard <- function(fig_width = 5,
 
   # body padding based on theme
   args <- c(args, pandoc_body_padding_variable_arg(theme))
+
+  # fill page
+  if (fill_page)
+    args <- c(args, pandoc_variable_arg("fill_page", "1"))
 
   # orientation variable
   orientation = match.arg(orientation)

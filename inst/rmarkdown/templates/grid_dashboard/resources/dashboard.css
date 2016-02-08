@@ -90,7 +90,6 @@ body.application hr {
   flex: 1;
   display: flex;
   flex-direction: column;
-  height: 336px;
   margin-right: 8px;
 }
 

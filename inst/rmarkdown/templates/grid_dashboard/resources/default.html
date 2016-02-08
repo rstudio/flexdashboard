@@ -77,6 +77,18 @@ body.application {
 }
 </style>
 
+$if(fill_page)$
+<style type="text/css">
+html, body {
+  height: 100%;
+}
+
+#dashboard-container {
+  height: 100%;
+}
+</style>
+$endif$
+
 <div id="dashboard-container" class="container-fluid">
 
 $body$
@@ -96,6 +108,7 @@ $$(document).ready(function () {
 
   // initialize grid dashboard
   GridDashboard.init({
+    fillPage: $if(fill_page)$true$else$false$endif$,
     orientation: '$orientation$',
     defaultFigWidth: $default_fig_width$,
     defaultFigHeight: $default_fig_height$
