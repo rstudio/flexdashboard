@@ -125,14 +125,6 @@ body.application hr {
 
 /* Automatically resizing images */
 
-.chart-stage img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .image-container {
   position: absolute;
   top: 0;
@@ -140,13 +132,10 @@ body.application hr {
   right: 0;
   bottom: 0;
   margin: 0;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .image-container img {
-  display: none;
+  opacity: 0;
 }
 
 

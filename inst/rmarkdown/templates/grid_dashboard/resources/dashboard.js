@@ -1,5 +1,4 @@
 
-// TODO: investigate image resizing issues
 // TODO: alternative (straight vertical) layout for mobile devices
 // TODO: vendor extensions for flexbox (via grunt script)
 // TODO: support for runtime: shiny
@@ -313,6 +312,25 @@ var GridDashboard = (function () {
   }
 
   function autoResizeChartImage(chart) {
+
+    // look for a top level <p> tag with a single child that is an image
+    var img = chart.children('p').children('img:only-child');
+
+    // did we find one?
+    if (img.length) {
+
+      // apply the image container style to the parent <p>
+      var p = img.parent();
+      p.addClass('image-container');
+
+      // grab the url and make it the background image of the <p>
+      var src = img.attr('src');
+      var url = 'url("' + src + '")';
+      p.css('background', url)
+       .css('background-size', 'contain')
+       .css('background-repeat', 'no-repeat')
+       .css('background-position', 'center');
+      }
   }
 
   // extract chart notes from a chart-stage section
