@@ -1,9 +1,8 @@
 
 // TODO: alternative (straight vertical) layout for mobile devices
-// TODO: vendor extensions for flexbox (via grunt script)
 // TODO: support for runtime: shiny
 // TODO: support for "sidebar" attribute
-// TODO: test in preview mode (qt and cocoa)
+// TODO: test in preview mode (qt)
 
 var GridDashboard = (function () {
 
@@ -139,7 +138,7 @@ var GridDashboard = (function () {
 
         // set the column flex based on the figure width
         var chartWidth = figureSizes[index].width;
-        $(this).css('flex', chartWidth + ' ' + chartWidth + ' 0px');
+        setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
       });
 
       // if we don't have any captions in this row then remove
@@ -151,10 +150,11 @@ var GridDashboard = (function () {
       // figure height + room for title and notes)
       var maxHeight = maxChartHeight(figureSizes, columns);
       if (_options.fillPage)
-        $(this).css('flex', maxHeight + ' ' + maxHeight + ' 0px');
-      else
-        $(this).css('height', maxHeight + 'px')
-               .css('flex', '0 0 ' + maxHeight + 'px');
+        setFlex($(this), maxHeight + ' ' + maxHeight + ' 0px');
+      else {
+        $(this).css('height', maxHeight + 'px');
+        setFlex($(this), '0 0 ' + maxHeight + 'px');
+      }
     });
   }
 
@@ -183,7 +183,7 @@ var GridDashboard = (function () {
 
       // column flex is the max row width
       var maxWidth = maxChartWidth(figureSizes);
-      $(this).css('flex', maxWidth + ' ' + maxWidth + ' 0px');
+      setFlex($(this), maxWidth + ' ' + maxWidth + ' 0px');
 
       // layout each chart
       rows.each(function(index) {
@@ -199,11 +199,11 @@ var GridDashboard = (function () {
         var chartHeight = figureSizes[index].height;
         chartHeight = adjustedHeight(chartHeight, $(this));
         if (_options.fillPage)
-          $(this).css('flex', chartHeight + ' ' + chartHeight + ' 0px');
-        else
-          $(this).css('height', chartHeight + 'px')
-                 .css('flex', chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
-
+          setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
+        else {
+          $(this).css('height', chartHeight + 'px');
+          setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+        }
       });
     });
   }
@@ -364,6 +364,13 @@ var GridDashboard = (function () {
 
     // return status
     return extracted;
+  }
+
+   function setFlex(el, flex) {
+    el.css('-webkit-box-flex', flex)
+      .css('-webkit-flex', flex)
+      .css('-ms-flex', flex)
+      .css('flex', flex);
   }
 
   function handleLocationHash() {
