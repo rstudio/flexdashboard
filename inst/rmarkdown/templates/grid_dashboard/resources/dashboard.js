@@ -1,4 +1,10 @@
 
+// TODO: investigate image resizing issues
+// TODO: alternative (straight vertical) layout for mobile devices
+// TODO: vendor extensions for flexbox (via grunt script)
+// TODO: support for runtime: shiny
+// TODO: support for "sidebar" attribute
+
 var GridDashboard = (function () {
 
   var GridDashboard = function() {
