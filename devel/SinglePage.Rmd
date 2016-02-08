@@ -5,7 +5,7 @@ output:
     devel: true
     self_contained: false
     theme: default 
-    orientation: columns
+    orientation: rows
 knit: dashboards:::knit2browser
 ---
 
@@ -17,9 +17,7 @@ library(dygraphs)
 
 ### Male Deaths 
 
-```{r, fig.width=9, fig.height=4}
-#library(leaflet)
-#leaflet() %>% addTiles()
+```{r, fig.width=7, fig.height=4}
 plot(cars)
 ```
 

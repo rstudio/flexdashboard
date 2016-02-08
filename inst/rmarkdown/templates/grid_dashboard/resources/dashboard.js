@@ -1,13 +1,4 @@
 
-// flex dashboard jsfiddle: https://jsfiddle.net/13ofvvyg/
-
-// TODO: automatic image resizing
-
-// TODO: figure out scheme for users influencing columns, height
-//       (implicit based on fig_width, fig_height would be good, does
-//        the page include this information statically at startup?)
-
-
 var GridDashboard = (function () {
 
   var GridDashboard = function() {
