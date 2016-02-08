@@ -5,8 +5,8 @@ output:
     devel: true
     self_contained: false
     theme: default 
-    orientation: columns
-    fill_page: true
+    orientation: rows
+    fill_page: false
 knit: dashboards:::knit2browser
 ---
 
