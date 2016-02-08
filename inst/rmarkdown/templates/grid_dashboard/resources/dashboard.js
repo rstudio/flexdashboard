@@ -4,6 +4,7 @@
 // TODO: vendor extensions for flexbox (via grunt script)
 // TODO: support for runtime: shiny
 // TODO: support for "sidebar" attribute
+// TODO: test in preview mode (qt and cocoa)
 
 var GridDashboard = (function () {
 
