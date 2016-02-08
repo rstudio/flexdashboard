@@ -345,12 +345,15 @@ var GridDashboard = (function () {
     // just create an empty chart notes)
     var chartNotes = $('<div class="chart-notes"></div>');
     chartNotes.html('&nbsp;');
-    if (chartStage.find('img').length > 0 ||
-        chartStage.find('div[id^="htmlwidget-"]').length > 0) {
+
+    // look for a chart image or htmlwidget
+    var img = chartStage.find('p').children('img:only-child');
+    var widget = chartStage.find('div[id^="htmlwidget-"]');
+    if (img.length > 0 || widget.length > 0) {
       var lastChild = chartStage.children().last();
       if (lastChild.is("p") &&
           (lastChild.html().length > 0) &&
-          (lastChild.find('img').length === 0)) {
+          (lastChild.children('img:only-child').length === 0)) {
         extracted = true;
         chartNotes.html(lastChild.html());
         lastChild.remove();
