@@ -14,7 +14,6 @@
 #'@export
 grid_dashboard <- function(fig_width = 5,
                            fig_height = 3.5,
-                           fig_retina = 2,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
@@ -67,7 +66,7 @@ grid_dashboard <- function(fig_width = 5,
   # determine knitr options
   knitr_options <- knitr_options_html(fig_width = fig_width,
                                       fig_height = fig_height,
-                                      fig_retina = fig_retina,
+                                      fig_retina = 2,
                                       keep_md = FALSE,
                                       dev = dev)
   knitr_options$opts_chunk$echo = FALSE
