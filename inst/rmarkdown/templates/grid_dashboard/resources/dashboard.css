@@ -6,8 +6,9 @@
 
 body.application {
   background: #f2f2f2;
-  padding: 60px 0px 0px 8px;
+  padding: 60px 0 0 8px;
 }
+
 body.application > .container-fluid {
   padding-left: 0;
   padding-right: 0;
