@@ -96,26 +96,6 @@ body.application hr {
   left: 8px; top: 8px; right: 8px; bottom: 8px;
 }
 
-.htmlwidget-shim>p:empty {
-  display: none;
-}
-
-.chart-stage>p:empty {
-  display: none;
-}
-
-.chart-stage .knitr-options {
-  display: none;
-}
-
-.chart-stage img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .dashboard-row-orientation .chart-stage .html-widget-static-bound {
   width: 100% !important;
   height: 100% !important;
@@ -125,6 +105,32 @@ body.application hr {
 .dashboard-column-orientation .chart-stage .html-widget-static-bound {
   width: 100% !important;
   height: 100% !important;
+}
+
+/* Omit display of empty paragraphs */
+
+.htmlwidget-shim>p:empty {
+  display: none;
+}
+
+.chart-stage>p:empty {
+  display: none;
+}
+
+/* Omit display of special knitr options div*/
+
+.chart-stage .knitr-options {
+  display: none;
+}
+
+/* Automatically resizing images */
+
+.chart-stage img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
