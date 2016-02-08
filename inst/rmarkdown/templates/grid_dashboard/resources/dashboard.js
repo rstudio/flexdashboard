@@ -1,4 +1,5 @@
 
+// TODO: automate css vendor prefixing via grunt
 // TODO: alternative (straight vertical) layout for mobile devices
 // TODO: support for runtime: shiny
 // TODO: support for "sidebar" attribute
