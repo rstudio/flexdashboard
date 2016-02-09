@@ -2,11 +2,12 @@
 title: "Deaths from Lung Cancer"
 output: 
   dashboards::grid_dashboard: 
-    devel: false
+    devel: true
     self_contained: false
     theme: default 
     orientation: rows
-    fill_page: true
+    fill_page: false
+knit: dashboards:::knit2browser
 ---
 
 ```{r setup, include=FALSE}
