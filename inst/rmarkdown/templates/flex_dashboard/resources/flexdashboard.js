@@ -1,6 +1,7 @@
 
 // TODO: support for runtime: shiny
 // TODO: support for "sidebar" attribute
+// TODO: dygraphs auto-size
 
 var FlexDashboard = (function () {
 
