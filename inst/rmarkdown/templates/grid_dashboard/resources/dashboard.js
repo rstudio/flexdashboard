@@ -1,5 +1,4 @@
 
-// TODO: automate css vendor prefixing via http://autoprefixer.github.io/
 // TODO: alternative (straight vertical) layout for mobile devices
 // TODO: support for runtime: shiny
 // TODO: support for "sidebar" attribute
