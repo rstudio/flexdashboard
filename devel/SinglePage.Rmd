@@ -1,13 +1,13 @@
 ---
 title: "Deaths from Lung Cancer"
 output: 
-  dashboards::grid_dashboard: 
+  flexdashboard::flex_dashboard: 
     devel: true
     self_contained: false
     theme: default 
     orientation: rows
     fill_page: false
-knit: dashboards:::knit2browser
+knit: flexdashboard:::knit2browser
 ---
 
 ```{r setup, include=FALSE}

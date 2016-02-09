@@ -3,9 +3,9 @@
 // TODO: support for runtime: shiny
 // TODO: support for "sidebar" attribute
 
-var GridDashboard = (function () {
+var FlexDashboard = (function () {
 
-  var GridDashboard = function() {
+  var FlexDashboard = function() {
 
     // default options
     _options = {
@@ -386,15 +386,15 @@ var GridDashboard = (function () {
     });
   }
 
-  GridDashboard.prototype = {
-    constructor: GridDashboard,
+  FlexDashboard.prototype = {
+    constructor: FlexDashboard,
     init: init
   };
 
-  return GridDashboard;
+  return FlexDashboard;
 
 })();
 
-window.GridDashboard = new GridDashboard();
+window.FlexDashboard = new FlexDashboard();
 
 

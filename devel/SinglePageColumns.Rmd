@@ -1,7 +1,7 @@
 ---
 title: "Deaths from Lung Cancer"
 output: 
-  dashboards::grid_dashboard: 
+  flexdashboard::flex_dashboard
     devel: true
     theme: default
     orientation: columns

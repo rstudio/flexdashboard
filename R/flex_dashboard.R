@@ -1,7 +1,7 @@
 
-#'Convert to a grid oriented dashboard
+#'Convert to a flex oriented dashboard
 #'
-#'Format for converting an R Markdown document to grid oriented dashboard. Level
+#'Format for converting an R Markdown document to flex oriented dashboard. Level
 #'1 headings are treated as pages; Level 2 headings as rows; and Level 3
 #'headings as columns.
 #'
@@ -12,7 +12,7 @@
 #'  and "haddock". Pass NULL to prevent syntax highlighting.
 #'
 #'@export
-grid_dashboard <- function(fig_width = 5,
+flex_dashboard <- function(fig_width = 5,
                            fig_height = 3.5,
                            dev = "png",
                            smart = TRUE,
@@ -32,8 +32,8 @@ grid_dashboard <- function(fig_width = 5,
 
   # function for resolving resources
   resource <- function(name) {
-    system.file("rmarkdown/templates/grid_dashboard/resources", name,
-                package = "dashboards")
+    system.file("rmarkdown/templates/flex_dashboard/resources", name,
+                package = "flexdashboard")
   }
 
   # force self_contained to FALSE in devel mode
@@ -99,17 +99,17 @@ grid_dashboard <- function(fig_width = 5,
 
     args <- c()
 
-    # include dashboard.css and dashboard.js (but not in devel
+    # include flexdashboard.css and flexdashboard.js (but not in devel
     # mode, in that case relative filesystem references to
     # them are included in the template along with live reload)
     if (devel) {
       args <- c(args, pandoc_variable_arg("devel", "1"))
     } else {
       dashboardAssets <- c('<style type="text/css">',
-                           readLines(resource("dashboard.css")),
+                           readLines(resource("flexdashboard.css")),
                            '</style>',
                            '<script type="text/javascript">',
-                           readLines(resource("dashboard.js")),
+                           readLines(resource("flexdashboard.js")),
                            '</script>')
       dashboardAssetsFile <- tempfile(fileext = ".html")
       writeLines(dashboardAssets, dashboardAssetsFile)
