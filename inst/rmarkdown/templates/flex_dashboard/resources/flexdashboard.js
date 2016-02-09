@@ -1,5 +1,4 @@
 
-// TODO: alternative (straight vertical) layout for mobile devices
 // TODO: support for runtime: shiny
 // TODO: support for "sidebar" attribute
 
@@ -90,18 +89,44 @@ var FlexDashboard = (function () {
   // layout a dashboard page
   function layoutDashboardPage(page) {
 
-    // determine orientation
-    var orientation = page.attr('data-orientation');
-    if (orientation !== 'rows' && orientation != 'columns')
-      orientation = _options.orientation;
+    // determine orientation and fillPage behavior for distinct media
+    var orientation, fillPage;
 
+    // media: mobile phone
+    if (isMobilePhone()) {
+
+      // wipeout h2 elements then enclose them in a single h2
+      var level2 = page.find('div.section.level2');
+      level2.each(function() {
+        level2.children('h2').remove();
+        level2.children().unwrap();
+      });
+      page.wrapInner('<div class="section level2"></div>');
+
+      // force a non full screen layout by columns
+      orientation = 'columns';
+      fillPage = false;
+
+    // media: desktop
+    } else {
+
+      // determine orientation
+      orientation = page.attr('data-orientation');
+      if (orientation !== 'rows' && orientation != 'columns')
+        orientation = _options.orientation;
+
+      // fillPage based on options
+      fillPage = _options.fillPage;
+    }
+
+    // perform the layout
     if (orientation === 'rows')
-      layoutPageByRows(page);
+      layoutPageByRows(page, fillPage);
     else if (orientation === 'columns')
-      layoutPageByColumns(page);
+      layoutPageByColumns(page, fillPage);
   }
 
-  function layoutPageByRows(page) {
+  function layoutPageByRows(page, fillPage) {
 
     // row orientation
     page.addClass('dashboard-row-orientation');
@@ -148,7 +173,7 @@ var FlexDashboard = (function () {
       // now we can set the height on all the wrappers (based on maximum
       // figure height + room for title and notes)
       var maxHeight = maxChartHeight(figureSizes, columns);
-      if (_options.fillPage)
+      if (fillPage)
         setFlex($(this), maxHeight + ' ' + maxHeight + ' 0px');
       else {
         $(this).css('height', maxHeight + 'px');
@@ -157,7 +182,7 @@ var FlexDashboard = (function () {
     });
   }
 
-  function layoutPageByColumns(page) {
+  function layoutPageByColumns(page, fillPage) {
 
     // column orientation
     page.addClass('dashboard-column-orientation');
@@ -197,7 +222,7 @@ var FlexDashboard = (function () {
         // set height based on figHeight, then adjust
         var chartHeight = figureSizes[index].height;
         chartHeight = adjustedHeight(chartHeight, $(this));
-        if (_options.fillPage)
+        if (fillPage)
           setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
         else {
           $(this).css('height', chartHeight + 'px');
@@ -365,13 +390,26 @@ var FlexDashboard = (function () {
     return extracted;
   }
 
-   function setFlex(el, flex) {
+  // safely detect rendering on a mobile phone
+  function isMobilePhone() {
+    try
+    {
+      return ! window.matchMedia("only screen and (min-width: 768px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  // set flex using vendor specific prefixes
+  function setFlex(el, flex) {
     el.css('-webkit-box-flex', flex)
       .css('-webkit-flex', flex)
       .css('-ms-flex', flex)
       .css('flex', flex);
   }
 
+  // support bookmarking of pages
   function handleLocationHash() {
 
     // restore tab/page from bookmark
