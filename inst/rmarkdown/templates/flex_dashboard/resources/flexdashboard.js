@@ -1,7 +1,12 @@
 
+// TODO: may need a way to do explicit width specification
+// (e.g. for sidebar or for free flowing content)
+
 // TODO: support for runtime: shiny
+//   - fill_page doesn't work
+
 // TODO: support for "sidebar" attribute
-// TODO: dygraphs auto-size
+
 
 var FlexDashboard = (function () {
 
