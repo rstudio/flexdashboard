@@ -1,9 +1,9 @@
 
+// TODO: sizing/clipping of chart notes section
 // TODO: automate css vendor prefixing via grunt
 // TODO: alternative (straight vertical) layout for mobile devices
 // TODO: support for runtime: shiny
 // TODO: support for "sidebar" attribute
-// TODO: test in preview mode (qt)
 
 var GridDashboard = (function () {
 
