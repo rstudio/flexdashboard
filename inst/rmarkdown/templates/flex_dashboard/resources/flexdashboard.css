@@ -4,17 +4,12 @@
  (https://github.com/keen/dashboards)
 */
 
-body.application {
+body {
   background: #f2f2f2;
   padding: 60px 0 0 8px;
 }
 
-body.application > .container-fluid {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-body.application hr {
+body hr {
   border-color: #d7d7d7;
   margin: 10px 0;
 }
@@ -56,6 +51,10 @@ body.application hr {
 /*
  CSS for handling flexbox layout
 */
+
+#dashboard-container {
+
+}
 
 .dashboard-row-orientation {
   display: -webkit-box;
