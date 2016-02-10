@@ -26,7 +26,7 @@ var FlexDashboard = (function () {
     // if we are layout with fill_page: true within a shiny document then
     // we need to make sure the divs inserted above the #dashboard-container
     // also get the height: 100% treatment
-    if (_options.fillPage && window.Shiny)
+    if (_options.fillPage && isShinyDoc())
       dashboardContainer.parents('div').css('height', '100%');
 
     // look for pages to layout
@@ -63,7 +63,7 @@ var FlexDashboard = (function () {
 
     // if we are in shiny we need to trigger a window resize event to
     // force correct layout of shiny-bound-output elements
-    if (window.Shiny)
+    if (isShinyDoc())
       $(window).trigger('resize');
 
     // handle location hash
@@ -417,6 +417,11 @@ var FlexDashboard = (function () {
     catch(e) {
       return false;
     }
+  }
+
+  // test whether this is a shiny doc
+  function isShinyDoc() {
+    return (typeof(window.Shiny) !== "undefined" && !!window.Shiny.outputBindings);
   }
 
   // set flex using vendor specific prefixes
