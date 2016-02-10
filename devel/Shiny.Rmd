@@ -3,7 +3,7 @@ title: "Deaths from Lung Cancer"
 output: 
   flexdashboard::flex_dashboard: 
     orientation: columns
-    fill_page: false
+    fill_page: true
 runtime: shiny
 ---
 
@@ -11,10 +11,8 @@ runtime: shiny
 library(dygraphs)
 ```
 
-Column 1
+Inputs {.sidebar}
 -------------------------------------------------------------------------------
-
-### Inputs {.sidebar}
 
 ```{r}
 numericInput("months", label = "Months to Predict",
@@ -27,7 +25,7 @@ selectInput("interval", label = "Prediction Interval",
 checkboxInput("showgrid", label = "Show Grid", value = TRUE)
 ```
 
-Column 2
+Outputs
 -------------------------------------------------------------------------------
 
 ### Predicted Deaths/Month (dygraphs)
@@ -53,5 +51,4 @@ renderPlot({
   plot(predicted(), main = NA)
 })
 ```
-
 

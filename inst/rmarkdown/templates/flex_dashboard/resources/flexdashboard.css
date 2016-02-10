@@ -56,6 +56,13 @@ body hr {
 
 }
 
+.tab-content>.section.level1.active {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .dashboard-row-orientation {
   display: -webkit-box;
   display: -webkit-flex;
@@ -195,5 +202,19 @@ body hr {
 .image-container img {
   opacity: 0;
 }
+
+
+.sidebar {
+  position: fixed;
+  top: 52px;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  border-right: 1px solid #e2e2e2;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 
 

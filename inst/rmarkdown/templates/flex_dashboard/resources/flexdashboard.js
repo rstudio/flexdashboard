@@ -1,6 +1,8 @@
 
-// TODO: sidebar is a fixed position item always (move container over
-//       then float it via position: fixed)
+// TODO: paul on sidebar look and feel?
+// TODO: allow for skip straight to H3 (no row/col)
+// TODO: dynamic top for sidebar (to cover themes)
+// TODO: dynamic width for sidebars (variable, user settable?)
 
 var FlexDashboard = (function () {
 
@@ -22,12 +24,6 @@ var FlexDashboard = (function () {
 
     // find the main dashboard container
     var dashboardContainer = $('#dashboard-container');
-
-    // if we are layout with fill_page: true within a shiny document then
-    // we need to make sure the divs inserted above the #dashboard-container
-    // also get the height: 100% treatment
-    if (_options.fillPage && isShinyDoc())
-      dashboardContainer.parents('div').css('height', '100%');
 
     // look for pages to layout
     var pages = $('div.section.level1');
@@ -128,6 +124,20 @@ var FlexDashboard = (function () {
 
       // fillPage based on options
       fillPage = _options.fillPage;
+
+      // handle sidebar
+      var sidebar = page.find('.sidebar');
+      if (sidebar.length > 0) {
+        sidebar.removeClass('level2');
+        sidebar.children('h2').remove();
+        page.css('padding-left', '300px');
+      }
+    }
+
+    // give it and it's parent divs height: 100% if we are in fillPage mode
+    if (fillPage) {
+      page.css('height', '100%');
+      page.parents('div').css('height', '100%');
     }
 
     // perform the layout
@@ -216,14 +226,9 @@ var FlexDashboard = (function () {
       // get the figure sizes for the rows
       var figureSizes = chartFigureSizes(rows);
 
-      // columns with sidebars have a fixed width
-      if (($(this).find('.sidebar').length > 0) && !isMobilePhone()) {
-        setFlex($(this), '0 0 325px');
-      } else {
-         // column flex is the max row width
-        var maxWidth = maxChartWidth(figureSizes);
-        setFlex($(this), maxWidth + ' ' + maxWidth + ' 0px');
-      }
+      // column flex is the max row width
+      var maxWidth = maxChartWidth(figureSizes);
+      setFlex($(this), maxWidth + ' ' + maxWidth + ' 0px');
 
       // layout each chart
       rows.each(function(index) {
@@ -341,13 +346,9 @@ var FlexDashboard = (function () {
     chartTitle.html(title);
     chart.prepend(chartTitle);
 
-    // wrap in a form for sidebars
-    if (chart.hasClass('sidebar'))
-      chartContent.wrapInner('<form></form>');
-
-    // extract notes (but not for sidebars)
-    else if (extractChartNotes(chartContent, chart))
-        result.caption = true;
+    // extract notes
+    if (extractChartNotes(chartContent, chart))
+      result.caption = true;
 
     // return result
     return result;
