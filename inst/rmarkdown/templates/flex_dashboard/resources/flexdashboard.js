@@ -1,6 +1,6 @@
 
+
 // TODO: paul on sidebar look and feel?
-// TODO: allow for skip straight to H3 (no row/col)
 // TODO: dynamic top for sidebar (to cover themes)
 // TODO: dynamic width for sidebars (variable, user settable?)
 // TODO: chart notes only when figure
@@ -156,6 +156,14 @@ var FlexDashboard = (function () {
 
     // find all the level2 sections (those are the rows)
     var rows = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (rows.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      rows = page.find('div.section.level2');
+    }
+
     rows.each(function () {
 
       // flag indicating whether we have any captions
@@ -212,6 +220,13 @@ var FlexDashboard = (function () {
 
     // find all the level2 sections (those are the columns)
     var columns = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (columns.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      columns = page.find('div.section.level2');
+    }
 
     // layout each column
     columns.each(function (index) {
