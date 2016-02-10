@@ -141,6 +141,14 @@ body hr {
   left: 8px; top: 8px; right: 8px; bottom: 8px;
 }
 
+.chart-wrapper form {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.shiny-input-container label {
+  font-weight: normal;
+}
 
 .chart-stage .html-widget {
   width: 100% !important;
