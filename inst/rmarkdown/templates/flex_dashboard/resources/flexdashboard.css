@@ -136,25 +136,30 @@ body hr {
   position: relative;
 }
 
-.htmlwidget-shim {
+.chart-shim {
   position: absolute;
   left: 8px; top: 8px; right: 8px; bottom: 8px;
 }
 
-.dashboard-row-orientation .chart-stage .html-widget-static-bound {
+
+.chart-stage .html-widget {
   width: 100% !important;
   height: 100% !important;
-
 }
 
-.dashboard-column-orientation .chart-stage .html-widget-static-bound {
+.chart-stage .html-widget-static-bound {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-stage .shiny-bound-output {
   width: 100% !important;
   height: 100% !important;
 }
 
 /* Omit display of empty paragraphs */
 
-.htmlwidget-shim>p:empty {
+.chart-shim>p:empty {
   display: none;
 }
 

@@ -61,6 +61,11 @@ var FlexDashboard = (function () {
       layoutDashboardPage(dashboardContainer);
     }
 
+    // if we are in shiny we need to trigger a window resize event to
+    // force correct layout of shiny-bound-output elements
+    if (window.Shiny)
+      $(window).trigger('resize');
+
     // handle location hash
     handleLocationHash();
   }
@@ -322,11 +327,9 @@ var FlexDashboard = (function () {
     chart.wrapInner('<div class="chart-stage"></div>');
     var chartContent = chart.children('.chart-stage');
 
-    // additional shim if there is an html widget
-    if (chartContent.has('div[id^="htmlwidget-"]').length) {
-      chartContent.wrapInner('<div class="htmlwidget-shim"></div>');
-      chartContent = chartContent.children('.htmlwidget-shim');
-    }
+    // additional shim to break out of flexbox sizing
+    chartContent.wrapInner('<div class="chart-shim"></div>');
+    chartContent = chartContent.children('.chart-shim');
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
