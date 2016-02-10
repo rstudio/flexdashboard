@@ -1,6 +1,4 @@
 
-// TODO: fill_page: true not working with runtime: shiny
-
 // TODO: sidebar is a fixed position item always (move container over
 //       then float it via position: fixed)
 
@@ -24,6 +22,12 @@ var FlexDashboard = (function () {
 
     // find the main dashboard container
     var dashboardContainer = $('#dashboard-container');
+
+    // if we are layout with fill_page: true within a shiny document then
+    // we need to make sure the divs inserted above the #dashboard-container
+    // also get the height: 100% treatment
+    if (_options.fillPage && window.Shiny)
+      dashboardContainer.parents('div').css('height', '100%');
 
     // look for pages to layout
     var pages = $('div.section.level1');
