@@ -11,13 +11,13 @@ runtime: shiny
 library(dygraphs)
 ```
 
-
+Column 1
 -------------------------------------------------------------------------------
 
 ### Inputs
 
 ```{r}
-numericInput("months", label = "Months to Predict", 
+numericInput("months", label = "Months to Predict",
               value = 72, min = 12, max = 144, step = 12)
 
 selectInput("interval", label = "Prediction Interval",
@@ -27,6 +27,7 @@ selectInput("interval", label = "Prediction Interval",
 checkboxInput("showgrid", label = "Show Grid", value = TRUE)
 ```
 
+Column 2
 -------------------------------------------------------------------------------
 
 ### Dygraph
@@ -37,9 +38,9 @@ predicted <- reactive({
   predict(hw, n.ahead = input$months, prediction.interval = TRUE,
           level = as.numeric(input$interval))
 })
-  
+
 renderDygraph({
-  dygraph(predicted(), main = "Predicted Deaths/Month") %>%
+  dygraph(predicted(), main = "Predicted Deaths/Month") %>%     
     dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
     dyOptions(drawGrid = input$showgrid)
 })

@@ -2,21 +2,18 @@
 title: "Deaths from Lung Cancer"
 output: 
   flexdashboard::flex_dashboard: 
-    devel: true
+    devel: false
     self_contained: false
-    theme: default 
-    orientation: rows
-    fill_page: false
-knit: flexdashboard:::knit2browser
 ---
 
 ```{r setup, include=FALSE}
 library(dygraphs)
 ```
 
-## Row 1
+Row 1
+-------------------------------------------------------------------------------
 
-### Male Deaths 
+### Cars
 
 ```{r, fig.width=8, fig.height=4}
 plot(cars)
@@ -24,17 +21,17 @@ plot(cars)
 
 A plot caption.
 
-### Female Deaths 
+### Heatmap
 
 ```{r}
 library(d3heatmap)
 d3heatmap(mtcars, scale="column", colors="Blues")
 ```
 
+Row 2
+-------------------------------------------------------------------------------
 
-## Row 2
-
-### All Deaths
+### Lung Deaths
 
 ```{r}
 dygraph(ldeaths)
