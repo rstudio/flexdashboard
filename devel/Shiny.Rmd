@@ -2,14 +2,19 @@
 title: "Deaths from Lung Cancer"
 output: 
   flexdashboard::flex_dashboard: 
-    orientation: columns
     fill_page: true
+    orientation: columns
+    theme: united
+    sidebar_width: 250
 runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
 library(dygraphs)
 ```
+
+Page 1
+=======================================================================================
 
 Inputs {.sidebar}
 -------------------------------------------------------------------------------
@@ -51,4 +56,27 @@ renderPlot({
   plot(predicted(), main = NA)
 })
 ```
+
+
+Page 2
+=======================================================================================
+
+### Predicted Deaths/Month (dygraphs)
+
+```{r}
+renderDygraph({
+  dygraph(predicted()) %>%     
+    dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
+    dyOptions(drawGrid = input$showgrid)
+})
+```
+
+### Predicted Deaths/Month (base)
+
+```{r}
+renderPlot({
+  plot(predicted(), main = NA)
+})
+```
+
 

@@ -1,8 +1,6 @@
 
 
 // TODO: paul on sidebar look and feel?
-// TODO: dynamic top for sidebar (to cover themes)
-// TODO: dynamic width for sidebars (variable, user settable?)
 // TODO: chart notes only when figure
 // TODO: test arbitrary content handling (including model summary)
 
@@ -15,7 +13,8 @@ var FlexDashboard = (function () {
       fillPage: false,
       orientation: 'rows',
       defaultFigWidth: 5,
-      defaultFigHeight: 3.5
+      defaultFigHeight: 3.5,
+      sidebarWidth: (3 * 96)
     };
   };
 
@@ -132,7 +131,7 @@ var FlexDashboard = (function () {
       if (sidebar.length > 0) {
         sidebar.removeClass('level2');
         sidebar.children('h2').remove();
-        page.css('padding-left', '300px');
+        page.css('padding-left', _options.sidebarWidth + 'px');
       }
     }
 

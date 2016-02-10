@@ -204,12 +204,12 @@ body hr {
 }
 
 
-.sidebar {
+.section.sidebar {
   position: fixed;
-  top: 52px;
+  top: 51px; /* overridden via body_padding variable */
   left: 0;
   bottom: 0;
-  width: 300px;
+  width: 300px; /* overridden via sidebar_width variable */
   border-right: 1px solid #e2e2e2;
   background-color: white;
   padding-left: 10px;

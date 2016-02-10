@@ -19,6 +19,7 @@ flex_dashboard <- function(fig_width = 5,
                            self_contained = TRUE,
                            fill_page = TRUE,
                            orientation = c("columns", "rows"),
+                           sidebar_width = 250,
                            theme = "default",
                            highlight = "default",
                            mathjax = "default",
@@ -67,6 +68,9 @@ flex_dashboard <- function(fig_width = 5,
   # orientation variable
   orientation = match.arg(orientation)
   args <- c(args, pandoc_variable_arg("orientation", orientation))
+
+  # sidebar width variable
+  args <- c(args, pandoc_variable_arg("sidebar_width", sidebar_width))
 
   # default fig_width and fig_height variables
   args <- c(args, pandoc_variable_arg("default_fig_width", fig_width))

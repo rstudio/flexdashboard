@@ -75,6 +75,11 @@ $endif$
 body {
   padding-top: $body_padding$px;
 }
+
+.section.sidebar {
+  top: calc($body_padding$px - 9px);
+  width: $sidebar_width$px;
+}
 </style>
 
 $if(fill_page)$
@@ -113,7 +118,8 @@ $$(document).ready(function () {
     fillPage: $if(fill_page)$true$else$false$endif$,
     orientation: '$orientation$',
     defaultFigWidth: $default_fig_width$,
-    defaultFigHeight: $default_fig_height$
+    defaultFigHeight: $default_fig_height$,
+    sidebarWidth: $sidebar_width$
   });
 
   // initialize mathjax
