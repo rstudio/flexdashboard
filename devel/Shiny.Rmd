@@ -30,7 +30,7 @@ checkboxInput("showgrid", label = "Show Grid", value = TRUE)
 Column 2
 -------------------------------------------------------------------------------
 
-### Dygraph
+### Predicted Deaths/Month (dygraphs)
 
 ```{r}
 predicted <- reactive({
@@ -40,17 +40,17 @@ predicted <- reactive({
 })
 
 renderDygraph({
-  dygraph(predicted(), main = "Predicted Deaths/Month") %>%     
+  dygraph(predicted()) %>%     
     dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
     dyOptions(drawGrid = input$showgrid)
 })
 ```
 
-### Base Graphics
+### Predicted Deaths/Month (base)
 
 ```{r}
 renderPlot({
-  plot(predicted())
+  plot(predicted(), main = NA)
 })
 ```
 
