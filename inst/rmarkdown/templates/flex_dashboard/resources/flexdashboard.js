@@ -3,6 +3,8 @@
 // TODO: allow for skip straight to H3 (no row/col)
 // TODO: dynamic top for sidebar (to cover themes)
 // TODO: dynamic width for sidebars (variable, user settable?)
+// TODO: chart notes only when figure
+// TODO: test arbitrary content handling (including model summary)
 
 var FlexDashboard = (function () {
 
