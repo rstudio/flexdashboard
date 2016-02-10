@@ -1,11 +1,8 @@
 
 // TODO: fill_page: true not working with runtime: shiny
 
-// TODO: sidebar/inputbar
-//        - call horizontal and vertical both inputbar?
-//        - background color
-
-// TODO: data-width / data-flex-width attributes?
+// TODO: sidebar is a fixed position item always (move container over
+//       then float it via position: fixed)
 
 var FlexDashboard = (function () {
 
