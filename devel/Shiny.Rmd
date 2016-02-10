@@ -14,7 +14,7 @@ library(dygraphs)
 Column 1
 -------------------------------------------------------------------------------
 
-### Inputs
+### Inputs {.sidebar}
 
 ```{r}
 numericInput("months", label = "Months to Predict",

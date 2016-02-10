@@ -216,9 +216,14 @@ var FlexDashboard = (function () {
       // get the figure sizes for the rows
       var figureSizes = chartFigureSizes(rows);
 
-      // column flex is the max row width
-      var maxWidth = maxChartWidth(figureSizes);
-      setFlex($(this), maxWidth + ' ' + maxWidth + ' 0px');
+      // columns with sidebars have a fixed width
+      if ($(this).find('.sidebar').length > 0) {
+        setFlex($(this), '0 0 325px');
+      } else {
+         // column flex is the max row width
+        var maxWidth = maxChartWidth(figureSizes);
+        setFlex($(this), maxWidth + ' ' + maxWidth + ' 0px');
+      }
 
       // layout each chart
       rows.each(function(index) {
@@ -336,9 +341,13 @@ var FlexDashboard = (function () {
     chartTitle.html(title);
     chart.prepend(chartTitle);
 
-    // extract notes
-    if (extractChartNotes(chartContent, chart))
-      result.caption = true;
+    // wrap in a form for sidebars
+    if (chart.hasClass('sidebar'))
+      chartContent.wrapInner('<form></form>');
+
+    // extract notes (but not for sidebars)
+    else if (extractChartNotes(chartContent, chart))
+        result.caption = true;
 
     // return result
     return result;
