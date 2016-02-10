@@ -2,8 +2,6 @@
 title: "Deaths from Lung Cancer"
 output: 
   flexdashboard::flex_dashboard: 
-    devel: false
-    theme: default 
     orientation: columns
     fill_page: false
 runtime: shiny
