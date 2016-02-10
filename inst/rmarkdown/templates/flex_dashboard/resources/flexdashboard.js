@@ -1,12 +1,13 @@
 
-// TODO: may need a way to do explicit width specification
-// (e.g. for sidebar or for free flowing content)
 
 // TODO: support for runtime: shiny
 //   - fill_page doesn't work
 
-// TODO: support for "sidebar" attribute
+// TODO: 'inputbar' rather than 'sidebar' ?
 
+// TODO: inputbar background color?
+
+// TODO: data-width data-flex-width (and height) attributes?
 
 var FlexDashboard = (function () {
 
@@ -217,7 +218,7 @@ var FlexDashboard = (function () {
       var figureSizes = chartFigureSizes(rows);
 
       // columns with sidebars have a fixed width
-      if ($(this).find('.sidebar').length > 0) {
+      if (($(this).find('.sidebar').length > 0) && !isMobilePhone()) {
         setFlex($(this), '0 0 325px');
       } else {
          // column flex is the max row width
