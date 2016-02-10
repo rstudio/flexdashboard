@@ -14,7 +14,7 @@ library(dygraphs)
 ```
 
 
------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 ### Inputs
 
@@ -29,9 +29,9 @@ selectInput("interval", label = "Prediction Interval",
 checkboxInput("showgrid", label = "Show Grid", value = TRUE)
 ```
 
------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
-### Output
+### Dygraph
 
 ```{r}
 predicted <- reactive({
@@ -47,5 +47,12 @@ renderDygraph({
 })
 ```
 
+### Base Graphics
+
+```{r}
+renderPlot({
+  plot(predicted())
+})
+```
 
 
