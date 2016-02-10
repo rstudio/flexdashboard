@@ -211,7 +211,7 @@ body hr {
   bottom: 0;
   width: 300px; /* overridden via sidebar_width variable */
   border-right: 1px solid #e2e2e2;
-  background-color: white;
+  background-color: white; /* overridden via sidebar_background variable */
   padding-left: 10px;
   padding-right: 10px;
 }

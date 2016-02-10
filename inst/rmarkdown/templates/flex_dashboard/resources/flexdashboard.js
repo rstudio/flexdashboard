@@ -1,6 +1,6 @@
 
 
-// TODO: paul on sidebar look and feel?
+// TODO: tweak default width (try slider and date picker)
 // TODO: test arbitrary content handling (including model summary)
 
 var FlexDashboard = (function () {
@@ -126,10 +126,14 @@ var FlexDashboard = (function () {
       fillPage = _options.fillPage;
 
       // handle sidebar
-      var sidebar = page.find('.sidebar');
+      var sidebar = page.find('.section.sidebar');
       if (sidebar.length > 0) {
+
+        // get it out of the header hierarchy
         sidebar.removeClass('level2');
         sidebar.children('h2').remove();
+
+        // shift the page right to accomodate the sidebar
         page.css('padding-left', _options.sidebarWidth + 'px');
       }
     }

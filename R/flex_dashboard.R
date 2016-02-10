@@ -72,6 +72,9 @@ flex_dashboard <- function(fig_width = 5,
   # sidebar width variable
   args <- c(args, pandoc_variable_arg("sidebar_width", sidebar_width))
 
+  # sidebar background variable
+  args <- c(args, pandoc_sidebar_background_color_variable(theme))
+
   # default fig_width and fig_height variables
   args <- c(args, pandoc_variable_arg("default_fig_width", fig_width))
   args <- c(args, pandoc_variable_arg("default_fig_height", fig_height))
@@ -172,5 +175,24 @@ pandoc_body_padding_variable_arg <- function(theme) {
   pandoc_variable_arg("body_padding", bodyPadding)
 }
 
+
+pandoc_sidebar_background_color_variable <- function(theme) {
+
+  colors <- c("default" = "rgba(61, 74, 87, 0.2)",
+              "cerulean" = "rgba(3, 60, 115, 0.2)",
+              "journal" = "rgba(235, 104, 100, 0.2)",
+              "flatly" = "rgba(24, 188, 156, 0.2)",
+              "readable" = "rgba(255, 255, 255, 0.8)",
+              "spacelab" = "rgba(68, 110, 155, 0.2)",
+              "united" = "rgba(119, 41, 83, 0.2)",
+              "cosmo" = "rgba(39, 128, 227, 0.2)",
+              "lumen" = "rgba(255, 255, 255, 0.8)",
+              "paper" = "rgba(33, 150, 243, 0.2)",
+              "sandstone" = "rgba(147, 197, 75, 0.2)",
+              "simplex" = "rgba(217, 35, 15, 0.2)",
+              "yeti" = "rgba(0, 140, 186, 0.2)")
+
+  pandoc_variable_arg("sidebar_background", colors[[theme]])
+}
 
 

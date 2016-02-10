@@ -4,11 +4,16 @@ output:
   flexdashboard::flex_dashboard: 
     devel: true
     self_contained: false
+    theme: yeti
+knit: flexdashboard:::knit2browser
 ---
 
 ```{r setup, include=FALSE}
 library(dygraphs)
 ```
+
+Sidebar {.sidebar}
+-------------------------------------------------------------------------------
 
 Row 1
 -------------------------------------------------------------------------------
