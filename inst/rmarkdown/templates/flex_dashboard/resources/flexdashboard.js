@@ -1,7 +1,6 @@
 
 
 // TODO: paul on sidebar look and feel?
-// TODO: chart notes only when figure
 // TODO: test arbitrary content handling (including model summary)
 
 var FlexDashboard = (function () {
@@ -376,7 +375,7 @@ var FlexDashboard = (function () {
     var img = chart.children('p').children('img:only-child');
 
     // did we find one?
-    if (img.length) {
+    if (img.length == 1) {
 
       // apply the image container style to the parent <p>
       var p = img.parent();
@@ -393,23 +392,25 @@ var FlexDashboard = (function () {
   }
 
   // extract chart notes from a chart-stage section
-  function extractChartNotes(chartStage, chartWrapper) {
+  function extractChartNotes(chartContent, chartWrapper) {
 
     // track whether we successfully extracted notes
     var extracted = false;
 
     // if there is more than one top level visualization element
-    // (an image or an htmlwidget in chart stage then take the
-    // last element and convert it into the chart notes (otherwise
-    // just create an empty chart notes)
+    // (an image or an htmlwidget in chart stage) then take the
+    // last element and convert it into the chart notes, otherwise
+    // just create an empty chart notes
+
     var chartNotes = $('<div class="chart-notes"></div>');
     chartNotes.html('&nbsp;');
 
     // look for a chart image or htmlwidget
-    var img = chartStage.find('p').children('img:only-child');
-    var widget = chartStage.find('div[id^="htmlwidget-"]');
+    var img = chartContent.children('p.image-container')
+                          .children('img:only-child');
+    var widget = chartContent.children('div[id^="htmlwidget-"]');
     if (img.length > 0 || widget.length > 0) {
-      var lastChild = chartStage.children().last();
+      var lastChild = chartContent.children().last();
       if (lastChild.is("p") &&
           (lastChild.html().length > 0) &&
           (lastChild.children('img:only-child').length === 0)) {
