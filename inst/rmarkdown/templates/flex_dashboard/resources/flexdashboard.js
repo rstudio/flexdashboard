@@ -1,5 +1,11 @@
 
-// d3 heatmap not visible when switching tabs (test others)
+// TODO: d3 heatmap not visible when switching tabs (test others)
+
+// TODO: dygraphs axis clipped on over/under on runtime: shiny
+
+// TODO: consider toolbar element
+
+// TODO: consider inputs in navbar
 
 var FlexDashboard = (function () {
 

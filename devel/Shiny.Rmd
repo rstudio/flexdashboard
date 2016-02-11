@@ -4,7 +4,7 @@ output:
   flexdashboard::flex_dashboard: 
     fill_page: true
     orientation: columns
-    theme: yeti
+    theme: default
 runtime: shiny
 ---
 
