@@ -214,6 +214,7 @@ body hr {
   background-color: white; /* overridden via sidebar_background variable */
   padding-left: 10px;
   padding-right: 10px;
+  visibility: hidden;
 }
 
 
