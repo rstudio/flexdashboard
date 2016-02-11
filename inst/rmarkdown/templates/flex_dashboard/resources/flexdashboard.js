@@ -2,7 +2,6 @@
 
 // TODO: use dynamic css rather than so many variables
 // TODO: tweak theme sidebars colors, prune theme
-// TODO: console sidebar width with data attribute not arg/variable
 
 var FlexDashboard = (function () {
 
@@ -13,8 +12,7 @@ var FlexDashboard = (function () {
       fillPage: false,
       orientation: 'rows',
       defaultFigWidth: 480,
-      defaultFigHeight: 336,
-      sidebarWidth: 250
+      defaultFigHeight: 336
     };
   };
 
@@ -135,11 +133,19 @@ var FlexDashboard = (function () {
       if (sidebar.length > 0) {
 
         // get it out of the header hierarchy
+        sidebar = sidebar.first();
         sidebar.removeClass('level2');
         sidebar.children('h2').remove();
 
-        // shift the page right to accomodate the sidebar
-        page.css('padding-left', _options.sidebarWidth + 'px');
+        // determine width
+        var sidebarWidth = 250;
+        var dataWidth = parseInt(sidebar.attr('data-width'));
+        if (dataWidth)
+          sidebarWidth = dataWidth;
+
+        // set the width and shift the page right to accomodate the sidebar
+        sidebar.css('width', sidebarWidth + 'px');
+        page.css('padding-left', sidebarWidth + 'px');
       }
     }
 

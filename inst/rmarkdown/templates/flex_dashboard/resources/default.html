@@ -58,13 +58,6 @@ $for(include-before)$
 $include-before$
 $endfor$
 
-<style type="text/css">
-.section.sidebar {
-  width: $sidebar_width$px;
-}
-
-</style>
-
 $if(fill_page)$
 <style type="text/css">
 @media only screen and (min-width: 768px) {
@@ -102,7 +95,6 @@ $$(document).ready(function () {
     orientation: '$orientation$',
     defaultFigWidth: $default_fig_width$,
     defaultFigHeight: $default_fig_height$,
-    sidebarWidth: $sidebar_width$
   });
 
   // initialize mathjax
