@@ -53,7 +53,7 @@ body hr {
 */
 
 #dashboard-container {
-
+  visibility: hidden;
 }
 
 .tab-content>.section.level1.active {

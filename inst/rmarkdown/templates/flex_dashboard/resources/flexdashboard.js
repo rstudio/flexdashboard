@@ -65,6 +65,9 @@ var FlexDashboard = (function () {
     if (isShinyDoc())
       $(window).trigger('resize');
 
+    // make visible
+    dashboardContainer.css('visibility', 'visible');
+
     // handle location hash
     handleLocationHash();
   }
