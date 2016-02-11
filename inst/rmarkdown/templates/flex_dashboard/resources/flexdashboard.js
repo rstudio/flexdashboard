@@ -1,4 +1,8 @@
 
+// consider possiblity of toolbar
+
+// consider possible confusion over orientation in presence of sidebar/toolbar
+
 var FlexDashboard = (function () {
 
   var FlexDashboard = function() {
