@@ -1,6 +1,4 @@
 
-// TODO: dygraphs axis clipped on over/under on runtime: shiny
-
 var FlexDashboard = (function () {
 
   var FlexDashboard = function() {
@@ -465,7 +463,7 @@ var FlexDashboard = (function () {
   function hasChart(chartContent) {
     var img = chartContent.children('p.image-container')
                           .children('img:only-child');
-    var widget = chartContent.children('div[id^="htmlwidget-"]');
+    var widget = chartContent.children('div[id^="htmlwidget-"],div.html-widget');
     return img.length > 0 || widget.length > 0;
   }
 
