@@ -172,14 +172,19 @@ body hr {
   height: 100% !important;
 }
 
-/* Omit display of empty paragraphs */
+/* Omit display of paragraphs by default then bring
+   them back in appropriate contexts */
 
-.chart-shim>p:empty {
+p {
   display: none;
 }
 
-.chart-stage>p:empty {
-  display: none;
+p.image-container {
+  display: block;
+}
+
+.section.sidebar p {
+  display: block;
 }
 
 /* Omit display of special knitr options div*/
