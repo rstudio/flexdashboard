@@ -1,6 +1,9 @@
 
 
 // TODO: tweak default width (try slider and date picker)
+// TODO: consider ignoring free floating paragraphs before charts and
+//       before headings (for comments / literate programming)
+// TODO: use dynamic css rather than so many variables
 // TODO: test arbitrary content handling (including model summary)
 
 var FlexDashboard = (function () {
