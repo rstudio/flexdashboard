@@ -22,6 +22,7 @@ $endfor$
 
 $if(devel)$
 <link rel="stylesheet" href="../inst/rmarkdown/templates/flex_dashboard/resources/flexdashboard.css" type="text/css" />
+<link rel="stylesheet" href="../inst/rmarkdown/templates/flex_dashboard/resources/fillpage.css" type="text/css" />
 <link rel="stylesheet" href="../inst/rmarkdown/templates/flex_dashboard/resources/theme-$theme$.css" type="text/css" />
 <script type="text/javascript" src="../inst/rmarkdown/templates/flex_dashboard/resources/flexdashboard.js"></script>
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
@@ -58,20 +59,6 @@ $for(include-before)$
 $include-before$
 $endfor$
 
-$if(fill_page)$
-<style type="text/css">
-@media only screen and (min-width: 768px) {
-html, body {
-  height: 100%;
-}
-
-#dashboard-container {
-  height: 100%;
-}
-}
-</style>
-$endif$
-
 <div id="dashboard-container">
 
 $body$
@@ -88,14 +75,6 @@ $$(document).ready(function () {
 
   // add bootstrap table styles to pandoc tables
   $$('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-
-  // initialize flex dashboard
-  FlexDashboard.init({
-    fillPage: $if(fill_page)$true$else$false$endif$,
-    orientation: '$orientation$',
-    defaultFigWidth: $default_fig_width$,
-    defaultFigHeight: $default_fig_height$,
-  });
 
   // initialize mathjax
 $if(mathjax-url)$

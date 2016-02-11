@@ -1,6 +1,4 @@
 
-
-// TODO: use dynamic css rather than so many variables
 // TODO: tweak theme sidebars colors, prune theme
 
 var FlexDashboard = (function () {

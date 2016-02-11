@@ -53,24 +53,14 @@ flex_dashboard <- function(fig_width = 5,
   # add template
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
 
+  # resolve orientation
+  orientation <- match.arg(orientation)
+
   # resolve theme
   if (identical(theme, "default"))
     theme <- "cosmo"
   else if (identical(theme, "bootstrap"))
     theme <- "default"
-
-  # fill page
-  if (fill_page)
-    args <- c(args, pandoc_variable_arg("fill_page", "1"))
-
-  # orientation variable
-  orientation = match.arg(orientation)
-  args <- c(args, pandoc_variable_arg("orientation", orientation))
-
-  # default fig_width and fig_height variables
-  figSizePixels <- function(size) as.integer(size * 96)
-  args <- c(args, pandoc_variable_arg("default_fig_width", figSizePixels(fig_width)))
-  args <- c(args, pandoc_variable_arg("default_fig_height", figSizePixels(fig_height)))
 
   # determine knitr options
   knitr_options <- knitr_options_html(fig_width = fig_width,
@@ -83,6 +73,7 @@ flex_dashboard <- function(fig_width = 5,
 
   # add hook to capture fig.width and fig.height and serialized
   # them into the DOM
+  figSizePixels <- function(size) as.integer(size * 96)
   knitr_options$knit_hooks <- list()
   knitr_options$knit_hooks$chunk  <- function(x, options) {
     knitrOptions <- paste0(
@@ -105,18 +96,38 @@ flex_dashboard <- function(fig_width = 5,
     # them are included in the template along with live reload)
     if (devel) {
       args <- c(args, pandoc_variable_arg("devel", "1"))
+      dashboardAssets <- NULL
     } else {
-      dashboardAssets <- c('<style type="text/css">',
-                           readLines(resource("flexdashboard.css")),
-                           readLines(resource(paste0("theme-", theme, ".css"))),
-                           '</style>',
-                           '<script type="text/javascript">',
-                           readLines(resource("flexdashboard.js")),
-                           '</script>')
-      dashboardAssetsFile <- tempfile(fileext = ".html")
-      writeLines(dashboardAssets, dashboardAssetsFile)
-      args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
+      dashboardAssets <- c(
+        '<style type="text/css">',
+        readLines(resource("flexdashboard.css")),
+        readLines(resource(paste0("theme-", theme, ".css"))),
+        ifelse(fill_page, readLines(resource("fillpage.css")), NULL),
+        '</style>',
+        '<script type="text/javascript">',
+        readLines(resource("flexdashboard.js")),
+        '</script>'
+      )
     }
+
+    # add FlexDashboard initialization to assets
+    dashboardAssets <- c(dashboardAssets,
+      '<script type="text/javascript">',
+      '$(document).ready(function () {',
+      '  FlexDashboard.init({',
+      paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
+      paste0('    orientation: "', orientation, '",'),
+      paste0('    defaultFigWidth: ', figSizePixels(fig_width), ','),
+      paste0('    defaultFigHeight: ', figSizePixels(fig_height)),
+      '  });',
+      '});',
+      '</script>'
+    )
+
+    # write assets and include them on the command line
+    dashboardAssetsFile <- tempfile(fileext = ".html")
+    writeLines(dashboardAssets, dashboardAssetsFile)
+    args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
 
     # highlight
     args <- c(args, pandoc_highlight_args(highlight, default = "pygments"))
