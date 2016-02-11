@@ -2,80 +2,65 @@
 title: "Deaths from Lung Cancer"
 output: 
   flexdashboard::flex_dashboard: 
-    devel: true
+    devel: false
     self_contained: false
-    theme: default
+    fill_page: false
+    theme: yeti
 ---
 
 ```{r setup, include=FALSE}
-library(dygraphs)
 library(ggplot2)
+library(plotly)
+library(d3heatmap)
+library(leaflet)
 ```
 
-# Page 1 
+# Page 1
 
-## Row 1
+### Plotly
 
-### Male Deaths {data-col=4}
-
-Some free form content:
-
-- Point 1
-- Point 2
-- Point 3
-
-$x + y$
-
-```r
-foo <- function(x = 20) {
-
-}
+```{r, fig.width=8, fig.height=4}
+p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
+            geom_bar(position = "dodge")
+ggplotly(p)
 ```
 
-### Female Deaths
+### Heatmap
 
 ```{r}
-dygraph(fdeaths)
+d3heatmap(mtcars, scale="column", colors="Blues")
 ```
 
-More footer text.
-
-## Row 2
-
-### All Deaths
+### Leaflet
 
 ```{r}
-dygraph(ldeaths)
+leaflet() %>% addTiles()
 ```
 
-# Page 2 {data-orientation='columns'}
 
-## Row 1
+# Page 2
 
-### All Deaths
+### Cars
+
+```{r, fig.width=8, fig.height=4}
+p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
+            geom_bar(position = "dodge")
+ggplotly(p)
+```
+
+### Heatmap
 
 ```{r}
-dygraph(ldeaths)
+d3heatmap(mtcars, scale="column", colors="Blues")
 ```
 
-
-
-
-## Row 2
-
-### Male Deaths 2 
+### Leaflet
 
 ```{r}
-dygraph(mdeaths)
+leaflet() %>% addTiles()
 ```
 
-Here is some footer text.
 
-### Female Deaths 2 
 
-```{r}
-dygraph(fdeaths)
-```
 
-More footer text.
 
