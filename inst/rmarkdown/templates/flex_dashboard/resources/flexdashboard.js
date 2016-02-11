@@ -398,10 +398,6 @@ var FlexDashboard = (function () {
     if (extractChartNotes(chartContent, chart))
       result.caption = true;
 
-    // tag it as content only if it doesn't have a chart
-    if (!hasChart(chartContent))
-      chartContent.addClass('content-only');
-
     // return result
     return result;
   }
