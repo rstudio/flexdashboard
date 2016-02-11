@@ -54,9 +54,13 @@ flex_dashboard <- function(fig_width = 5,
   # add template
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
 
-  # add flag if we using the default theme
+  # resolve theme
   if (identical(theme, "default"))
+    theme <- "cosmo"
+  else if (identical(theme, "bootstrap")) {
+    theme <- "default"
     args <- c(args, pandoc_variable_arg("theme_default", "1"))
+  }
 
   # body padding based on theme
   args <- c(args, pandoc_body_padding_variable_arg(theme))
