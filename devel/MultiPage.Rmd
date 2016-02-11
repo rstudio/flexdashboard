@@ -14,6 +14,7 @@ library(ggplot2)
 library(plotly)
 library(d3heatmap)
 library(leaflet)
+library(dygraphs)
 ```
 
 # Page 1
@@ -38,6 +39,14 @@ d3heatmap(mtcars, scale="column", colors="Blues")
 leaflet() %>% addTiles()
 ```
 
+### Dygraphs
+
+```{r}
+dygraph(ldeaths)
+```
+
+
+
 
 # Page 2
 
@@ -61,6 +70,11 @@ d3heatmap(mtcars, scale="column", colors="Blues")
 leaflet() %>% addTiles()
 ```
 
+### Dygraphs
+
+```{r}
+dygraph(ldeaths)
+```
 
 
 
