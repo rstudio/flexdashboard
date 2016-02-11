@@ -1,4 +1,6 @@
 
+// d3 heatmap not visible when switching tabs (test others)
+
 var FlexDashboard = (function () {
 
   var FlexDashboard = function() {

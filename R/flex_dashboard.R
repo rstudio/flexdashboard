@@ -98,11 +98,17 @@ flex_dashboard <- function(fig_width = 5,
       args <- c(args, pandoc_variable_arg("devel", "1"))
       dashboardAssets <- NULL
     } else {
+      if (fill_page) {
+        fillPageCss <- readLines(resource("fillpage.css"))
+      } else {
+        fillPageCss <- NULL
+      }
+
       dashboardAssets <- c(
         '<style type="text/css">',
         readLines(resource("flexdashboard.css")),
         readLines(resource(paste0("theme-", theme, ".css"))),
-        ifelse(fill_page, readLines(resource("fillpage.css")), ""),
+        fillPageCss,
         '</style>',
         '<script type="text/javascript">',
         readLines(resource("flexdashboard.js")),
