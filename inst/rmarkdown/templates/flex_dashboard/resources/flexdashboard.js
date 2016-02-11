@@ -1,15 +1,12 @@
 
-
-// TODO: try multi page
-
 var FlexDashboard = (function () {
 
   var FlexDashboard = function() {
 
     // default options
     _options = {
-      fillPage: false,
-      orientation: 'rows',
+      fillPage: true,
+      orientation: 'columns',
       defaultFigWidth: 480,
       defaultFigHeight: 336
     };
