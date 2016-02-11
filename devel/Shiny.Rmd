@@ -48,8 +48,11 @@ renderDygraph({
 ### Predicted Deaths/Month (base)
 
 ```{r}
-renderPlot({
-  plot(predicted(), main = NA)
-})
+hw <- HoltWinters(ldeaths)
+pred <- predict(hw, n.ahead = 72, prediction.interval = TRUE, level = 0.95)
+
+dygraph(pred) %>%     
+  dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
+  dyOptions(drawGrid = TRUE)
 ```
 
