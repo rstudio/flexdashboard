@@ -189,7 +189,7 @@ pandoc_sidebar_background_color_variable <- function(theme) {
               "readable" = "rgba(255, 255, 255, 0.8)",
               "spacelab" = "rgba(68, 110, 155, 0.2)",
               "united" = "rgba(119, 41, 83, 0.2)",
-              "cosmo" = "rgba(39, 128, 227, 0.2)",
+              "cosmo" = "rgba(39, 128, 227, 0.1)",
               "lumen" = "rgba(255, 255, 255, 0.8)",
               "paper" = "rgba(33, 150, 243, 0.2)",
               "sandstone" = "rgba(147, 197, 75, 0.2)",
