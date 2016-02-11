@@ -1,5 +1,7 @@
 
-// TODO: tweak theme sidebars colors, prune theme
+
+// TODO: sidebar and mobile (when we go below 768 fullPage gets iced,
+//       sidebar needs to become a section, etc.)
 
 var FlexDashboard = (function () {
 
