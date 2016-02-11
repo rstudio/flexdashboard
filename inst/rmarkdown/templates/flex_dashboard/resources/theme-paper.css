@@ -1,0 +1,9 @@
+body {
+  padding-top: 73px;
+}
+
+.section.sidebar {
+  top: 64px;
+  background-color: rgba(33, 150, 243, 0.2);
+}
+

@@ -1,7 +1,8 @@
 
 
 // TODO: use dynamic css rather than so many variables
-// TODO: test arbitrary content handling (including model summary)
+// TODO: tweak theme sidebars colors, prune theme
+// TODO: console sidebar width with data attribute not arg/variable
 
 var FlexDashboard = (function () {
 

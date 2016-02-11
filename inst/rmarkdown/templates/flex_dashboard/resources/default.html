@@ -22,6 +22,7 @@ $endfor$
 
 $if(devel)$
 <link rel="stylesheet" href="../inst/rmarkdown/templates/flex_dashboard/resources/flexdashboard.css" type="text/css" />
+<link rel="stylesheet" href="../inst/rmarkdown/templates/flex_dashboard/resources/theme-$theme$.css" type="text/css" />
 <script type="text/javascript" src="../inst/rmarkdown/templates/flex_dashboard/resources/flexdashboard.js"></script>
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 $endif$
@@ -57,30 +58,11 @@ $for(include-before)$
 $include-before$
 $endfor$
 
-$if(theme_default)$
 <style type="text/css">
-.navbar-inverse {
-  background-color: #3d4a57;
-  border-color: #333;
-}
-
-.navbar-inverse .navbar-nav > li > a,
-.navbar .navbar-brand {
-  color: #fbfbfb;
-}
-</style>
-$endif$
-
-<style type="text/css">
-body {
-  padding-top: $body_padding$px;
-}
-
 .section.sidebar {
-  top: calc($body_padding$px - 9px);
   width: $sidebar_width$px;
-  background-color: $sidebar_background$;
 }
+
 </style>
 
 $if(fill_page)$
