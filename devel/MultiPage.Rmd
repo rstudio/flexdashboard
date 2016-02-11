@@ -2,11 +2,10 @@
 title: "Deaths from Lung Cancer"
 output: 
   flexdashboard::flex_dashboard: 
-    devel: true
-    self_contained: false
+    devel: false
+    self_contained: true
     fill_page: false
     theme: yeti
-knit: flexdashboard:::knit2browser
 ---
 
 ```{r setup, include=FALSE}

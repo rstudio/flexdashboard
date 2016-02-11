@@ -2,10 +2,10 @@
 title: "Deaths from Lung Cancer"
 output: 
   flexdashboard::flex_dashboard: 
-    devel: true
-    self_contained: false
+    devel: false
+    self_contained: true
     theme: yeti
-knit: flexdashboard:::knit2browser
+    orientation: rows
 ---
 
 ```{r setup, include=FALSE}
@@ -42,4 +42,4 @@ Row 2
 dygraph(ldeaths)
 ```
 
-Another plot caption.
+
