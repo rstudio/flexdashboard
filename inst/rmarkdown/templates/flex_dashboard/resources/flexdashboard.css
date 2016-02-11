@@ -187,6 +187,10 @@ p.image-container {
   display: block;
 }
 
+.chart-shim.content-only p {
+  display: block;
+}
+
 /* Omit display of special knitr options div*/
 
 .chart-stage .knitr-options {

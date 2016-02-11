@@ -11,9 +11,9 @@ var FlexDashboard = (function () {
     _options = {
       fillPage: false,
       orientation: 'rows',
-      defaultFigWidth: 5,
-      defaultFigHeight: 3.5,
-      sidebarWidth: (3 * 96)
+      defaultFigWidth: 480,
+      defaultFigHeight: 336,
+      sidebarWidth: 250
     };
   };
 
@@ -290,16 +290,27 @@ var FlexDashboard = (function () {
         height: _options.defaultFigHeight
       };
 
-      // scrape knit options
+      // look for data-height or data-width then knit options
+      var dataWidth = parseInt($(this).attr('data-width'));
+      var dataHeight = parseInt($(this).attr('data-height'));
       var knitrOptions = $(this).find('.knitr-options:first');
+      var knitrWidth, knitrHeight;
       if (knitrOptions) {
-        var figWidth = parseInt(knitrOptions.attr('data-fig-width'));
-        if (figWidth)
-          figureSizes[index].width = figWidth;
-        var figHeight = parseInt(knitrOptions.attr('data-fig-height'));
-        if (figHeight)
-          figureSizes[index].height = figHeight;
+        knitrWidth = parseInt(knitrOptions.attr('data-fig-width'));
+        knitrHeight =  parseInt(knitrOptions.attr('data-fig-height'));
       }
+
+      // width
+      if (dataWidth)
+        figureSizes[index].width = dataWidth;
+      else if (knitrWidth)
+        figureSizes[index].width = knitrWidth;
+
+      // height
+      if (dataHeight)
+        figureSizes[index].height = dataHeight;
+      else if (knitrHeight)
+        figureSizes[index].height = knitrHeight;
     });
 
     // return sizes
@@ -373,6 +384,10 @@ var FlexDashboard = (function () {
     if (extractChartNotes(chartContent, chart))
       result.caption = true;
 
+    // tag it as content only if it doesn't have a chart
+    if (!hasChart(chartContent))
+      chartContent.addClass('content-only');
+
     // return result
     return result;
   }
@@ -414,10 +429,7 @@ var FlexDashboard = (function () {
     chartNotes.html('&nbsp;');
 
     // look for a chart image or htmlwidget
-    var img = chartContent.children('p.image-container')
-                          .children('img:only-child');
-    var widget = chartContent.children('div[id^="htmlwidget-"]');
-    if (img.length > 0 || widget.length > 0) {
+    if (hasChart(chartContent)) {
       var lastChild = chartContent.children().last();
       if (lastChild.is("p") &&
           (lastChild.html().length > 0) &&
@@ -432,6 +444,13 @@ var FlexDashboard = (function () {
 
     // return status
     return extracted;
+  }
+
+  function hasChart(chartContent) {
+    var img = chartContent.children('p.image-container')
+                          .children('img:only-child');
+    var widget = chartContent.children('div[id^="htmlwidget-"]');
+    return img.length > 0 || widget.length > 0;
   }
 
   // safely detect rendering on a mobile phone
