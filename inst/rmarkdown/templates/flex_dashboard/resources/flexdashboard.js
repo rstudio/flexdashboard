@@ -1,7 +1,6 @@
 
 
-// TODO: sidebar and mobile (when we go below 768 fullPage gets iced,
-//       sidebar needs to become a section, etc.)
+// TODO: try multi page
 
 var FlexDashboard = (function () {
 
@@ -104,6 +103,17 @@ var FlexDashboard = (function () {
 
     // media: mobile phone
     if (isMobilePhone()) {
+
+      // if there is a sidebar we need to ensure it's content
+      // is properly framed as an h3
+      var sidebar = page.find('.section.sidebar');
+      sidebar.removeClass('sidebar');
+      sidebar.wrapInner('<div class="section level3"></div>');
+      var h2 = sidebar.find('h2');
+      var h3 = $('<h3></h3>');
+      h3.html(h2.html());
+      h3.insertBefore(h2);
+      h2.remove();
 
       // wipeout h2 elements then enclose them in a single h2
       var level2 = page.find('div.section.level2');
