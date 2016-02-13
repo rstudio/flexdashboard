@@ -1,3 +1,3 @@
 library(testthat)
-test_check("flexdashbaord")
+test_check("flexdashboard")
 
