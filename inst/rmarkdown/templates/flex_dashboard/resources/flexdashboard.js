@@ -1,6 +1,4 @@
 
-// consider possiblity of toolbar
-
 var FlexDashboard = (function () {
 
   var FlexDashboard = function() {
