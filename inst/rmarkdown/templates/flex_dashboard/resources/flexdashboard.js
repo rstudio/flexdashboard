@@ -1,6 +1,8 @@
 
 // consider possiblity of toolbar
 
+// consider fill_page: false as default
+
 // consider possible confusion over orientation in presence of sidebar/toolbar
 
 var FlexDashboard = (function () {
@@ -226,13 +228,19 @@ var FlexDashboard = (function () {
         $(this).find('.chart-notes').remove();
 
       // now we can set the height on all the wrappers (based on maximum
-      // figure height + room for title and notes)
-      var maxHeight = maxChartHeight(figureSizes, columns);
+      // figure height + room for title and notes, or data-height on the
+      // container if specified)
+      var flexHeight;
+      var dataHeight = parseInt($(this).attr('data-height'));
+      if (dataHeight)
+        flexHeight = adjustedHeight(dataHeight, columns.first());
+      else
+        flexHeight = maxChartHeight(figureSizes, columns);
       if (fillPage)
-        setFlex($(this), maxHeight + ' ' + maxHeight + ' 0px');
+        setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
       else {
-        $(this).css('height', maxHeight + 'px');
-        setFlex($(this), '0 0 ' + maxHeight + 'px');
+        $(this).css('height', flexHeight + 'px');
+        setFlex($(this), '0 0 ' + flexHeight + 'px');
       }
     });
   }
@@ -267,9 +275,14 @@ var FlexDashboard = (function () {
       // get the figure sizes for the rows
       var figureSizes = chartFigureSizes(rows);
 
-      // column flex is the max row width
-      var maxWidth = maxChartWidth(figureSizes);
-      setFlex($(this), maxWidth + ' ' + maxWidth + ' 0px');
+      // column flex is the max row width (or data-width if specified)
+      var flexWidth;
+      var dataWidth = parseInt($(this).attr('data-width'));
+      if (dataWidth)
+        flexWidth = dataWidth;
+      else
+        flexWidth = maxChartWidth(figureSizes);
+      setFlex($(this), flexWidth + ' ' + flexWidth + ' 0px');
 
       // layout each chart
       rows.each(function(index) {
@@ -351,12 +364,14 @@ var FlexDashboard = (function () {
   }
 
   function adjustedHeight(height, chart) {
-    var chartTitle = chart.find('.chart-title');
-    if (chartTitle.length)
-      height += chartTitle.first().outerHeight();
-    var chartNotes = chart.find('.chart-notes');
-    if (chartNotes.length)
-      height += chartNotes.first().outerHeight();
+    if (chart.length > 0) {
+      var chartTitle = chart.find('.chart-title');
+      if (chartTitle.length)
+        height += chartTitle.first().outerHeight();
+      var chartNotes = chart.find('.chart-notes');
+      if (chartNotes.length)
+        height += chartNotes.first().outerHeight();
+    }
     return height;
   }
 
