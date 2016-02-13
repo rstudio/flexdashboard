@@ -2,7 +2,7 @@
 % Please edit documentation in R/flex_dashboard.R
 \name{flex_dashboard}
 \alias{flex_dashboard}
-\title{Convert to a flex oriented dashboard}
+\title{R Markdown Format for Flexible Chart Dashboards}
 \usage{
 flex_dashboard(fig_width = 5, fig_height = 3.5, dev = "png",
   smart = TRUE, self_contained = TRUE, fill_page = FALSE,
@@ -28,10 +28,17 @@ scripts, stylesheets, images, and videos. Note that even for self contained
 documents MathJax is still loaded externally (this is necessary because of
 it's size).}
 
-\item{theme}{Visual theme ("default", "cerulean", "journal", "flatly",
-"readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone",
-"simplex", or "yeti"). Pass \code{NULL} for no theme (in this case you can
-use the \code{css} parameter to add your own styles).}
+\item{fill_page}{\code{TRUE} to layout the dashboard so that it fills the
+browser to it's edges. \code{FALSE} to layout the dashboard as a
+conventional scrolling web page.}
+
+\item{orientation}{Determines whether level 2 headings are treated as
+dashboard rows or dashboard columns.}
+
+\item{theme}{Visual theme ("default", "bootstrap", "cerulean", "journal",
+"flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
+"sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
+is specified.}
 
 \item{highlight}{Syntax highlighting style. Supported styles include
 "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
@@ -56,10 +63,13 @@ default definition or R Markdown. See the \code{\link{rmarkdown_format}} for
 additional details.}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
+
+\item{devel}{Enable development mode (used for development of the format
+itself, not useful for users of the format).}
 }
 \description{
-Format for converting an R Markdown document to flex oriented dashboard. Level
-1 headings are treated as pages; Level 2 headings as rows; and Level 3
-headings as columns.
+Format for converting an R Markdown document to a grid oriented chart
+dashboard layout. The dashboard flexibly adapts the size of it's charts to
+it's containing web page.
 }
 

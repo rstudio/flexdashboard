@@ -1,15 +1,31 @@
 
-#'Convert to a flex oriented dashboard
+#'R Markdown Format for Flexible Chart Dashboards
 #'
-#'Format for converting an R Markdown document to flex oriented dashboard. Level
-#'1 headings are treated as pages; Level 2 headings as rows; and Level 3
-#'headings as columns.
+#'Format for converting an R Markdown document to a grid oriented chart
+#'dashboard layout. The dashboard flexibly adapts the size of it's charts to
+#'it's containing web page.
 #'
 #'@inheritParams rmarkdown::html_document
+#'
+#'
+#'@param fill_page \code{TRUE} to layout the dashboard so that it fills the
+#'  browser to it's edges. \code{FALSE} to layout the dashboard as a
+#'  conventional scrolling web page.
+#'
+#'@param orientation Determines whether level 2 headings are treated as
+#'  dashboard rows or dashboard columns.
+#'
+#'@param theme Visual theme ("default", "bootstrap", "cerulean", "journal",
+#'  "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
+#'  "sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
+#'  is specified.
 #'
 #'@param highlight Syntax highlighting style. Supported styles include
 #'  "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
 #'  and "haddock". Pass NULL to prevent syntax highlighting.
+#'
+#'@param devel Enable development mode (used for development of the format
+#'  itself, not useful for users of the format).
 #'
 #'@export
 flex_dashboard <- function(fig_width = 5,
