@@ -1,10 +1,6 @@
 
 // consider possiblity of toolbar
 
-// consider fill_page: false as default
-
-// consider possible confusion over orientation in presence of sidebar/toolbar
-
 var FlexDashboard = (function () {
 
   var FlexDashboard = function() {
