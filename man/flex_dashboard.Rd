@@ -66,6 +66,8 @@ additional details.}
 
 \item{devel}{Enable development mode (used for development of the format
 itself, not useful for users of the format).}
+
+\item{...}{Unused}
 }
 \description{
 Format for converting an R Markdown document to a grid oriented chart

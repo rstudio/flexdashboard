@@ -27,6 +27,8 @@
 #'@param devel Enable development mode (used for development of the format
 #'  itself, not useful for users of the format).
 #'
+#'@param ... Unused
+#'
 #'@export
 flex_dashboard <- function(fig_width = 5,
                            fig_height = 3.5,

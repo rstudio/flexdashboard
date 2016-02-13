@@ -1,0 +1,39 @@
+---
+title: "Flex Dashboard"
+output:
+  flexdashboard::flex_dashboard: 
+    theme: cosmo
+    orientation: rows
+    fill_page: false
+---
+
+```{r setup, include=FALSE}
+library(dygraphs)
+```
+
+Row
+-------------------------------------------------------------------------------
+
+### Lung Deaths in the UK (1974-1979)
+
+```{r, fig.width=8, fig.height=5}
+dygraph(ldeaths)
+```
+
+Source: P. J. Diggle (1990) Time Series: A Biostatistical Introduction. Oxford, table A.3
+
+Row
+-------------------------------------------------------------------------------
+
+### Lung Deaths (Male Only)
+
+```{r}
+dygraph(mdeaths)
+```
+
+### Lung Deaths (Female Only)
+
+```{r}
+dygraph(fdeaths)
+```
+
