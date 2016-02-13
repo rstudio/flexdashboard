@@ -1,9 +1,9 @@
 
-#'R Markdown Format for Flexible Chart Dashboards
+#'R Markdown Format for Flexible Dashboards
 #'
-#'Format for converting an R Markdown document to a grid oriented chart
-#'dashboard layout. The dashboard flexibly adapts the size of it's charts to
-#'it's containing web page.
+#'Format for converting an R Markdown document to a grid oriented dashboard
+#'layout. The dashboard flexibly adapts the size of it's plots and htmlwidgets
+#'to it's containing web page.
 #'
 #'@inheritParams rmarkdown::html_document
 #'

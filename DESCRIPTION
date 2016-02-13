@@ -1,6 +1,6 @@
 Package: flexdashboard
 Type: Package
-Title: R Markdown Format for Flexible Chart Dashboards
+Title: R Markdown Format for Flexible Dashboards
 Version: 0.1.0
 Authors@R: c(
     person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
@@ -8,10 +8,10 @@ Authors@R: c(
     person(family = "Keen IO", role = c("aut", "cph"))
   )
 Description: Format for converting an R Markdown document to a grid oriented
-  chart dashboard. The dashboard flexibly adapts the size of it's charts to
-  it's containing web page.
+  dashboard. The dashboard flexibly adapts the size of it's plots and
+  htmlwidgets to the containing web page.
 Imports: rmarkdown
-Suggests: testthat
+Suggests: htmlwidgets, testthat
 Enhances: shiny
 LazyData: TRUE
 RoxygenNote: 5.0.1
