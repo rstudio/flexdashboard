@@ -11,7 +11,8 @@ Description: Format for converting an R Markdown document to a grid oriented
   chart dashboard. The dashboard flexibly adapts the size of it's charts to
   it's containing web page.
 Imports: rmarkdown
-Suggests: shiny (>= 0.11)
+Suggests: testthat
+Enhances: shiny
 LazyData: TRUE
 RoxygenNote: 5.0.1
 License: MIT + file LICENSE
