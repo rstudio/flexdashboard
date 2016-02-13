@@ -8,32 +8,30 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-library(dygraphs)
+# Load packages here
 ```
 
 Row
 -------------------------------------------------------------------------------
 
-### Lung Deaths in the UK (1974-1979)
+### Chart A
 
-```{r, fig.width=8, fig.height=5}
-dygraph(ldeaths)
+```{r}
+# code for chart A
 ```
-
-Source: P. J. Diggle (1990) Time Series: A Biostatistical Introduction. Oxford, table A.3
 
 Row
 -------------------------------------------------------------------------------
 
-### Lung Deaths (Male Only)
+### Chart B
 
 ```{r}
-dygraph(mdeaths)
+# code for chart B
 ```
 
-### Lung Deaths (Female Only)
+### Chart C
 
 ```{r}
-dygraph(fdeaths)
+# code for chart C
 ```
 
