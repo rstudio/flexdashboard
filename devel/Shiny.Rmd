@@ -3,8 +3,6 @@ title: "Deaths from Lung Cancer"
 output: 
   flexdashboard::flex_dashboard: 
     fill_page: true
-    orientation: columns
-    theme: default
 runtime: shiny
 ---
 
@@ -43,16 +41,5 @@ renderDygraph({
     dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
     dyOptions(drawGrid = input$showgrid)
 })
-```
-
-### Predicted Deaths/Month (base)
-
-```{r}
-hw <- HoltWinters(ldeaths)
-pred <- predict(hw, n.ahead = 72, prediction.interval = TRUE, level = 0.95)
-
-dygraph(pred) %>%     
-  dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
-  dyOptions(drawGrid = TRUE)
 ```
 

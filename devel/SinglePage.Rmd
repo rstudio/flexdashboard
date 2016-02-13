@@ -1,39 +1,17 @@
 ---
 title: "Deaths from Lung Cancer"
-output: 
+output:
   flexdashboard::flex_dashboard: 
     devel: false
     self_contained: true
     theme: yeti
-    orientation: rows
 ---
 
 ```{r setup, include=FALSE}
 library(dygraphs)
 ```
 
-Sidebar {.sidebar}
--------------------------------------------------------------------------------
-
-Row 1
--------------------------------------------------------------------------------
-
-### Cars
-
-```{r, fig.width=8, fig.height=4}
-plot(cars)
-```
-
-A plot caption.
-
-### Heatmap
-
-```{r}
-library(d3heatmap)
-d3heatmap(mtcars, scale="column", colors="Blues")
-```
-
-Row 2
+Column 
 -------------------------------------------------------------------------------
 
 ### Lung Deaths
@@ -42,4 +20,27 @@ Row 2
 dygraph(ldeaths)
 ```
 
+### Cars
+
+```{r}
+plot(cars)
+```
+
+A plot caption.
+
+Column
+-------------------------------------------------------------------------
+
+### Heatmap
+
+```{r}
+library(d3heatmap)
+d3heatmap(mtcars, scale="column", colors="Blues")
+```
+
+### Cars
+
+```{r}
+plot(cars)
+```
 
