@@ -1,5 +1,5 @@
 ---
-title: "My Dashboard"
+title: "Multiple Columns"
 output: flexdashboard::flex_dashboard
 ---
     
@@ -25,10 +25,4 @@ Column
     
 ```{r}
 plot(mtcars)
-```
-    
-### Chart 4
-
-```{r}
-plot(airmiles)
 ```
