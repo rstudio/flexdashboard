@@ -39,18 +39,9 @@ Once you've mastered the basics check out the [Advanced](advanced.html) page for
 
 Dashboards are divided into columns and rows, where by default columns are defined using level 2 markdown headers (`------------------`) and charts are defined using level 3 headers (`###`). Charts are stacked vertically within a column. For example, this layout defines a single column with two charts:
 
-    ---
-    title: "My Dashboard"
-    output: flexdashboard::flex_dashboard
-    ---
-    
-    Column
-    ------------------------------------------------
-    
-    ### Chart 1
-    
-    
-    ### Chart 2
+<div id="singlecolumn"></div>
+<script type="text/javascript">loadSnippet('singlecolumn')</script>
+
 
 ### Multiple Columns
 

@@ -5,5 +5,8 @@ html_document:
   mathjax: null
   lib_dir: libs
   css: styles.css
+  include:
+    in_header: snippets/snippets.html
+    
 
 
