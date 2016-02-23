@@ -3,7 +3,7 @@ title: "Flex Dashboard"
 output:
   flexdashboard::flex_dashboard: 
     theme: cosmo
-    orientation: rows
+    orientation: columns
     fill_page: false
 ---
 
@@ -11,7 +11,7 @@ output:
 # Load packages here
 ```
 
-Row
+Column
 -------------------------------------------------------------------------------
 
 ### Chart A
@@ -20,7 +20,7 @@ Row
 # code for chart A
 ```
 
-Row
+Column
 -------------------------------------------------------------------------------
 
 ### Chart B
