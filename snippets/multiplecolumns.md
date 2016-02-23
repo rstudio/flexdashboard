@@ -17,3 +17,18 @@ plot(cars)
 ```{r}
 plot(pressure)
 ```
+   
+Column
+-------------------------------------
+    
+### Chart 3
+    
+```{r}
+plot(mtcars)
+```
+    
+### Chart 4
+
+```{r}
+plot(airmiles)
+```

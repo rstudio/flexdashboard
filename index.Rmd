@@ -33,42 +33,39 @@ To author a flexdashboard you create an R Markdown document with the `flexdashba
 
 Once you've mastered the basics check out the [Advanced](advanced.html) page for documentation on themes, multi-page layouts, and including short text commentary within your dashboards. You can also optionally use [Shiny](shiny.html) to make your dashboards more dynamic and interactive.
 
-## Dashbaord Layout
+## Dashboard Layout
 
 ### Single Column
 
 Dashboards are divided into columns and rows, where by default columns are defined using level 2 markdown headers (`------------------`) and charts are defined using level 3 headers (`###`). Charts are stacked vertically within a column. For example, this layout defines a single column with two charts:
 
+<div class="row">
+
+<div class="col-md-5">
 <div id="singlecolumn"></div>
 <script type="text/javascript">loadSnippet('singlecolumn')</script>
+</div>
+
+</div>
 
 
 ### Multiple Columns
 
 To add a second column of charts we just add another column section:
 
-    ---
-    title: "My Dashboard"
-    output: flexdashboard::flex_dashboard
-    ---
-    
-    Column
-    ------------------------------------------------
-    
-    ### Chart 1
-    
-    
-    ### Chart 2
-    
-    
-    Column
-    ------------------------------------------------
-    
-    ### Chart 3
-    
-    
-    ### Chart 4
+<div class="row">
 
+<div class="col-md-5">
+<div id="multiplecolumns"></div>
+<script type="text/javascript">loadSnippet('multiplecolumns')</script>
+</div>
+
+</div>
+
+   
+   
+   
+   
 
 ### Row Orientation
 

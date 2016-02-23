@@ -6,7 +6,7 @@
 }
 
 .snippet {
-  border: solid 1px black;
+  border: solid 1px #cccccc;
   width: 100%;
-  height: 300px;
+  margin-bottom: 20px;
 }
