@@ -1,0 +1,9 @@
+html_document:
+  self_contained: false
+  theme: cosmo
+  highlight: textmate
+  mathjax: null
+  lib_dir: libs
+  css: styles.css
+
+

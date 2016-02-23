@@ -1,1 +1,350 @@
-My Page
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>flexdashboard: Easy dashboard publishing for R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/htmlwidgets-0.6/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/dygraphs-binding-0.7.1/dygraphs.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">flexdashboard</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Basics</a></li>
+        <li><a href="layouts.html">Layouts</a></li>
+        <li><a href="advanced.html">Advanced</a></li>
+        <li><a href="shiny.html">Shiny</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">flexdashboard: Easy dashboard publishing for R</h1>
+
+</div>
+
+
+<div id="main-banner" class="row">
+<div class="col-sm-6">
+<ul>
+<li><p>Use <a href="http://rmarkdown.rstudio.com">R Markdown</a> to publish a group of related data visualizations as a dashboard.</p></li>
+<li><p>Flexible and easy to specify layouts, including the ability to have charts automatically resize to fill all available browser space.</p></li>
+<li><p>Works with base, lattice, and ggplot charts as well as interactive JavaScript visualizations based on <a href="http://www.htmlwidgets.org">htmlwidgets</a>.</p></li>
+<li><p>Optionally use <a href="http://shiny.rstudio.com">Shiny</a> to drive visualizations dynamically.</p></li>
+</ul>
+</div>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+</div>
+<div id="getting-started" class="section level2">
+<h2>Getting Started</h2>
+<p>Install the <strong>flexdashboard</strong> package from GitHub as follows:</p>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/flexdashboard&quot;)</code></pre>
+<p>To author a flexdashboard you create an R Markdown document with the <code>flexdashbaord::flex_dashboard</code> output format. The basic mechanics of creating and laying out a dashboard are described below. You can create your own custom layout from scratch or copy and modify one of the pre-canned ones from the <a href="layouts.html">Layouts</a> page.</p>
+<p>Once you’ve mastered the basics check out the <a href="advanced.html">Advanced</a> page for documentation on themes, multi-page layouts, and including short text commentary within your dashboards. You can also optionally use <a href="shiny.html">Shiny</a> to make your dashboards more dynamic and interactive.</p>
+</div>
+<div id="dashbaord-layout" class="section level2">
+<h2>Dashbaord Layout</h2>
+<div id="single-column" class="section level3">
+<h3>Single Column</h3>
+<p>Dashboards are divided into columns and rows, where by default columns are defined using level 2 markdown headers (<code>------------------</code>) and charts are defined using level 3 headers (<code>###</code>). Charts are stacked vertically within a column. For example, this layout defines a single column with two charts:</p>
+<pre><code>---
+title: &quot;My Dashboard&quot;
+output: flexdashboard::flex_dashboard
+---
+
+Column
+------------------------------------------------
+
+### Chart 1
+
+
+### Chart 2</code></pre>
+</div>
+<div id="multiple-columns" class="section level3">
+<h3>Multiple Columns</h3>
+<p>To add a second column of charts we just add another column section:</p>
+<pre><code>---
+title: &quot;My Dashboard&quot;
+output: flexdashboard::flex_dashboard
+---
+
+Column
+------------------------------------------------
+
+### Chart 1
+
+
+### Chart 2
+
+
+Column
+------------------------------------------------
+
+### Chart 3
+
+
+### Chart 4</code></pre>
+</div>
+<div id="row-orientation" class="section level3">
+<h3>Row Orientation</h3>
+<p>The examples above use the default orientation of “columns”, however it’s also possible to layout a dashboard using a “rows” orientation. In this case rows are defined using level 2 markdown headers (<code>------------------</code>) and charts are defined using level 3 headers (<code>###</code>). Charts are stacked horizontally within a row. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:</p>
+<pre><code>---
+title: &quot;My Dashboard&quot;
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+---
+
+Row
+------------------------------------------------
+
+### Chart 1
+
+
+Row
+------------------------------------------------
+
+### Chart 2
+
+
+### Chart 3</code></pre>
+</div>
+<div id="filling-the-page" class="section level3">
+<h3>Filling the Page</h3>
+<p>Note that by default the charts flow down the page and the page scrolls if they occupy more space than is available. However, you might prefer that all charts be automatically sized to fill the containing web page. To do that you specify the fill_page option:</p>
+<pre><code>---
+title: &quot;My Dashboard&quot;
+output: 
+  flexdashboard::flex_dashboard:
+    fill_page: true
+    orientation: rows
+---</code></pre>
+</div>
+<div id="chart-sizing" class="section level3">
+<h3>Chart Sizing</h3>
+<p>By default charts also split space equally with other charts in their row or column. You may however wish to emphasize certain charts by allocating more space to them. The space allocated to a chart is determined by the knitr fig.width and fig.height options, which by default use a width of 5 inches and a height of 3.5 inches. If we wanted to allocate more vertical space to the single chart in the first row we could change it’s fig.width and fig.height accordingly.</p>
+<p>Here’s a complete example that combines the fill_page option with a custom size for the chart in the first row:</p>
+<pre><code>---
+title: &quot;My Dashboard&quot;
+output: 
+  flexdashboard::flex_dashboard:
+    fill_page: true
+    orientation: rows
+---
+
+Row
+------------------------------------------------
+
+### Chart 1</code></pre>
+<!---
+    
+    ```r
+    library(dygraphs)
+    dygraph(ldeaths)
+    ```
+    
+    <div id="htmlwidget-1758" style="width:960px;height:672px;" class="dygraphs html-widget"></div>
+    <script type="application/json" data-for="htmlwidget-1758">{"x":{"attrs":{"labels":["month","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"monthly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1974-01-01T00:00:00Z","1974-02-01T00:00:00Z","1974-03-01T00:00:00Z","1974-04-01T00:00:00Z","1974-05-01T00:00:00Z","1974-06-01T00:00:00Z","1974-07-01T00:00:00Z","1974-08-01T00:00:00Z","1974-09-01T00:00:00Z","1974-10-01T00:00:00Z","1974-11-01T00:00:00Z","1974-12-01T00:00:00Z","1975-01-01T00:00:00Z","1975-02-01T00:00:00Z","1975-03-01T00:00:00Z","1975-04-01T00:00:00Z","1975-05-01T00:00:00Z","1975-06-01T00:00:00Z","1975-07-01T00:00:00Z","1975-08-01T00:00:00Z","1975-09-01T00:00:00Z","1975-10-01T00:00:00Z","1975-11-01T00:00:00Z","1975-12-01T00:00:00Z","1976-01-01T00:00:00Z","1976-02-01T00:00:00Z","1976-03-01T00:00:00Z","1976-04-01T00:00:00Z","1976-05-01T00:00:00Z","1976-06-01T00:00:00Z","1976-07-01T00:00:00Z","1976-08-01T00:00:00Z","1976-09-01T00:00:00Z","1976-10-01T00:00:00Z","1976-11-01T00:00:00Z","1976-12-01T00:00:00Z","1977-01-01T00:00:00Z","1977-02-01T00:00:00Z","1977-03-01T00:00:00Z","1977-04-01T00:00:00Z","1977-05-01T00:00:00Z","1977-06-01T00:00:00Z","1977-07-01T00:00:00Z","1977-08-01T00:00:00Z","1977-09-01T00:00:00Z","1977-10-01T00:00:00Z","1977-11-01T00:00:00Z","1977-12-01T00:00:00Z","1978-01-01T00:00:00Z","1978-02-01T00:00:00Z","1978-03-01T00:00:00Z","1978-04-01T00:00:00Z","1978-05-01T00:00:00Z","1978-06-01T00:00:00Z","1978-07-01T00:00:00Z","1978-08-01T00:00:00Z","1978-09-01T00:00:00Z","1978-10-01T00:00:00Z","1978-11-01T00:00:00Z","1978-12-01T00:00:00Z","1979-01-01T00:00:00Z","1979-02-01T00:00:00Z","1979-03-01T00:00:00Z","1979-04-01T00:00:00Z","1979-05-01T00:00:00Z","1979-06-01T00:00:00Z","1979-07-01T00:00:00Z","1979-08-01T00:00:00Z","1979-09-01T00:00:00Z","1979-10-01T00:00:00Z","1979-11-01T00:00:00Z","1979-12-01T00:00:00Z"],[3035,2552,2704,2554,2014,1655,1721,1524,1596,2074,2199,2512,2933,2889,2938,2497,1870,1726,1607,1545,1396,1787,2076,2837,2787,3891,3179,2011,1636,1580,1489,1300,1356,1653,2013,2823,3102,2294,2385,2444,1748,1554,1498,1361,1346,1564,1640,2293,2815,3137,2679,1969,1870,1633,1529,1366,1357,1570,1535,2491,3084,2605,2573,2143,1693,1504,1461,1354,1333,1492,1781,1915]]},"evals":[],"jsHooks":[]}</script>
+--->
+<pre><code>Row
+------------------------------------------------
+
+### Chart 2
+
+
+### Chart 3</code></pre>
+<p>Note that we’ve specified an explicit width and height for Chart 1 which is twice the default width and height. This results in a layout that more clearly emphasizes the first chart.</p>
+<p>Also realize that because flexdashboard is doing some automatic layout to fill the browser’s width and height, the figure sizes provided are approximate and best understood as relative sizes between charts in the same dashboard. Scaling</p>
+<p>Charts will always be automatically scaled to fit within their allocated region. For charts based on htmlwidgets (JavaScript) this scaling will nearly always result in a chart that perfectly fits the bounds of it’s container. However, for charts based on standard R graphics the chart will be scaled so that it’s original aspect ratio is preserved. Therefore, the closer the specified fig.width and fig.height are to the actual laid out size of the chart the better it will scale.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>
