@@ -7,6 +7,7 @@ function loadSnippet(snippet) {
   editor.setShowPrintMargin(false);
   editor.setReadOnly(true); 
   editor.setShowFoldWidgets(false);
+  editor.renderer.setDisplayIndentGuides(false);
   editor.setTheme("ace/theme/textmate");
   editor.session.setMode("ace/mode/markdown");
   editor.session.getSelection().clearSelection();

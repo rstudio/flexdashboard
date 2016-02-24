@@ -1,3 +1,13 @@
 ---
-title: "Shiny"
+title: "Using Shiny with flexdashboard"
 ---
+
+You can enable users to change the underlying parameters  add Shiny inputs to a flexdashbaord and 
+
+
+<img src="images/Shiny.png" width="865" height="745"/>
+
+<div class="col-md-11">
+<div id="shiny"></div>
+<script type="text/javascript">loadSnippet('shiny')</script>
+</div>
