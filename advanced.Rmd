@@ -1,3 +1,14 @@
 ---
 title: "Advanced"
 ---
+
+
+- Themes
+
+- Text commentary
+
+- Multiple Pages
+    data-orientation
+
+- data-width and data-height
+
