@@ -82,7 +82,7 @@ flex_dashboard <- function(fig_width = 5,
 
   # determine knitr options
   knitr_options <- knitr_options_html(fig_width = fig_width,
-                                      fig_height = fig_width,
+                                      fig_height = fig_height,
                                       fig_retina = 2,
                                       keep_md = FALSE,
                                       dev = dev)
