@@ -197,7 +197,7 @@ $(document).ready(function () {
 <ul>
 <li><p>Use <a href="http://rmarkdown.rstudio.com">R Markdown</a> to publish a group of related data visualizations as a dashboard.</p></li>
 <li><p>Ideal for publishing interative JavaScript visualizations based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> (but also works with standard R graphics).</p></li>
-<li><p>Flexible and easy to specify layouts, including the ability to have charts automatically resize to fill all available browser space.</p></li>
+<li><p>Flexible and easy to specify layouts, including automatic resizing of charts to fill available browser space.</p></li>
 <li><p>Optionally use <a href="http://shiny.rstudio.com">Shiny</a> to drive visualizations dynamically.</p></li>
 </ul>
 </div>
@@ -212,11 +212,13 @@ $(document).ready(function () {
 <h2>Getting Started</h2>
 <p>Install the <strong>flexdashboard</strong> package from GitHub as follows:</p>
 <pre class="r"><code>devtools::install_github(&quot;rstudio/flexdashboard&quot;)</code></pre>
-<p>To author a flexdashboard you create an R Markdown document with the <code>flexdashbaord::flex_dashboard</code> output format. The basic mechanics of creating and laying out a dashboard are described below. You can create your own custom layout from scratch or copy and modify one of the pre-canned ones from the <a href="layouts.html">Layouts</a> page.</p>
+<p>To author a flexdashboard you create an <a href="http://rmarkdown.rstudio.com">R Markdown</a> document with the <code>flexdashbaord::flex_dashboard</code> output format. The basic mechanics of creating and laying out a dashboard are described below. You can create your own custom layout from scratch or copy and modify one of the pre-canned ones from the <a href="layouts.html">Layouts</a> page.</p>
 <p>Once you’ve mastered the basics check out the <a href="advanced.html">Advanced</a> page for documentation on themes, multi-page layouts, and including short text commentary within your dashboards. You can also optionally use <a href="shiny.html">Shiny</a> to make your dashboards more dynamic and interactive.</p>
 </div>
 <div id="dashboard-layout" class="section level2">
 <h2>Dashboard Layout</h2>
+<p>You can use flexdashboard to publish groups of related data visualizations as a dashboard. One of the important characteristics of these dashboards is that charts within them are automatically resized to fit available browser width and (optionally) browser height. This makes them ideal for publishing <a href="http://www.htmlwidgets.org">htmlwidgets</a> since these widgets automatically resize themselves to their containers.</p>
+<p>Note that you can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also resized automatically however a bit more work (described below in <a href="#chart-sizing">Chart Sizing</a>) is required to ensure that they are properly scaled.</p>
 <div id="single-column" class="section level3">
 <h3>Single Column</h3>
 <p>Dashboards are divided into columns and rows, where by default columns are defined using level 2 markdown headers (<code>------------------</code>) and charts are defined using level 3 headers (<code>###</code>). Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:</p>

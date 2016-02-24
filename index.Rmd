@@ -10,7 +10,7 @@ title: "flexdashboard: Easy interactive dashboards for R"
 
 * Ideal for publishing interative JavaScript visualizations based on [htmlwidgets](http://www.htmlwidgets.org) (but also works with standard R graphics).
 
-* Flexible and easy to specify layouts, including the ability to have charts automatically resize to fill all available browser space.
+* Flexible and easy to specify layouts, including automatic resizing of charts to fill available browser space.
 
 * Optionally use [Shiny](http://shiny.rstudio.com) to drive visualizations dynamically.
 
@@ -31,11 +31,15 @@ Install the **flexdashboard** package from GitHub as follows:
 devtools::install_github("rstudio/flexdashboard")
 ```
 
-To author a flexdashboard you create an R Markdown document with the `flexdashbaord::flex_dashboard` output format. The basic mechanics of creating and laying out a dashboard are described below. You can create your own custom layout from scratch or copy and modify one of the pre-canned ones from the [Layouts](layouts.html) page.
+To author a flexdashboard you create an [R Markdown](http://rmarkdown.rstudio.com) document with the `flexdashbaord::flex_dashboard` output format. The basic mechanics of creating and laying out a dashboard are described below. You can create your own custom layout from scratch or copy and modify one of the pre-canned ones from the [Layouts](layouts.html) page.
 
 Once you've mastered the basics check out the [Advanced](advanced.html) page for documentation on themes, multi-page layouts, and including short text commentary within your dashboards. You can also optionally use [Shiny](shiny.html) to make your dashboards more dynamic and interactive.
 
 ## Dashboard Layout
+
+You can use flexdashboard to publish groups of related data visualizations as a dashboard. One of the important characteristics of these dashboards is that charts within them are automatically resized to fit available browser width and (optionally) browser height. This makes them ideal for publishing [htmlwidgets](http://www.htmlwidgets.org) since these widgets automatically resize themselves to their containers. 
+
+Note that you can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also resized automatically however a bit more work (described below in [Chart Sizing]) is required to ensure that they are properly scaled.
 
 ### Single Column
 
