@@ -20,7 +20,8 @@
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 
-<script src="libs/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="libs/ace-1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="libs/holder-2.9.0/holder.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="snippets/snippets.js" type="text/javascript" charset="utf-8"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -201,6 +202,12 @@ $(document).ready(function () {
 </ul>
 </div>
 </div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<div style="height: 300px;">
+
+</div>
+</div>
 <div id="getting-started" class="section level2">
 <h2>Getting Started</h2>
 <p>Install the <strong>flexdashboard</strong> package from GitHub as follows:</p>
@@ -220,6 +227,11 @@ $(document).ready(function () {
 </div>
 <script type="text/javascript">loadSnippet('singlecolumn')</script>
 </div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<p><img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
 </div>
 </div>
 <div id="multiple-columns" class="section level3">
@@ -231,6 +243,16 @@ $(document).ready(function () {
 
 </div>
 <script type="text/javascript">loadSnippet('multiplecolumns')</script>
+</div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1"></p>
+</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
 </div>
 </div>
 <p>Note that in this example we’ve moved Chart 3 from the bottom of the first column into it’s own column (which it will fill vertically). With layouts like this you may want to adjust the relative size of the various charts (e.g. to make the column with a single chart wider). We’ll see how to do this in the <a href="#chart-sizing">Chart Sizing</a> section below.</p>
@@ -245,6 +267,19 @@ $(document).ready(function () {
 </div>
 <script type="text/javascript">loadSnippet('roworientation')</script>
 </div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px230?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px230?size=28&amp;text=Chart 2"></p>
+</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px230?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="chart-sizing" class="section level3">
@@ -258,6 +293,19 @@ $(document).ready(function () {
 
 </div>
 <script type="text/javascript">loadSnippet('chartsizing')</script>
+</div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2"></p>
+</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <p>Note that we’ve specified an explicit width and height for Chart 1 which is twice the default width and height. This results in a layout that more clearly emphasizes the first chart.</p>

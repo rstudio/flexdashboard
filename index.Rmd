@@ -18,6 +18,11 @@ title: "flexdashboard: Easy interactive dashboards for R"
 
 </div>
 
+## Examples
+
+<div style="height: 300px;"></div>
+
+
 ## Getting Started
 
 Install the **flexdashboard** package from GitHub as follows:
@@ -37,22 +42,48 @@ Once you've mastered the basics check out the [Advanced](advanced.html) page for
 Dashboards are divided into columns and rows, where by default columns are defined using level 2 markdown headers (`------------------`) and charts are defined using level 3 headers (`###`). Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:
 
 <div class="row">
+
 <div class="col-md-5">
 <div id="singlecolumn"></div>
 <script type="text/javascript">loadSnippet('singlecolumn')</script>
 </div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3">
 </div>
+</div>
+
+</div>
+
 
 ### Multiple Columns
 
 To add a second column of charts we just add another column section:
 
 <div class="row">
+
 <div class="col-md-5">
 <div id="multiplecolumns"></div>
 <script type="text/javascript">loadSnippet('multiplecolumns')</script>
 </div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1">
 </div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+
+</div>
+
 
 Note that in this example we've moved Chart 3 from the bottom of the first column into it's own column (which it will fill vertically). With layouts like this you may want to adjust the relative size of the various charts (e.g. to make the column with a single chart wider). We'll see how to do this in the [Chart Sizing] section below.
 
@@ -61,10 +92,26 @@ Note that in this example we've moved Chart 3 from the bottom of the first colum
 The examples above use the default orientation of "columns", however it's also possible to layout a dashboard using a "rows" orientation. In this case rows are defined using level 2 markdown headers (`------------------`) and charts are defined using level 3 headers (`###`). Charts are laid out horizontally within a row. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:
 
 <div class="row">
+
 <div class="col-md-5">
 <div id="roworientation"></div>
 <script type="text/javascript">loadSnippet('roworientation')</script>
 </div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px230?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px230?size=28&amp;text=Chart 2">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px230?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+</div>
+
 </div>
 
 ### Chart Sizing
@@ -80,6 +127,22 @@ Here's a complete example that combines the `fill_page` option with a custom siz
 <div id="chartsizing"></div>
 <script type="text/javascript">loadSnippet('chartsizing')</script>
 </div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+</div>
+
+
 </div>
     
     

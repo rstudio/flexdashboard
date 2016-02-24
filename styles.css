@@ -8,5 +8,11 @@
 .snippet {
   border: solid 1px #cccccc;
   width: 100%;
-  margin-bottom: 20px;
 }
+
+
+.holder {
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
