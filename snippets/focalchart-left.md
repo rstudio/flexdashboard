@@ -1,31 +1,30 @@
 ---
-title: "Chart Sizing"
+title: "Focal Chart (Left)"
 output: 
   flexdashboard::flex_dashboard:
     fill_page: true
-    orientation: rows
 ---
-
-Row
+    
+Column
 -------------------------------------
 
 ### Chart 1
 
 ```{r, fig.width=10, fig.height=10}
-plot(cars)
+
 ```
 
-Row
+Column
 -------------------------------------
-    
+   
 ### Chart 2
-    
+
 ```{r}
-plot(mtcars)
-```
+
+```   
     
 ### Chart 3
 
 ```{r}
-plot(airmiles)
+
 ```

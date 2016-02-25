@@ -1,31 +1,37 @@
 ---
-title: "Chart Sizing"
+title: "Row Orientation"
 output: 
   flexdashboard::flex_dashboard:
-    fill_page: true
     orientation: rows
+    fill_page: true
 ---
-
-Row
--------------------------------------
-
-### Chart 1
-
-```{r, fig.width=10, fig.height=10}
-plot(cars)
-```
-
+    
 Row
 -------------------------------------
     
+### Chart 1
+    
+```{r}
+
+```
+ 
 ### Chart 2
     
 ```{r}
-plot(mtcars)
-```
+
+``` 
+
+Row
+-------------------------------------
     
 ### Chart 3
+    
+```{r}
+
+```
+    
+### Chart 4
 
 ```{r}
-plot(airmiles)
+
 ```
