@@ -195,8 +195,8 @@ $(document).ready(function () {
 <div class="col-sm-6">
 <ul>
 <li><p>Use <a href="http://rmarkdown.rstudio.com">R Markdown</a> to publish a group of related data visualizations as a dashboard.</p></li>
-<li><p>Ideal for publishing interative JavaScript visualizations based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> (but also works with standard R graphics).</p></li>
-<li><p>Flexible and easy to specify layouts, including automatic resizing of charts to fill available browser space.</p></li>
+<li><p>Ideal for publishing interactive JavaScript visualizations based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> (but also works with standard R graphics).</p></li>
+<li><p>Flexible and easy to specify layouts, including automatic re-sizing of charts to fill available browser space.</p></li>
 <li><p>Optionally use <a href="http://shiny.rstudio.com">Shiny</a> to drive visualizations dynamically.</p></li>
 </ul>
 </div>
@@ -216,8 +216,8 @@ $(document).ready(function () {
 </div>
 <div id="dashboard-layout" class="section level2">
 <h2>Dashboard Layout</h2>
-<p>You can use flexdashboard to publish groups of related data visualizations as a dashboard. One of the important characteristics of these dashboards is that charts within them are automatically resized to fit available browser width and (optionally) browser height. This makes them ideal for publishing <a href="http://www.htmlwidgets.org">htmlwidgets</a> since these widgets automatically resize themselves to their containers.</p>
-<p>Note that you can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also resized automatically however a bit more work (described below in <a href="#chart-sizing">Chart Sizing</a>) is required to ensure that they are properly scaled.</p>
+<p>You can use flexdashboard to publish groups of related data visualizations as a dashboard. One of the important characteristics of these dashboards is that charts within them are automatically re-sized to fit available browser width and (optionally) browser height. This makes them ideal for publishing <a href="http://www.htmlwidgets.org">htmlwidgets</a> since these widgets automatically re-size themselves to their containers.</p>
+<p>Note that you can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also re-sized automatically however a bit more work (described below in <a href="#chart-sizing">Chart Sizing</a>) is required to ensure that they are properly scaled.</p>
 <div id="single-column" class="section level3">
 <h3>Single Column</h3>
 <p>Dashboards are divided into columns and rows, where by default columns are defined using level 2 markdown headers (<code>------------------</code>) and charts are defined using level 3 headers (<code>###</code>). Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:</p>
@@ -335,7 +335,7 @@ $(document).ready(function () {
 
 </div>
 <script type="text/javascript">loadSnippet('multiplepages')</script>
-<p>Note that in this example both pages use the default “columns” orientation. It is however possible to specify a distinct orientation for an indvidual page. This is done by adding the <code>data-orientation</code> attribute to the header of the page you want to change the orientation of. For example:</p>
+<p>Note that in this example both pages use the default “columns” orientation. It is however possible to specify a distinct orientation for an individual page. This is done by adding the <code>data-orientation</code> attribute to the header of the page you want to change the orientation of. For example:</p>
 <div id="pageorientation">
 
 </div>
@@ -344,7 +344,7 @@ $(document).ready(function () {
 <div id="text-annotations" class="section level2">
 <h2>Text Annotations</h2>
 <p>You can provide short text annotations for the various charts within a dashboard by including text immediately below the R code chunk where the chart is rendered. You can also include arbitrary content at the top of the dashboard before rows, columns, and charts are specified.</p>
-<p>For example, the following dashbard includes some content at the top as well as a brief comment for it’s first chart:</p>
+<p>For example, the following dashboard includes some content at the top as well as a brief comment for it’s first chart:</p>
 <div id="textannotation">
 
 </div>
