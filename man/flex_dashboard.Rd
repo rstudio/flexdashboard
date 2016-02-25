@@ -2,11 +2,11 @@
 % Please edit documentation in R/flex_dashboard.R
 \name{flex_dashboard}
 \alias{flex_dashboard}
-\title{R Markdown Format for Flexible Chart Dashboards}
+\title{R Markdown Format for Flexible Dashboards}
 \usage{
 flex_dashboard(fig_width = 5, fig_height = 3.5, dev = "png",
   smart = TRUE, self_contained = TRUE, fill_page = FALSE,
-  orientation = c("rows", "columns"), theme = "default",
+  orientation = c("columns", "rows"), theme = "default",
   highlight = "default", mathjax = "default", css = NULL,
   includes = NULL, lib_dir = NULL, md_extensions = NULL,
   pandoc_args = NULL, devel = FALSE, ...)
@@ -70,8 +70,12 @@ itself, not useful for users of the format).}
 \item{...}{Unused}
 }
 \description{
-Format for converting an R Markdown document to a grid oriented chart
-dashboard layout. The dashboard flexibly adapts the size of it's charts to
-it's containing web page.
+Format for converting an R Markdown document to a grid oriented dashboard
+layout. The dashboard flexibly adapts the size of it's plots and htmlwidgets
+to its containing web page.
+}
+\details{
+See the flexdashboard website for additional details on using
+ flex_dashboard: http://rstudio.github.io/flexdashboard
 }
 

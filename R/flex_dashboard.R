@@ -3,7 +3,7 @@
 #'
 #'Format for converting an R Markdown document to a grid oriented dashboard
 #'layout. The dashboard flexibly adapts the size of it's plots and htmlwidgets
-#'to it's containing web page.
+#'to its containing web page.
 #'
 #'@inheritParams rmarkdown::html_document
 #'
@@ -28,6 +28,9 @@
 #'  itself, not useful for users of the format).
 #'
 #'@param ... Unused
+#'
+#'@details See the flexdashboard website for additional details on using
+#'  flex_dashboard: http://rstudio.github.io/flexdashboard
 #'
 #'@export
 flex_dashboard <- function(fig_width = 5,
