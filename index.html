@@ -210,6 +210,8 @@ $(document).ready(function () {
 <pre class="r"><code>devtools::install_github(&quot;rstudio/flexdashboard&quot;)</code></pre>
 <p>To author a flexdashboard you create an <a href="http://rmarkdown.rstudio.com">R Markdown</a> document with the <code>flexdashboard::flex_dashboard</code> output format. You can do this from within RStudio using the <strong>New R Markdown</strong> dialog:</p>
 <p><img src="images/NewRMarkdown.png" width="579" height="465"/></p>
+<p>If you are not using RStudio you can create a new <code>flexdashboard</code> R Markdown file from the command line as follows:</p>
+<pre class="r"><code>rmarkdown::draft(&quot;dashboard.Rmd&quot;, template = &quot;flex_dashboard&quot;, package = &quot;flexdashboard&quot;)</code></pre>
 <p>The basic mechanics of creating and laying out a dashboard are described below. You can create your own custom layout from scratch or copy and modify one of the pre-canned ones from the <a href="layouts.html">Layouts</a> page. You can also optionally use <a href="shiny.html">Shiny</a> to make your dashboards more dynamic and interactive.</p>
 </div>
 <div id="dashboard-layout" class="section level2">
@@ -329,29 +331,24 @@ $(document).ready(function () {
 <h2>Multiple Pages</h2>
 <p>If you have more than a handful of charts you’d like to include in a dashboard you may want to consider dividing the dashboard into multiple pages. To define a page just use a level 1 markdown header (<code>==================</code>). Each page you define will have it’s own top-level navigation tab.</p>
 <p>For example, this code creates a dashboard with 2 pages, each containing 2 charts:</p>
-<div class="row">
-<div class="col-md-11">
 <div id="multiplepages">
 
 </div>
 <script type="text/javascript">loadSnippet('multiplepages')</script>
+<p>Note that in this example both pages use the default “columns” orientation. It is however possible to specify a distinct orientation for an indvidual page. This is done by adding the <code>data-orientation</code> attribute to the header of the page you want to change the orientation of. For example:</p>
+<div id="pageorientation">
+
 </div>
-</div>
-<p>This code also demonstrates specifying a distinct orientation for one of the pages. The default orientation is columns, however Page 2 will be oriented by rows due to the inclusion of the <code>{data-orientation=rows}</code> alongside the Page 2 header.</p>
-<p>You can also see that explicit <code>fig.width</code> and <code>fig.height</code> values are used for the various charts so that they scale well in the distinct orientations. Note again that this type of tweaking is usually required for base, lattice, and ggplot2 charts however not required for htmlwidgets because they handle being rendered at various aspect ratios well automatically.</p>
+<script type="text/javascript">loadSnippet('pageorientation')</script>
 </div>
 <div id="text-annotations" class="section level2">
 <h2>Text Annotations</h2>
 <p>You can provide short text annotations for the various charts within a dashboard by including text immediately below the R code chunk where the chart is rendered. You can also include arbitrary content at the top of the dashboard before rows, columns, and charts are specified.</p>
 <p>For example, the following dashbard includes some content at the top as well as a brief comment for it’s first chart:</p>
-<div class="row">
-<div class="col-md-11">
 <div id="textannotation">
 
 </div>
 <script type="text/javascript">loadSnippet('textannotation')</script>
-</div>
-</div>
 <p>This example also demonstrates the use of a “setup chunk” to load required R packages prior to executing the rest of the R chunks that make use of them as well as setting a custom <code>fig.height</code> and <code>fig.width</code> for the main chart to make it disproportionately larger than the secondary charts.</p>
 </div>
 <div id="visual-themes" class="section level2">
@@ -359,14 +356,10 @@ $(document).ready(function () {
 <p>A variety of themes are available to modify the appearance of flexdashboard. Supported themes include “default”, “bootstrap”, “cerulean”, “journal”, “flatly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, and “yeti”. Note that the “cosmo” theme is used when “default” is specified.</p>
 <p>These themes are all based on the themes available in the <a href="http://rmarkdown.rstudio.com">R Markdown</a> package (which are in turn based on <a href="https://bootswatch.com/">Bootswatch</a> themes).</p>
 <p>Use the <code>theme</code> option to specify an alternate theme:</p>
-<div class="row">
-<div class="col-md-11">
 <div id="themes">
 
 </div>
 <script type="text/javascript">loadSnippet('themes')</script>
-</div>
-</div>
 </div>
 
 

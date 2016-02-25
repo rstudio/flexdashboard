@@ -33,6 +33,12 @@ To author a flexdashboard you create an [R Markdown](http://rmarkdown.rstudio.co
 
 <img src="images/NewRMarkdown.png" width="579" height="465"/>
 
+If you are not using RStudio you can create a new `flexdashboard` R Markdown file from the command line as follows:
+
+```r
+rmarkdown::draft("dashboard.Rmd", template = "flex_dashboard", package = "flexdashboard")
+```
+
 The basic mechanics of creating and laying out a dashboard are described below. You can create your own custom layout from scratch or copy and modify one of the pre-canned ones from the [Layouts](layouts.html) page. You can also optionally use [Shiny](shiny.html) to make your dashboards more dynamic and interactive.
 
 ## Dashboard Layout
@@ -176,16 +182,13 @@ If you have more than a handful of charts you'd like to include in a dashboard y
 
 For example, this code creates a dashboard with 2 pages, each containing 2 charts:
 
-<div class="row">
-<div class="col-md-11">
 <div id="multiplepages"></div>
 <script type="text/javascript">loadSnippet('multiplepages')</script>
-</div>
-</div>
 
-This code also demonstrates specifying a distinct orientation for one of the pages. The default orientation is columns, however Page 2 will be oriented by rows due to the inclusion of the `{data-orientation=rows}` alongside the Page 2 header.
+Note that in this example both pages use the default "columns" orientation. It is however possible to specify a distinct orientation for an indvidual page. This is done by adding the `data-orientation` attribute to the header of the page you want to change the orientation of. For example:
 
-You can also see that explicit `fig.width` and `fig.height` values are used for the various charts so that they scale well in the distinct orientations. Note again that this type of tweaking is usually required for base, lattice, and ggplot2 charts however not required for htmlwidgets because they handle being rendered at various aspect ratios well automatically.
+<div id="pageorientation"></div>
+<script type="text/javascript">loadSnippet('pageorientation')</script>
 
 ## Text Annotations
 
@@ -193,12 +196,8 @@ You can provide short text annotations for the various charts within a dashboard
 
 For example, the following dashbard includes some content at the top as well as a brief comment for it's first chart:
 
-<div class="row">
-<div class="col-md-11">
 <div id="textannotation"></div>
 <script type="text/javascript">loadSnippet('textannotation')</script>
-</div>
-</div>
 
 This example also demonstrates the use of a "setup chunk" to load required R packages prior to executing the rest of the R chunks that make use of them as well as setting a custom `fig.height` and `fig.width` for the main chart to make it disproportionately larger than the secondary charts.
     
@@ -210,16 +209,7 @@ These themes are all based on the themes available in the [R Markdown](http://rm
 
 Use the `theme` option to specify an alternate theme:
 
-<div class="row">
-<div class="col-md-11">
 <div id="themes"></div>
 <script type="text/javascript">loadSnippet('themes')</script>
-</div>
-</div>
-
-
-
-
-
 
 
