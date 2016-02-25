@@ -12,56 +12,6 @@ This behavior is controlled via the `fill_page` output option, which defaults to
 
 ## Layouts
 
-### Focal Chart (Left)
-
-This layout gives prominence to a single chart on the left, with two secondary charts included to the right. To achieve this layout it uses `fill_page: true` and specifies a larger `fig.width` and `fig.height` for the chart in the first column.
-
-<div class="row">
-
-<div class="col-md-5">
-<div id="focalchart-left"></div>
-<script type="text/javascript">loadSnippet('focalchart-left')</script>
-</div>
-
-<div class="col-md-7">
-<div height="500px" width="100%">
-<div style="float: left; width: 62%;">
-<img class="holder" src="holder.js/100px500?size=28&amp;text=Chart 1">
-</div>
-<div style="margin-left: 62%;">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3">
-</div>
-</div>
-</div>
-
-</div>
-
-
-### Focal Chart (Top)
-
-This layout gives prominence to a single chart at the top, with two secondary charts included below. To achieve this layout it uses `orientation: rows`, specifies `fill_page: true`, and includes a larger `fig.width` and `fig.height` for the chart in the first row.
-
-<div class="row">
-<div class="col-md-5">
-<div id="focalchart-top"></div>
-<script type="text/javascript">loadSnippet('focalchart-top')</script>
-</div>
-
-<div class="col-md-7">
-<div height="470px" width="100%">
-<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
-<div>
-<div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2">
-</div>
-<div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3">
-</div>
-</div>
-</div>
-</div>
-
 ### Chart Stack (Fill)
 
 This layout is a simple stack of two charts. Since there are only 2 charts the need to scroll is unlikely, so `fill_page: true` is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying a custom `fig_height`.
@@ -103,6 +53,56 @@ This layout is a simple stack of 3 charts. To provide enough room to display all
 
 </div>
 
+
+### Focal Chart (Top)
+
+This layout gives prominence to a single chart at the top, with two secondary charts included below. To achieve this layout it uses `orientation: rows`, specifies `fill_page: true`, and includes a larger `fig.width` and `fig.height` for the chart in the first row.
+
+<div class="row">
+<div class="col-md-5">
+<div id="focalchart-top"></div>
+<script type="text/javascript">loadSnippet('focalchart-top')</script>
+</div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+</div>
+
+
+### Focal Chart (Left)
+
+This layout gives prominence to a single chart on the left, with two secondary charts included to the right. To achieve this layout it uses `fill_page: true` and specifies a larger `fig.width` and `fig.height` for the chart in the first column.
+
+<div class="row">
+
+<div class="col-md-5">
+<div id="focalchart-left"></div>
+<script type="text/javascript">loadSnippet('focalchart-left')</script>
+</div>
+
+<div class="col-md-7">
+<div height="500px" width="100%">
+<div style="float: left; width: 62%;">
+<img class="holder" src="holder.js/100px500?size=28&amp;text=Chart 1">
+</div>
+<div style="margin-left: 62%;">
+<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+
+</div>
 
 
 ### Chart Grid (2x2)
