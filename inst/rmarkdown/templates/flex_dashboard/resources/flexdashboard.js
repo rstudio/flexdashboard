@@ -17,6 +17,12 @@ var FlexDashboard = (function () {
     // extend default options
     $.extend(true, _options, options);
 
+    // find navbar items
+    var navbarItems = $('#flexdashboard-navbar');
+    if (navbarItems.length)
+      navbarItems = JSON.parse(navbarItems.html());
+    addNavbarItems(navbarItems);
+
     // find the main dashboard container
     var dashboardContainer = $('#dashboard-container');
 
@@ -44,9 +50,12 @@ var FlexDashboard = (function () {
 
     } else {
 
-      // remove the navbar and navbar button
-      $('#navbar').remove();
-      $('#navbar-button').remove();
+      // remove the navbar and navbar button if we don't
+      // have any navbuttons
+      if (navbarItems.length === 0) {
+        $('#navbar').remove();
+        $('#navbar-button').remove();
+      }
 
       // layout the entire page
       layoutDashboardPage(dashboardContainer);
@@ -63,6 +72,25 @@ var FlexDashboard = (function () {
 
     // handle location hash
     handleLocationHash();
+  }
+
+  function addNavbarItems(navbarItems) {
+
+    var navbarLeft = $('ul.navbar-left');
+    var navbarRight = $('ul.navbar-right');
+
+    for (var i = 0; i<navbarItems.length; i++) {
+      var item = navbarItems[i];
+      var li = $('<li></li>');
+      var a = $('<a></a>');
+      a.attr('href', item.url);
+      a.html(item.title);
+      li.append(a);
+      if (item.align === "right")
+        navbarRight.append(li);
+      else
+        navbarLeft.append(li);
+    }
   }
 
   function addToNavbar(page, active) {
@@ -89,7 +117,7 @@ var FlexDashboard = (function () {
     a.attr('data-toggle', 'tab');
     a.html(pageTitleHTML);
     li.append(a);
-    $('ul.navbar-nav').append(li);
+    $('ul.navbar-left').append(li);
   }
 
   // layout a dashboard page

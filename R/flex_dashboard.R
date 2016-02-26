@@ -7,6 +7,10 @@
 #'
 #'@inheritParams rmarkdown::html_document
 #'
+#'@param navbar Optional list of elements to be placed on the flexdashboard
+#'  navigation bar. Each element should be a list containing \code{title} and
+#'  \code{url} fields (required) and an optional \code{align} ("left" or "right")
+#'  field.
 #'
 #'@param fill_page \code{TRUE} to layout the dashboard so that it fills the
 #'  browser to it's edges. \code{FALSE} to layout the dashboard as a
@@ -52,6 +56,7 @@ flex_dashboard <- function(fig_width = 5,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
+                           navbar = NULL,
                            fill_page = FALSE,
                            orientation = c("columns", "rows"),
                            theme = "default",
@@ -87,6 +92,10 @@ flex_dashboard <- function(fig_width = 5,
 
   # add template
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
+
+  # handle navbar
+  if (length(navbar) > 0)
+    args <- c(args, pandoc_navbar_args(navbar))
 
   # resolve orientation
   orientation <- match.arg(orientation)
@@ -194,4 +203,39 @@ flex_dashboard <- function(fig_width = 5,
                                      ...)
   )
 
+}
+
+
+pandoc_navbar_args <- function(navbar) {
+
+  # validate
+  if (!is.list(navbar))
+    stop("navbar must be a list of navbar elements", call. = FALSE)
+  for (item in navbar) {
+     if (!is.list(item) || is.null(item[["title"]]) || is.null(item[["url"]]))
+       stop("navbar must be a list of navbar elements", call. = FALSE)
+  }
+
+  # convert to json
+  navbarJson <- toJSON(navbar, auto_unbox = TRUE)
+
+  # write to a temporary file
+  navbarHtml <- paste('<script id="flexdashboard-navbar" type="application/json">',
+                      navbarJson,
+                      '</script>',
+                      sep = '\n')
+
+  # return as an in_header include
+  pandoc_include_args(in_header = as_tmpfile(navbarHtml))
+}
+
+# return a string as a tempfile
+as_tmpfile <- function(str) {
+  if (length(str) > 0) {
+    str_tmpfile <- tempfile("rmarkdown-str", fileext = ".html")
+    writeLines(str, str_tmpfile)
+    str_tmpfile
+  } else {
+    NULL
+  }
 }

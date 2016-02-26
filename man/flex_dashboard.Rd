@@ -4,8 +4,8 @@
 \alias{flex_dashboard}
 \title{R Markdown Format for Flexible Dashboards}
 \usage{
-flex_dashboard(fig_width = 5, fig_height = 3.5, dev = "png",
-  smart = TRUE, self_contained = TRUE, fill_page = FALSE,
+flex_dashboard(fig_width = 5, fig_height = 4, dev = "png", smart = TRUE,
+  self_contained = TRUE, navbar = NULL, fill_page = FALSE,
   orientation = c("columns", "rows"), theme = "default",
   highlight = "default", mathjax = "default", css = NULL,
   includes = NULL, lib_dir = NULL, md_extensions = NULL,
@@ -27,6 +27,11 @@ dependencies, using data: URIs to incorporate the contents of linked
 scripts, stylesheets, images, and videos. Note that even for self contained
 documents MathJax is still loaded externally (this is necessary because of
 it's size).}
+
+\item{navbar}{Optional list of elements to be placed on the flexdashboard
+navigation bar. Each element should be a list containing \code{title} and
+\code{url} fields (required) and an optional \code{align} ("left" or "right")
+field.}
 
 \item{fill_page}{\code{TRUE} to layout the dashboard so that it fills the
 browser to it's edges. \code{FALSE} to layout the dashboard as a
