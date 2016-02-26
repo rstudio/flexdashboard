@@ -4,11 +4,11 @@ title: "flexdashboard: Easy interactive dashboards for R"
 
 <div id="main-banner" class="row">
 
-<div class="col-sm-6">
+<div class="col-sm-10">
 
 * Use [R Markdown](http://rmarkdown.rstudio.com) to publish a group of related data visualizations as a dashboard.
 
-* Ideal for publishing interactive JavaScript visualizations based on [htmlwidgets](http://www.htmlwidgets.org) (but also works with standard R graphics).
+* Ideal for publishing interactive JavaScript visualizations based on [htmlwidgets](http://www.htmlwidgets.org).
 
 * Flexible and easy to specify layouts, including automatic re-sizing of charts to fill available browser space.
 
