@@ -11,7 +11,7 @@ Row
 
 ### Chart 1
 
-```{r, fig.width=10, fig.height=10}
+```{r, fig.width=10, fig.height=7}
 plot(cars)
 ```
 
