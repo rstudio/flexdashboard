@@ -165,6 +165,15 @@ Note that in this example both pages use the default "columns" orientation. It i
 <div id="pageorientation"></div>
 <script type="text/javascript">loadSnippet('pageorientation')</script>
 
+## Navigation Bar
+
+By default the flexdashboard navigation bar includes only the dashboard title. For dashboards with [Multiple Pages] links to other available pages are also included. In addition you can add custom links to navigation bar using the `navbar` option. For example, the following adds "About" and "Source Code" links to the right side of the navigation bar:
+
+<div id="navbarlinks"></div>
+<script type="text/javascript">loadSnippet('navbarlinks')</script>
+
+The `title` and `url` fields are required for navigation bar items. The `align` field is optional (it can be "left" or "right" and defaults to "left").
+
 ## Text Annotations
 
 You can provide short text annotations for the various charts within a dashboard by including text immediately below the R code chunk where the chart is rendered. You can also include arbitrary content at the top of the dashboard before rows, columns, and charts are specified.

@@ -197,6 +197,7 @@ $(document).ready(function () {
 <li><a href="#chart-sizing">Chart Sizing</a></li>
 <li><a href="#figure-sizes-and-scaling">Figure Sizes and Scaling</a></li>
 <li><a href="#multiple-pages">Multiple Pages</a></li>
+<li><a href="#navigation-bar">Navigation Bar</a></li>
 <li><a href="#text-annotations">Text Annotations</a></li>
 <li><a href="#visual-themes">Visual Themes</a></li>
 </ul>
@@ -332,6 +333,15 @@ $(document).ready(function () {
 
 </div>
 <script type="text/javascript">loadSnippet('pageorientation')</script>
+</div>
+<div id="navigation-bar" class="section level2">
+<h2>Navigation Bar</h2>
+<p>By default the flexdashboard navigation bar includes only the dashboard title. For dashboards with <a href="#multiple-pages">Multiple Pages</a> links to other available pages are also included. In addition you can add custom links to navigation bar using the <code>navbar</code> option. For example, the following adds “About” and “Source Code” links to the right side of the navigation bar:</p>
+<div id="navbarlinks">
+
+</div>
+<script type="text/javascript">loadSnippet('navbarlinks')</script>
+<p>The <code>title</code> and <code>url</code> fields are required for navigation bar items. The <code>align</code> field is optional (it can be “left” or “right” and defaults to “left”).</p>
 </div>
 <div id="text-annotations" class="section level2">
 <h2>Text Annotations</h2>
