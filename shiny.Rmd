@@ -35,7 +35,7 @@ Here's the source code for the example. Note that since we have only a single ch
 
 The first column ("Inputs") includes the `{.sidebar}` attribute and the Shiny input controls; the second column ("Outputs") includes the Shiny code required to render the chart based on the inputs.
 
-## flexdashboard vs. shinydashbaord
+## flexdashboard vs. shinydashboard
 
 The [shinydashboard](https://rstudio.github.io/shinydashboard/) package also provides facilities for creating interactive dashboards with Shiny. The two packages take different approaches and as a result have different strengths and weaknesses:
 
