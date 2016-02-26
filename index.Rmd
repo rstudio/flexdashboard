@@ -18,9 +18,6 @@ title: "flexdashboard: Easy interactive dashboards for R"
 
 </div>
 
-<div style="height: 250px;"></div>
-
-
 ## Getting Started
 
 Install the **flexdashboard** package from GitHub as follows:
