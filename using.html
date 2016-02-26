@@ -311,14 +311,16 @@ $(document).ready(function () {
 </div>
 <div id="figure-sizes-and-scaling" class="section level2">
 <h2>Figure Sizes and Scaling</h2>
-<p>Charts will always be automatically scaled to fit within their allocated flexbox region. For charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> this scaling will nearly always result in a chart that perfectly fits the bounds of it’s container since htmlwidgets can dynamically re-size themselves. The automatic sizing behavior of htmlwidgets makes them ideal for flexdashboard, if it’s possible to use an htmlwidget that should always be your first choice.</p>
-<p>It’s also possible to use charts created using standard R graphics (base, lattice, ggplot2, etc.) with flexdashboard. These charts are also automatically scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it’s not possible for them to seamlessly fill the bounds of their container as it is with htmlwidgets. It’s therefore critical when using charts generated with standard R graphics to define knitr <code>fig.width</code> and <code>fig.height</code> values as close as possible to what they’ll actually be on the page.</p>
+<p>Charts will always be automatically scaled to fit within their allocated flexbox region. For charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> this scaling will nearly always result in a chart that perfectly fits the bounds of it’s container since htmlwidgets can dynamically re-size themselves.</p>
+<p>It’s also possible to use charts created using standard R graphics (base, lattice, ggplot2, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers.</p>
+<p>Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it’s not possible for them to seamlessly fill the bounds of their container. When creating static dashboards containing standard R graphics it’s therefore critical to define knitr <code>fig.width</code> and <code>fig.height</code> values as close as possible to what they’ll actually be on the page.</p>
 <p>Here’s an example of a row based layout that includes 3 charts from R base graphics:</p>
 <div id="figuresizes">
 
 </div>
 <script type="text/javascript">loadSnippet('figuresizes')</script>
 <p>We’ve specified an explicit <code>fig.height</code> and <code>fig.width</code> for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. Note also that we are using a scrolling layout (<code>fill_page: false</code>) which makes it easier to reason about the actual height which plots will be rendered at.</p>
+<p>Even with the tweaks described above standard R graphics won’t always fit perfectly into their containers, so in general htmlwidget based charts are preferred within static dashboards. Note that the <a href="https://plot.ly/ggplot2/">plotly</a> package enables rendering of ggplot2 graphics as interactive htmlwidgets.</p>
 </div>
 <div id="multiple-pages" class="section level2">
 <h2>Multiple Pages</h2>
