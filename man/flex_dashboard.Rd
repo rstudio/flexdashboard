@@ -75,7 +75,22 @@ layout. The dashboard flexibly adapts the size of it's plots and htmlwidgets
 to its containing web page.
 }
 \details{
-See the flexdashboard website for additional details on using
+See the flexdashboard website for additional documentation
  flex_dashboard: http://rstudio.github.io/flexdashboard
+}
+\examples{
+\dontrun{
+
+library(rmarkdown)
+library(flexdashboard)
+
+# simple invocation
+render("dashboard.Rmd", flex_dashboard())
+
+# specify the theme option
+render("pres.Rmd", flex_dashboard(theme = "yeti"))
+}
+
+
 }
 

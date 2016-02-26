@@ -29,8 +29,22 @@
 #'
 #'@param ... Unused
 #'
-#'@details See the flexdashboard website for additional details on using
+#'@details See the flexdashboard website for additional documentation
 #'  flex_dashboard: http://rstudio.github.io/flexdashboard
+#'
+#' @examples
+#' \dontrun{
+#'
+#' library(rmarkdown)
+#' library(flexdashboard)
+#'
+#' # simple invocation
+#' render("dashboard.Rmd", flex_dashboard())
+#'
+#' # specify the theme option
+#' render("pres.Rmd", flex_dashboard(theme = "yeti"))
+#' }
+#'
 #'
 #'@export
 flex_dashboard <- function(fig_width = 5,
