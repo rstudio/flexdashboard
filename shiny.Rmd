@@ -35,6 +35,16 @@ Here's the source code for the example. Note that since we have only a single ch
 
 The first column ("Inputs") includes the `{.sidebar}` attribute and the Shiny input controls; the second column ("Outputs") includes the Shiny code required to render the chart based on the inputs.
 
+## flexdashboard vs. shinydashbaord
+
+The [shinydashboard](https://rstudio.github.io/shinydashboard/) package also provides facilities for creating interactive dashboards with Shiny. The two packages take different approaches and as a result have different strengths and weaknesses:
+
+1. shinydashboard supports a wider variety of layout controls and output types at the expense of  additional syntactic complexity (use of R functions to define layout).
+
+2. For dashboards that consist of presenting a few related data visualizations flexdashboard is  easier to learn and use (use of R Markdown sections and code chunks to define layout).
+
+3. flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting data rather than allowing the user to vary assumptions and parameters.
+
 ## Learning More
 
 To learn more about using Shiny with flexdashboard see the following resources:
