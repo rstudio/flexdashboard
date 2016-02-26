@@ -20,18 +20,10 @@ Column
 # code for chart A
 ```
 
-Column
--------------------------------------------------------------------------------
-
 ### Chart B
 
 ```{r}
 # code for chart B
 ```
 
-### Chart C
-
-```{r}
-# code for chart C
-```
 
