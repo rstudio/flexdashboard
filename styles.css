@@ -5,6 +5,13 @@
   margin-bottom: 20px;
 }
 
+#github {
+  padding-top: 13px;
+  padding-right: 18px;
+  padding-bottom: 14px;
+  padding-left: 18px;
+}
+
 .snippet {
   border: solid 1px #cccccc;
   margin-bottom: 12px;

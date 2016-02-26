@@ -6,7 +6,7 @@ html_document:
   lib_dir: libs
   css: styles.css
   include:
-    in_header: snippets/snippets.html
+    in_header: head.html
     
 
 
