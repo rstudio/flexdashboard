@@ -1,0 +1,161 @@
+---
+title: "Sample flexdashboard Layouts"
+---
+
+## Overview
+
+This page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
+
+When creating a layout, it's important to decide up front whether you want your charts to fill the web page vertically (changing in height as the browser changes) or if you want the charts to maintain their original height (with the page scrolling as necessary to display all of the charts).
+
+This behavior is controlled via the `fill_page` output option, which defaults to `false`. Filling the page is generally a good choice when you have only 1 or 2 charts vertically stacked, whereas scrolling is generally a better choice for 3 or more charts vertically stacked. The sample layouts below reflect these general guidelines.
+
+## Layouts
+
+### Chart Stack (Fill)
+
+This layout is a simple stack of two charts. Since there are only 2 charts the need to scroll is unlikely, so `fill_page: true` is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying a custom `fig_height`.
+
+<div class="row">
+
+<div class="col-md-5">
+<div id="chartstack-fill"></div>
+<script type="text/javascript">loadSnippet('chartstack-fill')</script>
+</div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
+</div>
+</div>
+
+</div>
+
+### Chart Stack (Scrolling)
+
+This layout is a simple stack of 3 charts. To provide enough room to display all the charts a scrolling layout is used (`fill_page: false`). Note that because of its ability to scroll this layout could easily accomodate many more charts (although for large numbers of charts you might consider organizing them into [Multiple Pages]).
+
+<div class="row">
+
+<div class="col-md-5">
+<div id="chartstack-scrolling"></div>
+<script type="text/javascript">loadSnippet('chartstack-scrolling')</script>
+</div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3">
+</div>
+</div>
+
+</div>
+
+
+### Focal Chart (Top)
+
+This layout gives prominence to a single chart at the top, with two secondary charts included below. To achieve this layout it uses `orientation: rows`, specifies `fill_page: true`, and includes a larger `fig.width` and `fig.height` for the chart in the first row.
+
+<div class="row">
+<div class="col-md-5">
+<div id="focalchart-top"></div>
+<script type="text/javascript">loadSnippet('focalchart-top')</script>
+</div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+</div>
+
+
+### Focal Chart (Left)
+
+This layout gives prominence to a single chart on the left, with two secondary charts included to the right. To achieve this layout it uses `fill_page: true` and specifies a larger `fig.width` and `fig.height` for the chart in the first column.
+
+<div class="row">
+
+<div class="col-md-5">
+<div id="focalchart-left"></div>
+<script type="text/javascript">loadSnippet('focalchart-left')</script>
+</div>
+
+<div class="col-md-7">
+<div height="500px" width="100%">
+<div style="float: left; width: 62%;">
+<img class="holder" src="holder.js/100px500?size=28&amp;text=Chart 1">
+</div>
+<div style="margin-left: 62%;">
+<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+
+</div>
+
+
+### Chart Grid (2x2)
+
+This layout is a 2x2 grid of charts that uses `fill_page: true`. Note that depending on the ideal display size for the charts it might be better to allow the page to scroll (`fill_page: false`). Note also that `orientation: rows` is used to ensure that the baselines of charts line up horizontally.
+
+<div class="row">
+
+<div class="col-md-5">
+<div id="grid2x2"></div>
+<script type="text/javascript">loadSnippet('grid2x2')</script>
+</div>
+
+<div class="col-md-7">
+<div height="610px" width="100%">
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 1">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 2">
+</div>
+</div>
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 3">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 4">
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+### Multiple Pages
+
+This layout defines multiple pages using a level 1 markdown header (`==================`). Each page has it's own top-level navigation tab. Further, the second page uses a distinct orientation via the `{data-orientation=rows}` attribute.
+
+<div id="multiplepages-layout"></div>
+<script type="text/javascript">loadSnippet('multiplepages-layout')</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

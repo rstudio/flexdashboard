@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Sample flexdashboard Layouts</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<script src="libs/ace-1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="libs/holder-2.9.0/holder.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="snippets/snippets.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">flexdashboard for R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="layouts.html">Layouts</a></li>
+        <li><a href="shiny.html">Shiny</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Sample flexdashboard Layouts</h1>
+
+</div>
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>This page includes a variety of sample layouts which you can use as a starting point for your own dashboards.</p>
+<p>When creating a layout, it’s important to decide up front whether you want your charts to fill the web page vertically (changing in height as the browser changes) or if you want the charts to maintain their original height (with the page scrolling as necessary to display all of the charts).</p>
+<p>This behavior is controlled via the <code>fill_page</code> output option, which defaults to <code>false</code>. Filling the page is generally a good choice when you have only 1 or 2 charts vertically stacked, whereas scrolling is generally a better choice for 3 or more charts vertically stacked. The sample layouts below reflect these general guidelines.</p>
+</div>
+<div id="layouts" class="section level2">
+<h2>Layouts</h2>
+<div id="chart-stack-fill" class="section level3">
+<h3>Chart Stack (Fill)</h3>
+<p>This layout is a simple stack of two charts. Since there are only 2 charts the need to scroll is unlikely, so <code>fill_page: true</code> is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying a custom <code>fig_height</code>.</p>
+<div class="row">
+<div class="col-md-5">
+<div id="chartstack-fill">
+
+</div>
+<script type="text/javascript">loadSnippet('chartstack-fill')</script>
+</div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<p><img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2"></p>
+</div>
+</div>
+</div>
+</div>
+<div id="chart-stack-scrolling" class="section level3">
+<h3>Chart Stack (Scrolling)</h3>
+<p>This layout is a simple stack of 3 charts. To provide enough room to display all the charts a scrolling layout is used (<code>fill_page: false</code>). Note that because of its ability to scroll this layout could easily accomodate many more charts (although for large numbers of charts you might consider organizing them into <a href="#multiple-pages">Multiple Pages</a>).</p>
+<div class="row">
+<div class="col-md-5">
+<div id="chartstack-scrolling">
+
+</div>
+<script type="text/javascript">loadSnippet('chartstack-scrolling')</script>
+</div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<p><img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
+</div>
+</div>
+<div id="focal-chart-top" class="section level3">
+<h3>Focal Chart (Top)</h3>
+<p>This layout gives prominence to a single chart at the top, with two secondary charts included below. To achieve this layout it uses <code>orientation: rows</code>, specifies <code>fill_page: true</code>, and includes a larger <code>fig.width</code> and <code>fig.height</code> for the chart in the first row.</p>
+<div class="row">
+<div class="col-md-5">
+<div id="focalchart-top">
+
+</div>
+<script type="text/javascript">loadSnippet('focalchart-top')</script>
+</div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2"></p>
+</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="focal-chart-left" class="section level3">
+<h3>Focal Chart (Left)</h3>
+<p>This layout gives prominence to a single chart on the left, with two secondary charts included to the right. To achieve this layout it uses <code>fill_page: true</code> and specifies a larger <code>fig.width</code> and <code>fig.height</code> for the chart in the first column.</p>
+<div class="row">
+<div class="col-md-5">
+<div id="focalchart-left">
+
+</div>
+<script type="text/javascript">loadSnippet('focalchart-left')</script>
+</div>
+<div class="col-md-7">
+<div height="500px" width="100%">
+<div style="float: left; width: 62%;">
+<p><img class="holder" src="holder.js/100px500?size=28&amp;text=Chart 1"></p>
+</div>
+<div style="margin-left: 62%;">
+<p><img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="chart-grid-2x2" class="section level3">
+<h3>Chart Grid (2x2)</h3>
+<p>This layout is a 2x2 grid of charts that uses <code>fill_page: true</code>. Note that depending on the ideal display size for the charts it might be better to allow the page to scroll (<code>fill_page: false</code>). Note also that <code>orientation: rows</code> is used to ensure that the baselines of charts line up horizontally.</p>
+<div class="row">
+<div class="col-md-5">
+<div id="grid2x2">
+
+</div>
+<script type="text/javascript">loadSnippet('grid2x2')</script>
+</div>
+<div class="col-md-7">
+<div height="610px" width="100%">
+<div>
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 1"></p>
+</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 2"></p>
+</div>
+</div>
+<div>
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 3"></p>
+</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 4"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="multiple-pages" class="section level3">
+<h3>Multiple Pages</h3>
+<p>This layout defines multiple pages using a level 1 markdown header (<code>==================</code>). Each page has it’s own top-level navigation tab. Further, the second page uses a distinct orientation via the <code>{data-orientation=rows}</code> attribute.</p>
+<div id="multiplepages-layout">
+
+</div>
+<script type="text/javascript">loadSnippet('multiplepages-layout')</script>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

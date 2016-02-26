@@ -1,1 +1,383 @@
-My Page
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>flexdashboard: Easy interactive dashboards for R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<script src="libs/ace-1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="libs/holder-2.9.0/holder.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="snippets/snippets.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">flexdashboard for R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="layouts.html">Layouts</a></li>
+        <li><a href="shiny.html">Shiny</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">flexdashboard: Easy interactive dashboards for R</h1>
+
+</div>
+
+
+<div id="main-banner" class="row">
+<div class="col-sm-10">
+<ul>
+<li><p>Use <a href="http://rmarkdown.rstudio.com">R Markdown</a> to publish a group of related data visualizations as a dashboard.</p></li>
+<li><p>Ideal for publishing interactive JavaScript visualizations based on <a href="http://www.htmlwidgets.org">htmlwidgets</a>.</p></li>
+<li><p>Flexible and easy to specify layouts, including automatic re-sizing of charts to fill available browser space.</p></li>
+<li><p>Optionally use <a href="http://shiny.rstudio.com">Shiny</a> to drive visualizations dynamically.</p></li>
+</ul>
+</div>
+</div>
+<div id="getting-started" class="section level2">
+<h2>Getting Started</h2>
+<p>Install the <strong>flexdashboard</strong> package from GitHub as follows:</p>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/flexdashboard&quot;)</code></pre>
+<p>To author a flexdashboard you create an <a href="http://rmarkdown.rstudio.com">R Markdown</a> document with the <code>flexdashboard::flex_dashboard</code> output format. You can do this from within RStudio using the <strong>New R Markdown</strong> dialog:</p>
+<p><img src="images/NewRMarkdown.png" width="579" height="465"/></p>
+<p>If you are not using RStudio you can create a new <code>flexdashboard</code> R Markdown file from the command line as follows:</p>
+<pre class="r"><code>rmarkdown::draft(&quot;dashboard.Rmd&quot;, template = &quot;flex_dashboard&quot;, package = &quot;flexdashboard&quot;)</code></pre>
+<p>The basic mechanics of creating and laying out a dashboard are described below. You can create your own custom layout from scratch or copy and modify one of the pre-canned ones from the <a href="layouts.html">Layouts</a> page. You can also optionally use <a href="shiny.html">Shiny</a> to make your dashboards more dynamic and interactive.</p>
+</div>
+<div id="dashboard-layout" class="section level2">
+<h2>Dashboard Layout</h2>
+<p>You can use flexdashboard to publish groups of related data visualizations as a dashboard. One of the important characteristics of these dashboards is that charts within them are automatically re-sized to fit available browser width and (optionally) browser height. This makes them ideal for publishing <a href="http://www.htmlwidgets.org">htmlwidgets</a> since these widgets automatically re-size themselves to their containers.</p>
+<p>You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also re-sized automatically however a bit more work (described below in <a href="#chart-sizing">Chart Sizing</a>) is required to ensure that they are properly scaled. Even with this extra work standard R graphics won’t always fit perfectly into their viewport, so in general htmlwidget based charts will yield better results. Note that the <a href="https://plot.ly/ggplot2/">plotly</a> package enables rendering of ggplot2 graphics as interactive htmlwidgets.</p>
+<div id="single-column" class="section level3">
+<h3>Single Column</h3>
+<p>Dashboards are divided into columns and rows, where by default columns are defined using level 2 markdown headers (<code>------------------</code>) and charts are defined using level 3 headers (<code>###</code>). Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:</p>
+<div class="row">
+<div class="col-md-5">
+<div id="singlecolumn">
+
+</div>
+<script type="text/javascript">loadSnippet('singlecolumn')</script>
+</div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<p><img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
+</div>
+</div>
+<div id="multiple-columns" class="section level3">
+<h3>Multiple Columns</h3>
+<p>To add a second column of charts we just add another column section:</p>
+<div class="row">
+<div class="col-md-5">
+<div id="multiplecolumns">
+
+</div>
+<script type="text/javascript">loadSnippet('multiplecolumns')</script>
+</div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1"></p>
+</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
+</div>
+</div>
+<p>Note that in this example we’ve moved Chart 3 from the bottom of the first column into it’s own column (which it will fill vertically). With layouts like this you may want to adjust the relative size of the various charts (e.g. to make the column with a single chart wider). We’ll see how to do this in the <a href="#chart-sizing">Chart Sizing</a> section below.</p>
+</div>
+<div id="row-orientation" class="section level3">
+<h3>Row Orientation</h3>
+<p>The examples above use the default orientation of “columns”, however it’s also possible to layout a dashboard using a “rows” orientation. In this case rows are defined using level 2 markdown headers (<code>------------------</code>) and charts are defined using level 3 headers (<code>###</code>). Charts are laid out horizontally within a row. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:</p>
+<div class="row">
+<div class="col-md-5">
+<div id="roworientation">
+
+</div>
+<script type="text/javascript">loadSnippet('roworientation')</script>
+</div>
+<div class="col-md-7">
+<div height="496px" width="100%">
+<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2"></p>
+</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="chart-sizing" class="section level3">
+<h3>Chart Sizing</h3>
+<p>Note that by default the charts flow down the page and the page scrolls if they occupy more space than is available. However, you might prefer that all charts be automatically sized to fill the containing web page. To do that you specify the <code>fill_page</code> option (see below for an example)</p>
+<p>By default charts split space equally with other charts in their row or column. You may however wish to emphasize certain charts by allocating more space to them. The space allocated to a chart is determined by the knitr <code>fig.width</code> and <code>fig.height</code> options, which by default use a width of 5 inches and a height of 3.5 inches. If we wanted to allocate more vertical space to the single chart in the first row we could change it’s <code>fig.width</code> and <code>fig.height</code> accordingly.</p>
+<p>Here’s a complete example that combines the <code>fill_page</code> option with a custom size for the chart in the first row:</p>
+<div class="row">
+<div class="col-md-5">
+<div id="chartsizing">
+
+</div>
+<script type="text/javascript">loadSnippet('chartsizing')</script>
+</div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2"></p>
+</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Note that we’ve specified an explicit width and height for Chart 1 which is twice the default width and height of 5 x 3.5. This results in a layout that more clearly emphasizes the first chart.</p>
+<p>It’s also possible to change the default width and height for all charts on a page using the <code>fig_width</code> and <code>fig_height</code> format options, for example:</p>
+<div class="row">
+<div class="col-md-11">
+<div id="defaultfigsizes">
+
+</div>
+<script type="text/javascript">loadSnippet('defaultfigsizes')</script>
+</div>
+</div>
+<p>A final note: since flexdashboard is doing some automatic layout to fill the browser’s width and height, the figure sizes provided are approximate and best understood as relative sizes between charts in the same dashboard.</p>
+<div id="figure-sizes-and-scaling" class="section level4">
+<h4>Figure Sizes and Scaling</h4>
+<p>Charts will always be automatically scaled to fit within their allocated region. For charts based on htmlwidgets (JavaScript) this scaling will nearly always result in a chart that perfectly fits the bounds of it’s container. However, for charts based on standard R graphics the chart will be scaled so that it’s original aspect ratio is preserved. Therefore, the closer the specified <code>fig.width</code> and <code>fig.height</code> are to the actual laid out size of the chart the better it will scale.</p>
+<p>The <a href="#multiple-pages">Multiple Pages</a> section below includes some examples of specifying explicit <code>fig.width</code> and <code>fig.height</code> values that are well tailored to the containers they will be laid out within.</p>
+</div>
+</div>
+</div>
+<div id="multiple-pages" class="section level2">
+<h2>Multiple Pages</h2>
+<p>If you have more than a handful of charts you’d like to include in a dashboard you may want to consider dividing the dashboard into multiple pages. To define a page just use a level 1 markdown header (<code>==================</code>). Each page you define will have it’s own top-level navigation tab.</p>
+<p>For example, this code creates a dashboard with 2 pages, each containing 2 charts:</p>
+<div id="multiplepages">
+
+</div>
+<script type="text/javascript">loadSnippet('multiplepages')</script>
+<p>Note that in this example both pages use the default “columns” orientation. It is however possible to specify a distinct orientation for an individual page. This is done by adding the <code>data-orientation</code> attribute to the header of the page you want to change the orientation of. For example:</p>
+<div id="pageorientation">
+
+</div>
+<script type="text/javascript">loadSnippet('pageorientation')</script>
+</div>
+<div id="text-annotations" class="section level2">
+<h2>Text Annotations</h2>
+<p>You can provide short text annotations for the various charts within a dashboard by including text immediately below the R code chunk where the chart is rendered. You can also include arbitrary content at the top of the dashboard before rows, columns, and charts are specified.</p>
+<p>For example, the following dashboard includes some content at the top as well as a brief comment for it’s first chart:</p>
+<div id="textannotation">
+
+</div>
+<script type="text/javascript">loadSnippet('textannotation')</script>
+<p>This example also demonstrates the use of a “setup chunk” to load required R packages prior to executing the rest of the R chunks that make use of them as well as setting a custom <code>fig.height</code> and <code>fig.width</code> for the main chart to make it disproportionately larger than the secondary charts.</p>
+</div>
+<div id="visual-themes" class="section level2">
+<h2>Visual Themes</h2>
+<p>A variety of themes are available to modify the appearance of flexdashboard. Supported themes include “default”, “bootstrap”, “cerulean”, “journal”, “flatly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, and “yeti”. Note that the “cosmo” theme is used when “default” is specified.</p>
+<p>These themes are all based on the themes available in the <a href="http://rmarkdown.rstudio.com">R Markdown</a> package (which are in turn based on <a href="https://bootswatch.com/">Bootswatch</a> themes).</p>
+<p>Use the <code>theme</code> option to specify an alternate theme:</p>
+<div id="themes">
+
+</div>
+<script type="text/javascript">loadSnippet('themes')</script>
+</div>
+<div id="learning-more" class="section level2">
+<h2>Learning More</h2>
+<p>The <a href="layouts.html">Layouts</a> page includes a variety of sample layouts which you can use as a starting point for your own dashboards.</p>
+<p>The <a href="shiny.html">Shiny</a> page describes how to create dashboards that enable viewers to change underlying parameters and see the results immediately.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>
