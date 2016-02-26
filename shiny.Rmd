@@ -35,6 +35,16 @@ Here's the source code for the example. Note that since we have only a single ch
 
 The first column ("Inputs") includes the `{.sidebar}` attribute and the Shiny input controls; the second column ("Outputs") includes the Shiny code required to render the chart based on the inputs.
 
+## Sidebar 
+
+The `{.sidebar}` attribute is a special designator indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using `runtime: shiny` however they are often useful for presenting inputs.
+
+Sidebars always appear on the left no matter where they are defined within the flow of the document. You alter the default width of the sidebar using the `data-width` attribute. For example:
+
+<div id="sidebarwidth"></div>
+<script type="text/javascript">loadSnippet('sidebarwidth')</script>
+
+
 ## flexdashboard vs. shinydashboard
 
 The [shinydashboard](https://rstudio.github.io/shinydashboard/) package also provides facilities for creating interactive dashboards with Shiny. The two packages take different approaches and as a result have different strengths and weaknesses:
