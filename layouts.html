@@ -176,8 +176,9 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href="index.html">Home</a></li>
-        <li><a href="layouts.html">Layouts</a></li>
+        <li><a href="using.html">Using</a></li>
         <li><a href="shiny.html">Shiny</a></li>
+        <li><a href="layouts.html">Layouts</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -201,7 +202,7 @@ $(document).ready(function () {
 <h2>Layouts</h2>
 <div id="chart-stack-fill" class="section level3">
 <h3>Chart Stack (Fill)</h3>
-<p>This layout is a simple stack of two charts. Since there are only 2 charts the need to scroll is unlikely, so <code>fill_page: true</code> is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying a custom <code>fig_height</code>.</p>
+<p>This layout is a simple stack of two charts. Since there are only 2 charts the need to scroll is unlikely, so <code>fill_page: true</code> is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying the <code>data-height</code> attribute.</p>
 <div class="row">
 <div class="col-md-5">
 <div id="chartstack-fill">
@@ -218,7 +219,7 @@ $(document).ready(function () {
 </div>
 <div id="chart-stack-scrolling" class="section level3">
 <h3>Chart Stack (Scrolling)</h3>
-<p>This layout is a simple stack of 3 charts. To provide enough room to display all the charts a scrolling layout is used (<code>fill_page: false</code>). Note that because of its ability to scroll this layout could easily accomodate many more charts (although for large numbers of charts you might consider organizing them into <a href="#multiple-pages">Multiple Pages</a>).</p>
+<p>This layout is a simple stack of 3 charts. To provide enough room to display all the charts a scrolling layout is used (<code>fill_page: false</code>). Note that because of its ability to scroll this layout could easily accommodate many more charts (although for large numbers of charts you might consider organizing them into <a href="#multiple-pages">Multiple Pages</a>).</p>
 <div class="row">
 <div class="col-md-5">
 <div id="chartstack-scrolling">
@@ -235,7 +236,7 @@ $(document).ready(function () {
 </div>
 <div id="focal-chart-top" class="section level3">
 <h3>Focal Chart (Top)</h3>
-<p>This layout gives prominence to a single chart at the top, with two secondary charts included below. To achieve this layout it uses <code>orientation: rows</code>, specifies <code>fill_page: true</code>, and includes a larger <code>fig.width</code> and <code>fig.height</code> for the chart in the first row.</p>
+<p>This layout gives prominence to a single chart at the top, with two secondary charts included below. To achieve this layout it uses <code>orientation: rows</code>, specifies <code>fill_page: true</code>, and specifies <code>data-height</code> attributes on each row to establish their relative sizes.</p>
 <div class="row">
 <div class="col-md-5">
 <div id="focalchart-top">
@@ -259,7 +260,7 @@ $(document).ready(function () {
 </div>
 <div id="focal-chart-left" class="section level3">
 <h3>Focal Chart (Left)</h3>
-<p>This layout gives prominence to a single chart on the left, with two secondary charts included to the right. To achieve this layout it uses <code>fill_page: true</code> and specifies a larger <code>fig.width</code> and <code>fig.height</code> for the chart in the first column.</p>
+<p>This layout gives prominence to a single chart on the left, with two secondary charts included to the right. To achieve this layout it uses <code>fill_page: true</code> and specifies and specifies <code>data-width</code> attributes on each column to establish their relative sizes.</p>
 <div class="row">
 <div class="col-md-5">
 <div id="focalchart-left">
@@ -313,7 +314,7 @@ $(document).ready(function () {
 </div>
 <div id="multiple-pages" class="section level3">
 <h3>Multiple Pages</h3>
-<p>This layout defines multiple pages using a level 1 markdown header (<code>==================</code>). Each page has it’s own top-level navigation tab. Further, the second page uses a distinct orientation via the <code>{data-orientation=rows}</code> attribute.</p>
+<p>This layout defines multiple pages using a level 1 markdown header (<code>==================</code>). Each page has it’s own top-level navigation tab. Further, the second page uses a distinct orientation via the <code>data-orientation</code> attribute.</p>
 <div id="multiplepages-layout">
 
 </div>

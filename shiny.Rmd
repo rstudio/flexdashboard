@@ -1,5 +1,9 @@
 ---
 title: "Using Shiny with flexdashboard"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
 ---
 
 ## Overview
@@ -20,7 +24,7 @@ The steps required to add Shiny components to a flexdashboard are as follows:
 
 A simple example of a Shiny based flexdashboard is provided below. 
 
-## Example
+## Simple Example
 
 The following example demonstrates the basics of using Shiny within a flexdashboard:
 
@@ -35,7 +39,7 @@ Here's the source code for the example. Note that since we have only a single ch
 
 The first column ("Inputs") includes the `{.sidebar}` attribute and the Shiny input controls; the second column ("Outputs") includes the Shiny code required to render the chart based on the inputs.
 
-## Sidebar 
+## Input Sidebar 
 
 The `{.sidebar}` attribute is a special designator indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using `runtime: shiny` however they are often useful for presenting inputs.
 
@@ -51,7 +55,11 @@ The [shinydashboard](https://rstudio.github.io/shinydashboard/) package also pro
 
 1. shinydashboard supports a wider variety of layout controls and output types at the expense of  additional syntactic complexity (use of R functions to define layout).
 
-2. For dashboards that consist of presenting a few related data visualizations flexdashboard is  easier to learn and use (use of R Markdown sections and code chunks to define layout).
+2. shinydashboard components have more explicit sizes so are better suited to presenting standard R graphics and textual output.
+
+3. flexdashboard is well suited to dashboards that consist entirely of a set of related data visualizations, as it's syntax for laying out charts is very easy to learn and use (use of R Markdown sections and code chunks to define layout).
+
+4. flexdashboard performs automatic scaling of charts to the size of the browser and as a result takes maximum advantage of available screen real estate when used with htmlwidgets (i.e. visualizations that automatically size themselves to their container).
 
 3. flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting data rather than allowing the user to vary assumptions and parameters.
 

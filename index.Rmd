@@ -36,15 +36,13 @@ If you are not using RStudio you can create a new `flexdashboard` R Markdown fil
 rmarkdown::draft("dashboard.Rmd", template = "flex_dashboard", package = "flexdashboard")
 ```
 
-The basic mechanics of creating and laying out a dashboard are described below. You can create your own custom layout from scratch or copy and modify one of the pre-canned ones from the [Layouts](layouts.html) page. You can also optionally use [Shiny](shiny.html) to make your dashboards more dynamic and interactive.
+## Dashboard Basics
 
-## Dashboard Layout
+You can use flexdashboard to publish groups of related data visualizations as a dashboard. One of the important characteristics of these dashboards is that charts within them are automatically scaled to fit available browser width and (optionally) browser height. This makes them ideal for publishing [htmlwidgets](http://www.htmlwidgets.org) since these widgets automatically re-size themselves to their containers. 
 
-You can use flexdashboard to publish groups of related data visualizations as a dashboard. One of the important characteristics of these dashboards is that charts within them are automatically re-sized to fit available browser width and (optionally) browser height. This makes them ideal for publishing [htmlwidgets](http://www.htmlwidgets.org) since these widgets automatically re-size themselves to their containers. 
+You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also re-sized automatically however a bit more work (described in [Figure Sizes and Scaling](using.html#figure-sizes-and-scaling)) is required to ensure that they are properly scaled. Even with this extra work standard R graphics won't always fit perfectly into their viewport, so in general htmlwidget based charts will yield better results. Note that the [plotly](https://plot.ly/ggplot2/) package enables rendering of ggplot2 graphics as interactive htmlwidgets.
 
-You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also re-sized automatically however a bit more work (described below in [Chart Sizing]) is required to ensure that they are properly scaled. Even with this extra work standard R graphics won't always fit perfectly into their viewport, so in general htmlwidget based charts will yield better results. Note that the [plotly](https://plot.ly/ggplot2/) package enables rendering of ggplot2 graphics as interactive htmlwidgets.
-
-### Single Column
+### Single Column Layout
 
 Dashboards are divided into columns and rows, where by default columns are defined using level 2 markdown headers (`------------------`) and charts are defined using level 3 headers (`###`). Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:
 
@@ -66,7 +64,7 @@ Dashboards are divided into columns and rows, where by default columns are defin
 </div>
 
 
-### Multiple Columns
+### Multiple Column Layout
 
 To add a second column of charts we just add another column section:
 
@@ -78,139 +76,27 @@ To add a second column of charts we just add another column section:
 </div>
 
 <div class="col-md-7">
-<div height="470px" width="100%">
-<div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1">
+<div height="500px" width="100%">
+<div style="float: left; width: 60%;">
+<img class="holder" src="holder.js/100px500?size=28&amp;text=Chart 1">
 </div>
-<div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3">
-</div>
-</div>
-</div>
-
-</div>
-
-
-Note that in this example we've moved Chart 3 from the bottom of the first column into it's own column (which it will fill vertically). With layouts like this you may want to adjust the relative size of the various charts (e.g. to make the column with a single chart wider). We'll see how to do this in the [Chart Sizing] section below.
-
-### Row Orientation
-
-The examples above use the default orientation of "columns", however it's also possible to layout a dashboard using a "rows" orientation. In this case rows are defined using level 2 markdown headers (`------------------`) and charts are defined using level 3 headers (`###`). Charts are laid out horizontally within a row. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:
-
-<div class="row">
-
-<div class="col-md-5">
-<div id="roworientation"></div>
-<script type="text/javascript">loadSnippet('roworientation')</script>
-</div>
-
-<div class="col-md-7">
-<div height="496px" width="100%">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 1">
-<div>
-<div style="float: left; width: 50%;">
+<div style="margin-left: 60%;">
 <img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2">
-</div>
-<div style="margin-left: 50%;">
 <img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
-</div>
 
 </div>
 
-### Chart Sizing
 
-Note that by default the charts flow down the page and the page scrolls if they occupy more space than is available. However, you might prefer that all charts be automatically sized to fill the containing web page. To do that you specify the `fill_page` option (see below for an example)
-
-By default charts split space equally with other charts in their row or column. You may however wish to emphasize certain charts by allocating more space to them. The space allocated to a chart is determined by the knitr `fig.width` and `fig.height` options, which by default use a width of 5 inches and a height of 3.5 inches. If we wanted to allocate more vertical space to the single chart in the first row we could change it's `fig.width` and `fig.height` accordingly.
-
-Here's a complete example that combines the `fill_page` option with a custom size for the chart in the first row:
-
-<div class="row">
-<div class="col-md-5">
-<div id="chartsizing"></div>
-<script type="text/javascript">loadSnippet('chartsizing')</script>
-</div>
-
-<div class="col-md-7">
-<div height="470px" width="100%">
-<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
-<div>
-<div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2">
-</div>
-<div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3">
-</div>
-</div>
-</div>
-</div>
-
-
-</div>
-    
-    
-    
-Note that we've specified an explicit width and height for Chart 1 which is twice the default width and height of 5 x 3.5. This results in a layout that more clearly emphasizes the first chart.
-
-It's also possible to change the default width and height for all charts on a page using the `fig_width` and `fig_height` format options, for example:
-
-<div class="row">
-<div class="col-md-11">
-<div id="defaultfigsizes"></div>
-<script type="text/javascript">loadSnippet('defaultfigsizes')</script>
-</div>
-</div>
-
-A final note: since flexdashboard is doing some automatic layout to fill the browser's width and height, the figure sizes provided are approximate and best understood as relative sizes between charts in the same dashboard. 
-
-#### Figure Sizes and Scaling 
-
-Charts will always be automatically scaled to fit within their allocated region. For charts based on htmlwidgets (JavaScript) this scaling will nearly always result in a chart that perfectly fits the bounds of it's container. However, for charts based on standard R graphics the chart will be scaled so that it's original aspect ratio is preserved. Therefore, the closer the specified `fig.width` and `fig.height` are to the actual laid out size of the chart the better it will scale.
-
-The [Multiple Pages] section below includes some examples of specifying explicit `fig.width` and `fig.height` values that are well tailored to the containers they will be laid out within.
-
-## Multiple Pages
-
-If you have more than a handful of charts you'd like to include in a dashboard you may want to consider dividing the dashboard into multiple pages. To define a page just use a level 1 markdown header (`==================`). Each page you define will have it's own top-level navigation tab. 
-
-For example, this code creates a dashboard with 2 pages, each containing 2 charts:
-
-<div id="multiplepages"></div>
-<script type="text/javascript">loadSnippet('multiplepages')</script>
-
-Note that in this example both pages use the default "columns" orientation. It is however possible to specify a distinct orientation for an individual page. This is done by adding the `data-orientation` attribute to the header of the page you want to change the orientation of. For example:
-
-<div id="pageorientation"></div>
-<script type="text/javascript">loadSnippet('pageorientation')</script>
-
-## Text Annotations
-
-You can provide short text annotations for the various charts within a dashboard by including text immediately below the R code chunk where the chart is rendered. You can also include arbitrary content at the top of the dashboard before rows, columns, and charts are specified.
-
-For example, the following dashboard includes some content at the top as well as a brief comment for it's first chart:
-
-<div id="textannotation"></div>
-<script type="text/javascript">loadSnippet('textannotation')</script>
-
-This example also demonstrates the use of a "setup chunk" to load required R packages prior to executing the rest of the R chunks that make use of them as well as setting a custom `fig.height` and `fig.width` for the main chart to make it disproportionately larger than the secondary charts.
-    
-## Visual Themes
-
-A variety of themes are available to modify the appearance of flexdashboard. Supported themes include "default", "bootstrap", "cerulean", "journal", "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "simplex", and "yeti". Note that the "cosmo" theme is used when "default" is specified.
-
-These themes are all based on the themes available in the [R Markdown](http://rmarkdown.rstudio.com) package (which are in turn based on [Bootswatch](https://bootswatch.com/) themes).
-
-Use the `theme` option to specify an alternate theme:
-
-<div id="themes"></div>
-<script type="text/javascript">loadSnippet('themes')</script>
+In this example we've moved **Chart 1** into it's own column which it will fill entirely. Since we only have 1 or 2 charts vertically stacked, we also specify the `fill_page: true` option to automatically scale the charts to the full height of the page. Finally, we want to provide additional emphasis to the chart appearing in the first column so we give the column a larger size via the `data-width` attribute.
 
 ## Learning More
 
-The [Layouts](layouts.html) page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
+The [Using](using.html) page includes documentation on all of the features and options of flexdashboard, including layout orientations (row vs. column based), chart sizing, text annotations, theming, and creating dashboards with multiple pages.
 
 The [Shiny](shiny.html) page describes how to create dashboards that enable viewers to change underlying parameters and see the results immediately.
+
+The [Layouts](layouts.html) page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
+

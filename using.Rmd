@@ -1,0 +1,189 @@
+---
+title: "Using flexdashboard"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+## Layout Orientation
+
+By default level 2 markdown headers (`------------------`) within dashboards define columns, with individual charts stacked vertically within each column. Here's the definition of simple dashboard with 3 charts stacked into a single column:
+
+<div class="row">
+
+<div class="col-md-5">
+<div id="singlecolumn"></div>
+<script type="text/javascript">loadSnippet('singlecolumn')</script>
+</div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3">
+</div>
+</div>
+
+</div>
+
+However it's also possible to orient dashboards around rows rather than columns. You can do this by specifying the `orientation: rows` option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:
+
+<div class="row">
+
+<div class="col-md-5">
+<div id="roworientation"></div>
+<script type="text/javascript">loadSnippet('roworientation')</script>
+</div>
+
+<div class="col-md-7">
+<div height="496px" width="100%">
+<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+## Chart Sizing
+
+To create an ideal layout for your dashboard it's important to understand how the size of individual charts is determined. This section describes the layout algorithm and the various ways you can tweak it's behavior.
+
+### Chart Width
+
+The width of charts in flexdashboard is ultimately determined by the width of the browser. If your layout has a single column then charts will occupy the full width of the browser. If your layout has multiple columns then the columns will split the available width evenly (unless overridden via the `data-width` attribute as described below).
+
+### Chart Height
+
+The height of charts is determined in one of two ways depending on whether your dashboard is configured to scroll (`fill_page: false`) or fit itself into the vertical confines of the page (`fill_page: true`):
+
+1. For scrolling dashboards, the height of charts will be determined by the knitr `fig.height` option, which defaults to 4 inches (384 pixels).
+
+2. For dashboards that fill the page the height of charts will be determined by the height of the browser, with vertically stacked charts splitting the available height evenly (unless overridden via the `data-height` attribute as described below).
+
+### Size Attributes
+
+The nature of the charts within your dashboard (desired emphasis, visualization types, etc.) will often dictate that you'll want to change the default sizing behavior. If no size attributes are specified then the relative size of each chart will be determined by it's knitr figure size (this is 5x4 inches or 480x384 pixels by default).
+
+You can modify the default sizing behavior by applying the `data-width` and `data-height` attributes to rows, columns, or even individual charts. These attributes establish the relative size between charts laid out in the same dimension (horizontal or vertical). 
+
+### Examples
+
+This example combines the `fill_page` option with custom size attributes that dictate a larger vertical size for the first row:
+
+<div class="row">
+<div class="col-md-5">
+<div id="chartsizing"></div>
+<script type="text/javascript">loadSnippet('chartsizing')</script>
+</div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+</div>
+
+</div>
+    
+Note that we've specified a `data-height` attribute on both rows to establish their relative heights. This results in a layout that more clearly emphasizes the first chart.
+
+This example is a variation of the single-column layout demonstrated above with a `data-height` attribute applied to the first chart:
+
+<div class="row">
+<div class="col-md-5">
+<div id="chartdataheight"></div>
+<script type="text/javascript">loadSnippet('chartdataheight')</script>
+</div>
+
+<div class="col-md-7">
+<div height="470px" width="100%">
+<img class="holder" src="holder.js/100px230?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px120?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px120?size=28&amp;text=Chart 3">
+</div>
+</div>
+
+</div>
+
+Note that in this case we've only applied the `data-height` attribute to the first chart. The other charts size will be derived from their knitr figure height (by default 384 pixels). You can of course explicitly specify a `data-height` for each chart if you wish.
+
+### Flexible Boxes
+
+Layout is done using the browser [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) engine, which alters its items' width and/or height to best fill the available space on any display device. A flexbox layout expands items to fill available free space, or shrinks them to prevent overflow.
+
+The implication of this is that chart dimensions established via either knitr figure sizes or `data-width` and `data-height` attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the `flex-grow` and `flex-shrink` CSS properties).
+
+
+## Figure Sizes and Scaling 
+
+Charts will always be automatically scaled to fit within their allocated flexbox region. For charts based on [htmlwidgets](http://www.htmlwidgets.org) this scaling will nearly always result in a chart that perfectly fits the bounds of it's container since htmlwidgets can dynamically re-size themselves. The automatic sizing behavior of htmlwidgets makes them ideal for flexdashboard, if it's possible to use an htmlwidget that should always be your first choice. 
+
+It's also possible to use charts created using standard R graphics (base, lattice, ggplot2, etc.) with flexdashboard. These charts are also automatically scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it's not possible for them to seamlessly fill the bounds of their container as it is with htmlwidgets. It's therefore critical when using charts generated with standard R graphics to define knitr `fig.width` and `fig.height` values as close as possible to what they'll actually be on the page.
+
+Here's an example of a row based layout that includes 3 charts from R base graphics:
+
+<div id="figuresizes"></div>
+<script type="text/javascript">loadSnippet('figuresizes')</script>
+
+
+We've specified an explicit `fig.height` and `fig.width` for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. Note also that we are using a scrolling layout (`fill_page: false`) which makes it easier to reason about the actual height which plots will be rendered at. 
+
+
+
+
+
+
+
+
+## Multiple Pages
+
+If you have more than a handful of charts you'd like to include in a dashboard you may want to consider dividing the dashboard into multiple pages. To define a page just use a level 1 markdown header (`==================`). Each page you define will have it's own top-level navigation tab. 
+
+For example, this code creates a dashboard with 2 pages, each containing 2 charts:
+
+<div id="multiplepages"></div>
+<script type="text/javascript">loadSnippet('multiplepages')</script>
+
+Note that in this example both pages use the default "columns" orientation. It is however possible to specify a distinct orientation for an individual page. This is done by adding the `data-orientation` attribute to the header of the page you want to change the orientation of. For example:
+
+<div id="pageorientation"></div>
+<script type="text/javascript">loadSnippet('pageorientation')</script>
+
+## Text Annotations
+
+You can provide short text annotations for the various charts within a dashboard by including text immediately below the R code chunk where the chart is rendered. You can also include arbitrary content at the top of the dashboard before rows, columns, and charts are specified.
+
+For example, the following dashboard includes some content at the top as well as a brief comment for it's first chart:
+
+<div id="textannotation"></div>
+<script type="text/javascript">loadSnippet('textannotation')</script>
+
+This example also demonstrates the use of a "setup chunk" to load required R packages prior to executing the rest of the R chunks that make use of them as well as using a custom `data-height` attribute for the rows to make the first row disproportionately larger than the second row.
+    
+## Visual Themes
+
+A variety of themes are available to modify the appearance of flexdashboard. Supported themes include "default", "bootstrap", "cerulean", "journal", "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "simplex", and "yeti". Note that the "cosmo" theme is used when "default" is specified.
+
+These themes are all based on the themes available in the [R Markdown](http://rmarkdown.rstudio.com) package (which are in turn based on [Bootswatch](https://bootswatch.com/) themes).
+
+Use the `theme` option to specify an alternate theme:
+
+<div id="themes"></div>
+<script type="text/javascript">loadSnippet('themes')</script>
+

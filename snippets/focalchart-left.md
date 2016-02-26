@@ -5,16 +5,16 @@ output:
     fill_page: true
 ---
     
-Column
+Column {data-width=600}
 -------------------------------------
-
+    
 ### Chart 1
-
-```{r, fig.width=10, fig.height=10}
+    
+```{r}
 
 ```
-
-Column
+   
+Column {data-width=400}
 -------------------------------------
    
 ### Chart 2
@@ -22,9 +22,9 @@ Column
 ```{r}
 
 ```   
-    
+ 
 ### Chart 3
-
+    
 ```{r}
 
 ```

@@ -14,7 +14,7 @@ This behavior is controlled via the `fill_page` output option, which defaults to
 
 ### Chart Stack (Fill)
 
-This layout is a simple stack of two charts. Since there are only 2 charts the need to scroll is unlikely, so `fill_page: true` is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying a custom `fig_height`.
+This layout is a simple stack of two charts. Since there are only 2 charts the need to scroll is unlikely, so `fill_page: true` is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying the `data-height` attribute.
 
 <div class="row">
 
@@ -34,7 +34,7 @@ This layout is a simple stack of two charts. Since there are only 2 charts the n
 
 ### Chart Stack (Scrolling)
 
-This layout is a simple stack of 3 charts. To provide enough room to display all the charts a scrolling layout is used (`fill_page: false`). Note that because of its ability to scroll this layout could easily accomodate many more charts (although for large numbers of charts you might consider organizing them into [Multiple Pages]).
+This layout is a simple stack of 3 charts. To provide enough room to display all the charts a scrolling layout is used (`fill_page: false`). Note that because of its ability to scroll this layout could easily accommodate many more charts (although for large numbers of charts you might consider organizing them into [Multiple Pages]).
 
 <div class="row">
 
@@ -56,7 +56,7 @@ This layout is a simple stack of 3 charts. To provide enough room to display all
 
 ### Focal Chart (Top)
 
-This layout gives prominence to a single chart at the top, with two secondary charts included below. To achieve this layout it uses `orientation: rows`, specifies `fill_page: true`, and includes a larger `fig.width` and `fig.height` for the chart in the first row.
+This layout gives prominence to a single chart at the top, with two secondary charts included below. To achieve this layout it uses `orientation: rows`, specifies `fill_page: true`, and specifies `data-height` attributes on each row to establish their relative sizes.
 
 <div class="row">
 <div class="col-md-5">
@@ -81,7 +81,7 @@ This layout gives prominence to a single chart at the top, with two secondary ch
 
 ### Focal Chart (Left)
 
-This layout gives prominence to a single chart on the left, with two secondary charts included to the right. To achieve this layout it uses `fill_page: true` and specifies a larger `fig.width` and `fig.height` for the chart in the first column.
+This layout gives prominence to a single chart on the left, with two secondary charts included to the right. To achieve this layout it uses `fill_page: true` and specifies and specifies `data-width` attributes on each column to establish their relative sizes.
 
 <div class="row">
 
@@ -141,17 +141,10 @@ This layout is a 2x2 grid of charts that uses `fill_page: true`. Note that depen
 
 ### Multiple Pages
 
-This layout defines multiple pages using a level 1 markdown header (`==================`). Each page has it's own top-level navigation tab. Further, the second page uses a distinct orientation via the `{data-orientation=rows}` attribute.
+This layout defines multiple pages using a level 1 markdown header (`==================`). Each page has it's own top-level navigation tab. Further, the second page uses a distinct orientation via the `data-orientation` attribute.
 
 <div id="multiplepages-layout"></div>
 <script type="text/javascript">loadSnippet('multiplepages-layout')</script>
-
-
-
-
-
-
-
 
 
 

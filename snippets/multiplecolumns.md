@@ -1,28 +1,30 @@
 ---
 title: "Multiple Columns"
-output: flexdashboard::flex_dashboard
+output: 
+  flexdashboard::flex_dashboard:
+    fill_page: true
 ---
     
-Column
+Column {data-width=600}
 -------------------------------------
     
 ### Chart 1
     
 ```{r}
-plot(cars)
+
 ```
    
-Column
+Column {data-width=400}
 -------------------------------------
    
 ### Chart 2
 
 ```{r}
-plot(pressure)
+
 ```   
  
 ### Chart 3
     
 ```{r}
-plot(mtcars)
+
 ```

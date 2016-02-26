@@ -176,8 +176,9 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href="index.html">Home</a></li>
-        <li><a href="layouts.html">Layouts</a></li>
+        <li><a href="using.html">Using</a></li>
         <li><a href="shiny.html">Shiny</a></li>
+        <li><a href="layouts.html">Layouts</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -190,6 +191,15 @@ $(document).ready(function () {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#simple-example">Simple Example</a></li>
+<li><a href="#input-sidebar">Input Sidebar</a></li>
+<li><a href="#flexdashboard-vs.shinydashboard">flexdashboard vs. shinydashboard</a></li>
+<li><a href="#learning-more">Learning More</a></li>
+</ul>
+</div>
 
 <div id="overview" class="section level2">
 <h2>Overview</h2>
@@ -206,8 +216,8 @@ $(document).ready(function () {
 <p>A simple example of a Shiny based flexdashboard is provided below.</p>
 </div>
 </div>
-<div id="example" class="section level2">
-<h2>Example</h2>
+<div id="simple-example" class="section level2">
+<h2>Simple Example</h2>
 <p>The following example demonstrates the basics of using Shiny within a flexdashboard:</p>
 <p><img src="images/Shiny.png" width="865" height="745"/></p>
 <div id="source-code" class="section level3">
@@ -220,8 +230,8 @@ $(document).ready(function () {
 <p>The first column (“Inputs”) includes the <code>{.sidebar}</code> attribute and the Shiny input controls; the second column (“Outputs”) includes the Shiny code required to render the chart based on the inputs.</p>
 </div>
 </div>
-<div id="sidebar" class="section level2">
-<h2>Sidebar</h2>
+<div id="input-sidebar" class="section level2">
+<h2>Input Sidebar</h2>
 <p>The <code>{.sidebar}</code> attribute is a special designator indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using <code>runtime: shiny</code> however they are often useful for presenting inputs.</p>
 <p>Sidebars always appear on the left no matter where they are defined within the flow of the document. You alter the default width of the sidebar using the <code>data-width</code> attribute. For example:</p>
 <div id="sidebarwidth">
@@ -234,7 +244,9 @@ $(document).ready(function () {
 <p>The <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a> package also provides facilities for creating interactive dashboards with Shiny. The two packages take different approaches and as a result have different strengths and weaknesses:</p>
 <ol style="list-style-type: decimal">
 <li><p>shinydashboard supports a wider variety of layout controls and output types at the expense of additional syntactic complexity (use of R functions to define layout).</p></li>
-<li><p>For dashboards that consist of presenting a few related data visualizations flexdashboard is easier to learn and use (use of R Markdown sections and code chunks to define layout).</p></li>
+<li><p>shinydashboard components have more explicit sizes so are better suited to presenting standard R graphics and textual output.</p></li>
+<li><p>flexdashboard is well suited to dashboards that consist entirely of a set of related data visualizations, as it’s syntax for laying out charts is very easy to learn and use (use of R Markdown sections and code chunks to define layout).</p></li>
+<li><p>flexdashboard performs automatic scaling of charts to the size of the browser and as a result takes maximum advantage of available screen real estate when used with htmlwidgets (i.e. visualizations that automatically size themselves to their container).</p></li>
 <li><p>flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting data rather than allowing the user to vary assumptions and parameters.</p></li>
 </ol>
 </div>

@@ -12,18 +12,18 @@ Monthly deaths from bronchitis, emphysema and asthma in the UK, 1974–1979.
 library(dygraphs)
 ```
 
-Row
+Row {data-height=600}
 -------------------------------------
 
 ### All Lung Deaths
     
-```{r, fig.width=10, fig.height=6}
+```{r}
 dygraph(ldeaths)
 ```
     
 Source: P. J. Diggle (1990) Time Series: A Biostatistical Introduction. Oxford, table A.3    
  
-Row
+Row {data-height: 400}
 -------------------------------------
 
 ### Male Deaths

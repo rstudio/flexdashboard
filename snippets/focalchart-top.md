@@ -6,16 +6,16 @@ output:
     fill_page: true
 ---
     
-Row
+Row {data-height=600}
 -------------------------------------
 
 ### Chart 1
 
-```{r, fig.width=14, fig.height=7}
+```{r}
 
 ```
 
-Row
+Row {data-height=400}
 -------------------------------------
    
 ### Chart 2

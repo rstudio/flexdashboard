@@ -6,26 +6,26 @@ output:
     orientation: rows
 ---
 
-Row
+Row {data-height=600}
 -------------------------------------
 
 ### Chart 1
 
-```{r, fig.width=10, fig.height=7}
-plot(cars)
+```{r}
+
 ```
 
-Row
+Row {data-height=400}
 -------------------------------------
     
 ### Chart 2
     
 ```{r}
-plot(mtcars)
+
 ```
     
 ### Chart 3
 
 ```{r}
-plot(airmiles)
+
 ```
