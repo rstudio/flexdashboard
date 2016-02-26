@@ -48,7 +48,7 @@
 #'
 #'@export
 flex_dashboard <- function(fig_width = 5,
-                           fig_height = 3.5,
+                           fig_height = 4,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,

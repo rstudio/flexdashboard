@@ -5,10 +5,10 @@ var FlexDashboard = (function () {
 
     // default options
     _options = {
-      fillPage: true,
+      fillPage: false,
       orientation: 'columns',
       defaultFigWidth: 480,
-      defaultFigHeight: 336
+      defaultFigHeight: 384
     };
   };
 
