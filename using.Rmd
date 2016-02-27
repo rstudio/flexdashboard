@@ -134,7 +134,7 @@ The implication of this is that chart dimensions established via either knitr fi
 
 Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on [htmlwidgets](http://www.htmlwidgets.org) can dynamically resize themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.
 
-It's also possible to use charts created using standard R graphics (base, lattice, ggplot2, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers (see the [section on `renderPlot`](shiny.html#TODO)).
+It's also possible to use charts created using standard R graphics (base, lattice, ggplot2, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to [renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html).
 
 Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it's not possible for them to seamlessly fill the bounds of their container. When creating static dashboards containing standard R graphics it's therefore critical to define knitr `fig.width` and `fig.height` values as close as possible to what they'll actually be on the page.
 

@@ -22,6 +22,8 @@ The steps required to add Shiny components to a flexdashboard are as follows:
 
 3. Add Shiny inputs and output as appropriate.
 
+4. When including plots, be sure to wrap them in a call to [renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html)). This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.
+
 A simple example of a Shiny based flexdashboard is provided below.
 
 ## Simple Example
