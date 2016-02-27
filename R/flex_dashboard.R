@@ -185,6 +185,14 @@ flex_dashboard <- function(fig_width = 5,
     args
   }
 
+  # font-awesome depencency
+  htmlDeps <- list(htmlDependency(
+    "font-awesome",
+    "4.5.0",
+    src = system.file("www/font-awesome", package = "flexdashboard"),
+    stylesheet = "css/font-awesome.min.css"
+  ))
+
   # return format
   output_format(
     knitr = knitr_options,
@@ -200,6 +208,7 @@ flex_dashboard <- function(fig_width = 5,
                                      template = "default",
                                      pandoc_args = pandoc_args,
                                      bootstrap_compatible = TRUE,
+                                     extra_dependencies = htmlDeps,
                                      ...)
   )
 

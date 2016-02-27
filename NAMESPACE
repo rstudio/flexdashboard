@@ -2,4 +2,5 @@
 
 export(flex_dashboard)
 import(rmarkdown)
+importFrom(htmltools,htmlDependency)
 importFrom(jsonlite,toJSON)
