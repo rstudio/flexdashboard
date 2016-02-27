@@ -57,13 +57,13 @@ The [shinydashboard](https://rstudio.github.io/shinydashboard/) package also pro
 
 1. shinydashboard supports a wider variety of layout controls and output types at the expense of  additional syntactic complexity (use of R functions to define layout).
 
-2. shinydashboard components have more explicit sizes so are better suited to presenting standard R graphics and textual output.
+2. shinydashboard components can be sized explicitly or automatically flow to contain all output so are much better suited to presenting non-graphical output.
 
 3. flexdashboard is well suited to dashboards that consist entirely of a set of related data visualizations, as it's syntax for laying out charts is very easy to learn and use (use of R Markdown sections and code chunks to define layout).
 
-4. flexdashboard performs automatic scaling of charts to the size of the browser and as a result takes maximum advantage of available screen real estate when used with htmlwidgets (i.e. visualizations that automatically size themselves to their container).
+4. flexdashboard performs automatic scaling of charts to the size of the browser and as a result takes maximum advantage of available screen real estate (i.e. visualizations that automatically size themselves to their container).
 
-3. flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting static data rather than allowing the user to vary assumptions and parameters or observing changes in real-time.
+3. flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting static data rather than allowing the user to vary assumptions and parameters or observe changes in real-time.
 
 ## Learning More
 
