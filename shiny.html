@@ -220,7 +220,7 @@ $(document).ready(function () {
 <li><p>Add <code>runtime: shiny</code> to the options declared at the top of the document (YAML front matter).</p></li>
 <li><p>Add the <code>{.sidebar}</code> attribute to the first column of the dashboard to make it a host for Shiny input controls (note this step isn’t strictly required, but most Shiny based dashboards will want to do this).</p></li>
 <li><p>Add Shiny inputs and output as appropriate.</p></li>
-<li><p>When including plots, be sure to wrap them in the appropriate render method (e.g. <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>). This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.</p></li>
+<li><p>When including plots, be sure to wrap them in a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>). This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.</p></li>
 </ol>
 <p>A simple example of a Shiny based flexdashboard is provided below.</p>
 </div>
