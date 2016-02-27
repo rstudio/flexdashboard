@@ -61,7 +61,7 @@ The [shinydashboard](https://rstudio.github.io/shinydashboard/) package also pro
 
 4. flexdashboard performs automatic scaling of charts to the size of the browser and as a result takes maximum advantage of available screen real estate when used with htmlwidgets (i.e. visualizations that automatically size themselves to their container).
 
-3. flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting static data rather than allowing the user to vary assumptions and parameters or observing changes in realtime.
+3. flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting static data rather than allowing the user to vary assumptions and parameters or observing changes in real-time.
 
 ## Learning More
 
