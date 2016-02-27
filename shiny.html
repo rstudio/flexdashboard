@@ -211,15 +211,16 @@ $(document).ready(function () {
 
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>By adding <a href="http://shiny.rstudio.com">Shiny</a> to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately. This is done by adding <code>runtime: shiny</code> to a standard flexdashboard and then adding one or more input controls that dynamically drive the appearance of the charts within the dashboard.</p>
+<p>By adding <a href="http://shiny.rstudio.com">Shiny</a> to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see <a href="http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html"><code>reactiveFileReader</code></a> and <a href="http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html"><code>reactivePoll</code></a>). This is done by adding <code>runtime: shiny</code> to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the charts within the dashboard.</p>
 <p>Using Shiny with flexdashboard turns a static R Markdown report into an <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interative Document</a>. It’s important to note that interactive documents need to be <a href="http://rmarkdown.rstudio.com/authoring_shiny.html#deployment">deployed</a> to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).</p>
 <div id="requirements" class="section level3">
 <h3>Requirements</h3>
 <p>The steps required to add Shiny components to a flexdashboard are as follows:</p>
 <ol style="list-style-type: decimal">
 <li><p>Add <code>runtime: shiny</code> to the options declared at the top of the document (YAML front matter).</p></li>
-<li><p>Add the <code>{.sidebar}</code> attribute to the first column of the dashboard to make it a host for Shiny input controls (note this step isn’t strictly required but nearly all Shiny based dashboards will want to do this).</p></li>
+<li><p>Add the <code>{.sidebar}</code> attribute to the first column of the dashboard to make it a host for Shiny input controls (note this step isn’t strictly required, but most Shiny based dashboards will want to do this).</p></li>
 <li><p>Add Shiny inputs and output as appropriate.</p></li>
+<li><p>When including plots, be sure to wrap them in the appropriate render method (e.g. <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>). This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.</p></li>
 </ol>
 <p>A simple example of a Shiny based flexdashboard is provided below.</p>
 </div>
@@ -240,8 +241,8 @@ $(document).ready(function () {
 </div>
 <div id="input-sidebar" class="section level2">
 <h2>Input Sidebar</h2>
-<p>The <code>{.sidebar}</code> attribute is a special designator indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using <code>runtime: shiny</code> however they are often useful for presenting inputs.</p>
-<p>Sidebars always appear on the left no matter where they are defined within the flow of the document. You alter the default width of the sidebar using the <code>data-width</code> attribute. For example:</p>
+<p>The <code>{.sidebar}</code> attribute is a special designator indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using <code>runtime: shiny</code>, but they are often useful for presenting inputs.</p>
+<p>Sidebars always appear on the left no matter where they are defined within the flow of the document. You can alter the default width of the sidebar using the <code>data-width</code> attribute. For example:</p>
 <div id="sidebarwidth">
 
 </div>
@@ -255,7 +256,7 @@ $(document).ready(function () {
 <li><p>shinydashboard components have more explicit sizes so are better suited to presenting standard R graphics and textual output.</p></li>
 <li><p>flexdashboard is well suited to dashboards that consist entirely of a set of related data visualizations, as it’s syntax for laying out charts is very easy to learn and use (use of R Markdown sections and code chunks to define layout).</p></li>
 <li><p>flexdashboard performs automatic scaling of charts to the size of the browser and as a result takes maximum advantage of available screen real estate when used with htmlwidgets (i.e. visualizations that automatically size themselves to their container).</p></li>
-<li><p>flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting data rather than allowing the user to vary assumptions and parameters.</p></li>
+<li><p>flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting static data rather than allowing the user to vary assumptions and parameters or observing changes in real-time.</p></li>
 </ol>
 </div>
 <div id="learning-more" class="section level2">

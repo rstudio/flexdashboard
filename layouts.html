@@ -204,13 +204,13 @@ $(document).ready(function () {
 <h2>Overview</h2>
 <p>This page includes a variety of sample layouts which you can use as a starting point for your own dashboards.</p>
 <p>When creating a layout, it’s important to decide up front whether you want your charts to fill the web page vertically (changing in height as the browser changes) or if you want the charts to maintain their original height (with the page scrolling as necessary to display all of the charts).</p>
-<p>This behavior is controlled via the <code>fill_page</code> output option, which defaults to <code>false</code>. Filling the page is generally a good choice when you have only 1 or 2 charts vertically stacked, whereas scrolling is generally a better choice for 3 or more charts vertically stacked. The sample layouts below reflect these general guidelines.</p>
+<p>This behavior is controlled via the <code>fill_page</code> output option, which defaults to <code>false</code>. Filling the page is generally a good choice when you have only one or two charts vertically stacked, whereas scrolling is generally a better choice for three or more charts vertically stacked. The sample layouts below reflect these general guidelines.</p>
 </div>
 <div id="layouts" class="section level2">
 <h2>Layouts</h2>
 <div id="chart-stack-fill" class="section level3">
 <h3>Chart Stack (Fill)</h3>
-<p>This layout is a simple stack of two charts. Since there are only 2 charts the need to scroll is unlikely, so <code>fill_page: true</code> is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying the <code>data-height</code> attribute.</p>
+<p>This layout is a simple stack of two charts. Since there are only two charts the need to scroll is unlikely, so <code>fill_page: true</code> is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying the <code>data-height</code> attribute.</p>
 <div class="row">
 <div class="col-md-5">
 <div id="chartstack-fill">
@@ -227,7 +227,7 @@ $(document).ready(function () {
 </div>
 <div id="chart-stack-scrolling" class="section level3">
 <h3>Chart Stack (Scrolling)</h3>
-<p>This layout is a simple stack of 3 charts. To provide enough room to display all the charts a scrolling layout is used (<code>fill_page: false</code>). Note that because of its ability to scroll this layout could easily accommodate many more charts (although for large numbers of charts you might consider organizing them into <a href="#multiple-pages">Multiple Pages</a>).</p>
+<p>This layout is a simple stack of three charts. To provide enough room to display all the charts a scrolling layout is used (<code>fill_page: false</code>). Note that because of its ability to scroll this layout could easily accommodate many more charts (although for large numbers of charts you might consider organizing them into <a href="#multiple-pages">Multiple Pages</a>).</p>
 <div class="row">
 <div class="col-md-5">
 <div id="chartstack-scrolling">
@@ -322,7 +322,7 @@ $(document).ready(function () {
 </div>
 <div id="multiple-pages" class="section level3">
 <h3>Multiple Pages</h3>
-<p>This layout defines multiple pages using a level 1 markdown header (<code>==================</code>). Each page has it’s own top-level navigation tab. Further, the second page uses a distinct orientation via the <code>data-orientation</code> attribute.</p>
+<p>This layout defines multiple pages using a level 1 markdown header (<code>==================</code>). Each page has its own top-level navigation tab. Further, the second page uses a distinct orientation via the <code>data-orientation</code> attribute.</p>
 <div id="multiplepages-layout">
 
 </div>
