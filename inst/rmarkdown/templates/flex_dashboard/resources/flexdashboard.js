@@ -123,6 +123,14 @@ var FlexDashboard = (function () {
   // layout a dashboard page
   function layoutDashboardPage(page) {
 
+    // hoist up any content before level 2 or level 3 headers
+    var children = page.children();
+    children.each(function(index) {
+      if ($(this).hasClass('section'))
+        return false;
+      $(this).insertBefore(page);
+    });
+
     // determine orientation and fillPage behavior for distinct media
     var orientation, fillPage;
 
