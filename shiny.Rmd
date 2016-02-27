@@ -1,6 +1,6 @@
 ---
 title: "Using Shiny with flexdashboard"
-output: 
+output:
   html_document:
     toc: true
     toc_depth: 2
@@ -8,7 +8,7 @@ output:
 
 ## Overview
 
-By adding [Shiny](http://shiny.rstudio.com) to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately. This is done by adding `runtime: shiny` to a standard flexdashboard and then adding one or more input controls that dynamically drive the appearance of the charts within the dashboard.
+By adding [Shiny](http://shiny.rstudio.com) to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see [`reactiveFileReader`](http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html) and [`reactivePoll`](http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html)). This is done by adding `runtime: shiny` to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the charts within the dashboard.
 
 Using Shiny with flexdashboard turns a static R Markdown report into an [Interative Document](http://rmarkdown.rstudio.com/authoring_shiny.html). It's important to note that interactive documents need to be [deployed](http://rmarkdown.rstudio.com/authoring_shiny.html#deployment) to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).
 
@@ -18,11 +18,11 @@ The steps required to add Shiny components to a flexdashboard are as follows:
 
 1. Add `runtime: shiny` to the options declared at the top of the document (YAML front matter).
 
-2. Add the `{.sidebar}` attribute to the first column of the dashboard to make it a host for Shiny input controls (note this step isn't strictly required but nearly all Shiny based dashboards will want to do this).
+2. Add the `{.sidebar}` attribute to the first column of the dashboard to make it a host for Shiny input controls (note this step isn't strictly required, but most Shiny based dashboards will want to do this).
 
-3. Add Shiny inputs and output as appropriate. 
+3. Add Shiny inputs and output as appropriate.
 
-A simple example of a Shiny based flexdashboard is provided below. 
+A simple example of a Shiny based flexdashboard is provided below.
 
 ## Simple Example
 
@@ -39,11 +39,11 @@ Here's the source code for the example. Note that since we have only a single ch
 
 The first column ("Inputs") includes the `{.sidebar}` attribute and the Shiny input controls; the second column ("Outputs") includes the Shiny code required to render the chart based on the inputs.
 
-## Input Sidebar 
+## Input Sidebar
 
-The `{.sidebar}` attribute is a special designator indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using `runtime: shiny` however they are often useful for presenting inputs.
+The `{.sidebar}` attribute is a special designator indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using `runtime: shiny`, but they are often useful for presenting inputs.
 
-Sidebars always appear on the left no matter where they are defined within the flow of the document. You alter the default width of the sidebar using the `data-width` attribute. For example:
+Sidebars always appear on the left no matter where they are defined within the flow of the document. You can alter the default width of the sidebar using the `data-width` attribute. For example:
 
 <div id="sidebarwidth"></div>
 <script type="text/javascript">loadSnippet('sidebarwidth')</script>
@@ -61,7 +61,7 @@ The [shinydashboard](https://rstudio.github.io/shinydashboard/) package also pro
 
 4. flexdashboard performs automatic scaling of charts to the size of the browser and as a result takes maximum advantage of available screen real estate when used with htmlwidgets (i.e. visualizations that automatically size themselves to their container).
 
-3. flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting data rather than allowing the user to vary assumptions and parameters.
+3. flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting static data rather than allowing the user to vary assumptions and parameters or observing changes in realtime.
 
 ## Learning More
 
