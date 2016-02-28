@@ -212,7 +212,6 @@ flex_dashboard <- function(fig_width = 5,
                                      template = "default",
                                      pandoc_args = pandoc_args,
                                      bootstrap_compatible = TRUE,
-                                     extra_dependencies = htmlDeps,
                                      ...)
   )
 
