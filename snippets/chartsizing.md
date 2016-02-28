@@ -2,8 +2,8 @@
 title: "Chart Sizing"
 output: 
   flexdashboard::flex_dashboard:
-    fill_page: true
     orientation: rows
+    vertical_layout: fill
 ---
 
 Row {data-height=600}

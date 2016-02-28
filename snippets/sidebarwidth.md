@@ -2,7 +2,7 @@
 title: "Sidebar Width"
 output: 
   flexdashboard::flex_dashboard: 
-    fill_page: true
+    vertical_layout: fill
 runtime: shiny
 ---
 

@@ -63,11 +63,11 @@ The width of charts in flexdashboard is ultimately determined by the width of th
 
 ### Chart Height
 
-The height of charts is determined in one of two ways depending on whether your dashboard is configured to scroll (`fill_page: false`) or fit itself into the vertical confines of the page (`fill_page: true`):
+The height of charts is determined in one of two ways depending on whether your dashboard is configured to fit itself into the vertical confines of the page (`vertical_layout: fill`) or to scroll (`vertical_layout: scroll`):
 
-1. For scrolling dashboards, the height of charts will be determined by the knitr `fig.height` option, which defaults to 4 inches (384 pixels).
+1. For dashboards that fill the page the height of charts will be determined by the height of the browser, with vertically stacked charts splitting the available height evenly (unless overridden via the `data-height` attribute as described below).
 
-2. For dashboards that fill the page the height of charts will be determined by the height of the browser, with vertically stacked charts splitting the available height evenly (unless overridden via the `data-height` attribute as described below).
+2. For scrolling dashboards, the height of charts will be determined by the knitr `fig.height` option, which defaults to 4 inches (384 pixels).
 
 ### Size Attributes
 
@@ -77,7 +77,7 @@ You can modify the default sizing behavior by applying the `data-width` and `dat
 
 ### Examples
 
-This example combines the `fill_page` option with custom size attributes that dictate a larger vertical size for the first row:
+This example combines the `vertical_layout: fill` option with custom size attributes that dictate a larger vertical size for the first row:
 
 <div class="row">
 <div class="col-md-5">
@@ -144,7 +144,7 @@ Here's an example of a row based layout that includes 3 charts from R base graph
 <script type="text/javascript">loadSnippet('figuresizes')</script>
 
 
-We've specified an explicit `fig.height` and `fig.width` for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. Note also that we are using a scrolling layout (`fill_page: false`) which makes it easier to reason about the actual height which plots will be rendered at.
+We've specified an explicit `fig.height` and `fig.width` for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. Note also that we are using a scrolling layout (`vertical_layout: scroll`) which makes it easier to reason about the actual height which plots will be rendered at.
 
 Even with the tweaks described above standard R graphics won't always fit perfectly into their containers, so in general htmlwidget based charts are preferred within static dashboards. Note that the [plotly](https://plot.ly/ggplot2/) package enables rendering of ggplot2 graphics as interactive htmlwidgets.
 

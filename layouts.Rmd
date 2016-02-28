@@ -8,13 +8,13 @@ This page includes a variety of sample layouts which you can use as a starting p
 
 When creating a layout, it's important to decide up front whether you want your charts to fill the web page vertically (changing in height as the browser changes) or if you want the charts to maintain their original height (with the page scrolling as necessary to display all of the charts).
 
-This behavior is controlled via the `fill_page` output option, which defaults to `false`. Filling the page is generally a good choice when you have only one or two charts vertically stacked, whereas scrolling is generally a better choice for three or more charts vertically stacked. The sample layouts below reflect these general guidelines.
+This behavior is controlled via the `vertical_layout` output option, which defaults to "fill". Filling the page is generally a good choice when you have only one or two charts vertically stacked, whereas scrolling is generally a better choice for three or more charts vertically stacked. The sample layouts below reflect these general guidelines.
 
 ## Layouts
 
 ### Chart Stack (Fill)
 
-This layout is a simple stack of two charts. Since there are only two charts the need to scroll is unlikely, so `fill_page: true` is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying the `data-height` attribute.
+This layout is a simple stack of two charts. Since there are only two charts the need to scroll is unlikely, so `vertical_layout: fill` is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying the `data-height` attribute.
 
 <div class="row">
 
@@ -34,7 +34,7 @@ This layout is a simple stack of two charts. Since there are only two charts the
 
 ### Chart Stack (Scrolling)
 
-This layout is a simple stack of three charts. To provide enough room to display all the charts a scrolling layout is used (`fill_page: false`). Note that because of its ability to scroll this layout could easily accommodate many more charts (although for large numbers of charts you might consider organizing them into [Multiple Pages]).
+This layout is a simple stack of three charts. To provide enough room to display all the charts a scrolling layout is used (`vertical_layout: scroll`). Note that because of its ability to scroll this layout could easily accommodate many more charts (although for large numbers of charts you might consider organizing them into [Multiple Pages]).
 
 <div class="row">
 
@@ -56,7 +56,7 @@ This layout is a simple stack of three charts. To provide enough room to display
 
 ### Focal Chart (Top)
 
-This layout gives prominence to a single chart at the top, with two secondary charts included below. To achieve this layout it uses `orientation: rows`, specifies `fill_page: true`, and specifies `data-height` attributes on each row to establish their relative sizes.
+This layout fills the page completely and gives prominence to a single chart at the top (with two secondary charts included below). To achieve this layout it uses `vertical_layout: fill`, `orientation: rows` and specifies `data-height` attributes on each row to establish their relative sizes.
 
 <div class="row">
 <div class="col-md-5">
@@ -81,7 +81,7 @@ This layout gives prominence to a single chart at the top, with two secondary ch
 
 ### Focal Chart (Left)
 
-This layout gives prominence to a single chart on the left, with two secondary charts included to the right. To achieve this layout it uses `fill_page: true` and specifies and specifies `data-width` attributes on each column to establish their relative sizes.
+This layout fills the page completely and gives prominence to a single chart on the left (with two secondary charts included to the right). To achieve this layout it uses `vertical_layout: fill` and specifies and specifies `data-width` attributes on each column to establish their relative sizes.
 
 <div class="row">
 
@@ -107,7 +107,7 @@ This layout gives prominence to a single chart on the left, with two secondary c
 
 ### Chart Grid (2x2)
 
-This layout is a 2x2 grid of charts that uses `fill_page: true`. Note that depending on the ideal display size for the charts it might be better to allow the page to scroll (`fill_page: false`). Note also that `orientation: rows` is used to ensure that the baselines of charts line up horizontally.
+This layout is a 2x2 grid of charts that uses `vertical_layout: fill`. Note that depending on the ideal display size for the charts it might be better to allow the page to scroll (`vertical_layout: scroll`). Note also that `orientation: rows` is used to ensure that the baselines of charts line up horizontally.
 
 <div class="row">
 

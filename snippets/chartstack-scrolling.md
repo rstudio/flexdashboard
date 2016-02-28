@@ -2,7 +2,7 @@
 title: "Chart Stack (Scrolling)"
 output: 
   flexdashboard::flex_dashboard:
-    fill_page: false
+    vertical_layout: scroll
 ---
     
 Column

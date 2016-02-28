@@ -2,7 +2,7 @@
 title: "Deaths from Lung Cancer"
 output: 
   flexdashboard::flex_dashboard: 
-    fill_page: true
+    vertical_layout: fill
 runtime: shiny
 ---
 

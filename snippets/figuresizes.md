@@ -3,7 +3,7 @@ title: "Figure Sizes"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    fill_page: false
+    vertical_layout: scroll
 ---
 
 Row

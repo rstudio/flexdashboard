@@ -2,8 +2,8 @@
 title: "Text Annotations"
 output:
   flexdashboard::flex_dashboard:
-    fill_page: true
     orientation: rows
+    vertical_layout: fill
 ---
 
 Monthly deaths from bronchitis, emphysema and asthma in the UK, 1974–1979.

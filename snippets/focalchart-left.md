@@ -2,7 +2,7 @@
 title: "Focal Chart (Left)"
 output: 
   flexdashboard::flex_dashboard:
-    fill_page: true
+    vertical_layout: fill
 ---
     
 Column {data-width=600}

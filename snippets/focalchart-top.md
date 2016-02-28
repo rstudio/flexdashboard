@@ -3,7 +3,7 @@ title: "Focal Chart (Top)"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    fill_page: true
+    vertical_layout: fill
 ---
     
 Row {data-height=600}

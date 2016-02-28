@@ -259,10 +259,10 @@ $(document).ready(function () {
 </div>
 <div id="chart-height" class="section level3">
 <h3>Chart Height</h3>
-<p>The height of charts is determined in one of two ways depending on whether your dashboard is configured to scroll (<code>fill_page: false</code>) or fit itself into the vertical confines of the page (<code>fill_page: true</code>):</p>
+<p>The height of charts is determined in one of two ways depending on whether your dashboard is configured to fit itself into the vertical confines of the page (<code>vertical_layout: fill</code>) or to scroll (<code>vertical_layout: scroll</code>):</p>
 <ol style="list-style-type: decimal">
-<li><p>For scrolling dashboards, the height of charts will be determined by the knitr <code>fig.height</code> option, which defaults to 4 inches (384 pixels).</p></li>
 <li><p>For dashboards that fill the page the height of charts will be determined by the height of the browser, with vertically stacked charts splitting the available height evenly (unless overridden via the <code>data-height</code> attribute as described below).</p></li>
+<li><p>For scrolling dashboards, the height of charts will be determined by the knitr <code>fig.height</code> option, which defaults to 4 inches (384 pixels).</p></li>
 </ol>
 </div>
 <div id="size-attributes" class="section level3">
@@ -272,7 +272,7 @@ $(document).ready(function () {
 </div>
 <div id="examples" class="section level3">
 <h3>Examples</h3>
-<p>This example combines the <code>fill_page</code> option with custom size attributes that dictate a larger vertical size for the first row:</p>
+<p>This example combines the <code>vertical_layout: fill</code> option with custom size attributes that dictate a larger vertical size for the first row:</p>
 <div class="row">
 <div class="col-md-5">
 <div id="chartsizing">
@@ -327,7 +327,7 @@ $(document).ready(function () {
 
 </div>
 <script type="text/javascript">loadSnippet('figuresizes')</script>
-<p>We’ve specified an explicit <code>fig.height</code> and <code>fig.width</code> for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. Note also that we are using a scrolling layout (<code>fill_page: false</code>) which makes it easier to reason about the actual height which plots will be rendered at.</p>
+<p>We’ve specified an explicit <code>fig.height</code> and <code>fig.width</code> for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. Note also that we are using a scrolling layout (<code>vertical_layout: scroll</code>) which makes it easier to reason about the actual height which plots will be rendered at.</p>
 <p>Even with the tweaks described above standard R graphics won’t always fit perfectly into their containers, so in general htmlwidget based charts are preferred within static dashboards. Note that the <a href="https://plot.ly/ggplot2/">plotly</a> package enables rendering of ggplot2 graphics as interactive htmlwidgets.</p>
 </div>
 <div id="multiple-pages" class="section level2">

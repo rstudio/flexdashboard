@@ -40,7 +40,7 @@ rmarkdown::draft("dashboard.Rmd", template = "flex_dashboard", package = "flexda
 
 You can use flexdashboard to publish groups of related data visualizations as a dashboard. A flexdashboard can either be static (a standard web page) or dynamic (a [Shiny](shiny.html) interactive document).
 
-One of the most important characteristics of flexdashboard is the automatic scaling of charts to fit available browser width and (optionally) browser height. This makes flexdashboard ideal for publishing [htmlwidgets](http://www.htmlwidgets.org) since these widgets automatically re-size themselves to their containers.
+One of the most important characteristics of flexdashboard is the automatic scaling of charts to fit available browser width and height. This makes flexdashboard ideal for publishing [htmlwidgets](http://www.htmlwidgets.org) since these widgets automatically re-size themselves to their containers.
 
 You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also automatically resized to fit their containers within dynamic (Shiny) dashboards; in static dashboards, however, a bit more work is required to ensure that they are properly scaled (see [Figure Sizes and Scaling](using.html#figure-sizes-and-scaling)).
 
@@ -92,7 +92,7 @@ To add a second column of charts we just add another column section:
 </div>
 
 
-In this example we've moved **Chart 1** into its own column which it will fill entirely. Since we only have one or two charts vertically stacked, we've also specified the `fill_page: true` option to automatically scale the charts to the full height of the page. Finally, we've given the column a larger size via the `data-width` attribute to provide additional emphasis to Chart 1.
+In this example we've moved **Chart 1** into its own column which it will fill entirely. We've also given the column a larger size via the `data-width` attribute to provide additional emphasis to Chart 1.
 
 ## Learning More
 
