@@ -9,15 +9,15 @@
 #'
 #'@param navbar Optional list of elements to be placed on the flexdashboard
 #'  navigation bar. Each element should be a list containing \code{title} and
-#'  \code{url} fields (required) and an optional \code{align} ("left" or "right")
-#'  field.
-#'
-#'@param fill_page \code{TRUE} to layout the dashboard so that it fills the
-#'  browser to it's edges. \code{FALSE} to layout the dashboard as a
-#'  conventional scrolling web page.
+#'  \code{url} fields (required) and an optional \code{align} ("left" or
+#'  "right") field.
 #'
 #'@param orientation Determines whether level 2 headings are treated as
 #'  dashboard rows or dashboard columns.
+#'
+#'@param vertical_layout Vertical layout behavior: "fill" to vertically resize
+#'  charts so they completely fill the page; "scroll" to layout charts at
+#'  their natural height, scrolling the page if necessary.
 #'
 #'@param theme Visual theme ("default", "bootstrap", "cerulean", "journal",
 #'  "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
@@ -57,8 +57,8 @@ flex_dashboard <- function(fig_width = 5,
                            smart = TRUE,
                            self_contained = TRUE,
                            navbar = NULL,
-                           fill_page = FALSE,
                            orientation = c("columns", "rows"),
+                           vertical_layout = c("fill", "scroll"),
                            theme = "default",
                            highlight = "default",
                            mathjax = "default",
@@ -99,6 +99,10 @@ flex_dashboard <- function(fig_width = 5,
 
   # resolve orientation
   orientation <- match.arg(orientation)
+
+  # resolve vertical_layout
+  vertical_layout <- match.arg(vertical_layout)
+  fill_page <- identical(vertical_layout, "fill")
 
   # resolve theme
   if (identical(theme, "default"))

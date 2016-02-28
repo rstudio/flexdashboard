@@ -5,8 +5,8 @@
 \title{R Markdown Format for Flexible Dashboards}
 \usage{
 flex_dashboard(fig_width = 5, fig_height = 4, dev = "png", smart = TRUE,
-  self_contained = TRUE, navbar = NULL, fill_page = FALSE,
-  orientation = c("columns", "rows"), theme = "default",
+  self_contained = TRUE, navbar = NULL, orientation = c("columns",
+  "rows"), vertical_layout = c("fill", "scroll"), theme = "default",
   highlight = "default", mathjax = "default", css = NULL,
   includes = NULL, lib_dir = NULL, md_extensions = NULL,
   pandoc_args = NULL, devel = FALSE, ...)
@@ -30,15 +30,15 @@ it's size).}
 
 \item{navbar}{Optional list of elements to be placed on the flexdashboard
 navigation bar. Each element should be a list containing \code{title} and
-\code{url} fields (required) and an optional \code{align} ("left" or "right")
-field.}
-
-\item{fill_page}{\code{TRUE} to layout the dashboard so that it fills the
-browser to it's edges. \code{FALSE} to layout the dashboard as a
-conventional scrolling web page.}
+\code{url} fields (required) and an optional \code{align} ("left" or
+"right") field.}
 
 \item{orientation}{Determines whether level 2 headings are treated as
 dashboard rows or dashboard columns.}
+
+\item{vertical_layout}{Vertical layout behavior: "fill" to vertically resize
+charts so they completely fill the page; "scroll" to layout charts at
+their natural height, scrolling the page if necessary.}
 
 \item{theme}{Visual theme ("default", "bootstrap", "cerulean", "journal",
 "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
