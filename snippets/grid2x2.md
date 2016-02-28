@@ -3,7 +3,6 @@ title: "Row Orientation"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    vertical_layout: fill
 ---
     
 Row

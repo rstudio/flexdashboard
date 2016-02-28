@@ -1,8 +1,9 @@
 ---
 title: "Sample flexdashboard Layouts"
+output:
+  html_document:
+    toc: true
 ---
-
-## Overview
 
 This page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
 
@@ -10,11 +11,9 @@ When creating a layout, it's important to decide up front whether you want your 
 
 This behavior is controlled via the `vertical_layout` output option, which defaults to "fill". Filling the page is generally a good choice when you have only one or two charts vertically stacked, whereas scrolling is generally a better choice for three or more charts vertically stacked. The sample layouts below reflect these general guidelines.
 
-## Layouts
+## Chart Stack (Fill)
 
-### Chart Stack (Fill)
-
-This layout is a simple stack of two charts. Since there are only two charts the need to scroll is unlikely, so `vertical_layout: fill` is specified so they grow to fill the page vertically. Note that one chart or the other could be made vertically taller by specifying the `data-height` attribute.
+This layout is a simple stack of two charts. Note that one chart or the other could be made vertically taller by specifying the `data-height` attribute.
 
 <div class="row">
 
@@ -32,7 +31,7 @@ This layout is a simple stack of two charts. Since there are only two charts the
 
 </div>
 
-### Chart Stack (Scrolling)
+## Chart Stack (Scrolling)
 
 This layout is a simple stack of three charts. To provide enough room to display all the charts a scrolling layout is used (`vertical_layout: scroll`). Note that because of its ability to scroll this layout could easily accommodate many more charts (although for large numbers of charts you might consider organizing them into [Multiple Pages]).
 
@@ -54,9 +53,9 @@ This layout is a simple stack of three charts. To provide enough room to display
 </div>
 
 
-### Focal Chart (Top)
+## Focal Chart (Top)
 
-This layout fills the page completely and gives prominence to a single chart at the top (with two secondary charts included below). To achieve this layout it uses `vertical_layout: fill`, `orientation: rows` and specifies `data-height` attributes on each row to establish their relative sizes.
+This layout fills the page completely and gives prominence to a single chart at the top (with two secondary charts included below). To achieve this layout it uses `orientation: rows` and specifies `data-height` attributes on each row to establish their relative sizes.
 
 <div class="row">
 <div class="col-md-5">
@@ -66,7 +65,7 @@ This layout fills the page completely and gives prominence to a single chart at 
 
 <div class="col-md-7">
 <div height="470px" width="100%">
-<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px315?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
 <img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2">
@@ -79,9 +78,9 @@ This layout fills the page completely and gives prominence to a single chart at 
 </div>
 
 
-### Focal Chart (Left)
+## Focal Chart (Left)
 
-This layout fills the page completely and gives prominence to a single chart on the left (with two secondary charts included to the right). To achieve this layout it uses `vertical_layout: fill` and specifies and specifies `data-width` attributes on each column to establish their relative sizes.
+This layout fills the page completely and gives prominence to a single chart on the left (with two secondary charts included to the right). Note that `data-width` attributes are specified on each column to establish their relative sizes.
 
 <div class="row">
 
@@ -91,13 +90,13 @@ This layout fills the page completely and gives prominence to a single chart on 
 </div>
 
 <div class="col-md-7">
-<div height="500px" width="100%">
+<div height="470px" width="100%">
 <div style="float: left; width: 62%;">
-<img class="holder" src="holder.js/100px500?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1">
 </div>
 <div style="margin-left: 62%;">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
@@ -105,9 +104,9 @@ This layout fills the page completely and gives prominence to a single chart on 
 </div>
 
 
-### Chart Grid (2x2)
+## Chart Grid (2x2)
 
-This layout is a 2x2 grid of charts that uses `vertical_layout: fill`. Note that depending on the ideal display size for the charts it might be better to allow the page to scroll (`vertical_layout: scroll`). Note also that `orientation: rows` is used to ensure that the baselines of charts line up horizontally.
+This layout is a 2x2 grid of charts. This layout uses the default `vertical_scroll: fill` behavior however depending on the ideal display size for the charts it might be preferable to allow the page to scroll (`vertical_layout: scroll`). Note also that `orientation: rows` is used to ensure that the chart baselines line up horizontally.
 
 <div class="row">
 
@@ -117,21 +116,21 @@ This layout is a 2x2 grid of charts that uses `vertical_layout: fill`. Note that
 </div>
 
 <div class="col-md-7">
-<div height="610px" width="100%">
+<div height="590px" width="100%">
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 1">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 2">
 </div>
 </div>
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 3">
+<img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 3">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 4">
+<img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 4">
 </div>
 </div>
 </div>
@@ -139,7 +138,7 @@ This layout is a 2x2 grid of charts that uses `vertical_layout: fill`. Note that
 
 </div>
 
-### Multiple Pages
+## Multiple Pages
 
 This layout defines multiple pages using a level 1 markdown header (`==================`). Each page has its own top-level navigation tab. Further, the second page uses a distinct orientation via the `data-orientation` attribute.
 

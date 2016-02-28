@@ -202,6 +202,7 @@ $(document).ready(function () {
 <div id="TOC">
 <ul>
 <li><a href="#layout-orientation">Layout Orientation</a></li>
+<li><a href="#scrolling">Scrolling</a></li>
 <li><a href="#chart-sizing">Chart Sizing</a></li>
 <li><a href="#figure-sizes-and-scaling">Figure Sizes and Scaling</a></li>
 <li><a href="#multiple-pages">Multiple Pages</a></li>
@@ -213,20 +214,31 @@ $(document).ready(function () {
 
 <div id="layout-orientation" class="section level2">
 <h2>Layout Orientation</h2>
-<p>By default, level 2 markdown headers (<code>------------------</code>) within dashboards define columns, with individual charts stacked vertically within each column. Here’s the definition of simple dashboard with three charts stacked into a single column:</p>
+<div id="columns" class="section level3">
+<h3>Columns</h3>
+<p>By default, level 2 markdown headers (<code>------------------</code>) within dashboards define columns, with individual charts stacked vertically within each column. Here’s the definition of a two column dashboard with one chart on the left and two on the right:</p>
 <div class="row">
 <div class="col-md-5">
-<div id="singlecolumn">
+<div id="columnorientation">
 
 </div>
-<script type="text/javascript">loadSnippet('singlecolumn')</script>
+<script type="text/javascript">loadSnippet('columnorientation')</script>
 </div>
 <div class="col-md-7">
 <div height="470px" width="100%">
-<p><img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3"></p>
+<div style="float: left; width: 62%;">
+<p><img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1"></p>
+</div>
+<div style="margin-left: 62%;">
+<p><img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
+</div>
+<p>Note that the <code>data-width</code> attribute is used to allocate additional space to the chart in column one.</p>
+</div>
+<div id="rows" class="section level3">
+<h3>Rows</h3>
 <p>You can also choose to orient dashboards row-wise rather than column-wise, by specifying the <code>orientation: rows</code> option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:</p>
 <div class="row">
 <div class="col-md-5">
@@ -237,15 +249,34 @@ $(document).ready(function () {
 </div>
 <div class="col-md-7">
 <div height="496px" width="100%">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
-<p><img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2"></p>
+<p><img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 2"></p>
 </div>
 <div style="margin-left: 50%;">
-<p><img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3"></p>
+<p><img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="scrolling" class="section level2">
+<h2>Scrolling</h2>
+<p>By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you’ll probably want to scroll rather than fit them all onto the page. You can control this behavior using the <code>vertical_layout</code> option. Specify <code>fill</code> to vertically resize charts so they completely fill the page and <code>scroll</code> to layout charts at their natural height, scrolling the page if necessary.</p>
+<p>For example, the following layout includes 3 charts and requests that the page scroll as necessary to accomodate their natural height:</p>
+<div class="row">
+<div class="col-md-5">
+<div id="chartstack-scrolling">
+
+</div>
+<script type="text/javascript">loadSnippet('chartstack-scrolling')</script>
+</div>
+<div class="col-md-7">
+<div height="470px" width="100%">
+<p><img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
@@ -272,7 +303,7 @@ $(document).ready(function () {
 </div>
 <div id="examples" class="section level3">
 <h3>Examples</h3>
-<p>This example combines the <code>vertical_layout: fill</code> option with custom size attributes that dictate a larger vertical size for the first row:</p>
+<p>This example use the <code>data-height</code> attribute to dictate a larger vertical size for the first row, resulting in a layout that more clearly emphasizes the first chart.</p>
 <div class="row">
 <div class="col-md-5">
 <div id="chartsizing">
@@ -282,7 +313,7 @@ $(document).ready(function () {
 </div>
 <div class="col-md-7">
 <div height="470px" width="100%">
-<img class="holder" src="holder.js/100px330?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px315?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
 <p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2"></p>
@@ -294,7 +325,6 @@ $(document).ready(function () {
 </div>
 </div>
 </div>
-<p>Note that we’ve specified a <code>data-height</code> attribute on both rows to establish their relative heights. This results in a layout that more clearly emphasizes the first chart.</p>
 <p>This example is a variation of the single-column layout demonstrated above with a <code>data-height</code> attribute applied to the first chart:</p>
 <div class="row">
 <div class="col-md-5">

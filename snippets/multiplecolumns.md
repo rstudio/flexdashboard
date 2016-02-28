@@ -1,8 +1,6 @@
 ---
 title: "Multiple Columns"
-output: 
-  flexdashboard::flex_dashboard:
-    vertical_layout: fill
+output: flexdashboard::flex_dashboard
 ---
     
 Column {data-width=600}

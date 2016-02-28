@@ -2,7 +2,6 @@
 title: "Multiple Pages"
 output: 
   flexdashboard::flex_dashboard:
-    vertical_layout: fill
     orientation: columns
 ---
 

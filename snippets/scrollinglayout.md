@@ -1,6 +1,8 @@
 ---
-title: "Chart Stack"
-output: flexdashboard::flex_dashboard
+title: "Scrolling Layout"
+output: 
+  flexdashboard::flex_dashboard:
+    vertical_layout: scroll
 ---
     
 Column
@@ -18,11 +20,9 @@ Column
 
 ```
 
+### Chart 3
 
+```{r}
 
-
-
-
-
-
+```
 

@@ -46,7 +46,7 @@ You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. T
 
 ### Single Column Layout
 
-Dashboards are divided into columns and rows. By default, columns are defined using level 2 markdown headers (`------------------`) and charts are defined using level 3 headers (`###`). Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:
+Dashboards are divided into columns and rows. By default, columns are defined using level 2 markdown headers (`------------------`) and charts are defined using level 3 headers (`###`). Charts are stacked vertically within a column. For example, this layout defines a single column with two charts:
 
 <div class="row">
 
@@ -57,9 +57,8 @@ Dashboards are divided into columns and rows. By default, columns are defined us
 
 <div class="col-md-7">
 <div height="470px" width="100%">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
 </div>
 </div>
 
@@ -78,21 +77,47 @@ To add a second column of charts we just add another column section:
 </div>
 
 <div class="col-md-7">
-<div height="500px" width="100%">
+<div height="470px" width="100%">
 <div style="float: left; width: 60%;">
-<img class="holder" src="holder.js/100px500?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1">
 </div>
 <div style="margin-left: 60%;">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
 
 </div>
 
+In this example we've moved Chart 1 into its own column which it will fill entirely. We've also given the column a larger size via the `data-width` attribute to provide additional emphasis to Chart 1.
 
-In this example we've moved **Chart 1** into its own column which it will fill entirely. We've also given the column a larger size via the `data-width` attribute to provide additional emphasis to Chart 1.
+### Layout by Row
+
+You can also choose to orient dashboards row-wise rather than column-wise, by specifying the `orientation: rows` option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:
+
+<div class="row">
+
+<div class="col-md-5">
+<div id="roworientation"></div>
+<script type="text/javascript">loadSnippet('roworientation')</script>
+</div>
+
+<div class="col-md-7">
+<div height="496px" width="100%">
+<img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 2">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+</div>
+
+</div>
 
 ## Learning More
 

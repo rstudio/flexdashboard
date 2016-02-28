@@ -1,8 +1,6 @@
 ---
 title: "Deaths from Lung Cancer"
-output: 
-  flexdashboard::flex_dashboard: 
-    vertical_layout: fill
+output: flexdashboard::flex_dashboard
 runtime: shiny
 ---
 

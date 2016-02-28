@@ -34,7 +34,7 @@ The following example demonstrates the basics of using Shiny within a flexdashbo
 
 ### Source Code
 
-Here's the source code for the example. Note that since we have only a single chart as output we definitely want it to fill all of the available space. To accomplish this we specify `vertical_layout: fill` to the output options.
+Here's the source code for the example:
 
 <div id="shiny"></div>
 <script type="text/javascript">loadSnippet('shiny')</script>
