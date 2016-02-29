@@ -41,11 +41,12 @@ var FlexDashboard = (function () {
 
         pages.each(function(index) {
 
+          // lay it out
+          layoutDashboardPage($(this));
+
           // add it to the navbar
           addToNavbar($(this), index === 0);
 
-          // lay it out
-          layoutDashboardPage($(this));
         });
 
     } else {
@@ -96,13 +97,20 @@ var FlexDashboard = (function () {
     var id = page.attr('id');
     var icon = page.attr('data-icon');
 
-    // add the tab-pane class
-    page.addClass('tab-pane');
+    // get the wrapper
+    var wrapper = page.closest('.dashboard-page-wrapper');
+
+    // move the id to the wrapper
+    page.removeAttr('id');
+    wrapper.attr('id', id);
+
+    // add the tab-pane class to the wrapper
+    wrapper.addClass('tab-pane');
     if (active)
-      page.addClass('active');
+      wrapper.addClass('active');
 
     // get a reference to the h1, discover it's id and title, then remove it
-    var h1 = page.children('h1').first();
+    var h1 = wrapper.children('h1').first();
     var title = h1.html();
     h1.remove();
 
@@ -177,7 +185,7 @@ var FlexDashboard = (function () {
     // hoist up any content before level 2 or level 3 headers
     var children = page.children();
     children.each(function(index) {
-      if ($(this).hasClass('section'))
+      if ($(this).hasClass('level2') || $(this).hasClass('level3'))
         return false;
       $(this).insertBefore(page);
     });
