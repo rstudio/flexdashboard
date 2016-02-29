@@ -82,10 +82,7 @@ var FlexDashboard = (function () {
     for (var i = 0; i<navbarItems.length; i++) {
       var item = navbarItems[i];
       var li = $('<li></li>');
-      var a = $('<a></a>');
-      a.attr('href', item.url);
-      a.html(item.title);
-      li.append(a);
+      li.append(navbarLink(item.icon, item.title, item.href));
       if (item.align === "right")
         navbarRight.append(li);
       else
@@ -95,8 +92,9 @@ var FlexDashboard = (function () {
 
   function addToNavbar(page, active) {
 
-    // capture the id
+    // capture the id and data-icon attribute (if any)
     var id = page.attr('id');
+    var icon = page.attr('data-icon');
 
     // add the tab-pane class
     page.addClass('tab-pane');
@@ -105,19 +103,32 @@ var FlexDashboard = (function () {
 
     // get a reference to the h1, discover it's id and title, then remove it
     var h1 = page.children('h1').first();
-    var pageTitleHTML = h1.html();
+    var title = h1.html();
     h1.remove();
 
     // add an item to the navbar for this tab
     var li = $('<li></li>');
     if (active)
       li.addClass('active');
-    var a = $('<a></a>');
-    a.attr('href', '#' + id);
+    var a = navbarLink(icon, title, '#' + id);
     a.attr('data-toggle', 'tab');
-    a.html(pageTitleHTML);
     li.append(a);
     $('ul.navbar-left').append(li);
+  }
+
+  function navbarLink(icon, title, href) {
+    var a = $('<a></a>');
+    if (icon) {
+      var iconName = icon.replace('fa-', '');
+      var iconElement = $('<span class="fa fa-' + iconName + '"></span>');
+      if (title)
+        iconElement.css('margin-right', '7px');
+      a.append(iconElement);
+    }
+    if (title)
+      a.append(title);
+    a.attr('href', href);
+    return a;
   }
 
   // layout a dashboard page

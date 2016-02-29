@@ -230,7 +230,9 @@ pandoc_navbar_args <- function(navbar) {
   if (!is.list(navbar))
     stop("navbar must be a list of navbar elements", call. = FALSE)
   for (item in navbar) {
-     if (!is.list(item) || is.null(item[["title"]]) || is.null(item[["url"]]))
+     if (!is.list(item) ||
+         (is.null(item[["title"]]) && is.null(item[["icon"]])) ||
+         is.null(item[["url"]]))
        stop("navbar must be a list of navbar elements", call. = FALSE)
   }
 
