@@ -203,6 +203,7 @@ body hr {
   opacity: 0;
 }
 
+/* Fixed position sidebar */
 
 .section.sidebar {
   position: fixed;
