@@ -83,10 +83,10 @@ var FlexDashboard = (function () {
       var item = navbarItems[i];
       var li = $('<li></li>');
       li.append(navbarLink(item.icon, item.title, item.url));
-      if (item.align === "right")
-        navbarRight.append(li);
-      else
+      if (item.align === "left")
         navbarLeft.append(li);
+      else
+        navbarRight.append(li);
     }
   }
 
