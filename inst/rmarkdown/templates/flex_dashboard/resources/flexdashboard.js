@@ -82,7 +82,7 @@ var FlexDashboard = (function () {
     for (var i = 0; i<navbarItems.length; i++) {
       var item = navbarItems[i];
       var li = $('<li></li>');
-      li.append(navbarLink(item.icon, item.title, item.href));
+      li.append(navbarLink(item.icon, item.title, item.url));
       if (item.align === "right")
         navbarRight.append(li);
       else
@@ -116,19 +116,53 @@ var FlexDashboard = (function () {
     $('ul.navbar-left').append(li);
   }
 
-  function navbarLink(icon, title, href) {
+  function navbarLink(icon, title, url) {
+
     var a = $('<a></a>');
     if (icon) {
+      // create the icon
       var iconName = icon.replace('fa-', '');
       var iconElement = $('<span class="fa fa-' + iconName + '"></span>');
       if (title)
         iconElement.css('margin-right', '7px');
       a.append(iconElement);
+      // if url is null see if we can auto-generate based on icon (e.g. social)
+      if (!url)
+        maybeGenerateLinkFromIcon(iconName, a);
     }
     if (title)
       a.append(title);
-    a.attr('href', href);
+
+    // add the url
+    if (url)
+      a.attr('href', url);
+
     return a;
+  }
+
+  // auto generate a link from an icon name (e.g. twitter) when possible
+  function maybeGenerateLinkFromIcon(iconName, a) {
+
+     var serviceLinks = {
+      "twitter": "https://twitter.com/share?text=" + encodeURIComponent(document.title) + "&url="+encodeURIComponent(location.href),
+      "facebook": "https://www.facebook.com/sharer/sharer.php?s=100&p[url]="+encodeURIComponent(location.href),
+      "google-plus": "https://plus.google.com/share?url="+encodeURIComponent(location.href),
+      "linkedin": "https://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(location.href) + "&title=" + encodeURIComponent(document.title),
+      "pinterest": "https://pinterest.com/pin/create/link/?url="+encodeURIComponent(location.href) + "&description=" + encodeURIComponent(document.title)
+    };
+
+    var makeSocialLink = function(a, url) {
+      a.attr('href', '#');
+      a.on('click', function(e) {
+        e.preventDefault();
+        window.open(url);
+      });
+    };
+
+    $.each(serviceLinks, function(key, value) {
+      if (iconName.indexOf(key) === 0)
+        makeSocialLink(a, value);
+    });
   }
 
   // layout a dashboard page

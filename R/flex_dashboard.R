@@ -231,9 +231,9 @@ pandoc_navbar_args <- function(navbar) {
     stop("navbar must be a list of navbar elements", call. = FALSE)
   for (item in navbar) {
      if (!is.list(item) ||
-         (is.null(item[["title"]]) && is.null(item[["icon"]])) ||
-         is.null(item[["url"]]))
+         (is.null(item[["title"]]) && is.null(item[["icon"]]))) {
        stop("navbar must be a list of navbar elements", call. = FALSE)
+     }
   }
 
   # convert to json
