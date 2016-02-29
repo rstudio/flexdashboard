@@ -63,7 +63,7 @@ body hr {
   display: flex;
 }
 
-.dashboard-row-orientation {
+.dashboard-page-wrapper, .dashboard-row-orientation {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

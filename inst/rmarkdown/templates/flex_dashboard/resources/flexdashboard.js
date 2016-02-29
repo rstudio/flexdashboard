@@ -168,6 +168,12 @@ var FlexDashboard = (function () {
   // layout a dashboard page
   function layoutDashboardPage(page) {
 
+    // use a page wrapper so that free form content above the
+    // dashboard appears at the top rather than the side (as it
+    // would without the wrapper in a column orientation)
+    var wrapper = $('<div class="dashboard-page-wrapper"></div>');
+    page.wrap(wrapper);
+
     // hoist up any content before level 2 or level 3 headers
     var children = page.children();
     children.each(function(index) {
