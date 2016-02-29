@@ -376,12 +376,14 @@ $(document).ready(function () {
 </div>
 <div id="navigation-bar" class="section level2">
 <h2>Navigation Bar</h2>
-<p>By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has <a href="#multiple-pages">Multiple Pages</a>, links to other available pages are also included. You can also add custom links to navigation bar using the <code>navbar</code> option. For example, the following adds “About” and “Source Code” links to the right side of the navigation bar:</p>
+<p>By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has <a href="#multiple-pages">Multiple Pages</a>, links to other available pages are also included on the left. You can also add custom links to navigation bar using the <code>navbar</code> option. For example, the following adds an “About” link to the left side of the navigation bar and Twitter, Facebook, and Source Code links to the right side of the navigation bar:</p>
 <div id="navbarlinks">
 
 </div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
-<p>The <code>title</code> and <code>url</code> fields are required for navigation bar items. The <code>align</code> field is optional (it can be “left” or “right” and defaults to “left”).</p>
+<p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). The <a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a> icon collection is included with flexdashboard, so any of the over 600 icons in that set can be used</p>
+<p>You should also include a <code>url</code> as the navigation target. Note that a URL can be automatically generated for social sharing links (i.e. when you use the “facebook”, “twitter”, “google-plus”, “linkedin”, or “pinterest” icon).</p>
+<p>The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
 </div>
 <div id="text-annotations" class="section level2">
 <h2>Text Annotations</h2>

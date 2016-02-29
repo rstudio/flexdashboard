@@ -195,12 +195,16 @@ Note that in this example both pages use the default "columns" orientation. It i
 
 ## Navigation Bar
 
-By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has [Multiple Pages], links to other available pages are also included. You can also add custom links to navigation bar using the `navbar` option. For example, the following adds "About" and "Source Code" links to the right side of the navigation bar:
+By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has [Multiple Pages], links to other available pages are also included on the left. You can also add custom links to navigation bar using the `navbar` option. For example, the following adds an "About" link to the left side of the navigation bar and Twitter, Facebook, and Source Code links to the right side of the navigation bar:
 
 <div id="navbarlinks"></div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
 
-The `title` and `url` fields are required for navigation bar items. The `align` field is optional (it can be "left" or "right" and defaults to "left").
+Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). The [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/) icon collection is included with flexdashboard, so any of the over 600 icons in that set can be used
+
+You should also include a `url` as the navigation target. Note that a URL can be automatically generated for social sharing links (i.e. when you use the "facebook", "twitter", "google-plus", "linkedin", or "pinterest" icon).
+
+The `align` field is optional (it can be "left" or "right" and defaults to "right").
 
 ## Text Annotations
 
