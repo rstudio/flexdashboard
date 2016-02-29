@@ -56,7 +56,7 @@ body hr {
   visibility: hidden;
 }
 
-.tab-content>.section.level1.active {
+.tab-content>.dashboard-page-wrapper.active {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
