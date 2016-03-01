@@ -381,9 +381,17 @@ $(document).ready(function () {
 
 </div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
-<p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). The <a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a> icon collection is included with flexdashboard, so any of the over 600 icons in that set can be used.</p>
-<p>You should also include a <code>url</code> as the navigation target. Note that a URL can be automatically generated for social sharing links (i.e. when you use the “fa-facebook”, “fa-twitter”, “fa-google-plus”, “fa-linkedin”, or “fa-pinterest” icon).</p>
-<p>The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
+<p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). You should also include a <code>url</code> as the navigation target (note however that a URL can be automatically generated for social sharing links, this is discussed in further detail below). The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
+<div id="icons" class="section level3">
+<h3>Icons</h3>
+<p>You can specify icons for navigation bar items from three differnet icon sets:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a></p></li>
+<li><p><a href="http://ionicons.com/">Ionicons</a></p></li>
+<li><p><a href="https://getbootstrap.com/components/#glyphicons">Bootstrap Glyphicons</a></p></li>
+</ol>
+<p>When referring to an icon you should use it’s full name including the icon set prefix (e.g. “fa-github”, “ion-social-twitter”, “glyphicon-time”, etc.). Note also that if you don’t provide a <code>url</code> for social sharing icons (e.g. “fa-twitter” or “fa-facebook”) then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).</p>
+</div>
 </div>
 <div id="text-annotations" class="section level2">
 <h2>Text Annotations</h2>

@@ -200,11 +200,19 @@ By default, the flexdashboard navigation bar includes only the dashboard title. 
 <div id="navbarlinks"></div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
 
-Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). The [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/) icon collection is included with flexdashboard, so any of the over 600 icons in that set can be used.
+Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). You should also include a `url` as the navigation target (note however that a URL can be automatically generated for social sharing links, this is discussed in further detail below). The `align` field is optional (it can be "left" or "right" and defaults to "right").
 
-You should also include a `url` as the navigation target. Note that a URL can be automatically generated for social sharing links (i.e. when you use the "fa-facebook", "fa-twitter", "fa-google-plus", "fa-linkedin", or "fa-pinterest" icon).
+### Icons
 
-The `align` field is optional (it can be "left" or "right" and defaults to "right").
+You can specify icons for navigation bar items from three differnet icon sets:
+
+1. [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/)
+
+2. [Ionicons](http://ionicons.com/)
+
+3. [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
+
+When referring to an icon you should use it's full name including the icon set prefix (e.g. "fa-github", "ion-social-twitter", "glyphicon-time", etc.). Note also that if you don't provide a `url` for social sharing icons (e.g. "fa-twitter" or "fa-facebook") then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).
 
 ## Text Annotations
 
