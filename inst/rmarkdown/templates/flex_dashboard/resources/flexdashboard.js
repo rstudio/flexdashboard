@@ -146,9 +146,14 @@ var FlexDashboard = (function () {
 
     var a = $('<a></a>');
     if (icon) {
+
+      // get the name of the icon set and icon
+      var dashPos = icon.indexOf("-");
+      var iconSet = icon.substring(0, dashPos);
+      var iconName = icon.substring(dashPos + 1);
+
       // create the icon
-      var iconName = icon.replace('fa-', '');
-      var iconElement = $('<span class="fa fa-' + iconName + '"></span>');
+      var iconElement = $('<span class="' + iconSet + ' ' + icon + '"></span>');
       if (title)
         iconElement.css('margin-right', '7px');
       a.append(iconElement);
