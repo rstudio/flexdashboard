@@ -1,8 +1,6 @@
 ---
 title: "Deaths from Lung Cancer"
-output: 
-  flexdashboard::flex_dashboard: 
-    fill_page: true
+output: flexdashboard::flex_dashboard
 runtime: shiny
 ---
 
@@ -44,5 +42,12 @@ renderPlot({
        pch = 20, cex = 3)
   points(clusters()$centers, pch = 4, cex = 4, lwd = 4)
 })
+```
+
+### Dygraph
+
+```{r}
+library(dygraphs)
+dygraph(ldeaths)
 ```
 
