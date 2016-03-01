@@ -618,7 +618,8 @@ var FlexDashboard = (function () {
     var img = chartContent.children('p.image-container')
                           .children('img:only-child');
     var widget = chartContent.children('div[id^="htmlwidget-"],div.html-widget');
-    return img.length > 0 || widget.length > 0;
+    var shiny = chartContent.children('div[class^="shiny-"]');
+    return img.length > 0 || widget.length > 0 || shiny.length > 0;
   }
 
   // safely detect rendering on a mobile phone
