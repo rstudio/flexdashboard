@@ -8,16 +8,16 @@
 #'@inheritParams rmarkdown::html_document
 #'
 #'@param navbar Optional list of elements to be placed on the flexdashboard
-#'  navigation bar. Each element should be a list containing \code{title} and
-#'  \code{url} fields (required) and an optional \code{align} ("left" or
-#'  "right") field.
+#'  navigation bar. Each element should be a list containing a \code{title}
+#'  and/or \code{icon} field, a \code{url} field and an optional
+#'  \code{align} ("left" or "right") field.
 #'
 #'@param orientation Determines whether level 2 headings are treated as
 #'  dashboard rows or dashboard columns.
 #'
 #'@param vertical_layout Vertical layout behavior: "fill" to vertically resize
-#'  charts so they completely fill the page; "scroll" to layout charts at
-#'  their natural height, scrolling the page if necessary.
+#'  charts so they completely fill the page; "scroll" to layout charts at their
+#'  natural height, scrolling the page if necessary.
 #'
 #'@param theme Visual theme ("default", "bootstrap", "cerulean", "journal",
 #'  "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",

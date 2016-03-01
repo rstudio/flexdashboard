@@ -7,8 +7,8 @@
 flex_dashboard(fig_width = 5, fig_height = 4, dev = "png", smart = TRUE,
   self_contained = TRUE, navbar = NULL, orientation = c("columns",
   "rows"), vertical_layout = c("fill", "scroll"), theme = "default",
-  highlight = "default", mathjax = "default", css = NULL,
-  includes = NULL, lib_dir = NULL, md_extensions = NULL,
+  highlight = "default", mathjax = "default", extra_dependencies = NULL,
+  css = NULL, includes = NULL, lib_dir = NULL, md_extensions = NULL,
   pandoc_args = NULL, devel = FALSE, ...)
 }
 \arguments{
@@ -29,16 +29,16 @@ documents MathJax is still loaded externally (this is necessary because of
 it's size).}
 
 \item{navbar}{Optional list of elements to be placed on the flexdashboard
-navigation bar. Each element should be a list containing \code{title} and
-\code{url} fields (required) and an optional \code{align} ("left" or
-"right") field.}
+navigation bar. Each element should be a list containing a \code{title}
+and/or \code{icon} field, a \code{url} field and an optional
+\code{align} ("left" or "right") field.}
 
 \item{orientation}{Determines whether level 2 headings are treated as
 dashboard rows or dashboard columns.}
 
 \item{vertical_layout}{Vertical layout behavior: "fill" to vertically resize
-charts so they completely fill the page; "scroll" to layout charts at
-their natural height, scrolling the page if necessary.}
+charts so they completely fill the page; "scroll" to layout charts at their
+natural height, scrolling the page if necessary.}
 
 \item{theme}{Visual theme ("default", "bootstrap", "cerulean", "journal",
 "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
@@ -53,6 +53,9 @@ and "haddock". Pass NULL to prevent syntax highlighting.}
 the official MathJax CDN. The "local" option uses a local version of MathJax
 (which is copied into the output directory). You can pass an alternate URL
 or pass \code{NULL} to exclude MathJax entirely.}
+
+\item{extra_dependencies}{Additional function arguments to pass to the
+base R Markdown HTML output formatter \code{\link{html_document_base}}}
 
 \item{css}{One or more css files to include}
 
