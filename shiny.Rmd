@@ -50,6 +50,14 @@ Sidebars always appear on the left no matter where they are defined within the f
 <div id="sidebarwidth"></div>
 <script type="text/javascript">loadSnippet('sidebarwidth')</script>
 
+### Global Sidebar
+
+If you are creating a flexdashboard with [Multiple Pages](using.html#multiple-pages) you may want to use a single sidebar that applies across all pages. In this case you should use the `{.sidebar-global}` attribute (rather than the `{.sidebar}` attribute). 
+
+For example, this dashboard includes a sidebar on the first page with the `{.sidebar-global}` attribute which results in the sidebar being visible for both pages:
+
+<div id="sidebarmultiplepages"></div>
+<script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
 
 ## flexdashboard vs. shinydashboard
 
