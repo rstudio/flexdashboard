@@ -3,7 +3,8 @@ title: "Using flexdashboard"
 output:
   html_document:
     toc: true
-    toc_depth: 2
+    toc_depth: 3
+    toc_float: true
 ---
 
 ## Layout Orientation
@@ -14,26 +15,24 @@ By default, level 2 markdown headers (`------------------`) within dashboards de
 
 <div class="row">
 
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="columnorientation"></div>
 <script type="text/javascript">loadSnippet('columnorientation')</script>
 </div>
 
-<div class="col-md-7">
-<div height="470px" width="100%">
-<div style="float: left; width: 62%;">
-<img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1">
+<div class="col-md-6 nopadding">
+<div height="422px" width="100%">
+<div style="float: left; width: 50%;">
+<img class="holder" src="holder.js/100px422?size=28&amp;text=Chart 1">
 </div>
-<div style="margin-left: 62%;">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3">
+<div style="margin-left: 50%;">
+<img class="holder" src="holder.js/100px211?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px211?size=28&amp;text=Chart 3">
 </div>
 </div>
-</div>
-
 </div>
 
-Note that the `data-width` attribute is used to allocate additional space to the chart in column one.
+</div>
 
 ### Rows
 
@@ -41,20 +40,20 @@ You can also choose to orient dashboards row-wise rather than column-wise, by sp
 
 <div class="row">
 
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="roworientation"></div>
 <script type="text/javascript">loadSnippet('roworientation')</script>
 </div>
 
-<div class="col-md-7">
-<div height="496px" width="100%">
-<img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 1">
+<div class="col-md-6 nopadding">
+<div height="454px" width="100%">
+<img class="holder" src="holder.js/100px227?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px227?size=28&amp;text=Chart 2">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 3">
+<img class="holder" src="holder.js/100px227?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
@@ -62,7 +61,7 @@ You can also choose to orient dashboards row-wise rather than column-wise, by sp
 
 </div>
 
-## Scrolling
+## Page Fill vs. Scrolling
 
 By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you'll probably want to scroll rather than fit them all onto the page. You can control this behavior using the `vertical_layout` option. Specify `fill` to vertically resize charts so they completely fill the page and `scroll` to layout charts at their natural height, scrolling the page if necessary.
 
@@ -70,16 +69,16 @@ For example, the following layout includes 3 charts and requests that the page s
 
 <div class="row">
 
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartstack-scrolling"></div>
 <script type="text/javascript">loadSnippet('chartstack-scrolling')</script>
 </div>
 
-<div class="col-md-7">
-<div height="470px" width="100%">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3">
+<div class="col-md-6 nopadding">
+<div height="406px" width="100%">
+<img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 3">
 </div>
 </div>
 
@@ -112,20 +111,20 @@ You can modify the default sizing behavior by applying the `data-width` and `dat
 This example use the `data-height` attribute to dictate a larger vertical size for the first row, resulting in a layout that more clearly emphasizes the first chart.
 
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartsizing"></div>
 <script type="text/javascript">loadSnippet('chartsizing')</script>
 </div>
 
-<div class="col-md-7">
-<div height="470px" width="100%">
-<img class="holder" src="holder.js/100px315?size=28&amp;text=Chart 1">
+<div class="col-md-6 nopadding">
+<div height="454px" width="100%">
+<img class="holder" src="holder.js/100px286?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px168?size=28&amp;text=Chart 2">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3">
+<img class="holder" src="holder.js/100px168?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
@@ -137,16 +136,16 @@ This example use the `data-height` attribute to dictate a larger vertical size f
 This example is a variation of the single-column layout demonstrated above with a `data-height` attribute applied to the first chart:
 
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartdataheight"></div>
 <script type="text/javascript">loadSnippet('chartdataheight')</script>
 </div>
 
-<div class="col-md-7">
-<div height="470px" width="100%">
-<img class="holder" src="holder.js/100px230?size=28&amp;text=Chart 1">
-<img class="holder" src="holder.js/100px120?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px120?size=28&amp;text=Chart 3">
+<div class="col-md-6 nopadding">
+<div height="360px" width="100%">
+<img class="holder" src="holder.js/100px173?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px100?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px100?size=28&amp;text=Chart 3">
 </div>
 </div>
 
@@ -202,7 +201,7 @@ By default, the flexdashboard navigation bar includes only the dashboard title. 
 
 Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). You should also include a `url` as the navigation target (note however that a URL can be automatically generated for social sharing links, this is discussed in further detail below). The `align` field is optional (it can be "left" or "right" and defaults to "right").
 
-### Icons
+### Icon Sets
 
 You can specify icons for navigation bar items from three differnet icon sets:
 

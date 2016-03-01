@@ -14,6 +14,9 @@
 <title>Using flexdashboard</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -164,6 +167,93 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -199,18 +289,6 @@ $(document).ready(function () {
 
 </div>
 
-<div id="TOC">
-<ul>
-<li><a href="#layout-orientation">Layout Orientation</a></li>
-<li><a href="#scrolling">Scrolling</a></li>
-<li><a href="#chart-sizing">Chart Sizing</a></li>
-<li><a href="#figure-sizes-and-scaling">Figure Sizes and Scaling</a></li>
-<li><a href="#multiple-pages">Multiple Pages</a></li>
-<li><a href="#navigation-bar">Navigation Bar</a></li>
-<li><a href="#text-annotations">Text Annotations</a></li>
-<li><a href="#visual-themes">Visual Themes</a></li>
-</ul>
-</div>
 
 <div id="layout-orientation" class="section level2">
 <h2>Layout Orientation</h2>
@@ -218,44 +296,43 @@ $(document).ready(function () {
 <h3>Columns</h3>
 <p>By default, level 2 markdown headers (<code>------------------</code>) within dashboards define columns, with individual charts stacked vertically within each column. Here’s the definition of a two column dashboard with one chart on the left and two on the right:</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="columnorientation">
 
 </div>
 <script type="text/javascript">loadSnippet('columnorientation')</script>
 </div>
-<div class="col-md-7">
-<div height="470px" width="100%">
-<div style="float: left; width: 62%;">
-<p><img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1"></p>
+<div class="col-md-6 nopadding">
+<div height="422px" width="100%">
+<div style="float: left; width: 50%;">
+<p><img class="holder" src="holder.js/100px422?size=28&amp;text=Chart 1"></p>
 </div>
-<div style="margin-left: 62%;">
-<p><img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3"></p>
-</div>
-</div>
+<div style="margin-left: 50%;">
+<p><img class="holder" src="holder.js/100px211?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px211?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
-<p>Note that the <code>data-width</code> attribute is used to allocate additional space to the chart in column one.</p>
+</div>
+</div>
 </div>
 <div id="rows" class="section level3">
 <h3>Rows</h3>
 <p>You can also choose to orient dashboards row-wise rather than column-wise, by specifying the <code>orientation: rows</code> option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="roworientation">
 
 </div>
 <script type="text/javascript">loadSnippet('roworientation')</script>
 </div>
-<div class="col-md-7">
-<div height="496px" width="100%">
-<img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 1">
+<div class="col-md-6 nopadding">
+<div height="454px" width="100%">
+<img class="holder" src="holder.js/100px227?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
-<p><img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 2"></p>
+<p><img class="holder" src="holder.js/100px227?size=28&amp;text=Chart 2"></p>
 </div>
 <div style="margin-left: 50%;">
-<p><img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 3"></p>
+<p><img class="holder" src="holder.js/100px227?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
@@ -263,20 +340,20 @@ $(document).ready(function () {
 </div>
 </div>
 </div>
-<div id="scrolling" class="section level2">
-<h2>Scrolling</h2>
+<div id="page-fill-vs.scrolling" class="section level2">
+<h2>Page Fill vs. Scrolling</h2>
 <p>By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you’ll probably want to scroll rather than fit them all onto the page. You can control this behavior using the <code>vertical_layout</code> option. Specify <code>fill</code> to vertically resize charts so they completely fill the page and <code>scroll</code> to layout charts at their natural height, scrolling the page if necessary.</p>
 <p>For example, the following layout includes 3 charts and requests that the page scroll as necessary to accomodate their natural height:</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartstack-scrolling">
 
 </div>
 <script type="text/javascript">loadSnippet('chartstack-scrolling')</script>
 </div>
-<div class="col-md-7">
-<div height="470px" width="100%">
-<p><img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3"></p>
+<div class="col-md-6 nopadding">
+<div height="406px" width="100%">
+<p><img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
@@ -305,21 +382,21 @@ $(document).ready(function () {
 <h3>Examples</h3>
 <p>This example use the <code>data-height</code> attribute to dictate a larger vertical size for the first row, resulting in a layout that more clearly emphasizes the first chart.</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartsizing">
 
 </div>
 <script type="text/javascript">loadSnippet('chartsizing')</script>
 </div>
-<div class="col-md-7">
-<div height="470px" width="100%">
-<img class="holder" src="holder.js/100px315?size=28&amp;text=Chart 1">
+<div class="col-md-6 nopadding">
+<div height="454px" width="100%">
+<img class="holder" src="holder.js/100px286?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
-<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2"></p>
+<p><img class="holder" src="holder.js/100px168?size=28&amp;text=Chart 2"></p>
 </div>
 <div style="margin-left: 50%;">
-<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3"></p>
+<p><img class="holder" src="holder.js/100px168?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
@@ -327,15 +404,15 @@ $(document).ready(function () {
 </div>
 <p>This example is a variation of the single-column layout demonstrated above with a <code>data-height</code> attribute applied to the first chart:</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartdataheight">
 
 </div>
 <script type="text/javascript">loadSnippet('chartdataheight')</script>
 </div>
-<div class="col-md-7">
-<div height="470px" width="100%">
-<p><img class="holder" src="holder.js/100px230?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px120?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px120?size=28&amp;text=Chart 3"></p>
+<div class="col-md-6 nopadding">
+<div height="360px" width="100%">
+<p><img class="holder" src="holder.js/100px173?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px100?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px100?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
@@ -382,8 +459,8 @@ $(document).ready(function () {
 </div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
 <p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). You should also include a <code>url</code> as the navigation target (note however that a URL can be automatically generated for social sharing links, this is discussed in further detail below). The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
-<div id="icons" class="section level3">
-<h3>Icons</h3>
+<div id="icon-sets" class="section level3">
+<h3>Icon Sets</h3>
 <p>You can specify icons for navigation bar items from three differnet icon sets:</p>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a></p></li>
@@ -421,6 +498,8 @@ $(document).ready(function () {
 
 
 
+</div>
+</div>
 
 </div>
 

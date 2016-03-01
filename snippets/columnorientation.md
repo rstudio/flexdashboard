@@ -3,26 +3,23 @@ title: "Column Orientation"
 output: flexdashboard::flex_dashboard
 ---
     
-Column {data-width=600}
+Column
 -------------------------------------
     
 ### Chart 1
     
 ```{r}
-
 ```
    
-Column {data-width=400}
+Column
 -------------------------------------
    
 ### Chart 2
 
 ```{r}
-
 ```   
  
 ### Chart 3
     
 ```{r}
-
 ```

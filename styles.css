@@ -24,3 +24,8 @@
   padding-bottom: 5px;
 }
 
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
