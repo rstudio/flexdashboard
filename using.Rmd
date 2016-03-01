@@ -200,9 +200,9 @@ By default, the flexdashboard navigation bar includes only the dashboard title. 
 <div id="navbarlinks"></div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
 
-Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). The [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/) icon collection is included with flexdashboard, so any of the over 600 icons in that set can be used
+Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). The [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/) icon collection is included with flexdashboard, so any of the over 600 icons in that set can be used.
 
-You should also include a `url` as the navigation target. Note that a URL can be automatically generated for social sharing links (i.e. when you use the "facebook", "twitter", "google-plus", "linkedin", or "pinterest" icon).
+You should also include a `url` as the navigation target. Note that a URL can be automatically generated for social sharing links (i.e. when you use the "fa-facebook", "fa-twitter", "fa-google-plus", "fa-linkedin", or "fa-pinterest" icon).
 
 The `align` field is optional (it can be "left" or "right" and defaults to "right").
 
