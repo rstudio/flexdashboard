@@ -26,6 +26,24 @@ var FlexDashboard = (function () {
     // find the main dashboard container
     var dashboardContainer = $('#dashboard-container');
 
+    // look for a global sidebar
+    var globalSidebar = dashboardContainer.find(".sidebar-global");
+    if (globalSidebar.length > 0) {
+
+      // ensure that sidebar-global also implies sidebar
+      globalSidebar.addClass('sidebar');
+
+      // global layout for fullscreen displays
+      if (!isMobilePhone()) {
+
+         // hoist it up to the top level
+         globalSidebar.insertBefore(dashboardContainer);
+
+         // lay it out (set width/positions)
+         layoutSidebar(globalSidebar, dashboardContainer);
+      }
+    }
+
     // look for pages to layout
     var pages = $('div.section.level1');
     if (pages.length > 0) {
@@ -232,23 +250,8 @@ var FlexDashboard = (function () {
 
       // handle sidebar
       var sidebar = page.find('.section.sidebar');
-      if (sidebar.length > 0) {
-
-        // get it out of the header hierarchy
-        sidebar = sidebar.first();
-        sidebar.removeClass('level2');
-        sidebar.children('h2').remove();
-
-        // determine width
-        var sidebarWidth = 250;
-        var dataWidth = parseInt(sidebar.attr('data-width'));
-        if (dataWidth)
-          sidebarWidth = dataWidth;
-
-        // set the width and shift the page right to accomodate the sidebar
-        sidebar.css('width', sidebarWidth + 'px');
-        page.css('padding-left', sidebarWidth + 'px');
-      }
+      if (sidebar.length > 0)
+        layoutSidebar(sidebar, page);
     }
 
     // give it and it's parent divs height: 100% if we are in fillPage mode
@@ -262,6 +265,24 @@ var FlexDashboard = (function () {
       layoutPageByRows(page, fillPage);
     else if (orientation === 'columns')
       layoutPageByColumns(page, fillPage);
+  }
+
+  function layoutSidebar(sidebar, content) {
+
+    // get it out of the header hierarchy
+    sidebar = sidebar.first();
+    sidebar.removeClass('level2');
+    sidebar.children('h2').remove();
+
+    // determine width
+    var sidebarWidth = 250;
+    var dataWidth = parseInt(sidebar.attr('data-width'));
+    if (dataWidth)
+      sidebarWidth = dataWidth;
+
+    // set the width and shift the page right to accomodate the sidebar
+    sidebar.css('width', sidebarWidth + 'px');
+    content.css('padding-left', sidebarWidth + 'px');
   }
 
   function layoutPageByRows(page, fillPage) {
