@@ -191,7 +191,7 @@ var FlexDashboard = (function () {
     };
 
     $.each(serviceLinks, function(key, value) {
-      if (iconName.indexOf(key) === 0)
+      if (iconName.indexOf(key) !== -1)
         makeSocialLink(a, value);
     });
   }

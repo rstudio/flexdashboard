@@ -241,18 +241,22 @@ pandoc_navbar_args <- function(navbar) {
 navbar_dependencies <- function(navbar) {
 
   font_awesome <- FALSE
+  ionicons <- FALSE
 
   for (item in navbar) {
     if (!is.null(item$icon)) {
       if (grepl('^fa-', item$icon))
         font_awesome <- TRUE
+      if (grepl('^ion-', item$icon))
+        ionicons <- TRUE
     }
   }
 
   deps <- list()
   if (font_awesome)
     deps <- append(deps, list(html_dependency_font_awesome()))
-
+  if (ionicons)
+    deps <- append(deps, list(html_dependency_ionicons()))
   deps
 }
 
@@ -264,6 +268,16 @@ html_dependency_font_awesome <- function() {
     stylesheet = "css/font-awesome.min.css"
   )
 }
+
+html_dependency_ionicons <- function() {
+  htmlDependency(
+    "ionicons",
+    "2.0.1",
+    src = system.file("www/ionicons", package = "flexdashboard"),
+    stylesheet = "css/ionicons.min.css"
+  )
+}
+
 
 
 # return a string as a tempfile
