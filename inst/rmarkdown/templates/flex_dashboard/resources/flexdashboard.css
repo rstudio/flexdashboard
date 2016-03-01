@@ -88,10 +88,6 @@ body hr {
 }
 
 .dashboard-row {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -101,6 +97,13 @@ body hr {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+.dashboard-row-flex {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .dashboard-column-orientation {
@@ -131,7 +134,7 @@ body hr {
           flex-direction: column;
 }
 
-.chart-wrapper {
+.chart-wrapper-flex {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
@@ -147,7 +150,7 @@ body hr {
           flex-direction: column;
 }
 
-.chart-stage {
+.chart-stage-flex {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;

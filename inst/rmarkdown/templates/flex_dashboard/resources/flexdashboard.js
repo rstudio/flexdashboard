@@ -281,13 +281,14 @@ var FlexDashboard = (function () {
 
     rows.each(function () {
 
-      // flag indicating whether we have any captions
+      // flags
       var haveCaptions = false;
+      var haveFlexHeight = true;
 
       // remove the h2
       $(this).children('h2').remove();
 
-      // make it a flexbox row
+      // make it a dashboard row
       $(this).addClass('dashboard-row');
 
       // find all of the level 3 subheads
@@ -301,6 +302,10 @@ var FlexDashboard = (function () {
 
         // layout the chart
         var result = layoutChart($(this));
+
+        // update flexHeight state
+        if (!result.flex)
+          haveFlexHeight = false;
 
         // update state
         if (result.caption)
@@ -316,21 +321,29 @@ var FlexDashboard = (function () {
       if (!haveCaptions)
         $(this).find('.chart-notes').remove();
 
+       // make it a flexbox row
+      if (haveFlexHeight)
+        $(this).addClass('dashboard-row-flex');
+
       // now we can set the height on all the wrappers (based on maximum
       // figure height + room for title and notes, or data-height on the
-      // container if specified)
-      var flexHeight;
+      // container if specified). However, don't do this if there is
+      // no flex on any of the constituent columns
+      var flexHeight = null;
       var dataHeight = parseInt($(this).attr('data-height'));
       if (dataHeight)
         flexHeight = adjustedHeight(dataHeight, columns.first());
-      else
+      else if (haveFlexHeight)
         flexHeight = maxChartHeight(figureSizes, columns);
-      if (fillPage)
-        setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
-      else {
-        $(this).css('height', flexHeight + 'px');
-        setFlex($(this), '0 0 ' + flexHeight + 'px');
+      if (flexHeight) {
+        if (fillPage)
+          setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
+        else {
+          $(this).css('height', flexHeight + 'px');
+          setFlex($(this), '0 0 ' + flexHeight + 'px');
+        }
       }
+
     });
   }
 
@@ -383,14 +396,16 @@ var FlexDashboard = (function () {
         if (!result.caption)
           $(this).find('.chart-notes').remove();
 
-        // set height based on figHeight, then adjust
-        var chartHeight = figureSizes[index].height;
-        chartHeight = adjustedHeight(chartHeight, $(this));
-        if (fillPage)
-          setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
-        else {
-          $(this).css('height', chartHeight + 'px');
-          setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+        // set flex height based on figHeight, then adjust
+        if (result.flex) {
+          var chartHeight = figureSizes[index].height;
+          chartHeight = adjustedHeight(chartHeight, $(this));
+          if (fillPage)
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
+          else {
+            $(this).css('height', chartHeight + 'px');
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+          }
         }
       });
     });
@@ -477,7 +492,8 @@ var FlexDashboard = (function () {
 
     // state to return
     var result = {
-      caption: false
+      caption: false,
+      flex: false
     };
 
     // get a reference to the h3, discover it's inner html, and remove it
@@ -493,9 +509,17 @@ var FlexDashboard = (function () {
     chart.wrapInner('<div class="chart-stage"></div>');
     var chartContent = chart.children('.chart-stage');
 
-    // additional shim to break out of flexbox sizing
-    chartContent.wrapInner('<div class="chart-shim"></div>');
-    chartContent = chartContent.children('.chart-shim');
+    // flex the content if it has a chart OR is empty (e.g. samply layout)
+    result.flex = hasChart(chartContent) || (chartContent.find('p').length == 0);
+    if (result.flex) {
+      // add flex classes
+      chart.addClass('chart-wrapper-flex');
+      chartContent.addClass('chart-stage-flex');
+
+      // additional shim to break out of flexbox sizing
+      chartContent.wrapInner('<div class="chart-shim"></div>');
+      chartContent = chartContent.children('.chart-shim');
+    }
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
