@@ -43,5 +43,3 @@ renderDygraph({
     dyOptions(drawGrid = input$showgrid)
 })
 ```
-
-Source: P. J. Diggle (1990) Time Series: A Biostatistical Introduction. Oxford, table A.3 

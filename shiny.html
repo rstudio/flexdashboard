@@ -14,6 +14,9 @@
 <title>Using Shiny with flexdashboard</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -164,6 +167,93 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -199,22 +289,15 @@ $(document).ready(function () {
 
 </div>
 
-<div id="TOC">
-<ul>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#simple-example">Simple Example</a></li>
-<li><a href="#input-sidebar">Input Sidebar</a></li>
-<li><a href="#flexdashboard-vs.shinydashboard">flexdashboard vs. shinydashboard</a></li>
-<li><a href="#learning-more">Learning More</a></li>
-</ul>
-</div>
 
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <p>By adding <a href="http://shiny.rstudio.com">Shiny</a> to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see <a href="http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html"><code>reactiveFileReader</code></a> and <a href="http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html"><code>reactivePoll</code></a>). This is done by adding <code>runtime: shiny</code> to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the charts within the dashboard.</p>
 <p>Using Shiny with flexdashboard turns a static R Markdown report into an <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interative Document</a>. It’s important to note that interactive documents need to be <a href="http://rmarkdown.rstudio.com/authoring_shiny.html#deployment">deployed</a> to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).</p>
-<div id="requirements" class="section level3">
-<h3>Requirements</h3>
+<p>Note that the <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a> package provides another way to create dashboards with Shiny.</p>
+</div>
+<div id="requirements" class="section level2">
+<h2>Requirements</h2>
 <p>The steps required to add Shiny components to a flexdashboard are as follows:</p>
 <ol style="list-style-type: decimal">
 <li><p>Add <code>runtime: shiny</code> to the options declared at the top of the document (YAML front matter).</p></li>
@@ -224,13 +307,12 @@ $(document).ready(function () {
 </ol>
 <p>A simple example of a Shiny based flexdashboard is provided below.</p>
 </div>
-</div>
 <div id="simple-example" class="section level2">
 <h2>Simple Example</h2>
 <p>The following example demonstrates the basics of using Shiny within a flexdashboard:</p>
 <p><img src="images/Shiny.png" width="865" height="745"/></p>
-<div id="source-code" class="section level3">
-<h3>Source Code</h3>
+<div id="source-code" class="section level4">
+<h4>Source Code</h4>
 <p>Here’s the source code for the example:</p>
 <div id="shiny">
 
@@ -257,17 +339,6 @@ $(document).ready(function () {
 <script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
 </div>
 </div>
-<div id="flexdashboard-vs.shinydashboard" class="section level2">
-<h2>flexdashboard vs. shinydashboard</h2>
-<p>The <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a> package also provides facilities for creating interactive dashboards with Shiny. The two packages take different approaches and as a result have different strengths and weaknesses:</p>
-<ol style="list-style-type: decimal">
-<li><p>shinydashboard supports a wider variety of layout controls and output types at the expense of additional syntactic complexity (use of R functions to define layout).</p></li>
-<li><p>shinydashboard components can be sized explicitly or automatically flow to contain all output so are much better suited to presenting non-graphical output.</p></li>
-<li><p>flexdashboard is well suited to dashboards that consist entirely of a set of related data visualizations, as it’s syntax for laying out charts is very easy to learn and use (use of R Markdown sections and code chunks to define layout).</p></li>
-<li><p>flexdashboard performs automatic scaling of charts to the size of the browser and as a result takes maximum advantage of available screen real estate (i.e. visualizations that automatically size themselves to their container).</p></li>
-<li><p>flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting static data rather than allowing the user to vary assumptions and parameters or observe changes in real-time.</p></li>
-</ol>
-</div>
 <div id="learning-more" class="section level2">
 <h2>Learning More</h2>
 <p>To learn more about using Shiny with flexdashboard see the following resources:</p>
@@ -280,6 +351,8 @@ $(document).ready(function () {
 
 
 
+</div>
+</div>
 
 </div>
 

@@ -4,6 +4,7 @@ output:
   html_document:
     toc: true
     toc_depth: 2
+    toc_float: true
 ---
 
 ## Overview
@@ -12,7 +13,9 @@ By adding [Shiny](http://shiny.rstudio.com) to a flexdashboard, you can create d
 
 Using Shiny with flexdashboard turns a static R Markdown report into an [Interative Document](http://rmarkdown.rstudio.com/authoring_shiny.html). It's important to note that interactive documents need to be [deployed](http://rmarkdown.rstudio.com/authoring_shiny.html#deployment) to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).
 
-### Requirements
+Note that the [shinydashboard](https://rstudio.github.io/shinydashboard/) package provides another way to create dashboards with Shiny.  
+
+## Requirements
 
 The steps required to add Shiny components to a flexdashboard are as follows:
 
@@ -32,7 +35,7 @@ The following example demonstrates the basics of using Shiny within a flexdashbo
 
 <img src="images/Shiny.png" width="865" height="745"/>
 
-### Source Code
+#### Source Code
 
 Here's the source code for the example:
 
@@ -58,20 +61,6 @@ For example, this dashboard includes a sidebar on the first page with the `{.sid
 
 <div id="sidebarmultiplepages"></div>
 <script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
-
-## flexdashboard vs. shinydashboard
-
-The [shinydashboard](https://rstudio.github.io/shinydashboard/) package also provides facilities for creating interactive dashboards with Shiny. The two packages take different approaches and as a result have different strengths and weaknesses:
-
-1. shinydashboard supports a wider variety of layout controls and output types at the expense of  additional syntactic complexity (use of R functions to define layout).
-
-2. shinydashboard components can be sized explicitly or automatically flow to contain all output so are much better suited to presenting non-graphical output.
-
-3. flexdashboard is well suited to dashboards that consist entirely of a set of related data visualizations, as it's syntax for laying out charts is very easy to learn and use (use of R Markdown sections and code chunks to define layout).
-
-4. flexdashboard performs automatic scaling of charts to the size of the browser and as a result takes maximum advantage of available screen real estate (i.e. visualizations that automatically size themselves to their container).
-
-3. flexdashboard can create standalone web dashboards (requiring no Shiny Server) if they are restricted to just presenting static data rather than allowing the user to vary assumptions and parameters or observe changes in real-time.
 
 ## Learning More
 
