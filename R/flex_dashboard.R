@@ -191,8 +191,7 @@ flex_dashboard <- function(fig_width = 5,
   }
 
   # dependencies
-  extra_dependencies <- append(extra_dependencies,
-                               list(html_dependency_font_awesome()))
+  extra_dependencies <- append(extra_dependencies, navbar_dependencies(navbar))
 
   # return format
   output_format(
@@ -211,16 +210,6 @@ flex_dashboard <- function(fig_width = 5,
                                      bootstrap_compatible = TRUE,
                                      extra_dependencies = extra_dependencies,
                                      ...)
-  )
-}
-
-
-html_dependency_font_awesome <- function() {
-  htmlDependency(
-    "font-awesome",
-    "4.5.0",
-    src = system.file("www/font-awesome", package = "flexdashboard"),
-    stylesheet = "css/font-awesome.min.css"
   )
 }
 
@@ -248,6 +237,34 @@ pandoc_navbar_args <- function(navbar) {
   # return as an in_header include
   pandoc_include_args(in_header = as_tmpfile(navbarHtml))
 }
+
+navbar_dependencies <- function(navbar) {
+
+  font_awesome <- FALSE
+
+  for (item in navbar) {
+    if (!is.null(item$icon)) {
+      if (grepl('^fa-', item$icon))
+        font_awesome <- TRUE
+    }
+  }
+
+  deps <- list()
+  if (font_awesome)
+    deps <- append(deps, list(html_dependency_font_awesome()))
+
+  deps
+}
+
+html_dependency_font_awesome <- function() {
+  htmlDependency(
+    "font-awesome",
+    "4.5.0",
+    src = system.file("www/font-awesome", package = "flexdashboard"),
+    stylesheet = "css/font-awesome.min.css"
+  )
+}
+
 
 # return a string as a tempfile
 as_tmpfile <- function(str) {
