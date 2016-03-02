@@ -5,12 +5,12 @@
 \title{R Markdown Format for Flexible Dashboards}
 \usage{
 flex_dashboard(fig_width = 5, fig_height = 4, dev = "png", smart = TRUE,
-  self_contained = TRUE, source_code = NULL, navbar = NULL,
-  orientation = c("columns", "rows"), vertical_layout = c("fill", "scroll"),
-  theme = "default", highlight = "default", mathjax = "default",
-  extra_dependencies = NULL, css = NULL, includes = NULL,
-  lib_dir = NULL, md_extensions = NULL, pandoc_args = NULL,
-  devel = FALSE, ...)
+  self_contained = TRUE, social = NULL, source_code = NULL,
+  navbar = NULL, orientation = c("columns", "rows"),
+  vertical_layout = c("fill", "scroll"), theme = "default",
+  highlight = "default", mathjax = "default", extra_dependencies = NULL,
+  css = NULL, includes = NULL, lib_dir = NULL, md_extensions = NULL,
+  pandoc_args = NULL, devel = FALSE, ...)
 }
 \arguments{
 \item{fig_width}{Default width (in inches) for figures}
@@ -29,9 +29,14 @@ scripts, stylesheets, images, and videos. Note that even for self contained
 documents MathJax is still loaded externally (this is necessary because of
 it's size).}
 
+\item{social}{Specify a character vector of social sharing services to
+automatically add sharing links for them on the \code{navbar}. Valid
+values are "twitter", "facebook", "google-plus", "linkedin", and
+"pinterest" (more than one service can be specified).}
+
 \item{source_code}{URL for source code of dashboard (used primarily for
 publishing flexdashboard examples). Automatically creates a \code{navbar}
-item whicih links to the source code.}
+item which links to the source code.}
 
 \item{navbar}{Optional list of elements to be placed on the flexdashboard
 navigation bar. Each element should be a list containing a \code{title}
