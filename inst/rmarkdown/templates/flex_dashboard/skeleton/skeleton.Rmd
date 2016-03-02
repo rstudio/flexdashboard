@@ -1,29 +1,25 @@
 ---
 title: "Flex Dashboard"
-output:
-  flexdashboard::flex_dashboard: 
-    theme: cosmo
-    orientation: columns
-    fill_page: false
+output: flexdashboard::flex_dashboard 
 ---
+
+<!-- Learn more about flexdashboard at https://rstudio.github.io/flexdashboard -->
+
 
 ```{r setup, include=FALSE}
 # Load packages here
 ```
 
-Column
--------------------------------------------------------------------------------
-
 ### Chart A
 
 ```{r}
-# code for chart A
+# Code for Chart A
 ```
 
 ### Chart B
 
 ```{r}
-# code for chart B
+# Code for Chart B
 ```
 
 
