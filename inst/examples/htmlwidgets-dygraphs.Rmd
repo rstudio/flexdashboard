@@ -9,9 +9,6 @@ library(quantmod)
 getSymbols(c("MSFT", "HPQ", "INTC"), from = "2014-01-01", auto.assign=TRUE)
 ```
 
-Stocks
------------------------------------------------------------------------
-
 ### Microsoft
 
 ```{r}
