@@ -7,9 +7,14 @@
 #'
 #'@inheritParams rmarkdown::html_document
 #'
+#'@param social Specify a character vector of social sharing services to
+#'  automatically add sharing links for them on the \code{navbar}. Valid
+#'  values are "twitter", "facebook", "google-plus", "linkedin", and
+#'  "pinterest" (more than one service can be specified).
+#'
 #'@param source_code URL for source code of dashboard (used primarily for
 #'  publishing flexdashboard examples). Automatically creates a \code{navbar}
-#'  item whicih links to the source code.
+#'  item which links to the source code.
 #'
 #'@param navbar Optional list of elements to be placed on the flexdashboard
 #'  navigation bar. Each element should be a list containing a \code{title}
@@ -60,6 +65,7 @@ flex_dashboard <- function(fig_width = 5,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
+                           social = NULL,
                            source_code = NULL,
                            navbar = NULL,
                            orientation = c("columns", "rows"),
@@ -99,24 +105,8 @@ flex_dashboard <- function(fig_width = 5,
   # add template
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
 
-  # handle source_code_url
-  if (!is.null(source_code)) {
-
-    # determine icon
-    if (grepl("^http[s]?://git.io", source_code) ||
-        grepl("^http[s]?://github.com", source_code)) {
-      icon <- "fa-github"
-    } else {
-      icon <- "fa-code"
-    }
-
-    # build nav item
-    navItem <- list(title = "Source Code",
-                    icon = icon,
-                    url = source_code,
-                    align = "right")
-    navbar <- append(navbar, list(navItem))
-  }
+  # handle automatic navbar links
+  navbar <- append(navbar, navbar_links(social, source_code))
 
   # handle navbar
   if (length(navbar) > 0)
@@ -260,6 +250,36 @@ pandoc_navbar_args <- function(navbar) {
 
   # return as an in_header include
   pandoc_include_args(in_header = as_tmpfile(navbarHtml))
+}
+
+navbar_links <- function(social, source_code) {
+
+  links <- list()
+
+  # social links
+  for (service in social)
+    links <- append(links, list(list(icon = paste0("fa-", service))))
+
+  # source_code
+  if (!is.null(source_code)) {
+
+    # determine icon
+    if (grepl("^http[s]?://git.io", source_code) ||
+        grepl("^http[s]?://github.com", source_code)) {
+      icon <- "fa-github"
+    } else {
+      icon <- "fa-code"
+    }
+
+    # build nav item
+    link <- list(title = "Source Code",
+                 icon = icon,
+                 url = source_code,
+                 align = "right")
+    links <- append(links, list(link))
+  }
+
+  links
 }
 
 navbar_dependencies <- function(navbar) {

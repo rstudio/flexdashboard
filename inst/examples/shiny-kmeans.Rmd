@@ -1,6 +1,8 @@
 ---
 title: "Iris k-means clustering"
-output: flexdashboard::flex_dashboard
+output: 
+  flexdashboard::flex_dashboard:
+    source_code: "https://git.io/v2Dci"
 runtime: shiny
 ---
 

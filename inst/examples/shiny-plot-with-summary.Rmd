@@ -1,6 +1,8 @@
 ---
 title: "Distribution Generator"
-output: flexdashboard::flex_dashboard
+output: 
+  flexdashboard::flex_dashboard:
+    source_code: "https://git.io/v2DCq"
 runtime: shiny
 ---
 

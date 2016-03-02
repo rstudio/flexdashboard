@@ -1,6 +1,9 @@
 ---
 title: "Dygraphs Linked Time Series"
-output: flexdashboard::flex_dashboard
+output: 
+  flexdashboard::flex_dashboard:
+    social: [ "twitter", "facebook" ]
+    source_code: "https://git.io/v2DcZ"
 ---
 
 ```{r setup, include=FALSE}
