@@ -5,7 +5,7 @@ output:
     orientation: columns
     vertical_layout: scroll
     social: [ "twitter", "facebook" ]
-    source_code: "https://git.io/v2DcZ"
+    source_code: "https://git.io/v2Da0"
 ---
 
 ```{r setup, include=FALSE}
