@@ -1,5 +1,5 @@
 ---
-title: "Iris k-means clustering"
+title: "Iris K-Means Clustering"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
