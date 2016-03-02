@@ -43,7 +43,7 @@ title: "flexdashboard: Easy interactive dashboards for R"
 
 <div class="col-md-3">
 <a href="https://jjallaire.shinyapps.io/shiny-kmeans/" class="thumbnail">
-<img src="images/Shiny.png" alt="flexdashboard with dygraphs">
+<img src="images/shiny-dashboard.png" alt="flexdashboard with shiny">
 </a>
 </div>
 
