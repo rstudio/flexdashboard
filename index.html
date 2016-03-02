@@ -226,7 +226,7 @@ $(document).ready(function () {
 <p>You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also automatically resized to fit their containers within dynamic (Shiny) dashboards; in static dashboards, however, a bit more work is required to ensure that they are properly scaled (see <a href="using.html#figure-sizes-and-scaling">Figure Sizes and Scaling</a>).</p>
 <div id="single-column-layout" class="section level3">
 <h3>Single Column Layout</h3>
-<p>Dashboards are divided into columns and rows. By default, columns are defined using level 2 markdown headers (<code>------------------</code>) and charts are defined using level 3 headers (<code>###</code>). Charts are stacked vertically within a column. For example, this layout defines a single column with two charts:</p>
+<p>Dashboards are divided into columns and rows. By default dashboards are defined using level 3 markdown headers (<code>###</code>) and laid out within a single column. Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:</p>
 <div class="row">
 <div class="col-md-5">
 <div id="singlecolumn">
@@ -236,14 +236,14 @@ $(document).ready(function () {
 </div>
 <div class="col-md-7">
 <div height="470px" width="100%">
-<p><img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2"></p>
+<p><img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
 </div>
 <div id="multiple-column-layout" class="section level3">
 <h3>Multiple Column Layout</h3>
-<p>To add a second column of charts we just add another column section:</p>
+<p>To lay out charts using multiple columns you introduce a level 2 markdown header (<code>--------------</code>) for each column. For example, this dashboard displays 3 charts split across two columns:</p>
 <div class="row">
 <div class="col-md-5">
 <div id="multiplecolumns">
@@ -266,23 +266,23 @@ $(document).ready(function () {
 </div>
 <div id="layout-by-row" class="section level3">
 <h3>Layout by Row</h3>
-<p>You can also choose to orient dashboards row-wise rather than column-wise, by specifying the <code>orientation: rows</code> option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:</p>
+<p>You can also choose to orient dashboards row-wise rather than column-wise by specifying the <code>orientation: rows</code> option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:</p>
 <div class="row">
 <div class="col-md-5">
-<div id="roworientation">
+<div id="roworientation-home">
 
 </div>
-<script type="text/javascript">loadSnippet('roworientation')</script>
+<script type="text/javascript">loadSnippet('roworientation-home')</script>
 </div>
 <div class="col-md-7">
 <div height="496px" width="100%">
-<img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
-<p><img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 2"></p>
+<p><img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2"></p>
 </div>
 <div style="margin-left: 50%;">
-<p><img class="holder" src="holder.js/100px248?size=28&amp;text=Chart 3"></p>
+<p><img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>

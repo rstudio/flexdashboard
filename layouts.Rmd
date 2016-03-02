@@ -3,13 +3,17 @@ title: "Sample flexdashboard Layouts"
 output:
   html_document:
     toc: true
+    toc_depth: 2
+    toc_float: true
 ---
+
+## Overview
 
 This page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
 
 When creating a layout, it's important to decide up front whether you want your charts to fill the web page vertically (changing in height as the browser changes) or if you want the charts to maintain their original height (with the page scrolling as necessary to display all of the charts).
 
-This behavior is controlled via the `vertical_layout` output option, which defaults to "fill". Filling the page is generally a good choice when you have only one or two charts vertically stacked, whereas scrolling is generally a better choice for three or more charts vertically stacked. The sample layouts below reflect these general guidelines.
+This behavior is controlled via the `vertical_layout` output option, which defaults to `vertical_layout: fill`. Filling the page is generally a good choice when you have only one or two charts vertically stacked. Alternatively you can use `vertical_layout: scroll` to specify a scrolling layout, which is generally a better choice for three or more charts vertically stacked.
 
 ## Chart Stack (Fill)
 
@@ -17,12 +21,12 @@ This layout is a simple stack of two charts. Note that one chart or the other co
 
 <div class="row">
 
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartstack-fill"></div>
 <script type="text/javascript">loadSnippet('chartstack-fill')</script>
 </div>
 
-<div class="col-md-7">
+<div class="col-md-6 nopadding">
 <div height="470px" width="100%">
 <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 1">
 <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
@@ -37,19 +41,18 @@ This layout is a simple stack of three charts. To provide enough room to display
 
 <div class="row">
 
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartstack-scrolling"></div>
 <script type="text/javascript">loadSnippet('chartstack-scrolling')</script>
 </div>
 
-<div class="col-md-7">
-<div height="470px" width="100%">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3">
+<div class="col-md-6 nopadding">
+<div height="406px" width="100%">
+<img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 3">
 </div>
 </div>
-
 </div>
 
 
@@ -58,20 +61,20 @@ This layout is a simple stack of three charts. To provide enough room to display
 This layout fills the page completely and gives prominence to a single chart at the top (with two secondary charts included below). To achieve this layout it uses `orientation: rows` and specifies `data-height` attributes on each row to establish their relative sizes.
 
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="focalchart-top"></div>
 <script type="text/javascript">loadSnippet('focalchart-top')</script>
 </div>
 
-<div class="col-md-7">
-<div height="470px" width="100%">
-<img class="holder" src="holder.js/100px315?size=28&amp;text=Chart 1">
+<div class="col-md-6 nopadding">
+<div height="450px" width="100%">
+<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px151?size=28&amp;text=Chart 2">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3">
+<img class="holder" src="holder.js/100px151?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
@@ -84,19 +87,19 @@ This layout fills the page completely and gives prominence to a single chart on 
 
 <div class="row">
 
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="focalchart-left"></div>
 <script type="text/javascript">loadSnippet('focalchart-left')</script>
 </div>
 
-<div class="col-md-7">
-<div height="470px" width="100%">
-<div style="float: left; width: 62%;">
-<img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1">
+<div class="col-md-6 nopadding">
+<div height="420px" width="100%">
+<div style="float: left; width: 55%;">
+<img class="holder" src="holder.js/100px420?size=28&amp;text=Chart 1">
 </div>
-<div style="margin-left: 62%;">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3">
+<div style="margin-left: 55%;">
+<img class="holder" src="holder.js/100px210?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px210?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
@@ -110,27 +113,27 @@ This layout is a 2x2 grid of charts. This layout uses the default `vertical_scro
 
 <div class="row">
 
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="grid2x2"></div>
 <script type="text/javascript">loadSnippet('grid2x2')</script>
 </div>
 
-<div class="col-md-7">
-<div height="590px" width="100%">
+<div class="col-md-6 nopadding">
+<div height="524px" width="100%">
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 1">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 2">
 </div>
 </div>
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 3">
+<img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 3">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 4">
+<img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 4">
 </div>
 </div>
 </div>
@@ -140,7 +143,7 @@ This layout is a 2x2 grid of charts. This layout uses the default `vertical_scro
 
 ## Multiple Pages
 
-This layout defines multiple pages using a level 1 markdown header (`==================`). Each page has its own top-level navigation tab. Further, the second page uses a distinct orientation via the `data-orientation` attribute.
+This layout defines multiple pages using a level 1 markdown header (`==================`). Each page has its own top-level navigation tab. Further, the second page uses a distinct orientation via the `data-orientation` attribute. The use of multiple columns and rows with custom `data-width` and `data-height` attributes is also demonstrated.
 
 <div id="multiplepages-layout"></div>
 <script type="text/javascript">loadSnippet('multiplepages-layout')</script>

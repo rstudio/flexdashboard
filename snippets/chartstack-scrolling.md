@@ -5,9 +5,6 @@ output:
     vertical_layout: scroll
 ---
     
-Column
--------------------------------------
-    
 ### Chart 1
     
 ```{r}
@@ -22,3 +19,6 @@ Column
 
 ```{r}
 ```
+
+
+

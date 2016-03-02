@@ -14,6 +14,9 @@
 <title>Sample flexdashboard Layouts</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -164,6 +167,93 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -199,31 +289,24 @@ $(document).ready(function () {
 
 </div>
 
-<div id="TOC">
-<ul>
-<li><a href="#chart-stack-fill">Chart Stack (Fill)</a></li>
-<li><a href="#chart-stack-scrolling">Chart Stack (Scrolling)</a></li>
-<li><a href="#focal-chart-top">Focal Chart (Top)</a></li>
-<li><a href="#focal-chart-left">Focal Chart (Left)</a></li>
-<li><a href="#chart-grid-2x2">Chart Grid (2x2)</a></li>
-<li><a href="#multiple-pages">Multiple Pages</a></li>
-</ul>
-</div>
 
+<div id="overview" class="section level2">
+<h2>Overview</h2>
 <p>This page includes a variety of sample layouts which you can use as a starting point for your own dashboards.</p>
 <p>When creating a layout, it’s important to decide up front whether you want your charts to fill the web page vertically (changing in height as the browser changes) or if you want the charts to maintain their original height (with the page scrolling as necessary to display all of the charts).</p>
-<p>This behavior is controlled via the <code>vertical_layout</code> output option, which defaults to “fill”. Filling the page is generally a good choice when you have only one or two charts vertically stacked, whereas scrolling is generally a better choice for three or more charts vertically stacked. The sample layouts below reflect these general guidelines.</p>
+<p>This behavior is controlled via the <code>vertical_layout</code> output option, which defaults to <code>vertical_layout: fill</code>. Filling the page is generally a good choice when you have only one or two charts vertically stacked. Alternatively you can use <code>vertical_layout: scroll</code> to specify a scrolling layout, which is generally a better choice for three or more charts vertically stacked.</p>
+</div>
 <div id="chart-stack-fill" class="section level2">
 <h2>Chart Stack (Fill)</h2>
 <p>This layout is a simple stack of two charts. Note that one chart or the other could be made vertically taller by specifying the <code>data-height</code> attribute.</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartstack-fill">
 
 </div>
 <script type="text/javascript">loadSnippet('chartstack-fill')</script>
 </div>
-<div class="col-md-7">
+<div class="col-md-6 nopadding">
 <div height="470px" width="100%">
 <p><img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2"></p>
 </div>
@@ -234,15 +317,15 @@ $(document).ready(function () {
 <h2>Chart Stack (Scrolling)</h2>
 <p>This layout is a simple stack of three charts. To provide enough room to display all the charts a scrolling layout is used (<code>vertical_layout: scroll</code>). Note that because of its ability to scroll this layout could easily accommodate many more charts (although for large numbers of charts you might consider organizing them into <a href="#multiple-pages">Multiple Pages</a>).</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="chartstack-scrolling">
 
 </div>
 <script type="text/javascript">loadSnippet('chartstack-scrolling')</script>
 </div>
-<div class="col-md-7">
-<div height="470px" width="100%">
-<p><img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3"></p>
+<div class="col-md-6 nopadding">
+<div height="406px" width="100%">
+<p><img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 1"> <img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
@@ -251,21 +334,21 @@ $(document).ready(function () {
 <h2>Focal Chart (Top)</h2>
 <p>This layout fills the page completely and gives prominence to a single chart at the top (with two secondary charts included below). To achieve this layout it uses <code>orientation: rows</code> and specifies <code>data-height</code> attributes on each row to establish their relative sizes.</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="focalchart-top">
 
 </div>
 <script type="text/javascript">loadSnippet('focalchart-top')</script>
 </div>
-<div class="col-md-7">
-<div height="470px" width="100%">
-<img class="holder" src="holder.js/100px315?size=28&amp;text=Chart 1">
+<div class="col-md-6 nopadding">
+<div height="450px" width="100%">
+<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
-<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 2"></p>
+<p><img class="holder" src="holder.js/100px151?size=28&amp;text=Chart 2"></p>
 </div>
 <div style="margin-left: 50%;">
-<p><img class="holder" src="holder.js/100px187?size=28&amp;text=Chart 3"></p>
+<p><img class="holder" src="holder.js/100px151?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
@@ -275,19 +358,19 @@ $(document).ready(function () {
 <h2>Focal Chart (Left)</h2>
 <p>This layout fills the page completely and gives prominence to a single chart on the left (with two secondary charts included to the right). Note that <code>data-width</code> attributes are specified on each column to establish their relative sizes.</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="focalchart-left">
 
 </div>
 <script type="text/javascript">loadSnippet('focalchart-left')</script>
 </div>
-<div class="col-md-7">
-<div height="470px" width="100%">
-<div style="float: left; width: 62%;">
-<p><img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1"></p>
+<div class="col-md-6 nopadding">
+<div height="420px" width="100%">
+<div style="float: left; width: 55%;">
+<p><img class="holder" src="holder.js/100px420?size=28&amp;text=Chart 1"></p>
 </div>
-<div style="margin-left: 62%;">
-<p><img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3"></p>
+<div style="margin-left: 55%;">
+<p><img class="holder" src="holder.js/100px210?size=28&amp;text=Chart 2"> <img class="holder" src="holder.js/100px210?size=28&amp;text=Chart 3"></p>
 </div>
 </div>
 </div>
@@ -297,28 +380,28 @@ $(document).ready(function () {
 <h2>Chart Grid (2x2)</h2>
 <p>This layout is a 2x2 grid of charts. This layout uses the default <code>vertical_scroll: fill</code> behavior however depending on the ideal display size for the charts it might be preferable to allow the page to scroll (<code>vertical_layout: scroll</code>). Note also that <code>orientation: rows</code> is used to ensure that the chart baselines line up horizontally.</p>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-6">
 <div id="grid2x2">
 
 </div>
 <script type="text/javascript">loadSnippet('grid2x2')</script>
 </div>
-<div class="col-md-7">
-<div height="590px" width="100%">
+<div class="col-md-6 nopadding">
+<div height="524px" width="100%">
 <div>
 <div style="float: left; width: 50%;">
-<p><img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 1"></p>
+<p><img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 1"></p>
 </div>
 <div style="margin-left: 50%;">
-<p><img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 2"></p>
+<p><img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 2"></p>
 </div>
 </div>
 <div>
 <div style="float: left; width: 50%;">
-<p><img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 3"></p>
+<p><img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 3"></p>
 </div>
 <div style="margin-left: 50%;">
-<p><img class="holder" src="holder.js/100px295?size=28&amp;text=Chart 4"></p>
+<p><img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 4"></p>
 </div>
 </div>
 </div>
@@ -327,7 +410,7 @@ $(document).ready(function () {
 </div>
 <div id="multiple-pages" class="section level2">
 <h2>Multiple Pages</h2>
-<p>This layout defines multiple pages using a level 1 markdown header (<code>==================</code>). Each page has its own top-level navigation tab. Further, the second page uses a distinct orientation via the <code>data-orientation</code> attribute.</p>
+<p>This layout defines multiple pages using a level 1 markdown header (<code>==================</code>). Each page has its own top-level navigation tab. Further, the second page uses a distinct orientation via the <code>data-orientation</code> attribute. The use of multiple columns and rows with custom <code>data-width</code> and <code>data-height</code> attributes is also demonstrated.</p>
 <div id="multiplepages-layout">
 
 </div>
@@ -336,6 +419,8 @@ $(document).ready(function () {
 
 
 
+</div>
+</div>
 
 </div>
 

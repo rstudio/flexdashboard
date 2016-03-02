@@ -1,27 +1,30 @@
 ---
-title: "Focal Chart (Top)"
+title: "Row Orientation"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
 ---
     
-Row {data-height=600}
+Row
 -------------------------------------
-
+    
 ### Chart 1
-
+    
 ```{r}
+
 ```
-
-Row {data-height=300}
--------------------------------------
    
+Row
+-------------------------------------
+    
 ### Chart 2
-
+    
 ```{r}
-```   
+
+```
     
 ### Chart 3
 
 ```{r}
+
 ```

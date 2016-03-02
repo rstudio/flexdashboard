@@ -2,10 +2,7 @@
 title: "Single Column"
 output: flexdashboard::flex_dashboard
 ---
-    
-Column
--------------------------------------
-    
+
 ### Chart 1
     
 ```{r}
@@ -18,8 +15,11 @@ Column
 
 ```
 
+### Chart 3
 
+```{r}
 
+```
 
 
 
