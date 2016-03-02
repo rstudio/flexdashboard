@@ -7,6 +7,10 @@
 #'
 #'@inheritParams rmarkdown::html_document
 #'
+#'@param source_code URL for source code of dashboard (used primarily for
+#'  publishing flexdashboard examples). Automatically creates a \code{navbar}
+#'  item whicih links to the source code.
+#'
 #'@param navbar Optional list of elements to be placed on the flexdashboard
 #'  navigation bar. Each element should be a list containing a \code{title}
 #'  and/or \code{icon} field, a \code{url} field and an optional
@@ -56,6 +60,7 @@ flex_dashboard <- function(fig_width = 5,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
+                           source_code = NULL,
                            navbar = NULL,
                            orientation = c("columns", "rows"),
                            vertical_layout = c("fill", "scroll"),
@@ -93,6 +98,25 @@ flex_dashboard <- function(fig_width = 5,
 
   # add template
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
+
+  # handle source_code_url
+  if (!is.null(source_code)) {
+
+    # determine icon
+    if (grepl("^http[s]?://git.io", source_code) ||
+        grepl("^http[s]?://github.com", source_code)) {
+      icon <- "fa-github"
+    } else {
+      icon <- "fa-code"
+    }
+
+    # build nav item
+    navItem <- list(title = "Source Code",
+                    icon = icon,
+                    url = source_code,
+                    align = "right")
+    navbar <- append(navbar, list(navItem))
+  }
 
   # handle navbar
   if (length(navbar) > 0)
