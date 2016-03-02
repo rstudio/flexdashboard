@@ -33,7 +33,7 @@ A simple example of a Shiny based flexdashboard is provided below.
 
 The following example demonstrates the basics of using Shiny within a flexdashboard:
 
-<img src="images/Shiny.png" width="865" height="745"/>
+<img src="images/ShinyDygraphs.png" width="865" height="745"/>
 
 #### Source Code
 

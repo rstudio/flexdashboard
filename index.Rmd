@@ -22,21 +22,28 @@ title: "flexdashboard: Easy interactive dashboards for R"
 
 <div class="row">
 
-<div class="col-md-4">
-<a href="https://rstudio-pubs-static.s3.amazonaws.com/157935_b9674d84231a46869df80923ca41c778.html" class="thumbnail">
+<div class="col-md-3">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157935_4a5a5cb2d447495d8cfc356251c3e437.html" class="thumbnail">
 <img src="images/d3heatmap.png" alt="flexdashboard with d3heatmap">
 </a>
 </div>
 
-<div class="col-md-4">
-<a href="https://rstudio-pubs-static.s3.amazonaws.com/157937_46cf9a776bf44506840c8b49c788bce1.html" class="thumbnail">
+<div class="col-md-3">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157937_dc7c4031822441a88a05277d38f34f0e.html" class="thumbnail">
 <img src="images/plotly.png" alt="flexdashboard with plotly">
 </a>
 </div>
 
-<div class="col-md-4">
-<a href="https://rstudio-pubs-static.s3.amazonaws.com/157936_6fa72e64a6b945358786b6b2a38204f0.html" class="thumbnail">
+
+<div class="col-md-3">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157936_b8de6c18b00240c6a42785ce8a1a1fdc.html" class="thumbnail">
 <img src="images/dygraphs.png" alt="flexdashboard with dygraphs">
+</a>
+</div>
+
+<div class="col-md-3">
+<a href="https://jjallaire.shinyapps.io/shiny-kmeans/" class="thumbnail">
+<img src="images/Shiny.png" alt="flexdashboard with dygraphs">
 </a>
 </div>
 
