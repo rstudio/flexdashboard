@@ -3,9 +3,12 @@ Type: Package
 Title: R Markdown Format for Flexible Dashboards
 Version: 0.1.0
 Authors@R: c(
-    person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
-    person(family = "RStudio", role = "cph"),
-    person(family = "Keen IO", role = c("aut", "cph"))
+  person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
+  person(family = "RStudio", role = "cph"),
+  person(family = "Keen IO", role = c("aut", "cph")),
+  person("Dave", "Gandy", role = c("ctb", "cph"), comment = "Font-Awesome font"),
+  person("Ben", "Sperry", role = "ctb", comment = "Ionicons font"),
+  person(family = "Drifty", role = "cph", comment = "Ionicons font")
   )
 Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's plots and
