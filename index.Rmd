@@ -10,13 +10,38 @@ title: "flexdashboard: Easy interactive dashboards for R"
 
 * Ideal for publishing interactive JavaScript visualizations based on [htmlwidgets](http://www.htmlwidgets.org).
 
-* Flexible and easy to specify layouts, including automatic re-sizing of charts to fill available browser space.
+* Flexible and easy to specify layouts, including automatic sizing of charts to fill the browser.
 
 * Optionally use [Shiny](http://shiny.rstudio.com) to drive visualizations dynamically.
 
 </div>
 
 </div>
+
+#### flexdashboard in action:
+
+<div class="row">
+
+<div class="col-md-4">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157935_b9674d84231a46869df80923ca41c778.html" class="thumbnail">
+<img src="images/d3heatmap.png" alt="flexdashboard with d3heatmap">
+</a>
+</div>
+
+<div class="col-md-4">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157937_46cf9a776bf44506840c8b49c788bce1.html" class="thumbnail">
+<img src="images/plotly.png" alt="flexdashboard with plotly">
+</a>
+</div>
+
+<div class="col-md-4">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157936_6fa72e64a6b945358786b6b2a38204f0.html" class="thumbnail">
+<img src="images/dygraphs.png" alt="flexdashboard with dygraphs">
+</a>
+</div>
+
+</div>
+
 
 ## Getting Started
 
