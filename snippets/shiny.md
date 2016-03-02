@@ -8,7 +8,7 @@ runtime: shiny
 library(dygraphs)
 ```
 
-Inputs {.sidebar}
+Column {.sidebar}
 -------------------------------------------------------------------------------
 
 ```{r}
@@ -25,7 +25,7 @@ checkboxInput("showgrid", label = "Show Grid", value = TRUE)
 Monthly deaths from bronchitis, emphysema and asthma in the UK, 1974–1979.
 
 
-Outputs
+Column
 -------------------------------------------------------------------------------
 
 ### Predicted Deaths/Month
