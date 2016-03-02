@@ -2,7 +2,7 @@
 ^\.Rproj\.user$
 ^devel$
 ^inst/examples/rsconnect$
-^inst/examples/*.html
+^inst/examples/.+\.html
 
 
 
