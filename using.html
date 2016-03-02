@@ -453,12 +453,12 @@ div.tocify {
 </div>
 <div id="navigation-bar" class="section level2">
 <h2>Navigation Bar</h2>
-<p>By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has <a href="#multiple-pages">Multiple Pages</a>, links to other available pages are also included on the left. You can also add custom links to navigation bar using the <code>navbar</code> option. For example, the following adds an “About” link to the left side of the navigation bar and Twitter, Facebook, and Source Code links to the right side of the navigation bar:</p>
+<p>By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has <a href="#multiple-pages">Multiple Pages</a>, links to other available pages are also included on the left. You can also add custom links to navigation bar using the <code>navbar</code> option. For example, the following adds an “About” link to the left side of the navigation bar and a Source Code link to the right side of the navigation bar:</p>
 <div id="navbarlinks">
 
 </div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
-<p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). You should also include a <code>url</code> as the navigation target (note however that a URL can be automatically generated for social sharing links, this is discussed in further detail below). The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
+<p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). You should also include a <code>url</code> as the navigation target. The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
 <div id="icon-sets" class="section level3">
 <h3>Icon Sets</h3>
 <p>You can specify icons for navigation bar items from three differnet icon sets:</p>
@@ -468,6 +468,15 @@ div.tocify {
 <li><p><a href="https://getbootstrap.com/components/#glyphicons">Bootstrap Glyphicons</a></p></li>
 </ol>
 <p>When referring to an icon you should use it’s full name including the icon set prefix (e.g. “fa-github”, “ion-social-twitter”, “glyphicon-time”, etc.). Note also that if you don’t provide a <code>url</code> for social sharing icons (e.g. “fa-twitter” or “fa-facebook”) then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).</p>
+</div>
+<div id="socialcode-links" class="section level3">
+<h3>Social/Code Links</h3>
+<p>You can include links to social sharing services or a link to the dashboard’s source code via the <code>social</code> and <code>source_code</code> options. For example, the following dashboard includes Twitter and Facebook links as well as a source code link:</p>
+<div id="navbarautolinks">
+
+</div>
+<script type="text/javascript">loadSnippet('navbarautolinks')</script>
+<p>The <code>social</code> option can include any number of the following services: “facebook”, “twitter”, “google-plus”, “linkedin”, and “pinterest”.</p>
 </div>
 </div>
 <div id="text-annotations" class="section level2">

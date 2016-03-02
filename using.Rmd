@@ -194,12 +194,12 @@ Note that in this example both pages use the default "columns" orientation. It i
 
 ## Navigation Bar
 
-By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has [Multiple Pages], links to other available pages are also included on the left. You can also add custom links to navigation bar using the `navbar` option. For example, the following adds an "About" link to the left side of the navigation bar and Twitter, Facebook, and Source Code links to the right side of the navigation bar:
+By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has [Multiple Pages], links to other available pages are also included on the left. You can also add custom links to navigation bar using the `navbar` option. For example, the following adds an "About" link to the left side of the navigation bar and a Source Code link to the right side of the navigation bar:
 
 <div id="navbarlinks"></div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
 
-Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). You should also include a `url` as the navigation target (note however that a URL can be automatically generated for social sharing links, this is discussed in further detail below). The `align` field is optional (it can be "left" or "right" and defaults to "right").
+Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). You should also include a `url` as the navigation target. The `align` field is optional (it can be "left" or "right" and defaults to "right").
 
 ### Icon Sets
 
@@ -212,6 +212,15 @@ You can specify icons for navigation bar items from three differnet icon sets:
 3. [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
 
 When referring to an icon you should use it's full name including the icon set prefix (e.g. "fa-github", "ion-social-twitter", "glyphicon-time", etc.). Note also that if you don't provide a `url` for social sharing icons (e.g. "fa-twitter" or "fa-facebook") then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).
+
+### Social/Code Links
+
+You can include links to social sharing services or a link to the dashboard's source code via the `social` and `source_code` options. For example, the following dashboard includes Twitter and Facebook links as well as a source code link:
+
+<div id="navbarautolinks"></div>
+<script type="text/javascript">loadSnippet('navbarautolinks')</script>
+
+The `social` option can include any number of the following services: "facebook", "twitter", "google-plus", "linkedin", and "pinterest".
 
 ## Text Annotations
 
