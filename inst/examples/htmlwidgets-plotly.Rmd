@@ -5,6 +5,7 @@ output:
     orientation: rows
     vertical_layout: fill
     social: [ "twitter", "facebook" ]
+    source_code: https://git.io/v2DSC
 ---
 
 
