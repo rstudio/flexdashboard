@@ -2,6 +2,7 @@
 title: "Highcharts with quantmod"
 output: 
   flexdashboard::flex_dashboard:
+    fig_height: 3
     orientation: columns
     vertical_layout: scroll
     social: [ "twitter", "facebook" ]
