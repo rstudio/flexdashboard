@@ -18,7 +18,6 @@ title: "flexdashboard: Easy interactive dashboards for R"
 
 </div>
 
-
 <div class="row">
 
 <div class="col-md-4">
@@ -33,7 +32,6 @@ title: "flexdashboard: Easy interactive dashboards for R"
 </a>
 </div>
 
-
 <div class="col-md-4">
 <a href="https://rstudio-pubs-static.s3.amazonaws.com/157937_dc7c4031822441a88a05277d38f34f0e.html" class="thumbnail">
 <img src="images/plotly.png" alt="flexdashboard with plotly">
@@ -41,30 +39,6 @@ title: "flexdashboard: Easy interactive dashboards for R"
 </div>
 
 </div>
-
-<div class="row">
-
-<div class="col-md-4">
-<a href="https://rstudio-pubs-static.s3.amazonaws.com/158113_22099332823e428bb4e7951cf702da39.html" class="thumbnail">
-<img src="images/highcharts-quantmod.png" alt="ggplot2 brushing">
-</a>
-</div>
-
-<div class="col-md-4">
-<a href="https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/" class="thumbnail">
-<img src="images/ggplot2-brushing.png" alt="ggplot2 brushing">
-</a>
-</div>
-
-<div class="col-md-4">
-<a href="https://jjallaire.shinyapps.io/shiny-kmeans/" class="thumbnail">
-<img src="images/shiny-dashboard.png" alt="flexdashboard with shiny">
-</a>
-</div>
-
-
-</div>
-
 
 ## Getting Started
 
@@ -175,3 +149,6 @@ The [Using](using.html) page includes documentation on all of the features and o
 The [Shiny](shiny.html) page describes how to create dashboards that automatically update themselves as the underlying data changes, or allow viewers to change parameters and see the results immediately.
 
 The [Layouts](layouts.html) page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
+
+The [Examples](examples.html) page includes several examples of flexdashboard in action (including links to source code if you want to dig into how each example was created).
+

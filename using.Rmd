@@ -249,3 +249,11 @@ Use the `theme` option to specify an alternate theme:
 
 <div id="themes"></div>
 <script type="text/javascript">loadSnippet('themes')</script>
+
+## Learning More
+
+The [Shiny](shiny.html) page describes how to create dashboards that automatically update themselves as the underlying data changes, or allow viewers to change parameters and see the results immediately.
+
+The [Layouts](layouts.html) page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
+
+The [Examples](examples.html) page includes several examples of flexdashboard in action (including links to source code if you want to dig into how each example was created).

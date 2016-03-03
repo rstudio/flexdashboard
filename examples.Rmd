@@ -1,0 +1,51 @@
+---
+title: "flexdashboard Examples"
+---
+
+The examples below illustrate the use of flexdashboard with various packages and layouts. If you want to learn more about how the dashboards were created each example includes a link to it's source code. 
+
+## htmlwidgets
+
+These examples are dashboards built as regular R Markdown documents (i.e. they are a simple webpage that can be deployed to any web server). Each of them use [htmlwidgets](http://www.htmlwidgets.com) to provide direct interaction with charts on the dashboard.
+
+<div class="row">
+
+<div class="col-md-4">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157935_4a5a5cb2d447495d8cfc356251c3e437.html" class="thumbnail">
+<img src="images/d3heatmap.png" alt="flexdashboard with d3heatmap">
+</a>
+</div>
+
+<div class="col-md-4">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157936_b8de6c18b00240c6a42785ce8a1a1fdc.html" class="thumbnail">
+<img src="images/dygraphs.png" alt="flexdashboard with dygraphs">
+</a>
+</div>
+
+<div class="col-md-4">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157937_dc7c4031822441a88a05277d38f34f0e.html" class="thumbnail">
+<img src="images/plotly.png" alt="flexdashboard with plotly">
+</a>
+</div>
+
+</div>
+
+## shiny
+
+These examples are dashboards built as Shiny [interactive documents](http://shiny.rstudio.com/articles/interactive-docs.html) (R Markdown with `runtime: shiny`). Interactivity based on sidebar inputs as well as brushing is demonstrated.
+
+<div class="row">
+
+<div class="col-md-4">
+<a href="https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/" class="thumbnail">
+<img src="images/ggplot2-brushing.png" alt="ggplot2 brushing">
+</a>
+</div>
+
+<div class="col-md-4">
+<a href="https://jjallaire.shinyapps.io/shiny-kmeans/" class="thumbnail">
+<img src="images/shiny-dashboard.png" alt="flexdashboard with shiny">
+</a>
+</div>
+
+</div>
