@@ -64,7 +64,7 @@ You can use flexdashboard to publish groups of related data visualizations as a 
 
 One of the most important characteristics of flexdashboard is the automatic scaling of charts to fit available browser width and height. This makes flexdashboard ideal for publishing [htmlwidgets](http://www.htmlwidgets.org) since these widgets automatically re-size themselves to their containers.
 
-You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also automatically resized to fit their containers within dynamic (Shiny) dashboards; in static dashboards, however, a bit more work is required to ensure that they are properly scaled (see [Figure Sizes and Scaling](using.html#figure-sizes-and-scaling)).
+You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also automatically re-sized to fit their containers within dynamic (Shiny) dashboards; in static dashboards, however, a bit more work is required to ensure that they are properly scaled (see [Figure Sizes and Scaling](using.html#figure-sizes-and-scaling)).
 
 ### Single Column Layout
 

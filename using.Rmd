@@ -63,9 +63,9 @@ You can also choose to orient dashboards row-wise rather than column-wise, by sp
 
 ## Page Fill vs. Scrolling
 
-By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you'll probably want to scroll rather than fit them all onto the page. You can control this behavior using the `vertical_layout` option. Specify `fill` to vertically resize charts so they completely fill the page and `scroll` to layout charts at their natural height, scrolling the page if necessary.
+By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you'll probably want to scroll rather than fit them all onto the page. You can control this behavior using the `vertical_layout` option. Specify `fill` to vertically re-size charts so they completely fill the page and `scroll` to layout charts at their natural height, scrolling the page if necessary.
 
-For example, the following layout includes 3 charts and requests that the page scroll as necessary to accomodate their natural height:
+For example, the following layout includes 3 charts and requests that the page scroll as necessary to accommodate their natural height:
 
 <div class="row">
 
@@ -162,7 +162,7 @@ The implication of this is that chart dimensions established via either knitr fi
 
 ## Figure Sizes and Scaling
 
-Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on [htmlwidgets](http://www.htmlwidgets.org) can dynamically resize themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.
+Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on [htmlwidgets](http://www.htmlwidgets.org) can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.
 
 It's also possible to use charts created using standard R graphics (base, lattice, ggplot2, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to [renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html).
 
@@ -203,7 +203,7 @@ Navigation bar items must include either a `title` or `icon` field (both can als
 
 ### Icon Sets
 
-You can specify icons for navigation bar items from three differnet icon sets:
+You can specify icons for navigation bar items from three different icon sets:
 
 1. [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/)
 

@@ -343,8 +343,8 @@ div.tocify {
 </div>
 <div id="page-fill-vs.scrolling" class="section level2">
 <h2>Page Fill vs. Scrolling</h2>
-<p>By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you’ll probably want to scroll rather than fit them all onto the page. You can control this behavior using the <code>vertical_layout</code> option. Specify <code>fill</code> to vertically resize charts so they completely fill the page and <code>scroll</code> to layout charts at their natural height, scrolling the page if necessary.</p>
-<p>For example, the following layout includes 3 charts and requests that the page scroll as necessary to accomodate their natural height:</p>
+<p>By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you’ll probably want to scroll rather than fit them all onto the page. You can control this behavior using the <code>vertical_layout</code> option. Specify <code>fill</code> to vertically re-size charts so they completely fill the page and <code>scroll</code> to layout charts at their natural height, scrolling the page if necessary.</p>
+<p>For example, the following layout includes 3 charts and requests that the page scroll as necessary to accommodate their natural height:</p>
 <div class="row">
 <div class="col-md-6">
 <div id="chartstack-scrolling">
@@ -427,7 +427,7 @@ div.tocify {
 </div>
 <div id="figure-sizes-and-scaling" class="section level2">
 <h2>Figure Sizes and Scaling</h2>
-<p>Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> can dynamically resize themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.</p>
+<p>Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.</p>
 <p>It’s also possible to use charts created using standard R graphics (base, lattice, ggplot2, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>.</p>
 <p>Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it’s not possible for them to seamlessly fill the bounds of their container. When creating static dashboards containing standard R graphics it’s therefore critical to define knitr <code>fig.width</code> and <code>fig.height</code> values as close as possible to what they’ll actually be on the page.</p>
 <p>Here’s an example of a row based layout that includes 3 charts from R base graphics:</p>
@@ -462,7 +462,7 @@ div.tocify {
 <p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). You should also include a <code>url</code> as the navigation target. The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
 <div id="icon-sets" class="section level3">
 <h3>Icon Sets</h3>
-<p>You can specify icons for navigation bar items from three differnet icon sets:</p>
+<p>You can specify icons for navigation bar items from three different icon sets:</p>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a></p></li>
 <li><p><a href="http://ionicons.com/">Ionicons</a></p></li>
