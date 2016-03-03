@@ -2,8 +2,8 @@ name: htmlwidgets-highcharter
 account: jjallaire
 server: beta.rstudioconnect.com
 appId: 553
-bundleId: 954
+bundleId: 956
 url: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/
-when: 1457019905.43649
+when: 1457037209.6059
 asMultiple: FALSE
 asStatic: TRUE

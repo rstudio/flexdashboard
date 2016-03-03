@@ -16,17 +16,15 @@ library("viridisLite")
 library("forecast")
 library("treemap")
 
-fnt <- list(fontFamily = "Source Sans Pro")
-
-thm <- hc_theme_merge(
-  hc_theme_538(),
+thm <- 
   hc_theme(
+    colors = c("#1a6ecc", "#434348", "#90ed7d"),
     chart = list(
       backgroundColor = "transparent",
-      style = fnt
-      ),
-    yAxis = list(labels = list(style = fnt)),
-    xAxis = list(labels = list(style = fnt))
+      style = list(fontFamily = "Source Sans Pro")
+    ),
+    xAxis = list(
+      gridLineWidth = 1
     )
   )
 
@@ -57,7 +55,7 @@ USArrests <- USArrests %>%
 n <- 4
 colstops <- data.frame(
   q = 0:n/n,
-  c = substring(viridis(n + 1, option = "B"), 0, 7)) %>%
+  c = substring(viridis(n + 1), 0, 7)) %>%
   list.parse2()
 
 highchart() %>%
@@ -87,13 +85,13 @@ dfitemsg <- dfitems %>%
   mutate(category = gsub(" ", "-", level1),
          subcategory = gsub(" ", "-", level2)) %>%
   group_by(category, subcategory) %>% 
-  summarise(sales = n() * 1000) %>% 
+  summarise(sales = n() ^ 3 ) %>% 
   ungroup() %>% 
   sample_n(31)
 
 tm <- treemap(dfitemsg, index = c("category", "subcategory"),
               vSize = "sales", vColor = "sales",
-              type = "value", palette = viridis(6, option = "B"))
+              type = "value", palette = rev(viridis(6)))
 
 highchart() %>% 
   hc_add_series_treemap(tm, allowDrillToNode = TRUE,
