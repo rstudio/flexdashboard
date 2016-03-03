@@ -1,10 +1,11 @@
 ---
-title: "Flexdashboard & Highcharter"
+title: "Sales Report with Highcharter"
+author: "Joshua Kunst"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
     social: [ "twitter", "facebook" ]
-    source_code: "https://github.com/jbkunst/flexdashboard-highcharter-example"
+    source_code: "https://git.io/v2H3E"
 ---
 
 ```{r setup, include=FALSE}
