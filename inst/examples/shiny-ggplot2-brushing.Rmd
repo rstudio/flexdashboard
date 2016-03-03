@@ -1,6 +1,8 @@
 ---
-title: "Flex Dashboard"
-output: flexdashboard::flex_dashboard
+title: "ggplot2 Brushing"
+output: 
+  flexdashboard::flex_dashboard:
+    source_code: https://git.io/v29Pd
 runtime: shiny
 ---
 
@@ -8,9 +10,8 @@ runtime: shiny
 library(ggplot2)
 library(Cairo) # For nicer ggplot2 output when deployed on Linux
 
-# We'll use a subset of the mtcars data set, with fewer columns
-# so that it prints nicely
-mtcars2 <- mtcars[1:20, c("mpg", "cyl", "hp", "wt")]
+# We'll use a subset of the mtcars data set with fewer columns
+mtcars2 <- mtcars[1:20, c("mpg", "cyl", "wt")]
 
 # Reactive that returns the whole dataset if there is no brush
 selectedData <- reactive({
@@ -21,7 +22,7 @@ selectedData <- reactive({
 })
 ```
 
-Column {data-width=600}
+Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Miles Per Gallon vs. Weight {data-width=600}
@@ -41,7 +42,7 @@ renderPlot({
 })
 ```
 
-Column {data-width=400}
+Column {data-width=350}
 -----------------------------------------------------------------------
 
 ### Car Details {data-width=400}
