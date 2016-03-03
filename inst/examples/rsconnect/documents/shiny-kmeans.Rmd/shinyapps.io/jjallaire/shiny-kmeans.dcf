@@ -2,8 +2,8 @@ name: shiny-kmeans
 account: jjallaire
 server: shinyapps.io
 appId: 86820
-bundleId: 385871
+bundleId: 386674
 url: https://jjallaire.shinyapps.io/shiny-kmeans/
-when: 1456949947.77235
+when: 1457026916.2279
 asMultiple: FALSE
 asStatic: FALSE

@@ -2,6 +2,7 @@
 title: "ggplot2 Brushing"
 output: 
   flexdashboard::flex_dashboard:
+    social: [ "twitter", "facebook" ]
     source_code: https://git.io/v29Pd
 runtime: shiny
 ---
@@ -9,6 +10,7 @@ runtime: shiny
 ```{r setup, include=FALSE}
 library(ggplot2)
 library(Cairo) # For nicer ggplot2 output when deployed on Linux
+library(flexdashboard)
 
 # We'll use a subset of the mtcars data set with fewer columns
 mtcars2 <- mtcars[1:20, c("mpg", "cyl", "wt")]
@@ -29,7 +31,7 @@ Column {data-width=650}
 
 ```{r}
 plotOutput("plot1", brush = brushOpts(id = "plot1_brush"))
-output$plot1 <- renderPlot({
+output$plot1 <- renderPlot(res = 96, {
   ggplot(mtcars2, aes(wt, mpg)) + geom_point()
 })
 ```
@@ -37,7 +39,7 @@ output$plot1 <- renderPlot({
 ### Miles Per Gallon and Cylinders
 
 ```{r}
-renderPlot({
+renderPlot(res = 96, {
   ggplot(selectedData(), aes(factor(cyl), mpg))  + geom_boxplot()
 })
 ```
