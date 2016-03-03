@@ -148,61 +148,52 @@ flex_dashboard <- function(fig_width = 5,
     paste(knitrOptions, x, sep = '\n')
   }
 
-  # preprocessor
-  pre_processor <- function (metadata, input_file, runtime, knit_meta,
-                             files_dir, output_dir) {
-
-    args <- c()
-
-    # include flexdashboard.css and flexdashboard.js (but not in devel
-    # mode, in that case relative filesystem references to
-    # them are included in the template along with live reload)
-    if (devel) {
-      args <- c(args, pandoc_variable_arg("devel", "1"))
-      dashboardAssets <- NULL
+  # include flexdashboard.css and flexdashboard.js (but not in devel
+  # mode, in that case relative filesystem references to
+  # them are included in the template along with live reload)
+  if (devel) {
+    args <- c(args, pandoc_variable_arg("devel", "1"))
+    dashboardAssets <- NULL
+  } else {
+    if (fill_page) {
+      fillPageCss <- readLines(resource("fillpage.css"))
     } else {
-      if (fill_page) {
-        fillPageCss <- readLines(resource("fillpage.css"))
-      } else {
-        fillPageCss <- NULL
-      }
-
-      dashboardAssets <- c(
-        '<style type="text/css">',
-        readLines(resource("flexdashboard.css")),
-        readLines(resource(paste0("theme-", theme, ".css"))),
-        fillPageCss,
-        '</style>',
-        '<script type="text/javascript">',
-        readLines(resource("flexdashboard.js")),
-        '</script>'
-      )
+      fillPageCss <- NULL
     }
 
-    # add FlexDashboard initialization to assets
-    dashboardAssets <- c(dashboardAssets,
+    dashboardAssets <- c(
+      '<style type="text/css">',
+      readLines(resource("flexdashboard.css")),
+      readLines(resource(paste0("theme-", theme, ".css"))),
+      fillPageCss,
+      '</style>',
       '<script type="text/javascript">',
-      '$(document).ready(function () {',
-      '  FlexDashboard.init({',
-      paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
-      paste0('    orientation: "', orientation, '",'),
-      paste0('    defaultFigWidth: ', figSizePixels(fig_width), ','),
-      paste0('    defaultFigHeight: ', figSizePixels(fig_height)),
-      '  });',
-      '});',
+      readLines(resource("flexdashboard.js")),
       '</script>'
     )
-
-    # write assets and include them on the command line
-    dashboardAssetsFile <- tempfile(fileext = ".html")
-    writeLines(dashboardAssets, dashboardAssetsFile)
-    args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
-
-    # highlight
-    args <- c(args, pandoc_highlight_args(highlight, default = "pygments"))
-
-    args
   }
+
+  # add FlexDashboard initialization to assets
+  dashboardAssets <- c(dashboardAssets,
+    '<script type="text/javascript">',
+    '$(document).ready(function () {',
+    '  FlexDashboard.init({',
+    paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
+    paste0('    orientation: "', orientation, '",'),
+    paste0('    defaultFigWidth: ', figSizePixels(fig_width), ','),
+    paste0('    defaultFigHeight: ', figSizePixels(fig_height)),
+    '  });',
+    '});',
+    '</script>'
+  )
+
+  # write assets and include them on the command line
+  dashboardAssetsFile <- tempfile(fileext = ".html")
+  writeLines(dashboardAssets, dashboardAssetsFile)
+  args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
+
+  # highlight
+  args <- c(args, pandoc_highlight_args(highlight, default = "pygments"))
 
   # dependencies
   extra_dependencies <- append(extra_dependencies, navbar_dependencies(navbar))
@@ -215,7 +206,6 @@ flex_dashboard <- function(fig_width = 5,
                             args = args),
     keep_md = FALSE,
     clean_supporting = self_contained,
-    pre_processor = pre_processor,
     base_format = html_document_base(smart = smart, theme = theme,
                                      self_contained = self_contained,
                                      lib_dir = lib_dir, mathjax = mathjax,
