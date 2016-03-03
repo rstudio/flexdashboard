@@ -30,6 +30,19 @@ These examples are dashboards built as regular R Markdown documents (i.e. they a
 
 </div>
 
+<div class="row">
+
+<div class="col-md-4">
+<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/" class="thumbnail">
+<img src="images/highcharter.png" alt="sales report with highcharter">
+</a>
+</div>
+
+
+
+</div>
+
+
 ## shiny
 
 These examples are dashboards built as Shiny [interactive documents](http://shiny.rstudio.com/articles/interactive-docs.html) (R Markdown with `runtime: shiny`). Interactivity based on sidebar inputs as well as brushing is demonstrated.
