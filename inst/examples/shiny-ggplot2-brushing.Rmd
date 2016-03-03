@@ -1,0 +1,55 @@
+---
+title: "Flex Dashboard"
+output: flexdashboard::flex_dashboard
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(Cairo) # For nicer ggplot2 output when deployed on Linux
+
+# We'll use a subset of the mtcars data set, with fewer columns
+# so that it prints nicely
+mtcars2 <- mtcars[1:20, c("mpg", "cyl", "hp", "wt")]
+
+# Reactive that returns the whole dataset if there is no brush
+selectedData <- reactive({
+  data <- brushedPoints(mtcars2, input$plot1_brush)
+  if (nrow(data) == 0)
+    data <- mtcars2
+  data
+})
+```
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### Miles Per Gallon vs. Weight {data-width=600}
+
+```{r}
+plotOutput("plot1", brush = brushOpts(id = "plot1_brush"))
+output$plot1 <- renderPlot({
+  ggplot(mtcars2, aes(wt, mpg)) + geom_point()
+})
+```
+
+### Miles Per Gallon and Cylinders
+
+```{r}
+renderPlot({
+  ggplot(selectedData(), aes(factor(cyl), mpg))  + geom_boxplot()
+})
+```
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### Car Details {data-width=400}
+
+```{r}
+renderTable({
+  selectedData()
+})
+```
+
+
