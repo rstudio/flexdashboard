@@ -28,10 +28,9 @@
 #'  charts so they completely fill the page; "scroll" to layout charts at their
 #'  natural height, scrolling the page if necessary.
 #'
-#'@param theme Visual theme ("default", "bootstrap", "cerulean", "journal",
-#'  "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
-#'  "sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
-#'  is specified.
+#'@param theme Visual theme ("default", "cerulean", "journal", "flatly",
+#'  "readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone",
+#'  "simplex", or "yeti").
 #'
 #'@param highlight Syntax highlighting style. Supported styles include
 #'  "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
@@ -114,12 +113,6 @@ flex_dashboard <- function(fig_width = 5,
   # resolve vertical_layout
   vertical_layout <- match.arg(vertical_layout)
   fill_page <- identical(vertical_layout, "fill")
-
-  # resolve theme
-  if (identical(theme, "default"))
-    theme <- "cosmo"
-  else if (identical(theme, "bootstrap"))
-    theme <- "default"
 
   # navbar type
   if (theme %in% c("default"))
