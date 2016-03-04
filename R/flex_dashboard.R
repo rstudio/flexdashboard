@@ -98,10 +98,6 @@ flex_dashboard <- function(fig_width = 5,
   # use section divs
   args <- c(args, "--section-divs")
 
-  # additional css
-  for (css_file in css)
-    args <- c(args, "--css", pandoc_path_arg(css_file))
-
   # add template
   args <- c(args, "--template", pandoc_path_arg(resource("default.html")))
 
@@ -159,7 +155,8 @@ flex_dashboard <- function(fig_width = 5,
     # them are included in the template along with live reload)
     if (devel) {
       args <- c(args, pandoc_variable_arg("devel", "1"))
-      dashboardAssets <- NULL
+      dashboardCss <- NULL
+      dashboardScript <- NULL
     } else {
       if (fill_page) {
         fillPageCss <- readLines(resource("fillpage.css"))
@@ -167,20 +164,23 @@ flex_dashboard <- function(fig_width = 5,
         fillPageCss <- NULL
       }
 
-      dashboardAssets <- c(
+      dashboardCss <- c(
         '<style type="text/css">',
         readLines(resource("flexdashboard.css")),
         readLines(resource(paste0("theme-", theme, ".css"))),
         fillPageCss,
-        '</style>',
+        '</style>'
+      )
+
+      dashboardScript <- c(
         '<script type="text/javascript">',
         readLines(resource("flexdashboard.js")),
         '</script>'
       )
     }
 
-    # add FlexDashboard initialization to assets
-    dashboardAssets <- c(dashboardAssets,
+    # add FlexDashboard initialization
+    dashboardScript <- c(dashboardScript,
       '<script type="text/javascript">',
       '$(document).ready(function () {',
       '  FlexDashboard.init({',
@@ -193,13 +193,22 @@ flex_dashboard <- function(fig_width = 5,
       '</script>'
     )
 
-    # write assets and include them on the command line
-    dashboardAssetsFile <- tempfile(fileext = ".html")
-    writeLines(dashboardAssets, dashboardAssetsFile)
-    args <- c(args, pandoc_include_args(before_body = dashboardAssetsFile))
+    # css
+    dashboardCssFile <- tempfile(fileext = "html")
+    writeLines(dashboardCss, dashboardCssFile)
+    args <- c(args, pandoc_include_args(in_header = dashboardCssFile))
+
+    # script
+    dashboardScriptFile <- tempfile(fileext = ".html")
+    writeLines(dashboardScript, dashboardScriptFile)
+    args <- c(args, pandoc_include_args(before_body = dashboardScriptFile))
 
     # highlight
     args <- c(args, pandoc_highlight_args(highlight, default = "pygments"))
+
+    # additional user css
+    for (css_file in css)
+      args <- c(args, "--css", pandoc_path_arg(css_file))
 
     args
   }
