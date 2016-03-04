@@ -545,6 +545,12 @@ var FlexDashboard = (function () {
       // additional shim to break out of flexbox sizing
       chartContent.wrapInner('<div class="chart-shim"></div>');
       chartContent = chartContent.children('.chart-shim');
+
+      // check for a kable
+      var kable = findKable(chartContent);
+      if (kable) {
+        chartContent.addClass('kable-shim');
+      }
     }
 
     // add the title
@@ -619,7 +625,15 @@ var FlexDashboard = (function () {
                           .children('img:only-child');
     var widget = chartContent.children('div[id^="htmlwidget-"],div.html-widget');
     var shiny = chartContent.children('div[class^="shiny-"]');
-    return img.length > 0 || widget.length > 0 || shiny.length > 0;
+    var kable = findKable(chartContent);
+    return (img.length > 0) ||
+           (widget.length > 0) ||
+           (shiny.length > 0) ||
+           (kable.length > 0);
+  }
+
+  function findKable(chartContent) {
+    return chartContent.find('tr.header').parent('thead').parent('table');
   }
 
   // safely detect rendering on a mobile phone

@@ -163,6 +163,10 @@ body hr {
   left: 8px; top: 8px; right: 8px; bottom: 8px;
 }
 
+.kable-shim {
+  overflow: auto;
+}
+
 .chart-wrapper form {
   padding-left: 5px;
   padding-right: 5px;
