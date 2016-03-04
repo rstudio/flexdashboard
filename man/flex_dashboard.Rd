@@ -50,9 +50,10 @@ dashboard rows or dashboard columns.}
 charts so they completely fill the page; "scroll" to layout charts at their
 natural height, scrolling the page if necessary.}
 
-\item{theme}{Visual theme ("default", "cerulean", "journal", "flatly",
-"readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone",
-"simplex", or "yeti").}
+\item{theme}{Visual theme ("default", "bootstrap", "cerulean", "journal",
+"flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
+"sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
+is specified.}
 
 \item{highlight}{Syntax highlighting style. Supported styles include
 "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
