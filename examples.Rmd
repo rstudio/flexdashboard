@@ -11,7 +11,7 @@ These examples are dashboards built as regular R Markdown documents (i.e. they a
 <div class="row">
 
 <div class="col-md-4">
-<a href="https://rstudio-pubs-static.s3.amazonaws.com/157935_4a5a5cb2d447495d8cfc356251c3e437.html" class="thumbnail">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157935_4176b6bfd53f46fcaeb77f774f28ee13.html" class="thumbnail">
 <img src="images/d3heatmap.png" alt="flexdashboard with d3heatmap">
 </a>
 </div>
