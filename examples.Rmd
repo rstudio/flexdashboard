@@ -6,7 +6,7 @@ The examples below illustrate the use of flexdashboard with various packages and
 
 ## htmlwidgets
 
-These examples are dashboards built as regular R Markdown documents (i.e. they are a simple webpage that can be deployed to any web server). Each of them use [htmlwidgets](http://www.htmlwidgets.com) to provide direct interaction with charts on the dashboard.
+These examples are dashboards built as regular R Markdown documents (i.e. they are a simple webpage that can be deployed to any web server). Each of them use [htmlwidgets](http://www.htmlwidgets.org) to provide direct interaction with charts on the dashboard.
 
 <div class="row">
 
