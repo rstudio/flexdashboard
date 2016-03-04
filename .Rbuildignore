@@ -3,6 +3,8 @@
 ^devel$
 ^inst/examples/rsconnect$
 ^inst/examples/.+\.html
+^inst/examples/.+_files
+^inst/examples/.+\.Rnb\.cached
 
 
 
