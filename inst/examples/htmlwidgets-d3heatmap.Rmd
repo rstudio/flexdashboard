@@ -2,9 +2,11 @@
 title: "NBA Scoring (2008)"
 output: 
   flexdashboard::flex_dashboard:
+    devel: true
     orientation: rows
     social: [ "twitter", "facebook" ]
     source_code: "https://git.io/v2DvA"
+knit: flexdashboard:::knit_devel
 ---
 
 ```{r setup, include=FALSE}

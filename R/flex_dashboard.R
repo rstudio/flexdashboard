@@ -181,6 +181,7 @@ flex_dashboard <- function(fig_width = 5,
 
       dashboardScript <- c(
         '<script type="text/javascript">',
+        readLines(resource("jquery.fixedHeaderTable.js")),
         readLines(resource("flexdashboard.js")),
         '</script>'
       )
