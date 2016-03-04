@@ -30,9 +30,9 @@ documents MathJax is still loaded externally (this is necessary because of
 it's size).}
 
 \item{social}{Specify a character vector of social sharing services to
-automatically add sharing links for them on the \code{navbar}. Valid
-values are "twitter", "facebook", "google-plus", "linkedin", and
-"pinterest" (more than one service can be specified).}
+automatically add sharing links for them on the \code{navbar}. Valid values
+are "twitter", "facebook", "google-plus", "linkedin", and "pinterest" (more
+than one service can be specified).}
 
 \item{source_code}{URL for source code of dashboard (used primarily for
 publishing flexdashboard examples). Automatically creates a \code{navbar}
@@ -40,8 +40,8 @@ item which links to the source code.}
 
 \item{navbar}{Optional list of elements to be placed on the flexdashboard
 navigation bar. Each element should be a list containing a \code{title}
-and/or \code{icon} field, a \code{url} field and an optional
-\code{align} ("left" or "right") field.}
+and/or \code{icon} field, a \code{url} field and an optional \code{align}
+("left" or "right") field.}
 
 \item{orientation}{Determines whether level 2 headings are treated as
 dashboard rows or dashboard columns.}
@@ -50,10 +50,9 @@ dashboard rows or dashboard columns.}
 charts so they completely fill the page; "scroll" to layout charts at their
 natural height, scrolling the page if necessary.}
 
-\item{theme}{Visual theme ("default", "bootstrap", "cerulean", "journal",
-"flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
-"sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
-is specified.}
+\item{theme}{Visual theme ("default", "cerulean", "journal", "flatly",
+"readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone",
+"simplex", or "yeti").}
 
 \item{highlight}{Syntax highlighting style. Supported styles include
 "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",

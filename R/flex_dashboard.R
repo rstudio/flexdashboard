@@ -8,9 +8,9 @@
 #'@inheritParams rmarkdown::html_document
 #'
 #'@param social Specify a character vector of social sharing services to
-#'  automatically add sharing links for them on the \code{navbar}. Valid
-#'  values are "twitter", "facebook", "google-plus", "linkedin", and
-#'  "pinterest" (more than one service can be specified).
+#'  automatically add sharing links for them on the \code{navbar}. Valid values
+#'  are "twitter", "facebook", "google-plus", "linkedin", and "pinterest" (more
+#'  than one service can be specified).
 #'
 #'@param source_code URL for source code of dashboard (used primarily for
 #'  publishing flexdashboard examples). Automatically creates a \code{navbar}
@@ -18,8 +18,8 @@
 #'
 #'@param navbar Optional list of elements to be placed on the flexdashboard
 #'  navigation bar. Each element should be a list containing a \code{title}
-#'  and/or \code{icon} field, a \code{url} field and an optional
-#'  \code{align} ("left" or "right") field.
+#'  and/or \code{icon} field, a \code{url} field and an optional \code{align}
+#'  ("left" or "right") field.
 #'
 #'@param orientation Determines whether level 2 headings are treated as
 #'  dashboard rows or dashboard columns.
