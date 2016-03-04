@@ -201,9 +201,11 @@ flex_dashboard <- function(fig_width = 5,
     )
 
     # css
-    dashboardCssFile <- tempfile(fileext = "html")
-    writeLines(dashboardCss, dashboardCssFile)
-    args <- c(args, pandoc_include_args(in_header = dashboardCssFile))
+    if (!is.null(dashboardCss)) {
+      dashboardCssFile <- tempfile(fileext = "html")
+      writeLines(dashboardCss, dashboardCssFile)
+      args <- c(args, pandoc_include_args(in_header = dashboardCssFile))
+    }
 
     # script
     dashboardScriptFile <- tempfile(fileext = ".html")
