@@ -250,6 +250,8 @@ Use the `theme` option to specify an alternate theme:
 <div id="themes"></div>
 <script type="text/javascript">loadSnippet('themes')</script>
 
+If you are looking for a theme that embeds well inside another content frame (e.g. one that doesn't use such a strong color for the navigation bar) then the "bootstrap" theme is a good choice. 
+
 ## Learning More
 
 The [Shiny](shiny.html) page describes how to create dashboards that automatically update themselves as the underlying data changes, or allow viewers to change parameters and see the results immediately.
