@@ -121,6 +121,13 @@ flex_dashboard <- function(fig_width = 5,
   else if (identical(theme, "bootstrap"))
     theme <- "default"
 
+  # navbar type
+  if (theme %in% c("default"))
+    navbar_type <- "default"
+  else
+    navbar_type <- "inverse"
+  args <- c(args, pandoc_variable_arg("navbar", navbar_type))
+
   # determine knitr options
   knitr_options <- knitr_options_html(fig_width = fig_width,
                                       fig_height = fig_height,

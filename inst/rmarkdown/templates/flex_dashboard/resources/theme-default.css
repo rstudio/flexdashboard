@@ -1,18 +1,12 @@
-.navbar-inverse {
-  background-color: #3d4a57;
-  border-color: #333;
-}
-
-.navbar-inverse .navbar-nav > li > a,
-.navbar .navbar-brand {
-  color: #fbfbfb;
-}
 
 body {
   padding-top: 60px;
+  background: rgba(0,0,0,0.015);
 }
 
 .section.sidebar {
   top: 51px;
-  background-color: rgba(61, 74, 87, 0.1);
+
+  /* background-color: #f5f5f5; */
+  background-color: #f8f8f8;
 }
