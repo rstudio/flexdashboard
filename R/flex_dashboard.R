@@ -216,6 +216,13 @@ flex_dashboard <- function(fig_width = 5,
     # highlight
     args <- c(args, pandoc_highlight_args(highlight, default = "pygments"))
 
+    # user includes
+    if (is.null(includes))
+      includes <- list()
+    args <- c(args, pandoc_include_args(in_header = includes$in_header,
+                                        before_body = includes$before_body,
+                                        after_body = includes$after_body))
+
     # additional user css
     for (css_file in css)
       args <- c(args, "--css", pandoc_path_arg(css_file))
