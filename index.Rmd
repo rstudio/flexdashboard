@@ -21,7 +21,7 @@ title: "flexdashboard: Easy interactive dashboards for R"
 <div class="row">
 
 <div class="col-md-4">
-<a href="https://rstudio-pubs-static.s3.amazonaws.com/157935_4176b6bfd53f46fcaeb77f774f28ee13.html" class="thumbnail">
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/157935_d0e1071bfb3841a3bdf64c6bb5ed64af.html" class="thumbnail">
 <img src="images/d3heatmap.png" alt="flexdashboard with d3heatmap">
 </a>
 </div>
