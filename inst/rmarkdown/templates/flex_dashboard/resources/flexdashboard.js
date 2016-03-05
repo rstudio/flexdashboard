@@ -551,7 +551,22 @@ var FlexDashboard = (function () {
       if (bsTable.length > 0) {
         chartContent.addClass('bootstrap-table-shim');
       }
-    }
+
+      // if there is a shiny-html-output element then listen for
+      // new bootstrap tables bound to it (delay looking for the
+      // table to provide time for the value to be bound)
+      chartContent.find('.shiny-html-output').on('shiny:value',
+        function(event) {
+          var element = $(event.target);
+          setTimeout(function() {
+            var bsTable = findBootstrapTable(element);
+            if (bsTable.length > 0) {
+              element.parent().addClass('bootstrap-table-shim')
+                              .addClass('bootstrap-table-shim-shiny');
+            }
+          }, 10);
+        });
+      }
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
