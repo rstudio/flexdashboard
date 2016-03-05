@@ -561,8 +561,8 @@ var FlexDashboard = (function () {
           setTimeout(function() {
             var bsTable = findBootstrapTable(element);
             if (bsTable.length > 0) {
-              element.parent().addClass('bootstrap-table-shim')
-                              .addClass('bootstrap-table-shim-shiny');
+              bsTable.removeClass('table-bordered');
+              element.parent().addClass('bootstrap-table-shim');
             }
           }, 10);
         });

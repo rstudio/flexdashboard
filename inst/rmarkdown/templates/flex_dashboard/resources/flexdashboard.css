@@ -170,13 +170,17 @@ body hr {
   padding-right: 8px;
 }
 
-.bootstrap-table-shim-shiny {
-  padding-left: 0;
-  padding-right: 0;
+.bootstrap-table-shim table.data {
+  width: inherit;
 }
 
-.bootstrap-table-shim-shiny table {
-  width: inherit;
+.bootstrap-table-shim table.data>tbody>tr>th {
+  border-top: none;
+  border-bottom: 2px solid #dddddd;
+}
+
+.bootstrap-table-shim .data td[align=right] {
+  font-family: inherit;
 }
 
 .chart-wrapper form {
