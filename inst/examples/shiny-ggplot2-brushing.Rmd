@@ -13,7 +13,7 @@ library(Cairo) # For nicer ggplot2 output when deployed on Linux
 library(flexdashboard)
 
 # We'll use a subset of the mtcars data set with fewer columns
-mtcars2 <- mtcars[1:20, c("mpg", "cyl", "wt")]
+mtcars2 <- mtcars[, c("mpg", "cyl", "wt")]
 
 # Reactive that returns the whole dataset if there is no brush
 selectedData <- reactive({
