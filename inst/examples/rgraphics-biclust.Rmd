@@ -10,7 +10,6 @@ output:
     source_code: "https://git.io/v2Nsw"
 ---
 
-
 ```{r setup, include=FALSE}
 library(biclust)
 library(knitr)
@@ -19,8 +18,9 @@ data(BicatYeast)
 set.seed(1)
 res <- biclust(BicatYeast, method=BCPlaid(), verbose=FALSE)
 ```
+
 Row
--------------------------------------
+-----------------------------------------------------------------------
     
 ### Heatmap
     
@@ -37,7 +37,7 @@ parallelCoordinates(BicatYeast, res, number=4)
 ```
    
 Row
--------------------------------------
+-----------------------------------------------------------------------
 
 ### Bicat Yeast Data for Cluster #4
 
