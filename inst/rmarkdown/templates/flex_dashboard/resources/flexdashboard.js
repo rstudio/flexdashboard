@@ -548,7 +548,7 @@ var FlexDashboard = (function () {
 
       // check for a bootstrap table
       var bsTable = findBootstrapTable(chartContent);
-      if (bsTable) {
+      if (bsTable.length > 0) {
         chartContent.addClass('bootstrap-table-shim');
       }
     }
@@ -634,7 +634,7 @@ var FlexDashboard = (function () {
 
   function findBootstrapTable(chartContent) {
     var bsTable = chartContent.find('table.table');
-    if (bsTable)
+    if (bsTable.length > 0)
       return bsTable;
     else
       return chartContent.find('tr.header').parent('thead').parent('table');
