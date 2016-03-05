@@ -546,10 +546,10 @@ var FlexDashboard = (function () {
       chartContent.wrapInner('<div class="chart-shim"></div>');
       chartContent = chartContent.children('.chart-shim');
 
-      // check for a kable
-      var kable = findKable(chartContent);
-      if (kable) {
-        chartContent.addClass('kable-shim');
+      // check for a bootstrap table
+      var bsTable = findBootstrapTable(chartContent);
+      if (bsTable) {
+        chartContent.addClass('bootstrap-table-shim');
       }
     }
 
@@ -625,15 +625,19 @@ var FlexDashboard = (function () {
                           .children('img:only-child');
     var widget = chartContent.children('div[id^="htmlwidget-"],div.html-widget');
     var shiny = chartContent.children('div[class^="shiny-"]');
-    var kable = findKable(chartContent);
+    var bsTable = findBootstrapTable(chartContent);
     return (img.length > 0) ||
            (widget.length > 0) ||
            (shiny.length > 0) ||
-           (kable.length > 0);
+           (bsTable.length > 0);
   }
 
-  function findKable(chartContent) {
-    return chartContent.find('tr.header').parent('thead').parent('table');
+  function findBootstrapTable(chartContent) {
+    var bsTable = chartContent.find('table.table');
+    if (bsTable)
+      return bsTable;
+    else
+      return chartContent.find('tr.header').parent('thead').parent('table');
   }
 
   // safely detect rendering on a mobile phone

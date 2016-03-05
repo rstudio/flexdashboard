@@ -163,7 +163,7 @@ body hr {
   left: 8px; top: 8px; right: 8px; bottom: 8px;
 }
 
-.kable-shim {
+.bootstrap-table-shim {
   overflow: auto;
   left: 0; top: 0; right: 0; bottom: 0;
 }
