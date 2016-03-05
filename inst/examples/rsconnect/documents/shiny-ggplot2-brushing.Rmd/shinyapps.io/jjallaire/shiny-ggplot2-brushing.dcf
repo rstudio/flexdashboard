@@ -2,8 +2,8 @@ name: shiny-ggplot2-brushing
 account: jjallaire
 server: shinyapps.io
 appId: 86949
-bundleId: 386671
+bundleId: 388202
 url: https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/
-when: 1457026794.72248
+when: 1457203795.88864
 asMultiple: FALSE
 asStatic: FALSE

@@ -163,9 +163,24 @@ body hr {
   left: 8px; top: 8px; right: 8px; bottom: 8px;
 }
 
-.kable-shim {
+.bootstrap-table-shim {
   overflow: auto;
   left: 0; top: 0; right: 0; bottom: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.bootstrap-table-shim table.data {
+  width: inherit;
+}
+
+.bootstrap-table-shim table.data>tbody>tr>th {
+  border-top: none;
+  border-bottom: 2px solid #dddddd;
+}
+
+.bootstrap-table-shim .data td[align=right] {
+  font-family: inherit;
 }
 
 .chart-wrapper form {

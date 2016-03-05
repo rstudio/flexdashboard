@@ -1,0 +1,47 @@
+---
+title: "Gene Expression Biclustering"
+author: "Bryan Lewis"
+output: 
+  flexdashboard::flex_dashboard:
+    fig_width: 10
+    fig_height: 6
+    orientation: rows
+    social: [ "twitter", "facebook" ]
+    source_code: "https://git.io/v2Nsw"
+---
+
+```{r setup, include=FALSE}
+library(biclust)
+library(knitr)
+
+data(BicatYeast)
+set.seed(1)
+res <- biclust(BicatYeast, method=BCPlaid(), verbose=FALSE)
+```
+
+Row
+-----------------------------------------------------------------------
+    
+### Heatmap
+    
+```{r}
+p = par(mai=c(0,0,0,0))
+heatmapBC(BicatYeast, res, xlab="", ylab="", order=TRUE)
+par(p)
+```
+
+### Parallel Coordinates
+    
+```{r}
+parallelCoordinates(BicatYeast, res, number=4)
+```
+   
+Row
+-----------------------------------------------------------------------
+
+### Bicat Yeast Data for Cluster #4
+
+```{r}
+# only display table for values in cluster 4
+kable(BicatYeast[which(res@RowxNumber[, 4]), which(res@NumberxCol[4, ])])
+```

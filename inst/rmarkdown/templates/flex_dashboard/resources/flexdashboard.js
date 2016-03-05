@@ -546,12 +546,27 @@ var FlexDashboard = (function () {
       chartContent.wrapInner('<div class="chart-shim"></div>');
       chartContent = chartContent.children('.chart-shim');
 
-      // check for a kable
-      var kable = findKable(chartContent);
-      if (kable) {
-        chartContent.addClass('kable-shim');
+      // check for a bootstrap table
+      var bsTable = findBootstrapTable(chartContent);
+      if (bsTable.length > 0) {
+        chartContent.addClass('bootstrap-table-shim');
       }
-    }
+
+      // if there is a shiny-html-output element then listen for
+      // new bootstrap tables bound to it (delay looking for the
+      // table to provide time for the value to be bound)
+      chartContent.find('.shiny-html-output').on('shiny:value',
+        function(event) {
+          var element = $(event.target);
+          setTimeout(function() {
+            var bsTable = findBootstrapTable(element);
+            if (bsTable.length > 0) {
+              bsTable.removeClass('table-bordered');
+              element.parent().addClass('bootstrap-table-shim');
+            }
+          }, 10);
+        });
+      }
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
@@ -625,15 +640,19 @@ var FlexDashboard = (function () {
                           .children('img:only-child');
     var widget = chartContent.children('div[id^="htmlwidget-"],div.html-widget');
     var shiny = chartContent.children('div[class^="shiny-"]');
-    var kable = findKable(chartContent);
+    var bsTable = findBootstrapTable(chartContent);
     return (img.length > 0) ||
            (widget.length > 0) ||
            (shiny.length > 0) ||
-           (kable.length > 0);
+           (bsTable.length > 0);
   }
 
-  function findKable(chartContent) {
-    return chartContent.find('tr.header').parent('thead').parent('table');
+  function findBootstrapTable(chartContent) {
+    var bsTable = chartContent.find('table.table');
+    if (bsTable.length > 0)
+      return bsTable;
+    else
+      return chartContent.find('tr.header').parent('thead').parent('table');
   }
 
   // safely detect rendering on a mobile phone
