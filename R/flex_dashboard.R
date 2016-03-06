@@ -363,5 +363,7 @@ as_tmpfile <- function(str) {
 
 # devel mode
 knit_devel <- function(input, ...) {
-  rmarkdown::render(input, quiet = TRUE)
+  rmarkdown::render(input,
+                    output_options = list(devel = TRUE),
+                    quiet = TRUE)
 }
