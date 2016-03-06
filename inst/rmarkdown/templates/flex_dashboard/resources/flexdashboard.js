@@ -546,27 +546,9 @@ var FlexDashboard = (function () {
       chartContent.wrapInner('<div class="chart-shim"></div>');
       chartContent = chartContent.children('.chart-shim');
 
-      // check for a bootstrap table
-      var bsTable = findBootstrapTable(chartContent);
-      if (bsTable.length > 0) {
-        chartContent.addClass('bootstrap-table-shim');
-      }
-
-      // if there is a shiny-html-output element then listen for
-      // new bootstrap tables bound to it (delay looking for the
-      // table to provide time for the value to be bound)
-      chartContent.find('.shiny-html-output').on('shiny:value',
-        function(event) {
-          var element = $(event.target);
-          setTimeout(function() {
-            var bsTable = findBootstrapTable(element);
-            if (bsTable.length > 0) {
-              bsTable.removeClass('table-bordered');
-              element.parent().addClass('bootstrap-table-shim');
-            }
-          }, 10);
-        });
-      }
+      // bootstrap table
+      handleBootstrapTable(chartContent);
+    }
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
@@ -579,6 +561,31 @@ var FlexDashboard = (function () {
 
     // return result
     return result;
+  }
+
+  function handleBootstrapTable(chartContent) {
+
+    function handleTable(bsTable, overflowContainer) {
+      bsTable.removeClass('table-bordered');
+      overflowContainer.addClass('bootstrap-table-shim');
+    }
+
+    var bsTable = findBootstrapTable(chartContent);
+    if (bsTable.length > 0)
+      handleTable(bsTable, chartContent);
+
+    // if there is a shiny-html-output element then listen for
+    // new bootstrap tables bound to it (delay looking for the
+    // table to provide time for the value to be bound)
+    chartContent.find('.shiny-html-output').on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+          var bsTable = findBootstrapTable(element);
+          if (bsTable.length > 0)
+            handleTable(bsTable, element.parent());
+        }, 10);
+      });
   }
 
   function autoResizeChartImage(chart) {
