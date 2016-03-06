@@ -5,7 +5,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: rows
     social: [ "twitter", "facebook" ]
-    source_code: "https://git.io/v2Nsw"
+    source_code: "https://git.io/v2AEz"
 runtime: shiny
 ---
 
