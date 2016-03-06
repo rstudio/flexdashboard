@@ -563,11 +563,26 @@ var FlexDashboard = (function () {
     return result;
   }
 
+  // TODO: safari test
+  // TODO: mobile test/behavior
+  // TODO: IE 9 tag?
+
   function handleBootstrapTable(chartContent) {
 
     function handleTable(bsTable, overflowContainer) {
+
+      // remove grid effect that shiny uses
       bsTable.removeClass('table-bordered');
+
+      // add shim to force scrollbar on overflow
       overflowContainer.addClass('bootstrap-table-shim');
+
+      // stable table headers when scrolling
+      bsTable.floatThead({
+        scrollContainer: function() {
+          return overflowContainer;
+        }
+      });
     }
 
     var bsTable = findBootstrapTable(chartContent);
