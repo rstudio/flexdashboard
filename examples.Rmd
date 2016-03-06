@@ -50,6 +50,12 @@ These examples are dashboards built as Shiny [interactive documents](http://shin
 <div class="row">
 
 <div class="col-md-4">
+<a href="https://jjallaire.shinyapps.io/shiny-biclust/" class="thumbnail">
+<img src="images/shiny-biclust.png" alt="flexdashboard with shiny">
+</a>
+</div>
+
+<div class="col-md-4">
 <a href="https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/" class="thumbnail">
 <img src="images/ggplot2-brushing.png" alt="ggplot2 brushing">
 </a>
