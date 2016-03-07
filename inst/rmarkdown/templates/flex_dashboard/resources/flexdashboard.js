@@ -188,9 +188,15 @@ var FlexDashboard = (function () {
     if (title)
       a.append(title);
 
-    // add the url
-    if (url)
-      a.attr('href', url);
+    // add the url.
+    if (url) {
+      if (url === "source_embed") {
+        a.attr('href', '#');
+        a.attr('data-featherlight', "#flexdashboard-source-code");
+      } else {
+        a.attr('href', url);
+      }
+    }
 
     return a;
   }

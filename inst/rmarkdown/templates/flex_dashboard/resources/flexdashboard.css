@@ -266,5 +266,29 @@ body hr {
   visibility: hidden;
 }
 
+/* Embedded source code */
 
+#flexdashboard-source-code {
+  display: none;
+}
 
+.featherlight-content #flexdashboard-source-code {
+  display: inline-block;
+}
+
+.featherlight-content {
+  width: 80%;
+  padding: 0 !important;
+  border-bottom: none !important;
+}
+
+.featherlight-inner {
+  width: 100%;
+}
+
+.featherlight-content pre {
+  margin: 0;
+  border: 0;
+  background: #fff;
+  font-size: 11px;
+}
