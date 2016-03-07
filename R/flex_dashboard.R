@@ -82,6 +82,12 @@ flex_dashboard <- function(fig_width = 6,
                            devel = FALSE,
                            ...) {
 
+  # function for resolving resources
+  resource <- function(name) {
+    system.file("rmarkdown/templates/flex_dashboard/resources", name,
+                package = "flexdashboard")
+  }
+
   # force self_contained to FALSE in devel mode
   if (devel)
     self_contained <- FALSE
@@ -94,7 +100,7 @@ flex_dashboard <- function(fig_width = 6,
 
   # add template
   args <- c(args, "--template",
-            pandoc_path_arg(flexdashboard_resource("default.html")))
+            pandoc_path_arg(resource("default.html")))
 
   # handle automatic navbar links
   navbar <- append(navbar, navbar_links(social, source_code))
@@ -161,22 +167,22 @@ flex_dashboard <- function(fig_width = 6,
       dashboardScript <- NULL
     } else {
       if (fill_page) {
-        fillPageCss <- readLines(flexdashboard_resource("fillpage.css"))
+        fillPageCss <- readLines(resource("fillpage.css"))
       } else {
         fillPageCss <- NULL
       }
 
       dashboardCss <- c(
         '<style type="text/css">',
-        readLines(flexdashboard_resource("flexdashboard.css")),
-        readLines(flexdashboard_resource(paste0("theme-", theme, ".css"))),
+        readLines(resource("flexdashboard.css")),
+        readLines(resource(paste0("theme-", theme, ".css"))),
         fillPageCss,
         '</style>'
       )
 
       dashboardScript <- c(
         '<script type="text/javascript">',
-        readLines(flexdashboard_resource("flexdashboard.js")),
+        readLines(resource("flexdashboard.js")),
         '</script>'
       )
     }
@@ -362,16 +368,15 @@ html_dependencies_fonts <- function(font_awesome, ionicons) {
 }
 
 # function for resolving resources
-flexdashboard_resource <- function(name) {
-  system.file("rmarkdown/templates/flex_dashboard/resources", name,
-              package = "flexdashboard")
+flexdashboard_dependency <- function(name) {
+  system.file("www", name, package = "flexdashboard")
 }
 
 html_dependency_font_awesome <- function() {
   htmlDependency(
     "font-awesome",
     "4.5.0",
-    src = flexdashboard_resource("font-awesome"),
+    src = flexdashboard_dependency("font-awesome"),
     stylesheet = "css/font-awesome.min.css"
   )
 }
@@ -380,7 +385,7 @@ html_dependency_ionicons <- function() {
   htmlDependency(
     "ionicons",
     "2.0.1",
-    src = flexdashboard_resource("ionicons"),
+    src = flexdashboard_dependency("ionicons"),
     stylesheet = "css/ionicons.min.css"
   )
 }
@@ -389,7 +394,7 @@ html_dependency_stickytableheaders <- function() {
   htmlDependency(
     "stickytableheaders",
     "0.1.19",
-    src = flexdashboard_resource("stickytableheaders"),
+    src = flexdashboard_dependency("stickytableheaders"),
     script = "jquery.stickytableheaders.min.js"
   )
 }
