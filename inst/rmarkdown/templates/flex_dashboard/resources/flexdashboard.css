@@ -19,6 +19,10 @@ body hr {
   text-decoration: none;
 }
 
+.navbar .dropdown-menu .fa {
+  min-width: 20px;
+}
+
 .chart-wrapper {
   background: #fff;
   border: 1px solid #e2e2e2;
