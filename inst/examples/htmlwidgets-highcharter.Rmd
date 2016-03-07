@@ -10,11 +10,12 @@ output:
 
 ```{r setup, include=FALSE}
 # Load packages here
-library("highcharter")
-library("dplyr")
-library("viridisLite")
-library("forecast")
-library("treemap")
+library(highcharter)
+library(dplyr)
+library(viridisLite)
+library(forecast)
+library(treemap)
+library(flexdashboard)
 
 thm <- 
   hc_theme(

@@ -13,6 +13,7 @@ output:
 library(ggplot2)
 library(plotly)
 library(plyr)
+library(flexdashboard)
 
 # Make some noisily increasing data
 set.seed(955)

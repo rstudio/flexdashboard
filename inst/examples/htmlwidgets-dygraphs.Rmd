@@ -10,6 +10,8 @@ output:
 ```{r setup, include=FALSE}
 library(dygraphs)
 library(quantmod)
+library(flexdashboard)
+
 getSymbols(c("MSFT", "HPQ", "INTC"), from = "2014-01-01", auto.assign=TRUE)
 ```
 

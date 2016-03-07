@@ -11,6 +11,8 @@ runtime: shiny
 
 ```{r setup, include=FALSE}
 library(biclust)
+library(flexdashboard)
+
 data(BicatYeast)
 set.seed(1)
 res <- biclust(BicatYeast, method=BCPlaid(), verbose=FALSE)

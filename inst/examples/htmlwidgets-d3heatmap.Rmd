@@ -10,6 +10,8 @@ output:
 ```{r setup, include=FALSE}
 library(knitr)
 library(d3heatmap)
+library(flexdashboard)
+
 url <- "http://datasets.flowingdata.com/ppg2008.csv"
 nba_players <- read.csv(url, row.names = 1)
 ```
