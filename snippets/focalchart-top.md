@@ -5,7 +5,7 @@ output:
     orientation: rows
 ---
     
-Row {data-height=600}
+Row {data-height=650}
 -------------------------------------
 
 ### Chart 1
@@ -13,7 +13,7 @@ Row {data-height=600}
 ```{r}
 ```
 
-Row {data-height=300}
+Row {data-height=350}
 -------------------------------------
    
 ### Chart 2

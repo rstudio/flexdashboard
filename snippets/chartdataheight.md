@@ -8,12 +8,12 @@ output: flexdashboard::flex_dashboard
 ```{r}
 ```
 
-### Chart 2
+### Chart 2 {data-height=200}
 
 ```{r}
 ```
 
-### Chart 3
+### Chart 3 {data-height=200}
 
 ```{r}
 ```

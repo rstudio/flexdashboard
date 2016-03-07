@@ -151,8 +151,6 @@ This example is a variation of the single-column layout demonstrated above with 
 
 </div>
 
-Note that in this case we've only applied the `data-height` attribute to the first chart. The other charts size will be derived from their knitr figure height (by default 384 pixels). You can of course explicitly specify a `data-height` for each chart if you wish.
-
 ### Flexible Boxes
 
 Layout is done using the browser [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) engine, which alters its items' width and/or height to best fill the available space on any display device. A flexbox layout expands items to fill available free space, or shrinks them to prevent overflow.
@@ -164,7 +162,7 @@ The implication of this is that chart dimensions established via either knitr fi
 
 Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on [htmlwidgets](http://www.htmlwidgets.org) can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.
 
-It's also possible to use charts created using standard R graphics (base, lattice, ggplot2, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to [renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html).
+It's also possible to use charts created using standard R graphics (base, lattice, grid, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to [renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html).
 
 Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it's not possible for them to seamlessly fill the bounds of their container. When creating static dashboards containing standard R graphics it's therefore critical to define knitr `fig.width` and `fig.height` values as close as possible to what they'll actually be on the page.
 

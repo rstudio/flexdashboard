@@ -202,10 +202,10 @@ $(document).ready(function () {
 
 
 <div id="main-banner" class="row">
-<div class="col-sm-10">
+<div class="col-sm-9">
 <ul>
 <li><p>Use <a href="http://rmarkdown.rstudio.com">R Markdown</a> to publish a group of related data visualizations as a dashboard.</p></li>
-<li><p>Ideal for publishing interactive JavaScript visualizations based on <a href="http://www.htmlwidgets.org">htmlwidgets</a>.</p></li>
+<li><p>Ideal for publishing interactive JavaScript visualizations based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> (also<br/>works with standard base, lattice, and grid graphics).</p></li>
 <li><p>Flexible and easy to specify layouts, including automatic sizing of charts to fill the browser.</p></li>
 <li><p>Optionally use <a href="http://shiny.rstudio.com">Shiny</a> to drive visualizations dynamically.</p></li>
 </ul>
@@ -235,7 +235,7 @@ $(document).ready(function () {
 <h2>Dashboard Basics</h2>
 <p>You can use flexdashboard to publish groups of related data visualizations as a dashboard. A flexdashboard can either be static (a standard web page) or dynamic (a <a href="shiny.html">Shiny</a> interactive document).</p>
 <p>One of the most important characteristics of flexdashboard is the automatic scaling of charts to fit available browser width and height. This makes flexdashboard ideal for publishing <a href="http://www.htmlwidgets.org">htmlwidgets</a> since these widgets automatically re-size themselves to their containers.</p>
-<p>You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also automatically re-sized to fit their containers within dynamic (Shiny) dashboards; in static dashboards, however, a bit more work is required to ensure that they are properly scaled (see <a href="using.html#figure-sizes-and-scaling">Figure Sizes and Scaling</a>).</p>
+<p>You can also use flexdashboard to publish base, lattice, and grid graphics. These charts are also automatically re-sized to fit their containers within dynamic (Shiny) dashboards; in static dashboards, however, a bit more work is required to ensure that they are properly scaled (see <a href="using.html#figure-sizes-and-scaling">Figure Sizes and Scaling</a>).</p>
 <div id="single-column-layout" class="section level3">
 <h3>Single Column Layout</h3>
 <p>Dashboards are divided into columns and rows. By default dashboards are defined using level 3 markdown headers (<code>###</code>) and laid out within a single column. Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:</p>

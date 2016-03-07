@@ -417,7 +417,6 @@ div.tocify {
 </div>
 </div>
 </div>
-<p>Note that in this case we’ve only applied the <code>data-height</code> attribute to the first chart. The other charts size will be derived from their knitr figure height (by default 384 pixels). You can of course explicitly specify a <code>data-height</code> for each chart if you wish.</p>
 </div>
 <div id="flexible-boxes" class="section level3">
 <h3>Flexible Boxes</h3>
@@ -428,7 +427,7 @@ div.tocify {
 <div id="figure-sizes-and-scaling" class="section level2">
 <h2>Figure Sizes and Scaling</h2>
 <p>Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.</p>
-<p>It’s also possible to use charts created using standard R graphics (base, lattice, ggplot2, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>.</p>
+<p>It’s also possible to use charts created using standard R graphics (base, lattice, grid, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>.</p>
 <p>Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it’s not possible for them to seamlessly fill the bounds of their container. When creating static dashboards containing standard R graphics it’s therefore critical to define knitr <code>fig.width</code> and <code>fig.height</code> values as close as possible to what they’ll actually be on the page.</p>
 <p>Here’s an example of a row based layout that includes 3 charts from R base graphics:</p>
 <div id="figuresizes">

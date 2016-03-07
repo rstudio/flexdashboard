@@ -4,11 +4,11 @@ title: "flexdashboard: Easy interactive dashboards for R"
 
 <div id="main-banner" class="row">
 
-<div class="col-sm-10">
+<div class="col-sm-9">
 
 * Use [R Markdown](http://rmarkdown.rstudio.com) to publish a group of related data visualizations as a dashboard.
 
-* Ideal for publishing interactive JavaScript visualizations based on [htmlwidgets](http://www.htmlwidgets.org).
+* Ideal for publishing interactive JavaScript visualizations based on [htmlwidgets](http://www.htmlwidgets.org) (also<br/>works with standard base, lattice, and grid graphics).
 
 * Flexible and easy to specify layouts, including automatic sizing of charts to fill the browser.
 
@@ -64,7 +64,7 @@ You can use flexdashboard to publish groups of related data visualizations as a 
 
 One of the most important characteristics of flexdashboard is the automatic scaling of charts to fit available browser width and height. This makes flexdashboard ideal for publishing [htmlwidgets](http://www.htmlwidgets.org) since these widgets automatically re-size themselves to their containers.
 
-You can also use flexdashboard to publish base, lattice, and ggplot2 graphics. These charts are also automatically re-sized to fit their containers within dynamic (Shiny) dashboards; in static dashboards, however, a bit more work is required to ensure that they are properly scaled (see [Figure Sizes and Scaling](using.html#figure-sizes-and-scaling)).
+You can also use flexdashboard to publish base, lattice, and grid graphics. These charts are also automatically re-sized to fit their containers within dynamic (Shiny) dashboards; in static dashboards, however, a bit more work is required to ensure that they are properly scaled (see [Figure Sizes and Scaling](using.html#figure-sizes-and-scaling)).
 
 ### Single Column Layout
 
