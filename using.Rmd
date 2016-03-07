@@ -220,7 +220,7 @@ You can include links to social sharing services or a link to the dashboard's so
 <div id="navbarautolinks"></div>
 <script type="text/javascript">loadSnippet('navbarautolinks')</script>
 
-The `social` option can include any number of the following services: "facebook", "twitter", "google-plus", "linkedin", and "pinterest".
+The `social` option can include any number of the following services: "facebook", "twitter", "google-plus", "linkedin", and "pinterest". You can also specify "menu" to provide a generic sharing drop-down menu that includes all of the services.
 
 ## Text Annotations
 
