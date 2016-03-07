@@ -34,6 +34,10 @@ body hr {
   padding: 7px 10px 4px;
 }
 
+.chart-wrapper .chart-title:empty {
+  display: none;
+}
+
 .chart-wrapper .chart-stage {
   overflow: hidden;
   padding: 5px 10px;
