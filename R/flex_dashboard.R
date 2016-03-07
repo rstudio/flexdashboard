@@ -213,6 +213,18 @@ flex_dashboard <- function(fig_width = 6,
     writeLines(dashboardScript, dashboardScriptFile)
     args <- c(args, pandoc_include_args(before_body = dashboardScriptFile))
 
+    # source code embed if requested
+    if (source_code_embed(source_code)) {
+      input_file <- basename(input_file)
+      source_file <- paste0(
+        file_path_sans_ext(file_path_sans_ext(basename(input_file))),
+        ".Rmd"
+      )
+      if (!file.exists(source_file))
+        stop("source code file for embed not found: ", source_file, call. = FALSE)
+      args <- c(args, source_code_embed_args(source_file))
+    }
+
     # highlight
     args <- c(args, pandoc_highlight_args(highlight, default = "pygments"))
 
@@ -230,12 +242,22 @@ flex_dashboard <- function(fig_width = 6,
     args
   }
 
-  # dependencies
+  # depend on stickytable headers
   extra_dependencies <- append(extra_dependencies,
                                list(html_dependency_jquery(),
                                     html_dependency_stickytableheaders()))
+
+  # depend on font libraries for navbar
   extra_dependencies <- append(extra_dependencies,
                                navbar_dependencies(navbar))
+
+  # depend on featherlight and prism for embedded source code
+  if (source_code_embed(source_code)) {
+    extra_dependencies <- append(extra_dependencies,
+                                 list(html_dependency_jquery(),
+                                      html_dependency_featherlight(),
+                                      html_dependency_prism()))
+  }
 
   # return format
   output_format(
@@ -256,6 +278,41 @@ flex_dashboard <- function(fig_width = 6,
                                      ...)
   )
 }
+
+
+source_code_embed <- function(source_code) {
+  identical(source_code, "embed")
+}
+
+source_code_embed_args <- function(source_file) {
+
+  # read the code
+  code <- readLines(source_file)
+
+  # embed it
+  if (length(code) > 0) {
+
+    # ensure we don't start with an emtpy line
+    code[[1]] <- paste0(
+      '<pre class="line-numbers"><code class="language-markdown">',
+      code[[1]]
+    )
+
+    codeDiv <- c(
+      '<div id="flexdashboard-source-code">',
+      code,
+      '</code></pre>',
+      '</div>'
+    )
+
+    codeFile <- tempfile(fileext = ".html")
+    writeLines(codeDiv, codeFile)
+    pandoc_include_args(after_body = codeFile)
+  } else {
+    NULL
+  }
+}
+
 
 pandoc_navbar_args <- function(navbar) {
 
@@ -315,9 +372,12 @@ navbar_links <- function(social, source_code) {
     }
 
     # build nav item
+    url <- source_code
+    if (identical(url, "embed"))
+      url <- "source_embed"
     link <- list(title = "Source Code",
                  icon = icon,
-                 url = source_code,
+                 url = url,
                  align = "right")
     links <- append(links, list(link))
   }
@@ -399,6 +459,35 @@ html_dependency_stickytableheaders <- function() {
   )
 }
 
+html_dependency_featherlight <- function() {
+  htmlDependency(
+    "featherlight",
+    "1.3.5",
+    src = flexdashboard_dependency("featherlight"),
+    stylesheet = "featherlight.min.css",
+    script = "featherlight.min.js"
+  )
+}
+
+html_dependency_prism <- function() {
+  htmlDependency(
+    "prism",
+    "1.4.1",
+    src = flexdashboard_dependency("prism"),
+    stylesheet = "prism.css",
+    script = "prism.js"
+  )
+}
+
+html_dependency_featherlight <- function() {
+  htmlDependency(
+    "featherlight",
+    "1.3.5",
+    src = flexdashboard_dependency("featherlight"),
+    stylesheet = "featherlight.min.css",
+    script = "featherlight.min.js"
+  )
+}
 
 # return a string as a tempfile
 as_tmpfile <- function(str) {

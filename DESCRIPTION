@@ -12,13 +12,17 @@ Authors@R: c(
          comment = "Ionicons font"),
   person(family = "Drifty", role = "cph",
          comment = "Ionicons font"),
-  person("Jonas", "Mosbech", role = c("ctb", "cph"),
-         comment = "StickyTableHeaders")
+  person("Jonas", "Mosbech", role = c("aut", "cph"),
+         comment = "StickyTableHeaders library"),
+  person("Noel", "Bossart", role = c("aut", "cph"),
+         comment = "Featherlight library"),
+  person("Lea", "Verou", role = c("aut", "cph"),
+         comment = "Prism library")
   )
 Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's plots and
   htmlwidgets to the containing web page.
-Imports: rmarkdown, htmltools, jsonlite
+Imports: tools, rmarkdown, htmltools, jsonlite
 Suggests: htmlwidgets (>= 0.6), testthat
 Enhances: shiny
 LazyData: TRUE
