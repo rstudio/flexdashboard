@@ -325,6 +325,26 @@ navbar_dependencies <- function(navbar) {
     }
   }
 
+  html_dependencies_fonts(font_awesome, ionicons)
+}
+
+icon_dependencies <- function(source) {
+
+  # discover icon libs used in the source
+  res <- regexec("data-icon=(fa|ion)-", source)
+  matches <- regmatches(input, res)
+  libs <- c()
+  for (match in matches) {
+    if (length(match) > 0)
+      libs <- c(libs, match[[2]])
+  }
+  libs <- unique(libs)
+
+  # return their dependencies
+  html_dependencies_fonts("fa" %in% libs, "ion" %in% libs)
+}
+
+html_dependencies_fonts <- function(font_awesome, ionicons) {
   deps <- list()
   if (font_awesome)
     deps <- append(deps, list(html_dependency_font_awesome()))
