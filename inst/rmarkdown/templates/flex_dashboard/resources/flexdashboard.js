@@ -193,6 +193,14 @@ var FlexDashboard = (function () {
       if (url === "source_embed") {
         a.attr('href', '#');
         a.attr('data-featherlight', "#flexdashboard-source-code");
+        a.featherlight({
+            beforeOpen: function(event){
+              $('body').addClass('unselectable');
+            },
+            afterClose: function(event){
+              $('body').removeClass('unselectable');
+            }
+        });
       } else {
         a.attr('href', url);
       }
