@@ -4,7 +4,7 @@
 \alias{flex_dashboard}
 \title{R Markdown Format for Flexible Dashboards}
 \usage{
-flex_dashboard(fig_width = 5, fig_height = 4, dev = "png", smart = TRUE,
+flex_dashboard(fig_width = 6, fig_height = 5, dev = "png", smart = TRUE,
   self_contained = TRUE, social = NULL, source_code = NULL,
   navbar = NULL, orientation = c("columns", "rows"),
   vertical_layout = c("fill", "scroll"), theme = "default",
