@@ -3,7 +3,7 @@ title: "ggplot2 Brushing"
 output: 
   flexdashboard::flex_dashboard:
     social: [ "twitter", "facebook" ]
-    source_code: https://git.io/v29Pd
+    source_code: embed
 runtime: shiny
 ---
 

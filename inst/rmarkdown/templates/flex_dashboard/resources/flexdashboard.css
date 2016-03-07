@@ -289,7 +289,7 @@ body hr {
 .featherlight-content pre {
   margin: 0;
   border: 0;
-  background: #fff;
+  /*background: #fff;*/
   font-size: 12px;
 }
 

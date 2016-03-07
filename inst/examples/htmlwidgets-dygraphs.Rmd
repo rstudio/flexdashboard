@@ -4,7 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     social: [ "twitter", "facebook" ]
-    source_code: "https://git.io/v2DcZ"
+    source_code: embed
 ---
 
 ```{r setup, include=FALSE}
