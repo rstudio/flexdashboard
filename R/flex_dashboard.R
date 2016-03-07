@@ -294,7 +294,7 @@ source_code_embed_args <- function(source_file) {
 
     # ensure we don't start with an emtpy line
     code[[1]] <- paste0(
-      '<pre class="line-numbers"><code class="language-markdown">',
+      '<pre class="line-numbers"><code class="language-none">',
       code[[1]]
     )
 
