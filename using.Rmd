@@ -98,11 +98,11 @@ The height of charts is determined in one of two ways depending on whether your 
 
 1. For dashboards that fill the page the height of charts will be determined by the height of the browser, with vertically stacked charts splitting the available height evenly (unless overridden via the `data-height` attribute as described below).
 
-2. For scrolling dashboards, the height of charts will be determined by the knitr `fig.height` option, which defaults to 4 inches (384 pixels).
+2. For scrolling dashboards, the height of charts will be determined by the knitr `fig.height` option, which defaults to 5 inches (480 pixels).
 
 ### Size Attributes
 
-The nature of the charts within your dashboard (desired emphasis, visualization types, etc.) will often dictate that you'll want to change the default sizing behavior. If no size attributes are specified then the relative size of each chart will be determined by it's knitr figure size (this is 5x4 inches or 480x384 pixels by default).
+The nature of the charts within your dashboard (desired emphasis, visualization types, etc.) will often dictate that you'll want to change the default sizing behavior. If no size attributes are specified then the relative size of each chart will be determined by it's knitr figure size (this is 6x5 inches or 576x480 pixels by default).
 
 You can modify the default sizing behavior by applying the `data-width` and `data-height` attributes to rows, columns, or even individual charts. These attributes establish the relative size between charts laid out in the same dimension (horizontal or vertical).
 

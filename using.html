@@ -371,12 +371,12 @@ div.tocify {
 <p>The height of charts is determined in one of two ways depending on whether your dashboard is configured to fit itself into the vertical confines of the page (<code>vertical_layout: fill</code>) or to scroll (<code>vertical_layout: scroll</code>):</p>
 <ol style="list-style-type: decimal">
 <li><p>For dashboards that fill the page the height of charts will be determined by the height of the browser, with vertically stacked charts splitting the available height evenly (unless overridden via the <code>data-height</code> attribute as described below).</p></li>
-<li><p>For scrolling dashboards, the height of charts will be determined by the knitr <code>fig.height</code> option, which defaults to 4 inches (384 pixels).</p></li>
+<li><p>For scrolling dashboards, the height of charts will be determined by the knitr <code>fig.height</code> option, which defaults to 5 inches (480 pixels).</p></li>
 </ol>
 </div>
 <div id="size-attributes" class="section level3">
 <h3>Size Attributes</h3>
-<p>The nature of the charts within your dashboard (desired emphasis, visualization types, etc.) will often dictate that you’ll want to change the default sizing behavior. If no size attributes are specified then the relative size of each chart will be determined by it’s knitr figure size (this is 5x4 inches or 480x384 pixels by default).</p>
+<p>The nature of the charts within your dashboard (desired emphasis, visualization types, etc.) will often dictate that you’ll want to change the default sizing behavior. If no size attributes are specified then the relative size of each chart will be determined by it’s knitr figure size (this is 6x5 inches or 576x480 pixels by default).</p>
 <p>You can modify the default sizing behavior by applying the <code>data-width</code> and <code>data-height</code> attributes to rows, columns, or even individual charts. These attributes establish the relative size between charts laid out in the same dimension (horizontal or vertical).</p>
 </div>
 <div id="examples" class="section level3">
