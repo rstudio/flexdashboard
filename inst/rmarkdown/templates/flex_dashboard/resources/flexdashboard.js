@@ -7,8 +7,8 @@ var FlexDashboard = (function () {
     _options = {
       fillPage: false,
       orientation: 'columns',
-      defaultFigWidth: 480,
-      defaultFigHeight: 384
+      defaultFigWidth: 576,
+      defaultFigHeight: 480
     };
   };
 

@@ -60,8 +60,8 @@
 #'
 #'
 #'@export
-flex_dashboard <- function(fig_width = 5,
-                           fig_height = 4,
+flex_dashboard <- function(fig_width = 6,
+                           fig_height = 5,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
