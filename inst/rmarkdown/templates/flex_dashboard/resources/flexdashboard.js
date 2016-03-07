@@ -178,6 +178,8 @@ var FlexDashboard = (function () {
 
       // create the icon
       var iconElement = $('<span class="' + iconSet + ' ' + icon + '"></span>');
+      if (title)
+        iconElement.css('margin-right', '7px');
       iconElement.css('min-width', '20px');
       a.append(iconElement);
       // if url is null see if we can auto-generate based on icon (e.g. social)
