@@ -286,8 +286,21 @@ navbar_links <- function(social, source_code) {
   links <- list()
 
   # social links
-  for (service in social)
-    links <- append(links, list(list(icon = paste0("fa-", service))))
+  for (service in social) {
+    if (identical(service, "menu")) {
+      menu <- list(icon = "fa-share-alt")
+      menu$items <- list(
+        list(title = "Twitter", icon = "fa-twitter"),
+        list(title = "Facebook", icon = "fa-facebook"),
+        list(title = "Google+", icon = "fa-google-plus"),
+        list(title = "LinkedIn", icon = "fa-linkedin"),
+        list(title = "Pinterest", icon = "fa-pinterest")
+      )
+      links <- append(links, list(menu))
+    } else {
+      links <- append(links, list(list(icon = paste0("fa-", service))))
+    }
+  }
 
   # source_code
   if (!is.null(source_code)) {
