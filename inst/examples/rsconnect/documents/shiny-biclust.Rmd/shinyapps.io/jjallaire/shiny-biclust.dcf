@@ -2,8 +2,8 @@ name: shiny-biclust
 account: jjallaire
 server: shinyapps.io
 appId: 87410
-bundleId: 388592
+bundleId: 389301
 url: https://jjallaire.shinyapps.io/shiny-biclust/
-when: 1457265300.65246
+when: 1457349077.98442
 asMultiple: FALSE
 asStatic: FALSE
