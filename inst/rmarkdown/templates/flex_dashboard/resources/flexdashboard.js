@@ -566,8 +566,25 @@ var FlexDashboard = (function () {
   function handleBootstrapTable(chartContent) {
 
     function handleTable(bsTable, overflowContainer) {
+
+      // remove grid effect that shiny uses
       bsTable.removeClass('table-bordered');
+
+      // add shim to force scrollbar on overflow
       overflowContainer.addClass('bootstrap-table-shim');
+
+      // fixup xtable generated tables with a proper thead
+      var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
+      if (headerRow.length > 0) {
+        var thead = $('<thead></thead>');
+        bsTable.prepend(thead);
+        headerRow.detach().appendTo(thead);
+      }
+
+      // stable table headers when scrolling
+      bsTable.stickyTableHeaders({
+        scrollableArea: overflowContainer
+      });
     }
 
     var bsTable = findBootstrapTable(chartContent);

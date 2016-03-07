@@ -230,7 +230,11 @@ flex_dashboard <- function(fig_width = 5,
   }
 
   # dependencies
-  extra_dependencies <- append(extra_dependencies, navbar_dependencies(navbar))
+  extra_dependencies <- append(extra_dependencies,
+                               list(html_dependency_jquery(),
+                                    html_dependency_stickytableheaders()))
+  extra_dependencies <- append(extra_dependencies,
+                               navbar_dependencies(navbar))
 
   # return format
   output_format(
@@ -347,6 +351,14 @@ html_dependency_ionicons <- function() {
   )
 }
 
+html_dependency_stickytableheaders <- function() {
+  htmlDependency(
+    "stickytableheaders",
+    "0.1.19",
+    src = system.file("www/stickytableheaders", package = "flexdashboard"),
+    script = "jquery.stickytableheaders.min.js"
+  )
+}
 
 
 # return a string as a tempfile
