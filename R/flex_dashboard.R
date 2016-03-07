@@ -232,7 +232,7 @@ flex_dashboard <- function(fig_width = 5,
   # dependencies
   extra_dependencies <- append(extra_dependencies,
                                list(html_dependency_jquery(),
-                                    html_dependency_float_thead()))
+                                    html_dependency_stickytableheaders()))
   extra_dependencies <- append(extra_dependencies,
                                navbar_dependencies(navbar))
 
@@ -351,12 +351,12 @@ html_dependency_ionicons <- function() {
   )
 }
 
-html_dependency_float_thead <- function() {
+html_dependency_stickytableheaders <- function() {
   htmlDependency(
-    "float-thead",
-    "1.3.2",
-    src = system.file("www/float-thead", package = "flexdashboard"),
-    script = "jquery.floatThead.min.js"
+    "stickytableheaders",
+    "0.1.19",
+    src = system.file("www/stickytableheaders", package = "flexdashboard"),
+    script = "jquery.stickytableheaders.min.js"
   )
 }
 

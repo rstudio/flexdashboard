@@ -170,6 +170,10 @@ body hr {
   padding-right: 8px;
 }
 
+.bootstrap-table-shim table>thead {
+  background-color: #fff;
+}
+
 .bootstrap-table-shim table.data {
   width: inherit;
 }
@@ -177,6 +181,7 @@ body hr {
 .bootstrap-table-shim table.data>tbody>tr>th {
   border-top: none;
   border-bottom: 2px solid #dddddd;
+  padding: 5px;
 }
 
 .bootstrap-table-shim .data td[align=right] {

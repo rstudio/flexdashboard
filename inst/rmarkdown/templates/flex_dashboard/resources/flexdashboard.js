@@ -563,10 +563,6 @@ var FlexDashboard = (function () {
     return result;
   }
 
-  // TODO: safari test
-  // TODO: mobile test/behavior
-  // TODO: IE 9 tag?
-
   function handleBootstrapTable(chartContent) {
 
     function handleTable(bsTable, overflowContainer) {
@@ -577,11 +573,17 @@ var FlexDashboard = (function () {
       // add shim to force scrollbar on overflow
       overflowContainer.addClass('bootstrap-table-shim');
 
+      // fixup xtable generated tables with a proper thead
+      var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
+      if (headerRow.length > 0) {
+        var thead = $('<thead></thead>');
+        bsTable.prepend(thead);
+        headerRow.detach().appendTo(thead);
+      }
+
       // stable table headers when scrolling
-      bsTable.floatThead({
-        scrollContainer: function() {
-          return overflowContainer;
-        }
+      bsTable.stickyTableHeaders({
+        scrollableArea: overflowContainer
       });
     }
 
