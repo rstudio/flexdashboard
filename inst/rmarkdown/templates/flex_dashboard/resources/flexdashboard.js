@@ -104,9 +104,10 @@ var FlexDashboard = (function () {
 
       if (item.items) {
         li.addClass('dropdown');
-        var a = navbarLink(item.icon,
-                           item.title + ' <span class="caret"></span>',
-                           item.title);
+        var title = item.title;
+        if (title)
+          title = title + ' <span class="caret"></span>';
+        var a = navbarLink(item.icon, title, item.title);
         a.addClass('dropdown-toggle');
         a.attr('data-toggle', 'dropdown');
         a.attr('role', 'button');
