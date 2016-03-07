@@ -31,7 +31,7 @@ Column {data-width=650}
 
 ```{r}
 plotOutput("plot1", brush = brushOpts(id = "plot1_brush"))
-output$plot1 <- renderPlot(res = 96, {
+output$plot1 <- renderPlot({
   ggplot(mtcars2, aes(wt, mpg)) + geom_point()
 })
 ```
@@ -39,7 +39,7 @@ output$plot1 <- renderPlot(res = 96, {
 ### Miles Per Gallon and Cylinders
 
 ```{r}
-renderPlot(res = 96, {
+renderPlot({
   ggplot(selectedData(), aes(factor(cyl), mpg))  + geom_boxplot()
 })
 ```
