@@ -101,7 +101,30 @@ var FlexDashboard = (function () {
     for (var i = 0; i<navbarItems.length; i++) {
       var item = navbarItems[i];
       var li = $('<li></li>');
-      li.append(navbarLink(item.icon, item.title, item.url));
+
+      if (item.items) {
+        li.addClass('dropdown');
+        var a = navbarLink(item.icon,
+                           item.title + ' <span class="caret"></span>',
+                           item.title);
+        a.addClass('dropdown-toggle');
+        a.attr('data-toggle', 'dropdown');
+        a.attr('role', 'button');
+        a.attr('aria-expanded', 'false');
+        li.append(a);
+        var ul = $('<ul class="dropdown-menu"></ul>');
+        ul.attr('role', 'menu');
+        for (var j = 0; j<item.items.length; j++) {
+          var subItem = item.items[j];
+          var subli = $('<li></li>');
+          subli.append(navbarLink(subItem.icon, subItem.title, subItem.url));
+          ul.append(subli);
+        }
+        li.append(ul);
+      } else {
+        li.append(navbarLink(item.icon, item.title, item.url));
+      }
+
       if (item.align === "left")
         navbarLeft.append(li);
       else
@@ -156,6 +179,7 @@ var FlexDashboard = (function () {
       var iconElement = $('<span class="' + iconSet + ' ' + icon + '"></span>');
       if (title)
         iconElement.css('margin-right', '7px');
+      iconElement.css('min-width', '20px');
       a.append(iconElement);
       // if url is null see if we can auto-generate based on icon (e.g. social)
       if (!url)
