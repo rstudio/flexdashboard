@@ -5,19 +5,16 @@ Version: 0.1.0
 Authors@R: c(
   person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
   person(family = "RStudio", role = "cph"),
-  person(family = "Keen IO", role = c("aut", "cph")),
-  person("Dave", "Gandy", role = c("ctb", "cph"),
-         comment = "Font-Awesome font"),
-  person("Ben", "Sperry", role = "ctb",
-         comment = "Ionicons font"),
-  person(family = "Drifty", role = "cph",
-         comment = "Ionicons font"),
-  person("Jonas", "Mosbech", role = c("aut", "cph"),
-         comment = "StickyTableHeaders library"),
-  person("Noel", "Bossart", role = c("aut", "cph"),
-         comment = "Featherlight library"),
-  person("Lea", "Verou", role = c("aut", "cph"),
-         comment = "Prism library")
+  person(family = "Keen IO", role = c("ctb", "cph"), comment = "Dashboard CSS"),
+  person("Dave", "Gandy", role = c("ctb", "cph"), comment = "Font-Awesome"),
+  person("Ben", "Sperry", role = "ctb", comment = "Ionicons"),
+  person(family = "Drifty", role = "cph", comment = "Ionicons"),
+  person("Jonas", "Mosbech", role = c("ctb", "cph"), comment = "StickyTableHeaders"),
+  person("Noel", "Bossart", role = c("ctb", "cph"), comment = "Featherlight"),
+  person("Lea", "Verou", role = c("ctb", "cph"), comment = "Prism"),
+  person("Bryan", "Lewis", role = c("ctb", "cph"), comment = "Examples"),
+  person("Carson", "Sievert", role = c("ctb", "cph"), comment = "Examples"),
+  person("Joshua", "Kunst", role = c("ctb", "cph"), comment = "Examples")
   )
 Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's plots and
