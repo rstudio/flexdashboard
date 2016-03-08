@@ -82,8 +82,15 @@ var FlexDashboard = (function () {
 
     // if we are in shiny we need to trigger a window resize event to
     // force correct layout of shiny-bound-output elements
-    if (isShinyDoc())
+    if (isShinyDoc()) {
+
+      // force resize
       $(window).trigger('resize');
+
+      // prism highlight on shiny doc loaded
+      if (window.Prism)
+        window.Prism.highlightAll();
+    }
 
     // make main components visible
     $('.section.sidebar').css('visibility', 'visible');
