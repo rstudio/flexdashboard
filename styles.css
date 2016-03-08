@@ -29,3 +29,18 @@
    margin: 0 !important;
 }
 
+.thumbnail {
+  border: none;
+}
+
+.thumbnail .caption {
+  padding: 0;
+  padding-top: 4px;
+  padding-left: 3px;
+  font-size: 0.9em;
+  color: gray;
+}
+
+a.thumbnail:hover {
+  text-decoration: none;
+}
