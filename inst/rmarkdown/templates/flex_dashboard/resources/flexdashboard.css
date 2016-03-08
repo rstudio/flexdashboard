@@ -278,6 +278,7 @@ body hr {
 
 .featherlight-content {
   width: 80%;
+  max-width: 800px;
   padding: 0 !important;
   border-bottom: none !important;
 }
