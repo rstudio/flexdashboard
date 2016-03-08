@@ -152,6 +152,14 @@ flex_dashboard <- function(fig_width = 6,
     paste(knitrOptions, x, sep = '\n')
   }
 
+  # kntir hook to determine if we need to add icon libraries
+  knitr_options$knit_hooks$document <- function(x) {
+    iconDeps <- icon_dependencies(x)
+    if (length(iconDeps) > 0)
+      knitMetaAdd(list(iconDeps))
+    x
+  }
+
   # preprocessor
   pre_processor <- function (metadata, input_file, runtime, knit_meta,
                              files_dir, output_dir) {
@@ -511,6 +519,20 @@ as_tmpfile <- function(str) {
   }
 }
 
+knitMetaAdd = function(meta, label = '') {
+  if (packageVersion("knitr") >= "1.12.20") {
+    knitr::knit_meta_add(meta, label)
+  } else {
+    knitrNamespace <- asNamespace("knitr")
+    knitEnv <- get(".knitEnv", envir = knitrNamespace)
+    if (length(meta)) {
+      meta_id = attr(knitEnv$meta, 'knit_meta_id')
+      knitEnv$meta <- c(knitEnv$meta, meta)
+      attr(knitEnv$meta, "knit_meta_id") = c(meta_id, rep(label, length(meta)))
+    }
+    knitEnv$meta
+  }
+}
 
 # devel mode
 knit_devel <- function(input, ...) {
