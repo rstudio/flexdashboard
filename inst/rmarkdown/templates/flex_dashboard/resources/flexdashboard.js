@@ -82,15 +82,8 @@ var FlexDashboard = (function () {
 
     // if we are in shiny we need to trigger a window resize event to
     // force correct layout of shiny-bound-output elements
-    if (isShinyDoc()) {
-
-      // force resize
+    if (isShinyDoc())
       $(window).trigger('resize');
-
-      // prism highlight on shiny doc loaded
-      if (window.Prism)
-        window.Prism.highlightAll();
-    }
 
     // make main components visible
     $('.section.sidebar').css('visibility', 'visible');
@@ -98,6 +91,9 @@ var FlexDashboard = (function () {
 
     // handle location hash
     handleLocationHash();
+
+    // intialize prism highlighting
+    initPrismHighlighting();
   }
 
   function addNavbarItems(navbarItems) {
@@ -761,6 +757,33 @@ var FlexDashboard = (function () {
       window.location.hash = $(this).attr('href');
       window.scrollTo(0,0);
     });
+  }
+
+  // tweak Prism highlighting
+  function initPrismHighlighting() {
+
+    Prism.languages.insertBefore('r', 'comment', {
+      'heading': [
+        {
+          // title 1
+      	  // =======
+
+      	  // title 2
+      	  // -------
+      	  pattern: /\w+.*(?:\r?\n|\r)(?:====+|----+)/,
+          alias: 'operator'
+        },
+        {
+          // ### title 3
+          pattern: /(^\s*)###[^#].+/m,
+          lookbehind: true,
+          alias: 'operator'
+        }
+      ]
+    });
+
+    // prism highlight
+    Prism.highlightAll();
   }
 
   FlexDashboard.prototype = {
