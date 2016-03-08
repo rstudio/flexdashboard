@@ -1,7 +1,6 @@
 ---
-title: "Social and Source Code Links"
+title: "Social Links"
 output: 
   flexdashboard::flex_dashboard:
     social: [ "twitter", "facebook", "menu" ]
-    source_code: "https://github.com"
 ---
