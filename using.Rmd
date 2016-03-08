@@ -61,7 +61,7 @@ You can also choose to orient dashboards row-wise rather than column-wise, by sp
 
 </div>
 
-## Page Fill vs. Scrolling
+## Layout Fill/Scrolling
 
 By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you'll probably want to scroll rather than fit them all onto the page. You can control this behavior using the `vertical_layout` option. Specify `fill` to vertically re-size charts so they completely fill the page and `scroll` to layout charts at their natural height, scrolling the page if necessary.
 
@@ -158,7 +158,7 @@ Layout is done using the browser [flexbox](https://developer.mozilla.org/en-US/d
 The implication of this is that chart dimensions established via either knitr figure sizes or `data-width` and `data-height` attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the `flex-grow` and `flex-shrink` CSS properties).
 
 
-## Figure Sizes and Scaling
+## Chart Scaling
 
 Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on [htmlwidgets](http://www.htmlwidgets.org) can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.
 
@@ -172,7 +172,7 @@ Here's an example of a row based layout that includes 3 charts from R base graph
 <script type="text/javascript">loadSnippet('figuresizes')</script>
 
 
-We've specified an explicit `fig.height` and `fig.width` for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. Note also that we are using a scrolling layout (`vertical_layout: scroll`) which makes it easier to reason about the actual height which plots will be rendered at.
+We've specified an explicit `fig.height` and `fig.width` for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. 
 
 Even with the tweaks described above standard R graphics won't always fit perfectly into their containers, so in general htmlwidget based charts are preferred within static dashboards. Note that the [plotly](https://plot.ly/ggplot2/) package enables rendering of ggplot2 graphics as interactive htmlwidgets.
 
@@ -198,6 +198,8 @@ You can add an icon to the navigation menu for a page using the `data-icon` attr
 
 <div id="pageicons"></div>
 <script type="text/javascript">loadSnippet('pageicons')</script>
+
+A wide selection of icons are available, see the [Icon Sets] section below for details.
 
 ## Navigation Bar
 

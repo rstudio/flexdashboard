@@ -341,8 +341,8 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="page-fill-vs.scrolling" class="section level2">
-<h2>Page Fill vs. Scrolling</h2>
+<div id="layout-fillscrolling" class="section level2">
+<h2>Layout Fill/Scrolling</h2>
 <p>By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you’ll probably want to scroll rather than fit them all onto the page. You can control this behavior using the <code>vertical_layout</code> option. Specify <code>fill</code> to vertically re-size charts so they completely fill the page and <code>scroll</code> to layout charts at their natural height, scrolling the page if necessary.</p>
 <p>For example, the following layout includes 3 charts and requests that the page scroll as necessary to accommodate their natural height:</p>
 <div class="row">
@@ -424,8 +424,8 @@ div.tocify {
 <p>The implication of this is that chart dimensions established via either knitr figure sizes or <code>data-width</code> and <code>data-height</code> attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the <code>flex-grow</code> and <code>flex-shrink</code> CSS properties).</p>
 </div>
 </div>
-<div id="figure-sizes-and-scaling" class="section level2">
-<h2>Figure Sizes and Scaling</h2>
+<div id="chart-scaling" class="section level2">
+<h2>Chart Scaling</h2>
 <p>Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.</p>
 <p>It’s also possible to use charts created using standard R graphics (base, lattice, grid, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>.</p>
 <p>Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it’s not possible for them to seamlessly fill the bounds of their container. When creating static dashboards containing standard R graphics it’s therefore critical to define knitr <code>fig.width</code> and <code>fig.height</code> values as close as possible to what they’ll actually be on the page.</p>
@@ -434,7 +434,7 @@ div.tocify {
 
 </div>
 <script type="text/javascript">loadSnippet('figuresizes')</script>
-<p>We’ve specified an explicit <code>fig.height</code> and <code>fig.width</code> for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. Note also that we are using a scrolling layout (<code>vertical_layout: scroll</code>) which makes it easier to reason about the actual height which plots will be rendered at.</p>
+<p>We’ve specified an explicit <code>fig.height</code> and <code>fig.width</code> for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation.</p>
 <p>Even with the tweaks described above standard R graphics won’t always fit perfectly into their containers, so in general htmlwidget based charts are preferred within static dashboards. Note that the <a href="https://plot.ly/ggplot2/">plotly</a> package enables rendering of ggplot2 graphics as interactive htmlwidgets.</p>
 </div>
 <div id="multiple-pages" class="section level2">
@@ -460,6 +460,7 @@ div.tocify {
 
 </div>
 <script type="text/javascript">loadSnippet('pageicons')</script>
+<p>A wide selection of icons are available, see the <a href="#icon-sets">Icon Sets</a> section below for details.</p>
 </div>
 </div>
 <div id="navigation-bar" class="section level2">
