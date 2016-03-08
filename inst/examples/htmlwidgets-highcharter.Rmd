@@ -4,8 +4,8 @@ author: "Joshua Kunst"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    social: [ "twitter", "facebook" ]
-    source_code: "https://git.io/v2H3E"
+    social: menu
+    source_code: embed
 ---
 
 ```{r setup, include=FALSE}
@@ -32,7 +32,7 @@ thm <-
 ```
 
 
-Row
+Row 
 -------------------------------------
 
 ### Sales Forecast

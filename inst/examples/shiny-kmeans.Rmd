@@ -2,8 +2,8 @@
 title: "Iris K-Means Clustering"
 output: 
   flexdashboard::flex_dashboard:
-    social: [ "twitter", "facebook" ]
-    source_code: "https://git.io/v2Dci"
+    social: menu
+    source_code: embed
 runtime: shiny
 ---
 

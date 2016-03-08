@@ -2,8 +2,7 @@
 title: "Dygraphs Linked Time Series"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
-    social: [ "twitter", "facebook" ]
+    social: menu
     source_code: embed
 ---
 

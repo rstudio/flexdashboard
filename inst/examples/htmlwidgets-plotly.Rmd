@@ -3,11 +3,9 @@ title: "Plotly with ggplot2"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    vertical_layout: fill
-    social: [ "twitter", "facebook" ]
-    source_code: "https://git.io/v2DSC"
+    social: menu
+    source_code: embed
 ---
-
 
 ```{r setup, include=FALSE}
 library(ggplot2)

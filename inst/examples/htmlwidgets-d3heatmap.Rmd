@@ -3,8 +3,8 @@ title: "NBA Scoring (2008)"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    social: [ "twitter", "facebook" ]
-    source_code: "https://git.io/v2DvA"
+    social: menu
+    source_code: embed
 ---
 
 ```{r setup, include=FALSE}
