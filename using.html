@@ -359,6 +359,15 @@ div.tocify {
 </div>
 </div>
 </div>
+<div id="chart-types" class="section level2">
+<h2>Chart Types</h2>
+<p>You can use several types of charts with flexdashboard, each of which has its advantages and disadvantages:</p>
+<ol style="list-style-type: decimal">
+<li><p>Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a>. These charts are interactive (using JavaScript) and standalone (they don’t require a connection to a server running R, rather they are deployed as part of a static web page). One disadvantage of htmlwidgets is that they embed their data directly in their host web page, so may encounter performance problems for larger datasets.</p></li>
+<li><p>Charts based on standard R graphics (e.g. base, lattice, grid). These charts are static (they are just PNG images) and standalone (no server required). One disadvantage of these charts is that they take a bit more work to scale correctly into dashboard panes (see <a href="#chart-scaling">Chart Scaling</a> for further details).</p></li>
+<li><p>Charts based on <a href="shiny.html">Shiny</a>. These charts can created using either of the two techniques described above, however gain additional dynamic and interactive capabilities via Shiny. Note however that dashboards which use Shiny are no longer static web pages, and require <a href="http://shiny.rstudio.com/deploy/">deployment</a> to a Shiny Server).</p></li>
+</ol>
+</div>
 <div id="chart-sizing" class="section level2">
 <h2>Chart Sizing</h2>
 <p>To create an ideal layout for your dashboard, it’s important to understand how the size of individual charts is determined. This section describes the layout algorithm and the various ways you can tweak its behavior.</p>
