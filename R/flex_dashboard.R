@@ -215,13 +215,24 @@ flex_dashboard <- function(fig_width = 6,
 
     # source code embed if requested
     if (source_code_embed(source_code)) {
+
+      # determine the source file based on the input file
       input_file <- basename(input_file)
       source_file <- paste0(
         file_path_sans_ext(file_path_sans_ext(basename(input_file))),
         ".Rmd"
       )
+
+      # if the file doesn't exist this could be runtime: shiny
+      # so try another way
+      if (!file.exists(source_file))
+        source_file <- parent.frame(n = 2)$knit_input
+
+      # validate we have a file
       if (!file.exists(source_file))
         stop("source code file for embed not found: ", source_file, call. = FALSE)
+
+      # embed it
       args <- c(args, source_code_embed_args(source_file))
     }
 
