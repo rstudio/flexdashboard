@@ -185,10 +185,19 @@ For example, this code creates a dashboard with two pages, each containing two c
 <div id="multiplepages"></div>
 <script type="text/javascript">loadSnippet('multiplepages')</script>
 
+### Page Orientation
+
 Note that in this example both pages use the default "columns" orientation. It is however possible to specify a distinct orientation for an individual page. This is done by adding the `data-orientation` attribute to the header of the page you want to change the orientation of. For example:
 
 <div id="pageorientation"></div>
 <script type="text/javascript">loadSnippet('pageorientation')</script>
+
+### Page Icons
+
+You can add an icon to the navigation menu for a page using the `data-icon` attribute. For example, the following specifies a navigation bar icon for each of two pages:
+
+<div id="pageicons"></div>
+<script type="text/javascript">loadSnippet('pageicons')</script>
 
 ## Navigation Bar
 
