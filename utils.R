@@ -43,19 +43,19 @@ thumbnails <- function(...) {
 showcaseThumbnails <- function(caption = TRUE) {
   thumbnails(
     thumbnail(
-      title = "flexdashboard with d3heatmap",
+      title = "NBA scoring with d3heatmap",
       img = "images/htmlwidgets-d3heatmap.png",
       href = "https://rstudio-pubs-static.s3.amazonaws.com/157935_0569d3a4ecb744b78281848dfdade055.html",
       caption = caption
     ),
     thumbnail(
-      title = "flexdashboard with dygraphs",
+      title = "Linked time-series with dygraphs",
       img = "images/dygraphs.png",
       href = "https://rstudio-pubs-static.s3.amazonaws.com/157936_b8de6c18b00240c6a42785ce8a1a1fdc.html",
       caption = caption
     ),
     thumbnail(
-      title = "flexdashboard with plotly",
+      title = "Interactive ggplot2 with plotly",
       img = "images/plotly.png",
       href = "https://rstudio-pubs-static.s3.amazonaws.com/157937_dc7c4031822441a88a05277d38f34f0e.html",
       caption = caption

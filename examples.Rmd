@@ -15,22 +15,22 @@ showcaseThumbnails()
 
 thumbnails(
   thumbnail(
-    title = "sales report with highcharter",
+    title = "Sales report with highcharter",
     img = "images/highcharter.png",
     href = "https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/"
   ),
   thumbnail(
-    title = "flexdashboard with shiny",
+    title = "Shiny: biclust example",
     img = "images/shiny-biclust.png",
     href = "https://jjallaire.shinyapps.io/shiny-biclust/"
   ),
   thumbnail(
-    title = "ggplot2 brushing",
+    title = "Shiny: ggplot2 linked brushing",
     img = "images/shiny-ggplot2-brushing.png",
     href = "https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/"
   ),
   thumbnail(
-    title = "flexdashboard with shiny",
+    title = "Shiny: kmeans clustering",
     img = "images/shiny-dashboard.png",
     href = "https://jjallaire.shinyapps.io/shiny-kmeans/"
   )
