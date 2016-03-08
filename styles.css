@@ -30,7 +30,7 @@
 }
 
 .thumbnail {
-  border: none;
+  border: 1px solid white;
 }
 
 .thumbnail .caption {
