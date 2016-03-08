@@ -180,7 +180,7 @@ $(document).ready(function ()  {
       ignoreSelector: "h1.title, .toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = true;
+    options.showAndHide = false;
     options.smoothScroll = true;
 
     // tocify
@@ -241,6 +241,13 @@ div.tocify {
   border-radius: 0px;
 }
 
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
 
 </style>
 
@@ -371,12 +378,9 @@ div.tocify {
 <div id="chart-sizing" class="section level2">
 <h2>Chart Sizing</h2>
 <p>To create an ideal layout for your dashboard, it’s important to understand how the size of individual charts is determined. This section describes the layout algorithm and the various ways you can tweak its behavior.</p>
-<div id="chart-width" class="section level3">
-<h3>Chart Width</h3>
+<div id="width-and-height" class="section level3">
+<h3>Width and Height</h3>
 <p>The width of charts in flexdashboard is ultimately determined by the width of the browser. If your layout has a single column then charts will occupy the full width of the browser. If your layout has multiple columns then the columns will split the available width evenly (unless overridden via the <code>data-width</code> attribute as described below).</p>
-</div>
-<div id="chart-height" class="section level3">
-<h3>Chart Height</h3>
 <p>The height of charts is determined in one of two ways depending on whether your dashboard is configured to fit itself into the vertical confines of the page (<code>vertical_layout: fill</code>) or to scroll (<code>vertical_layout: scroll</code>):</p>
 <ol style="list-style-type: decimal">
 <li><p>For dashboards that fill the page the height of charts will be determined by the height of the browser, with vertically stacked charts splitting the available height evenly (unless overridden via the <code>data-height</code> attribute as described below).</p></li>
@@ -387,9 +391,8 @@ div.tocify {
 <h3>Size Attributes</h3>
 <p>The nature of the charts within your dashboard (desired emphasis, visualization types, etc.) will often dictate that you’ll want to change the default sizing behavior. If no size attributes are specified then the relative size of each chart will be determined by it’s knitr figure size (this is 6x5 inches or 576x480 pixels by default).</p>
 <p>You can modify the default sizing behavior by applying the <code>data-width</code> and <code>data-height</code> attributes to rows, columns, or even individual charts. These attributes establish the relative size between charts laid out in the same dimension (horizontal or vertical).</p>
-</div>
-<div id="examples" class="section level3">
-<h3>Examples</h3>
+<div id="examples" class="section level4">
+<h4>Examples</h4>
 <p>This example use the <code>data-height</code> attribute to dictate a larger vertical size for the first row, resulting in a layout that more clearly emphasizes the first chart.</p>
 <div class="row">
 <div class="col-md-6">
@@ -427,10 +430,11 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="flexible-boxes" class="section level3">
-<h3>Flexible Boxes</h3>
+<div id="flexible-boxes" class="section level4">
+<h4>Flexible Boxes</h4>
 <p>Layout is done using the browser <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes">flexbox</a> engine, which alters its items’ width and/or height to best fill the available space on any display device. A flexbox layout expands items to fill available free space, or shrinks them to prevent overflow.</p>
 <p>The implication of this is that chart dimensions established via either knitr figure sizes or <code>data-width</code> and <code>data-height</code> attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the <code>flex-grow</code> and <code>flex-shrink</code> CSS properties).</p>
+</div>
 </div>
 </div>
 <div id="chart-scaling" class="section level2">
@@ -480,8 +484,8 @@ div.tocify {
 </div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
 <p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). You should also include a <code>url</code> as the navigation target. The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
-<div id="icon-sets" class="section level3">
-<h3>Icon Sets</h3>
+<div id="icon-sets" class="section level4">
+<h4>Icon Sets</h4>
 <p>You can specify icons for navigation bar items from three different icon sets:</p>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a></p></li>

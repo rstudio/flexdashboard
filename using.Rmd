@@ -4,7 +4,8 @@ output:
   html_document:
     toc: true
     toc_depth: 3
-    toc_float: true
+    toc_float:
+      collapsed: false
 ---
 
 ## Layout Orientation
@@ -98,11 +99,9 @@ You can use several types of charts with flexdashboard, each of which has its ad
 
 To create an ideal layout for your dashboard, it's important to understand how the size of individual charts is determined. This section describes the layout algorithm and the various ways you can tweak its behavior.
 
-### Chart Width
+### Width and Height
 
 The width of charts in flexdashboard is ultimately determined by the width of the browser. If your layout has a single column then charts will occupy the full width of the browser. If your layout has multiple columns then the columns will split the available width evenly (unless overridden via the `data-width` attribute as described below).
-
-### Chart Height
 
 The height of charts is determined in one of two ways depending on whether your dashboard is configured to fit itself into the vertical confines of the page (`vertical_layout: fill`) or to scroll (`vertical_layout: scroll`):
 
@@ -116,7 +115,7 @@ The nature of the charts within your dashboard (desired emphasis, visualization 
 
 You can modify the default sizing behavior by applying the `data-width` and `data-height` attributes to rows, columns, or even individual charts. These attributes establish the relative size between charts laid out in the same dimension (horizontal or vertical).
 
-### Examples
+#### Examples
 
 This example use the `data-height` attribute to dictate a larger vertical size for the first row, resulting in a layout that more clearly emphasizes the first chart.
 
@@ -161,7 +160,7 @@ This example is a variation of the single-column layout demonstrated above with 
 
 </div>
 
-### Flexible Boxes
+#### Flexible Boxes
 
 Layout is done using the browser [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) engine, which alters its items' width and/or height to best fill the available space on any display device. A flexbox layout expands items to fill available free space, or shrinks them to prevent overflow.
 
@@ -220,7 +219,7 @@ By default, the flexdashboard navigation bar includes only the dashboard title. 
 
 Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). You should also include a `url` as the navigation target. The `align` field is optional (it can be "left" or "right" and defaults to "right").
 
-### Icon Sets
+#### Icon Sets
 
 You can specify icons for navigation bar items from three different icon sets:
 
