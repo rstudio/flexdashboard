@@ -93,8 +93,8 @@ layout. The dashboard flexibly adapts the size of it's plots and htmlwidgets
 to its containing web page.
 }
 \details{
-See the flexdashboard website for additional documentation
- flex_dashboard: http://rstudio.github.io/flexdashboard
+See the flexdashboard website for additional documentation:
+ http://rstudio.github.io/flexdashboard
 }
 \examples{
 \dontrun{

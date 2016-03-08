@@ -42,8 +42,8 @@
 #'
 #'@param ... Unused
 #'
-#'@details See the flexdashboard website for additional documentation
-#'  flex_dashboard: http://rstudio.github.io/flexdashboard
+#'@details See the flexdashboard website for additional documentation:
+#'  http://rstudio.github.io/flexdashboard
 #'
 #' @examples
 #' \dontrun{
