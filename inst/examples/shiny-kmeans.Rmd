@@ -2,6 +2,7 @@
 title: "Iris K-Means Clustering"
 output: 
   flexdashboard::flex_dashboard:
+    orientation: columns
     social: menu
     source_code: embed
 runtime: shiny
@@ -10,7 +11,6 @@ runtime: shiny
 ```{r setup, include=FALSE}
 library(flexdashboard)
 ```
-
 
 Column {.sidebar}
 -----------------------------------------------------------------------

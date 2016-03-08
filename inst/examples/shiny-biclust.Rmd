@@ -27,7 +27,8 @@ Inputs {.sidebar}
     selected = 1)
 ```
 
-Microarray data matrix for 80 experiments with Saccharomyces Cerevisiae organism extracted from R's `biclust` package.
+Microarray data matrix for 80 experiments with Saccharomyces Cerevisiae
+organism extracted from R's `biclust` package.
 
 Sebastian Kaiser, Rodrigo Santamaria, Tatsiana Khamiakova, Martin Sill, Roberto
   Theron, Luis Quintales, Friedrich Leisch and Ewoud De Troyer. (2015). biclust:

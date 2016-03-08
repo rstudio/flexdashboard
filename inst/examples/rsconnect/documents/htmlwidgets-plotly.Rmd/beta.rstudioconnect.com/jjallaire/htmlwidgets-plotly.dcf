@@ -2,8 +2,8 @@ name: htmlwidgets-plotly
 account: jjallaire
 server: beta.rstudioconnect.com
 appId: 592
-bundleId: 1004
+bundleId: 1012
 url: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-plotly/
-when: 1457454320.45989
+when: 1457460957.99785
 asMultiple: FALSE
 asStatic: TRUE

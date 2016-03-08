@@ -2,6 +2,7 @@
 title: "ggplot2 Diamonds Explorer"
 output: 
   flexdashboard::flex_dashboard:
+    orientation: columns
     social: menu
     source_code: embed
 runtime: shiny
@@ -40,7 +41,6 @@ Outputs
 ### Diamonds
 
 ```{r}
-
 dataset <- reactive({
   diamonds[sample(nrow(diamonds), input$sampleSize),]
 })
@@ -63,4 +63,3 @@ renderPlot(res = 96, {
   print(p)
 })
 ```
-
