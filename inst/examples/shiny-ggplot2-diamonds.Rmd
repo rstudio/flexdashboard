@@ -1,6 +1,9 @@
 ---
 title: "ggplot2 Diamonds Explorer"
-output: flexdashboard::flex_dashboard
+output: 
+  flexdashboard::flex_dashboard:
+    social: menu
+    source_code: embed
 runtime: shiny
 ---
 
@@ -13,7 +16,6 @@ Inputs {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
-
 dataset <- diamonds
 
 sliderInput('sampleSize', 'Sample Size', min=1, max=nrow(dataset),
@@ -61,5 +63,4 @@ renderPlot(res = 96, {
   print(p)
 })
 ```
-
 

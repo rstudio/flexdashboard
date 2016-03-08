@@ -21,10 +21,10 @@ dat <- data.frame(cond = rep(c("A", "B"), each=10),
 ```
 
 geom_point
-====================================================
+=======================================================================
 
 Row
-----------------------------------------------------
+-----------------------------------------------------------------------
 
 ### Scatter Chart with geom_point
 
@@ -45,7 +45,7 @@ ggplotly(p)
 ```
 
 Row
-----------------------------------------------------
+-----------------------------------------------------------------------
 
 ### geom_smooth with Loess Smoothed Fit
 
@@ -73,10 +73,10 @@ ggplotly(p)
 ```
 
 geom_density
-====================================================
+=======================================================================
 
 Row
-----------------------------------------------------
+-----------------------------------------------------------------------
 
 ### stat_density Example
 
@@ -105,7 +105,8 @@ p <- ggplot(data=mydf, aes(x=dim1, y=dim2, colour=as.factor(cat))) +
                position="identity", geom="line")
 
 stuff <- ggplot_build(p)
-xrange <- stuff[[2]]$ranges[[1]]$x.range  # extract the x range, to make the new densities align with y-axis
+xrange <- stuff[[2]]$ranges[[1]]$x.range  # extract the x range to make the
+                                          # new densities align with y-axis
 
 ## Get densities of dim2
 ds <- do.call(rbind, lapply(unique(mydf$cat), function(lev) {
@@ -119,7 +120,7 @@ ggplotly(p)
 ```
 
 Row
-----------------------------------------------------
+-----------------------------------------------------------------------
 
 ### geom_density and facet_wrap Together
 

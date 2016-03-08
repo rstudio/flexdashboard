@@ -9,7 +9,6 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-# Load packages here
 library(highcharter)
 library(dplyr)
 library(viridisLite)
@@ -31,9 +30,8 @@ thm <-
 
 ```
 
-
 Row 
--------------------------------------
+-----------------------------------------------------------------------
 
 ### Sales Forecast
 
@@ -70,9 +68,8 @@ highchart() %>%
   hc_add_theme(thm)
 ```
 
-
 Row
--------------------------------------
+-----------------------------------------------------------------------
 
 ### Sales by Category
 
