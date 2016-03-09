@@ -628,15 +628,21 @@ var FlexDashboard = (function () {
   // layout a value box
   function layoutValueBox(valueBox) {
 
-    // resolve the background color
-    if (!valueBox.hasClass('bg-primary') && !valueBox.hasClass('bg-info') &&
-        !valueBox.hasClass('bg-warning') && !valueBox.hasClass('bg-success') &&
-        !valueBox.hasClass('bg-danger')) {
-      valueBox.addClass('bg-primary');
-    }
+    // look for custom background color
+    var bgColor = valueBox.attr('data-background');
+    if (bgColor) {
+      valueBox.css('background-color', bgColor);
+    } else {
+      // automatically use bg-primary if none specified
+      if (!valueBox.hasClass('bg-primary') && !valueBox.hasClass('bg-info') &&
+          !valueBox.hasClass('bg-warning') && !valueBox.hasClass('bg-success') &&
+          !valueBox.hasClass('bg-danger')) {
+        valueBox.addClass('bg-primary');
+      }
 
-    // add alpha if necessary
-    addValueBoxAlpha(valueBox);
+      // add alpha if necessary
+      addValueBoxAlpha(valueBox);
+    }
 
     // extract the title/caption
     var chartTitle = extractTitle(valueBox);
