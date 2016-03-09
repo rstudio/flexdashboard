@@ -487,16 +487,6 @@ div.tocify {
 </div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
 <p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). You should also include a <code>url</code> as the navigation target. The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
-<div id="icon-sets" class="section level4">
-<h4>Icon Sets</h4>
-<p>You can specify icons for navigation bar items from three different icon sets:</p>
-<ol style="list-style-type: decimal">
-<li><p><a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a></p></li>
-<li><p><a href="http://ionicons.com/">Ionicons</a></p></li>
-<li><p><a href="https://getbootstrap.com/components/#glyphicons">Bootstrap Glyphicons</a></p></li>
-</ol>
-<p>When referring to an icon you should use it’s full name including the icon set prefix (e.g. “fa-github”, “ion-social-twitter”, “glyphicon-time”, etc.). Note also that if you don’t provide a <code>url</code> for social sharing icons (e.g. “fa-twitter” or “fa-facebook”) then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).</p>
-</div>
 <div id="social-links" class="section level3">
 <h3>Social Links</h3>
 <p>You can include links to social sharing services via the <code>social</code> option. For example, the following dashboard includes Twitter and Facebook links as well as a drop-down menu with a more complete list of services:</p>
@@ -514,6 +504,33 @@ div.tocify {
 </div>
 <script type="text/javascript">loadSnippet('navbarsourcecode')</script>
 </div>
+<div id="icon-sets" class="section level3">
+<h3>Icon Sets</h3>
+<p>You can specify icons for navigation bar items from three different icon sets:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a></p></li>
+<li><p><a href="http://ionicons.com/">Ionicons</a></p></li>
+<li><p><a href="https://getbootstrap.com/components/#glyphicons">Bootstrap Glyphicons</a></p></li>
+</ol>
+<p>When referring to an icon you should use it’s full name including the icon set prefix (e.g. “fa-github”, “ion-social-twitter”, “glyphicon-time”, etc.). Note also that if you don’t provide a <code>url</code> for social sharing icons (e.g. “fa-twitter” or “fa-facebook”) then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).</p>
+</div>
+</div>
+<div id="value-boxes" class="section level2">
+<h2>Value Boxes</h2>
+<p>Sometimes you want to include one or more simple values within a dashboard (as opposed to data visualizations or tabular displays). You can use the <code>{.value-box}</code> attribute to indicate that a section should display only a single value. For example, here are three side-by-side sections each displaying a single value:</p>
+<p><img src="images/value-box.png" alt="" /></p>
+<p>Here is the code which was used to generate these value boxes:</p>
+<div id="valuebox">
+
+</div>
+<script type="text/javascript">loadSnippet('valuebox')</script>
+<p>A few things to note about the example:</p>
+<ol style="list-style-type: decimal">
+<li><p>The <code>{.value-box}</code> attribute is added to each section, indicating it should display as a value box.</p></li>
+<li><p>The <code>data-icon</code> attribute can be optionally specified to include an icon within the value box (see <a href="#icon-sets">Icon Sets</a> for details on available icons).</p></li>
+<li><p>A non-default background color is specified for the third value box via the inclusion of the <code>.bg-warning</code> attribute. Available background color attributes include <code>.bg-primary</code> (the default), <code>.bg-info</code>, <code>.bg-success</code>, <code>.bg-warning</code>, and <code>.bg-danger</code>. You can also specify an arbitrary CSS background color using e.g. <code>data-background=rgb(100,100,100)</code>.</p></li>
+<li><p>The R code chunk within the section prints a single value (in the example these are hard-coded literals, but would more typically be the result of some computations).</p></li>
+</ol>
 </div>
 <div id="text-annotations" class="section level2">
 <h2>Text Annotations</h2>

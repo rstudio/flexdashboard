@@ -221,18 +221,6 @@ By default, the flexdashboard navigation bar includes only the dashboard title. 
 
 Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). You should also include a `url` as the navigation target. The `align` field is optional (it can be "left" or "right" and defaults to "right").
 
-#### Icon Sets
-
-You can specify icons for navigation bar items from three different icon sets:
-
-1. [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/)
-
-2. [Ionicons](http://ionicons.com/)
-
-3. [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
-
-When referring to an icon you should use it's full name including the icon set prefix (e.g. "fa-github", "ion-social-twitter", "glyphicon-time", etc.). Note also that if you don't provide a `url` for social sharing icons (e.g. "fa-twitter" or "fa-facebook") then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).
-
 ### Social Links
 
 You can include links to social sharing services via the `social` option. For example, the following dashboard includes Twitter and Facebook links as well as a drop-down menu with a more complete list of services:
@@ -249,6 +237,38 @@ You can include a link to the dashboard's source code using the `source_code` op
 <div id="navbarsourcecode"></div>
 <script type="text/javascript">loadSnippet('navbarsourcecode')</script>
 
+### Icon Sets
+
+You can specify icons for navigation bar items from three different icon sets:
+
+1. [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/)
+
+2. [Ionicons](http://ionicons.com/)
+
+3. [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
+
+When referring to an icon you should use it's full name including the icon set prefix (e.g. "fa-github", "ion-social-twitter", "glyphicon-time", etc.). Note also that if you don't provide a `url` for social sharing icons (e.g. "fa-twitter" or "fa-facebook") then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).
+
+## Value Boxes
+
+Sometimes you want to include one or more simple values within a dashboard (as opposed to data visualizations or tabular displays). You can use the `{.value-box}` attribute to indicate that a section should display only a single value. For example, here are three side-by-side sections each displaying a single value:
+
+![](images/value-box.png)
+
+Here is the code which was used to generate these value boxes:
+
+<div id="valuebox"></div>
+<script type="text/javascript">loadSnippet('valuebox')</script>
+
+A few things to note about the example:
+
+1. The `{.value-box}` attribute is added to each section, indicating it should display as a value box.
+
+2. The `data-icon` attribute can be optionally specified to include an icon within the value box (see [Icon Sets] for details on available icons).
+
+3. A non-default background color is specified for the third value box via the inclusion of the `.bg-warning` attribute. Available background color attributes include `.bg-primary` (the default), `.bg-info`, `.bg-success`, `.bg-warning`, and `.bg-danger`. You can also specify an arbitrary CSS background color using e.g. `data-background=rgb(100,100,100)`.
+
+4. The R code chunk within the section prints a single value (in the example these are hard-coded literals, but would more typically be the result of some computations).
 
 ## Text Annotations
 
