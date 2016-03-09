@@ -367,20 +367,34 @@ var FlexDashboard = (function () {
       // fixup the columns
       columns.each(function(index) {
 
-        // layout the chart
-        var result = layoutChart($(this));
+        // check for a value box
+        if ($(this).hasClass('value-box')) {
 
-        // update flexHeight state
-        if (!result.flex)
+          // layout value box
+          layoutValueBox($(this));
+
+          // static height based on height of value boxes
           haveFlexHeight = false;
 
-        // update state
-        if (result.caption)
-          haveCaptions = true;
+        } else {
+
+          // layout the chart
+          var result = layoutChart($(this));
+
+          // update flexHeight state
+          if (!result.flex)
+            haveFlexHeight = false;
+
+          // update state
+          if (result.caption)
+            haveCaptions = true;
+        }
 
         // set the column flex based on the figure width
+        // (value boxes will just get the default figure width)
         var chartWidth = figureSizes[index].width;
         setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
+
       });
 
       // if we don't have any captions in this row then remove
@@ -456,22 +470,30 @@ var FlexDashboard = (function () {
       // layout each chart
       rows.each(function(index) {
 
-        // perform the layout
-        var result = layoutChart($(this));
+         // check for a value box
+        if ($(this).hasClass('value-box')) {
 
-        // ice the notes if there are none
-        if (!result.caption)
-          $(this).find('.chart-notes').remove();
+          layoutValueBox($(this));
 
-        // set flex height based on figHeight, then adjust
-        if (result.flex) {
-          var chartHeight = figureSizes[index].height;
-          chartHeight = adjustedHeight(chartHeight, $(this));
-          if (fillPage)
-            setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
-          else {
-            $(this).css('height', chartHeight + 'px');
-            setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+        } else {
+
+          // perform the layout
+          var result = layoutChart($(this));
+
+          // ice the notes if there are none
+          if (!result.caption)
+            $(this).find('.chart-notes').remove();
+
+          // set flex height based on figHeight, then adjust
+          if (result.flex) {
+            var chartHeight = figureSizes[index].height;
+            chartHeight = adjustedHeight(chartHeight, $(this));
+            if (fillPage)
+              setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
+            else {
+              $(this).css('height', chartHeight + 'px');
+              setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+            }
           }
         }
       });
@@ -563,10 +585,8 @@ var FlexDashboard = (function () {
       flex: false
     };
 
-    // get a reference to the h3, discover it's inner html, and remove it
-    var h3 = chart.children('h3').first();
-    var title = h3.html();
-    h3.remove();
+    // extract the title
+    var title = extractTitle(chart);
 
     // auto-resizing treatment for image
     autoResizeChartImage(chart);
@@ -602,6 +622,58 @@ var FlexDashboard = (function () {
 
     // return result
     return result;
+  }
+
+  // layout a value box
+  function layoutValueBox(chart) {
+
+    // resolve the background color
+    if (!chart.is('bg-primary') && !chart.is('bg-info') &&
+        !chart.is('bg-warning') && !chart.is('bg-success') &&
+        !chart.is('bg-danger')) {
+      chart.addClass('bg-primary');
+    }
+
+    // extract the title/caption
+    var chartTitle = extractTitle(chart);
+
+    // extract the value (remove leading vector index)
+    var chartValue = chart.text().trim();
+    chartValue = chartValue.replace("[1] ", "");
+
+    // build a value box structure
+    var value = $('<p class="value"></p>');
+    value.text(chartValue);
+    var caption = $('<p class="caption"></p>');
+    caption.html(chartTitle);
+    var inner = $('<div class="inner"></div>');
+    inner.append(value);
+    inner.append(caption);
+
+    // replace children with it
+    chart.children().remove();
+    chart.append(inner);
+
+    // add icon if specified
+    var chartIcon = chart.attr('data-icon');
+    if (chartIcon) {
+      var icon = $('<div class="icon"></div>');
+      var iconLib = "";
+      var components = chartIcon.split("-");
+      if (components.length > 1)
+        iconLib = components[0] + " ";
+      var i = $('<i class="' + iconLib + chartIcon + '"></i>');
+      icon.append(i);
+      chart.append(icon);
+    }
+  }
+
+  // get a reference to the h3, discover it's inner html, and remove it
+  function extractTitle(chart) {
+    var h3 = chart.children('h3').first();
+    var title = h3.html();
+    h3.remove();
+    return title;
   }
 
   function handleBootstrapTable(chartContent) {

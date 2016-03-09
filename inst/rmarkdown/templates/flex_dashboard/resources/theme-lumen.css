@@ -6,3 +6,7 @@ body {
   top: 54px;
   background-color: rgba(255, 255, 255, 0.9);
 }
+
+.value-box {
+  color: #f9f9f9;
+}
