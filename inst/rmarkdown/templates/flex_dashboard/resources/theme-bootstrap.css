@@ -10,3 +10,7 @@ body {
   /* background-color: #f5f5f5; */
   background-color: #f8f8f8;
 }
+
+.value-box {
+  color: inherit;
+}

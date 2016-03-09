@@ -8,7 +8,8 @@ var FlexDashboard = (function () {
       fillPage: false,
       orientation: 'columns',
       defaultFigWidth: 576,
-      defaultFigHeight: 480
+      defaultFigHeight: 480,
+      valueBoxAlpha: 0
     };
   };
 
@@ -625,20 +626,23 @@ var FlexDashboard = (function () {
   }
 
   // layout a value box
-  function layoutValueBox(chart) {
+  function layoutValueBox(valueBox) {
 
     // resolve the background color
-    if (!chart.is('bg-primary') && !chart.is('bg-info') &&
-        !chart.is('bg-warning') && !chart.is('bg-success') &&
-        !chart.is('bg-danger')) {
-      chart.addClass('bg-primary');
+    if (!valueBox.hasClass('bg-primary') && !valueBox.hasClass('bg-info') &&
+        !valueBox.hasClass('bg-warning') && !valueBox.hasClass('bg-success') &&
+        !valueBox.hasClass('bg-danger')) {
+      valueBox.addClass('bg-primary');
     }
 
+    // add alpha if necessary
+    addValueBoxAlpha(valueBox);
+
     // extract the title/caption
-    var chartTitle = extractTitle(chart);
+    var chartTitle = extractTitle(valueBox);
 
     // extract the value (remove leading vector index)
-    var chartValue = chart.text().trim();
+    var chartValue = valueBox.text().trim();
     chartValue = chartValue.replace("[1] ", "");
 
     // build a value box structure
@@ -651,11 +655,11 @@ var FlexDashboard = (function () {
     inner.append(caption);
 
     // replace children with it
-    chart.children().remove();
-    chart.append(inner);
+    valueBox.children().remove();
+    valueBox.append(inner);
 
     // add icon if specified
-    var chartIcon = chart.attr('data-icon');
+    var chartIcon = valueBox.attr('data-icon');
     if (chartIcon) {
       var icon = $('<div class="icon"></div>');
       var iconLib = "";
@@ -664,13 +668,29 @@ var FlexDashboard = (function () {
         iconLib = components[0] + " ";
       var i = $('<i class="' + iconLib + chartIcon + '"></i>');
       icon.append(i);
-      chart.append(icon);
+      valueBox.append(icon);
+    }
+  }
+
+  function addValueBoxAlpha(valueBox) {
+    if (_options.valueBoxAlpha.length) {
+
+      var alpha = _options.valueBoxAlpha[0];
+      if (_options.valueBoxAlpha.length > 1 &&
+          !valueBox.hasClass('bg-primary')) {
+        alpha = _options.valueBoxAlpha[1];
+      }
+      if (alpha > 0) {
+        var color = valueBox.css('backgroundColor');
+        var newColor = color.replace('rgb', 'rgba').replace(')', ',' + alpha + ')');
+        valueBox.css({backgroundColor: newColor});
+      }
     }
   }
 
   // get a reference to the h3, discover it's inner html, and remove it
-  function extractTitle(chart) {
-    var h3 = chart.children('h3').first();
+  function extractTitle(container) {
+    var h3 = container.children('h3').first();
     var title = h3.html();
     h3.remove();
     return title;

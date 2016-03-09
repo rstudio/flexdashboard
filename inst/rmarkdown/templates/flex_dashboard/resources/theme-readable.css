@@ -6,3 +6,7 @@ body {
   top: 66px;
   background-color: rgba(255, 255, 255, 0.9);
 }
+
+.value-box {
+  color: inherit;
+}

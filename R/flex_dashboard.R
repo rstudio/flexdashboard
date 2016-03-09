@@ -203,7 +203,8 @@ flex_dashboard <- function(fig_width = 6,
       paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
       paste0('    orientation: "', orientation, '",'),
       paste0('    defaultFigWidth: ', figSizePixels(fig_width), ','),
-      paste0('    defaultFigHeight: ', figSizePixels(fig_height)),
+      paste0('    defaultFigHeight: ', figSizePixels(fig_height), ','),
+      paste0('    valueBoxAlpha: ', valueBoxAlpha(theme)),
       '  });',
       '});',
       '</script>'
@@ -298,6 +299,24 @@ flex_dashboard <- function(fig_width = 6,
   )
 }
 
+
+valueBoxAlpha <- function(theme) {
+
+  alpha <-
+    if (theme %in% c("cosmo", "flatly", "lumen"))
+      0.7
+    else if (theme %in% c("journal"))
+      c(0.7, 0)
+    else if (theme %in% c("default", "readable", "spacelab", "united",
+                          "paper", "sandstone", "yeti"))
+      c(0.4, 0)
+    else if (theme %in% c("simplex"))
+      c(0.25, 0)
+    else
+      NULL
+
+  paste0('[', paste(alpha, collapse = ','), ']')
+}
 
 source_code_embed <- function(source_code) {
   identical(source_code, "embed")
