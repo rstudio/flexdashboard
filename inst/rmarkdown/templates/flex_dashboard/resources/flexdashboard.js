@@ -762,28 +762,30 @@ var FlexDashboard = (function () {
   // tweak Prism highlighting
   function initPrismHighlighting() {
 
-    Prism.languages.insertBefore('r', 'comment', {
-      'heading': [
-        {
-          // title 1
-      	  // =======
+    if (window.Prism) {
+      Prism.languages.insertBefore('r', 'comment', {
+        'heading': [
+          {
+            // title 1
+        	  // =======
 
-      	  // title 2
-      	  // -------
-      	  pattern: /\w+.*(?:\r?\n|\r)(?:====+|----+)/,
-          alias: 'operator'
-        },
-        {
-          // ### title 3
-          pattern: /(^\s*)###[^#].+/m,
-          lookbehind: true,
-          alias: 'operator'
-        }
-      ]
-    });
+        	  // title 2
+        	  // -------
+        	  pattern: /\w+.*(?:\r?\n|\r)(?:====+|----+)/,
+            alias: 'operator'
+          },
+          {
+            // ### title 3
+            pattern: /(^\s*)###[^#].+/m,
+            lookbehind: true,
+            alias: 'operator'
+          }
+        ]
+      });
 
-    // prism highlight
-    Prism.highlightAll();
+      // prism highlight
+      Prism.highlightAll();
+    }
   }
 
   FlexDashboard.prototype = {
