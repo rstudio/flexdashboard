@@ -298,10 +298,12 @@ div.tocify {
 </div>
 
 
-<div id="layout-orientation" class="section level2">
-<h2>Layout Orientation</h2>
-<div id="columns" class="section level3">
-<h3>Columns</h3>
+<div id="dashboard-basics" class="section level2">
+<h2>Dashboard Basics</h2>
+<div id="orientation" class="section level3">
+<h3>Orientation</h3>
+<div id="layout-by-column" class="section level4">
+<h4>Layout by Column</h4>
 <p>By default, level 2 markdown headers (<code>------------------</code>) within dashboards define columns, with individual charts stacked vertically within each column. Here’s the definition of a two column dashboard with one chart on the left and two on the right:</p>
 <div class="row">
 <div class="col-md-6">
@@ -322,8 +324,8 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="rows" class="section level3">
-<h3>Rows</h3>
+<div id="layout-by-row" class="section level4">
+<h4>Layout by Row</h4>
 <p>You can also choose to orient dashboards row-wise rather than column-wise, by specifying the <code>orientation: rows</code> option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:</p>
 <div class="row">
 <div class="col-md-6">
@@ -348,8 +350,8 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="layout-fillscrolling" class="section level2">
-<h2>Layout Fill/Scrolling</h2>
+<div id="fill-vs.scrolling" class="section level3">
+<h3>Fill vs. Scrolling</h3>
 <p>By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you’ll probably want to scroll rather than fit them all onto the page. You can control this behavior using the <code>vertical_layout</code> option. Specify <code>fill</code> to vertically re-size charts so they completely fill the page and <code>scroll</code> to layout charts at their natural height, scrolling the page if necessary.</p>
 <p>For example, the following layout includes 3 charts and requests that the page scroll as necessary to accommodate their natural height:</p>
 <div class="row">
@@ -366,14 +368,15 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="chart-types" class="section level2">
-<h2>Chart Types</h2>
+<div id="chart-types" class="section level3">
+<h3>Chart Types</h3>
 <p>You can use several types of charts with flexdashboard, each of which has its advantages and disadvantages:</p>
 <ol style="list-style-type: decimal">
 <li><p>Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a>. These charts are interactive (using JavaScript) and standalone (they don’t require a connection to a server running R, rather they are deployed as part of a static web page). One disadvantage of htmlwidgets is that they embed their data directly in their host web page, so may encounter performance problems for larger datasets.</p></li>
 <li><p>Charts based on standard R graphics (e.g. base, lattice, grid). These charts are static (they are just PNG images) and standalone (no server required). One disadvantage of these charts is that they take a bit more work to scale correctly into dashboard panes (see <a href="#chart-scaling">Chart Scaling</a> for further details).</p></li>
 <li><p>Charts based on <a href="shiny.html">Shiny</a>. These charts can created using either of the two techniques described above, however gain additional dynamic and interactive capabilities via Shiny. Note however that dashboards which use Shiny are no longer static web pages, and require <a href="http://shiny.rstudio.com/deploy/">deployment</a> to a Shiny Server).</p></li>
 </ol>
+</div>
 </div>
 <div id="chart-sizing" class="section level2">
 <h2>Chart Sizing</h2>
@@ -436,9 +439,8 @@ div.tocify {
 <p>The implication of this is that chart dimensions established via either knitr figure sizes or <code>data-width</code> and <code>data-height</code> attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the <code>flex-grow</code> and <code>flex-shrink</code> CSS properties).</p>
 </div>
 </div>
-</div>
-<div id="chart-scaling" class="section level2">
-<h2>Chart Scaling</h2>
+<div id="chart-scaling" class="section level3">
+<h3>Chart Scaling</h3>
 <p>Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.</p>
 <p>It’s also possible to use charts created using standard R graphics (base, lattice, grid, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>.</p>
 <p>Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it’s not possible for them to seamlessly fill the bounds of their container. When creating static dashboards containing standard R graphics it’s therefore critical to define knitr <code>fig.width</code> and <code>fig.height</code> values as close as possible to what they’ll actually be on the page.</p>
@@ -449,6 +451,7 @@ div.tocify {
 <script type="text/javascript">loadSnippet('figuresizes')</script>
 <p>We’ve specified an explicit <code>fig.height</code> and <code>fig.width</code> for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation.</p>
 <p>Even with the tweaks described above standard R graphics won’t always fit perfectly into their containers, so in general htmlwidget based charts are preferred within static dashboards. Note that the <a href="https://plot.ly/ggplot2/">plotly</a> package enables rendering of ggplot2 graphics as interactive htmlwidgets.</p>
+</div>
 </div>
 <div id="multiple-pages" class="section level2">
 <h2>Multiple Pages</h2>
@@ -527,8 +530,8 @@ div.tocify {
 <script type="text/javascript">loadSnippet('textannotation')</script>
 <p>This example also demonstrates the use of a “setup chunk” to load required R packages prior to executing the rest of the R chunks that make use of them, as well as using a custom <code>data-height</code> attribute for the rows to make the first row disproportionately larger than the second row.</p>
 </div>
-<div id="visual-themes" class="section level2">
-<h2>Visual Themes</h2>
+<div id="dashboard-theme" class="section level2">
+<h2>Dashboard Theme</h2>
 <p>A variety of themes are available to modify the appearance of flexdashboard. Supported themes include “default”, “bootstrap”, “cerulean”, “journal”, “flatly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, and “yeti”. Note that the “cosmo” theme is used when “default” is specified.</p>
 <p>These themes are all based on the themes available in the <a href="http://rmarkdown.rstudio.com">R Markdown</a> package (which are in turn based on <a href="https://bootswatch.com/">Bootswatch</a> themes).</p>
 <p>Use the <code>theme</code> option to specify an alternate theme:</p>

@@ -8,9 +8,11 @@ output:
       collapsed: false
 ---
 
-## Layout Orientation
+## Dashboard Basics
 
-### Columns
+### Orientation
+
+#### Layout by Column
 
 By default, level 2 markdown headers (`------------------`) within dashboards define columns, with individual charts stacked vertically within each column. Here's the definition of a two column dashboard with one chart on the left and two on the right:
 
@@ -35,7 +37,7 @@ By default, level 2 markdown headers (`------------------`) within dashboards de
 
 </div>
 
-### Rows
+#### Layout by Row
 
 You can also choose to orient dashboards row-wise rather than column-wise, by specifying the `orientation: rows` option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:
 
@@ -62,7 +64,7 @@ You can also choose to orient dashboards row-wise rather than column-wise, by sp
 
 </div>
 
-## Layout Fill/Scrolling
+### Fill vs. Scrolling
 
 By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you'll probably want to scroll rather than fit them all onto the page. You can control this behavior using the `vertical_layout` option. Specify `fill` to vertically re-size charts so they completely fill the page and `scroll` to layout charts at their natural height, scrolling the page if necessary.
 
@@ -85,7 +87,7 @@ For example, the following layout includes 3 charts and requests that the page s
 
 </div>
 
-## Chart Types
+### Chart Types
 
 You can use several types of charts with flexdashboard, each of which has its advantages and disadvantages:
 
@@ -167,7 +169,7 @@ Layout is done using the browser [flexbox](https://developer.mozilla.org/en-US/d
 The implication of this is that chart dimensions established via either knitr figure sizes or `data-width` and `data-height` attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the `flex-grow` and `flex-shrink` CSS properties).
 
 
-## Chart Scaling
+### Chart Scaling
 
 Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on [htmlwidgets](http://www.htmlwidgets.org) can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.
 
@@ -265,7 +267,7 @@ For example, the following dashboard includes some content at the top, brief foo
 
 This example also demonstrates the use of a "setup chunk" to load required R packages prior to executing the rest of the R chunks that make use of them, as well as using a custom `data-height` attribute for the rows to make the first row disproportionately larger than the second row.
 
-## Visual Themes
+## Dashboard Theme
 
 A variety of themes are available to modify the appearance of flexdashboard. Supported themes include "default", "bootstrap", "cerulean", "journal", "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "simplex", and "yeti". Note that the "cosmo" theme is used when "default" is specified.
 
