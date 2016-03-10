@@ -10,7 +10,6 @@ runtime: shiny
 
 ```{r setup, include=FALSE}
 library(ggplot2)
-library(Cairo) # For nicer ggplot2 output when deployed on Linux
 library(flexdashboard)
 
 # We'll use a subset of the mtcars data set with fewer columns
