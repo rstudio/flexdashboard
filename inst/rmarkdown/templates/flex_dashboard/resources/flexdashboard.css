@@ -364,3 +364,9 @@ body hr {
   user-select: text;
 }
 
+/* Fix the appearance of the DataTables search box */
+
+.dataTables_filter input[type="search"] {
+  -webkit-appearance: searchfield;
+  outline: none;
+}
