@@ -841,13 +841,6 @@ var FlexDashboard = (function () {
           x.options.scrollX = true;
           x.options.scrollY = "300px";
 
-          // if we have filters then force them to the bottom
-          // see:
-          //  https://github.com/rstudio/DT/issues/41
-          //  https://github.com/vedmack/yadcf/issues/43
-          if (x.filter === "top")
-            x.filter = "bottom";
-
           // call renderValue so the table gets fully laid out
           previousRenderValue(el, x, instance);
 
@@ -877,15 +870,9 @@ var FlexDashboard = (function () {
     var dtWrapper = $(el).find('div.dataTables_wrapper');
     var dtScrollBody = $(el).find($('div.dataTables_scrollBody'));
     var framingHeight = dtWrapper.innerHeight() - dtScrollBody.innerHeight();
+    var scrollBodyHeight = availableHeight - framingHeight;
 
-    // if we have a footer (from filter = "bottom") then add padding so the
-    // filter controls have room to display
-    var bottomPadding = 0;
-    if ($(el).find('div.dataTables_scrollFoot').length > 0)
-      bottomPadding = 20;
-
-    // compute and set the height
-    var scrollBodyHeight = availableHeight - framingHeight - bottomPadding;
+    // set the height
     dtScrollBody.height(scrollBodyHeight + 'px');
   }
 
