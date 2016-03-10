@@ -18,6 +18,9 @@ var FlexDashboard = (function () {
     // extend default options
     $.extend(true, _options, options);
 
+    // patch DT sizing
+    patchDTSizing();
+
     // find navbar items
     var navbarItems = $('#flexdashboard-navbar');
     if (navbarItems.length)
@@ -818,6 +821,77 @@ var FlexDashboard = (function () {
       return chartContent.find('tr.header').parent('thead').parent('table');
   }
 
+  function patchDTSizing() {
+
+    // bail if no HTMLWidgets
+    if (!HTMLWidgets.widgets)
+      return;
+
+    // find the DT resize handler and replace it
+    var widgets = HTMLWidgets.widgets;
+    for (var i=0; i<widgets.length; i++) {
+      var widget = widgets[i];
+      if (widget.name === "datatables") {
+
+        // monkey patch (post-process) renderValue to set scrollX = TRUE
+        var previousRenderValue = widget.renderValue;
+        widget.renderValue = function(el, x, instance) {
+
+          // force scrollX/scrollY on
+          x.options.scrollX = true;
+          x.options.scrollY = "300px";
+
+          // call renderValue so the table gets fully laid out
+          previousRenderValue(el, x, instance);
+
+          // reset the sScrollY on the table dynamically
+          setDataTableScrollY(el, $(el).innerHeight());
+        }
+
+        // monkey patch (pre-process) resize to set scrollY dynamically
+        var previousResize = widget.resize;
+        widget.resize = function(el, width, height, instance) {
+
+          // call previous resize handler
+          if (previousResize)
+            previousResize(el, width, height, instance);
+
+          // set the sScrollY on the table dynamically
+          setDataTableScrollY(el, height);
+        };
+      }
+    }
+  }
+
+  function setDataTableScrollY(el, availableHeight) {
+
+    // see how much of the table is occupied by header/footer elements
+    // and use that to compute a target scroll body height
+    var dtWrapper = $(el).find('div.dataTables_wrapper');
+    var dtScrollBody = $(el).find($('div.dataTables_scrollBody'));
+    var framingHeight = dtWrapper.innerHeight() - dtScrollBody.innerHeight();
+    var scrollBodyHeight = availableHeight - framingHeight;
+
+    // set the height
+    dtScrollBody.height(scrollBodyHeight + 'px');
+  }
+
+  // currently unused but we had to battle long and hard to figure
+  // out how to do this so leaving the code in case we need it again
+  function findDataTable(el) {
+    if (el) {
+      var dt = null;
+      $($.fn.dataTable.fnTables()).each(function(i, table) {
+        var $table = $(table);
+        if ($(el).has($table).length > 0) {
+          dt = $table.dataTable();
+          return false;
+        }
+      });
+    }
+    return dt;
+  }
+
   // safely detect rendering on a mobile phone
   function isMobilePhone() {
     try
@@ -896,5 +970,3 @@ var FlexDashboard = (function () {
 })();
 
 window.FlexDashboard = new FlexDashboard();
-
-
