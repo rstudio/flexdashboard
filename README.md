@@ -10,4 +10,6 @@ flexdashboard: Easy interactive dashboards for R
 
 -   Optionally use [Shiny](http://shiny.rstudio.com) to drive visualizations dynamically.
 
+<img src="http://rstudio.github.io/flexdashboard/images/htmlwidgets-d3heatmap.png" width=276 height=220></img>  <img src="http://rstudio.github.io/flexdashboard/images/dygraphs.png" width=276 height=220></img>  <img src="http://rstudio.github.io/flexdashboard/images/plotly.png" width=276 height=220></img>
+
 Learn more about flexdashboard: <https://rstudio.github.io/flexdashboard>
