@@ -9,7 +9,8 @@ var FlexDashboard = (function () {
       orientation: 'columns',
       defaultFigWidth: 576,
       defaultFigHeight: 480,
-      valueBoxAlpha: 0
+      valueBoxAlpha: 0,
+      isMobile: false
     };
   };
 
@@ -95,6 +96,15 @@ var FlexDashboard = (function () {
 
     // intialize prism highlighting
     initPrismHighlighting();
+
+    // record mobile state the register a handler
+    // to refresh if it changes
+    _options.isMobile = isMobilePhone();
+    $(window).on('resize', function() {
+      if (_options.isMobile !== isMobilePhone())
+        window.location.reload();
+    });
+
   }
 
   function addNavbarItems(navbarItems) {
