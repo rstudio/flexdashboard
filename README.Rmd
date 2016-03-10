@@ -16,6 +16,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Optionally use [Shiny](http://shiny.rstudio.com) to drive visualizations dynamically.
 
-<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="http://rstudio.github.io/flexdashboard/images/htmlwidgets-d3heatmap.png" width=276 height=220></img></a>&nbsp;&nbsp;<img src="http://rstudio.github.io/flexdashboard/images/dygraphs.png" width=276 height=220></img>&nbsp;&nbsp;<img src="http://rstudio.github.io/flexdashboard/images/plotly.png" width=276 height=220></img>
+<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="http://rstudio.github.io/flexdashboard/images/htmlwidgets-d3heatmap.png" width=276 height=220></img></a>&nbsp;&nbsp;&nbsp;<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/"><img src="http://rstudio.github.io/flexdashboard/images/dygraphs.png" width=276 height=220></img></a>&nbsp;&nbsp;&nbsp;<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-plotly/"><img src="http://rstudio.github.io/flexdashboard/images/plotly.png" width=276 height=220></img></a>
 
 Learn more about flexdashboard: <https://rstudio.github.io/flexdashboard>
