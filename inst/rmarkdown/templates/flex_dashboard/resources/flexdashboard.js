@@ -842,6 +842,24 @@ var FlexDashboard = (function () {
           x.options.scrollY = "300px";
           x.options.bAutoWidth = true;
 
+          // if we aren't paginating then move around the info/filter controls
+          // to save space at the bottom and rephrase the info callback
+          if (x.options.bPaginate === false) {
+
+            if (!x.options.dom) {
+              x.options.dom =
+                "<'row'<'col-sm-4'i><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>";
+            }
+
+            if (!x.options.fnInfoCallback) {
+              x.options.fnInfoCallback = function(oSettings, iStart, iEnd,
+                                                 iMax, iTotal, sPre) {
+                return Number(iTotal).toLocaleString() + " records";
+              };
+            }
+          }
+
           // call renderValue so the table gets fully laid out
           previousRenderValue(el, x, instance);
 

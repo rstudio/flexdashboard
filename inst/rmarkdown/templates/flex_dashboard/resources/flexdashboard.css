@@ -364,9 +364,14 @@ body hr {
   user-select: text;
 }
 
-/* Fix the appearance of the DataTables search box */
+/* DataTables Tweaks */
 
 .dataTables_filter input[type="search"] {
   -webkit-appearance: searchfield;
   outline: none;
+}
+
+.dataTables_wrapper.no-footer
+.dataTables_info {
+  padding-top: 0;
 }
