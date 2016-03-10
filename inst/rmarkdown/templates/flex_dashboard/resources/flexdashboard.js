@@ -837,9 +837,10 @@ var FlexDashboard = (function () {
         var previousRenderValue = widget.renderValue;
         widget.renderValue = function(el, x, instance) {
 
-          // force scrollX/scrollY on
+          // force scrollX/scrollY and turn off autoWidth
           x.options.scrollX = true;
           x.options.scrollY = "300px";
+          x.options.bAutoWidth = false;
 
           // call renderValue so the table gets fully laid out
           previousRenderValue(el, x, instance);
