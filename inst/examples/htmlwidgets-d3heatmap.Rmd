@@ -10,6 +10,7 @@ output:
 ```{r setup, include=FALSE}
 library(knitr)
 library(d3heatmap)
+library(DT)
 library(flexdashboard)
 
 url <- "http://datasets.flowingdata.com/ppg2008.csv"
@@ -25,7 +26,9 @@ d3heatmap(nba_players, scale = "column")
 ### Top Scorers {data-width=350}
 
 ```{r}
-knitr::kable(nba_players[1:20,c("G", "MIN", "PTS")])
+datatable(nba_players[,c("G", "MIN", "PTS")], options = list(
+  bPaginate = FALSE
+))
 ```
 
 
