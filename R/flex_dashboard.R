@@ -138,6 +138,10 @@ flex_dashboard <- function(fig_width = 6,
   knitr_options$opts_chunk$echo = FALSE
   knitr_options$opts_chunk$comment = NA
 
+  # force to fill it's container (unless the option is already set)
+  if (is.na(getOption('DT.fillContainer', NA)))
+    options(DT.fillContainer = TRUE)
+
   # add hook to capture fig.width and fig.height and serialized
   # them into the DOM
   figSizePixels <- function(size) as.integer(size * 96)
