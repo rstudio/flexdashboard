@@ -15,9 +15,9 @@ showcaseThumbnails()
 
 thumbnails(
   thumbnail(
-    title = "Pokemon characters with highcharter",
-    img = "images/highcharter-pokemon.png",
-    href = "http://jkunst.com/flexdashboard-highcharter-examples/pokemon/"
+    title = "Sales report with highcharter",
+    img = "images/highcharter.png",
+    href = "https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/"
   ),
   thumbnail(
     title = "Shiny: biclust example",
@@ -35,9 +35,9 @@ thumbnails(
     href = "https://jjallaire.shinyapps.io/shiny-kmeans/"
   ),
   thumbnail(
-    title = "Sales report with highcharter",
-    img = "images/highcharter.png",
-    href = "https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/"
+    title = "Pokemon characters with highcharter",
+    img = "images/highcharter-pokemon.png",
+    href = "http://jkunst.com/flexdashboard-highcharter-examples/pokemon/"
   )
 )
 ```
