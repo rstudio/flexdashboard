@@ -20,6 +20,11 @@ thumbnails(
     href = "https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/"
   ),
   thumbnail(
+    title = "Pokemon characters with highcharter",
+    img = "images/highcharter-pokemon.png",
+    href = "http://jkunst.com/flexdashboard-highcharter-examples/pokemon/"
+  ),
+  thumbnail(
     title = "Shiny: biclust example",
     img = "images/shiny-biclust.png",
     href = "https://jjallaire.shinyapps.io/shiny-biclust/"

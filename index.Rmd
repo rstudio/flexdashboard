@@ -12,7 +12,7 @@ source("utils.R")
 
 * Use [R Markdown](http://rmarkdown.rstudio.com) to publish a group of related data visualizations as a dashboard.
 
-* Ideal for publishing interactive JavaScript visualizations based on [htmlwidgets](http://www.htmlwidgets.org) (also<br/>works with standard base, lattice, and grid graphics).
+* Ideal for publishing interactive JavaScript visualizations based on [htmlwidgets](http://www.htmlwidgets.org) (also works with standard base, lattice, and grid graphics).
 
 * Flexible and easy to specify layouts, including automatic sizing of charts to fill the browser.
 
