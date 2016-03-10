@@ -840,13 +840,17 @@ var FlexDashboard = (function () {
           // force scrollX/scrollY and turn off autoWidth
           x.options.scrollX = true;
           x.options.scrollY = "300px";
-          x.options.bAutoWidth = false;
+          x.options.bAutoWidth = true;
 
           // call renderValue so the table gets fully laid out
           previousRenderValue(el, x, instance);
 
           // reset the sScrollY on the table dynamically
           setDataTableScrollY(el, $(el).innerHeight());
+
+          // adjust column sizes
+          var dt = findDataTable(el);
+          dt.fnAdjustColumnSizing();
         }
 
         // monkey patch (pre-process) resize to set scrollY dynamically
@@ -877,8 +881,6 @@ var FlexDashboard = (function () {
     dtScrollBody.height(scrollBodyHeight + 'px');
   }
 
-  // currently unused but we had to battle long and hard to figure
-  // out how to do this so leaving the code in case we need it again
   function findDataTable(el) {
     if (el) {
       var dt = null;
