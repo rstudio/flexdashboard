@@ -13,31 +13,35 @@ thumbnail <- function(title, img, href, caption = TRUE) {
 }
 
 thumbnails <- function(...) {
+  
+  # capture arguments and setup rows to return
   thumbs <- list(...)
-  numRows <- length(thumbs) / 3
-  rows <- list()
-  for (i in 1:numRows) {
-    lastIndex <- i * 3
-    rows <- append(rows, list(div(class = "row",
-                                  thumbs[[lastIndex-2]],
-                                  thumbs[[lastIndex-1]],
-                                  thumbs[[lastIndex]]
-    )))
+  numThumbs <- length(thumbs)
+  fullRows <- numThumbs / 3
+  rows <- tagList()
+  
+  # add a row of thumbnails
+  addRow <- function(first, last) {
+    rows <<- tagAppendChild(rows, div(class = "row", thumbs[first:last]))
   }
-  leftover <- length(thumbs) %% 3
+  
+  # handle full rows
+  for (i in 1:fullRows) {
+    last <- i * 3
+    first <- last-2
+    addRow(first, last)
+  }
+  
+  # check for leftovers
+  leftover <- numThumbs %% 3
   if (leftover > 0) {
-    if (leftover == 1) {
-      rows <- append(rows, list(div(class = "row",
-                                    thumbs[[length(thumbs)]]                         
-      )))
-    } else if (leftover == 2) {
-      rows <- append(rows, list(div(class = "row",
-                                    thumbs[[length(thumbs)-1]],
-                                    thumbs[[length(thumbs)]] 
-      )))
-    }
+    last <- numThumbs
+    first <- last - leftover + 1
+    addRow(first, last)
   }
-  tagList(rows)
+  
+  # return the rows!
+  rows
 }
 
 showcaseThumbnails <- function(caption = TRUE) {
@@ -62,3 +66,4 @@ showcaseThumbnails <- function(caption = TRUE) {
     )
   )
 }
+
