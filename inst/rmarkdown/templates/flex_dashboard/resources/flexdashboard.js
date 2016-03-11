@@ -94,6 +94,9 @@ var FlexDashboard = (function () {
     // handle location hash
     handleLocationHash();
 
+    // manage menu status
+    manageActiveNavbarMenu();
+
     // intialize prism highlighting
     initPrismHighlighting();
 
@@ -155,7 +158,7 @@ var FlexDashboard = (function () {
       li.addClass('dropdown');
       if (title)
         title = title + ' <span class="caret"></span>';
-      var a = navbarLink(icon, title, title);
+      var a = navbarLink(icon, title, "#");
       a.addClass('dropdown-toggle');
       a.attr('data-toggle', 'dropdown');
       a.attr('role', 'button');
@@ -174,6 +177,7 @@ var FlexDashboard = (function () {
     // capture the id and data-icon attribute (if any)
     var id = page.attr('id');
     var icon = page.attr('data-icon');
+    var navmenu = page.attr('data-navmenu');
 
     // get the wrapper
     var wrapper = page.closest('.dashboard-page-wrapper');
@@ -192,14 +196,21 @@ var FlexDashboard = (function () {
     var title = h1.html();
     h1.remove();
 
-    // add an item to the navbar for this tab
+    // create a navbar item
     var li = $('<li></li>');
-    if (active)
-      li.addClass('active');
     var a = navbarLink(icon, title, '#' + id);
     a.attr('data-toggle', 'tab');
     li.append(a);
-    $('ul.navbar-left').append(li);
+
+    // add it to the navbar (or navbar menu if specified)
+    var container = $('ul.navbar-left');
+    if (navmenu) {
+      var menuId = navmenu.replace(/\s+/g, '');
+      var menu = navbarMenu(menuId, null, navmenu, container);
+      menu.append(li);
+    } else {
+      container.append(li);
+    }
   }
 
   function navbarLink(icon, title, url) {
@@ -902,6 +913,16 @@ var FlexDashboard = (function () {
       window.location.hash = $(this).attr('href');
       window.scrollTo(0,0);
     });
+  }
+
+  function manageActiveNavbarMenu() {
+    // find the active tab
+    var activeTab = $('.dashboard-page-wrapper.tab-pane.active');
+    if (activeTab.length > 0) {
+      var tabId = activeTab.attr('id');
+      if (tabId)
+        $("ul.nav a[href='#" + tabId + "']").parents('li').addClass('active');
+    }
   }
 
   // tweak Prism highlighting
