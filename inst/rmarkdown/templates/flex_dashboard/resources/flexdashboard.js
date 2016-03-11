@@ -618,6 +618,21 @@ var FlexDashboard = (function () {
       chartContent.wrapInner('<div class="chart-shim"></div>');
       chartContent = chartContent.children('.chart-shim');
 
+      // set custom data-padding attribute
+      var pad = chart.attr('data-padding');
+      if (pad) {
+        if (pad === "0")
+          chart.addClass('nopadding');
+        else {
+          pad = pad + 'px';
+          chartContent.css('left', pad)
+                      .css('top', pad)
+                      .css('right', pad)
+                      .css('bottom', pad)
+        }
+
+      }
+
       // bootstrap table
       handleBootstrapTable(chartContent);
     }
