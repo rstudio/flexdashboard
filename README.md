@@ -6,7 +6,7 @@ flexdashboard: Easy interactive dashboards for R
 
 -   Ideal for publishing interactive JavaScript visualizations based on [htmlwidgets](http://www.htmlwidgets.org) (also works with standard base, lattice, and grid graphics).
 
--   Flexible and easy to specify layouts, including automatic sizing of charts to fill the browser.
+-   Flexible and easy to specify layouts. Charts are intelligently re-sized to fill the browser and adapted for display on mobile devices.
 
 -   Optionally use [Shiny](http://shiny.rstudio.com) to drive visualizations dynamically.
 
