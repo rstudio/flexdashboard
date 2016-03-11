@@ -213,6 +213,16 @@ Note that in this example both pages use the default "columns" orientation. It i
 <div id="pageorientation"></div>
 <script type="text/javascript">loadSnippet('pageorientation')</script>
 
+### Page Navigation 
+
+By default each page you define is given it's own top level tab on the navigation bar. However, if you have a large number of pages (more than 5) you might want to organize your pages into menus on the navigation bar. 
+
+To specify that a page should be accessed via a navigation bar menu you use the `data-navmenu` attribute. For example, the following dashboard has 4 pages, 2 of which are located on "Menu A" and two of which are located on "Menu B":
+
+<div id="pagenavmenu"></div>
+<script type="text/javascript">loadSnippet('pagenavmenu')</script>
+
+
 ### Page Icons
 
 You can add an icon to the navigation menu for a page using the `data-icon` attribute. For example, the following specifies a navigation bar icon for each of two pages:
@@ -224,7 +234,7 @@ A wide selection of icons are available, see the [Icon Sets] section below for d
 
 ## Navigation Bar
 
-By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has [Multiple Pages], links to other available pages are also included on the left. You can also add custom links to navigation bar using the `navbar` option. For example, the following adds an "About" link to the left side of the navigation bar and a Source Code link to the right side of the navigation bar:
+By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has [Multiple Pages] links to the various pages are also included on the left side of the navigation bar. You can add custom links to navigation bar using the `navbar` option. For example, the following adds an "About" link to the left side of the navigation bar and a Source Code link to the right side of the navigation bar:
 
 <div id="navbarlinks"></div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
