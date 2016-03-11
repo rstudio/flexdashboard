@@ -67,14 +67,14 @@ This layout fills the page completely and gives prominence to a single chart at 
 </div>
 
 <div class="col-md-6 nopadding">
-<div height="450px" width="100%">
-<img class="holder" src="holder.js/100px302?size=28&amp;text=Chart 1">
+<div height="440px" width="100%">
+<img class="holder" src="holder.js/100px298?size=28&amp;text=Chart 1">
 </div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px151?size=28&amp;text=Chart 2">
+<img class="holder" src="holder.js/100px145?size=28&amp;text=Chart 2">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px151?size=28&amp;text=Chart 3">
+<img class="holder" src="holder.js/100px145?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>

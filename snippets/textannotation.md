@@ -5,8 +5,9 @@ output:
     orientation: rows
 ---
 
-Monthly deaths from bronchitis, emphysema and asthma in the UK, 1974–1979. 
-Source: P. J. Diggle, 1990, Time Series: A Biostatistical Introduction. Oxford, table A.3
+Monthly deaths from bronchitis, emphysema and asthma in the
+UK, 1974–1979 (Source: P. J. Diggle, 1990, Time Series: A
+Biostatistical Introduction. Oxford, table A.3)
 
 ```{r setup, include=FALSE}
 library(dygraphs)
@@ -36,7 +37,7 @@ Note: Includes only male deaths
 
 ### About dygraphs
 
-This example makes use of the [dygraphs](http://rstudio.github.io/dygraphs) R package.
-The dygraphs package provides rich facilities for charting time-series data in R. You
-can use dygraphs at the R console, within R Markdown documents, and within Shiny
-applications.
+This example makes use of the dygraphs R package. The dygraphs
+package provides rich facilities for charting time-series data 
+in R. You can use dygraphs at the R console, within R Markdown
+documents, and within Shiny applications.
