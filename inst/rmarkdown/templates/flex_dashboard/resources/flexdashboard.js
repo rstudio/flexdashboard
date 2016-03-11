@@ -113,37 +113,59 @@ var FlexDashboard = (function () {
     var navbarRight = $('ul.navbar-right');
 
     for (var i = 0; i<navbarItems.length; i++) {
-      var item = navbarItems[i];
-      var li = $('<li></li>');
 
+      // get the item
+      var item = navbarItems[i];
+
+      // determine the container
+      var container = null;
+      if (item.align === "left")
+        container = navbarLeft;
+      else
+        container = navbarRight;
+
+      // navbar menu if we have multiple items
       if (item.items) {
-        li.addClass('dropdown');
-        var title = item.title;
-        if (title)
-          title = title + ' <span class="caret"></span>';
-        var a = navbarLink(item.icon, title, item.title);
-        a.addClass('dropdown-toggle');
-        a.attr('data-toggle', 'dropdown');
-        a.attr('role', 'button');
-        a.attr('aria-expanded', 'false');
-        li.append(a);
-        var ul = $('<ul class="dropdown-menu"></ul>');
-        ul.attr('role', 'menu');
+        var menu = navbarMenu(null, item.icon, item.title, container);
         for (var j = 0; j<item.items.length; j++) {
           var subItem = item.items[j];
-          var subli = $('<li></li>');
-          subli.append(navbarLink(subItem.icon, subItem.title, subItem.url));
-          ul.append(subli);
+          var li = $('<li></li>');
+          li.append(navbarLink(subItem.icon, subItem.title, subItem.url));
+          menu.append(li);
         }
-        li.append(ul);
       } else {
+        var li = $('<li></li>');
         li.append(navbarLink(item.icon, item.title, item.url));
+        container.append(li);
       }
+    }
+  }
 
-      if (item.align === "left")
-        navbarLeft.append(li);
-      else
-        navbarRight.append(li);
+  // create or get a reference to an existing dropdown menu
+  function navbarMenu(id, icon, title, container) {
+    var existingMenu = [];
+    if (id)
+      existingMenu = container.children('#' + id);
+    if (existingMenu.length > 0) {
+      return existingMenu.children('ul');
+    } else {
+      var li = $('<li></li>');
+      if (id)
+        li.attr('id', id);
+      li.addClass('dropdown');
+      if (title)
+        title = title + ' <span class="caret"></span>';
+      var a = navbarLink(icon, title, title);
+      a.addClass('dropdown-toggle');
+      a.attr('data-toggle', 'dropdown');
+      a.attr('role', 'button');
+      a.attr('aria-expanded', 'false');
+      li.append(a);
+      var ul = $('<ul class="dropdown-menu"></ul>');
+      ul.attr('role', 'menu');
+      li.append(ul);
+      container.append(li);
+      return ul;
     }
   }
 
