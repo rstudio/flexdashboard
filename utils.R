@@ -1,6 +1,7 @@
 
 library(htmltools)
 
+# Generate HTML for a 4-wide bootstrap thumbnail
 thumbnail <- function(title, img, href, caption = TRUE) {
   div(class = "col-sm-4",
       a(class = "thumbnail", title = title, href = href,
@@ -12,6 +13,7 @@ thumbnail <- function(title, img, href, caption = TRUE) {
   )
 }
 
+# Generate HTML for several rows of 4-wide bootstrap thumbnails 
 thumbnails <- function(...) {
   
   # capture arguments and setup rows to return
@@ -44,26 +46,21 @@ thumbnails <- function(...) {
   rows
 }
 
-showcaseThumbnails <- function(caption = TRUE) {
-  thumbnails(
-    thumbnail(
-      title = "NBA scoring with d3heatmap",
-      img = "images/htmlwidgets-d3heatmap.png",
-      href = "https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/",
-      caption = caption
-    ),
-    thumbnail(
-      title = "Linked time-series with dygraphs",
-      img = "images/dygraphs.png",
-      href = "https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/",
-      caption = caption
-    ),
-    thumbnail(
-      title = "Interactive ggplot2 with plotly",
-      img = "images/plotly.png",
-      href = "https://beta.rstudioconnect.com/jjallaire/htmlwidgets-plotly/",
-      caption = caption
-    )
-  )
+# Generate HTML for examples
+examples <- function(showcaseOnly = TRUE, caption = TRUE) {
+  
+  # read examples
+  examples <- yaml::yaml.load_file("examples.yml")
+  
+  # filter for showcase if requested
+  if (showcaseOnly)
+    examples <- subset(examples, examples$showcase == TRUE)
+  
+  lapply(examples, function(x) {
+    thumbnail(title = x$title, 
+              img = x$img, 
+              href = x$href, 
+              caption = caption)
+  })
 }
 
