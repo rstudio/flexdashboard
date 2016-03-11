@@ -1,7 +1,7 @@
 library(shinySignals)
 library(dplyr)
 library(bubbles)
-source("bloom.R")
+source("bloom_filter.R")
 
 # An empty prototype of the data frame we want to create
 prototype <- data.frame(date = character(), time = character(),

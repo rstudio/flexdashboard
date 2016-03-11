@@ -9,7 +9,7 @@ runtime: shiny
 
 ```{r setup, include=FALSE}
 # Access to CRAN packages data stream
-source("data.R")
+source("package_stream.R")
 ```
 
 
