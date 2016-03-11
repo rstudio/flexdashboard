@@ -182,6 +182,11 @@ body hr {
   padding-right: 8px;
 }
 
+.bootstrap-table-shim-nopad {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .bootstrap-table-shim table>thead {
   background-color: #fff;
 }
