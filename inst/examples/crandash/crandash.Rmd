@@ -1,0 +1,16 @@
+---
+title: "cran.rstudio.com"
+output: 
+  flexdashboard::flex_dashboard:
+    social: menu
+runtime: shiny
+---
+
+
+```{r setup, include=FALSE}
+# Access to CRAN packages data stream
+source("data.R")
+```
+
+
+
