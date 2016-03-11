@@ -4,7 +4,7 @@
   showcase: true
 - title: "Linked time-series with dygraphs"
   img: images/dygraphs.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/
+  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/
   showcase: true
 - title: "Interactive ggplot2 with plotly"
   img: images/plotly.png
