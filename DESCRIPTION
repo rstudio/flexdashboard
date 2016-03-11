@@ -19,7 +19,7 @@ Authors@R: c(
 Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's plots and
   htmlwidgets to the containing web page.
-Imports: tools, rmarkdown, htmltools, jsonlite, knitr
+Imports: tools, rmarkdown (>= 0.9.5), htmltools, jsonlite, knitr
 Suggests: htmlwidgets (>= 0.6), testthat
 Enhances: shiny
 LazyData: TRUE
