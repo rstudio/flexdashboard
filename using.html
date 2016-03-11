@@ -433,16 +433,29 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="flexible-boxes" class="section level4">
-<h4>Flexible Boxes</h4>
-<p>Layout is done using the browser <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes">flexbox</a> engine, which alters its items’ width and/or height to best fill the available space on any display device. A flexbox layout expands items to fill available free space, or shrinks them to prevent overflow.</p>
-<p>The implication of this is that chart dimensions established via either knitr figure sizes or <code>data-width</code> and <code>data-height</code> attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the <code>flex-grow</code> and <code>flex-shrink</code> CSS properties).</p>
+<div id="chart-padding" class="section level4">
+<h4>Chart Padding</h4>
+<p>By default flexdashboard places 8 pixels of padding around the edges of charts. For some chart types this might not be ideal. In this case you can either add the <code>.nopadding</code> attribute to specify no padding at all or the <code>data-padding</code> attribute to specify a specific number of pixels. For example:</p>
+<div id="chartpadding">
+
+</div>
+<script type="text/javascript">loadSnippet('chartpadding')</script>
 </div>
 </div>
 <div id="chart-scaling" class="section level3">
 <h3>Chart Scaling</h3>
-<p>Charts will always be automatically scaled to fit within their allocated flexbox region. Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.</p>
+<div id="flexbox-layout" class="section level4">
+<h4>Flexbox Layout</h4>
+<p>Dashboard layout is done using the browser <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes">flexbox</a> engine, which alters its items’ width and/or height to best fill the available space on any display device. A flexbox layout expands items to fill available free space, or shrinks them to prevent overflow.</p>
+<p>The implication of this is that chart dimensions established via either knitr figure sizes or <code>data-width</code> and <code>data-height</code> attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the <code>flex-grow</code> and <code>flex-shrink</code> CSS properties).</p>
+</div>
+<div id="scaling-for-htmlwidgets-and-shiny" class="section level4">
+<h4>Scaling for htmlwidgets and shiny</h4>
+<p>Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.</p>
 <p>It’s also possible to use charts created using standard R graphics (base, lattice, grid, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>.</p>
+</div>
+<div id="scaling-for-base-lattice-and-grid" class="section level4">
+<h4>Scaling for base, lattice, and grid</h4>
 <p>Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it’s not possible for them to seamlessly fill the bounds of their container. When creating static dashboards containing standard R graphics it’s therefore critical to define knitr <code>fig.width</code> and <code>fig.height</code> values as close as possible to what they’ll actually be on the page.</p>
 <p>Here’s an example of a row based layout that includes 3 charts from R base graphics:</p>
 <div id="figuresizes">
@@ -451,6 +464,7 @@ div.tocify {
 <script type="text/javascript">loadSnippet('figuresizes')</script>
 <p>We’ve specified an explicit <code>fig.height</code> and <code>fig.width</code> for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation.</p>
 <p>Even with the tweaks described above standard R graphics won’t always fit perfectly into their containers, so in general htmlwidget based charts are preferred within static dashboards. Note that the <a href="https://plot.ly/ggplot2/">plotly</a> package enables rendering of ggplot2 graphics as interactive htmlwidgets.</p>
+</div>
 </div>
 </div>
 <div id="multiple-pages" class="section level2">
