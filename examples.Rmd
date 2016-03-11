@@ -8,7 +8,6 @@ The examples below illustrate the use of flexdashboard with various packages and
 source("utils.R")
 ```
 
-
 ```{r, echo=FALSE}
 examples()
 ```
