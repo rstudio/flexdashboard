@@ -23,7 +23,7 @@ source("utils.R")
 </div>
 
 ```{r, echo=FALSE}
-examples(showcaseOnly = TRUE, caption = FALSE)
+examples(caption = FALSE, showcaseOnly = TRUE)
 ```
 
 ## Getting Started

@@ -7,8 +7,8 @@
   href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/
   showcase: true
 - title: "Interactive ggplot2 with plotly"
-  img: images/dygraphs.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/
+  img: images/plotly.png
+  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-plotly/
   showcase: true
 - title: "Sales report with highcharter"
   img: images/highcharter.png

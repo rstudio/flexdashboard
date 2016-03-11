@@ -14,10 +14,9 @@ thumbnail <- function(title, img, href, caption = TRUE) {
 }
 
 # Generate HTML for several rows of 4-wide bootstrap thumbnails 
-thumbnails <- function(...) {
+thumbnails <- function(thumbs) {
   
   # capture arguments and setup rows to return
-  thumbs <- list(...)
   numThumbs <- length(thumbs)
   fullRows <- numThumbs / 3
   rows <- tagList()
@@ -47,20 +46,30 @@ thumbnails <- function(...) {
 }
 
 # Generate HTML for examples
-examples <- function(showcaseOnly = TRUE, caption = TRUE) {
+examples <- function(caption = TRUE, showcaseOnly = FALSE) {
   
-  # read examples
+  # read examples into data frame (so we can easily sort/filter/etc)
   examples <- yaml::yaml.load_file("examples.yml")
+  examples <- plyr::ldply(examples, data.frame, stringsAsFactors=FALSE)
   
   # filter for showcase if requested
   if (showcaseOnly)
     examples <- subset(examples, examples$showcase == TRUE)
   
-  lapply(examples, function(x) {
+  # convert to list for thumbnail generation
+  examples <- apply(examples, 1, function(r) { 
+    list(title = r["title"],
+         img = r["img"],
+         href = r["href"]) 
+  })
+  
+  thumbnails(lapply(examples, function(x) {
     thumbnail(title = x$title, 
               img = x$img, 
               href = x$href, 
               caption = caption)
-  })
+  }))
 }
 
+
+examples()
