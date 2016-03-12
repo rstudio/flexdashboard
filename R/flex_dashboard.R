@@ -447,7 +447,7 @@ navbar_dependencies <- function(navbar) {
 icon_dependencies <- function(source) {
 
   # discover icon libs used in the source
-  res <- regexec("data-icon=(fa|ion)-", source)
+  res <- regexec('data-icon="?(fa|ion)-', source)
   matches <- regmatches(source, res)
   libs <- c()
   for (match in matches) {
