@@ -1,6 +1,9 @@
 ---
 title: "Flex Dashboard"
-output: flexdashboard::flex_dashboard 
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
 <!-- Learn more about flexdashboard at https://rstudio.github.io/flexdashboard -->
@@ -10,11 +13,17 @@ output: flexdashboard::flex_dashboard
 # Load packages here
 ```
 
+Column {data-width=650}
+-----------------------------------------------------------------------
+
 ### Chart A
 
 ```{r}
 # Code for Chart A
 ```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
 
 ### Chart B
 
@@ -22,4 +31,9 @@ output: flexdashboard::flex_dashboard
 # Code for Chart B
 ```
 
+### Chart C
+
+```{r}
+# Code for Chart C
+```
 
