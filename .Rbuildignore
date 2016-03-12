@@ -1,7 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^devel$
-^inst/examples/rsconnect$
+README.Rmd
+^inst/examples/.*rsconnect$
 ^inst/examples/.+\.html
 ^inst/examples/.+_files
 ^inst/examples/.+\.Rnb\.cached

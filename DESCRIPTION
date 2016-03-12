@@ -14,7 +14,8 @@ Authors@R: c(
   person("Lea", "Verou", role = c("ctb", "cph"), comment = "Prism"),
   person("Bryan", "Lewis", role = c("ctb", "cph"), comment = "Examples"),
   person("Carson", "Sievert", role = c("ctb", "cph"), comment = "Examples"),
-  person("Joshua", "Kunst", role = c("ctb", "cph"), comment = "Examples")
+  person("Joshua", "Kunst", role = c("ctb", "cph"), comment = "Examples"),
+  person("Joe", "Cheng", role = c("ctb"), comment = "Examples")
   )
 Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's plots and
