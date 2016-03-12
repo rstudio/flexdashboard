@@ -55,9 +55,9 @@ Sidebars always appear on the left no matter where they are defined within the f
 
 ### Global Sidebar
 
-If you are creating a flexdashboard with [Multiple Pages](using.html#multiple-pages) you may want to use a single sidebar that applies across all pages. In this case you should use the `{.sidebar-global}` attribute (rather than the `{.sidebar}` attribute). 
+If you are creating a flexdashboard with [Multiple Pages](using.html#multiple-pages) you may want to use a single sidebar that applies across all pages. In this case you should define the sidebar using a level 1 markdown header (the same as is used to define pages).  
 
-For example, this dashboard includes a sidebar on the first page with the `{.sidebar-global}` attribute which results in the sidebar being visible for both pages:
+For example, this dashboard includes a global sidebar:
 
 <div id="sidebarmultiplepages"></div>
 <script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
