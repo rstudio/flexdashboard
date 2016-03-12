@@ -289,15 +289,15 @@ body hr {
 }
 
 .value-box > .inner {
-  padding: 15px;
+  padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
 }
 
 .value-box .value {
-  font-size: 45px;
+  font-size: 38px;
   font-weight: bold;
-  margin: 0 0 12px 0;
+  margin: 0 0 3px 0;
   white-space: nowrap;
   padding: 0;
 }
@@ -315,7 +315,7 @@ body hr {
   position: absolute;
   top: 15px;
   right: 15px;
-  font-size: 95px;
+  font-size: 80px;
   color: rgba(0, 0, 0, 0.15);
 }
 
