@@ -119,8 +119,7 @@ Raw Data
 
 ```{r}
 renderTable({
-  downloads <- pkgData()
-  tail(downloads, n = 250)
+  tail(pkgData(), n = 250)
 })
 ```
 
