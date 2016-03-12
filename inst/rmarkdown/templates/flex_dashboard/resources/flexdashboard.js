@@ -29,11 +29,8 @@ var FlexDashboard = (function () {
     var dashboardContainer = $('#dashboard-container');
 
     // look for a global sidebar
-    var globalSidebar = dashboardContainer.find(".sidebar-global");
+    var globalSidebar = dashboardContainer.find(".section.level1.sidebar");
     if (globalSidebar.length > 0) {
-
-      // ensure that sidebar-global also implies sidebar
-      globalSidebar.addClass('sidebar');
 
       // global layout for fullscreen displays
       if (!isMobilePhone()) {
@@ -339,7 +336,7 @@ var FlexDashboard = (function () {
       fillPage = _options.fillPage;
 
       // handle sidebar
-      var sidebar = page.find('.section.sidebar');
+      var sidebar = page.find('.section.level2.sidebar');
       if (sidebar.length > 0)
         layoutSidebar(sidebar, page);
     }
@@ -361,8 +358,13 @@ var FlexDashboard = (function () {
 
     // get it out of the header hierarchy
     sidebar = sidebar.first();
-    sidebar.removeClass('level2');
-    sidebar.children('h2').remove();
+    if (sidebar.hasClass('level1')) {
+      sidebar.removeClass('level1');
+      sidebar.children('h1').remove();
+    } else if (sidebar.hasClass('level2')) {
+      sidebar.removeClass('level2');
+      sidebar.children('h2').remove();
+    }
 
     // determine width
     var sidebarWidth = 250;
