@@ -15,7 +15,7 @@ source("package_stream.R")
 # pkgStream is a reactive expression that represents a stream of
 # new package download data; up to once a second it may return a
 # data frame of new downloads since the last update.
-pkgStream <- packageStream(getDefaultReactiveDomain())
+pkgStream <- packageStream()
 
 # pkgData is a reactive expression that accumulates previous values
 # of pkgStream, discarding any that are older than maxAgeSecs.

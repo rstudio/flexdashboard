@@ -12,7 +12,7 @@ prototype <- data.frame(date = character(), time = character(),
 # Connects to streaming log data for cran.rstudio.com and
 # returns a reactive expression that serves up the cumulative
 # results as a data frame
-packageStream <- function(session) {
+packageStream <- function(session = getDefaultReactiveDomain()) {
   # Connect to data source
   sock <- socketConnection("cransim.rstudio.com", 6789, blocking = FALSE, open = "r")
   # Clean up when session is over
