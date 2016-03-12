@@ -709,17 +709,31 @@ var FlexDashboard = (function () {
     var chartValue = valueBox.text().trim();
     chartValue = chartValue.replace("[1] ", "");
 
-    // build a value box structure
+    // value paragraph
     var value = $('<p class="value"></p>');
-    value.text(chartValue);
+
+    // if we have shiny-text-output then just move it in
+    var shinyOutput = valueBox.find('.shiny-text-output').detach();
+    if (shinyOutput.length) {
+      valueBox.children().remove();
+      shinyOutput.html("&mdash;");
+      value.append(shinyOutput);
+    } else {
+      // extract the value (remove leading vector index)
+      var chartValue = valueBox.text().trim();
+      chartValue = chartValue.replace("[1] ", "");
+      valueBox.children().remove();
+      value.text(chartValue);
+    }
+
+    // caption
     var caption = $('<p class="caption"></p>');
     caption.html(chartTitle);
+
+    // build inner div for value box and add it
     var inner = $('<div class="inner"></div>');
     inner.append(value);
     inner.append(caption);
-
-    // replace children with it
-    valueBox.children().remove();
     valueBox.append(inner);
 
     // add icon if specified
