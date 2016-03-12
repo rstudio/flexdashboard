@@ -182,9 +182,24 @@ body hr {
   padding-right: 8px;
 }
 
-.bootstrap-table-shim-nopad {
-  padding-left: 0;
-  padding-right: 0;
+.chart-shim .table-bordered {
+  border: none;
+}
+
+.chart-shim .table-bordered > tbody > tr > th,
+.chart-shim .table-bordered > tfoot > tr > th,
+.chart-shim .table-bordered > tbody > tr > td,
+.chart-shim .table-bordered > tfoot > tr > td {
+  border: none;
+}
+
+.chart-shim .table-bordered > tbody > tr > td {
+  border-top: 1px solid #dddddd;
+}
+
+.chart-shim .table-bordered > thead > tr > th {
+  border: none;
+  border-bottom: 2px solid #dddddd;
 }
 
 .bootstrap-table-shim table>thead {

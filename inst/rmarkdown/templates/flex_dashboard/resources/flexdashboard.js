@@ -776,14 +776,10 @@ var FlexDashboard = (function () {
 
   function handleBootstrapTable(chartContent) {
 
-    function handleTable(bsTable, overflowContainer, pad) {
+    function handleTable(bsTable, overflowContainer) {
 
       // add shim to force scrollbar on overflow
       overflowContainer.addClass('bootstrap-table-shim');
-
-      // no padding if requested
-      if (!pad)
-         overflowContainer.addClass('bootstrap-table-shim-nopad');
 
       // fixup xtable generated tables with a proper thead
       var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
@@ -801,7 +797,7 @@ var FlexDashboard = (function () {
 
     var bsTable = findBootstrapTable(chartContent);
     if (bsTable.length > 0)
-      handleTable(bsTable, chartContent, true);
+      handleTable(bsTable, chartContent);
 
     // if there is a shiny-html-output element then listen for
     // new bootstrap tables bound to it (delay looking for the
@@ -812,7 +808,7 @@ var FlexDashboard = (function () {
         setTimeout(function() {
           var bsTable = findBootstrapTable(element);
           if (bsTable.length > 0)
-            handleTable(bsTable, element.parent(), false);
+            handleTable(bsTable, element.parent());
         }, 10);
       });
   }
