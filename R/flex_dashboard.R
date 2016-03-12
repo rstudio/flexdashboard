@@ -543,9 +543,9 @@ as_tmpfile <- function(str) {
 }
 
 knitMetaAdd = function(meta, label = '') {
-  if (packageVersion("knitr") >= "1.12.20") {
-    knitr::knit_meta_add(meta, label)
-  } else {
+  # if (packageVersion("knitr") >= "1.12.20") {
+  #   knitr::knit_meta_add(meta, label)
+  # } else {
     knitrNamespace <- asNamespace("knitr")
     knitEnv <- get(".knitEnv", envir = knitrNamespace)
     if (length(meta)) {
@@ -554,7 +554,7 @@ knitMetaAdd = function(meta, label = '') {
       attr(knitEnv$meta, "knit_meta_id") = c(meta_id, rep(label, length(meta)))
     }
     knitEnv$meta
-  }
+  # }
 }
 
 # devel mode
