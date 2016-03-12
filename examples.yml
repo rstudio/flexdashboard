@@ -2,20 +2,23 @@
   img: images/htmlwidgets-d3heatmap.png
   href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/
   showcase: true
-- title: "Linked time-series with dygraphs"
-  img: images/dygraphs.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/
-  showcase: true
 - title: "Interactive ggplot2 with plotly"
   img: images/plotly.png
   href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-plotly/
   showcase: true
-- title: "Sales report with highcharter"
-  img: images/highcharter.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/
 - title: "Shiny: biclust example"
   img: images/shiny-biclust.png
   href: https://jjallaire.shinyapps.io/shiny-biclust/
+  showcase: true
+- title: "Shiny: CRAN downloads"
+  img: images/shiny-crandash.png
+  href: https://jjallaire.shinyapps.io/shiny-crandash/
+- title: "Linked time-series with dygraphs"
+  img: images/dygraphs.png
+  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/
+- title: "Sales report with highcharter"
+  img: images/highcharter.png
+  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/
 - title: "Shiny: ggplot2 linked brushing"
   img: images/shiny-ggplot2-brushing.png
   href: https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/
