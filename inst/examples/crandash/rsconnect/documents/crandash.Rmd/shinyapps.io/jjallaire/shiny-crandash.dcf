@@ -2,8 +2,8 @@ name: shiny-crandash
 account: jjallaire
 server: shinyapps.io
 appId: 88503
-bundleId: 393584
+bundleId: 393829
 url: https://jjallaire.shinyapps.io/shiny-crandash/
-when: 1457742767.91035
+when: 1457779981.77539
 asMultiple: FALSE
 asStatic: FALSE
