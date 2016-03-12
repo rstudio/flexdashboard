@@ -4,9 +4,9 @@ output:
   flexdashboard::flex_dashboard:
     orientation: rows
     social: menu
+    source_code: https://git.io/vaZdx
 runtime: shiny
 ---
-
 
 ```{r setup, include=FALSE}
 # Access to CRAN packages data stream
@@ -29,7 +29,7 @@ Dashboard
 Row
 -----------------------------------------------------------------------
 
-### Downloads per sec (last 5 min) {.value-box data-icon="fa-area-chart"}
+### Downloads per sec (last 5 min) {.value-box .bg-info data-icon="fa-area-chart"}
 
 ```{r}
 # downloadRate is a reactive expression that computes the download
