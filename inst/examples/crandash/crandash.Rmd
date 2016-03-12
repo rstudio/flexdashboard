@@ -1,5 +1,5 @@
 ---
-title: "cran.rstudio.com"
+title: "CRAN Download Monitor"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -22,6 +22,26 @@ pkgStream <- packageStream()
 maxAgeSecs <- 60 * 5 
 pkgData <- packageData(pkgStream, maxAgeSecs)
 ```
+
+Sidebar {.sidebar}
+=======================================================================
+
+### cran.rstudio.com
+
+The streaming data is a 1-week-delayed livestream of download
+logs from  cran.rstudio.com. The server code for that service is at [jcheng5/cransim](https://github.com/jcheng5/cransim).
+
+
+```{r}
+# Rate at which to flag high download traffic
+sliderInput("rateThreshold", "Warn when rate exceeds:",
+            min = 0, max = 50, value = 3, step = 0.1
+)
+
+# Maximum number of raw data rows to keep
+numericInput("maxrows", "Recent downloads window:", 50)
+```
+
 
 Dashboard
 =======================================================================
@@ -96,7 +116,7 @@ renderBubbles({
 })
 ```
 
-### Percent of downloads {data-width=300}
+### Percent of downloads {data-width=340}
 
 ```{r}
 renderTable({
@@ -112,14 +132,17 @@ renderTable({
 
 ```
 
-Raw Data
+Recent Downloads
 =======================================================================
 
-### Last 250 Downloads
+### Recent Downlads
 
 ```{r}
 renderTable({
-  tail(pkgData(), n = 250)
+  downloads <- tail(pkgData(), n = input$maxrows)
+  downloads <- downloads[,c("date", "time", "size", "r_version", 
+                            "r_arch", "r_os", "package")]
+  downloads[order(nrow(downloads):1),]
 })
 ```
 
