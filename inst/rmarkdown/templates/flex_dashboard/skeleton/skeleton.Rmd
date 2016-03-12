@@ -10,7 +10,8 @@ output:
 
 
 ```{r setup, include=FALSE}
-# Load packages here
+# Load packages and initialize data here
+library(flexdashboard)
 ```
 
 Column {data-width=650}
