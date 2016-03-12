@@ -206,11 +206,13 @@ body hr {
   background-color: #fff;
 }
 
-.bootstrap-table-shim table.data {
-  width: inherit;
+.bootstrap-table-shim table.data,
+.bootstrap-table-shim table.shiny-table {
+  width: inherit !important;
 }
 
-.bootstrap-table-shim table.data>tbody>tr>th {
+.bootstrap-table-shim table.data>tbody>tr>th,
+.bootstrap-table-shim table.shiny-table>tbody>tr>th {
   border-top: none;
   border-bottom: 2px solid #dddddd;
   padding: 5px;
