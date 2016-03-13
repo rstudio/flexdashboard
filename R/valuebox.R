@@ -19,13 +19,29 @@ valueBox <- function(value, caption = NULL, icon = NULL, color = NULL) {
   if (!is.null(color) && color %in% c("primary", "info", "success", "warning", "danger"))
     color <- paste0("bg-", color)
 
-  # return the value output
-  tags$span(class="value-output",
+  # build the value output
+  valueOutput <- tags$span(class="value-output",
             `data-caption` = caption,
             `data-icon` = icon,
             `data-color` = color,
     value
   )
+
+  # attach font dependency if necessary
+  hasPrefix <- function(x, prefix) {
+    if (!is.null(x))
+      grepl(paste0('^', prefix), x)
+    else
+      FALSE
+  }
+  fontAwesome <- hasPrefix(icon, 'fa')
+  ionicons <-  hasPrefix(icon, 'ion')
+  deps <- html_dependencies_fonts(fontAwesome, ionicons)
+  if (length(deps) > 0)
+     valueOutput <- attachDependencies(valueOutput, deps)
+
+  # return output
+  valueOutput
 }
 
 #' @rdname valueBox
