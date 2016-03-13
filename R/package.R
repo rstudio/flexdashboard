@@ -1,13 +1,7 @@
 
-
 #' @import rmarkdown
-NULL
-
 #' @importFrom jsonlite toJSON
-NULL
-
-#' @importFrom htmltools htmlDependency
-NULL
-
+#' @importFrom htmltools htmlDependency tags
 #' @importFrom tools file_path_sans_ext
+#' @importFrom shiny renderUI
 NULL

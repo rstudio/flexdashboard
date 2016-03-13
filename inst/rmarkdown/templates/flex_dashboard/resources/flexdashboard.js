@@ -688,34 +688,37 @@ var FlexDashboard = (function () {
   // layout a value box
   function layoutValueBox(valueBox) {
 
-    // look for custom background color
-    var bgColor = valueBox.attr('data-background');
-    if (bgColor) {
-      valueBox.css('background-color', bgColor);
-    } else {
-      // automatically use bg-primary if none specified
-      if (!valueBox.hasClass('bg-primary') && !valueBox.hasClass('bg-info') &&
-          !valueBox.hasClass('bg-warning') && !valueBox.hasClass('bg-success') &&
-          !valueBox.hasClass('bg-danger')) {
-        valueBox.addClass('bg-primary');
-      }
+    // set color based on valueBox attributes
+    function setColorFromAttributes() {
+      valueBox.css('background-color', '');
+      valueBox.removeClass('bg-primary bg-info bg-warning bg-success bg-danger');
+      // look for custom background color
+      var bgColor = valueBox.attr('data-background');
+      if (bgColor) {
+        valueBox.css('background-color', bgColor);
+      } else {
+        // automatically use bg-primary if none specified
+        if (!valueBox.hasClass('bg-primary') && !valueBox.hasClass('bg-info') &&
+            !valueBox.hasClass('bg-warning') && !valueBox.hasClass('bg-success') &&
+            !valueBox.hasClass('bg-danger')) {
+          valueBox.addClass('bg-primary');
+        }
 
-      // add alpha if necessary
-      addValueBoxAlpha(valueBox);
+        // add alpha if necessary
+        addValueBoxAlpha(valueBox);
+      }
     }
+    setColorFromAttributes();
 
     // extract the title/caption
     var chartTitle = extractTitle(valueBox);
-
-    // extract the value (remove leading vector index)
-    var chartValue = valueBox.text().trim();
-    chartValue = chartValue.replace("[1] ", "");
 
     // value paragraph
     var value = $('<p class="value"></p>');
 
     // if we have shiny-text-output then just move it in
-    var shinyOutput = valueBox.find('.shiny-text-output').detach();
+    var valueOutputSpan = [];
+    var shinyOutput = valueBox.find('.shiny-text-output, .shiny-html-output').detach();
     if (shinyOutput.length) {
       valueBox.children().remove();
       shinyOutput.html("&mdash;");
@@ -724,6 +727,7 @@ var FlexDashboard = (function () {
       // extract the value (remove leading vector index)
       var chartValue = valueBox.text().trim();
       chartValue = chartValue.replace("[1] ", "");
+      valueOutputSpan = valueBox.find('span.value-output').detach();
       valueBox.children().remove();
       value.text(chartValue);
     }
@@ -739,17 +743,72 @@ var FlexDashboard = (function () {
     valueBox.append(inner);
 
     // add icon if specified
-    var chartIcon = valueBox.attr('data-icon');
-    if (chartIcon) {
-      var icon = $('<div class="icon"></div>');
+    var icon = $('<div class="icon"></div>');
+    valueBox.append(icon);
+    function setIcon(chartIcon) {
       var iconLib = "";
       var components = chartIcon.split("-");
       if (components.length > 1)
-        iconLib = components[0] + " ";
-      var i = $('<i class="' + iconLib + chartIcon + '"></i>');
-      icon.append(i);
-      valueBox.append(icon);
+        iconLib = components[0];
+      var i = icon.children('i.' + iconLib + '.' + chartIcon);
+      if (i.length === 0) {
+        icon.children().remove();
+        i = $('<i class="' + iconLib + ' ' + chartIcon + '"></i>');
+        icon.append(i);
+      }
     }
+    var chartIcon = valueBox.attr('data-icon');
+    if (chartIcon)
+      setIcon(chartIcon);
+
+    // handle data attributes in valueOutputSpan
+    function handleValueOutput(valueOutput) {
+
+      // caption
+      var dataCaption = valueOutput.attr('data-caption');
+      if (dataCaption)
+        caption.html(dataCaption);
+
+      // icon
+      var dataIcon = valueOutput.attr('data-icon');
+      if (dataIcon)
+        setIcon(dataIcon);
+
+      // color
+      var dataColor = valueOutput.attr('data-color');
+      if (!dataColor)
+        dataColor = "bg-primary";
+      valueBox.css('background-color', '');
+      valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
+      if (dataColor.indexOf('bg-') === 0) {
+        valueBox.addClass(dataColor);
+        addValueBoxAlpha(valueBox);
+      } else {
+        valueBox.css('background-color', dataColor);
+      }
+    }
+
+    // check for a valueOutputSpan
+    if (valueOutputSpan.length > 0) {
+      handleValueOutput(valueOutputSpan);
+    }
+
+    // if we have a shinyOutput then bind a listener to handle
+    // new valueOutputSpan values
+    shinyOutput.on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+          var valueOutputSpan = element.find('span.value-output');
+          if (valueOutputSpan.length > 0) {
+            handleValueOutput(valueOutputSpan);
+          } else {
+            setColorFromAttributes();
+          }
+        }, 10);
+      }
+    );
+
   }
 
   function addValueBoxAlpha(valueBox) {
