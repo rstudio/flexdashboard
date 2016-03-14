@@ -39,6 +39,24 @@ var FlexDashboard = (function () {
 
          // lay it out (set width/positions)
          layoutSidebar(globalSidebar, dashboardContainer);
+
+      // tuck sidebar into first page for mobile phones
+      } else {
+
+        // convert it into a level3 section
+        globalSidebar.removeClass('sidebar');
+        globalSidebar.removeClass('level1');
+        globalSidebar.addClass('level3');
+        var h1 = globalSidebar.children('h1');
+        var h3 = $('<h3></h3>');
+        h3.html(h1.html());
+        h3.insertBefore(h1);
+        h1.remove();
+
+        // move it into the first page
+        var page = dashboardContainer.find('.section.level1').first();
+        if (page.length > 0)
+          page.prepend(globalSidebar);
       }
     }
 
@@ -188,7 +206,7 @@ var FlexDashboard = (function () {
       wrapper.addClass('active');
 
     // get a reference to the h1, discover it's id and title, then remove it
-    var h1 = wrapper.children('h1').first();
+    var h1 = wrapper.find('h1').first();
     var title = h1.html();
     h1.remove();
 
