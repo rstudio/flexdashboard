@@ -1,5 +1,6 @@
 ---
 title: "ggplotly examples"
+author: "Carson Sievert"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
