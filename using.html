@@ -504,7 +504,7 @@ div.tocify {
 </div>
 <div id="navigation-bar" class="section level2">
 <h2>Navigation Bar</h2>
-<p>By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has <a href="#multiple-pages">Multiple Pages</a> links to the various pages are also included on the left side of the navigation bar. You can add custom links to navigation bar using the <code>navbar</code> option. For example, the following adds an “About” link to the left side of the navigation bar and a Source Code link to the right side of the navigation bar:</p>
+<p>By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has <a href="#multiple-pages">Multiple Pages</a>, links to the various pages are also included on the left side of the navigation bar. You can add custom links to navigation bar using the <code>navbar</code> option. For example, the following adds an “About” link to the left side of the navigation bar and a Source Code link to the right side of the navigation bar:</p>
 <div id="navbarlinks">
 
 </div>
@@ -536,6 +536,13 @@ div.tocify {
 <li><p><a href="https://getbootstrap.com/components/#glyphicons">Bootstrap Glyphicons</a></p></li>
 </ol>
 <p>When referring to an icon you should use it’s full name including the icon set prefix (e.g. “fa-github”, “ion-social-twitter”, “glyphicon-time”, etc.). Note also that if you don’t provide a <code>url</code> for social sharing icons (e.g. “fa-twitter” or “fa-facebook”) then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).</p>
+</div>
+<div id="colors" class="section level3">
+<h3>Colors</h3>
+<p>You can use CSS to customize the colors used within the navigation bar. If you do this, realize that the CSS for navigation bars defines color for many elements and states, so you should be careful to override all of the required elements. Note also that you can change the entire theme of the dashboard easily using the <code>theme</code> option (see <a href="#dashboard-theme">Dashboard Theme</a> below for details).</p>
+<p>The navigation bar for flexdashboard uses the <code>navbar-inverse</code> class for each of its themes. Here is the <code>navabar-inverse</code> CSS for the default “cosmo” theme used by flexdashbaord:</p>
+<p><a href="https://github.com/thomaspark/bootswatch/blob/v3.3.5/cosmo/bootstrap.css#L4643-L4744" class="uri">https://github.com/thomaspark/bootswatch/blob/v3.3.5/cosmo/bootstrap.css#L4643-L4744</a></p>
+<p>If you want to customize these colors you should create a CSS stylesheet with the requisite <code>navbar-inverse</code> entries and include it using the <code>css</code> option of the <code>flex_dashboard</code> format.</p>
 </div>
 </div>
 <div id="value-boxes" class="section level2">
