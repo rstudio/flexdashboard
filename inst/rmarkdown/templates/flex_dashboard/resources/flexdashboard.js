@@ -9,7 +9,6 @@ var FlexDashboard = (function () {
       orientation: 'columns',
       defaultFigWidth: 576,
       defaultFigHeight: 480,
-      valueBoxAlpha: 0,
       isMobile: false
     };
   };
@@ -688,28 +687,6 @@ var FlexDashboard = (function () {
   // layout a value box
   function layoutValueBox(valueBox) {
 
-    // set color based on valueBox attributes
-    function setColorFromAttributes() {
-      valueBox.css('background-color', '');
-      valueBox.removeClass('bg-primary bg-info bg-warning bg-success bg-danger');
-      // look for custom background color
-      var bgColor = valueBox.attr('data-background');
-      if (bgColor) {
-        valueBox.css('background-color', bgColor);
-      } else {
-        // automatically use bg-primary if none specified
-        if (!valueBox.hasClass('bg-primary') && !valueBox.hasClass('bg-info') &&
-            !valueBox.hasClass('bg-warning') && !valueBox.hasClass('bg-success') &&
-            !valueBox.hasClass('bg-danger')) {
-          valueBox.addClass('bg-primary');
-        }
-
-        // add alpha if necessary
-        addValueBoxAlpha(valueBox);
-      }
-    }
-    setColorFromAttributes();
-
     // extract the title/caption
     var chartTitle = extractTitle(valueBox);
 
@@ -761,6 +738,21 @@ var FlexDashboard = (function () {
     if (chartIcon)
       setIcon(chartIcon);
 
+    // set color based on data-background if necessary
+    var dataBackground = valueBox.attr('data-background');
+    if (dataBackground)
+      valueBox.css('background-color', bgColor);
+    else {
+      // default to bg-primary if no other background is specified
+      if (!valueBox.hasClass('bg-primary') &&
+          !valueBox.hasClass('bg-info') &&
+          !valueBox.hasClass('bg-warning') &&
+          !valueBox.hasClass('bg-success') &&
+          !valueBox.hasClass('bg-danger')) {
+        valueBox.addClass('bg-primary');
+      }
+    }
+
     // handle data attributes in valueOutputSpan
     function handleValueOutput(valueOutput) {
 
@@ -776,15 +768,17 @@ var FlexDashboard = (function () {
 
       // color
       var dataColor = valueOutput.attr('data-color');
-      if (!dataColor)
-        dataColor = "bg-primary";
-      valueBox.css('background-color', '');
-      valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
-      if (dataColor.indexOf('bg-') === 0) {
-        valueBox.addClass(dataColor);
-        addValueBoxAlpha(valueBox);
-      } else {
-        valueBox.css('background-color', dataColor);
+      if (dataColor) {
+        if (dataColor.indexOf('bg-') === 0) {
+          valueBox.css('background-color', '');
+          if (!valueBox.hasClass(dataColor)) {
+             valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
+             valueBox.addClass(dataColor);
+          }
+        } else {
+          valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
+          valueBox.css('background-color', dataColor);
+        }
       }
     }
 
@@ -800,31 +794,11 @@ var FlexDashboard = (function () {
         var element = $(event.target);
         setTimeout(function() {
           var valueOutputSpan = element.find('span.value-output');
-          if (valueOutputSpan.length > 0) {
+          if (valueOutputSpan.length > 0)
             handleValueOutput(valueOutputSpan);
-          } else {
-            setColorFromAttributes();
-          }
         }, 10);
       }
     );
-
-  }
-
-  function addValueBoxAlpha(valueBox) {
-    if (_options.valueBoxAlpha.length) {
-
-      var alpha = _options.valueBoxAlpha[0];
-      if (_options.valueBoxAlpha.length > 1 &&
-          !valueBox.hasClass('bg-primary')) {
-        alpha = _options.valueBoxAlpha[1];
-      }
-      if (alpha > 0) {
-        var color = valueBox.css('backgroundColor');
-        var newColor = color.replace('rgb', 'rgba').replace(')', ',' + alpha + ')');
-        valueBox.css({backgroundColor: newColor});
-      }
-    }
   }
 
   // get a reference to the h3, discover it's inner html, and remove it

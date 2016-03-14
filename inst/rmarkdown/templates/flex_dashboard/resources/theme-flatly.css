@@ -10,3 +10,24 @@ body {
 .value-box {
   color: #fff;
 }
+
+.bg-primary {
+  background-color: rgba(44, 62, 80, 0.7);
+}
+
+.bg-info {
+  background-color: rgba(52, 152, 219, 0.7);
+}
+
+.bg-warning {
+  background-color: rgba(243, 156, 18, 0.7);
+}
+
+.bg-success {
+  background-color: rgba(24, 188, 156, 0.7);
+}
+
+.bg-danger {
+  background-color: rgba(231, 76, 60, 0.7);
+}
+
