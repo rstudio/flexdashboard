@@ -105,9 +105,6 @@ var FlexDashboard = (function () {
     $('.section.sidebar').css('visibility', 'visible');
     dashboardContainer.css('visibility', 'visible');
 
-    // handle location hash
-    handleLocationHash();
-
     // manage menu status
     manageActiveNavbarMenu();
 
@@ -960,21 +957,6 @@ var FlexDashboard = (function () {
       .css('-webkit-flex', flex)
       .css('-ms-flex', flex)
       .css('flex', flex);
-  }
-
-  // support bookmarking of pages
-  function handleLocationHash() {
-
-    // restore tab/page from bookmark
-    var hash = window.location.hash;
-    if (hash.length > 0)
-      $('ul.nav a[href="' + hash + '"]').tab('show');
-
-    // add a hash to the URL when the user clicks on a tab/page
-    $('a[data-toggle="tab"]').on('click', function(e) {
-      window.location.hash = $(this).attr('href');
-      window.scrollTo(0,0);
-    });
   }
 
   function manageActiveNavbarMenu() {
