@@ -374,6 +374,9 @@ var FlexDashboard = (function () {
     // set the width and shift the page right to accomodate the sidebar
     sidebar.css('width', sidebarWidth + 'px');
     content.css('padding-left', sidebarWidth + 'px');
+
+    // wrap it's contents in a form
+    sidebar.wrapInner($('<form></form>'));
   }
 
   function layoutPageByRows(page, fillPage) {

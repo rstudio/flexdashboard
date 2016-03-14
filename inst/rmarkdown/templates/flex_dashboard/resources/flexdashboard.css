@@ -344,6 +344,10 @@ body hr {
   visibility: hidden;
 }
 
+.section.sidebar form p:first-child {
+  margin-top: 10px;
+}
+
 /* Embedded source code */
 
 #flexdashboard-source-code {
