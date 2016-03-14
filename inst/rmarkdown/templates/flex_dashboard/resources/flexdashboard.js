@@ -970,10 +970,24 @@ var FlexDashboard = (function () {
     if (hash.length > 0)
       $('ul.nav a[href="' + hash + '"]').tab('show');
 
-    // add a hash to the URL when the user clicks on a tab/page
+    // add a hash to the URL when the user clicks on a tab
     $('a[data-toggle="tab"]').on('click', function(e) {
-      window.location.hash = $(this).attr('href');
+      if (window.history.pushState && (location.protocol !== "file:"))
+        history.pushState(null, null, $(this).attr('href'));
+      else
+        window.location.hash = $(this).attr('href');
       window.scrollTo(0,0);
+    });
+
+    // navigate to a tab when the history changes
+    window.addEventListener("popstate", function(e) {
+      var activeTab = $('[href="' + location.hash + '"]');
+      if (activeTab.length) {
+        activeTab.tab('show');
+      } else {
+        $('ul.nav li').removeClass('active');
+        $('ul.nav a:first').tab('show');
+      }
     });
   }
 
