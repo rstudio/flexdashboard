@@ -286,9 +286,14 @@ A few things to note about the example:
 
 2. The `data-icon` attribute can be optionally specified to include an icon within the value box (see [Icon Sets] for details on available icons).
 
-3. A non-default background color is specified for the third value box via the inclusion of the `.bg-warning` attribute. Available background color attributes include `.bg-primary` (the default), `.bg-info`, `.bg-success`, `.bg-warning`, and `.bg-danger`. You can also specify an arbitrary CSS background color using e.g. `data-background=rgb(100,100,100)`.
+3. The R code chunk within the section calls the `valueBox` function to emit a value.
 
-4. The R code chunk within the section prints a single value (in the example these are hard-coded literals, but would more typically be the result of some computations).
+4. The third code chunk makes the background color of the value box dynamic using the `color` parameter. Available colors include "primary", "info", "success", "warning", and "danger" (the default is "primary"). For custom colors you can also specify any valid CSS color (e.g. "#ffffff", "rgb(100,100,100)", etc.).
+
+To include a value box within a Shiny flexdashboard you need to be sure to wrap the value box output in `renderValueBox` (so that it is updated when inputs it depends on change). For example:
+
+<div id="valueboxshiny"></div>
+<script type="text/javascript">loadSnippet('valueboxshiny')</script>
 
 ## Text Annotations
 

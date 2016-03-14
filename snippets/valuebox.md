@@ -4,18 +4,19 @@ Row
 ### Articles per Day {.value-box data-icon="fa-pencil"}
 
 ```{r}
-45
+valueBox(computeArticles())
 ```
 
 
 ### Comments per Day {.value-box data-icon="fa-comments"}
 
 ```{r}
-126
+valueBox(computeComments())
 ```
 
-### Spam per Day {.value-box .bg-warning data-icon="fa-trash"}
+### Spam per Day {.value-box data-icon="fa-trash"}
 
 ```{r}
-5
+spam <- computeSpam()
+valueBox(spam, color = ifelse(spam > 10, "warning", "primary"))
 ```
