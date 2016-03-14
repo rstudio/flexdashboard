@@ -12,11 +12,13 @@ renderValueBox(expr, env = parent.frame(), quoted = FALSE)
 \arguments{
 \item{value}{The value to display in the box. Usually a number or short text.}
 
-\item{caption}{The caption to display beneatht the value.}
+\item{caption}{The caption to display beneath the value.}
 
-\item{icon}{An icon for the box.}
+\item{icon}{An icon for the box (e.g. "fa-comments")}
 
-\item{color}{Background color for the box.}
+\item{color}{Background color for the box. This can be one of the built-in
+background colors ("primary", "info", "success", "warning", "danger") or
+any valid CSS color value.}
 
 \item{expr}{An expression that generates a value box}
 

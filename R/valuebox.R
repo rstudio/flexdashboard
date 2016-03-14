@@ -4,9 +4,11 @@
 #' caption beneath, and a large icon on the right side.
 #'
 #' @param value The value to display in the box. Usually a number or short text.
-#' @param caption The caption to display beneatht the value.
-#' @param icon An icon for the box.
-#' @param color Background color for the box.
+#' @param caption The caption to display beneath the value.
+#' @param icon An icon for the box (e.g. "fa-comments")
+#' @param color Background color for the box. This can be one of the built-in
+#'   background colors ("primary", "info", "success", "warning", "danger") or
+#'   any valid CSS color value.
 #' @param expr An expression that generates a value box
 #' @param env The environment in which to evaluate \code{expr}.
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
