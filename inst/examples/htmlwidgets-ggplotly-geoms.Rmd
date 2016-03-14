@@ -1,5 +1,5 @@
 ---
-title: "Plotly with ggplot2"
+title: "ggplotly geoms"
 author: "Carson Sievert"
 output: 
   flexdashboard::flex_dashboard:
