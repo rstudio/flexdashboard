@@ -1,5 +1,5 @@
 ---
-title: "ggplotly examples"
+title: "ggplotly: various examples"
 author: "Carson Sievert"
 output: 
   flexdashboard::flex_dashboard:
