@@ -972,16 +972,7 @@ var FlexDashboard = (function () {
 
     // add a hash to the URL when the user clicks on a tab/page
     $('a[data-toggle="tab"]').on('click', function(e) {
-      // compute url without hash
-      var baseUrl = window.location.href;
-      var hashPos = baseUrl.indexOf('#');
-      if (hashPos != -1)
-        baseUrl = baseUrl.substr(0, hashPos);
-
-      // replace with url + this anchors hash
-      window.location.replace(baseUrl + $(this).attr('href'));
-
-      // make sure we are at the top
+      window.location.hash = $(this).attr('href');
       window.scrollTo(0,0);
     });
   }
