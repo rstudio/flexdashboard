@@ -720,19 +720,14 @@ var FlexDashboard = (function () {
     valueBox.append(inner);
 
     // add icon if specified
-    var icon = $('<div class="icon"></div>');
+    var icon = $('<div class="icon"><i></i></div>');
     valueBox.append(icon);
     function setIcon(chartIcon) {
       var iconLib = "";
       var components = chartIcon.split("-");
       if (components.length > 1)
         iconLib = components[0];
-      var i = icon.children('i.' + iconLib + '.' + chartIcon);
-      if (i.length === 0) {
-        icon.children().remove();
-        i = $('<i class="' + iconLib + ' ' + chartIcon + '"></i>');
-        icon.append(i);
-      }
+      icon.children('i').attr('class', iconLib + ' ' + chartIcon);
     }
     var chartIcon = valueBox.attr('data-icon');
     if (chartIcon)
