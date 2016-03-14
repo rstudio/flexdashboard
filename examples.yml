@@ -2,9 +2,9 @@
   img: images/htmlwidgets-d3heatmap.png
   href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/
   showcase: true
-- title: "Interactive ggplot2 with plotly"
+- title: "ggplotly: ggplot2 geoms"
   img: images/plotly.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-plotly/
+  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/
   showcase: true
 - title: "Shiny: biclust example"
   img: images/shiny-biclust.png
