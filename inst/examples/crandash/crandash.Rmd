@@ -71,7 +71,6 @@ renderValueBox({
     color = if (rate >= input$rateThreshold) "warning" else "primary"
   )
 })
-
 ```
 
 ### Total downloads {.value-box}
