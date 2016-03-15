@@ -66,7 +66,7 @@ var FlexDashboard = (function () {
 
         // find the navbar and collapse on clicked
         var navbar = $('#navbar');
-        navbar.on("click", "a", null, function () {
+        navbar.on("click", "a[data-toggle!=dropdown]", null, function () {
            navbar.collapse('hide');
         });
 
