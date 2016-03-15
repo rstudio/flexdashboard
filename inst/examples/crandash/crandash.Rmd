@@ -64,11 +64,11 @@ downloadRate <- reactive({
 
 # Emit the download rate
 renderValueBox({
-  downloadRate <- formatC(downloadRate(), digits = 1, format = "f")
+  rate <- formatC(downloadRate(), digits = 1, format = "f")
   valueBox(
-    value = downloadRate,
+    value = rate,
     icon = "fa-area-chart",
-    color = if (downloadRate >= input$rateThreshold) "warning" else "primary"
+    color = if (rate >= input$rateThreshold) "warning" else "primary"
   )
 })
 
