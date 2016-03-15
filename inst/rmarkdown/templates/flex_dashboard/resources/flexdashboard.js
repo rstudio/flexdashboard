@@ -105,6 +105,9 @@ var FlexDashboard = (function () {
     $('.section.sidebar').css('visibility', 'visible');
     dashboardContainer.css('visibility', 'visible');
 
+    // handle location hash
+    handleLocationHash();
+
     // manage menu status
     manageActiveNavbarMenu();
 
@@ -961,6 +964,43 @@ var FlexDashboard = (function () {
       .css('-webkit-flex', flex)
       .css('-ms-flex', flex)
       .css('flex', flex);
+  }
+
+  // support bookmarking of pages
+  function handleLocationHash() {
+
+    // restore tab/page from bookmark
+    var hash = window.location.hash;
+    if (hash.length > 0)
+      $('ul.nav a[href="' + hash + '"]').tab('show');
+
+    // add a hash to the URL when the user clicks on a tab/page
+    $('a[data-toggle="tab"]').on('click', function(e) {
+      var baseUrl = urlWithoutHash(window.location.href);
+      console.log(baseUrl);
+      var hash = urlHash($(this).attr('href'));
+      console.log(hash);
+      var href = baseUrl + hash;
+      console.log(href);
+      window.location.replace(href)
+      window.scrollTo(0,0);
+    });
+  }
+
+  function urlWithoutHash(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(0, hashLoc);
+    else
+      return url;
+  }
+
+  function urlHash(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(hashLoc);
+    else
+      return "";
   }
 
   function manageActiveNavbarMenu() {
