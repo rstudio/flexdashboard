@@ -167,8 +167,12 @@ var FlexDashboard = (function () {
       if (id)
         li.attr('id', id);
       li.addClass('dropdown');
-      if (title)
+      // auto add "Share" title on mobile if necessary
+      if (!title && icon && (icon === "fa-share-alt") && isMobilePhone())
+        title = "Share";
+      if (title) {
         title = title + ' <span class="caret"></span>';
+      }
       var a = navbarLink(icon, title, "#");
       a.addClass('dropdown-toggle');
       a.attr('data-toggle', 'dropdown');
