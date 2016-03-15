@@ -22,6 +22,9 @@
 - title: "Shiny: ggplot2 linked brushing"
   img: images/shiny-ggplot2-brushing.png
   href: https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/
+- title: "rbokeh: iris dataset"
+  img: images/htmlwidgets-rbokeh-iris.png
+  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-rbokeh-iris/
 - title: "Shiny: kmeans clustering"
   img: images/shiny-dashboard.png
   href: https://jjallaire.shinyapps.io/shiny-kmeans/
