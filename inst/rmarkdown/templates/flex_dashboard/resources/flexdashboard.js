@@ -979,8 +979,24 @@ var FlexDashboard = (function () {
       var baseUrl = urlWithoutHash(window.location.href);
       var hash = urlHash($(this).attr('href'));
       var href = baseUrl + hash;
-      window.location.replace(href)
+      if (window.history.pushState && (location.protocol !== "file:"))
+        history.pushState(null, null, href);
+      else
+        window.location.assign(href);
       window.scrollTo(0,0);
+    });
+
+    // navigate to a tab when the history changes
+    window.addEventListener("popstate", function(e) {
+      var hash = window.location.hash;
+      if (hash.length > 0) {
+        var activeTab = $('[href="' + hash + '"]');
+        if (activeTab.length)
+          activeTab.tab('show');
+      } else {
+        $('ul.nav li').removeClass('active').attr('aria-expanded', '');
+        $('ul.nav a:first').tab('show');
+      }
     });
   }
 
