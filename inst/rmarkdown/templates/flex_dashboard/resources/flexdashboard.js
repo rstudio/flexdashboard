@@ -977,11 +977,8 @@ var FlexDashboard = (function () {
     // add a hash to the URL when the user clicks on a tab/page
     $('a[data-toggle="tab"]').on('click', function(e) {
       var baseUrl = urlWithoutHash(window.location.href);
-      console.log(baseUrl);
       var hash = urlHash($(this).attr('href'));
-      console.log(hash);
       var href = baseUrl + hash;
-      console.log(href);
       window.location.replace(href)
       window.scrollTo(0,0);
     });
