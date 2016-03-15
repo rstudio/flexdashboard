@@ -277,7 +277,7 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="using.html">Using</a></li>
-        <li><a href="shiny.html">Shiny</a></li>
+        <li><a href="components.html">Components</a></li>
         <li><a href="layouts.html">Layouts</a></li>
         <li><a href="examples.html">Examples</a></li>
       </ul>
@@ -298,8 +298,20 @@ div.tocify {
 </div>
 
 
-<div id="dashboard-basics" class="section level2">
-<h2>Dashboard Basics</h2>
+<div id="components" class="section level2">
+<h2>Components</h2>
+<p>A wide variety of components can be included in flexdashboard layouts, including:</p>
+<ol style="list-style-type: decimal">
+<li><p>Interactive JavaScript data visualizations based on <a href="http://www.htmlwidgets.org">htmlwidgets</a>.</p></li>
+<li><p>R graphical output including base, lattice, and grid graphics.</p></li>
+<li><p>Tabular data (with optional sorting, filtering, and paging).</p></li>
+<li><p>Value boxes for highlighting important summary data.</p></li>
+<li><p>Text annotations of various kinds.</p></li>
+</ol>
+<p>The <a href="components.html">Components</a> page describes the use of each component type in more detail.</p>
+</div>
+<div id="layout" class="section level2">
+<h2>Layout</h2>
 <div id="orientation" class="section level3">
 <h3>Orientation</h3>
 <div id="layout-by-column" class="section level4">
@@ -368,15 +380,6 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="chart-types" class="section level3">
-<h3>Chart Types</h3>
-<p>You can use several types of charts with flexdashboard, each of which has its advantages and disadvantages:</p>
-<ol style="list-style-type: decimal">
-<li><p>Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a>. These charts are interactive (using JavaScript) and standalone (they don’t require a connection to a server running R, rather they are deployed as part of a static web page). One disadvantage of htmlwidgets is that they embed their data directly in their host web page, so may encounter performance problems for larger datasets.</p></li>
-<li><p>Charts based on standard R graphics (e.g. base, lattice, grid). These charts are static (they are just PNG images) and standalone (no server required). One disadvantage of these charts is that they take a bit more work to scale correctly into dashboard panes (see <a href="#chart-scaling">Chart Scaling</a> for further details).</p></li>
-<li><p>Charts based on <a href="shiny.html">Shiny</a>. These charts can created using either of the two techniques described above, however gain additional dynamic and interactive capabilities via Shiny. Note however that dashboards which use Shiny are no longer static web pages, and require <a href="http://shiny.rstudio.com/deploy/">deployment</a> to a Shiny Server).</p></li>
-</ol>
-</div>
 </div>
 <div id="chart-sizing" class="section level2">
 <h2>Chart Sizing</h2>
@@ -442,29 +445,10 @@ div.tocify {
 <script type="text/javascript">loadSnippet('chartpadding')</script>
 </div>
 </div>
-<div id="chart-scaling" class="section level3">
-<h3>Chart Scaling</h3>
-<div id="flexbox-layout" class="section level4">
-<h4>Flexbox Layout</h4>
+<div id="flexbox-layout" class="section level3">
+<h3>Flexbox Layout</h3>
 <p>Dashboard layout is done using the browser <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes">flexbox</a> engine, which alters its items’ width and/or height to best fill the available space on any display device. A flexbox layout expands items to fill available free space, or shrinks them to prevent overflow.</p>
 <p>The implication of this is that chart dimensions established via either knitr figure sizes or <code>data-width</code> and <code>data-height</code> attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the <code>flex-grow</code> and <code>flex-shrink</code> CSS properties).</p>
-</div>
-<div id="scaling-for-htmlwidgets-and-shiny" class="section level4">
-<h4>Scaling for htmlwidgets and shiny</h4>
-<p>Charts based on <a href="http://www.htmlwidgets.org">htmlwidgets</a> can dynamically re-size themselves, so their scaling will nearly always result in charts that perfectly fit the bounds of their containers.</p>
-<p>It’s also possible to use charts created using standard R graphics (base, lattice, grid, etc.) with flexdashboard. Within dynamic (Shiny) dashboards these charts are also automatically sized to fit within their containers so long as they are wrapped within a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>.</p>
-</div>
-<div id="scaling-for-base-lattice-and-grid" class="section level4">
-<h4>Scaling for base, lattice, and grid</h4>
-<p>Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it’s not possible for them to seamlessly fill the bounds of their container. When creating static dashboards containing standard R graphics it’s therefore critical to define knitr <code>fig.width</code> and <code>fig.height</code> values as close as possible to what they’ll actually be on the page.</p>
-<p>Here’s an example of a row based layout that includes 3 charts from R base graphics:</p>
-<div id="figuresizes">
-
-</div>
-<script type="text/javascript">loadSnippet('figuresizes')</script>
-<p>We’ve specified an explicit <code>fig.height</code> and <code>fig.width</code> for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation.</p>
-<p>Even with the tweaks described above standard R graphics won’t always fit perfectly into their containers, so in general htmlwidget based charts are preferred within static dashboards. Note that the <a href="https://plot.ly/ggplot2/">plotly</a> package enables rendering of ggplot2 graphics as interactive htmlwidgets.</p>
-</div>
 </div>
 </div>
 <div id="multiple-pages" class="section level2">
@@ -499,103 +483,104 @@ div.tocify {
 
 </div>
 <script type="text/javascript">loadSnippet('pageicons')</script>
-<p>A wide selection of icons are available, see the <a href="#icon-sets">Icon Sets</a> section below for details.</p>
-</div>
-</div>
-<div id="navigation-bar" class="section level2">
-<h2>Navigation Bar</h2>
-<p>By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has <a href="#multiple-pages">Multiple Pages</a>, links to the various pages are also included on the left side of the navigation bar. You can add custom links to navigation bar using the <code>navbar</code> option. For example, the following adds an “About” link to the left side of the navigation bar and a Source Code link to the right side of the navigation bar:</p>
-<div id="navbarlinks">
-
-</div>
-<script type="text/javascript">loadSnippet('navbarlinks')</script>
-<p>Navigation bar items must include either a <code>title</code> or <code>icon</code> field (both can also be specified as the “Source Code” item demonstrates). You should also include a <code>url</code> as the navigation target. The <code>align</code> field is optional (it can be “left” or “right” and defaults to “right”).</p>
-<div id="social-links" class="section level3">
-<h3>Social Links</h3>
-<p>You can include links to social sharing services via the <code>social</code> option. For example, the following dashboard includes Twitter and Facebook links as well as a drop-down menu with a more complete list of services:</p>
-<div id="navbarsociallinks">
-
-</div>
-<script type="text/javascript">loadSnippet('navbarsociallinks')</script>
-<p>The <code>social</code> option can include any number of the following services: “facebook”, “twitter”, “google-plus”, “linkedin”, and “pinterest”. You can also specify “menu” to provide a generic sharing drop-down menu that includes all of the services.</p>
-</div>
-<div id="source-code" class="section level3">
-<h3>Source Code</h3>
-<p>You can include a link to the dashboard’s source code using the <code>source_code</code> option. Source code can either be embedded into the document (<code>source_code: embed</code>) or can be a link to a URL where the source code can be found online (e.g. <code>source_code: &quot;https://github.com/user/repo&quot;</code>). For example, the following dashboard includes an embedded copy of the source code which can be viewed by clicking the “Source Code” button on the navigation bar:</p>
-<div id="navbarsourcecode">
-
-</div>
-<script type="text/javascript">loadSnippet('navbarsourcecode')</script>
-</div>
-<div id="icon-sets" class="section level3">
-<h3>Icon Sets</h3>
 <p>You can specify icons for navigation bar items from three different icon sets:</p>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a></p></li>
 <li><p><a href="http://ionicons.com/">Ionicons</a></p></li>
 <li><p><a href="https://getbootstrap.com/components/#glyphicons">Bootstrap Glyphicons</a></p></li>
 </ol>
-<p>When referring to an icon you should use it’s full name including the icon set prefix (e.g. “fa-github”, “ion-social-twitter”, “glyphicon-time”, etc.). Note also that if you don’t provide a <code>url</code> for social sharing icons (e.g. “fa-twitter” or “fa-facebook”) then one will be provided automatically (this works for icons associated with Facebook, Twitter, Google Plus, LinkedIn, and Pinterest).</p>
+<p>When referring to an icon you should use it’s full name including the icon set prefix (e.g. “fa-github”, “ion-social-twitter”, “glyphicon-time”, etc.).</p>
 </div>
-<div id="colors" class="section level3">
-<h3>Colors</h3>
-<p>You can use CSS to customize the colors used within the navigation bar. If you do this, realize that the CSS for navigation bars defines color for many elements and states, so you should be careful to override all of the required elements. Note also that you can change the entire theme of the dashboard easily using the <code>theme</code> option (see <a href="#dashboard-theme">Dashboard Theme</a> below for details).</p>
-<p>The navigation bar for flexdashboard uses the <code>navbar-inverse</code> class for each of its themes. Here is the <code>navabar-inverse</code> CSS for the default “cosmo” theme used by flexdashbaord:</p>
+</div>
+<div id="shiny" class="section level2">
+<h2>Shiny</h2>
+<p>By adding <a href="http://shiny.rstudio.com">Shiny</a> to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see <a href="http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html"><code>reactiveFileReader</code></a> and <a href="http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html"><code>reactivePoll</code></a>). This is done by adding <code>runtime: shiny</code> to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the charts within the dashboard.</p>
+<p>Using Shiny with flexdashboard turns a static R Markdown report into an <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interative Document</a>. It’s important to note that interactive documents need to be <a href="http://rmarkdown.rstudio.com/authoring_shiny.html#deployment">deployed</a> to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).</p>
+<p>Note that the <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a> package provides another way to create dashboards with Shiny.</p>
+<div id="requirements" class="section level3">
+<h3>Requirements</h3>
+<p>The steps required to add Shiny components to a flexdashboard are as follows:</p>
+<ol style="list-style-type: decimal">
+<li><p>Add <code>runtime: shiny</code> to the options declared at the top of the document (YAML front matter).</p></li>
+<li><p>Add the <code>{.sidebar}</code> attribute to the first column of the dashboard to make it a host for Shiny input controls (note this step isn’t strictly required, but most Shiny based dashboards will want to do this).</p></li>
+<li><p>Add Shiny inputs and output as appropriate.</p></li>
+<li><p>When including plots, be sure to wrap them in a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>. This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.</p></li>
+</ol>
+<p>A simple example of a Shiny based flexdashboard is provided below.</p>
+</div>
+<div id="examples-1" class="section level3">
+<h3>Examples</h3>
+<p>The following example demonstrates the basics of using Shiny within a flexdashboard:</p>
+<p><img src="images/ShinyDygraphs.png" width="865" height="745"/></p>
+<div id="source-code" class="section level4">
+<h4>Source Code</h4>
+<p>Here’s the source code for the example:</p>
+<div id="shinycode">
+
+</div>
+<script type="text/javascript">loadSnippet('shinycode')</script>
+<p>The first column (“Inputs”) includes the <code>{.sidebar}</code> attribute and the Shiny input controls; the second column (“Outputs”) includes the Shiny code required to render the chart based on the inputs.</p>
+</div>
+<div id="more-examples" class="section level4">
+<h4>More Examples</h4>
+<p>Several additional examples of Shiny based flexdashboards are available (all include links to their source code):</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://jjallaire.shinyapps.io/shiny-kmeans/">Iris K-Means Clustering</a></li>
+<li><a href="https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/">Linked Brushing with ggplot2</a></li>
+<li><a href="https://jjallaire.shinyapps.io/shiny-crandash/">CRAN Download Monitor</a></li>
+<li><a href="https://jjallaire.shinyapps.io/shiny-biclust/">Gene Expression Biclustering</a></li>
+</ol>
+</div>
+</div>
+<div id="input-sidebar" class="section level3">
+<h3>Input Sidebar</h3>
+<p>The <code>{.sidebar}</code> attribute is a special designation indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using <code>runtime: shiny</code>, but they are often useful for presenting inputs.</p>
+<p>Sidebars always appear on the left no matter where they are defined within the flow of the document. You can alter the default width of the sidebar using the <code>data-width</code> attribute. For example:</p>
+<div id="sidebarwidth">
+
+</div>
+<script type="text/javascript">loadSnippet('sidebarwidth')</script>
+<div id="global-sidebar" class="section level4">
+<h4>Global Sidebar</h4>
+<p>If you are creating a flexdashboard with <a href="using.html#multiple-pages">Multiple Pages</a> you may want to use a single sidebar that applies across all pages. In this case you should define the sidebar using a level 1 markdown header (the same as is used to define pages).</p>
+<p>For example, this dashboard includes a global sidebar:</p>
+<div id="sidebarmultiplepages">
+
+</div>
+<script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
+</div>
+</div>
+<div id="learning-more" class="section level3">
+<h3>Learning More</h3>
+<p>To learn more about using Shiny with flexdashboard see the following resources:</p>
+<ol style="list-style-type: decimal">
+<li><p>The <a href="http://shiny.rstudio.com/articles/interactive-docs.html">Introduction to Interactive Documents</a> article provides a great resources for getting started with Shiny and R Markdown.</p></li>
+<li><p>The <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interactive Documents</a> article on the R Markdown web site provides additional introductory material as well as information on deploying interactive documents.</p></li>
+<li><p>The <a href="http://shiny.rstudio.com">Shiny Dev Center</a> includes extensive articles, tutorials, and examples to help you learn more about Shiny.</p></li>
+</ol>
+</div>
+</div>
+<div id="themes" class="section level2">
+<h2>Themes</h2>
+<p>A variety of themes are available to modify the appearance of flexdashboard. Supported themes include “default”, “bootstrap”, “cerulean”, “journal”, “flatly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, and “yeti”. Note that the “cosmo” theme is used when “default” is specified.</p>
+<p>These themes are all based on the themes available in the <a href="http://rmarkdown.rstudio.com">R Markdown</a> package (which are in turn based on <a href="https://bootswatch.com/">Bootswatch</a> themes).</p>
+<p>Use the <code>theme</code> option to specify an alternate theme:</p>
+<div id="themesexample">
+
+</div>
+<script type="text/javascript">loadSnippet('themesexample')</script>
+<p>If you are looking for a theme that embeds well inside another content frame (e.g. one that doesn’t use such a strong color for the navigation bar) then the “bootstrap” theme is a good choice.</p>
+<div id="custom-colors" class="section level4">
+<h4>Custom Colors</h4>
+<p>You can use CSS to customize the colors used within the navigation bar of each theme. If you do this, realize that themes define colors for many elements and states, so you should be careful to override all of the required elements.</p>
+<p>The navigation bar for flexdashboard uses the <code>navbar-inverse</code> class for each of its themes. Here is the <code>navabar-inverse</code> CSS for the default “cosmo” theme used by flexdashboard:</p>
 <p><a href="https://github.com/thomaspark/bootswatch/blob/v3.3.5/cosmo/bootstrap.css#L4643-L4744" class="uri">https://github.com/thomaspark/bootswatch/blob/v3.3.5/cosmo/bootstrap.css#L4643-L4744</a></p>
 <p>If you want to customize these colors you should create a CSS stylesheet with the requisite <code>navbar-inverse</code> entries and include it using the <code>css</code> option of the <code>flex_dashboard</code> format.</p>
 </div>
 </div>
-<div id="value-boxes" class="section level2">
-<h2>Value Boxes</h2>
-<p>Sometimes you want to include one or more simple values within a dashboard (as opposed to data visualizations or tabular displays). You can use the <code>{.value-box}</code> attribute to indicate that a section should display only a single value. For example, here are three side-by-side sections each displaying a single value:</p>
-<p><img src="images/value-box.png" alt="" /></p>
-<p>Here is the code which was used to generate these value boxes:</p>
-<div id="valuebox">
-
-</div>
-<script type="text/javascript">loadSnippet('valuebox')</script>
-<p>A few things to note about the example:</p>
-<ol style="list-style-type: decimal">
-<li><p>The <code>{.value-box}</code> attribute is added to each section, indicating it should display as a value box.</p></li>
-<li><p>The <code>data-icon</code> attribute can be optionally specified to include an icon within the value box (see <a href="#icon-sets">Icon Sets</a> for details on available icons).</p></li>
-<li><p>The R code chunk within the section calls the <code>valueBox</code> function to emit a value.</p></li>
-<li><p>The third code chunk makes the background color of the value box dynamic using the <code>color</code> parameter. Available colors include “primary”, “info”, “success”, “warning”, and “danger” (the default is “primary”). For custom colors you can also specify any valid CSS color (e.g. “#ffffff”, “rgb(100,100,100)”, etc.).</p></li>
-</ol>
-<p>To include a value box within a Shiny flexdashboard you need to be sure to wrap the value box output in <code>renderValueBox</code> (so that it is updated when inputs it depends on change). For example:</p>
-<div id="valueboxshiny">
-
-</div>
-<script type="text/javascript">loadSnippet('valueboxshiny')</script>
-</div>
-<div id="text-annotations" class="section level2">
-<h2>Text Annotations</h2>
-<p>If you need to include additional content (an introduction or explanation, links to related material, etc.) within your dashboard you can do so in several ways:</p>
-<ol style="list-style-type: decimal">
-<li><p>You can include content at the top of the page before dashboard sections are introduced.</p></li>
-<li><p>You can define dashboard sections that don’t include a chart but rather include arbitrary content (text, images, equations, etc.)</p></li>
-<li><p>You can provide short text annotations for the various charts within a dashboard by including text immediately below the R code chunk where the chart is rendered.</p></li>
-</ol>
-<p>For example, the following dashboard includes some content at the top, brief footer comments for each chart, and a dashboard section that contains only text.</p>
-<div id="textannotation">
-
-</div>
-<script type="text/javascript">loadSnippet('textannotation')</script>
-<p>This example also demonstrates the use of a “setup chunk” to load required R packages prior to executing the rest of the R chunks that make use of them, as well as using a custom <code>data-height</code> attribute for the rows to make the first row disproportionately larger than the second row.</p>
-</div>
-<div id="dashboard-theme" class="section level2">
-<h2>Dashboard Theme</h2>
-<p>A variety of themes are available to modify the appearance of flexdashboard. Supported themes include “default”, “bootstrap”, “cerulean”, “journal”, “flatly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, and “yeti”. Note that the “cosmo” theme is used when “default” is specified.</p>
-<p>These themes are all based on the themes available in the <a href="http://rmarkdown.rstudio.com">R Markdown</a> package (which are in turn based on <a href="https://bootswatch.com/">Bootswatch</a> themes).</p>
-<p>Use the <code>theme</code> option to specify an alternate theme:</p>
-<div id="themes">
-
-</div>
-<script type="text/javascript">loadSnippet('themes')</script>
-<p>If you are looking for a theme that embeds well inside another content frame (e.g. one that doesn’t use such a strong color for the navigation bar) then the “bootstrap” theme is a good choice.</p>
-</div>
-<div id="learning-more" class="section level2">
+<div id="learning-more-1" class="section level2">
 <h2>Learning More</h2>
-<p>The <a href="shiny.html">Shiny</a> page describes how to create dashboards that automatically update themselves as the underlying data changes, or allow viewers to change parameters and see the results immediately.</p>
+<p>The <a href="components.html">Components</a> page describes how to include various types of components with flexdashboard including htmlwidgets, R graphics, tabular data, value boxes, text annotations, and navigation bar links.</p>
 <p>The <a href="layouts.html">Layouts</a> page includes a variety of sample layouts which you can use as a starting point for your own dashboards.</p>
 <p>The <a href="examples.html">Examples</a> page includes several examples of flexdashboard in action (including links to source code if you want to dig into how each example was created).</p>
 </div>

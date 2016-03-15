@@ -46,13 +46,25 @@ rmarkdown::draft("dashboard.Rmd", template = "flex_dashboard", package = "flexda
 
 ## Dashboard Basics
 
-You can use flexdashboard to publish groups of related data visualizations as a dashboard. A flexdashboard can either be static (a standard web page) or dynamic (a [Shiny](shiny.html) interactive document).
+### Components
 
-One of the most important characteristics of flexdashboard is the automatic scaling of charts to fit available browser width and height. This makes flexdashboard ideal for publishing [htmlwidgets](http://www.htmlwidgets.org) since these widgets automatically re-size themselves to their containers.
+You can use flexdashboard to publish groups of related data visualizations as a dashboard. A flexdashboard can either be static (a standard web page) or dynamic (a [Shiny](http://shiny.rstudio.com) interactive document). A wide variety of components can be included in flexdashboard layouts, including:
 
-You can also use flexdashboard to publish base, lattice, and grid graphics. These charts are also automatically re-sized to fit their containers within dynamic (Shiny) dashboards; in static dashboards, however, a bit more work is required to ensure that they are properly scaled (see [Chart Scaling](using.html#chart-scaling)).
+1. Interactive JavaScript data visualizations based on [htmlwidgets](http://www.htmlwidgets.org). 
 
-### Single Column Layout
+2. R graphical output including base, lattice, and grid graphics. 
+
+3. Tabular data (with optional sorting, filtering, and paging).
+
+4. Value boxes for highlighting important summary data. 
+
+5. Text annotations of various kinds.
+
+The [Components](components.html) page describes the use of each component type in more detail.
+
+### Layout
+
+#### Single Column
 
 Dashboards are divided into columns and rows. By default dashboards are defined using level 3 markdown headers (`###`) and laid out within a single column. Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:
 
@@ -74,7 +86,7 @@ Dashboards are divided into columns and rows. By default dashboards are defined 
 </div>
 
 
-### Multiple Column Layout
+#### Multiple Columns
 
 To lay out charts using multiple columns you introduce a level 2 markdown header (`--------------`) for each column. For example, this dashboard displays 3 charts split across two columns:
 
@@ -101,7 +113,7 @@ To lay out charts using multiple columns you introduce a level 2 markdown header
 
 In this example we've moved Chart 1 into its own column which it will fill entirely. We've also given the column a larger size via the `data-width` attribute to provide additional emphasis to Chart 1.
 
-### Layout by Row
+#### Row Orientation
 
 You can also choose to orient dashboards row-wise rather than column-wise by specifying the `orientation: rows` option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:
 
@@ -130,9 +142,9 @@ You can also choose to orient dashboards row-wise rather than column-wise by spe
 
 ## Learning More
 
-The [Using](using.html) page includes documentation on all of the features and options of flexdashboard, including layout orientations (row vs. column based), chart sizing, text annotations, theming, and creating dashboards with multiple pages.
+The [Using](using.html) page includes documentation on all of the features and options of flexdashboard, including layout orientations (row vs. column based), chart sizing, theming, and creating dashboards with multiple pages.
 
-The [Shiny](shiny.html) page describes how to create dashboards that automatically update themselves as the underlying data changes, or allow viewers to change parameters and see the results immediately.
+The [Components](components.html) page describes how to include various types of components with flexdashboard including htmlwidgets, R graphics, tabular data, value boxes, text annotations, and navigation bar links.
 
 The [Layouts](layouts.html) page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
 

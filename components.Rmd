@@ -1,0 +1,198 @@
+---
+title: "flexdashboard Components"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+---
+
+## htmlwidgets
+
+The [htmlwidgets](http://www.htmlwidgets.org) framework provides high-level R bindings for JavaScript data visualization libraries. Charts based on htmlwidgets are ideal for use with flexdashboard because they can dynamically re-size themselves, so will nearly always fit perfectly within the bounds of their flexdashboard containers.
+
+Available htmlwidgets include:
+
+1. [Leaflet](http://rstudio.github.io/leaflet/), a library for creating dynamic maps that support panning and zooming, with various annotations like markers, polygons, and popups.
+
+2. [dygraphs](http://rstudio.github.io/dygraphs), which provides rich facilities for charting time-series data and includes support for many interactive features including series/point highlighting, zooming, and panning.
+
+3. [Plotly](https://plot.ly/r/), which via it's ggplotly interface allows you to easily translate your ggplot2 graphics to an interactive web-based version.
+
+4. [rbokeh](http://hafen.github.io/rbokeh), an interface to Bokeh, a powerful declarative Bokeh framework for creating web-based plots.
+
+5. [Highcharter](http://jkunst.com/highcharter/), a rich R interface to the popular Highcharts JavaScript graphics library. 
+
+6. [visNetwork](http://dataknowledge.github.io/visNetwork), an interface to the network visualization capabilities of the vis.js library.
+
+There are over 30 packages on CRAN which provide htmlwidgets. You can find example uses of several of the more popular htmlwidgets in the htmlwidgets [showcase](http://www.htmlwidgets.org/showcase_leaflet.html) and browse all available widgets in the [gallery](http://gallery.htmlwidgets.org/).
+
+Note that one disadvantage of htmlwidgets is that they embed their data directly in their host web page, so may encounter performance problems for larger datasets. For larger dataset sizes the use of standard R graphics (described below) may be preferable.
+
+## R Graphics 
+
+You can use any chart created with standard R graphics (base, lattice, grid, etc.) with flexdashboard. 
+
+Within dynamic ([Shiny](using.html#shiny)) dashboards these charts are automatically sized to fit within their dashboard containers so long as they are wrapped within a call to [renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html).
+
+Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it's not possible for them to seamlessly fill the bounds of their container. The following section provides tips on how to get the best possible fit for a given graphic.
+
+### Figure Scaling 
+
+When creating static (non-Shiny) dashboards containing standard R graphics it's critical to define knitr `fig.width` and `fig.height` values as close as possible to what they'll actually be on the page. This enables them to fit into their layout container as closely as possible when the dashboard is laid out.
+
+Here's an example of a row based layout that includes 3 charts from R base graphics:
+
+<div id="figuresizes"></div>
+<script type="text/javascript">loadSnippet('figuresizes')</script>
+
+
+We've specified an explicit `fig.height` and `fig.width` for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. 
+
+Even with the tweaks described above standard R graphics won't always fit perfectly into their containers, so in general htmlwidget based charts are preferred within static dashboards. Note that the [plotly](https://plot.ly/ggplot2/) package enables rendering of ggplot2 graphics as interactive htmlwidgets.
+
+## Tabular Data
+
+You can include tabular data within flexdashboards in one of two ways:
+
+1. As a simple tabular display.
+
+2. As a DataTable that includes sorting, filtering, and pagination.
+
+### Simple Table
+
+A simple table is ideal for smaller numbers of records (less than 100). The code required for simple tables differs depending on whether you are building a static or dynamic (Shiny-based) flexdashboard. For static dashboards, you should use the `knitr::kable` function to output your dataset, for example:
+
+<div id="tabularkable"></div>
+<script type="text/javascript">loadSnippet('tabularkable')</script>
+
+For Shiny based dashboards you should use the `shiny::renderTable` function, for example:
+
+<div id="tabularrendertable"></div>
+<script type="text/javascript">loadSnippet('tabularrendertable')</script>
+
+This ensures that the tabular display is updated when the inputs upon which it depends change.
+
+### DataTable
+
+The [DT](http://rstudio.github.io/DT/) package (an interface to the DataTables JavaScript library) can display R matrices or data frames as interactive HTML tables that support filtering, pagination, and sorting.
+
+Note that if you want to use DataTables with flexdashboard you should install the development version of the DT package from GitHub (it contains some changes required for flexdashboard compatibility):
+
+```r
+devtools::install_github("rstudio/DT")
+```
+
+To include a DataTable you use the `DT::datatable` function:
+
+<div id="datatablesimple"></div>
+<script type="text/javascript">loadSnippet('datatablesimple')</script>
+
+Note that we specified the `bPaginate = FALSE` option. This is appropriate for smaller datasets where scrolling provides a comfortable way of navigating through the data. 
+
+If you have a large dataset where you want to enable pagination, you should be sure to specify the `pageLength` option to show more than the default 10 rows of your dataset per page:
+
+<div id="datatablepaginate"></div>
+<script type="text/javascript">loadSnippet('datatablepaginate')</script>
+
+#### Shiny
+
+To include a DataTable within a Shiny flexdashboard you need to be sure to wrap the datatable output in `DT::renderDataTable` (so that it is updated when inputs it depends on change). For example:
+
+<div id="datatableshiny"></div>
+<script type="text/javascript">loadSnippet('datatableshiny')</script>
+
+
+## Value Boxes
+
+Sometimes you want to include one or more simple values within a dashboard (as opposed to data visualizations or tabular displays). You can use the `{.value-box}` attribute to indicate that a section should display only a single value. For example, here are three side-by-side sections each displaying a single value:
+
+![](images/value-box.png)
+
+Here is the code which was used to generate these value boxes:
+
+<div id="valuebox"></div>
+<script type="text/javascript">loadSnippet('valuebox')</script>
+
+A few things to note about the example:
+
+1. The `{.value-box}` attribute is added to each section, indicating it should display as a value box.
+
+2. The `data-icon` attribute can be optionally specified to include an icon within the value box (see [Icon Sets] below for details on available icons).
+
+3. The R code chunk within the section calls the `valueBox` function to emit a value.
+
+4. The third code chunk makes the background color of the value box dynamic using the `color` parameter. Available colors include "primary", "info", "success", "warning", and "danger" (the default is "primary"). For custom colors you can also specify any valid CSS color (e.g. "#ffffff", "rgb(100,100,100)", etc.).
+
+### Icon Sets
+
+You can specify icons from three different icon sets:
+
+1. [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/)
+
+2. [Ionicons](http://ionicons.com/)
+
+3. [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
+
+When referring to an icon you should use it's full name including the icon set prefix (e.g. "fa-github", "ion-social-twitter", "glyphicon-time", etc.). 
+
+### Shiny
+
+To include a value box within a Shiny flexdashboard you need to be sure to wrap the value box output in `renderValueBox` (so that it is updated when inputs it depends on change). For example:
+
+<div id="valueboxshiny"></div>
+<script type="text/javascript">loadSnippet('valueboxshiny')</script>
+
+## Navigation Bar
+
+By default, the flexdashboard navigation bar includes only the dashboard title. When a dashboard has [Multiple Pages], links to the various pages are also included on the left side of the navigation bar. You can add custom links to navigation bar using the `navbar` option. For example, the following adds an "About" link to the left side of the navigation bar and a Source Code link to the right side of the navigation bar:
+
+<div id="navbarlinks"></div>
+<script type="text/javascript">loadSnippet('navbarlinks')</script>
+
+Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). You should also include a `url` as the navigation target. The `align` field is optional (it can be "left" or "right" and defaults to "right").
+
+See [Icon Sets] above for details on the icons available for use within the navigation bar.
+
+### Social Links
+
+You can include links to social sharing services via the `social` option. For example, the following dashboard includes Twitter and Facebook links as well as a drop-down menu with a more complete list of services:
+
+<div id="navbarsociallinks"></div>
+<script type="text/javascript">loadSnippet('navbarsociallinks')</script>
+
+The `social` option can include any number of the following services: "facebook", "twitter", "google-plus", "linkedin", and "pinterest". You can also specify "menu" to provide a generic sharing drop-down menu that includes all of the services.
+
+### Source Code
+
+You can include a link to the dashboard's source code using the `source_code` option. Source code can either be embedded into the document (`source_code: embed`) or can be a link to a URL where the source code can be found online (e.g. `source_code: "https://github.com/user/repo"`). For example, the following dashboard includes an embedded copy of the source code which can be viewed by clicking the "Source Code" button on the navigation bar:
+
+<div id="navbarsourcecode"></div>
+<script type="text/javascript">loadSnippet('navbarsourcecode')</script>
+
+## Text Annotations
+
+If you need to include additional content (an introduction or explanation, links to related material, etc.) within your dashboard you can do so in several ways:
+
+1. You can include content at the top of the page before dashboard sections are introduced.
+
+2. You can define dashboard sections that don't include a chart but rather include arbitrary content (text, images, equations, etc.)
+
+3. You can provide short text annotations for the various charts within a dashboard by including text immediately below the R code chunk where the chart is rendered.
+
+For example, the following dashboard includes some content at the top, brief footer comments for each chart, and a dashboard section that contains only text.
+
+<div id="textannotation"></div>
+<script type="text/javascript">loadSnippet('textannotation')</script>
+
+This example also demonstrates the use of a "setup chunk" to load required R packages prior to executing the rest of the R chunks that make use of them, as well as using a custom `data-height` attribute for the rows to make the first row disproportionately larger than the second row.
+
+## Learning More
+
+The [Using](using.html) page includes documentation on all of the features and options of flexdashboard, including layout orientations (row vs. column based), chart sizing, theming, and creating dashboards with multiple pages.
+
+The [Layouts](layouts.html) page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
+
+The [Examples](examples.html) page includes several examples of flexdashboard in action (including links to source code if you want to dig into how each example was created).
+
