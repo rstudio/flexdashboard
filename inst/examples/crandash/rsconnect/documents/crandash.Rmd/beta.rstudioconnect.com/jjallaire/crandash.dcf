@@ -2,8 +2,8 @@ name: crandash
 account: jjallaire
 server: beta.rstudioconnect.com
 appId: 626
-bundleId: 1086
+bundleId: 1096
 url: https://beta.rstudioconnect.com/jjallaire/crandash/
-when: 1457993421.79857
+when: 1458046277.21566
 asMultiple: FALSE
 asStatic: FALSE
