@@ -310,6 +310,11 @@ div.tocify {
 <li><p><a href="http://jkunst.com/highcharter/">Highcharter</a>, a rich R interface to the popular Highcharts JavaScript graphics library.</p></li>
 <li><p><a href="http://dataknowledge.github.io/visNetwork">visNetwork</a>, an interface to the network visualization capabilities of the vis.js library.</p></li>
 </ol>
+<p>You include htmlwidgets in an R Markdown document just like you include R plots. For example, the following is a simple dashboard definition that includes 3 dygraphs time-series charts:</p>
+<div id="htmlwidgetsdygraphs">
+
+</div>
+<script type="text/javascript">loadSnippet('htmlwidgetsdygraphs')</script>
 <p>There are over 30 packages on CRAN which provide htmlwidgets. You can find example uses of several of the more popular htmlwidgets in the htmlwidgets <a href="http://www.htmlwidgets.org/showcase_leaflet.html">showcase</a> and browse all available widgets in the <a href="http://gallery.htmlwidgets.org/">gallery</a>.</p>
 <p>Note that one disadvantage of htmlwidgets is that they embed their data directly in their host web page, so may encounter performance problems for larger datasets. For larger dataset sizes the use of standard R graphics (described below) may be preferable.</p>
 </div>
