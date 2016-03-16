@@ -668,6 +668,13 @@ var FlexDashboard = (function () {
 
     // flex the content if it has a chart OR is empty (e.g. samply layout)
     result.flex = hasChart(chartContent) || (chartContent.find('p').length == 0);
+
+    // don't use flex for gauge
+    if (chartContent.children("div.html-widget.gauge").length > 0) {
+      chartContent.addClass('gauge-stage');
+      result.flex = false;
+    }
+
     if (result.flex) {
       // add flex classes
       chart.addClass('chart-wrapper-flex');

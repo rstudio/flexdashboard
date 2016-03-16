@@ -246,6 +246,15 @@ body hr {
   height: 100% !important;
 }
 
+.gauge-stage {
+  height: 150px !important;
+  overflow: visible !important;
+}
+
+
+
+
+
 /* Omit display of empty paragraphs */
 
 .chart-shim>p:empty {

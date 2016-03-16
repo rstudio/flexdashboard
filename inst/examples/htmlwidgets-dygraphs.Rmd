@@ -2,7 +2,7 @@
 title: "Dygraphs Linked Time Series"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     social: menu
     source_code: embed
 ---
@@ -15,12 +15,31 @@ library(flexdashboard)
 getSymbols(c("MSFT", "HPQ", "INTC"), from = "2014-01-01", auto.assign=TRUE)
 ```
 
-### Microsoft
+Row
+------------------------------------------------
+
+### Gauge 1
 
 ```{r}
-dygraph(MSFT[,2:4], group = "stocks") %>% 
-  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
+gauge(25, 0, 100)
 ```
+
+### Gauge 2
+
+```{r}
+gauge(50, 0, 100)
+```
+
+
+### Gauge 3
+
+```{r}
+gauge(75, 0, 100)
+```
+
+
+Row 
+------------------------------------------
 
 ### HP
 
