@@ -1,9 +1,10 @@
-
-### Articles per Day {.value-box data-icon="fa-pencil"}
+### Articles per Day {.value-box}
 
 ```{r}
 renderValueBox({
   articles <- computeArticles(input$types)
-  valueBox(articles, color = ifelse(articles > 100, "success", "info"))
+  valueBox(articles, 
+           icon = "fa-pencil",
+           color = ifelse(articles > 100, "success", "info"))
 })
 ```

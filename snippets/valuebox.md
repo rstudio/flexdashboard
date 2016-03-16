@@ -1,22 +1,25 @@
 Row
 -----------------------------------------------------------------------
 
-### Articles per Day {.value-box data-icon="fa-pencil"}
+### Articles per Day {.value-box}
 
 ```{r}
-valueBox(computeArticles())
+articles <- computeArticles()
+valueBox(articles, icon = "fa-pencil")
 ```
 
-
-### Comments per Day {.value-box data-icon="fa-comments"}
+### Comments per Day {.value-box}
 
 ```{r}
-valueBox(computeComments())
+comments <- computeComments()
+valueBox(comments, icon = "fa-comments")
 ```
 
-### Spam per Day {.value-box data-icon="fa-trash"}
+### Spam per Day {.value-box}
 
 ```{r}
 spam <- computeSpam()
-valueBox(spam, color = ifelse(spam > 10, "warning", "primary"))
+valueBox(spam, 
+         icon = "fa-trash",
+         color = ifelse(spam > 10, "warning", "primary"))
 ```
