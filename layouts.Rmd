@@ -146,3 +146,40 @@ This layout defines multiple pages using a level 1 markdown header (`===========
 
 <div id="multiplepages-layout"></div>
 <script type="text/javascript">loadSnippet('multiplepages-layout')</script>
+
+## Input Sidebar
+
+This layout demonstrates how to add a sidebar to a flexdashboard page (Shiny-based dashboards will often present user input controls in a sidebar). To include a sidebar you add the `.sidebar` class to a level 2 header (`-------------------`):
+
+<div class="row">
+
+<div class="col-md-6">
+<div id="sidebarlayout"></div>
+<script type="text/javascript">loadSnippet('sidebarlayout')</script>
+</div>
+
+<div class="col-md-6 nopadding">
+<div height="422px" width="100%">
+<div style="float: left; width: 35%;">
+<img class="holder" src="holder.js/100px422?size=28&amp;bg=CCCCCC&amp;fg=CCCCCC">
+</div>
+<div style="margin-left: 35%;">
+<img class="holder" src="holder.js/100px211?size=28&amp;text=Chart 1">
+<img class="holder" src="holder.js/100px211?size=28&amp;text=Chart 2">
+</div>
+</div>
+</div>
+
+</div>
+
+## Input Sidebar (Global)
+
+If you have a layout that uses [Multiple Pages] you may want the sidebar to be global (i.e. present for all pages). To include a global sidebar you add the `.sidebar` class to a level 1 header (`======================`):
+
+<div id="sidebarmultiplepages"></div>
+<script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
+</div>
+
+
+
+
