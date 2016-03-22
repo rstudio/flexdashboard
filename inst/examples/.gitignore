@@ -1,3 +1,4 @@
 *.Rnb.cached
 *.html
 *_files
+*_cache

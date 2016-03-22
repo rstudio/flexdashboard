@@ -16,6 +16,7 @@ Authors@R: c(
   person("Carson", "Sievert", role = c("ctb", "cph"), comment = "Examples"),
   person("Joshua", "Kunst", role = c("ctb", "cph"), comment = "Examples"),
   person("Ryan", "Hafen", role = c("ctb", "cph"), comment = "Examples"),
+  person("Bob", "Rudis", role = c("ctb", "cph"), comment = "Examples"),
   person("Joe", "Cheng", role = c("ctb"), comment = "Examples")
   )
 Description: Format for converting an R Markdown document to a grid oriented
