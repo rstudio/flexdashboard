@@ -1,5 +1,8 @@
 ---
 title: "flexdashboard: Easy interactive dashboards for R"
+output:
+  html_document:
+    toc: false
 ---
 
 ```{r setup, include=FALSE}

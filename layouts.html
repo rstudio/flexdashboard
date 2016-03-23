@@ -171,7 +171,7 @@ $(document).ready(function () {
 $(document).ready(function ()  {
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -180,7 +180,7 @@ $(document).ready(function ()  {
       ignoreSelector: "h1.title, .toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = true;
+    options.showAndHide = false;
     options.smoothScroll = true;
 
     // tocify
@@ -241,6 +241,13 @@ div.tocify {
   border-radius: 0px;
 }
 
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
 
 </style>
 

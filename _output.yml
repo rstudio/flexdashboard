@@ -7,6 +7,9 @@ html_document:
   css: styles.css
   include:
     in_header: head.html
-    
+  toc: true
+  toc_depth: 3
+  toc_float:
+    collapsed: false
 
 
