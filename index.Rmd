@@ -149,6 +149,8 @@ The [Using](using.html) page includes documentation on all of the features and o
 
 The [Components](components.html) page describes how to include various types of components with flexdashboard including htmlwidgets, R graphics, tabular data, value boxes, text annotations, and navigation bar links.
 
+The [Shiny](shiny.html) page describes how to create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes.
+
 The [Layouts](layouts.html) page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
 
 The [Examples](examples.html) page includes several examples of flexdashboard in action (including links to source code if you want to dig into how each example was created).

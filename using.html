@@ -278,6 +278,7 @@ div.tocify {
         <li><a href="index.html">Home</a></li>
         <li><a href="using.html">Using</a></li>
         <li><a href="components.html">Components</a></li>
+        <li><a href="shiny.html">Shiny</a></li>
         <li><a href="layouts.html">Layouts</a></li>
         <li><a href="examples.html">Examples</a></li>
       </ul>
@@ -492,74 +493,6 @@ div.tocify {
 <p>When referring to an icon you should use it’s full name including the icon set prefix (e.g. “fa-github”, “ion-social-twitter”, “glyphicon-time”, etc.).</p>
 </div>
 </div>
-<div id="shiny" class="section level2">
-<h2>Shiny</h2>
-<p>By adding <a href="http://shiny.rstudio.com">Shiny</a> to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see <a href="http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html"><code>reactiveFileReader</code></a> and <a href="http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html"><code>reactivePoll</code></a>). This is done by adding <code>runtime: shiny</code> to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the charts within the dashboard.</p>
-<p>Using Shiny with flexdashboard turns a static R Markdown report into an <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interative Document</a>. It’s important to note that interactive documents need to be <a href="http://rmarkdown.rstudio.com/authoring_shiny.html#deployment">deployed</a> to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).</p>
-<p>Note that the <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a> package provides another way to create dashboards with Shiny.</p>
-<div id="requirements" class="section level3">
-<h3>Requirements</h3>
-<p>The steps required to add Shiny components to a flexdashboard are as follows:</p>
-<ol style="list-style-type: decimal">
-<li><p>Add <code>runtime: shiny</code> to the options declared at the top of the document (YAML front matter).</p></li>
-<li><p>Add the <code>{.sidebar}</code> attribute to the first column of the dashboard to make it a host for Shiny input controls (note this step isn’t strictly required, but most Shiny based dashboards will want to do this).</p></li>
-<li><p>Add Shiny inputs and output as appropriate.</p></li>
-<li><p>When including plots, be sure to wrap them in a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>. This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.</p></li>
-</ol>
-<p>A simple example of a Shiny based flexdashboard is provided below.</p>
-</div>
-<div id="examples-1" class="section level3">
-<h3>Examples</h3>
-<p>The following example demonstrates the basics of using Shiny within a flexdashboard:</p>
-<p><img src="images/ShinyDygraphs.png" width="865" height="745"/></p>
-<div id="source-code" class="section level4">
-<h4>Source Code</h4>
-<p>Here’s the source code for the example:</p>
-<div id="shinycode">
-
-</div>
-<script type="text/javascript">loadSnippet('shinycode')</script>
-<p>The first column (“Inputs”) includes the <code>{.sidebar}</code> attribute and the Shiny input controls; the second column (“Outputs”) includes the Shiny code required to render the chart based on the inputs.</p>
-</div>
-<div id="more-examples" class="section level4">
-<h4>More Examples</h4>
-<p>Several additional examples of Shiny based flexdashboards are available (all include links to their source code):</p>
-<ol style="list-style-type: decimal">
-<li><a href="https://jjallaire.shinyapps.io/shiny-kmeans/">Iris K-Means Clustering</a></li>
-<li><a href="https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/">Linked Brushing with ggplot2</a></li>
-<li><a href="https://jjallaire.shinyapps.io/shiny-crandash/">CRAN Download Monitor</a></li>
-<li><a href="https://jjallaire.shinyapps.io/shiny-biclust/">Gene Expression Biclustering</a></li>
-</ol>
-</div>
-</div>
-<div id="input-sidebar" class="section level3">
-<h3>Input Sidebar</h3>
-<p>The <code>{.sidebar}</code> attribute is a special designation indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using <code>runtime: shiny</code>, but they are often useful for presenting inputs.</p>
-<p>Sidebars always appear on the left no matter where they are defined within the flow of the document. You can alter the default width of the sidebar using the <code>data-width</code> attribute. For example:</p>
-<div id="sidebarwidth">
-
-</div>
-<script type="text/javascript">loadSnippet('sidebarwidth')</script>
-<div id="global-sidebar" class="section level4">
-<h4>Global Sidebar</h4>
-<p>If you are creating a flexdashboard with <a href="using.html#multiple-pages">Multiple Pages</a> you may want to use a single sidebar that applies across all pages. In this case you should define the sidebar using a level 1 markdown header (the same as is used to define pages).</p>
-<p>For example, this dashboard includes a global sidebar:</p>
-<div id="sidebarmultiplepages">
-
-</div>
-<script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
-</div>
-</div>
-<div id="learning-more" class="section level3">
-<h3>Learning More</h3>
-<p>To learn more about using Shiny with flexdashboard see the following resources:</p>
-<ol style="list-style-type: decimal">
-<li><p>The <a href="http://shiny.rstudio.com/articles/interactive-docs.html">Introduction to Interactive Documents</a> article provides a great resources for getting started with Shiny and R Markdown.</p></li>
-<li><p>The <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interactive Documents</a> article on the R Markdown web site provides additional introductory material as well as information on deploying interactive documents.</p></li>
-<li><p>The <a href="http://shiny.rstudio.com">Shiny Dev Center</a> includes extensive articles, tutorials, and examples to help you learn more about Shiny.</p></li>
-</ol>
-</div>
-</div>
 <div id="themes" class="section level2">
 <h2>Themes</h2>
 <p>A variety of themes are available to modify the appearance of flexdashboard. Supported themes include “default”, “bootstrap”, “cerulean”, “journal”, “flatly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, and “yeti”. Note that the “cosmo” theme is used when “default” is specified.</p>
@@ -578,9 +511,10 @@ div.tocify {
 <p>If you want to customize these colors you should create a CSS stylesheet with the requisite <code>navbar-inverse</code> entries and include it using the <code>css</code> option of the <code>flex_dashboard</code> format.</p>
 </div>
 </div>
-<div id="learning-more-1" class="section level2">
+<div id="learning-more" class="section level2">
 <h2>Learning More</h2>
 <p>The <a href="components.html">Components</a> page describes how to include various types of components with flexdashboard including htmlwidgets, R graphics, tabular data, value boxes, text annotations, and navigation bar links.</p>
+<p>The <a href="shiny.html">Shiny</a> page describes how to create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes.</p>
 <p>The <a href="layouts.html">Layouts</a> page includes a variety of sample layouts which you can use as a starting point for your own dashboards.</p>
 <p>The <a href="examples.html">Examples</a> page includes several examples of flexdashboard in action (including links to source code if you want to dig into how each example was created).</p>
 </div>

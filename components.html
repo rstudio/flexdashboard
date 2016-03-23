@@ -278,6 +278,7 @@ div.tocify {
         <li><a href="index.html">Home</a></li>
         <li><a href="using.html">Using</a></li>
         <li><a href="components.html">Components</a></li>
+        <li><a href="shiny.html">Shiny</a></li>
         <li><a href="layouts.html">Layouts</a></li>
         <li><a href="examples.html">Examples</a></li>
       </ul>
@@ -321,7 +322,7 @@ div.tocify {
 <div id="r-graphics" class="section level2">
 <h2>R Graphics</h2>
 <p>You can use any chart created with standard R graphics (base, lattice, grid, etc.) with flexdashboard.</p>
-<p>Within dynamic (<a href="using.html#shiny">Shiny</a>) dashboards these charts are automatically sized to fit within their dashboard containers so long as they are wrapped within a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>.</p>
+<p>Within dynamic (<a href="shiny.html">Shiny</a>) dashboards these charts are automatically sized to fit within their dashboard containers so long as they are wrapped within a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>.</p>
 <p>Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it’s not possible for them to seamlessly fill the bounds of their container. The following section provides tips on how to get the best possible fit for a given graphic.</p>
 <div id="figure-scaling" class="section level3">
 <h3>Figure Scaling</h3>
@@ -461,6 +462,7 @@ div.tocify {
 <div id="learning-more" class="section level2">
 <h2>Learning More</h2>
 <p>The <a href="using.html">Using</a> page includes documentation on all of the features and options of flexdashboard, including layout orientations (row vs. column based), chart sizing, theming, and creating dashboards with multiple pages.</p>
+<p>The <a href="shiny.html">Shiny</a> page describes how to create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes.</p>
 <p>The <a href="layouts.html">Layouts</a> page includes a variety of sample layouts which you can use as a starting point for your own dashboards.</p>
 <p>The <a href="examples.html">Examples</a> page includes several examples of flexdashboard in action (including links to source code if you want to dig into how each example was created).</p>
 </div>
