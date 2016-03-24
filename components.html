@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
 
@@ -361,7 +361,7 @@ div.tocify {
 <h3>DataTable</h3>
 <p>The <a href="http://rstudio.github.io/DT/">DT</a> package (an interface to the DataTables JavaScript library) can display R matrices or data frames as interactive HTML tables that support filtering, pagination, and sorting.</p>
 <p>Note that if you want to use DataTables with flexdashboard you should install the development version of the DT package from GitHub (it contains some changes required for flexdashboard compatibility):</p>
-<pre class="r"><code>devtools::install_github(&quot;rstudio/DT&quot;)</code></pre>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/DT&quot;, ref = &quot;feature/fill-container&quot;)</code></pre>
 <p>To include a DataTable you use the <code>DT::datatable</code> function:</p>
 <div id="datatablesimple">
 
@@ -386,7 +386,10 @@ div.tocify {
 <div id="value-boxes" class="section level2">
 <h2>Value Boxes</h2>
 <p>Sometimes you want to include one or more simple values within a dashboard (as opposed to data visualizations or tabular displays). You can use the <code>{.value-box}</code> attribute to indicate that a section should display only a single value. For example, here are three side-by-side sections each displaying a single value:</p>
-<p><img src="images/value-box.png" alt="" /></p>
+<div class="figure">
+<img src="images/value-box.png" alt="" />
+
+</div>
 <p>Here is the code which was used to generate these value boxes:</p>
 <div id="valuebox">
 

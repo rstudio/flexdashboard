@@ -87,7 +87,7 @@ The [DT](http://rstudio.github.io/DT/) package (an interface to the DataTables J
 Note that if you want to use DataTables with flexdashboard you should install the development version of the DT package from GitHub (it contains some changes required for flexdashboard compatibility):
 
 ```r
-devtools::install_github("rstudio/DT")
+devtools::install_github("rstudio/DT", ref = "feature/fill-container")
 ```
 
 To include a DataTable you use the `DT::datatable` function:
