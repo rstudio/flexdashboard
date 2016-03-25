@@ -155,7 +155,7 @@ By default, the flexdashboard navigation bar includes only the dashboard title. 
 <div id="navbarlinks"></div>
 <script type="text/javascript">loadSnippet('navbarlinks')</script>
 
-Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). You should also include a `url` as the navigation target. The `align` field is optional (it can be "left" or "right" and defaults to "right").
+Navigation bar items must include either a `title` or `icon` field (both can also be specified as the "Source Code" item demonstrates). You should also include a `href` as the navigation target. The `align` field is optional (it can be "left" or "right" and defaults to "right").
 
 See [Icon Sets] above for details on the icons available for use within the navigation bar.
 
