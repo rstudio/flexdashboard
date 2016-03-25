@@ -226,6 +226,24 @@ You can specify icons for navigation bar items from three different icon sets:
 
 When referring to an icon you should use it's full name including the icon set prefix (e.g. "fa-github", "ion-social-twitter", "glyphicon-time", etc.).
 
+## Mobile Layout
+
+The flexdashboard layout system adapts itself intelligently for display on mobile devices. This section describes layout behavior for various screen sizes as well as some guidelines for ensuring that your dashboards work well on smaller screens.
+
+### Medium Screens
+
+The layout of dashboard components for medium sized mobile screens (e.g. tablets) is the same as for larger desktop screens (any screen with width greater than 768 pixels is considered a medium screen). 
+
+Rows and columns are allocated using the default figures sizes and respect the relative proportions established via the use of `data-width`attributes. The only exception are [sidebars](shiny.html#input-sidebar), which are reduced to 220 pixels wide whenever the screen is less than 993 pixels wide.
+
+### Small Screens
+
+For mobile phones (any screen less than or equal to 768 pixels) flexdashboard uses special layout behavior. Since these screens don't generally have the width to show multiple side-by-side columns, all dashboard components are "flattened" into one single column layout. Further, all charts are displayed at the default figure height (480 pixels).
+
+The most important implication of this is that on mobile phones charts will be laid  out at a size and aspect ratio that is potentially very different than in the desktop layout. For [htmlwidgets](components.html#htmlwidgets) this is not a problem as they generally do an excellent job re-sizing to their parent container. However, [R Graphics](components.html#r-graphics) within static (non-Shiny) dashboards aren't quite as adaptable and depending on whether they've been given custom aspect ratios (as described in [Figure Scaling](components#figure-scaling)) may appear quite small.
+
+The implication is that if you want your dashboard to be optimal for viewing on both smaller and larger screens you should try to use htmlwidgets in preference to standard R Graphics when possible. 
+
 ## Themes
 
 A variety of themes are available to modify the appearance of flexdashboard. Supported themes include "default", "bootstrap", "cerulean", "journal", "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper", "sandstone", "simplex", and "yeti". Note that the "cosmo" theme is used when "default" is specified.
