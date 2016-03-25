@@ -134,6 +134,9 @@ var FlexDashboard = (function () {
       // get the item
       var item = navbarItems[i];
 
+      // migrate url -> href
+      item.href = item.url;
+
       // determine the container
       var container = null;
       if (item.align === "left")
@@ -146,13 +149,15 @@ var FlexDashboard = (function () {
         var menu = navbarMenu(null, item.icon, item.title, container);
         for (var j = 0; j<item.items.length; j++) {
           var subItem = item.items[j];
+          // migrate url -> href
+          item.href = item.url;
           var li = $('<li></li>');
-          li.append(navbarLink(subItem.icon, subItem.title, subItem.url));
+          li.append(navbarLink(subItem.icon, subItem.title, subItem.href));
           menu.append(li);
         }
       } else {
         var li = $('<li></li>');
-        li.append(navbarLink(item.icon, item.title, item.url));
+        li.append(navbarLink(item.icon, item.title, item.href));
         container.append(li);
       }
     }
@@ -231,7 +236,7 @@ var FlexDashboard = (function () {
     }
   }
 
-  function navbarLink(icon, title, url) {
+  function navbarLink(icon, title, href) {
 
     var a = $('<a></a>');
     if (icon) {
@@ -246,16 +251,16 @@ var FlexDashboard = (function () {
       if (title)
         iconElement.css('margin-right', '7px');
       a.append(iconElement);
-      // if url is null see if we can auto-generate based on icon (e.g. social)
-      if (!url)
+      // if href is null see if we can auto-generate based on icon (e.g. social)
+      if (!href)
         maybeGenerateLinkFromIcon(iconName, a);
     }
     if (title)
       a.append(title);
 
-    // add the url.
-    if (url) {
-      if (url === "source_embed") {
+    // add the href.
+    if (href) {
+      if (href === "source_embed") {
         a.attr('href', '#');
         a.attr('data-featherlight', "#flexdashboard-source-code");
         a.featherlight({
@@ -267,7 +272,7 @@ var FlexDashboard = (function () {
             }
         });
       } else {
-        a.attr('href', url);
+        a.attr('href', href);
       }
     }
 
@@ -285,11 +290,11 @@ var FlexDashboard = (function () {
       "pinterest": "https://pinterest.com/pin/create/link/?url="+encodeURIComponent(location.href) + "&description=" + encodeURIComponent(document.title)
     };
 
-    var makeSocialLink = function(a, url) {
+    var makeSocialLink = function(a, href) {
       a.attr('href', '#');
       a.on('click', function(e) {
         e.preventDefault();
-        window.open(url);
+        window.open(href);
       });
     };
 

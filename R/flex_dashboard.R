@@ -18,7 +18,7 @@
 #'
 #'@param navbar Optional list of elements to be placed on the flexdashboard
 #'  navigation bar. Each element should be a list containing a \code{title}
-#'  and/or \code{icon} field, a \code{url} field and an optional \code{align}
+#'  and/or \code{icon} field, an \code{href} field and an optional \code{align}
 #'  ("left" or "right") field.
 #'
 #'@param orientation Determines whether level 2 headings are treated as
@@ -393,7 +393,7 @@ navbar_links <- function(social, source_code) {
       url <- "source_embed"
     link <- list(title = "Source Code",
                  icon = icon,
-                 url = url,
+                 href = url,
                  align = "right")
     links <- append(links, list(link))
   }
