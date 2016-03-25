@@ -393,7 +393,7 @@ var FlexDashboard = (function () {
     }
 
     // determine width
-    var sidebarWidth = 250;
+    var sidebarWidth = isTablet() ? 220 : 250;
     var dataWidth = parseInt(sidebar.attr('data-width'));
     if (dataWidth)
       sidebarWidth = dataWidth;
@@ -978,6 +978,17 @@ var FlexDashboard = (function () {
     try
     {
       return ! window.matchMedia("only screen and (min-width: 768px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  // safely detect rendering on a tablet
+  function isTablet() {
+    try
+    {
+      return window.matchMedia("only screen and (min-width: 769px) and (max-width: 992px)").matches;
     }
     catch(e) {
       return false;

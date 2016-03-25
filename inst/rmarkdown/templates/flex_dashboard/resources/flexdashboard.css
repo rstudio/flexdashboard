@@ -336,7 +336,6 @@ body hr {
   top: 51px; /* overridden by theme */
   left: 0;
   bottom: 0;
-  width: 250px; /* user-overrideable via data-width */
   border-right: 1px solid #e2e2e2;
   background-color: white; /* overridden by theme */
   padding-left: 10px;
