@@ -671,8 +671,8 @@ var FlexDashboard = (function () {
     chart.wrapInner('<div class="chart-stage"></div>');
     var chartContent = chart.children('.chart-stage');
 
-    // flex the content if it has a chart OR is empty (e.g. samply layout)
-    result.flex = hasChart(chartContent) || (chartContent.find('p').length == 0);
+    // flex the content if it has a chart OR is empty (e.g. sample layout)
+    result.flex = hasFlex(chartContent);
     if (result.flex) {
       // add flex classes
       chart.addClass('chart-wrapper-flex');
@@ -699,6 +699,9 @@ var FlexDashboard = (function () {
 
       // bootstrap table
       handleBootstrapTable(chartContent);
+
+      // handle embedded shiny app
+      handleShinyApp(chartContent)
     }
 
     // add the title
@@ -873,6 +876,14 @@ var FlexDashboard = (function () {
       });
   }
 
+  function handleShinyApp(chartContent) {
+    var shinyApp = findShinyApp(chartContent);
+    if (shinyApp.length > 0) {
+      shinyApp.attr('height', '100%');
+      shinyApp.unwrap();
+    }
+  }
+
   function autoResizeChartImage(chart) {
 
     // look for a top level <p> tag with a single child that is an image
@@ -914,7 +925,8 @@ var FlexDashboard = (function () {
       var lastChild = chartContent.children().last();
       if (lastChild.is("p") &&
           (lastChild.html().length > 0) &&
-          (lastChild.children('img:only-child').length === 0)) {
+          (lastChild.children('img:only-child').length === 0) &&
+          (lastChild.children('iframe.shiny-frame:only-child').length === 0)) {
         extracted = true;
         chartNotes.html(lastChild.html());
         lastChild.remove();
@@ -932,11 +944,25 @@ var FlexDashboard = (function () {
                           .children('img:only-child');
     var widget = chartContent.children('div[id^="htmlwidget-"],div.html-widget');
     var shiny = chartContent.children('div[class^="shiny-"]');
+    var shinyApp = findShinyApp(chartContent);
     var bsTable = findBootstrapTable(chartContent);
     return (img.length > 0) ||
            (widget.length > 0) ||
            (shiny.length > 0) ||
+           (shinyApp.length > 0) ||
            (bsTable.length > 0);
+  }
+
+  function hasFlex(chartContent) {
+    var flex = hasChart(chartContent) || (chartContent.find('p').length == 0)
+    if (isMobilePhone()) {
+      flex = flex && (findShinyApp(chartContent).length == 0);
+    }
+    return flex;
+  }
+
+  function findShinyApp(chartContent) {
+    return chartContent.find('iframe.shiny-frame');
   }
 
   function findBootstrapTable(chartContent) {
