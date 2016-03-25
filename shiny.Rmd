@@ -1,5 +1,7 @@
 ---
 title: "Using shiny with flexdashboard"
+output:
+  flexdashboard::flex_dashboard: default
 ---
 
 ## Overview
@@ -22,37 +24,28 @@ The steps required to add Shiny components to a flexdashboard are as follows:
 
 4. When including plots, be sure to wrap them in a call to [renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html). This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.
 
-A simple example of a Shiny based flexdashboard is provided below.
+## Using Shiny
 
-## Examples
+When you use Shiny within a flexdashboard you'll be making use of both input elements (e.g. sliders, checkboxes, etc.) and output elements (plots, tables, etc.). Input elements are typically presented within a sidebar and outputs within flexdashboard content panes.
 
-The following example demonstrates the basics of using Shiny within a flexdashboard:
+### Input Sidebar
+
+You add an input sidebar to a flexdashboard by adding the `{.sidebar}` attribute to a column, which indicates that it should be laid out flush to the left with a default width of 250 pixels and a special background color. Sidebars always appear on the left no matter where they are defined within the flow of the document. 
+
+Here's a simple flexdashboard that includes an input sidebar:
 
 <img src="images/ShinyDygraphs.png" width="865" height="745"/>
 
-### Source Code
+#### Source Code
 
-Here's the source code for the example:
+The source code for the example is presented below. The first column ("Inputs") includes the `{.sidebar}` attribute and the Shiny input controls; the second column ("Outputs") includes the Shiny code required to render the chart based on the inputs.
 
 <div id="shinycode"></div>
 <script type="text/javascript">loadSnippet('shinycode')</script>
 
-The first column ("Inputs") includes the `{.sidebar}` attribute and the Shiny input controls; the second column ("Outputs") includes the Shiny code required to render the chart based on the inputs.
+### Sidebar Width
 
-### More Examples
-
-Several additional examples of Shiny based flexdashboards are available (all include links to their source code):
-
-1. [Iris K-Means Clustering](https://jjallaire.shinyapps.io/shiny-kmeans/)
-2. [Linked Brushing with ggplot2](https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/)
-3. [CRAN Download Monitor](https://jjallaire.shinyapps.io/shiny-crandash/) 
-4. [Gene Expression Biclustering ](https://jjallaire.shinyapps.io/shiny-biclust/)
-
-## Input Sidebar
-
-The `{.sidebar}` attribute is a special designation indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using `runtime: shiny`, but they are often useful for presenting inputs.
-
-Sidebars always appear on the left no matter where they are defined within the flow of the document. You can alter the default width of the sidebar using the `data-width` attribute. For example:
+You can alter the default width of the sidebar using the `data-width` attribute, for example:
 
 <div id="sidebarwidth"></div>
 <script type="text/javascript">loadSnippet('sidebarwidth')</script>
@@ -66,12 +59,24 @@ For example, this dashboard includes a global sidebar:
 <div id="sidebarmultiplepages"></div>
 <script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
 
+## Examples
+
+Several examples are available to help you learn more about using Shiny with flexdashboard (each example includes full source code):
+
+1. [Iris K-Means Clustering](https://jjallaire.shinyapps.io/shiny-kmeans/)
+
+2. [Linked Brushing with ggplot2](https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/)
+
+3. [CRAN Download Monitor](https://jjallaire.shinyapps.io/shiny-crandash/) 
+
+4. [Gene Expression Biclustering ](https://jjallaire.shinyapps.io/shiny-biclust/)
+
 ## Learning More
 
-To learn more about using Shiny with flexdashboard see the following resources:
+The following articles are excellent resources for learning more about Shiny and creating interactive documents:
 
 1. The [Introduction to Interactive Documents](http://shiny.rstudio.com/articles/interactive-docs.html) article provides a great resources for getting started with Shiny and R Markdown.
 
-1. The [Interactive Documents](http://rmarkdown.rstudio.com/authoring_shiny.html) article on the R Markdown web site provides additional introductory material as well as information on deploying interactive documents.
+2. The [Interactive Documents](http://rmarkdown.rstudio.com/authoring_shiny.html) article on the R Markdown web site provides additional introductory material as well as information on deploying interactive documents.
 
-2. The [Shiny Dev Center](http://shiny.rstudio.com) includes extensive articles, tutorials, and examples to help you learn more about Shiny.
+3. The [Shiny Dev Center](http://shiny.rstudio.com) includes extensive articles, tutorials, and examples to help you learn more about Shiny.

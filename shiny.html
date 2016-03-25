@@ -317,40 +317,32 @@ div.tocify {
 <li><p>Add Shiny inputs and output as appropriate.</p></li>
 <li><p>When including plots, be sure to wrap them in a call to <a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a>. This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.</p></li>
 </ol>
-<p>A simple example of a Shiny based flexdashboard is provided below.</p>
 </div>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
-<p>The following example demonstrates the basics of using Shiny within a flexdashboard:</p>
+<div id="using-shiny" class="section level2">
+<h2>Using Shiny</h2>
+<p>When you use Shiny within a flexdashboard you’ll be making use of both input elements (e.g. sliders, checkboxes, etc.) and output elements (plots, tables, etc.). Input elements are typically presented within a sidebar and outputs within flexdashboard content panes.</p>
+<div id="input-sidebar" class="section level3">
+<h3>Input Sidebar</h3>
+<p>You add an input sidebar to a flexdashboard by adding the <code>{.sidebar}</code> attribute to a column, which indicates that it should be laid out flush to the left with a default width of 250 pixels and a special background color. Sidebars always appear on the left no matter where they are defined within the flow of the document.</p>
+<p>Here’s a simple flexdashboard that includes an input sidebar:</p>
 <p><img src="images/ShinyDygraphs.png" width="865" height="745"/></p>
-<div id="source-code" class="section level3">
-<h3>Source Code</h3>
-<p>Here’s the source code for the example:</p>
+<div id="source-code" class="section level4">
+<h4>Source Code</h4>
+<p>The source code for the example is presented below. The first column (“Inputs”) includes the <code>{.sidebar}</code> attribute and the Shiny input controls; the second column (“Outputs”) includes the Shiny code required to render the chart based on the inputs.</p>
 <div id="shinycode">
 
 </div>
 <script type="text/javascript">loadSnippet('shinycode')</script>
-<p>The first column (“Inputs”) includes the <code>{.sidebar}</code> attribute and the Shiny input controls; the second column (“Outputs”) includes the Shiny code required to render the chart based on the inputs.</p>
-</div>
-<div id="more-examples" class="section level3">
-<h3>More Examples</h3>
-<p>Several additional examples of Shiny based flexdashboards are available (all include links to their source code):</p>
-<ol style="list-style-type: decimal">
-<li><a href="https://jjallaire.shinyapps.io/shiny-kmeans/">Iris K-Means Clustering</a></li>
-<li><a href="https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/">Linked Brushing with ggplot2</a></li>
-<li><a href="https://jjallaire.shinyapps.io/shiny-crandash/">CRAN Download Monitor</a></li>
-<li><a href="https://jjallaire.shinyapps.io/shiny-biclust/">Gene Expression Biclustering</a></li>
-</ol>
 </div>
 </div>
-<div id="input-sidebar" class="section level2">
-<h2>Input Sidebar</h2>
-<p>The <code>{.sidebar}</code> attribute is a special designation indicating that a column should be laid out flush to the left with a fixed width of 250 pixels and a special background color. Sidebars are not required for flexdashboards using <code>runtime: shiny</code>, but they are often useful for presenting inputs.</p>
-<p>Sidebars always appear on the left no matter where they are defined within the flow of the document. You can alter the default width of the sidebar using the <code>data-width</code> attribute. For example:</p>
+<div id="sidebar-width" class="section level3">
+<h3>Sidebar Width</h3>
+<p>You can alter the default width of the sidebar using the <code>data-width</code> attribute, for example:</p>
 <div id="sidebarwidth">
 
 </div>
 <script type="text/javascript">loadSnippet('sidebarwidth')</script>
+</div>
 <div id="global-sidebar" class="section level3">
 <h3>Global Sidebar</h3>
 <p>If you are creating a flexdashboard with <a href="using.html#multiple-pages">Multiple Pages</a> you may want to use a single sidebar that applies across all pages. In this case you should define the sidebar using a level 1 markdown header (the same as is used to define pages).</p>
@@ -361,9 +353,19 @@ div.tocify {
 <script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
 </div>
 </div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<p>Several examples are available to help you learn more about using Shiny with flexdashboard (each example includes full source code):</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://jjallaire.shinyapps.io/shiny-kmeans/">Iris K-Means Clustering</a></p></li>
+<li><p><a href="https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/">Linked Brushing with ggplot2</a></p></li>
+<li><p><a href="https://jjallaire.shinyapps.io/shiny-crandash/">CRAN Download Monitor</a></p></li>
+<li><p><a href="https://jjallaire.shinyapps.io/shiny-biclust/">Gene Expression Biclustering</a></p></li>
+</ol>
+</div>
 <div id="learning-more" class="section level2">
 <h2>Learning More</h2>
-<p>To learn more about using Shiny with flexdashboard see the following resources:</p>
+<p>The following articles are excellent resources for learning more about Shiny and creating interactive documents:</p>
 <ol style="list-style-type: decimal">
 <li><p>The <a href="http://shiny.rstudio.com/articles/interactive-docs.html">Introduction to Interactive Documents</a> article provides a great resources for getting started with Shiny and R Markdown.</p></li>
 <li><p>The <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interactive Documents</a> article on the R Markdown web site provides additional introductory material as well as information on deploying interactive documents.</p></li>
