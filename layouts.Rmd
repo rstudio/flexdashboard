@@ -23,8 +23,8 @@ This layout is a simple stack of two charts. Note that one chart or the other co
 
 <div class="col-md-6 nopadding">
 <div height="470px" width="100%">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 1">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px235?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px235?size=28&amp;text=Chart 2">
 </div>
 </div>
 
@@ -43,9 +43,9 @@ This layout is a simple stack of three charts. To provide enough room to display
 
 <div class="col-md-6 nopadding">
 <div height="406px" width="100%">
-<img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 1">
-<img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px135?size=28&amp;text=Chart 3">
+<img class="holder" data-src="holder.js/100px135?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px135?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px135?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
@@ -63,13 +63,13 @@ This layout fills the page completely and gives prominence to a single chart at 
 
 <div class="col-md-6 nopadding">
 <div height="440px" width="100%">
-<img class="holder" src="holder.js/100px298?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px298?size=28&amp;text=Chart 1">
 </div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px145?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px145?size=28&amp;text=Chart 2">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px145?size=28&amp;text=Chart 3">
+<img class="holder" data-src="holder.js/100px145?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
@@ -89,11 +89,11 @@ This layout fills the page completely and gives prominence to a single chart on 
 <div class="col-md-6 nopadding">
 <div height="420px" width="100%">
 <div style="float: left; width: 55%;">
-<img class="holder" src="holder.js/100px420?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px420?size=28&amp;text=Chart 1">
 </div>
 <div style="margin-left: 55%;">
-<img class="holder" src="holder.js/100px210?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px210?size=28&amp;text=Chart 3">
+<img class="holder" data-src="holder.js/100px210?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px210?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
@@ -116,18 +116,18 @@ This layout is a 2x2 grid of charts. This layout uses the default `vertical_scro
 <div height="524px" width="100%">
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px262?size=28&amp;text=Chart 1">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px262?size=28&amp;text=Chart 2">
 </div>
 </div>
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 3">
+<img class="holder" data-src="holder.js/100px262?size=28&amp;text=Chart 3">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px262?size=28&amp;text=Chart 4">
+<img class="holder" data-src="holder.js/100px262?size=28&amp;text=Chart 4">
 </div>
 </div>
 </div>
@@ -156,11 +156,11 @@ This layout demonstrates how to add a sidebar to a flexdashboard page (Shiny-bas
 <div class="col-md-6 nopadding">
 <div height="422px" width="100%">
 <div style="float: left; width: 35%;">
-<img class="holder" src="holder.js/100px422?size=28&amp;bg=CCCCCC&amp;fg=CCCCCC">
+<img class="holder" data-src="holder.js/100px422?size=28&amp;bg=CCCCCC&amp;fg=CCCCCC">
 </div>
 <div style="margin-left: 35%;">
-<img class="holder" src="holder.js/100px211?size=28&amp;text=Chart 1">
-<img class="holder" src="holder.js/100px211?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px211?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px211?size=28&amp;text=Chart 2">
 </div>
 </div>
 </div>

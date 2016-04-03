@@ -9,6 +9,7 @@ function loadSnippet(snippet) {
   editor.setShowFoldWidgets(false);
   editor.renderer.setDisplayIndentGuides(false);
   editor.setTheme("ace/theme/textmate");
+  editor.$blockScrolling = Infinity;
   editor.session.setMode("ace/mode/markdown");
   editor.session.getSelection().clearSelection();
   

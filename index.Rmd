@@ -3,6 +3,7 @@ title: "flexdashboard: Easy interactive dashboards for R"
 output:
   html_document:
     toc: false
+    toc_float: false
 ---
 
 ```{r setup, include=FALSE}
@@ -80,9 +81,9 @@ Dashboards are divided into columns and rows. By default dashboards are defined 
 
 <div class="col-md-7">
 <div height="470px" width="100%">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 1">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px157?size=28&amp;text=Chart 3">
+<img class="holder" data-src="holder.js/100px157?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px157?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px157?size=28&amp;text=Chart 3">
 </div>
 </div>
 
@@ -103,11 +104,11 @@ To lay out charts using multiple columns you introduce a level 2 markdown header
 <div class="col-md-7">
 <div height="470px" width="100%">
 <div style="float: left; width: 60%;">
-<img class="holder" src="holder.js/100px470?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px470?size=28&amp;text=Chart 1">
 </div>
 <div style="margin-left: 60%;">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 2">
-<img class="holder" src="holder.js/100px235?size=28&amp;text=Chart 3">
+<img class="holder" data-src="holder.js/100px235?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px235?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>
@@ -129,13 +130,13 @@ You can also choose to orient dashboards row-wise rather than column-wise by spe
 
 <div class="col-md-7">
 <div height="496px" width="100%">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px250?size=28&amp;text=Chart 1">
 <div>
 <div style="float: left; width: 50%;">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px250?size=28&amp;text=Chart 2">
 </div>
 <div style="margin-left: 50%;">
-<img class="holder" src="holder.js/100px250?size=28&amp;text=Chart 3">
+<img class="holder" data-src="holder.js/100px250?size=28&amp;text=Chart 3">
 </div>
 </div>
 </div>

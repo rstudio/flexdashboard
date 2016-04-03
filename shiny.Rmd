@@ -1,7 +1,5 @@
 ---
 title: "Using shiny with flexdashboard"
-output:
-  flexdashboard::flex_dashboard: default
 ---
 
 ## Overview
