@@ -13,15 +13,16 @@
 
 <title>flexdashboard: Easy interactive dashboards for R</title>
 
-<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-
-
-<link rel="stylesheet" href="libs/font-awesome-4.5.0/css/font-awesome.min.css"/>
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <script src="libs/ace-1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="libs/holder-2.9.0/holder.min.js" type="text/javascript" charset="utf-8"></script>
@@ -29,9 +30,9 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <link rel="stylesheet"
-      href="libs/highlight/textmate.css"
+      href="site_libs/highlight/textmate.css"
       type="text/css" />
-<script src="libs/highlight/highlight.js"></script>
+<script src="site_libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -155,7 +156,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="libs/navigation-1.0/tabsets.js"></script>
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -167,9 +168,103 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -177,27 +272,43 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">flexdashboard for R</a>
+      <a class="navbar-brand" href="index.html">flexdashboard for R</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="using.html">Using</a></li>
-        <li><a href="components.html">Components</a></li>
-        <li><a href="shiny.html">Shiny</a></li>
-        <li><a href="layouts.html">Layouts</a></li>
-        <li><a href="examples.html">Examples</a></li>
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="using.html">Using</a>
+</li>
+<li>
+  <a href="components.html">Compontents</a>
+</li>
+<li>
+  <a href="shiny.html">Shiny</a>
+</li>
+<li>
+  <a href="layouts.html">Layouts</a>
+</li>
+<li>
+  <a href="examples.html">Examples</a>
+</li>
       </ul>
-      <ul class="nav pull-right">
-        <a id="github" class="btn btn-primary" href="https://github.com/rstudio/flexdashboard">
-          <i class="fa fa-github fa-lg"></i> GitHub
-        </a>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/rstudio/flexdashboard">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
 <div class="fluid-row" id="header">
+
 
 
 <h1 class="title">flexdashboard: Easy interactive dashboards for R</h1>
@@ -338,6 +449,8 @@ $(document).ready(function () {
 
 
 
+</div>
+</div>
 
 </div>
 

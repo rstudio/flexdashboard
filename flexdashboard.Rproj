@@ -12,4 +12,4 @@ Encoding: UTF-8
 RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
-BuildType: Makefile
+BuildType: Website
