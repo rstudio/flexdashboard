@@ -16,7 +16,7 @@ navbar:
     - text: Examples
       href: examples.html
   right:
-    - icon: fa-github 
+    - icon: fa-github fa-lg
       href: https://github.com/rstudio/flexdashboard
 output:
   html_document:
