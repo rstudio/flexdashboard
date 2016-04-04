@@ -72,4 +72,3 @@ examples <- function(caption = TRUE, showcaseOnly = FALSE) {
 }
 
 
-examples()
