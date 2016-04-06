@@ -7,7 +7,7 @@ navbar:
       href: index.html
     - text: "Using"
       href: using.html
-    - text: "Compontents"
+    - text: "Components"
       href: components.html
     - text: "Shiny"
       href: shiny.html
