@@ -657,18 +657,17 @@ var FlexDashboard = (function () {
         break;
       }
     }
+    function havePlugin() { return plugin !== null; }
+    function flexPlugin() { return havePlugin() && plugin.flex(isMobile); }
 
     // if it's a custom plugin then call it and return
-    if (plugin !== null && plugin.type === "custom") {
+    if (havePlugin() && plugin.type === "custom") {
       plugin.layout(title, chart, pluginComponent, isMobile);
       result.caption = false;
       result.flex = plugin.flex(isMobile);
       return result;
     }
 
-    // some helpers for accessing plugin state/attributes
-    function havePlugin() { return plugin !== null; }
-    function flexPlugin() { return havePlugin() && plugin.flex(isMobile); }
 
     // auto-resizing treatment for image
     autoResizeChartImage(chart);
