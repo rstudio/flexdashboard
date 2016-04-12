@@ -442,16 +442,28 @@ var FlexDashboard = (function () {
       // fixup the columns
       columns.each(function(index) {
 
-        // layout the chart
-        var result = layoutChart($(this));
+        // check for a value box
+        if ($(this).hasClass('value-box')) {
 
-        // update flexHeight state
-        if (!result.flex)
+          // layout value box
+          layoutValueBox($(this));
+
+          // static height based on height of value boxes
           haveFlexHeight = false;
 
-        // update state
-        if (result.caption)
-          haveCaptions = true;
+        } else {
+
+          // layout the chart
+          var result = layoutChart($(this));
+
+          // update flexHeight state
+          if (!result.flex)
+            haveFlexHeight = false;
+
+          // update state
+          if (result.caption)
+            haveCaptions = true;
+        }
 
         // set the column flex based on the figure width
         // (value boxes will just get the default figure width)
@@ -533,22 +545,30 @@ var FlexDashboard = (function () {
       // layout each chart
       rows.each(function(index) {
 
-        // perform the layout
-        var result = layoutChart($(this));
+         // check for a value box
+        if ($(this).hasClass('value-box')) {
 
-        // ice the notes if there are none
-        if (!result.caption)
-          $(this).find('.chart-notes').remove();
+          layoutValueBox($(this));
 
-        // set flex height based on figHeight, then adjust
-        if (result.flex) {
-          var chartHeight = figureSizes[index].height;
-          chartHeight = adjustedHeight(chartHeight, $(this));
-          if (fillPage)
-            setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
-          else {
-            $(this).css('height', chartHeight + 'px');
-            setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+        } else {
+
+          // perform the layout
+          var result = layoutChart($(this));
+
+          // ice the notes if there are none
+          if (!result.caption)
+            $(this).find('.chart-notes').remove();
+
+          // set flex height based on figHeight, then adjust
+          if (result.flex) {
+            var chartHeight = figureSizes[index].height;
+            chartHeight = adjustedHeight(chartHeight, $(this));
+            if (fillPage)
+              setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
+            else {
+              $(this).css('height', chartHeight + 'px');
+              setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+            }
           }
         }
       });
@@ -640,16 +660,11 @@ var FlexDashboard = (function () {
       flex: false
     };
 
-    // look for a value box
-    if (chart.hasClass('value-box')) {
-
-        // layout value box
-        layoutValueBox(chart);
-        return result; // no caption and no flex
-    }
-
     // extract the title
     var title = extractTitle(chart);
+
+    // auto-resizing treatment for image
+    autoResizeChartImage(chart);
 
     // put all the content in a chart wrapper div
     chart.addClass('chart-wrapper');
@@ -688,9 +703,6 @@ var FlexDashboard = (function () {
       // handle embedded shiny app
       handleShinyApp(chartContent)
     }
-
-    // auto-resizing treatment for image
-    autoResizeChartImage(chartContent);
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
