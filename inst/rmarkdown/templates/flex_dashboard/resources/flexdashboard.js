@@ -663,6 +663,9 @@ var FlexDashboard = (function () {
     // extract the title
     var title = extractTitle(chart);
 
+    // auto-resizing treatment for image
+    autoResizeChartImage(chart);
+
     // put all the content in a chart wrapper div
     chart.addClass('chart-wrapper');
     chart.wrapInner('<div class="chart-stage"></div>');
@@ -700,9 +703,6 @@ var FlexDashboard = (function () {
       // handle embedded shiny app
       handleShinyApp(chartContent)
     }
-
-    // auto-resizing treatment for image
-    autoResizeChartImage(chartContent);
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
