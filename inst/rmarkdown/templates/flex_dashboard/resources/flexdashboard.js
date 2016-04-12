@@ -1,16 +1,18 @@
 
 var FlexDashboard = (function () {
 
+  var _options = {};
+
   var FlexDashboard = function() {
 
     // default options
-    _options = {
+    _options = $.extend(_options, {
       fillPage: false,
       orientation: 'columns',
       defaultFigWidth: 576,
       defaultFigHeight: 480,
       isMobile: false
-    };
+    });
   };
 
   function init(options) {
