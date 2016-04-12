@@ -678,7 +678,7 @@ var FlexDashboard = (function () {
     var chartContent = chart.children('.chart-stage');
 
     // flex the content if it has a chart OR is empty (e.g. sample layout)
-    result.flex = flexPlugin() || hasFlex(chartContent);
+    result.flex = havePlugin() ? flexPlugin() : hasFlex(chartContent);
     if (result.flex) {
       // add flex classes
       chart.addClass('chart-wrapper-flex');
@@ -721,9 +721,6 @@ var FlexDashboard = (function () {
             }
           }, 10);
         });
-
-      // handle embedded shiny app
-      handleShinyApp(chartContent)
     }
 
     // add the title
@@ -746,14 +743,6 @@ var FlexDashboard = (function () {
     var title = h3.html();
     h3.remove();
     return title;
-  }
-
-  function handleShinyApp(chartContent) {
-    var shinyApp = findShinyApp(chartContent);
-    if (shinyApp.length > 0) {
-      shinyApp.attr('height', '100%');
-      shinyApp.unwrap();
-    }
   }
 
   function autoResizeChartImage(chart) {
@@ -816,23 +805,13 @@ var FlexDashboard = (function () {
                           .children('img:only-child');
     var widget = chartContent.children('div[id^="htmlwidget-"],div.html-widget');
     var shiny = chartContent.children('div[class^="shiny-"]');
-    var shinyApp = findShinyApp(chartContent);
     return (img.length > 0) ||
            (widget.length > 0) ||
-           (shiny.length > 0) ||
-           (shinyApp.length > 0);
+           (shiny.length > 0);
   }
 
   function hasFlex(chartContent) {
-    var flex = hasChart(chartContent) || (chartContent.find('p').length == 0)
-    if (isMobilePhone()) {
-      flex = flex && (findShinyApp(chartContent).length == 0);
-    }
-    return flex;
-  }
-
-  function findShinyApp(chartContent) {
-    return chartContent.find('iframe.shiny-frame');
+    return hasChart(chartContent) || (chartContent.find('p').length == 0)
   }
 
   // safely detect rendering on a mobile phone
@@ -1123,6 +1102,28 @@ window.FlexDashboardPlugins.push({
     });
   }
 });
+
+// Shiny app plugin
+window.FlexDashboardPlugins.push({
+
+  find: function(container) {
+    var app = container.find('iframe.shiny-frame');
+    if (app.length)
+      return app;
+    else
+      return null;
+  },
+
+  flex: function(mobile) {
+    return mobile ? false : true;
+  },
+
+  layout: function(title, container, component, mobile) {
+    component.attr('height', '100%');
+    component.unwrap();
+  }
+});
+
 
 
 
