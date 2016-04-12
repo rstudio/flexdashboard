@@ -649,24 +649,26 @@ var FlexDashboard = (function () {
     var isMobile = isMobilePhone();
     var plugin = null;
     var pluginComponent = null;
-    var pluginAttributes = null;
     for (var p = 0; p<FlexDashboardPlugins.length; p++) {
       var nextPlugin = FlexDashboardPlugins[p];
       pluginComponent = nextPlugin.find(chart);
       if (pluginComponent !== null) {
         plugin = nextPlugin;
-        pluginAttributes = plugin.attributes(chart, pluginComponent, isMobile);
         break;
       }
     }
 
-    // if it's not framed then just call the plugin and return
-    if (plugin !== null && !pluginAttributes.framed) {
+    // if it's a custom plugin then call it and return
+    if (plugin !== null && plugin.type === "custom") {
       plugin.layout(title, chart, pluginComponent, isMobile);
       result.caption = false;
-      result.flex = pluginAttributes.flex;
+      result.flex = plugin.flex(isMobile);
       return result;
     }
+
+    // some helpers for accessing plugin state/attributes
+    function havePlugin() { return plugin !== null; }
+    function flexPlugin() { return havePlugin() && plugin.flex(isMobile); }
 
     // auto-resizing treatment for image
     autoResizeChartImage(chart);
@@ -677,7 +679,7 @@ var FlexDashboard = (function () {
     var chartContent = chart.children('.chart-stage');
 
     // flex the content if it has a chart OR is empty (e.g. sample layout)
-    result.flex = hasFlex(chartContent);
+    result.flex = flexPlugin() || hasFlex(chartContent);
     if (result.flex) {
       // add flex classes
       chart.addClass('chart-wrapper-flex');
@@ -699,11 +701,27 @@ var FlexDashboard = (function () {
                       .css('right', pad)
                       .css('bottom', pad)
         }
-
       }
 
-      // bootstrap table
-      handleBootstrapTable(chartContent);
+      // custom plugin processing if necessary
+      if (havePlugin())
+        plugin.layout(title, chartContent, pluginComponent, isMobile);
+
+      // also activate plugins on shiny output
+      chartContent.find('.shiny-text-output, .shiny-html-output').on('shiny:value',
+        function(event) {
+          console.log('shiny output');
+          var element = $(event.target);
+          setTimeout(function() {
+            for (var p = 0; p<FlexDashboardPlugins.length; p++) {
+              var plugin = FlexDashboardPlugins[p];
+              var component = plugin.find(element);
+              debugger;
+              if (component !== null)
+                plugin.layout(title, element.parent(), component, isMobile);
+            }
+          }, 10);
+        });
 
       // handle embedded shiny app
       handleShinyApp(chartContent)
@@ -714,8 +732,9 @@ var FlexDashboard = (function () {
     chartTitle.html(title);
     chart.prepend(chartTitle);
 
-    // extract notes
-    if (extractChartNotes(chartContent, chart))
+    // resolve notes
+    var extractNotes = havePlugin() || hasChart(chartContent)
+    if (resolveChartNotes(chartContent, chart, extractNotes))
       result.caption = true;
 
     // return result
@@ -728,45 +747,6 @@ var FlexDashboard = (function () {
     var title = h3.html();
     h3.remove();
     return title;
-  }
-
-  function handleBootstrapTable(chartContent) {
-
-    function handleTable(bsTable, overflowContainer) {
-
-      // add shim to force scrollbar on overflow
-      overflowContainer.addClass('bootstrap-table-shim');
-
-      // fixup xtable generated tables with a proper thead
-      var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
-      if (headerRow.length > 0) {
-        var thead = $('<thead></thead>');
-        bsTable.prepend(thead);
-        headerRow.detach().appendTo(thead);
-      }
-
-      // stable table headers when scrolling
-      bsTable.stickyTableHeaders({
-        scrollableArea: overflowContainer
-      });
-    }
-
-    var bsTable = findBootstrapTable(chartContent);
-    if (bsTable.length > 0)
-      handleTable(bsTable, chartContent);
-
-    // if there is a shiny-html-output element then listen for
-    // new bootstrap tables bound to it (delay looking for the
-    // table to provide time for the value to be bound)
-    chartContent.find('.shiny-html-output').on('shiny:value',
-      function(event) {
-        var element = $(event.target);
-        setTimeout(function() {
-          var bsTable = findBootstrapTable(element);
-          if (bsTable.length > 0)
-            handleTable(bsTable, element.parent());
-        }, 10);
-      });
   }
 
   function handleShinyApp(chartContent) {
@@ -800,7 +780,7 @@ var FlexDashboard = (function () {
   }
 
   // extract chart notes from a chart-stage section
-  function extractChartNotes(chartContent, chartWrapper) {
+  function resolveChartNotes(chartContent, chartWrapper, extractNotes) {
 
     // track whether we successfully extracted notes
     var extracted = false;
@@ -814,7 +794,7 @@ var FlexDashboard = (function () {
     chartNotes.html('&nbsp;');
 
     // look for a chart image or htmlwidget
-    if (hasChart(chartContent)) {
+    if (extractNotes) {
       var lastChild = chartContent.children().last();
       if (lastChild.is("p") &&
           (lastChild.html().length > 0) &&
@@ -838,12 +818,10 @@ var FlexDashboard = (function () {
     var widget = chartContent.children('div[id^="htmlwidget-"],div.html-widget');
     var shiny = chartContent.children('div[class^="shiny-"]');
     var shinyApp = findShinyApp(chartContent);
-    var bsTable = findBootstrapTable(chartContent);
     return (img.length > 0) ||
            (widget.length > 0) ||
            (shiny.length > 0) ||
-           (shinyApp.length > 0) ||
-           (bsTable.length > 0);
+           (shinyApp.length > 0);
   }
 
   function hasFlex(chartContent) {
@@ -856,14 +834,6 @@ var FlexDashboard = (function () {
 
   function findShinyApp(chartContent) {
     return chartContent.find('iframe.shiny-frame');
-  }
-
-  function findBootstrapTable(chartContent) {
-    var bsTable = chartContent.find('table.table');
-    if (bsTable.length > 0)
-      return bsTable;
-    else
-      return chartContent.find('tr.header').parent('thead').parent('table');
   }
 
   // safely detect rendering on a mobile phone
@@ -988,6 +958,8 @@ window.FlexDashboard = new FlexDashboard();
 // valueBox plugin
 window.FlexDashboardPlugins.push({
 
+  type: "custom",
+
   find: function(container) {
     if (container.hasClass('value-box'))
       return container;
@@ -995,11 +967,8 @@ window.FlexDashboardPlugins.push({
       return null;
   },
 
-  attributes: function(container, component, mobile) {
-    return {
-      framed: false,
-      flex: false
-    };
+  flex: function(mobile) {
+    return false;
   },
 
   layout: function(title, container, component, mobile) {
@@ -1115,6 +1084,46 @@ window.FlexDashboardPlugins.push({
   }
 });
 
+// bootstrap table plugin
+window.FlexDashboardPlugins.push({
+
+  find: function(container) {
+    var bsTable = container.find('table.table');
+    if (bsTable.length === 0)
+      bsTable = container.find('tr.header').parent('thead').parent('table');
+    if (bsTable.length > 0)
+      return bsTable;
+    else
+      return null;
+  },
+
+  flex: function(mobile) {
+    return true;
+  },
+
+  layout: function(title, container, component, mobile) {
+
+    // alias variables
+    var bsTable = component;
+    var overflowContainer = container;
+
+    // add shim to force scrollbar on overflow
+    overflowContainer.addClass('bootstrap-table-shim');
+
+    // fixup xtable generated tables with a proper thead
+    var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
+    if (headerRow.length > 0) {
+      var thead = $('<thead></thead>');
+      bsTable.prepend(thead);
+      headerRow.detach().appendTo(thead);
+    }
+
+    // stable table headers when scrolling
+    bsTable.stickyTableHeaders({
+      scrollableArea: overflowContainer
+    });
+  }
+});
 
 
 
