@@ -666,7 +666,7 @@ var FlexDashboard = (function () {
     var chartContent = chart.children('.chart-stage');
 
     // flex the content if it has a chart OR is empty (e.g. sample layout)
-    result.flex = plugins.length ? pluginsFlex(plugins) : hasFlex(chartContent);
+    result.flex = pluginsFlex(plugins);
     if (result.flex) {
       // add flex classes
       chart.addClass('chart-wrapper-flex');
@@ -825,20 +825,6 @@ var FlexDashboard = (function () {
     return chartContent.find('.shiny-text-output, .shiny-html-output');
   }
 
-  function hasChart(chartContent) {
-    var img = chartContent.children('p.image-container')
-                          .children('img:only-child');
-    return (img.length > 0);
-  }
-
-  function hasFlex(chartContent) {
-    return hasChart(chartContent) || isEmpty(chartContent)
-  }
-
-  function isEmpty(chartContent) {
-    return chartContent.find('p').length == 0;
-  }
-
   // safely detect rendering on a mobile phone
   function isMobilePhone() {
     try
@@ -957,6 +943,29 @@ var FlexDashboard = (function () {
 })();
 
 window.FlexDashboard = new FlexDashboard();
+
+// empty content plugin
+window.FlexDashboardPlugins.push({
+  find: function(container) {
+    if (container.find('p').length == 0)
+      return container;
+    else
+      return $();
+  }
+})
+
+// plot image plugin
+window.FlexDashboardPlugins.push({
+
+  find: function(container) {
+    return container.children('p.image-container')
+                    .children('img:only-child');
+  },
+
+  layout: function(title, container, component, mobile) {
+
+  }
+});
 
 // htmlwidget plugin
 window.FlexDashboardPlugins.push({
