@@ -202,23 +202,23 @@ body hr {
   border-bottom: 2px solid #dddddd;
 }
 
-.bootstrap-table-shim table>thead {
+.bootstrap-table table>thead {
   background-color: #fff;
 }
 
-.bootstrap-table-shim table.data,
-.bootstrap-table-shim table.shiny-table {
+.bootstrap-table table.data,
+.bootstrap-table table.shiny-table {
   width: inherit !important;
 }
 
-.bootstrap-table-shim table.data>tbody>tr>th,
-.bootstrap-table-shim table.shiny-table>tbody>tr>th {
+.bootstrap-table table.data>tbody>tr>th,
+.bootstrap-table table.shiny-table>tbody>tr>th {
   border-top: none;
   border-bottom: 2px solid #dddddd;
   padding: 5px;
 }
 
-.bootstrap-table-shim .data td[align=right] {
+.bootstrap-table .data td[align=right] {
   font-family: inherit;
 }
 

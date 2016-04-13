@@ -73,12 +73,9 @@ window.FlexDashboard.Components.push({
   },
 
   layout: function(title, container, element, mobile) {
+
     // alias variables
     var bsTable = element;
-    var overflowContainer = container;
-
-    // add shim to force scrollbar on overflow
-    overflowContainer.addClass('bootstrap-table-shim');
 
     // fixup xtable generated tables with a proper thead
     var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
@@ -88,10 +85,19 @@ window.FlexDashboard.Components.push({
       headerRow.detach().appendTo(thead);
     }
 
-    // stable table headers when scrolling
-    bsTable.stickyTableHeaders({
-      scrollableArea: overflowContainer
-    });
+    // improve appearance
+    container.addClass('bootstrap-table');
+
+    // for non-mobile provide scrolling w/ sticky headers
+    if (!mobile) {
+      // force scrollbar on overflow
+      container.addClass('bootstrap-table-shim');
+
+      // stable table headers when scrolling
+      bsTable.stickyTableHeaders({
+        scrollableArea: container
+      });
+    }
   }
 });
 
@@ -942,7 +948,22 @@ var FlexDashboard = (function () {
         function(event) {
           var element = $(event.target);
           setTimeout(function() {
-            componentsLayout(findComponents(element), title, element.parent());
+
+            // see if we opted out of flex based on our output (for shiny
+            // we can't tell what type of output we have until after the
+            // value is bound)
+            var components = findComponents(element);
+            var flex = componentsFlex(components);
+            if (!flex) {
+              chart.css('height', "");
+              setFlex(chart, "");
+              chart.removeClass('chart-wrapper-flex');
+              chartContent.removeClass('chart-stage-flex');
+              chartContent.children().unwrap();
+            }
+
+            // perform layout
+            componentsLayout(components, title, element.parent());
           }, 10);
         });
     }
