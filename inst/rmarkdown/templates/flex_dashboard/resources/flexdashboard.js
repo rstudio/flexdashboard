@@ -657,9 +657,6 @@ var FlexDashboard = (function () {
       return result;
     }
 
-    // auto-resizing treatment for image
-    autoResizeChartImage(chart);
-
     // put all the content in a chart wrapper div
     chart.addClass('chart-wrapper');
     chart.wrapInner('<div class="chart-stage"></div>');
@@ -770,28 +767,6 @@ var FlexDashboard = (function () {
     var title = h3.html();
     h3.remove();
     return title;
-  }
-
-  function autoResizeChartImage(chart) {
-
-    // look for a top level <p> tag with a single child that is an image
-    var img = chart.children('p').children('img:only-child');
-
-    // did we find one?
-    if (img.length == 1) {
-
-      // apply the image container style to the parent <p>
-      var p = img.parent();
-      p.addClass('image-container');
-
-      // grab the url and make it the background image of the <p>
-      var src = img.attr('src');
-      var url = 'url("' + src + '")';
-      p.css('background', url)
-       .css('background-size', 'contain')
-       .css('background-repeat', 'no-repeat')
-       .css('background-position', 'center');
-      }
   }
 
   // extract chart notes from a chart-stage section
@@ -964,12 +939,24 @@ window.FlexDashboardPlugins.push({
 window.FlexDashboardPlugins.push({
 
   find: function(container) {
-    return container.children('p.image-container')
+    return container.children('p')
                     .children('img:only-child');
   },
 
   layout: function(title, container, component, mobile) {
 
+    // apply the image container style to the parent <p>
+    var img = component;
+    var p = img.parent();
+    p.addClass('image-container');
+
+    // grab the url and make it the background image of the <p>
+    var src = img.attr('src');
+    var url = 'url("' + src + '")';
+    p.css('background', url)
+     .css('background-size', 'contain')
+     .css('background-repeat', 'no-repeat')
+     .css('background-position', 'center');
   }
 });
 
