@@ -1,6 +1,6 @@
 
-// empty content plugin
-window.FlexDashboard.Plugins.push({
+// empty content
+window.FlexDashboard.Components.push({
   find: function(container) {
     if (container.find('p').length == 0)
       return container;
@@ -9,18 +9,18 @@ window.FlexDashboard.Plugins.push({
   }
 })
 
-// plot image plugin
-window.FlexDashboard.Plugins.push({
+// plot image
+window.FlexDashboard.Components.push({
 
   find: function(container) {
     return container.children('p')
                     .children('img:only-child');
   },
 
-  layout: function(title, container, component, mobile) {
+  layout: function(title, container, element, mobile) {
 
     // apply the image container style to the parent <p>
-    var img = component;
+    var img = element;
     var p = img.parent();
     p.addClass('image-container');
 
@@ -34,22 +34,22 @@ window.FlexDashboard.Plugins.push({
   }
 });
 
-// htmlwidget plugin
-window.FlexDashboard.Plugins.push({
+// htmlwidget
+window.FlexDashboard.Components.push({
   find: function(container) {
     return container.children('div[id^="htmlwidget-"],div.html-widget');
   }
 });
 
-// shiny output plugin
-window.FlexDashboard.Plugins.push({
+// shiny output
+window.FlexDashboard.Components.push({
   find: function(container) {
     return container.children('div[class^="shiny-"]');
   }
 });
 
-// Bootstrap table plugin
-window.FlexDashboard.Plugins.push({
+// bootstrap table
+window.FlexDashboard.Components.push({
 
   find: function(container) {
     var bsTable = container.find('table.table');
@@ -59,10 +59,10 @@ window.FlexDashboard.Plugins.push({
       return container.find('tr.header').parent('thead').parent('table');
   },
 
-  layout: function(title, container, component, mobile) {
+  layout: function(title, container, element, mobile) {
 
     // alias variables
-    var bsTable = component;
+    var bsTable = element;
     var overflowContainer = container;
 
     // add shim to force scrollbar on overflow
@@ -83,8 +83,8 @@ window.FlexDashboard.Plugins.push({
   }
 });
 
-// Shiny app plugin
-window.FlexDashboard.Plugins.push({
+// embedded shiny app
+window.FlexDashboard.Components.push({
 
   find: function(container) {
     return container.find('iframe.shiny-frame');
@@ -94,15 +94,15 @@ window.FlexDashboard.Plugins.push({
     return mobile ? false : true;
   },
 
-  layout: function(title, container, component, mobile) {
-    component.attr('height', '100%');
-    component.unwrap();
+  layout: function(title, container, element, mobile) {
+    element.attr('height', '100%');
+    element.unwrap();
   }
 });
 
 
-// valueBox plugin
-window.FlexDashboard.Plugins.push({
+// valueBox
+window.FlexDashboard.Components.push({
 
   type: "custom",
 
@@ -117,11 +117,11 @@ window.FlexDashboard.Plugins.push({
     return false;
   },
 
-  layout: function(title, container, component, mobile) {
+  layout: function(title, container, element, mobile) {
 
     // alias variables
     var chartTitle = title;
-    var valueBox = component;
+    var valueBox = element;
 
     // value paragraph
     var value = $('<p class="value"></p>');
@@ -235,8 +235,8 @@ var FlexDashboard = (function () {
   // initialize options
   var _options = {};
 
-  // capture plugins (they will overwritten shortly)
-  var _plugins = window.FlexDashboard.Plugins;
+  // capture components
+  var _components = window.FlexDashboard.Components;
 
   var FlexDashboard = function() {
 
@@ -880,15 +880,15 @@ var FlexDashboard = (function () {
     // extract the title
     var title = extractTitle(chart);
 
-    // find plugins that apply to this container
-    var plugins = findPlugins(chart);
+    // find components that apply to this container
+    var components = findComponents(chart);
 
-    // if it's a custom plugin then call it and return
-    var customPlugins = pluginsCustom(plugins);
-    if (customPlugins.length) {
-      pluginsLayout(customPlugins, title, chart);
+    // if it's a custom component then call it and return
+    var customComponents = componentsCustom(components);
+    if (customComponents.length) {
+      componentsLayout(customComponents, title, chart);
       result.caption = false;
-      result.flex = pluginsFlex(customPlugins);
+      result.flex = componentsFlex(customComponents);
       return result;
     }
 
@@ -898,7 +898,7 @@ var FlexDashboard = (function () {
     var chartContent = chart.children('.chart-stage');
 
     // flex the content if it has a chart OR is empty (e.g. sample layout)
-    result.flex = pluginsFlex(plugins);
+    result.flex = componentsFlex(components);
     if (result.flex) {
       // add flex classes
       chart.addClass('chart-wrapper-flex');
@@ -922,15 +922,15 @@ var FlexDashboard = (function () {
         }
       }
 
-      // call plugins
-      pluginsLayout(plugins, title, chartContent);
+      // call compoents
+      componentsLayout(components, title, chartContent);
 
-      // also activate plugins on shiny output
+      // also activate components on shiny output
       findShinyOutput(chartContent).on('shiny:value',
         function(event) {
           var element = $(event.target);
           setTimeout(function() {
-            pluginsLayout(findPlugins(element), title, element.parent());
+            componentsLayout(findComponents(element), title, element.parent());
           }, 10);
         });
     }
@@ -941,7 +941,7 @@ var FlexDashboard = (function () {
     chart.prepend(chartTitle);
 
     // resolve notes
-    var extractNotes = plugins.length > 0;
+    var extractNotes = components.length > 0;
     if (resolveChartNotes(chartContent, chart, extractNotes))
       result.caption = true;
 
@@ -949,50 +949,50 @@ var FlexDashboard = (function () {
     return result;
   }
 
-  // find plugins that apply within a container
-  function findPlugins(container) {
-    var plugins = [];
-    for (var i=0; i<_plugins.length; i++) {
-      var plugin = _plugins[i];
-      if (plugin.find(container).length)
-        plugins.push(plugin);
+  // find components that apply within a container
+  function findComponents(container) {
+    var components = [];
+    for (var i=0; i<_components.length; i++) {
+      var component = _components[i];
+      if (component.find(container).length)
+        components.push(component);
     }
-    return plugins;
+    return components;
   }
 
-  // if there is a custom plugin then pick it out
-  function pluginsCustom(plugins) {
-    var customPlugin = [];
-    for (var i=0; i<plugins.length; i++)
-      if (plugins[i].type === "custom") {
-        customPlugin.push(plugins[i]);
+  // if there is a custom component then pick it out
+  function componentsCustom(components) {
+    var customComponent = [];
+    for (var i=0; i<components.length; i++)
+      if (components[i].type === "custom") {
+        customComponent.push(components[i]);
         break;
       }
-    return customPlugin;
+    return customComponent;
   }
 
-  // query all plugins for flex
-  function pluginsFlex(plugins) {
+  // query all components for flex
+  function componentsFlex(components) {
 
-    // no plugins at all means no flex
-    if (plugins.length === 0)
+    // no components at all means no flex
+    if (components.length === 0)
       return false;
 
-    // otherwise query plugins (assume true unless we see false)
+    // otherwise query components (assume true unless we see false)
     var isMobile = isMobilePhone();
-    for (var i=0; i<plugins.length; i++)
-      if (plugins[i].flex && !plugins[i].flex(isMobile))
+    for (var i=0; i<components.length; i++)
+      if (components[i].flex && !components[i].flex(isMobile))
         return false;
     return true;
   }
 
-  // layout all plugins
-  function pluginsLayout(plugins, title, container) {
+  // layout all components
+  function componentsLayout(components, title, container) {
     var isMobile = isMobilePhone();
-    for (var i=0; i<plugins.length; i++) {
-      var component =  plugins[i].find(container);
-      if (plugins[i].layout)
-        plugins[i].layout(title, container, component, isMobile);
+    for (var i=0; i<components.length; i++) {
+      var element = components[i].find(container);
+      if (components[i].layout)
+        components[i].layout(title, container, element, isMobile);
     }
   }
 
