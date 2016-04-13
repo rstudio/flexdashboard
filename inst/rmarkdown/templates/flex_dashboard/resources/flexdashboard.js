@@ -961,6 +961,65 @@ var FlexDashboard = (function () {
 
 window.FlexDashboard = new FlexDashboard();
 
+
+
+// Bootstrap table plugin
+window.FlexDashboardPlugins.push({
+
+  find: function(container) {
+    var bsTable = container.find('table.table');
+    if (bsTable.length !== 0)
+      return bsTable
+    else
+      return container.find('tr.header').parent('thead').parent('table');
+  },
+
+  flex: function(mobile) {
+    return true;
+  },
+
+  layout: function(title, container, component, mobile) {
+
+    // alias variables
+    var bsTable = component;
+    var overflowContainer = container;
+
+    // add shim to force scrollbar on overflow
+    overflowContainer.addClass('bootstrap-table-shim');
+
+    // fixup xtable generated tables with a proper thead
+    var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
+    if (headerRow.length > 0) {
+      var thead = $('<thead></thead>');
+      bsTable.prepend(thead);
+      headerRow.detach().appendTo(thead);
+    }
+
+    // stable table headers when scrolling
+    bsTable.stickyTableHeaders({
+      scrollableArea: overflowContainer
+    });
+  }
+});
+
+// Shiny app plugin
+window.FlexDashboardPlugins.push({
+
+  find: function(container) {
+    return container.find('iframe.shiny-frame');
+  },
+
+  flex: function(mobile) {
+    return mobile ? false : true;
+  },
+
+  layout: function(title, container, component, mobile) {
+    component.attr('height', '100%');
+    component.unwrap();
+  }
+});
+
+
 // valueBox plugin
 window.FlexDashboardPlugins.push({
 
@@ -1087,62 +1146,6 @@ window.FlexDashboardPlugins.push({
         }, 10);
       }
     );
-  }
-});
-
-// bootstrap table plugin
-window.FlexDashboardPlugins.push({
-
-  find: function(container) {
-    var bsTable = container.find('table.table');
-    if (bsTable.length !== 0)
-      return bsTable
-    else
-      return container.find('tr.header').parent('thead').parent('table');
-  },
-
-  flex: function(mobile) {
-    return true;
-  },
-
-  layout: function(title, container, component, mobile) {
-
-    // alias variables
-    var bsTable = component;
-    var overflowContainer = container;
-
-    // add shim to force scrollbar on overflow
-    overflowContainer.addClass('bootstrap-table-shim');
-
-    // fixup xtable generated tables with a proper thead
-    var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
-    if (headerRow.length > 0) {
-      var thead = $('<thead></thead>');
-      bsTable.prepend(thead);
-      headerRow.detach().appendTo(thead);
-    }
-
-    // stable table headers when scrolling
-    bsTable.stickyTableHeaders({
-      scrollableArea: overflowContainer
-    });
-  }
-});
-
-// Shiny app plugin
-window.FlexDashboardPlugins.push({
-
-  find: function(container) {
-    return container.find('iframe.shiny-frame');
-  },
-
-  flex: function(mobile) {
-    return mobile ? false : true;
-  },
-
-  layout: function(title, container, component, mobile) {
-    component.attr('height', '100%');
-    component.unwrap();
   }
 });
 
