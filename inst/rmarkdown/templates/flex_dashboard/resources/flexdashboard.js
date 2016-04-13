@@ -47,6 +47,16 @@ window.FlexDashboard.Components.push({
   }
 });
 
+// datatables
+window.FlexDashboard.Components.push({
+  find: function(container) {
+    return container.find('.datatables');
+  },
+  flex: function(mobile) {
+    return mobile ? false : true;
+  }
+});
+
 // bootstrap table
 window.FlexDashboard.Components.push({
 
