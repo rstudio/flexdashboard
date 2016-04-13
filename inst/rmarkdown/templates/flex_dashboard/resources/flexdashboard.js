@@ -659,7 +659,7 @@ var FlexDashboard = (function () {
     rows.each(function () {
 
       // flags
-      var haveCaptions = false;
+      var haveNotes = false;
       var haveFlexHeight = true;
 
       // remove the h2
@@ -685,8 +685,8 @@ var FlexDashboard = (function () {
           haveFlexHeight = false;
 
         // update state
-        if (result.caption)
-          haveCaptions = true;
+        if (result.notes)
+          haveNotes = true;
 
         // set the column flex based on the figure width
         // (value boxes will just get the default figure width)
@@ -695,9 +695,9 @@ var FlexDashboard = (function () {
 
       });
 
-      // if we don't have any captions in this row then remove
+      // if we don't have any notes in this row then remove
       // the chart notes divs
-      if (!haveCaptions)
+      if (!haveNotes)
         $(this).find('.chart-notes').remove();
 
        // make it a flexbox row
@@ -772,7 +772,7 @@ var FlexDashboard = (function () {
         var result = layoutChart($(this));
 
         // ice the notes if there are none
-        if (!result.caption)
+        if (!result.notes)
           $(this).find('.chart-notes').remove();
 
         // set flex height based on figHeight, then adjust
@@ -871,7 +871,7 @@ var FlexDashboard = (function () {
 
     // state to return
     var result = {
-      caption: false,
+      notes: false,
       flex: false
     };
 
@@ -885,7 +885,7 @@ var FlexDashboard = (function () {
     var customComponents = componentsCustom(components);
     if (customComponents.length) {
       componentsLayout(customComponents, title, chart);
-      result.caption = false;
+      result.notes = false;
       result.flex = componentsFlex(customComponents);
       return result;
     }
@@ -938,10 +938,14 @@ var FlexDashboard = (function () {
     chartTitle.html(title);
     chart.prepend(chartTitle);
 
-    // resolve notes
-    var extractNotes = components.length > 0;
-    if (resolveChartNotes(chartContent, chart, extractNotes))
-      result.caption = true;
+    // add the notes section
+    var chartNotes = $('<div class="chart-notes"></div>');
+    chartNotes.html('&nbsp;');
+    chart.append(chartNotes);
+
+    // attempt to extract notes if we have a component
+    if (components.length)
+      result.notes = extractChartNotes(chartContent, chartNotes);
 
     // return result
     return result;
@@ -1007,36 +1011,20 @@ var FlexDashboard = (function () {
   }
 
   // extract chart notes from a chart-stage section
-  function resolveChartNotes(chartContent, chartWrapper, extractNotes) {
-
-    // track whether we successfully extracted notes
-    var extracted = false;
-
-    // if there is more than one top level visualization element
-    // (an image or an htmlwidget in chart stage) then take the
-    // last element and convert it into the chart notes, otherwise
-    // just create an empty chart notes
-
-    var chartNotes = $('<div class="chart-notes"></div>');
-    chartNotes.html('&nbsp;');
+  function extractChartNotes(chartContent, chartNotes) {
 
     // look for a chart image or htmlwidget
-    if (extractNotes) {
-      var lastChild = chartContent.children().last();
-      if (lastChild.is("p") &&
-          (lastChild.html().length > 0) &&
-          (lastChild.children('img:only-child').length === 0) &&
-          (lastChild.children('iframe.shiny-frame:only-child').length === 0)) {
-        extracted = true;
-        chartNotes.html(lastChild.html());
-        lastChild.remove();
-      }
-
+    var lastChild = chartContent.children().last();
+    if (lastChild.is("p") &&
+        (lastChild.html().length > 0) &&
+        (lastChild.children('img:only-child').length === 0) &&
+        (lastChild.children('iframe.shiny-frame:only-child').length === 0)) {
+      chartNotes.html(lastChild.html());
+      lastChild.remove();
+      return true;
+    } else {
+      return false;
     }
-    chartWrapper.append(chartNotes);
-
-    // return status
-    return extracted;
   }
 
   function findShinyOutput(chartContent) {
