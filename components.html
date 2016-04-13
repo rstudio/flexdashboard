@@ -368,7 +368,7 @@ div.tocify {
 </ol>
 <div id="simple-table" class="section level3">
 <h3>Simple Table</h3>
-<p>A simple table is ideal for smaller numbers of records (less than 100). The code required for simple tables differs depending on whether you are building a static or dynamic (Shiny-based) flexdashboard. For static dashboards, you should use the <code>knitr::kable</code> function to output your dataset, for example:</p>
+<p>A simple table is ideal for smaller numbers of records (i.e. 40-50 or less). The code required for simple tables differs depending on whether you are building a static or dynamic (Shiny-based) flexdashboard. For static dashboards, you should use the <code>knitr::kable</code> function to output your dataset, for example:</p>
 <div id="tabularkable">
 
 </div>
@@ -380,11 +380,11 @@ div.tocify {
 <script type="text/javascript">loadSnippet('tabularrendertable')</script>
 <p>This ensures that the tabular display is updated when the inputs upon which it depends change.</p>
 </div>
-<div id="datatable" class="section level3">
-<h3>DataTable</h3>
+<div id="data-table" class="section level3">
+<h3>Data Table</h3>
 <p>The <a href="http://rstudio.github.io/DT/">DT</a> package (an interface to the DataTables JavaScript library) can display R matrices or data frames as interactive HTML tables that support filtering, pagination, and sorting.</p>
 <p>Note that if you want to use DataTables with flexdashboard you should install the development version of the DT package from GitHub (it contains some changes required for flexdashboard compatibility):</p>
-<pre class="r"><code>devtools::install_github(&quot;rstudio/DT&quot;, ref = &quot;feature/fill-container&quot;)</code></pre>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/DT&quot;)</code></pre>
 <p>To include a DataTable you use the <code>DT::datatable</code> function:</p>
 <div id="datatablesimple">
 
@@ -404,6 +404,14 @@ div.tocify {
 </div>
 <script type="text/javascript">loadSnippet('datatableshiny')</script>
 </div>
+</div>
+<div id="mobile-display" class="section level3">
+<h3>Mobile Display</h3>
+<p>On desktop and tablet displays, both the <a href="#simple-table">Simple Table</a> and <a href="#data-table">Data Table</a> components will fit exactly within the bounds of their flexdashboard container and provide a scroll bar to view records that don’t fit on screen. However, on mobile phones both components will never use a scroll bar (as that would compete with scrolling the overall dashboard). Rather, on mobile phone layouts:</p>
+<ol style="list-style-type: decimal">
+<li><p>The <a href="#simple-table">Simple Table</a> will display all available records; and</p></li>
+<li><p>The <a href="#data-table">Data Table</a> will use pagination (i.e. force <code>bPaginate = TRUE</code>).</p></li>
+</ol>
 </div>
 </div>
 <div id="value-boxes" class="section level2">
@@ -476,7 +484,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><p>You can include content at the top of the page before dashboard sections are introduced.</p></li>
 <li><p>You can define dashboard sections that don’t include a chart but rather include arbitrary content (text, images, equations, etc.)</p></li>
-<li><p>You can provide short text annotations for the various charts within a dashboard by including blockquoted text (i.e. text prefixed with <code>&gt;</code>) immediately below the R code chunk where the chart is rendered.</p></li>
+<li><p>You can provide short text annotations for the various charts within a dashboard by including block-quoted text (i.e. text prefixed with <code>&gt;</code>) immediately below the R code chunk where the chart is rendered.</p></li>
 </ol>
 <p>For example, the following dashboard includes some content at the top, brief footer comments for each chart, and a dashboard section that contains only text.</p>
 <div id="textannotation">
