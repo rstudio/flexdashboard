@@ -1137,7 +1137,8 @@ var FlexDashboard = (function () {
 
   FlexDashboard.prototype = {
     constructor: FlexDashboard,
-    init: init
+    init: init,
+    isMobilePhone: isMobilePhone
   };
 
   return FlexDashboard;
