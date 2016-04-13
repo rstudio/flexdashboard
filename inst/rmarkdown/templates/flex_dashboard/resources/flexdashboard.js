@@ -743,7 +743,7 @@ var FlexDashboard = (function () {
   function pluginsFlex(plugins) {
     var isMobile = isMobilePhone();
     for (var i=0; i<plugins.length; i++)
-      if (!plugins[i].flex(isMobile))
+      if (plugins[i].flex && !plugins[i].flex(isMobile))
         return false;
     return true;
   }
@@ -753,7 +753,8 @@ var FlexDashboard = (function () {
     var isMobile = isMobilePhone();
     for (var i=0; i<plugins.length; i++) {
       var component =  plugins[i].find(container);
-      plugins[i].layout(title, container, component, isMobile);
+      if (plugins[i].layout)
+        plugins[i].layout(title, container, component, isMobile);
     }
   }
 
@@ -827,11 +828,7 @@ var FlexDashboard = (function () {
   function hasChart(chartContent) {
     var img = chartContent.children('p.image-container')
                           .children('img:only-child');
-    var widget = chartContent.children('div[id^="htmlwidget-"],div.html-widget');
-    var shiny = chartContent.children('div[class^="shiny-"]');
-    return (img.length > 0) ||
-           (widget.length > 0) ||
-           (shiny.length > 0);
+    return (img.length > 0);
   }
 
   function hasFlex(chartContent) {
@@ -961,7 +958,19 @@ var FlexDashboard = (function () {
 
 window.FlexDashboard = new FlexDashboard();
 
+// htmlwidget plugin
+window.FlexDashboardPlugins.push({
+  find: function(container) {
+    return container.children('div[id^="htmlwidget-"],div.html-widget');
+  }
+});
 
+// shiny output plugin
+window.FlexDashboardPlugins.push({
+  find: function(container) {
+    return container.children('div[class^="shiny-"]');
+  }
+});
 
 // Bootstrap table plugin
 window.FlexDashboardPlugins.push({
@@ -972,10 +981,6 @@ window.FlexDashboardPlugins.push({
       return bsTable
     else
       return container.find('tr.header').parent('thead').parent('table');
-  },
-
-  flex: function(mobile) {
-    return true;
   },
 
   layout: function(title, container, component, mobile) {
