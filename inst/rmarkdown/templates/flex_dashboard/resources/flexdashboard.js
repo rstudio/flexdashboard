@@ -707,7 +707,7 @@ var FlexDashboard = (function () {
         plugin.layout(title, chartContent, pluginComponent, isMobile);
 
       // also activate plugins on shiny output
-      chartContent.find('.shiny-text-output, .shiny-html-output').on('shiny:value',
+      findShinyOutput(chartContent).on('shiny:value',
         function(event) {
           console.log('shiny output');
           var element = $(event.target);
@@ -815,6 +815,10 @@ var FlexDashboard = (function () {
 
   function isEmpty(chartContent) {
     return chartContent.find('p').length == 0;
+  }
+
+  function findShinyOutput(chartContent) {
+    return chartContent.find('.shiny-text-output, .shiny-html-output');
   }
 
   // safely detect rendering on a mobile phone
