@@ -1,7 +1,242 @@
 
+// empty content plugin
+window.FlexDashboard.Plugins.push({
+  find: function(container) {
+    if (container.find('p').length == 0)
+      return container;
+    else
+      return $();
+  }
+})
+
+// plot image plugin
+window.FlexDashboard.Plugins.push({
+
+  find: function(container) {
+    return container.children('p')
+                    .children('img:only-child');
+  },
+
+  layout: function(title, container, component, mobile) {
+
+    // apply the image container style to the parent <p>
+    var img = component;
+    var p = img.parent();
+    p.addClass('image-container');
+
+    // grab the url and make it the background image of the <p>
+    var src = img.attr('src');
+    var url = 'url("' + src + '")';
+    p.css('background', url)
+     .css('background-size', 'contain')
+     .css('background-repeat', 'no-repeat')
+     .css('background-position', 'center');
+  }
+});
+
+// htmlwidget plugin
+window.FlexDashboard.Plugins.push({
+  find: function(container) {
+    return container.children('div[id^="htmlwidget-"],div.html-widget');
+  }
+});
+
+// shiny output plugin
+window.FlexDashboard.Plugins.push({
+  find: function(container) {
+    return container.children('div[class^="shiny-"]');
+  }
+});
+
+// Bootstrap table plugin
+window.FlexDashboard.Plugins.push({
+
+  find: function(container) {
+    var bsTable = container.find('table.table');
+    if (bsTable.length !== 0)
+      return bsTable
+    else
+      return container.find('tr.header').parent('thead').parent('table');
+  },
+
+  layout: function(title, container, component, mobile) {
+
+    // alias variables
+    var bsTable = component;
+    var overflowContainer = container;
+
+    // add shim to force scrollbar on overflow
+    overflowContainer.addClass('bootstrap-table-shim');
+
+    // fixup xtable generated tables with a proper thead
+    var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
+    if (headerRow.length > 0) {
+      var thead = $('<thead></thead>');
+      bsTable.prepend(thead);
+      headerRow.detach().appendTo(thead);
+    }
+
+    // stable table headers when scrolling
+    bsTable.stickyTableHeaders({
+      scrollableArea: overflowContainer
+    });
+  }
+});
+
+// Shiny app plugin
+window.FlexDashboard.Plugins.push({
+
+  find: function(container) {
+    return container.find('iframe.shiny-frame');
+  },
+
+  flex: function(mobile) {
+    return mobile ? false : true;
+  },
+
+  layout: function(title, container, component, mobile) {
+    component.attr('height', '100%');
+    component.unwrap();
+  }
+});
+
+
+// valueBox plugin
+window.FlexDashboard.Plugins.push({
+
+  type: "custom",
+
+  find: function(container) {
+    if (container.hasClass('value-box'))
+      return container;
+    else
+      return $();
+  },
+
+  flex: function(mobile) {
+    return false;
+  },
+
+  layout: function(title, container, component, mobile) {
+
+    // alias variables
+    var chartTitle = title;
+    var valueBox = component;
+
+    // value paragraph
+    var value = $('<p class="value"></p>');
+
+    // if we have shiny-text-output then just move it in
+    var valueOutputSpan = [];
+    var shinyOutput = valueBox.find('.shiny-text-output, .shiny-html-output').detach();
+    if (shinyOutput.length) {
+      valueBox.children().remove();
+      shinyOutput.html("&mdash;");
+      value.append(shinyOutput);
+    } else {
+      // extract the value (remove leading vector index)
+      var chartValue = valueBox.text().trim();
+      chartValue = chartValue.replace("[1] ", "");
+      valueOutputSpan = valueBox.find('span.value-output').detach();
+      valueBox.children().remove();
+      value.text(chartValue);
+    }
+
+    // caption
+    var caption = $('<p class="caption"></p>');
+    caption.html(chartTitle);
+
+    // build inner div for value box and add it
+    var inner = $('<div class="inner"></div>');
+    inner.append(value);
+    inner.append(caption);
+    valueBox.append(inner);
+
+    // add icon if specified
+    var icon = $('<div class="icon"><i></i></div>');
+    valueBox.append(icon);
+    function setIcon(chartIcon) {
+      var iconLib = "";
+      var components = chartIcon.split("-");
+      if (components.length > 1)
+        iconLib = components[0];
+      icon.children('i').attr('class', iconLib + ' ' + chartIcon);
+    }
+    var chartIcon = valueBox.attr('data-icon');
+    if (chartIcon)
+      setIcon(chartIcon);
+
+    // set color based on data-background if necessary
+    var dataBackground = valueBox.attr('data-background');
+    if (dataBackground)
+      valueBox.css('background-color', bgColor);
+    else {
+      // default to bg-primary if no other background is specified
+      if (!valueBox.hasClass('bg-primary') &&
+          !valueBox.hasClass('bg-info') &&
+          !valueBox.hasClass('bg-warning') &&
+          !valueBox.hasClass('bg-success') &&
+          !valueBox.hasClass('bg-danger')) {
+        valueBox.addClass('bg-primary');
+      }
+    }
+
+    // handle data attributes in valueOutputSpan
+    function handleValueOutput(valueOutput) {
+
+      // caption
+      var dataCaption = valueOutput.attr('data-caption');
+      if (dataCaption)
+        caption.html(dataCaption);
+
+      // icon
+      var dataIcon = valueOutput.attr('data-icon');
+      if (dataIcon)
+        setIcon(dataIcon);
+
+      // color
+      var dataColor = valueOutput.attr('data-color');
+      if (dataColor) {
+        if (dataColor.indexOf('bg-') === 0) {
+          valueBox.css('background-color', '');
+          if (!valueBox.hasClass(dataColor)) {
+             valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
+             valueBox.addClass(dataColor);
+          }
+        } else {
+          valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
+          valueBox.css('background-color', dataColor);
+        }
+      }
+    }
+
+    // check for a valueOutputSpan
+    if (valueOutputSpan.length > 0) {
+      handleValueOutput(valueOutputSpan);
+    }
+
+    // if we have a shinyOutput then bind a listener to handle
+    // new valueOutputSpan values
+    shinyOutput.on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+          var valueOutputSpan = element.find('span.value-output');
+          if (valueOutputSpan.length > 0)
+            handleValueOutput(valueOutputSpan);
+        }, 10);
+      }
+    );
+  }
+});
+
 var FlexDashboard = (function () {
 
+  // initialize options
   var _options = {};
+
+  // capture plugins (they will overwritten shortly)
+  var _plugins = window.FlexDashboard.Plugins;
 
   var FlexDashboard = function() {
 
@@ -717,8 +952,8 @@ var FlexDashboard = (function () {
   // find plugins that apply within a container
   function findPlugins(container) {
     var plugins = [];
-    for (var i=0; i<FlexDashboardPlugins.length; i++) {
-      var plugin = FlexDashboardPlugins[i];
+    for (var i=0; i<_plugins.length; i++) {
+      var plugin = _plugins[i];
       if (plugin.find(container).length)
         plugins.push(plugin);
     }
@@ -924,238 +1159,4 @@ var FlexDashboard = (function () {
 })();
 
 window.FlexDashboard = new FlexDashboard();
-
-// empty content plugin
-window.FlexDashboardPlugins.push({
-  find: function(container) {
-    if (container.find('p').length == 0)
-      return container;
-    else
-      return $();
-  }
-})
-
-// plot image plugin
-window.FlexDashboardPlugins.push({
-
-  find: function(container) {
-    return container.children('p')
-                    .children('img:only-child');
-  },
-
-  layout: function(title, container, component, mobile) {
-
-    // apply the image container style to the parent <p>
-    var img = component;
-    var p = img.parent();
-    p.addClass('image-container');
-
-    // grab the url and make it the background image of the <p>
-    var src = img.attr('src');
-    var url = 'url("' + src + '")';
-    p.css('background', url)
-     .css('background-size', 'contain')
-     .css('background-repeat', 'no-repeat')
-     .css('background-position', 'center');
-  }
-});
-
-// htmlwidget plugin
-window.FlexDashboardPlugins.push({
-  find: function(container) {
-    return container.children('div[id^="htmlwidget-"],div.html-widget');
-  }
-});
-
-// shiny output plugin
-window.FlexDashboardPlugins.push({
-  find: function(container) {
-    return container.children('div[class^="shiny-"]');
-  }
-});
-
-// Bootstrap table plugin
-window.FlexDashboardPlugins.push({
-
-  find: function(container) {
-    var bsTable = container.find('table.table');
-    if (bsTable.length !== 0)
-      return bsTable
-    else
-      return container.find('tr.header').parent('thead').parent('table');
-  },
-
-  layout: function(title, container, component, mobile) {
-
-    // alias variables
-    var bsTable = component;
-    var overflowContainer = container;
-
-    // add shim to force scrollbar on overflow
-    overflowContainer.addClass('bootstrap-table-shim');
-
-    // fixup xtable generated tables with a proper thead
-    var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
-    if (headerRow.length > 0) {
-      var thead = $('<thead></thead>');
-      bsTable.prepend(thead);
-      headerRow.detach().appendTo(thead);
-    }
-
-    // stable table headers when scrolling
-    bsTable.stickyTableHeaders({
-      scrollableArea: overflowContainer
-    });
-  }
-});
-
-// Shiny app plugin
-window.FlexDashboardPlugins.push({
-
-  find: function(container) {
-    return container.find('iframe.shiny-frame');
-  },
-
-  flex: function(mobile) {
-    return mobile ? false : true;
-  },
-
-  layout: function(title, container, component, mobile) {
-    component.attr('height', '100%');
-    component.unwrap();
-  }
-});
-
-
-// valueBox plugin
-window.FlexDashboardPlugins.push({
-
-  type: "custom",
-
-  find: function(container) {
-    if (container.hasClass('value-box'))
-      return container;
-    else
-      return $();
-  },
-
-  flex: function(mobile) {
-    return false;
-  },
-
-  layout: function(title, container, component, mobile) {
-
-    // alias variables
-    var chartTitle = title;
-    var valueBox = component;
-
-    // value paragraph
-    var value = $('<p class="value"></p>');
-
-    // if we have shiny-text-output then just move it in
-    var valueOutputSpan = [];
-    var shinyOutput = valueBox.find('.shiny-text-output, .shiny-html-output').detach();
-    if (shinyOutput.length) {
-      valueBox.children().remove();
-      shinyOutput.html("&mdash;");
-      value.append(shinyOutput);
-    } else {
-      // extract the value (remove leading vector index)
-      var chartValue = valueBox.text().trim();
-      chartValue = chartValue.replace("[1] ", "");
-      valueOutputSpan = valueBox.find('span.value-output').detach();
-      valueBox.children().remove();
-      value.text(chartValue);
-    }
-
-    // caption
-    var caption = $('<p class="caption"></p>');
-    caption.html(chartTitle);
-
-    // build inner div for value box and add it
-    var inner = $('<div class="inner"></div>');
-    inner.append(value);
-    inner.append(caption);
-    valueBox.append(inner);
-
-    // add icon if specified
-    var icon = $('<div class="icon"><i></i></div>');
-    valueBox.append(icon);
-    function setIcon(chartIcon) {
-      var iconLib = "";
-      var components = chartIcon.split("-");
-      if (components.length > 1)
-        iconLib = components[0];
-      icon.children('i').attr('class', iconLib + ' ' + chartIcon);
-    }
-    var chartIcon = valueBox.attr('data-icon');
-    if (chartIcon)
-      setIcon(chartIcon);
-
-    // set color based on data-background if necessary
-    var dataBackground = valueBox.attr('data-background');
-    if (dataBackground)
-      valueBox.css('background-color', bgColor);
-    else {
-      // default to bg-primary if no other background is specified
-      if (!valueBox.hasClass('bg-primary') &&
-          !valueBox.hasClass('bg-info') &&
-          !valueBox.hasClass('bg-warning') &&
-          !valueBox.hasClass('bg-success') &&
-          !valueBox.hasClass('bg-danger')) {
-        valueBox.addClass('bg-primary');
-      }
-    }
-
-    // handle data attributes in valueOutputSpan
-    function handleValueOutput(valueOutput) {
-
-      // caption
-      var dataCaption = valueOutput.attr('data-caption');
-      if (dataCaption)
-        caption.html(dataCaption);
-
-      // icon
-      var dataIcon = valueOutput.attr('data-icon');
-      if (dataIcon)
-        setIcon(dataIcon);
-
-      // color
-      var dataColor = valueOutput.attr('data-color');
-      if (dataColor) {
-        if (dataColor.indexOf('bg-') === 0) {
-          valueBox.css('background-color', '');
-          if (!valueBox.hasClass(dataColor)) {
-             valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
-             valueBox.addClass(dataColor);
-          }
-        } else {
-          valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
-          valueBox.css('background-color', dataColor);
-        }
-      }
-    }
-
-    // check for a valueOutputSpan
-    if (valueOutputSpan.length > 0) {
-      handleValueOutput(valueOutputSpan);
-    }
-
-    // if we have a shinyOutput then bind a listener to handle
-    // new valueOutputSpan values
-    shinyOutput.on('shiny:value',
-      function(event) {
-        var element = $(event.target);
-        setTimeout(function() {
-          var valueOutputSpan = element.find('span.value-output');
-          if (valueOutputSpan.length > 0)
-            handleValueOutput(valueOutputSpan);
-        }, 10);
-      }
-    );
-  }
-});
-
-
-
 
