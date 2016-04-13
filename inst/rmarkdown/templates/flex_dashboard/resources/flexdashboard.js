@@ -709,7 +709,7 @@ var FlexDashboard = (function () {
     chart.prepend(chartTitle);
 
     // resolve notes
-    var extractNotes = plugins.length || hasChart(chartContent)
+    var extractNotes = plugins.length > 0;
     if (resolveChartNotes(chartContent, chart, extractNotes))
       result.caption = true;
 
@@ -741,6 +741,12 @@ var FlexDashboard = (function () {
 
   // query all plugins for flex
   function pluginsFlex(plugins) {
+
+    // no plugins at all means no flex
+    if (plugins.length === 0)
+      return false;
+
+    // otherwise query plugins (assume true unless we see false)
     var isMobile = isMobilePhone();
     for (var i=0; i<plugins.length; i++)
       if (plugins[i].flex && !plugins[i].flex(isMobile))
