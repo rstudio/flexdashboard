@@ -18,7 +18,6 @@ window.FlexDashboard.Components.push({
   },
 
   layout: function(title, container, element, mobile) {
-
     // apply the image container style to the parent <p>
     var img = element;
     var p = img.parent();
@@ -60,7 +59,6 @@ window.FlexDashboard.Components.push({
   },
 
   layout: function(title, container, element, mobile) {
-
     // alias variables
     var bsTable = element;
     var overflowContainer = container;
@@ -991,8 +989,12 @@ var FlexDashboard = (function () {
     var isMobile = isMobilePhone();
     for (var i=0; i<components.length; i++) {
       var element = components[i].find(container);
-      if (components[i].layout)
-        components[i].layout(title, container, element, isMobile);
+      if (components[i].layout) {
+        // call layout (don't call other components if it returns false)
+        var result = components[i].layout(title, container, element, isMobile);
+        if (result === false)
+          return;
+      }
     }
   }
 
