@@ -138,9 +138,6 @@ var FlexDashboard = (function () {
       // get the item
       var item = navbarItems[i];
 
-      // migrate url -> href
-      item.href = item.url;
-
       // determine the container
       var container = null;
       if (item.align === "left")
@@ -153,8 +150,6 @@ var FlexDashboard = (function () {
         var menu = navbarMenu(null, item.icon, item.title, container);
         for (var j = 0; j<item.items.length; j++) {
           var subItem = item.items[j];
-          // migrate url -> href
-          item.href = item.url;
           var li = $('<li></li>');
           li.append(navbarLink(subItem.icon, subItem.title, subItem.href));
           menu.append(li);
