@@ -660,7 +660,7 @@ var FlexDashboard = (function () {
 
       // flags
       var haveNotes = false;
-      var haveFlexHeight = true;
+      var haveFlexHeight = false;
 
       // remove the h2
       $(this).children('h2').remove();
@@ -681,8 +681,8 @@ var FlexDashboard = (function () {
         var result = layoutChart($(this));
 
         // update flexHeight state
-        if (!result.flex)
-          haveFlexHeight = false;
+        if (result.flex)
+          haveFlexHeight = true;
 
         // update state
         if (result.notes)
