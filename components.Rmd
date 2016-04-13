@@ -183,7 +183,7 @@ If you need to include additional content (an introduction or explanation, links
 
 2. You can define dashboard sections that don't include a chart but rather include arbitrary content (text, images, equations, etc.)
 
-3. You can provide short text annotations for the various charts within a dashboard by including text immediately below the R code chunk where the chart is rendered.
+3. You can provide short text annotations for the various charts within a dashboard by including blockquoted text (i.e. text prefixed with `>`) immediately below the R code chunk where the chart is rendered.
 
 For example, the following dashboard includes some content at the top, brief footer comments for each chart, and a dashboard section that contains only text.
 
