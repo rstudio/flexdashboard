@@ -1010,17 +1010,13 @@ var FlexDashboard = (function () {
     return title;
   }
 
-  // extract chart notes from a chart-stage section
+  // extract chart notes
   function extractChartNotes(chartContent, chartNotes) {
-
-    // look for a chart image or htmlwidget
-    var lastChild = chartContent.children().last();
-    if (lastChild.is("p") &&
-        (lastChild.html().length > 0) &&
-        (lastChild.children('img:only-child').length === 0) &&
-        (lastChild.children('iframe.shiny-frame:only-child').length === 0)) {
-      chartNotes.html(lastChild.html());
-      lastChild.remove();
+    // look for a terminating blockquote
+    var blockquote = chartContent.children('blockquote:last-child');
+    if (blockquote.length) {
+      chartNotes.html(blockquote.children('p:first-child').html());
+      blockquote.remove();
       return true;
     } else {
       return false;
