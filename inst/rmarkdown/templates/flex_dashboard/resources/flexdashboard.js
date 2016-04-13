@@ -652,7 +652,7 @@ var FlexDashboard = (function () {
     for (var p = 0; p<FlexDashboardPlugins.length; p++) {
       var nextPlugin = FlexDashboardPlugins[p];
       pluginComponent = nextPlugin.find(chart);
-      if (pluginComponent !== null) {
+      if (pluginComponent.length) {
         plugin = nextPlugin;
         break;
       }
@@ -715,8 +715,7 @@ var FlexDashboard = (function () {
             for (var p = 0; p<FlexDashboardPlugins.length; p++) {
               var plugin = FlexDashboardPlugins[p];
               var component = plugin.find(element);
-              debugger;
-              if (component !== null)
+              if (component.length)
                 plugin.layout(title, element.parent(), component, isMobile);
             }
           }, 10);
@@ -811,7 +810,11 @@ var FlexDashboard = (function () {
   }
 
   function hasFlex(chartContent) {
-    return hasChart(chartContent) || (chartContent.find('p').length == 0)
+    return hasChart(chartContent) || isEmpty(chartContent)
+  }
+
+  function isEmpty(chartContent) {
+    return chartContent.find('p').length == 0;
   }
 
   // safely detect rendering on a mobile phone
@@ -942,7 +945,7 @@ window.FlexDashboardPlugins.push({
     if (container.hasClass('value-box'))
       return container;
     else
-      return null;
+      return $();
   },
 
   flex: function(mobile) {
@@ -1067,12 +1070,10 @@ window.FlexDashboardPlugins.push({
 
   find: function(container) {
     var bsTable = container.find('table.table');
-    if (bsTable.length === 0)
-      bsTable = container.find('tr.header').parent('thead').parent('table');
-    if (bsTable.length > 0)
-      return bsTable;
+    if (bsTable.length !== 0)
+      return bsTable
     else
-      return null;
+      return container.find('tr.header').parent('thead').parent('table');
   },
 
   flex: function(mobile) {
@@ -1107,11 +1108,7 @@ window.FlexDashboardPlugins.push({
 window.FlexDashboardPlugins.push({
 
   find: function(container) {
-    var app = container.find('iframe.shiny-frame');
-    if (app.length)
-      return app;
-    else
-      return null;
+    return container.find('iframe.shiny-frame');
   },
 
   flex: function(mobile) {
