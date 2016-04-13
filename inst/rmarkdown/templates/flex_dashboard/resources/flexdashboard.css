@@ -364,6 +364,10 @@ body hr {
   border-bottom: none !important;
 }
 
+.featherlight:last-of-type {
+  background: rgba(0, 0, 0, 0.7);
+}
+
 .featherlight-inner {
   width: 100%;
 }
