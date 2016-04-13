@@ -182,22 +182,22 @@ body hr {
   padding-right: 8px;
 }
 
-.chart-shim .table-bordered {
+.chart-stage .table-bordered {
   border: none;
 }
 
-.chart-shim .table-bordered > tbody > tr > th,
-.chart-shim .table-bordered > tfoot > tr > th,
-.chart-shim .table-bordered > tbody > tr > td,
-.chart-shim .table-bordered > tfoot > tr > td {
+.chart-stage .table-bordered > tbody > tr > th,
+.chart-stage .table-bordered > tfoot > tr > th,
+.chart-stage .table-bordered > tbody > tr > td,
+.chart-stage .table-bordered > tfoot > tr > td {
   border: none;
 }
 
-.chart-shim .table-bordered > tbody > tr > td {
+.chart-stage .table-bordered > tbody > tr > td {
   border-top: 1px solid #dddddd;
 }
 
-.chart-shim .table-bordered > thead > tr > th {
+.chart-stage .table-bordered > thead > tr > th {
   border: none;
   border-bottom: 2px solid #dddddd;
 }
