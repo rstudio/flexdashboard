@@ -129,6 +129,8 @@ flex_dashboard <- function(fig_width = 6,
                                       keep_md = FALSE,
                                       dev = dev)
   knitr_options$opts_chunk$echo = FALSE
+  knitr_options$opts_chunk$warning = FALSE
+  knitr_options$opts_chunk$message = FALSE
   knitr_options$opts_chunk$comment = NA
 
   # force to fill it's container (unless the option is already set)
