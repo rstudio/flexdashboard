@@ -645,29 +645,17 @@ var FlexDashboard = (function () {
     // extract the title
     var title = extractTitle(chart);
 
-    // see if we have a plugin
-    var isMobile = isMobilePhone();
-    var plugin = null;
-    var pluginComponent = null;
-    for (var p = 0; p<FlexDashboardPlugins.length; p++) {
-      var nextPlugin = FlexDashboardPlugins[p];
-      pluginComponent = nextPlugin.find(chart);
-      if (pluginComponent.length) {
-        plugin = nextPlugin;
-        break;
-      }
-    }
-    function havePlugin() { return plugin !== null; }
-    function flexPlugin() { return havePlugin() && plugin.flex(isMobile); }
+    // find plugins that apply to this container
+    var plugins = findPlugins(chart);
 
     // if it's a custom plugin then call it and return
-    if (havePlugin() && plugin.type === "custom") {
-      plugin.layout(title, chart, pluginComponent, isMobile);
+    var customPlugins = pluginsCustom(plugins);
+    if (customPlugins.length) {
+      pluginsLayout(customPlugins, title, chart);
       result.caption = false;
-      result.flex = plugin.flex(isMobile);
+      result.flex = pluginsFlex(customPlugins);
       return result;
     }
-
 
     // auto-resizing treatment for image
     autoResizeChartImage(chart);
@@ -678,7 +666,7 @@ var FlexDashboard = (function () {
     var chartContent = chart.children('.chart-stage');
 
     // flex the content if it has a chart OR is empty (e.g. sample layout)
-    result.flex = havePlugin() ? flexPlugin() : hasFlex(chartContent);
+    result.flex = plugins.length ? pluginsFlex(plugins) : hasFlex(chartContent);
     if (result.flex) {
       // add flex classes
       chart.addClass('chart-wrapper-flex');
@@ -702,22 +690,15 @@ var FlexDashboard = (function () {
         }
       }
 
-      // custom plugin processing if necessary
-      if (havePlugin())
-        plugin.layout(title, chartContent, pluginComponent, isMobile);
+      // call plugins
+      pluginsLayout(plugins, title, chartContent);
 
       // also activate plugins on shiny output
       findShinyOutput(chartContent).on('shiny:value',
         function(event) {
-          console.log('shiny output');
           var element = $(event.target);
           setTimeout(function() {
-            for (var p = 0; p<FlexDashboardPlugins.length; p++) {
-              var plugin = FlexDashboardPlugins[p];
-              var component = plugin.find(element);
-              if (component.length)
-                plugin.layout(title, element.parent(), component, isMobile);
-            }
+            pluginsLayout(findPlugins(element), title, element.parent());
           }, 10);
         });
     }
@@ -728,12 +709,52 @@ var FlexDashboard = (function () {
     chart.prepend(chartTitle);
 
     // resolve notes
-    var extractNotes = havePlugin() || hasChart(chartContent)
+    var extractNotes = plugins.length || hasChart(chartContent)
     if (resolveChartNotes(chartContent, chart, extractNotes))
       result.caption = true;
 
     // return result
     return result;
+  }
+
+  // find plugins that apply within a container
+  function findPlugins(container) {
+    var plugins = [];
+    for (var i=0; i<FlexDashboardPlugins.length; i++) {
+      var plugin = FlexDashboardPlugins[i];
+      if (plugin.find(container).length)
+        plugins.push(plugin);
+    }
+    return plugins;
+  }
+
+  // if there is a custom plugin then pick it out
+  function pluginsCustom(plugins) {
+    var customPlugin = [];
+    for (var i=0; i<plugins.length; i++)
+      if (plugins[i].type === "custom") {
+        customPlugin.push(plugins[i]);
+        break;
+      }
+    return customPlugin;
+  }
+
+  // query all plugins for flex
+  function pluginsFlex(plugins) {
+    var isMobile = isMobilePhone();
+    for (var i=0; i<plugins.length; i++)
+      if (!plugins[i].flex(isMobile))
+        return false;
+    return true;
+  }
+
+  // layout all plugins
+  function pluginsLayout(plugins, title, container) {
+    var isMobile = isMobilePhone();
+    for (var i=0; i<plugins.length; i++) {
+      var component =  plugins[i].find(container);
+      plugins[i].layout(title, container, component, isMobile);
+    }
   }
 
   // get a reference to the h3, discover it's inner html, and remove it
@@ -799,6 +820,10 @@ var FlexDashboard = (function () {
     return extracted;
   }
 
+  function findShinyOutput(chartContent) {
+    return chartContent.find('.shiny-text-output, .shiny-html-output');
+  }
+
   function hasChart(chartContent) {
     var img = chartContent.children('p.image-container')
                           .children('img:only-child');
@@ -815,10 +840,6 @@ var FlexDashboard = (function () {
 
   function isEmpty(chartContent) {
     return chartContent.find('p').length == 0;
-  }
-
-  function findShinyOutput(chartContent) {
-    return chartContent.find('.shiny-text-output, .shiny-html-output');
   }
 
   // safely detect rendering on a mobile phone
