@@ -68,6 +68,10 @@ window.FlexDashboard.Components.push({
       return container.find('tr.header').parent('thead').parent('table');
   },
 
+  flex: function(mobile) {
+    return mobile ? false : true;
+  },
+
   layout: function(title, container, element, mobile) {
     // alias variables
     var bsTable = element;
