@@ -1,0 +1,49 @@
+---
+title: "flexdashboard: Shiny miniUI Layout"
+output: 
+  flexdashboard::flex_dashboard:
+    social: menu
+    source_code: embed 
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(miniUI)
+library(dygraphs)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Inline Shiny Application with miniUI
+
+```{r}
+shinyApp(
+  ui = miniPage(
+    miniButtonBlock({
+      selectInput("region", "Region:", choices = colnames(WorldPhones))
+    }),
+    miniContentPanel({
+      plotOutput("phonePlot", height = "100%")
+    })
+  ),
+  server = function(input, output) {
+    output$phonePlot <- renderPlot({
+      barplot(WorldPhones[,input$region]*1000, 
+              ylab = "Number of Telephones", xlab = "Year")
+    })
+  },
+  options = list(height = "100%")
+)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Motor Trend Car Road Tests
+
+```{r}
+knitr::kable(mtcars[,c("mpg", "cyl", "disp")])
+```
+
+
