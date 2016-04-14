@@ -1,0 +1,42 @@
+---
+title: "flexdashboard: Embedded Shiny Apps"
+runtime: shiny
+output: 
+  flexdashboard::flex_dashboard:
+    social: menu
+    source_code: embed  
+---
+
+Inline
+=======================================================================
+
+### Inline Shiny Application via shinyApp
+
+```{r}
+shinyApp(
+  ui = fluidPage(
+    selectInput("region", "Region:", choices = colnames(WorldPhones)),
+    plotOutput("phonePlot")
+  ),
+  server = function(input, output) {
+    output$phonePlot <- renderPlot({
+      barplot(WorldPhones[,input$region]*1000, 
+              ylab = "Number of Telephones", xlab = "Year")
+    }, height = 500)
+  },
+  options = list(height = 600)
+)
+```
+
+External
+=======================================================================
+
+### External Shiny Application via shinyAppDir
+
+```{r}
+shinyAppDir(
+  system.file("examples/06_tabsets", package="shiny"),
+  options=list(width="100%", height=850)
+)
+```
+
