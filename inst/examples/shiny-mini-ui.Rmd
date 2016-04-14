@@ -33,7 +33,7 @@ shinyApp(
               ylab = "Number of Telephones", xlab = "Year")
     })
   },
-  options = list(height = "100%")
+  options = list(height = 500)
 )
 ```
 
