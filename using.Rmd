@@ -80,7 +80,7 @@ You can also choose to orient dashboards row-wise rather than column-wise, by sp
 
 </div>
 
-### Fill vs. Scrolling
+### Scrolling Layout
 
 By default flexdashboard charts are laid out to automatically fill the height of the browser. This works well for a small number of vertically stacked charts, however if you have lots of charts you'll probably want to scroll rather than fit them all onto the page. You can control this behavior using the `vertical_layout` option. Specify `fill` to vertically re-size charts so they completely fill the page and `scroll` to layout charts at their natural height, scrolling the page if necessary.
 
