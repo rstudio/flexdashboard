@@ -351,8 +351,8 @@ var FlexDashboard = (function () {
       page.wrapInner('<div class="section level2"></div>');
 
       // force a non full screen layout by columns
-      orientation = 'columns';
-      fillPage = false;
+      orientation = _options.orientation = 'columns';
+      fillPage = _options.fillPage = false;
 
     // media: desktop
     } else {
@@ -776,7 +776,7 @@ var FlexDashboard = (function () {
     // otherwise query components (assume true unless we see false)
     var isMobile = isMobilePhone();
     for (var i=0; i<components.length; i++)
-      if (components[i].flex && !components[i].flex(isMobile))
+      if (components[i].flex && !components[i].flex(_options.fillPage))
         return false;
     return true;
   }
@@ -788,7 +788,7 @@ var FlexDashboard = (function () {
       var element = components[i].find(container);
       if (components[i].layout) {
         // call layout (don't call other components if it returns false)
-        var result = components[i].layout(title, container, element, isMobile);
+        var result = components[i].layout(title, container, element, _options.fillPage);
         if (result === false)
           return;
       }
@@ -958,7 +958,7 @@ window.FlexDashboardComponents.push({
                     .children('img:only-child');
   },
 
-  layout: function(title, container, element, mobile) {
+  layout: function(title, container, element, fillPage) {
     // apply the image container style to the parent <p>
     var img = element;
     var p = img.parent();
@@ -1004,8 +1004,8 @@ window.FlexDashboardComponents.push({
   find: function(container) {
     return container.find('.datatables');
   },
-  flex: function(mobile) {
-    return mobile ? false : true;
+  flex: function(fillPage) {
+    return fillPage;
   }
 });
 
@@ -1020,11 +1020,11 @@ window.FlexDashboardComponents.push({
       return container.find('tr.header').parent('thead').parent('table');
   },
 
-  flex: function(mobile) {
-    return mobile ? false : true;
+  flex: function(fillPage) {
+    return fillPage;
   },
 
-  layout: function(title, container, element, mobile) {
+  layout: function(title, container, element, fillPage) {
 
     // alias variables
     var bsTable = element;
@@ -1040,8 +1040,8 @@ window.FlexDashboardComponents.push({
     // improve appearance
     container.addClass('bootstrap-table');
 
-    // for non-mobile provide scrolling w/ sticky headers
-    if (!mobile) {
+    // for fill page provide scrolling w/ sticky headers
+    if (fillPage) {
       // force scrollbar on overflow
       container.addClass('bootstrap-table-shim');
 
@@ -1060,13 +1060,15 @@ window.FlexDashboardComponents.push({
     return container.find('iframe.shiny-frame');
   },
 
-  flex: function(mobile) {
-    return mobile ? false : true;
+  flex: function(fillPage) {
+    return fillPage;
   },
 
-  layout: function(title, container, element, mobile) {
-    element.attr('height', '100%');
-    element.unwrap();
+  layout: function(title, container, element, fillPage) {
+    if (fillPage) {
+      element.attr('height', '100%');
+      element.unwrap();
+    }
   }
 });
 
@@ -1083,11 +1085,11 @@ window.FlexDashboardComponents.push({
       return $();
   },
 
-  flex: function(mobile) {
+  flex: function(fillPage) {
     return false;
   },
 
-  layout: function(title, container, element, mobile) {
+  layout: function(title, container, element, fillPage) {
 
     // alias variables
     var chartTitle = title;
