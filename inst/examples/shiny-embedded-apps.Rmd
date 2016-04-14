@@ -1,10 +1,10 @@
 ---
 title: "flexdashboard: Embedded Shiny Apps"
-runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     social: menu
-    source_code: embed  
+    source_code: embed 
+runtime: shiny
 ---
 
 Inline
