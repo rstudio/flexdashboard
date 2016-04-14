@@ -12,7 +12,7 @@ var FlexDashboard = (function () {
       fillPage: false,
       orientation: 'columns',
       defaultFigWidth: 576,
-      defaultFigHeight: 480,
+      defaultFigHeight: 461,
       isMobile: false
     });
   };
