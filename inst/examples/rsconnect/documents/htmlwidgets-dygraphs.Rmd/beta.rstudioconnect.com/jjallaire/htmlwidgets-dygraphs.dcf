@@ -2,8 +2,8 @@ name: htmlwidgets-dygraphs
 account: jjallaire
 server: beta.rstudioconnect.com
 appId: 591
-bundleId: 1013
+bundleId: 1412
 url: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/
-when: 1457461965.01643
+when: 1460648481.30736
 asMultiple: FALSE
 asStatic: TRUE
