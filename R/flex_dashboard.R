@@ -137,6 +137,10 @@ flex_dashboard <- function(fig_width = 6,
   if (is.na(getOption('DT.fillContainer', NA)))
     options(DT.fillContainer = TRUE)
 
+  # request that DT auto-hide navigation (unless the option is already set)
+  if (is.na(getOption('DT.autoHideNavigation', NA)))
+    options(DT.autoHideNavigation = TRUE);
+
   # add hook to capture fig.width and fig.height and serialized
   # them into the DOM
   figSizePixels <- function(size) as.integer(size * 96)
