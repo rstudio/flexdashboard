@@ -31,6 +31,9 @@ var FlexDashboard = (function () {
     // find the main dashboard container
     var dashboardContainer = $('#dashboard-container');
 
+    // one time global initialization for components
+    componentsInit(dashboardContainer);
+
     // look for a global sidebar
     var globalSidebar = dashboardContainer.find(".section.level1.sidebar");
     if (globalSidebar.length > 0) {
@@ -126,6 +129,8 @@ var FlexDashboard = (function () {
         window.location.reload();
     });
 
+    // trigger layoutcomplete event
+    dashboardContainer.trigger('flexdashboard:layoutcomplete');
   }
 
   function addNavbarItems(navbarItems) {
@@ -730,6 +735,15 @@ var FlexDashboard = (function () {
     return result;
   }
 
+  // one time global initialization for components
+  function componentsInit(dashboardContainer) {
+    for (var i=0; i<window.FlexDashboardComponents.length; i++) {
+      var component = window.FlexDashboardComponents[i];
+      if (component.init)
+        component.init(dashboardContainer);
+    }
+  }
+
   // find components that apply within a container
   function componentsFind(container) {
     var components = [];
@@ -962,6 +976,17 @@ window.FlexDashboardComponents.push({
 
 // htmlwidget
 window.FlexDashboardComponents.push({
+
+  init: function(dashboardContainer) {
+    // trigger "shown" after initial layout to force static htmlwidgets
+    // in runtime: shiny to be resized after the dom has been transformed
+    dashboardContainer.on('flexdashboard:layoutcomplete', function(event) {
+      setTimeout(function() {
+        dashboardContainer.trigger('shown');
+      }, 200);
+    });
+  },
+
   find: function(container) {
     return container.children('div[id^="htmlwidget-"],div.html-widget');
   }
