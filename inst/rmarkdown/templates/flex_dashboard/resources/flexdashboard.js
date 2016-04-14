@@ -643,7 +643,7 @@ var FlexDashboard = (function () {
     var title = extractTitle(chart);
 
     // find components that apply to this container
-    var components = findComponents(chart);
+    var components = componentsFind(chart);
 
     // if it's a custom component then call it and return
     var customComponents = componentsCustom(components);
@@ -696,7 +696,7 @@ var FlexDashboard = (function () {
             // see if we opted out of flex based on our output (for shiny
             // we can't tell what type of output we have until after the
             // value is bound)
-            var components = findComponents(element);
+            var components = componentsFind(element);
             var flex = componentsFlex(components);
             if (!flex) {
               chart.css('height', "");
@@ -731,7 +731,7 @@ var FlexDashboard = (function () {
   }
 
   // find components that apply within a container
-  function findComponents(container) {
+  function componentsFind(container) {
     var components = [];
     for (var i=0; i<window.FlexDashboardComponents.length; i++) {
       var component = window.FlexDashboardComponents[i];
