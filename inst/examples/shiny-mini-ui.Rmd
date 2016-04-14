@@ -1,5 +1,5 @@
 ---
-title: "flexdashboard: Shiny miniUI Layout"
+title: "flexdashboard: Shiny fillPage Layout"
 output: 
   flexdashboard::flex_dashboard:
     social: menu
@@ -15,18 +15,16 @@ library(dygraphs)
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Inline Shiny Application with miniUI
+### Inline Shiny Application fillPage
 
 ```{r}
 shinyApp(
-  ui = miniPage(
-    miniButtonBlock({
+  ui = fillPage(fillCol(flex = c(NA, 1),
+    inputPanel(
       selectInput("region", "Region:", choices = colnames(WorldPhones))
-    }),
-    miniContentPanel({
-      plotOutput("phonePlot", height = "100%")
-    })
-  ),
+    ),
+    plotOutput("phonePlot", height = "100%")
+  )),
   server = function(input, output) {
     output$phonePlot <- renderPlot({
       barplot(WorldPhones[,input$region]*1000, 
