@@ -36,6 +36,46 @@ shinyApp(
 )
 ```
 
+Module
+=======================================================================
+
+### Demonstration of Shiny Modules
+
+```{r, include=FALSE}
+# Shiny module definition (would typically be defined in a separate R script)
+
+# input function
+worldPhonesInput <- function(id) {
+  ns <- NS(id)
+  fillCol(height = 500, flex = c(NA, 1), 
+    inputPanel(
+      selectInput(ns("region"), "Region:", choices = colnames(WorldPhones))
+    ),
+    plotOutput(ns("phonePlot"), height = "100%")
+  )
+}
+
+# output function
+worldPhones <- function(input, output, session) {
+  
+  telephones <- reactive({
+    WorldPhones[,input$region]*1000
+  })
+  
+  output$phonePlot <- renderPlot({
+    barplot(telephones(), 
+            ylab = "Number of Telephones", xlab = "Year")
+  })
+  
+  return(telephones)
+}
+```
+
+```{r}
+# Call the shiny module
+callModule(worldPhones, "phones")
+```
+
 External
 =======================================================================
 
