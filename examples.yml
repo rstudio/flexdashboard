@@ -10,9 +10,11 @@
   img: images/shiny-biclust.png
   href: https://jjallaire.shinyapps.io/shiny-biclust/
   showcase: true
+  shiny: true
 - title: "Shiny: CRAN downloads"
   img: images/shiny-crandash.png
   href: https://jjallaire.shinyapps.io/shiny-crandash/
+  shiny: true
 - title: "Linked time-series with dygraphs"
   img: images/dygraphs.png
   href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/
@@ -22,6 +24,7 @@
 - title: "Shiny: ggplot2 linked brushing"
   img: images/shiny-ggplot2-brushing.png
   href: https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/
+  shiny: true
 - title: "rbokeh: iris dataset"
   img: images/htmlwidgets-rbokeh-iris.png
   href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-rbokeh-iris/
@@ -31,11 +34,20 @@
 - title: "Shiny: kmeans clustering"
   img: images/shiny-dashboard.png
   href: https://jjallaire.shinyapps.io/shiny-kmeans/
+  shiny: true
 - title: "ggplotly: various examples"
   img: images/htmlwidgets-ggplotly-examples.png
   href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-examples/
 - title: "Pokemon characters with highcharter"
   img: images/highcharter-pokemon.png
   href: http://jkunst.com/flexdashboard-highcharter-examples/pokemon/
+- title: "Shiny: old faithful eruptions"
+  img: images/shiny-eruptions.png
+  href: https://beta.rstudioconnect.com/jjallaire/shiny-eruptions/
+  shiny: true
+- title: "Shiny: embedded applications"
+  img: images/shiny-embedded-apps.png
+  href: https://beta.rstudioconnect.com/jjallaire/shiny-embedded-apps/
+  shiny: true
 
 
