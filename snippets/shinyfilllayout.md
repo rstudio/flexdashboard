@@ -1,5 +1,5 @@
 ```{r}
-fillCol(height = 500, flex = c(NA, 1), 
+fillCol(height = 600, flex = c(NA, 1), 
   inputPanel(
     selectInput("region", "Region:", choices = colnames(WorldPhones))
   ),

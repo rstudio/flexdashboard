@@ -543,9 +543,8 @@ div.tocify {
 </div>
 <div id="scrolling-height" class="section level4">
 <h4>Scrolling Height</h4>
-<p>There’s one other important detail to understand related to the total height occupied by the Shiny components. By default, flexdashboard uses a vertical layout that fills the page (e.g. <code>vertical_layout: fill</code>). In this scenario, the Shiny UI defined above will have it’s size determined by the overall page layout algorithm and then fill it as necessary.</p>
-<p>However, all components in flexdashboards also need to have fixed height layout heuristics. This is both for the explicit use of <code>vertical_layout: scroll</code> but also for layouts on mobile phones, which due to the small size of the screen always use a scrolling layout.</p>
-<p>The appropriate height for a given set of Shiny input and output components isn’t something that can be determined automatically (it depends on the size and quantity the components). Therefore, you should include an explicit <code>height</code> attribute on the outer container (in the example above this is done via <code>fillCol(height = 500, ...)</code>) which specifies the height you’d like your components to occupy in a scrolling layout.</p>
+<p>There’s one other important detail to understand related to the total height occupied by embedded Shiny components. By default, flexdashboard uses a vertical layout that fills the page (e.g. <code>vertical_layout: fill</code>). In this scenario, the Shiny UI defined above will have it’s size automatically determined by the size of it’s flexdashboard container.</p>
+<p>However, even when using a fill layout components in flexdashboards also need to provide a fixed height layout. This is because dashboards will always scroll rather than fill the screen on mobile phones. Embedded shiny components that use <code>fillCol</code> or <code>fillRow</code> will be automatically assigned a scrolling height of 500 pixels, however the ideal height for your situation may be different. In the above example you can see that a non-default height of 600 pixels is specified via <code>fillCol(height = 600, ...)</code>.</p>
 </div>
 </div>
 <div id="shiny-modules" class="section level3">
@@ -576,7 +575,7 @@ div.tocify {
 </div>
 <script type="text/javascript">loadSnippet('shinyembeddedinline', 'r')</script>
 <p>You’ll note that this example uses the same “WorldPhones” code which was the basis of the fill layout example. However, in this case the code is wrapped in a <code>fillPage</code> which includes a height attribute for scrolling layouts (in the previous example the height attribute was on the <code>fillCol</code>).</p>
-<p>Note that when embedding Shiny component using an inline application definition an <code>&lt;iframe&gt;</code> is created to host the application. In contrast, when using <a href="#shiny-modules">Shiny Modules</a> the components are included inline on the page, which makes them generally preferable to inline applications.</p>
+<p>Note that when embedding Shiny components using an inline application definition an <code>&lt;iframe&gt;</code> is created to host the application. In contrast, when using <a href="#shiny-modules">Shiny Modules</a> the components are included inline on the page, which makes them generally preferable to inline applications.</p>
 </div>
 <div id="external-applications" class="section level3">
 <h3>External Applications</h3>
@@ -585,8 +584,8 @@ div.tocify {
 
 </div>
 <script type="text/javascript">loadSnippet('shinyembeddedexternal', 'r')</script>
-<p>Note that in this example we use <code>height = 850</code> rather than <code>height = 500</code> as we did in the previous two embedding examples. This is because this application uses a sidebar which on mobile layouts will appear on top of the plot output rather than to the left, which necessitates that more height be available for it’s display.</p>
-<p>Including an external Shiny application is a good way to re-use an existing application within a flexdashboard. External applications also enable you to externalize the source code for a suite of Shiny components, however note that you can accomplish this with <a href="#shiny-modules">Shiny Modules</a> as well, which makes them generally preferable to external applications.</p>
+<p>Note that in this example we override the default height of 500 pixels via <code>options = list(height=850)</code>. This is because this application uses a sidebar which on mobile layouts will appear on top of the plot output rather than to the left, which necessitates that more height be available for it’s display.</p>
+<p>Including an external Shiny application is a good way to re-use an existing application within a flexdashboard. If however your main goal is to keep the source code for a set of Shiny components separate from the main flexdashboard Rmd then <a href="#shiny-modules">Shiny Modules</a> are a preferable way to achieve this, as they include their UI inline within the page rather than within an <code>&lt;iframe&gt;</code>.</p>
 </div>
 </div>
 

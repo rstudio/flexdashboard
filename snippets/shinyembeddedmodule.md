@@ -3,7 +3,7 @@
 # UI function
 worldPhonesUI <- function(id) {
   ns <- NS(id)
-  fillCol(height = 500, flex = c(NA, 1), 
+  fillCol(height = 600, flex = c(NA, 1), 
     inputPanel(
       selectInput(ns("region"), "Region:", choices = colnames(WorldPhones))
     ),
