@@ -495,9 +495,9 @@ div.tocify {
 </a>
 </div>
 <div class="col-sm-4">
-<a class="thumbnail" title="Shiny: embedded applications" href="https://beta.rstudioconnect.com/jjallaire/shiny-embedded-apps/">
-<img src="images/shiny-embedded-apps.png"/>
-<div class="caption">Shiny: embedded applications</div>
+<a class="thumbnail" title="Shiny: Embedding" href="https://beta.rstudioconnect.com/jjallaire/shiny-embedding/">
+<img src="images/shiny-embedding.png"/>
+<div class="caption">Shiny: Embedding</div>
 </a>
 </div>
 </div></p>
@@ -530,7 +530,7 @@ div.tocify {
 <div id="shinyfilllayout">
 
 </div>
-<script type="text/javascript">loadSnippet('shinyfilllayout')</script>
+<script type="text/javascript">loadSnippet('shinyfilllayout', 'r')</script>
 <p>If you are new to Shiny then the code above won’t make any sense to you. In that case we highly recommend that you use the default layout strategy described above! (i.e. inputs within the sidebar and outputs within their own flexdashboard containers).</p>
 <p>For those familiar with Shiny here are further details on how this example works:</p>
 <ol style="list-style-type: decimal">
@@ -548,32 +548,45 @@ div.tocify {
 <p>The appropriate height for a given set of Shiny input and output components isn’t something that can be determined automatically (it depends on the size and quantity the components). Therefore, you should include an explicit <code>height</code> attribute on the outer container (in the example above this is done via <code>fillCol(height = 500, ...)</code>) which specifies the height you’d like your components to occupy in a scrolling layout.</p>
 </div>
 </div>
-<div id="embedded-apps" class="section level3">
-<h3>Embedded Apps</h3>
-<p>The example above illustrates how to add Shiny components inline within a flexdashboard. It’s also possible to embed an entire Shiny application as a flexdashboard component. The application can be either defined inline using the <code>shinyApp</code> function or can be defined externally and included using the <code>shinyAppDir</code> function. Both of these options are described below. See also this simple <a href="https://beta.rstudioconnect.com/jjallaire/shiny-embedded-apps/">example application</a> which uses both techniques.</p>
-<div id="inline-definition" class="section level4">
-<h4>Inline Definition</h4>
+<div id="shiny-modules" class="section level3">
+<h3>Shiny Modules</h3>
+<p><a href="http://shiny.rstudio.com/articles/modules.html">Shiny Modules</a> enable you to define a piece of Shiny UI and server logic that can be embedded within a larger Shiny application or interactive document. There are a couple of significant benefits to using Shiny Modules in the context of flexdashboard:</p>
+<ol style="list-style-type: decimal">
+<li><p>You can define Shiny Modules within a separate R script. For Shiny components that require a lot of R code this is often preferable to including all the code inline.</p></li>
+<li><p>Shiny Modules can accept parameters, which enable them to be more easily re-used in different contexts.</p></li>
+</ol>
+<p>Here is the “WorldPhones” example from above re-written as a Shiny Module (this code would typically be defined within a standalone R script):</p>
+<div id="shinyembeddedmodule">
+
+</div>
+<script type="text/javascript">loadSnippet('shinyembeddedmodule', 'r')</script>
+<p>Here is the code to include the module within a flexdashboard:</p>
+<div id="shinyembeddedmodulecall">
+
+</div>
+<script type="text/javascript">loadSnippet('shinyembeddedmodulecall')</script>
+<p>You can learn more about creating and using Shiny Modules at the <a href="http://shiny.rstudio.com/articles/modules.html">Shiny Dev Center</a>.</p>
+</div>
+<div id="inline-applications" class="section level3">
+<h3>Inline Applications</h3>
 <p>While Shiny applications are often defined in standalone R source files (e.g. ui.R and server.R) it’s also possible to define a full application inline using the <a href="http://shiny.rstudio.com/reference/shiny/latest/shinyApp.html"><code>shinyApp</code></a> function.</p>
 <p>You can embed inline Shiny applications within a flexdashboard. For example, the following code chunk defines a simple Shiny application consisting of a select input and a plot:</p>
 <div id="shinyembeddedinline">
 
 </div>
-<script type="text/javascript">loadSnippet('shinyembeddedinline')</script>
+<script type="text/javascript">loadSnippet('shinyembeddedinline', 'r')</script>
 <p>You’ll note that this example uses the same “WorldPhones” code which was the basis of the fill layout example. However, in this case the code is wrapped in a <code>fillPage</code> which includes a height attribute for scrolling layouts (in the previous example the height attribute was on the <code>fillCol</code>).</p>
+<p>Note that when embedding Shiny component using an inline application definition an <code>&lt;iframe&gt;</code> is created to host the application. In contrast, when using <a href="#shiny-modules">Shiny Modules</a> the components are included inline on the page, which makes them generally preferable to inline applications.</p>
 </div>
-<div id="external-definition" class="section level4">
-<h4>External Definition</h4>
+<div id="external-applications" class="section level3">
+<h3>External Applications</h3>
 <p>It’s also possible to include a Shiny application defined in an external directory within a flexdashboard. For example, the following code chunk includes one of the Shiny example applications:</p>
 <div id="shinyembeddedexternal">
 
 </div>
-<script type="text/javascript">loadSnippet('shinyembeddedexternal')</script>
-</div>
-<div id="scrolling-height-1" class="section level4">
-<h4>Scrolling Height</h4>
-<p>When you embed a Shiny application using either of the above techniques you need to provide it with a specific height (e.g. the <code>options = list(height = 500)</code> code at the end of the first example) for scrolling layouts.</p>
-<p>You should always ensure that this height is adequate to display the application even in mobile layouts where the sidebar might be above rather than to the left of the main display. The reason the second example specifies <code>height = 850</code> is because on mobile layouts the sidebar will appear above the plot output rather than to the left of it.</p>
-</div>
+<script type="text/javascript">loadSnippet('shinyembeddedexternal', 'r')</script>
+<p>Note that in this example we use <code>height = 850</code> rather than <code>height = 500</code> as we did in the previous two embedding examples. This is because this application uses a sidebar which on mobile layouts will appear on top of the plot output rather than to the left, which necessitates that more height be available for it’s display.</p>
+<p>Including an external Shiny application is a good way to re-use an existing application within a flexdashboard. External applications also enable you to externalize the source code for a suite of Shiny components, however note that you can accomplish this with <a href="#shiny-modules">Shiny Modules</a> as well, which makes them generally preferable to external applications.</p>
 </div>
 </div>
 

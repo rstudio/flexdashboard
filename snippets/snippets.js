@@ -1,6 +1,7 @@
 
 
-function loadSnippet(snippet) {
+function loadSnippet(snippet, mode) {
+  mode = mode || "markdown";
   $("#" + snippet).addClass("snippet");
   var editor = ace.edit(snippet);
   editor.setHighlightActiveLine(false);
@@ -10,7 +11,7 @@ function loadSnippet(snippet) {
   editor.renderer.setDisplayIndentGuides(false);
   editor.setTheme("ace/theme/textmate");
   editor.$blockScrolling = Infinity;
-  editor.session.setMode("ace/mode/markdown");
+  editor.session.setMode("ace/mode/" + mode);
   editor.session.getSelection().clearSelection();
   
   $.get("snippets/" + snippet + ".md", function(data) {

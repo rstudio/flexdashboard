@@ -45,9 +45,9 @@
   img: images/shiny-eruptions.png
   href: https://beta.rstudioconnect.com/jjallaire/shiny-eruptions/
   shiny: true
-- title: "Shiny: embedded applications"
-  img: images/shiny-embedded-apps.png
-  href: https://beta.rstudioconnect.com/jjallaire/shiny-embedded-apps/
+- title: "Shiny: Embedding"
+  img: images/shiny-embedding.png
+  href: https://beta.rstudioconnect.com/jjallaire/shiny-embedding/
   shiny: true
 
 
