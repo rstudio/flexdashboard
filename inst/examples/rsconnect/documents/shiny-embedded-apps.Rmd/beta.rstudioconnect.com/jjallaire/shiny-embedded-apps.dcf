@@ -2,8 +2,8 @@ name: shiny-embedded-apps
 account: jjallaire
 server: beta.rstudioconnect.com
 appId: 789
-bundleId: 1415
+bundleId: 1421
 url: https://beta.rstudioconnect.com/jjallaire/shiny-embedded-apps/
-when: 1460659900.10815
+when: 1460725587.20441
 asMultiple: FALSE
 asStatic: FALSE
