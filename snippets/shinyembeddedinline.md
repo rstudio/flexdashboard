@@ -1,15 +1,19 @@
 ```{r}
 shinyApp(
-  ui = fluidPage(
-    selectInput("region", "Region:", choices = colnames(WorldPhones)),
-    plotOutput("phonePlot")
+  ui = fillPage(
+    fillCol(flex = c(NA, 1), 
+      inputPanel(
+        selectInput("region", "Region:", choices = colnames(WorldPhones))
+      ),
+      plotOutput("phonePlot", height = "100%")
+    )
   ),
   server = function(input, output) {
     output$phonePlot <- renderPlot({
       barplot(WorldPhones[,input$region]*1000, 
               ylab = "Number of Telephones", xlab = "Year")
-    }, height = 500)
+    })
   },
-  options = list(height = 600)
+  options = list(height = 500)
 )
 ```

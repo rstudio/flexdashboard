@@ -4,40 +4,67 @@ title: "Using shiny with flexdashboard"
 
 ## Overview
 
-By adding [Shiny](http://shiny.rstudio.com) to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see [`reactiveFileReader`](http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html) and [`reactivePoll`](http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html)). This is done by adding `runtime: shiny` to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the charts within the dashboard.
+By adding [Shiny](http://shiny.rstudio.com) to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see [`reactiveFileReader`](http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html) and [`reactivePoll`](http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html)). This is done by adding `runtime: shiny` to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the components within the dashboard.
 
 Using Shiny with flexdashboard turns a static R Markdown report into an [Interative Document](http://rmarkdown.rstudio.com/authoring_shiny.html). It's important to note that interactive documents need to be [deployed](http://rmarkdown.rstudio.com/authoring_shiny.html#deployment) to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).
 
-Note that the [shinydashboard](https://rstudio.github.io/shinydashboard/) package provides another way to create dashboards with Shiny.  
+Note that the [shinydashboard](https://rstudio.github.io/shinydashboard/) package provides another way to create dashboards with Shiny. 
 
-## Requirements
+## Getting Started
 
 The steps required to add Shiny components to a flexdashboard are as follows:
 
 1. Add `runtime: shiny` to the options declared at the top of the document (YAML front matter).
 
-2. Add the `{.sidebar}` attribute to the first column of the dashboard to make it a host for Shiny input controls (note this step isn't strictly required, but most Shiny based dashboards will want to do this).
+2. Add the `{.sidebar}` attribute to the first column of the dashboard to make it a host for Shiny input controls (note this step isn't strictly required, but many Shiny based dashboards will want to do this).
 
 3. Add Shiny inputs and outputs as appropriate.
 
 4. When including plots, be sure to wrap them in a call to [renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html). This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.
 
-## Using Shiny
-
-When you use Shiny within a flexdashboard you'll be making use of both input elements (e.g. sliders, checkboxes, etc.) and output elements (plots, tables, etc.). Input elements are typically presented within a sidebar and outputs within flexdashboard content panes.
-
-You add an input sidebar to a flexdashboard by adding the `{.sidebar}` attribute to a column, which indicates that it should be laid out flush to the left with a default width of 250 pixels and a special background color.
-
 ### Simple Example
 
-Here is a simple flexdashboard which makes use of Shiny inputs and outputs:
+Here's a simple example of a flexdashboard that uses Shiny:
 
-<img src="images/ShinyDygraphs.png" width="865" height="745"/>
+<img src="images/shiny-eruptions.png" width="865" height="640" class="screenshot"/>
 
-The source code for the example is presented below. The first column ("Inputs") includes the `{.sidebar}` attribute and the Shiny input controls; the second column ("Outputs") includes the Shiny code required to render the chart based on the inputs.
+#### Source Code
 
-<div id="shinycode"></div>
-<script type="text/javascript">loadSnippet('shinycode')</script>
+<div id="shinyeruptions"></div>
+<script type="text/javascript">loadSnippet('shinyeruptions')</script>
+
+The first column includes the `{.sidebar}` attribute and two Shiny input controls; the second column includes the Shiny code required to render the chart based on the inputs.
+
+## Using Shiny
+
+### Inputs & Outputs
+
+When you use Shiny within a flexdashboard you'll be making use of both input elements (e.g. sliders, checkboxes, etc.) and output elements (plots, tables, etc.). Input elements are typically presented within a sidebar and outputs within flexdashboard content panes (it's also possible to combine inputs and outputs in a single pane, this is described in more detail below).
+
+As illustrated above, inputs are added by calling an R function (e.g. `sliderInput`). The Shiny package makes available a wide variety of functions for creating inputs, a few of them include:
+
+R Function           | Input Type
+-------------------- | -------------------------------------------------
+[selectInput](http://shiny.rstudio.com/reference/shiny/latest/selectInput.html)        | A box with choices to select from
+[sliderInput](http://shiny.rstudio.com/reference/shiny/latest/sliderInput.html)        | A slider bar
+[radioButtons](http://shiny.rstudio.com/reference/shiny/latest/radioButtons.html)        | A set of radio buttons
+[textInput](http://shiny.rstudio.com/reference/shiny/latest/textInput.html)          | A field to enter text
+[numericInput](http://shiny.rstudio.com/reference/shiny/latest/numericInput.html)       | A field to enter numbers
+[checkboxInput](http://shiny.rstudio.com/reference/shiny/latest/checkboxInput.html)      | A single check box
+[dateInput](http://shiny.rstudio.com/reference/shiny/latest/dateInput.html)          | A calendar to aid date selection
+[dateRangeInput](http://shiny.rstudio.com/reference/shiny/latest/dateRangeInput.html)     | A pair of calendars for selecting a date range
+[fileInput](http://shiny.rstudio.com/reference/shiny/latest/fileInput.html)          | A file upload control wizard
+
+Outputs react to changes in input by running their render code (e.g. the `renderPlot` example above) and displaying updated output. The Shiny package also includes a wide variety of render functions, including:
+
+R Function           | Output Type
+-------------------- | -------------------------------------------------
+[renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html)  | R graphics output
+[renderPrint](http://shiny.rstudio.com/reference/shiny/latest/renderPrint.html) | R printed output
+[renderTable](http://shiny.rstudio.com/reference/shiny/latest/renderTable.html) | Data frame, matrix, other table like structures
+[renderText](http://shiny.rstudio.com/reference/shiny/latest/renderText.html) | Character vectors
+
+In the sections below we'll cover additional details on how to use Shiny components within a flexdashboard. If you aren't already familiar with Shiny you may also want to consult the [Shiny Dev Center](http://shiny.rstudio.com), which includes extensive articles, tutorials, and examples to help you learn more about Shiny.
 
 ### Input Sidebar
 
@@ -57,11 +84,84 @@ For example, this dashboard includes a global sidebar:
 <div id="sidebarmultiplepages"></div>
 <script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
 
-## Embedded Apps
+### Examples
+
+Several examples are available to help you learn more about using Shiny with flexdashboard (each example includes full source code):
+
+1. [Old Faithful Eruptions](https://beta.rstudioconnect.com/jjallaire/shiny-eruptions/)
+
+2. [Iris K-Means Clustering](https://jjallaire.shinyapps.io/shiny-kmeans/)
+
+3. [Linked Brushing with ggplot2](https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/)
+
+4. [Embedded Shiny Apps](https://beta.rstudioconnect.com/jjallaire/shiny-embedded-apps/)
+
+5. [CRAN Download Monitor](https://jjallaire.shinyapps.io/shiny-crandash/) 
+
+6. [Gene Expression Biclustering ](https://jjallaire.shinyapps.io/shiny-biclust/)
+
+### Learning More
+
+The following articles are excellent resources for learning more about Shiny and creating interactive documents:
+
+1. The [Shiny Dev Center](http://shiny.rstudio.com) includes extensive articles, tutorials, and examples to help you learn more about Shiny.
+
+2. The [Introduction to Interactive Documents](http://shiny.rstudio.com/articles/interactive-docs.html) article provides a great resources for getting started with Shiny and R Markdown.
+
+3. The R Markdown website includes additional details on the various options for [deploying interactive documents](http://rmarkdown.rstudio.com/authoring_shiny.html#deployment).
+
+
+
+## Advanced
+
+After you've gotten started with using Shiny within flexdashboard and learned more about Shiny development you may want to review these additional topics which described advanced component layout and embedding existing Shiny applications within a flexdashboard.
+
+### Component Layout
+
+There are a couple different approaches to laying out Shiny components within a flexdashboard:
+
+1. Place inputs in a sidebar and outputs within their own flexdashboard panel (the strategy illustrated in the example above).
+
+2. Mix inputs and output(s) within a single flexdashboard panel.
+
+The first option is the most straightforward and is highly encouraged if it meets the layout and interactivity requirements of your dashboard. The second option provides for more customized layout but requires the use of Shiny [fill layouts]()http://shiny.rstudio.com/reference/shiny/latest/fillRow.html.
+
+#### Fill Layout
+
+When you mix multiple Shiny inputs and/or outputs within a flexdashboard panel it's good practice to have them fill the bounds of their container in the same way that other flexdashboard components like plots and htmlwidgets do. This is possible using the Shiny [`fillRow`](http://shiny.rstudio.com/reference/shiny/latest/fillRow.html) and [`fillCol`](http://shiny.rstudio.com/reference/shiny/latest/fillRow.html) layout functions.
+
+For example, here's how you'd use `fillCol` within a code chunk to ensure that a Shiny input and plot output naturally fill their flexdashboard container:
+
+<div id="shinyfilllayout"></div>
+<script type="text/javascript">loadSnippet('shinyfilllayout')</script>
+
+If you are new to Shiny then the code above won't make any sense to you. In that case we highly recommend that you use the default layout strategy described above! (i.e. inputs within the sidebar and outputs within their own flexdashboard containers).
+
+For those familiar with Shiny here are further details on how this example works:
+
+1. The container is laid out using the `fillCol` function, which establishes a single column layout with flexible row heights.
+
+3. Flexible height behavior is defined via `flex = c(NA, 1)`. In short, this says don't give the first child of the container (the input panel) flexible height (the `NA` value) but do give the second child (the plot) flexible height.
+
+3. The call to `plotOutput` includes `height = "100%"` to ensure that the plot takes advantage of the height allocated to it by the `fillCol`.
+
+4. Finally, note that unlike the simpler layout examples above this examples uses an explicit `plotOutput / renderPlot` pairing rather than just a standalone `renderPlot`. This is that the plot can be included in a more sophisticated layout scheme (i.e. one more like traditional `ui.R` layout).
+
+You can learn more about flexible Shiny layouts in the article on [Flex Box-based row/column layouts](http://shiny.rstudio.com/reference/shiny/latest/fillRow.html).
+
+#### Scrolling Height 
+
+There's one other important detail to understand related to the total height occupied by the Shiny components. By default, flexdashboard uses a vertical layout that fills the page (e.g. `vertical_layout: fill`). In this scenario, the Shiny UI defined above will have it's size determined by the overall page layout algorithm and then fill it as necessary.
+
+However, all components in flexdashboards also need to have fixed height layout heuristics. This is both for the explicit use of `vertical_layout: scroll` but also for layouts on mobile phones, which due to the small size of the screen always use a scrolling layout.
+
+The appropriate height for a given set of Shiny input and output components isn't something that can be determined automatically (it depends on the size and quantity the components). Therefore, you should include an explicit `height` attribute on the outer container (in the example above this is done via `fillCol(height = 500, ...)`) which specifies the height you'd like your components to occupy in a scrolling layout.
+
+### Embedded Apps
 
 The example above illustrates how to add Shiny components inline within a flexdashboard. It's also possible to embed an entire Shiny application as a flexdashboard component. The application can be either defined inline using the `shinyApp` function or can be defined externally and included using the `shinyAppDir` function. Both of these options are described below. See also this simple [example application](https://beta.rstudioconnect.com/jjallaire/shiny-embedded-apps/) which uses both techniques.
 
-### Inline Definition
+#### Inline Definition
 
 While Shiny applications are often defined in standalone R source files (e.g. ui.R and server.R) it's also possible to define a full application inline using the [`shinyApp`](http://shiny.rstudio.com/reference/shiny/latest/shinyApp.html) function.
 
@@ -70,60 +170,19 @@ You can embed inline Shiny applications within a flexdashboard. For example, the
 <div id="shinyembeddedinline"></div>
 <script type="text/javascript">loadSnippet('shinyembeddedinline')</script>
 
-### External Definition
+You'll note that this example uses the same "WorldPhones" code which was the basis of the fill layout example. However, in this case the code is wrapped in a `fillPage` which includes a height attribute for scrolling layouts (in the previous example the height attribute was on the `fillCol`).
+
+#### External Definition
 
 It's also possible to include a Shiny application defined in an external directory within a flexdashboard. For example, the following code chunk includes one of the Shiny example applications:
 
 <div id="shinyembeddedexternal"></div>
 <script type="text/javascript">loadSnippet('shinyembeddedexternal')</script>
 
-### Layout Constraints
+#### Layout Constraints
 
-When you embed a Shiny application using either of the above techniques you need to provide it with a specific height (e.g. the `options = list(height = 600)` code at the end of the first example). Furthermore, you need to ensure that this height is adequate to display the application even in mobile layouts where the sidebar might be above rather than to the left of the main display.
+When you embed a Shiny application using either of the above techniques you need to provide it with a specific height (e.g. the `options = list(height = 500)` code at the end of the first example) for scrolling layouts.
 
-As a result of these constraints, it's usually best to do one of the following:
+You should always ensure that this height is adequate to display the application even in mobile layouts where the sidebar might be above rather than to the left of the main display. The reason the second example specifies `height = 850` is because on mobile layouts the sidebar will appear above the plot output rather than to the left of it.
 
-1. Display embedded Shiny applications either on their own dashboard page or within a full height dashboard column; or
 
-2. Use [`vertical_layout: scroll`](using.html#scrolling-layout) to allow embedded applications to occupy exactly their specified height (pushing other components down below the fold if need be).
-
-Another possible solution is to use the [`miniUI`](https://github.com/rstudio/miniUI) package as described in the section below.
-
-### Layout with miniUI
-
-The [`miniUI`](https://github.com/rstudio/miniUI) package is an alternative layout system for Shiny applications that does a better job automatically sizing itself to it's enclosing container than traditional Shiny layouts. This is accomplished via the use of [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) (the same layout system used by flexdashboard). 
-
-The miniUI package was originally designed for creating [Shiny Gadgets](http://shiny.rstudio.com/articles/gadgets.html) but it's also useful for flexdashboard. For example, here's the initial example of an inline Shiny application re-written to use miniUI:
-
-<div id="shinyembeddedminiui"></div>
-<script type="text/javascript">loadSnippet('shinyembeddedminiui')</script>
-
-Note the specification of `height = "100%"` in a couple of places with the application's layout. This is what ensures that the application takes all available vertical space.
-
-See the [miniUI documentation](http://shiny.rstudio.com/articles/gadget-ui.html) for additional details. See the also this [example application](https://beta.rstudioconnect.com/jjallaire/shiny-mini-ui/) which includes the code above in the context of a full flexdashboard.
-
-## Examples
-
-Several examples are available to help you learn more about using Shiny with flexdashboard (each example includes full source code):
-
-1. [Iris K-Means Clustering](https://jjallaire.shinyapps.io/shiny-kmeans/)
-
-2. [Linked Brushing with ggplot2](https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/)
-
-3. [Embedded Shiny Apps](https://beta.rstudioconnect.com/jjallaire/shiny-embedded-apps/)
-
-4. [Shiny miniUI Layout](https://beta.rstudioconnect.com/jjallaire/shiny-mini-ui/)
-
-5. [CRAN Download Monitor](https://jjallaire.shinyapps.io/shiny-crandash/) 
-
-6. [Gene Expression Biclustering ](https://jjallaire.shinyapps.io/shiny-biclust/)
-
-## Learning More
-
-The following articles are excellent resources for learning more about Shiny and creating interactive documents:
-
-1. The [Introduction to Interactive Documents](http://shiny.rstudio.com/articles/interactive-docs.html) article provides a great resources for getting started with Shiny and R Markdown.
-
-2. The [Interactive Documents](http://rmarkdown.rstudio.com/authoring_shiny.html) article on the R Markdown web site provides additional introductory material as well as information on deploying interactive documents.
-
-3. The [Shiny Dev Center](http://shiny.rstudio.com) includes extensive articles, tutorials, and examples to help you learn more about Shiny.

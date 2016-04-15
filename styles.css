@@ -18,6 +18,9 @@
   width: 100%;
 }
 
+.screenshot {
+  border: solid 1px #cccccc;
+}
 
 .holder {
   padding-right: 5px;
@@ -44,3 +47,12 @@
 a.thumbnail:hover {
   text-decoration: none;
 }
+
+table a:not(.btn), .table a:not(.btn) {
+  text-decoration: none;
+}
+
+table a:not(.btn):hover, .table a:not(.btn):hover {
+  text-decoration: underline;
+}
+
