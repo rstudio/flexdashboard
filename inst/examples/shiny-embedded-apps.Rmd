@@ -11,7 +11,7 @@ runtime: shiny
 library(flexdashboard)
 ```
 
-Inline
+Inline App
 =======================================================================
 
 ### Inline Shiny Application via shinyApp
@@ -36,16 +36,16 @@ shinyApp(
 )
 ```
 
-Module
+Inline Module
 =======================================================================
 
-### Demonstration of Shiny Modules
+### Shiny Module
 
 ```{r, include=FALSE}
 # Shiny module definition (would typically be defined in a separate R script)
 
-# input function
-worldPhonesInput <- function(id) {
+# UI function
+worldPhonesUI <- function(id) {
   ns <- NS(id)
   fillCol(height = 500, flex = c(NA, 1), 
     inputPanel(
@@ -55,28 +55,22 @@ worldPhonesInput <- function(id) {
   )
 }
 
-# output function
+# Server function
 worldPhones <- function(input, output, session) {
-  
-  telephones <- reactive({
-    WorldPhones[,input$region]*1000
-  })
-  
   output$phonePlot <- renderPlot({
-    barplot(telephones(), 
+    barplot(WorldPhones[,input$region]*1000, 
             ylab = "Number of Telephones", xlab = "Year")
   })
-  
-  return(telephones)
 }
 ```
 
 ```{r}
-# Call the shiny module
+# Include the module
+worldPhonesUI("phones")
 callModule(worldPhones, "phones")
 ```
 
-External
+External App
 =======================================================================
 
 ### External Shiny Application via shinyAppDir
