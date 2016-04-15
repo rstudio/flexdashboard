@@ -1072,6 +1072,22 @@ window.FlexDashboardComponents.push({
   }
 });
 
+// shiny fillRow or fillCol
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.find('.flexfill-container');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+    if (fillPage)
+      element.css('height', '100%');
+  }
+});
 
 // valueBox
 window.FlexDashboardComponents.push({
