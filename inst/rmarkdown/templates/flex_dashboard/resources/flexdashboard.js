@@ -664,7 +664,7 @@ var FlexDashboard = (function () {
     chart.wrapInner('<div class="chart-stage"></div>');
     var chartContent = chart.children('.chart-stage');
 
-    // flex the content if it has a chart OR is empty (e.g. sample layout)
+    // flex the content if appropriate
     result.flex = componentsFlex(components);
     if (result.flex) {
       // add flex classes
@@ -674,48 +674,48 @@ var FlexDashboard = (function () {
       // additional shim to break out of flexbox sizing
       chartContent.wrapInner('<div class="chart-shim"></div>');
       chartContent = chartContent.children('.chart-shim');
-
-      // set custom data-padding attribute
-      var pad = chart.attr('data-padding');
-      if (pad) {
-        if (pad === "0")
-          chart.addClass('nopadding');
-        else {
-          pad = pad + 'px';
-          chartContent.css('left', pad)
-                      .css('top', pad)
-                      .css('right', pad)
-                      .css('bottom', pad)
-        }
-      }
-
-      // call compoents
-      componentsLayout(components, title, chartContent);
-
-      // also activate components on shiny output
-      findShinyOutput(chartContent).on('shiny:value',
-        function(event) {
-          var element = $(event.target);
-          setTimeout(function() {
-
-            // see if we opted out of flex based on our output (for shiny
-            // we can't tell what type of output we have until after the
-            // value is bound)
-            var components = componentsFind(element);
-            var flex = componentsFlex(components);
-            if (!flex) {
-              chart.css('height', "");
-              setFlex(chart, "");
-              chart.removeClass('chart-wrapper-flex');
-              chartContent.removeClass('chart-stage-flex');
-              chartContent.children().unwrap();
-            }
-
-            // perform layout
-            componentsLayout(components, title, element.parent());
-          }, 10);
-        });
     }
+
+    // set custom data-padding attribute
+    var pad = chart.attr('data-padding');
+    if (pad) {
+      if (pad === "0")
+        chart.addClass('nopadding');
+      else {
+        pad = pad + 'px';
+        chartContent.css('left', pad)
+                    .css('top', pad)
+                    .css('right', pad)
+                    .css('bottom', pad)
+      }
+    }
+
+    // call compoents
+    componentsLayout(components, title, chartContent);
+
+    // also activate components on shiny output
+    findShinyOutput(chartContent).on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+
+          // see if we opted out of flex based on our output (for shiny
+          // we can't tell what type of output we have until after the
+          // value is bound)
+          var components = componentsFind(element);
+          var flex = componentsFlex(components);
+          if (!flex) {
+            chart.css('height', "");
+            setFlex(chart, "");
+            chart.removeClass('chart-wrapper-flex');
+            chartContent.removeClass('chart-stage-flex');
+            chartContent.children().unwrap();
+          }
+
+          // perform layout
+          componentsLayout(components, title, element.parent());
+        }, 10);
+      });
 
     // add the title
     var chartTitle = $('<div class="chart-title"></div>');
