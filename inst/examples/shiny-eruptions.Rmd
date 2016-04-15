@@ -8,6 +8,10 @@ output:
 runtime: shiny
 ---
 
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
 Column {.sidebar}
 -----------------------------------------------------------------------
 
