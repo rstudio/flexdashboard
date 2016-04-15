@@ -46,15 +46,17 @@ thumbnails <- function(thumbs) {
 }
 
 # Generate HTML for examples
-examples <- function(caption = TRUE, showcaseOnly = FALSE) {
+examples <- function(caption = TRUE, showcaseOnly = FALSE, shinyOnly = FALSE) {
   
   # read examples into data frame (so we can easily sort/filter/etc)
   examples <- yaml::yaml.load_file("examples.yml")
   examples <- plyr::ldply(examples, data.frame, stringsAsFactors=FALSE)
   
-  # filter for showcase if requested
+  # filter if requested
   if (showcaseOnly)
     examples <- subset(examples, examples$showcase == TRUE)
+  if (shinyOnly)
+    examples <- subset(examples, examples$shiny == TRUE)
   
   # convert to list for thumbnail generation
   examples <- apply(examples, 1, function(r) { 

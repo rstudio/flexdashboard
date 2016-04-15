@@ -32,7 +32,7 @@
   img: images/htmlwidgets-metricsgraphics-tor.png
   href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-metricsgraphics-tor/
 - title: "Shiny: kmeans clustering"
-  img: images/shiny-dashboard.png
+  img: images/shiny-kmeans.png
   href: https://jjallaire.shinyapps.io/shiny-kmeans/
   shiny: true
 - title: "ggplotly: various examples"

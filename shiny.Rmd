@@ -2,6 +2,11 @@
 title: "Using shiny with flexdashboard"
 ---
 
+```{r setup, include = FALSE}
+source("utils.R")
+```
+
+
 ## Overview
 
 By adding [Shiny](http://shiny.rstudio.com) to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see [`reactiveFileReader`](http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html) and [`reactivePoll`](http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html)). This is done by adding `runtime: shiny` to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the components within the dashboard.
@@ -88,17 +93,10 @@ For example, this dashboard includes a global sidebar:
 
 Several examples are available to help you learn more about using Shiny with flexdashboard (each example includes full source code):
 
-1. [Old Faithful Eruptions](https://beta.rstudioconnect.com/jjallaire/shiny-eruptions/)
+```{r, echo=FALSE}
+examples(shinyOnly = TRUE)
+```
 
-2. [Iris K-Means Clustering](https://jjallaire.shinyapps.io/shiny-kmeans/)
-
-3. [Linked Brushing with ggplot2](https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/)
-
-4. [Embedded Shiny Apps](https://beta.rstudioconnect.com/jjallaire/shiny-embedded-apps/)
-
-5. [CRAN Download Monitor](https://jjallaire.shinyapps.io/shiny-crandash/) 
-
-6. [Gene Expression Biclustering ](https://jjallaire.shinyapps.io/shiny-biclust/)
 
 ### Learning More
 
