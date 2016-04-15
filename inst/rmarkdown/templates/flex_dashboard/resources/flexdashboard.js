@@ -1068,6 +1068,13 @@ window.FlexDashboardComponents.push({
     if (fillPage) {
       element.attr('height', '100%');
       element.unwrap();
+    } else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (!height)
+        height = element.attr('height');
+      if (!height)
+        element.attr('height', 500);
     }
   }
 });
@@ -1086,6 +1093,14 @@ window.FlexDashboardComponents.push({
   layout: function(title, container, element, fillPage) {
     if (fillPage)
       element.css('height', '100%');
+    else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (height === "100%" || height === "auto" || height === "initial" ||
+          height === "inherit" || !height) {
+        element.css('height', 500);
+      }
+    }
   }
 });
 
