@@ -179,7 +179,7 @@ It's also possible to include a Shiny application defined in an external directo
 <div id="shinyembeddedexternal"></div>
 <script type="text/javascript">loadSnippet('shinyembeddedexternal')</script>
 
-#### Layout Constraints
+#### Scrolling Height
 
 When you embed a Shiny application using either of the above techniques you need to provide it with a specific height (e.g. the `options = list(height = 500)` code at the end of the first example) for scrolling layouts.
 
