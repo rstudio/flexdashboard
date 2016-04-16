@@ -171,7 +171,7 @@ body hr {
   left: 8px; top: 8px; right: 8px; bottom: 8px;
 }
 
-.nopadding .chart-shim {
+.no-padding .chart-shim {
   left: 0; top: 0; right: 0; bottom: 0;
 }
 
@@ -417,3 +417,18 @@ table.dataTable thead th {
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
   border-bottom: 1px solid #d7d7d7;
 }
+
+/* Mobile phone only CSS */
+
+.desktop-layout div.section.mobile {
+  display: none;
+}
+
+.mobile-layout div.section.no-mobile {
+  display: none;
+}
+
+
+
+
+

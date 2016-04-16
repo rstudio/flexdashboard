@@ -31,6 +31,9 @@ var FlexDashboard = (function () {
     // find the main dashboard container
     var dashboardContainer = $('#dashboard-container');
 
+    // resolve mobile classes
+    resolveMobileClasses(dashboardContainer);
+
     // one time global initialization for components
     componentsInit(dashboardContainer);
 
@@ -131,6 +134,20 @@ var FlexDashboard = (function () {
 
     // trigger layoutcomplete event
     dashboardContainer.trigger('flexdashboard:layoutcomplete');
+  }
+
+  function resolveMobileClasses(dashboardContainer) {
+     // add top level layout class
+    dashboardContainer.addClass(isMobilePhone() ? 'mobile-layout' :
+                                                  'desktop-layout');
+
+    // look for .mobile sections and add .no-mobile to their peers
+    var mobileSections = $('.section.mobile');
+    mobileSections.each(function() {
+       var id = $(this).attr('id');
+       var nomobileId = id.replace(/-\d+$/, '');
+       $('#' + nomobileId).addClass('no-mobile');
+    });
   }
 
   function addNavbarItems(navbarItems) {
@@ -680,7 +697,7 @@ var FlexDashboard = (function () {
     var pad = chart.attr('data-padding');
     if (pad) {
       if (pad === "0")
-        chart.addClass('nopadding');
+        chart.addClass('no-padding');
       else {
         pad = pad + 'px';
         chartContent.css('left', pad)
