@@ -325,7 +325,7 @@ div.tocify {
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <p>By adding <a href="http://shiny.rstudio.com">Shiny</a> to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see <a href="http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html"><code>reactiveFileReader</code></a> and <a href="http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html"><code>reactivePoll</code></a>). This is done by adding <code>runtime: shiny</code> to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the components within the dashboard.</p>
-<p>Using Shiny with flexdashboard turns a static R Markdown report into an <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interative Document</a>. It’s important to note that interactive documents need to be <a href="http://rmarkdown.rstudio.com/authoring_shiny.html#deployment">deployed</a> to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).</p>
+<p>Using Shiny with flexdashboard turns a static R Markdown report into an <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interactive Document</a>. It’s important to note that interactive documents need to be <a href="http://rmarkdown.rstudio.com/authoring_shiny.html#deployment">deployed</a> to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).</p>
 <p>Note that the <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a> package provides another way to create dashboards with Shiny.</p>
 </div>
 <div id="getting-started" class="section level2">
@@ -356,6 +356,12 @@ div.tocify {
 <div id="inputs-outputs" class="section level3">
 <h3>Inputs &amp; Outputs</h3>
 <p>When you use Shiny within a flexdashboard you’ll be making use of both input elements (e.g. sliders, checkboxes, etc.) and output elements (plots, tables, etc.). Input elements are typically presented within a sidebar and outputs within flexdashboard content panes (it’s also possible to combine inputs and outputs in a single pane, this is described in more detail below).</p>
+<p>Here’s a simple example of a shiny input and corresponding output:</p>
+<div id="shinysimple">
+
+</div>
+<script type="text/javascript">loadSnippet('shinysimple', 'r')</script>
+<p>The <code>sliderInput</code> call makes a slider input named “bins” available. The <code>renderPlot</code> function is then able to access the value of the “bins” input via the expression <code>input$bins</code>.</p>
 <p>As illustrated above, inputs are added by calling an R function (e.g. <code>sliderInput</code>). The Shiny package makes available a wide variety of functions for creating inputs, a few of them include:</p>
 <table style="width:99%;">
 <colgroup>
@@ -522,7 +528,7 @@ div.tocify {
 <li><p>Place inputs in a sidebar and outputs within their own flexdashboard panel (the strategy illustrated in the example above).</p></li>
 <li><p>Mix inputs and output(s) within a single flexdashboard panel.</p></li>
 </ol>
-<p>The first option is the most straightforward and is highly encouraged if it meets the layout and interactivity requirements of your dashboard. The second option provides for more customized layout but requires the use of Shiny <a href="">fill layouts</a><a href="http://shiny.rstudio.com/reference/shiny/latest/fillRow.html" class="uri">http://shiny.rstudio.com/reference/shiny/latest/fillRow.html</a>.</p>
+<p>The first option is the most straightforward and is highly encouraged if it meets the layout and interactivity requirements of your dashboard. The second option provides for more customized layout but requires the use of Shiny <a href="http://shiny.rstudio.com/reference/shiny/latest/fillRow.html">fill layouts</a>.</p>
 <div id="fill-layout" class="section level4">
 <h4>Fill Layout</h4>
 <p>When you mix multiple Shiny inputs and/or outputs within a flexdashboard panel it’s good practice to have them fill the bounds of their container in the same way that other flexdashboard components like plots and htmlwidgets do. This is possible using the Shiny <a href="http://shiny.rstudio.com/reference/shiny/latest/fillRow.html"><code>fillRow</code></a> and <a href="http://shiny.rstudio.com/reference/shiny/latest/fillRow.html"><code>fillCol</code></a> layout functions.</p>
@@ -535,16 +541,16 @@ div.tocify {
 <p>For those familiar with Shiny here are further details on how this example works:</p>
 <ol style="list-style-type: decimal">
 <li><p>The container is laid out using the <code>fillCol</code> function, which establishes a single column layout with flexible row heights.</p></li>
-<li><p>Flexible height behavior is defined via <code>flex = c(NA, 1)</code>. In short, this says don’t give the first child of the container (the input panel) flexible height (the <code>NA</code> value) but do give the second child (the plot) flexible height.</p></li>
-<li><p>The call to <code>plotOutput</code> includes <code>height = &quot;100%&quot;</code> to ensure that the plot takes advantage of the height allocated to it by the <code>fillCol</code>.</p></li>
-<li><p>Finally, note that unlike the simpler layout examples above this examples uses an explicit <code>plotOutput / renderPlot</code> pairing rather than just a standalone <code>renderPlot</code>. This is that the plot can be included in a more sophisticated layout scheme (i.e. one more like traditional <code>ui.R</code> layout).</p></li>
+<li><p>Flexible height behavior is defined via <code>flex = c(NA, 1)</code>. The <code>NA</code> applies to the first component (the input panel) and says to not give it flexible height (i.e. allow it to occupy it’s natural height). The <code>1</code> applies to the second component (the plot) and says that it should have flexible height (i.e. occupy all remaining height in the container).</p></li>
+<li><p>The call to <code>plotOutput</code> includes <code>height = &quot;100%&quot;</code> to ensure that the plot takes advantage of the height allocated to it by the <code>fillCol</code> flexible layout.</p></li>
+<li><p>Finally, note that unlike the simpler layout examples above this examples uses an explicit <code>plotOutput / renderPlot</code> pairing rather than just a standalone <code>renderPlot</code>. This is so that the plot can be included in a more sophisticated layout scheme (i.e. one more like traditional <code>ui.R</code> layout).</p></li>
 </ol>
-<p>You can learn more about flexible Shiny layouts in the article on <a href="http://shiny.rstudio.com/reference/shiny/latest/fillRow.html">Flex Box-based row/column layouts</a>.</p>
+<p>You can learn more about flexible layouts in the Shiny Dev Center <a href="http://shiny.rstudio.com/articles/gadget-ui.html#fillrowfillcol">article on fill layouts</a> as well as the <a href="http://shiny.rstudio.com/reference/shiny/latest/fillRow.html">reference documentation</a> for the <code>fillCol</code> and <code>fillRow</code> functions.</p>
 </div>
 <div id="scrolling-height" class="section level4">
 <h4>Scrolling Height</h4>
-<p>There’s one other important detail to understand related to the total height occupied by embedded Shiny components. By default, flexdashboard uses a vertical layout that fills the page (e.g. <code>vertical_layout: fill</code>). In this scenario, the Shiny UI defined above will have it’s size automatically determined by the size of it’s flexdashboard container.</p>
-<p>However, even when using a fill layout components in flexdashboards also need to provide a fixed height layout. This is because dashboards will always scroll rather than fill the screen on mobile phones. Embedded shiny components that use <code>fillCol</code> or <code>fillRow</code> will be automatically assigned a scrolling height of 500 pixels, however the ideal height for your situation may be different. In the above example you can see that a non-default height of 600 pixels is specified via <code>fillCol(height = 600, ...)</code>.</p>
+<p>By default flexdashboard layouts fill the contents of the browser (<code>vertical_layout: fill</code>). Using the techniques described above ensures that your Shiny components will play well within a fill layout, expanding to occupy all available space.</p>
+<p>However, when flexdashboards are displayed on mobile phones they automatically switch to a scrolling layout. In this mode Shiny fill layouts are displayed at a height of 500 pixels by default. You should test your dashboards on a mobile phone browser (or using Google Chrome’s <a href="https://developers.google.com/web/tools/chrome-devtools/iterate/device-mode/?hl=en">Device Mode</a>) and if this height isn’t ideal you should provide an explicit height for the <code>fillCol</code> or <code>fillRow</code> as is done in the example above.</p>
 </div>
 </div>
 <div id="shiny-modules" class="section level3">
@@ -554,7 +560,8 @@ div.tocify {
 <li><p>You can define Shiny Modules within a separate R script. For Shiny components that require a lot of R code this is often preferable to including all the code inline.</p></li>
 <li><p>Shiny Modules can accept parameters, which enable them to be more easily re-used in different contexts.</p></li>
 </ol>
-<p>Here is the “WorldPhones” example from above re-written as a Shiny Module (this code would typically be defined within a standalone R script):</p>
+<p>Here is the “WorldPhones” example from above re-written as a Shiny Module (this code is defined in a standalone R script):</p>
+<p><strong>worldPhones.R</strong></p>
 <div id="shinyembeddedmodule">
 
 </div>
@@ -563,7 +570,7 @@ div.tocify {
 <div id="shinyembeddedmodulecall">
 
 </div>
-<script type="text/javascript">loadSnippet('shinyembeddedmodulecall')</script>
+<script type="text/javascript">loadSnippet('shinyembeddedmodulecall', 'r')</script>
 <p>You can learn more about creating and using Shiny Modules at the <a href="http://shiny.rstudio.com/articles/modules.html">Shiny Dev Center</a>.</p>
 </div>
 <div id="inline-applications" class="section level3">
@@ -574,8 +581,8 @@ div.tocify {
 
 </div>
 <script type="text/javascript">loadSnippet('shinyembeddedinline', 'r')</script>
-<p>You’ll note that this example uses the same “WorldPhones” code which was the basis of the fill layout example. However, in this case the code is wrapped in a <code>fillPage</code> which includes a height attribute for scrolling layouts (in the previous example the height attribute was on the <code>fillCol</code>).</p>
-<p>Note that when embedding Shiny components using an inline application definition an <code>&lt;iframe&gt;</code> is created to host the application. In contrast, when using <a href="#shiny-modules">Shiny Modules</a> the components are included inline on the page, which makes them generally preferable to inline applications.</p>
+<p>You’ll note that this example uses the same “WorldPhones” code which was the basis of the previous embedding examples. However, in this case the code is wrapped in a top level <code>fillPage</code>. Also note that the <code>shinyApp</code> call includes an explicit <code>options = list(height = 600)</code> for use in scrolling layouts.</p>
+<p>When embedding Shiny components using an inline application definition an <code>&lt;iframe&gt;</code> is created to host the application. In contrast, when using <a href="#shiny-modules">Shiny Modules</a> the components are included inline on the page (inheriting the containing page’s CSS).</p>
 </div>
 <div id="external-applications" class="section level3">
 <h3>External Applications</h3>

@@ -1,4 +1,4 @@
-# Shiny module definition
+# Shiny worldPhones module 
 
 # UI function
 worldPhonesUI <- function(id) {
