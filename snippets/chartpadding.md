@@ -1,4 +1,4 @@
-### Chart 1 {.nopadding}
+### Chart 1 {.no-padding}
     
 ```{r}
 ```

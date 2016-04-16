@@ -171,7 +171,7 @@ This example is a variation of the single-column layout demonstrated above with 
 
 #### Chart Padding
 
-By default flexdashboard places 8 pixels of padding around the edges of charts. For some chart types this might not be ideal. In this case you can either add the `.nopadding` attribute to specify no padding at all or the `data-padding` attribute to specify a specific number of pixels. For example:
+By default flexdashboard places 8 pixels of padding around the edges of charts. For some chart types this might not be ideal. In this case you can either add the `.no-padding` attribute to specify no padding at all or the `data-padding` attribute to specify a specific number of pixels. For example:
 
 <div id="chartpadding"></div>
 <script type="text/javascript">loadSnippet('chartpadding')</script>
