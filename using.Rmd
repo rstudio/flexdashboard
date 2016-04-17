@@ -228,6 +228,8 @@ When referring to an icon you should use it's full name including the icon set p
 
 ## Mobile Layout
 
+<img src="images/mobile-phone.png" width=187 height=332 class="screenshot" align="right" style="margin-left: 15px; margin-bottom: 15px;"/>
+
 The flexdashboard layout system adapts itself intelligently for display on mobile devices. This section describes layout behavior for various screen sizes as well as some guidelines for ensuring that your dashboards work well on smaller screens.
 
 ### Medium Screens
