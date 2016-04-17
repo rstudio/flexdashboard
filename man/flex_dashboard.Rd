@@ -4,9 +4,9 @@
 \alias{flex_dashboard}
 \title{R Markdown Format for Flexible Dashboards}
 \usage{
-flex_dashboard(fig_width = 6, fig_height = 5, dev = "png", smart = TRUE,
-  self_contained = TRUE, social = NULL, source_code = NULL,
-  navbar = NULL, orientation = c("columns", "rows"),
+flex_dashboard(fig_width = 6, fig_height = 4.8, fig_retina = 2,
+  dev = "png", smart = TRUE, self_contained = TRUE, social = NULL,
+  source_code = NULL, navbar = NULL, orientation = c("columns", "rows"),
   vertical_layout = c("fill", "scroll"), theme = "default",
   highlight = "default", mathjax = "default", extra_dependencies = NULL,
   css = NULL, includes = NULL, lib_dir = NULL, md_extensions = NULL,
@@ -16,6 +16,11 @@ flex_dashboard(fig_width = 6, fig_height = 5, dev = "png", smart = TRUE,
 \item{fig_width}{Default width (in inches) for figures}
 
 \item{fig_height}{Default width (in inches) for figures}
+
+\item{fig_retina}{Scaling to perform for retina displays (defaults to 2).
+Note that for flexdashboard enabling retina scaling provides for both
+crisper graphics on retina screens but also much higher quality
+auto-scaling of R graphics within flexdashboard containers.}
 
 \item{dev}{Graphics device to use for figure output (defaults to png)}
 
@@ -40,7 +45,7 @@ item which links to the source code.}
 
 \item{navbar}{Optional list of elements to be placed on the flexdashboard
 navigation bar. Each element should be a list containing a \code{title}
-and/or \code{icon} field, a \code{url} field and an optional \code{align}
+and/or \code{icon} field, an \code{href} field and an optional \code{align}
 ("left" or "right") field.}
 
 \item{orientation}{Determines whether level 2 headings are treated as

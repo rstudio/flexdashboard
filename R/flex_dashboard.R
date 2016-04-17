@@ -7,6 +7,11 @@
 #'
 #'@inheritParams rmarkdown::html_document
 #'
+#'@param fig_retina Scaling to perform for retina displays (defaults to 2).
+#'  Note that for flexdashboard enabling retina scaling provides for both
+#'  crisper graphics on retina screens but also much higher quality
+#'  auto-scaling of R graphics within flexdashboard containers.
+#'
 #'@param social Specify a character vector of social sharing services to
 #'  automatically add sharing links for them on the \code{navbar}. Valid values
 #'  are "twitter", "facebook", "google-plus", "linkedin", and "pinterest" (more
@@ -62,6 +67,7 @@
 #'@export
 flex_dashboard <- function(fig_width = 6.0,
                            fig_height = 4.8,
+                           fig_retina = 2,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
@@ -125,7 +131,7 @@ flex_dashboard <- function(fig_width = 6.0,
   # determine knitr options
   knitr_options <- knitr_options_html(fig_width = fig_width,
                                       fig_height = fig_height,
-                                      fig_retina = 2,
+                                      fig_retina = fig_retina,
                                       keep_md = FALSE,
                                       dev = dev)
   knitr_options$opts_chunk$echo = FALSE
@@ -439,4 +445,5 @@ icon_dependencies <- function(source) {
   # return their dependencies
   html_dependencies_fonts("fa" %in% libs, "ion" %in% libs)
 }
+
 
