@@ -1,0 +1,120 @@
+---
+title: "Waste Lands - America's forgotten nuclear legacy"
+author: Philipp Ottolinger
+output: 
+  flexdashboard::flex_dashboard:
+    theme: journal
+    social: menu
+    source_code: embed
+---
+
+```{r setup, include = FALSE}
+library(flexdashboard)
+library(shiny)
+library(jsonlite)
+library(maptools)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(purrr)
+library(leaflet)
+library(plotly)
+
+sites <- fromJSON(flatten=TRUE,
+  "https://raw.githubusercontent.com/ottlngr/2016-15/ottlngr/ottlngr/sites.json")
+
+sites$locations <- map(sites$locations, function(x) {
+  if (nrow(x) == 0) {
+    data_frame(latitude=NA, longitude=NA, postal_code=NA, name=NA, street_address=NA)
+  } else {
+    x
+  }
+})
+
+sites <- unnest(sites)
+sites <- sites[complete.cases(sites[,c("longitude", "latitude")]),]
+
+sites$ratingcol <- ifelse(sites$site.rating == 0, "orange",
+                          ifelse(sites$site.rating == 1, "green",
+                                 ifelse(sites$site.rating == 2, "red", "black")))
+
+sites$ratingf <- factor(sites$site.rating,
+                        levels=c(3:0),
+                        labels=c("Remote or no potential for radioactive contamination.",
+                                 "No authority to clean up or status unclear.",
+                                 "Cleanup declared complete.",
+                                 "Cleanup in progress."))
+
+sites$campus <- ifelse(grepl("University", sites$site.name) | 
+                       grepl("University", pattern = sites$street_address) | 
+                       grepl("Campus", sites$street_address), 1, 0)
+sites$campuscol <- ifelse(sites$campus == 1, "red", "black")
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### All sites and their current status
+
+```{r}
+leaflet() %>% 
+  addTiles() %>% 
+  fitBounds(-127.44,24.05,-65.30,50.35) %>% 
+  addCircleMarkers(sites$longitude, 
+                   sites$latitude, 
+                   color = sites$ratingcol, 
+                   radius = 6, 
+                   fill = T,
+                   fillOpacity = 0.2,
+                   opacity = 0.6,
+                   popup = paste(sites$site.city,
+                                 sites$site.name, 
+                                 sep = "<br>")) %>%
+  addLegend("bottomleft", 
+            colors = c("orange","green", "red", "black"),
+            labels = c("Cleanup in progress.",
+                       "Cleanup complete.",
+                       "Status unclear.",
+                       "No potential for radioactive contamination."), 
+            opacity = 0.8)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Number of sites
+
+```{r}
+sites %>% 
+  count(ratingf) %>%
+  plot_ly(type = "bar", 
+          x = ratingf, 
+          y = n, 
+          color = ratingf, 
+          text = paste(n,ratingf,sep="<br>"), 
+          hoverinfo = "text") %>%
+  layout(xaxis = list(showline = F, 
+                      showticklabels = F, 
+                      fixedrange = T, 
+                      title = ""),
+         yaxis = list(fixedrange = T, 
+                      title = ""))
+```
+
+### Sites on campus
+
+```{r}
+leaflet() %>% 
+  addTiles() %>% 
+  fitBounds(-127.44,24.05,-65.30,50.35) %>% 
+  addCircleMarkers(sites[sites$campus == 1, ]$longitude, 
+                   sites[sites$campus == 1, ]$latitude, 
+                   color = sites[sites$campus == 1, ]$campuscol, 
+                   radius = 6, 
+                   fill = T,
+                   fillOpacity = 0.2,
+                   opacity = 0.6,
+                   popup = paste(sites[sites$campus == 1, ]$site.city,
+                                 sites[sites$campus == 1, ]$site.name, 
+                                 sep = "<br>"))
+```
