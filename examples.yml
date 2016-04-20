@@ -35,6 +35,9 @@
   img: images/shiny-kmeans.png
   href: https://jjallaire.shinyapps.io/shiny-kmeans/
   shiny: true
+- title: "leaflet: nuclear waste sites"
+  img: images/htmlwidgets-waste-sites.png
+  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-waste-sites/
 - title: "ggplotly: various examples"
   img: images/htmlwidgets-ggplotly-examples.png
   href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-examples/
