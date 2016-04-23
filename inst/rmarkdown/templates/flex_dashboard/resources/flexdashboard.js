@@ -815,7 +815,9 @@ var FlexDashboard = (function () {
   // get a reference to the h3, discover it's inner html, and remove it
   function extractTitle(container) {
     var h3 = container.children('h3').first();
-    var title = h3.html();
+    var title = '';
+    if (!container.hasClass('no-title'))
+      title = h3.html();
     h3.remove();
     return title;
   }
