@@ -1011,6 +1011,25 @@ window.FlexDashboardComponents.push({
   }
 });
 
+// gauge
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.html-widget.gauge');
+  },
+
+  flex: function(fillPage) {
+    console.log('calling gauge flex');
+    return false;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+
+  }
+
+});
+
 // shiny output
 window.FlexDashboardComponents.push({
   find: function(container) {
@@ -1034,7 +1053,7 @@ window.FlexDashboardComponents.push({
   find: function(container) {
     var bsTable = container.find('table.table');
     if (bsTable.length !== 0)
-      return bsTable
+      return bsTable;
     else
       return container.find('tr.header').parent('thead').parent('table');
   },
