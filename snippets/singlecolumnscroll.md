@@ -1,8 +1,8 @@
 ---
-title: "Single Column (Fill)"
+title: "Single Column (Scrolling)"
 output: 
   flexdashboard::flex_dashboard:
-    vertical_layout: fill
+    vertical_layout: scroll
 ---
 
 ### Chart 1
@@ -17,8 +17,11 @@ output:
 
 ```
 
+### Chart 3
 
+```{r}
 
+```
 
 
 

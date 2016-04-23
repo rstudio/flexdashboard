@@ -68,15 +68,35 @@ The [Components](components.html) page describes the use of each component type 
 
 ### Layout
 
-#### Single Column
+#### Single Column (Fill)
 
-Dashboards are divided into columns and rows. By default dashboards are defined using level 3 markdown headers (`###`) and laid out within a single column. Charts are stacked vertically within a column. For example, this layout defines a single column with three charts:
+Dashboards are divided into columns and rows, with output components delineated using level 3 markdown headers (`###`). By default, dashboards are laid out within a single column, with charts  stacked vertically within a column and sized to fill available browser height. For example, this layout defines a single column with two charts that fills available browser space:
 
 <div class="row">
 
 <div class="col-md-5">
 <div id="singlecolumn"></div>
 <script type="text/javascript">loadSnippet('singlecolumn')</script>
+</div>
+
+<div class="col-md-7">
+<div height="420px" width="100%">
+<img class="holder" data-src="holder.js/100px210?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px210?size=28&amp;text=Chart 2">
+</div>
+</div>
+
+</div>
+
+#### Single Column (Scroll)
+
+Depending on the nature of your dashboard (number of components, ideal height of components, etc.) you may prefer a scrolling layout where components occupy their natural height and the browser scrolls when additional vertical space is needed. You can specify this behavior via the `vertical_layout: scroll` option. For example, here is the definition of a single column scrolling layout with three charts:
+
+<div class="row">
+
+<div class="col-md-5">
+<div id="singlecolumnscroll"></div>
+<script type="text/javascript">loadSnippet('singlecolumnscroll')</script>
 </div>
 
 <div class="col-md-7">
