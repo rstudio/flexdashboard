@@ -480,18 +480,32 @@ div.tocify {
 </div>
 <div id="text-annotations" class="section level2">
 <h2>Text Annotations</h2>
-<p>If you need to include additional content (an introduction or explanation, links to related material, etc.) within your dashboard you can do so in several ways:</p>
+<div id="text-sections" class="section level3">
+<h3>Text Sections</h3>
+<p>If you need to include additional content (an introduction or explanation, links to related material, etc.) within your dashboard you can do so in the following ways:</p>
 <ol style="list-style-type: decimal">
 <li><p>You can include content at the top of the page before dashboard sections are introduced.</p></li>
 <li><p>You can define dashboard sections that don’t include a chart but rather include arbitrary content (text, images, equations, etc.)</p></li>
-<li><p>You can provide short text annotations for the various charts within a dashboard by including block-quoted text (i.e. text prefixed with <code>&gt;</code>) immediately below the R code chunk where the chart is rendered.</p></li>
 </ol>
-<p>For example, the following dashboard includes some content at the top, brief footer comments for each chart, and a dashboard section that contains only text.</p>
+<p>For example, the following dashboard includes some content at the top and a dashboard section that contains only text:</p>
 <div id="textannotation">
 
 </div>
 <script type="text/javascript">loadSnippet('textannotation')</script>
-<p>This example also demonstrates the use of a “setup chunk” to load required R packages prior to executing the rest of the R chunks that make use of them, as well as using a custom <code>data-height</code> attribute for the rows to make the first row disproportionately larger than the second row.</p>
+</div>
+<div id="title-and-notes" class="section level3">
+<h3>Title and Notes</h3>
+<p>Each compontent within a dashboard includes optional title and notes sections. The title is simply the text after the level 3 (<code>###</code>) section heading. The notes are any text prefaced with <code>&gt;</code> after the code chunk which yields the component’s output. For example:</p>
+<div id="texttitleandnotes">
+
+</div>
+<script type="text/javascript">loadSnippet('texttitleandnotes')</script>
+<p>You can exclude the title entirely by applying the <code>.no-title</code> attribute to a section heading, for example:</p>
+<div id="textnotitle">
+
+</div>
+<script type="text/javascript">loadSnippet('textnotitle')</script>
+</div>
 </div>
 <div id="learning-more" class="section level2">
 <h2>Learning More</h2>

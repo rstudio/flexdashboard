@@ -184,20 +184,30 @@ You can include a link to the dashboard's source code using the `source_code` op
 
 ## Text Annotations
 
-If you need to include additional content (an introduction or explanation, links to related material, etc.) within your dashboard you can do so in several ways:
+### Text Sections
+
+If you need to include additional content (an introduction or explanation, links to related material, etc.) within your dashboard you can do so in the following ways:
 
 1. You can include content at the top of the page before dashboard sections are introduced.
 
 2. You can define dashboard sections that don't include a chart but rather include arbitrary content (text, images, equations, etc.)
 
-3. You can provide short text annotations for the various charts within a dashboard by including block-quoted text (i.e. text prefixed with `>`) immediately below the R code chunk where the chart is rendered.
-
-For example, the following dashboard includes some content at the top, brief footer comments for each chart, and a dashboard section that contains only text.
+For example, the following dashboard includes some content at the top and a dashboard section that contains only text:
 
 <div id="textannotation"></div>
 <script type="text/javascript">loadSnippet('textannotation')</script>
 
-This example also demonstrates the use of a "setup chunk" to load required R packages prior to executing the rest of the R chunks that make use of them, as well as using a custom `data-height` attribute for the rows to make the first row disproportionately larger than the second row.
+### Title and Notes
+
+Each compontent within a dashboard includes optional title and notes sections. The title is simply the text after the level 3 (`###`) section heading. The notes are any text prefaced with `>` after the code chunk which yields the component's output. For example:
+
+<div id="texttitleandnotes"></div>
+<script type="text/javascript">loadSnippet('texttitleandnotes')</script>
+
+You can exclude the title entirely by applying the `.no-title` attribute to a section heading, for example:
+
+<div id="textnotitle"></div>
+<script type="text/javascript">loadSnippet('textnotitle')</script>
 
 ## Learning More
 

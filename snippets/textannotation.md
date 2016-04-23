@@ -22,8 +22,6 @@ Row {data-height=600}
 dygraph(ldeaths)
 ```
 
-> Includes all deaths    
-
 Row {data-height=400}
 -------------------------------------
 
@@ -32,8 +30,6 @@ Row {data-height=400}
 ```{r}
 dygraph(mdeaths)
 ```
-
-> Includes only male deaths
 
 ### About dygraphs
 
