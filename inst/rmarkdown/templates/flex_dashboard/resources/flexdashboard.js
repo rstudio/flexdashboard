@@ -824,11 +824,17 @@ var FlexDashboard = (function () {
 
   // extract chart notes
   function extractChartNotes(chartContent, chartNotes) {
-    // look for a terminating blockquote
+    // look for a terminating blockquote or image caption
     var blockquote = chartContent.children('blockquote:last-child');
+    var caption = chartContent.children('div.image-container')
+                              .children('p.caption');
     if (blockquote.length) {
       chartNotes.html(blockquote.children('p:first-child').html());
       blockquote.remove();
+      return true;
+    } else if (caption.length) {
+      chartNotes.html(caption.html());
+      caption.remove();
       return true;
     } else {
       return false;
@@ -959,6 +965,19 @@ var FlexDashboard = (function () {
 
 window.FlexDashboard = new FlexDashboard();
 
+// utils
+window.FlexDashboardUtils = {
+  resizableImage: function(img) {
+    var src = img.attr('src');
+    var url = 'url("' + src + '")';
+    img.parent().css('background', url)
+                .css('background-size', 'contain')
+                .css('background-repeat', 'no-repeat')
+                .css('background-position', 'center')
+                .addClass('image-container');
+  }
+};
+
 // empty content
 window.FlexDashboardComponents.push({
   find: function(container) {
@@ -978,18 +997,19 @@ window.FlexDashboardComponents.push({
   },
 
   layout: function(title, container, element, fillPage) {
-    // apply the image container style to the parent <p>
-    var img = element;
-    var p = img.parent();
-    p.addClass('image-container');
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
 
-    // grab the url and make it the background image of the <p>
-    var src = img.attr('src');
-    var url = 'url("' + src + '")';
-    p.css('background', url)
-     .css('background-size', 'contain')
-     .css('background-repeat', 'no-repeat')
-     .css('background-position', 'center');
+// plot image (figure style)
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.figure').children('img');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
   }
 });
 
