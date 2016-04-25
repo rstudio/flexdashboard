@@ -70,6 +70,9 @@ h5 {
 h6 {
   font-size: 12px;
 }
+.table th:not([align]) {
+  text-align: left;
+}
 </style>
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -363,84 +366,76 @@ div.tocify {
 <script type="text/javascript">loadSnippet('shinysimple', 'r')</script>
 <p>The <code>sliderInput</code> call makes a slider input named “bins” available. The <code>renderPlot</code> function is then able to access the value of the “bins” input via the expression <code>input$bins</code>.</p>
 <p>As illustrated above, inputs are added by calling an R function (e.g. <code>sliderInput</code>). The Shiny package makes available a wide variety of functions for creating inputs, a few of them include:</p>
-<table style="width:99%;">
-<colgroup>
-<col width="29%" />
-<col width="69%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
-<th align="left">R Function</th>
-<th align="left">Input Type</th>
+<th>R Function</th>
+<th>Input Type</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/selectInput.html">selectInput</a></td>
-<td align="left">A box with choices to select from</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/selectInput.html">selectInput</a></td>
+<td>A box with choices to select from</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></td>
-<td align="left">A slider bar</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></td>
+<td>A slider bar</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/radioButtons.html">radioButtons</a></td>
-<td align="left">A set of radio buttons</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/radioButtons.html">radioButtons</a></td>
+<td>A set of radio buttons</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/textInput.html">textInput</a></td>
-<td align="left">A field to enter text</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/textInput.html">textInput</a></td>
+<td>A field to enter text</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/numericInput.html">numericInput</a></td>
-<td align="left">A field to enter numbers</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/numericInput.html">numericInput</a></td>
+<td>A field to enter numbers</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/checkboxInput.html">checkboxInput</a></td>
-<td align="left">A single check box</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/checkboxInput.html">checkboxInput</a></td>
+<td>A single check box</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/dateInput.html">dateInput</a></td>
-<td align="left">A calendar to aid date selection</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/dateInput.html">dateInput</a></td>
+<td>A calendar to aid date selection</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/dateRangeInput.html">dateRangeInput</a></td>
-<td align="left">A pair of calendars for selecting a date range</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/dateRangeInput.html">dateRangeInput</a></td>
+<td>A pair of calendars for selecting a date range</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/fileInput.html">fileInput</a></td>
-<td align="left">A file upload control wizard</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/fileInput.html">fileInput</a></td>
+<td>A file upload control wizard</td>
 </tr>
 </tbody>
 </table>
 <p>Outputs react to changes in input by running their render code (e.g. the <code>renderPlot</code> example above) and displaying updated output. The Shiny package also includes a wide variety of render functions, including:</p>
-<table style="width:99%;">
-<colgroup>
-<col width="29%" />
-<col width="69%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
-<th align="left">R Function</th>
-<th align="left">Output Type</th>
+<th>R Function</th>
+<th>Output Type</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a></td>
-<td align="left">R graphics output</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a></td>
+<td>R graphics output</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/renderPrint.html">renderPrint</a></td>
-<td align="left">R printed output</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/renderPrint.html">renderPrint</a></td>
+<td>R printed output</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/renderTable.html">renderTable</a></td>
-<td align="left">Data frame, matrix, other table like structures</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/renderTable.html">renderTable</a></td>
+<td>Data frame, matrix, other table like structures</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://shiny.rstudio.com/reference/shiny/latest/renderText.html">renderText</a></td>
-<td align="left">Character vectors</td>
+<td><a href="http://shiny.rstudio.com/reference/shiny/latest/renderText.html">renderText</a></td>
+<td>Character vectors</td>
 </tr>
 </tbody>
 </table>
