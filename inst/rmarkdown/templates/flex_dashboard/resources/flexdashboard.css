@@ -275,6 +275,7 @@ body hr {
 
 .image-container img {
   opacity: 0;
+  overflow: hidden;
 }
 
 /* Value box */
