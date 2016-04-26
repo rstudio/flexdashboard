@@ -13,7 +13,10 @@ var FlexDashboard = (function () {
       orientation: 'columns',
       defaultFigWidth: 576,
       defaultFigHeight: 461,
-      isMobile: false
+      defaultFigWidthMobile: 360,
+      defaultFigHeightMobile: 461,
+      isMobile: false,
+      isPortrait: false
     });
   };
 
@@ -124,12 +127,15 @@ var FlexDashboard = (function () {
     // intialize prism highlighting
     initPrismHighlighting();
 
-    // record mobile state the register a handler
+    // record mobile and orientation state then register a handler
     // to refresh if it changes
     _options.isMobile = isMobilePhone();
+    _options.isPortrait = isPortrait();
     $(window).on('resize', function() {
-      if (_options.isMobile !== isMobilePhone())
+      if (_options.isMobile !== isMobilePhone() ||
+          _options.isPortrait !== isPortrait()) {
         window.location.reload();
+      }
     });
 
     // trigger layoutcomplete event
@@ -366,6 +372,22 @@ var FlexDashboard = (function () {
         level2.children().unwrap();
       });
       page.wrapInner('<div class="section level2"></div>');
+
+      // substitute mobile images
+      if (isPortrait()) {
+        var mobileFigures = $('img.mobile-figure');
+        mobileFigures.each(function() {
+          // get the src (might be base64 encoded)
+          var src = $(this).attr('src');
+
+          // find it's peer
+          var id = $(this).attr('data-mobile-figure-id');
+          var img = $('img[data-figure-id=' + id + "]");
+          img.attr('src', src)
+             .attr('width', _options.defaultFigWidthMobile)
+             .attr('height', _options.defaultFigHeightMobile);
+        });
+      }
 
       // force a non full screen layout by columns
       orientation = _options.orientation = 'columns';
@@ -854,6 +876,11 @@ var FlexDashboard = (function () {
     catch(e) {
       return false;
     }
+  }
+
+  // detect portrait mode
+  function isPortrait() {
+    return ($(window).width() < $(window).height());
   }
 
   // safely detect rendering on a tablet

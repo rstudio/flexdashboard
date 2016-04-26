@@ -12,6 +12,13 @@
 #'  crisper graphics on retina screens but also much higher quality
 #'  auto-scaling of R graphics within flexdashboard containers.
 #'
+#'@param fig_mobile Create an additional rendering of each R graphics figure
+#'  optimized for rendering on mobile devices oriented in portrait mode.
+#'  If \code{TRUE}, creates a figure which is 3.75 x 4.80 inches wide;
+#'  if \code{FALSE}, create no additional figure for mobile devices;
+#'  if a numeric vector of length 2, creates a mobile figure with the
+#'  specified width and height.
+#'
 #'@param social Specify a character vector of social sharing services to
 #'  automatically add sharing links for them on the \code{navbar}. Valid values
 #'  are "twitter", "facebook", "google-plus", "linkedin", and "pinterest" (more
@@ -68,6 +75,7 @@
 flex_dashboard <- function(fig_width = 6.0,
                            fig_height = 4.8,
                            fig_retina = 2,
+                           fig_mobile = TRUE,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
@@ -169,6 +177,53 @@ flex_dashboard <- function(fig_width = 6.0,
     x
   }
 
+  # knitr options hook to add mobile graphics device
+
+  # only do this with recent enough version of rmarkdown
+  if (packageVersion("rmarkdown") < "0.9.5.11")
+    fig_mobile <- NULL
+
+  # resovle fig_mobile
+  default_fig_mobile <- c(3.75, 4.80)
+  if (is.logical(fig_mobile)) {
+    if (isTRUE(fig_mobile))
+      fig_mobile <- default_fig_mobile
+    else
+      fig_mobile <- NULL
+  }
+
+  # validate that it's either NULL or numeric vector of length 2
+  if (!is.null(fig_mobile) &&
+      (!is.numeric(fig_mobile) || length(fig_mobile) != 2)) {
+    stop("fig_mobile must either be a logical or a numeric ",
+         "vector of length 2")
+  }
+
+  # add the hook if appropriate
+  mobile_figures <- list()
+  if (!is.null(fig_mobile)) {
+    next_figure_id <- 1
+    knitr_options$opts_hooks$dev <- function(options) {
+      if (identical(options$dev, 'png')) {
+        figure_id <- paste0('fig', next_figure_id)
+        options$dev <- c('png', 'png')
+        options$fig.ext <- c('png', 'mb.png')
+        options$fig.width <- c(options$fig.width, fig_mobile[[1]])
+        options$fig.height <- c(options$fig.height, fig_mobile[[2]])
+        options$out.extra <- c(options$out.extra, paste0('data-figure-id=',
+                                                         figure_id))
+        options$fig.process <- function(filename) {
+          if (grepl("^.*\\.mb\\.png$", filename)) {
+            mobile_figures[[figure_id]] <<- filename
+            next_figure_id <<- next_figure_id + 1
+          }
+          filename
+        }
+      }
+      options
+    }
+  }
+
   # preprocessor
   pre_processor <- function (metadata, input_file, runtime, knit_meta,
                              files_dir, output_dir) {
@@ -205,6 +260,10 @@ flex_dashboard <- function(fig_width = 6.0,
       )
     }
 
+    # if there is no fig_mobile height and width then pass the default
+    if (is.null(fig_mobile))
+      fig_mobile <- default_fig_mobile
+
     # add FlexDashboard initialization
     dashboardScript <- c(dashboardScript,
       '<script type="text/javascript">',
@@ -213,7 +272,9 @@ flex_dashboard <- function(fig_width = 6.0,
       paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
       paste0('    orientation: "', orientation, '",'),
       paste0('    defaultFigWidth: ', figSizePixels(fig_width), ','),
-      paste0('    defaultFigHeight: ', figSizePixels(fig_height)),
+      paste0('    defaultFigHeight: ', figSizePixels(fig_height), ','),
+      paste0('    defaultFigWidthMobile: ', figSizePixels(fig_mobile[[1]]), ','),
+      paste0('    defaultFigHeightMobile: ', figSizePixels(fig_mobile[[2]])),
       '  });',
       '});',
       '</script>'
@@ -230,6 +291,9 @@ flex_dashboard <- function(fig_width = 6.0,
     dashboardScriptFile <- tempfile(fileext = ".html")
     writeLines(dashboardScript, dashboardScriptFile)
     args <- c(args, pandoc_include_args(before_body = dashboardScriptFile))
+
+    # mobile figures
+    args <- c(args, mobile_figure_args(mobile_figures))
 
     # source code embed if requested
     if (source_code_embed(source_code)) {
@@ -306,6 +370,24 @@ flex_dashboard <- function(fig_width = 6.0,
                                      extra_dependencies = extra_dependencies,
                                      ...)
   )
+}
+
+
+mobile_figure_args <- function(mobile_figures) {
+  if (length(mobile_figures) > 0) {
+    figures <- c()
+    ids <- names(mobile_figures)
+    for (id in ids) {
+      figures <- c(figures, paste0(
+        '<img class="mobile-figure" data-mobile-figure-id=', id,
+        ' src="', mobile_figures[[id]] ,'" />'))
+    }
+    figuresFile <- tempfile(fileext = ".html")
+    writeLines(figures, figuresFile)
+    pandoc_include_args(before_body = figuresFile)
+  } else {
+    NULL
+  }
 }
 
 source_code_embed <- function(source_code) {

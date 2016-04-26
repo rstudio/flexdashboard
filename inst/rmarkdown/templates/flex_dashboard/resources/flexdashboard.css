@@ -429,7 +429,9 @@ table.dataTable thead th {
   display: none;
 }
 
-
+.mobile-figure {
+  display: none;
+}
 
 
 
