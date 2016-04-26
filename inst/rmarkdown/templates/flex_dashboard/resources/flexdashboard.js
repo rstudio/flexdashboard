@@ -878,6 +878,10 @@ var FlexDashboard = (function () {
     }
   }
 
+  function isFillPage() {
+    return _options.fillPage;
+  }
+
   // detect portrait mode
   function isPortrait() {
     return ($(window).width() < $(window).height());
@@ -983,7 +987,8 @@ var FlexDashboard = (function () {
   FlexDashboard.prototype = {
     constructor: FlexDashboard,
     init: init,
-    isMobilePhone: isMobilePhone
+    isMobilePhone: isMobilePhone,
+    isFillPage: isFillPage
   };
 
   return FlexDashboard;
