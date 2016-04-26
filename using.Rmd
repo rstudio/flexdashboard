@@ -106,84 +106,6 @@ For example, the following layout includes 3 charts and requests that the page s
 </div>
 
 
-## Sizing
-
-To create an ideal layout for your dashboard, it's important to understand how the size of individual charts is determined. This section describes the layout algorithm and the various ways you can tweak its behavior.
-
-### Width and Height
-
-The width of charts in flexdashboard is ultimately determined by the width of the browser. If your layout has a single column then charts will occupy the full width of the browser. If your layout has multiple columns then the columns will split the available width evenly (unless overridden via the `data-width` attribute as described below).
-
-The height of charts is determined in one of two ways depending on whether your dashboard is configured to fit itself into the vertical confines of the page (`vertical_layout: fill`) or to scroll (`vertical_layout: scroll`):
-
-1. For dashboards that fill the page the height of charts will be determined by the height of the browser, with vertically stacked charts splitting the available height evenly (unless overridden via the `data-height` attribute as described below).
-
-2. For scrolling dashboards, the height of charts will be determined by the knitr `fig.height` option, which defaults to 5 inches (480 pixels).
-
-### Size Attributes
-
-The nature of the charts within your dashboard (desired emphasis, visualization types, etc.) will often dictate that you'll want to change the default sizing behavior. If no size attributes are specified then the relative size of each chart will be determined by it's knitr figure size (this is 6 x 4.8 inches or 576 x 460 pixels by default).
-
-You can modify the default sizing behavior by applying the `data-width` and `data-height` attributes to rows, columns, or even individual charts. These attributes establish the relative size between charts laid out in the same dimension (horizontal or vertical).
-
-#### Examples
-
-This example use the `data-height` attribute to dictate a larger vertical size for the first row, resulting in a layout that more clearly emphasizes the first chart.
-
-<div class="row">
-<div class="col-md-6">
-<div id="chartsizing"></div>
-<script type="text/javascript">loadSnippet('chartsizing')</script>
-</div>
-
-<div class="col-md-6 nopadding">
-<div height="454px" width="100%">
-<img class="holder" data-src="holder.js/100px286?size=28&amp;text=Chart 1">
-<div>
-<div style="float: left; width: 50%;">
-<img class="holder" data-src="holder.js/100px168?size=28&amp;text=Chart 2">
-</div>
-<div style="margin-left: 50%;">
-<img class="holder" data-src="holder.js/100px168?size=28&amp;text=Chart 3">
-</div>
-</div>
-</div>
-</div>
-
-</div>
-
-
-This example is a variation of the single-column layout demonstrated above with a `data-height` attribute applied to the first chart:
-
-<div class="row">
-<div class="col-md-6">
-<div id="chartdataheight"></div>
-<script type="text/javascript">loadSnippet('chartdataheight')</script>
-</div>
-
-<div class="col-md-6 nopadding">
-<div height="360px" width="100%">
-<img class="holder" data-src="holder.js/100px173?size=28&amp;text=Chart 1">
-<img class="holder" data-src="holder.js/100px100?size=28&amp;text=Chart 2">
-<img class="holder" data-src="holder.js/100px100?size=28&amp;text=Chart 3">
-</div>
-</div>
-
-</div>
-
-#### Chart Padding
-
-By default flexdashboard places 8 pixels of padding around the edges of charts. For some chart types this might not be ideal. In this case you can either add the `.no-padding` attribute to specify no padding at all or the `data-padding` attribute to specify a specific number of pixels. For example:
-
-<div id="chartpadding"></div>
-<script type="text/javascript">loadSnippet('chartpadding')</script>
-
-### Flexbox Layout
-
-Dashboard layout is done using the browser [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) engine, which alters its items' width and/or height to best fill the available space on any display device. A flexbox layout expands items to fill available free space, or shrinks them to prevent overflow.
-
-The implication of this is that chart dimensions established via either knitr figure sizes or `data-width` and `data-height` attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the `flex-grow` and `flex-shrink` CSS properties).
-
 
 ## Components
 
@@ -388,6 +310,83 @@ You can exclude the title entirely by applying the `.no-title` attribute to a se
 <div id="textnotitle"></div>
 <script type="text/javascript">loadSnippet('textnotitle')</script>
 
+## Sizing
+
+To create an ideal layout for your dashboard, it's important to understand how the size of individual charts is determined. This section describes the layout algorithm and the various ways you can tweak its behavior.
+
+### Width and Height
+
+The width of charts in flexdashboard is ultimately determined by the width of the browser. If your layout has a single column then charts will occupy the full width of the browser. If your layout has multiple columns then the columns will split the available width evenly (unless overridden via the `data-width` attribute as described below).
+
+The height of charts is determined in one of two ways depending on whether your dashboard is configured to fit itself into the vertical confines of the page (`vertical_layout: fill`) or to scroll (`vertical_layout: scroll`):
+
+1. For dashboards that fill the page the height of charts will be determined by the height of the browser, with vertically stacked charts splitting the available height evenly (unless overridden via the `data-height` attribute as described below).
+
+2. For scrolling dashboards, the height of charts will be determined by the knitr `fig.height` option, which defaults to 5 inches (480 pixels).
+
+### Size Attributes
+
+The nature of the charts within your dashboard (desired emphasis, visualization types, etc.) will often dictate that you'll want to change the default sizing behavior. If no size attributes are specified then the relative size of each chart will be determined by it's knitr figure size (this is 6 x 4.8 inches or 576 x 460 pixels by default).
+
+You can modify the default sizing behavior by applying the `data-width` and `data-height` attributes to rows, columns, or even individual charts. These attributes establish the relative size between charts laid out in the same dimension (horizontal or vertical).
+
+#### Examples
+
+This example use the `data-height` attribute to dictate a larger vertical size for the first row, resulting in a layout that more clearly emphasizes the first chart.
+
+<div class="row">
+<div class="col-md-6">
+<div id="chartsizing"></div>
+<script type="text/javascript">loadSnippet('chartsizing')</script>
+</div>
+
+<div class="col-md-6 nopadding">
+<div height="454px" width="100%">
+<img class="holder" data-src="holder.js/100px286?size=28&amp;text=Chart 1">
+<div>
+<div style="float: left; width: 50%;">
+<img class="holder" data-src="holder.js/100px168?size=28&amp;text=Chart 2">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" data-src="holder.js/100px168?size=28&amp;text=Chart 3">
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+This example is a variation of the single-column layout demonstrated above with a `data-height` attribute applied to the first chart:
+
+<div class="row">
+<div class="col-md-6">
+<div id="chartdataheight"></div>
+<script type="text/javascript">loadSnippet('chartdataheight')</script>
+</div>
+
+<div class="col-md-6 nopadding">
+<div height="360px" width="100%">
+<img class="holder" data-src="holder.js/100px173?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px100?size=28&amp;text=Chart 2">
+<img class="holder" data-src="holder.js/100px100?size=28&amp;text=Chart 3">
+</div>
+</div>
+
+</div>
+
+#### Chart Padding
+
+By default flexdashboard places 8 pixels of padding around the edges of charts. For some chart types this might not be ideal. In this case you can either add the `.no-padding` attribute to specify no padding at all or the `data-padding` attribute to specify a specific number of pixels. For example:
+
+<div id="chartpadding"></div>
+<script type="text/javascript">loadSnippet('chartpadding')</script>
+
+### Flexbox Layout
+
+Dashboard layout is done using the browser [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) engine, which alters its items' width and/or height to best fill the available space on any display device. A flexbox layout expands items to fill available free space, or shrinks them to prevent overflow.
+
+The implication of this is that chart dimensions established via either knitr figure sizes or `data-width` and `data-height` attributes are used to establish relative sizes between charts within the same horizontal or vertical dimension as opposed to absolute sizes (this corresponds to the `flex-grow` and `flex-shrink` CSS properties).
 
 
 ## Multiple Pages
