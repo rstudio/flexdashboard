@@ -162,8 +162,8 @@ flex_dashboard <- function(fig_width = 6.0,
   knitr_options$knit_hooks$chunk  <- function(x, options) {
     knitrOptions <- paste0(
       '<div class="knitr-options" ',
-           'data-fig-width="', figSizePixels(options$fig.width), '" ',
-           'data-fig-height="', figSizePixels(options$fig.height), '">',
+           'data-fig-width="', figSizePixels(options$fig.width[[1]]), '" ',
+           'data-fig-height="', figSizePixels(options$fig.height[[1]]), '">',
       '</div>'
     )
     paste(knitrOptions, x, sep = '\n')
