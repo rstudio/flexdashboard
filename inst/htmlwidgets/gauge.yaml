@@ -7,3 +7,4 @@ dependencies:
     version: 1.2.2.1
     src: "htmlwidgets/lib/justgage"
     script: "justgage.js"
+    stylesheet: "justgage.css"

@@ -1,0 +1,11 @@
+
+.html-widget.gauge svg {
+  margin-top: -20px;
+  margin-bottom: -60px;
+}
+
+.html-widget.gauge.narrow svg {
+  margin-top: -10px;
+  margin-bottom: -40px;
+}
+

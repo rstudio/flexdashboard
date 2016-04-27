@@ -1071,7 +1071,6 @@ window.FlexDashboardComponents.push({
   },
 
   flex: function(fillPage) {
-    console.log('calling gauge flex');
     return false;
   },
 

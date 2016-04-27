@@ -5,8 +5,7 @@
 #' @import htmlwidgets
 #'
 #' @export
-gauge <- function(value, min, max, label = NULL,
-                  width = NULL, height = NULL) {
+gauge <- function(value, min, max, label = NULL) {
 
   # forward options using x
   x <- list(
@@ -20,9 +19,8 @@ gauge <- function(value, min, max, label = NULL,
   htmlwidgets::createWidget(
     name = 'gauge',
     x,
-    width = width,
-    height = height,
-    package = 'flexdashboard'
+    package = 'flexdashboard',
+    dependencies = rmarkdown::html_dependency_jquery()
   )
 }
 

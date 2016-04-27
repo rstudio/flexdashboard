@@ -15,10 +15,20 @@ HTMLWidgets.widget({
         // justgage config
         var config = {
           id: el.id,
-            value: x.value,
-            min: x.min,
-            max: x.max,
-            relativeGaugeSize: true
+          title: " ",
+          valueFontColor: "gray",
+          value: x.value,
+          min: x.min,
+          max: x.max,
+          titlePosition: "below",
+          relativeGaugeSize: true,
+          /*
+          customSectors: [
+            { lo: 1, hi: 50, color: "green" },
+            { lo: 51, hi: 100, color: "blue" }
+
+          ]
+          */
         };
 
         // add label if specifed
@@ -30,10 +40,21 @@ HTMLWidgets.widget({
           justgage = new JustGage(config);
         else
           justgage.refresh(x.value, x.max, config);
+
+        // manage size
+        this.manageSize(width);
+
       },
 
       resize: function(width, height) {
+        this.manageSize(width);
+      },
 
+      manageSize: function(width) {
+        if (width <= 350)
+          $(el).addClass('narrow');
+        else
+          $(el).removeClass('narrow');
       }
 
     };
