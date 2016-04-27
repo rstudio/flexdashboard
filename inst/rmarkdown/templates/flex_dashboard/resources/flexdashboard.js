@@ -9,6 +9,7 @@ var FlexDashboard = (function () {
 
     // default options
     _options = $.extend(_options, {
+      theme: "bootstrap",
       fillPage: false,
       orientation: 'columns',
       defaultFigWidth: 576,
@@ -984,11 +985,27 @@ var FlexDashboard = (function () {
     }
   }
 
+  // get theme color
+  var themeColors = {
+    bootstrap: {
+
+    },
+    cosmo: {
+      success: "rgba(63, 182, 24, 0.7)",
+      warning: "rgba(255, 117, 24, 0.7)",
+      danger: "rgba(255, 0, 57, 0.7)"
+    }
+  }
+  function themeColor(color) {
+    return themeColors[_options.theme][color];
+  }
+
   FlexDashboard.prototype = {
     constructor: FlexDashboard,
     init: init,
     isMobilePhone: isMobilePhone,
-    isFillPage: isFillPage
+    isFillPage: isFillPage,
+    themeColor: themeColor
   };
 
   return FlexDashboard;
