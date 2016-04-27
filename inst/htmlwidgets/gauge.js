@@ -12,6 +12,17 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
+        // convert sector colors
+        for (var i=0; i<x.customSectors.length; i++) {
+          var sector = x.customSectors[i];
+          if (sector.color === "success")
+            sector.color = "rgba(63, 182, 24, 0.7)";
+          else if (sector.color === "warning")
+            sector.color = "rgba(255, 117, 24, 0.7)";
+          else if (sector.color === "danger")
+            sector.color = "rgba(255, 0, 57, 0.7)";
+        }
+
         // justgage config
         var config = {
           id: el.id,
@@ -22,13 +33,7 @@ HTMLWidgets.widget({
           max: x.max,
           titlePosition: "below",
           relativeGaugeSize: true,
-          /*
-          customSectors: [
-            { lo: 1, hi: 50, color: "green" },
-            { lo: 51, hi: 100, color: "blue" }
-
-          ]
-          */
+          customSectors: x.customSectors
         };
 
         // add label if specifed

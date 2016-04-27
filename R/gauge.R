@@ -5,14 +5,14 @@
 #' @import htmlwidgets
 #'
 #' @export
-gauge <- function(value, min, max, label = NULL) {
+gauge <- function(value, min, max, label = NULL, sectors = NULL) {
 
-  # forward options using x
   x <- list(
     value = value,
     min = min,
     max = max,
-    label = label
+    label = label,
+    customSectors = I(resolveCustomSectors(sectors, min, max))
   )
 
   # create widget
@@ -23,6 +23,50 @@ gauge <- function(value, min, max, label = NULL) {
     dependencies = rmarkdown::html_dependency_jquery()
   )
 }
+
+resolveCustomSectors <- function(sectors, min, max) {
+
+  # create default sectors if necessary
+  if (is.null(sectors)) {
+    sectors = list(
+      success = c(min, max),
+      warning = NULL,
+      danger = NULL,
+      colors = c("success", "warning", "danger")
+    )
+  }
+  # provide default success range if only colors were specified
+  if (is.null(sectors$success) &&
+      is.null(sectors$warning) &&
+      is.null(sectors$danger)) {
+    sectors$success <- c(min, max)
+  }
+  # provide default colors if none were specified
+  if (is.null(sectors$colors))
+    sectors$colors <- c("success", "warning", "danger")
+
+  # create custom sectors to pass to justgage
+  customSectors <- list()
+  addSector <- function(sector, color) {
+    if (!is.null(sector)) {
+      # validate
+      if (!is.numeric(sector) || length(sector) != 2)
+        stop("sectors must be numeric vectors of length 2", call. = FALSE)
+      # add sector
+      customSectors[[length(customSectors) + 1]] <<-
+        list(lo = sector[[1]], hi = sector[[2]], color = color)
+    }
+  }
+  sectors$colors <- rep_len(sectors$colors, 3)
+  addSector(sectors$success, sectors$colors[[1]])
+  addSector(sectors$warning, sectors$colors[[2]])
+  addSector(sectors$danger, sectors$colors[[3]])
+
+  # return
+  customSectors
+}
+
+
 
 #' Shiny bindings for gauge
 #'
