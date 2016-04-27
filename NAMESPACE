@@ -3,6 +3,7 @@
 export(flex_dashboard)
 export(gauge)
 export(gaugeOutput)
+export(gaugeSectors)
 export(renderGauge)
 export(renderValueBox)
 export(valueBox)

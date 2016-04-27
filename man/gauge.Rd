@@ -2,9 +2,13 @@
 % Please edit documentation in R/gauge.R
 \name{gauge}
 \alias{gauge}
+\alias{gaugeSectors}
 \title{<Add Title>}
 \usage{
-gauge(value, min, max, label = NULL, width = NULL, height = NULL)
+gauge(value, min, max, label = NULL, sectors = gaugeSectors())
+
+gaugeSectors(success = NULL, warning = NULL, danger = NULL,
+  colors = c("success", "warning", "danger"))
 }
 \description{
 <Add Description>

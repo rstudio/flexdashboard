@@ -5,14 +5,14 @@
 #' @import htmlwidgets
 #'
 #' @export
-gauge <- function(value, min, max, label = NULL, sectors = NULL) {
+gauge <- function(value, min, max, label = NULL, sectors = gaugeSectors()) {
 
   x <- list(
     value = value,
     min = min,
     max = max,
     label = label,
-    customSectors = I(resolveCustomSectors(sectors, min, max))
+    customSectors = I(resolveSectors(sectors, min, max))
   )
 
   # create widget
@@ -24,11 +24,21 @@ gauge <- function(value, min, max, label = NULL, sectors = NULL) {
   )
 }
 
-resolveCustomSectors <- function(sectors, min, max) {
+#' @export
+#' @rdname gauge
+gaugeSectors <- function(success = NULL, warning = NULL, danger = NULL,
+                         colors = c("success", "warning", "danger")) {
+  list(success = success,
+       warning = warning,
+       danger = danger,
+       colors = colors)
+}
+
+resolveSectors <- function(sectors, min, max) {
 
   # create default sectors if necessary
   if (is.null(sectors)) {
-    sectors = list(
+    sectors = sectors(
       success = c(min, max),
       warning = NULL,
       danger = NULL,
