@@ -12,6 +12,9 @@
 
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 
+<link rel="icon" $if(logo)$href="$logo$"$else$href="data:image/x-icon;" type="image/x-icon"$endif$>
+
+
 $if(highlighting-css)$
 <style type="text/css">
 $highlighting-css$
@@ -52,7 +55,10 @@ $endfor$
 <span class="icon-bar"></span>
 </button>
 
-<span class="navbar-brand">$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</span>
+<span class="navbar-brand">
+  $if(logo)$<img class="pull-left" src="$logo$"/>$endif$
+  $if(title-prefix)$$title-prefix$ - $endif$$pagetitle$
+</span>
 </div>
 <div id="navbar" class="navbar-collapse collapse">
 <ul class="nav navbar-nav navbar-left">

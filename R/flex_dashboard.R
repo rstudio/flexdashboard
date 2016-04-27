@@ -19,6 +19,10 @@
 #'  if a numeric vector of length 2, creates a mobile figure with the
 #'  specified width and height.
 #'
+#'@param logo Logo image to display to the left of the dashboard title in the
+#'  navigation bar. The logo image will also be used as a favicon so should in
+#'  general be square in shape and 48x48 pixels or larger.
+#'
 #'@param social Specify a character vector of social sharing services to
 #'  automatically add sharing links for them on the \code{navbar}. Valid values
 #'  are "twitter", "facebook", "google-plus", "linkedin", and "pinterest" (more
@@ -79,6 +83,7 @@ flex_dashboard <- function(fig_width = 6.0,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
+                           logo = NULL,
                            social = NULL,
                            source_code = NULL,
                            navbar = NULL,
@@ -115,6 +120,10 @@ flex_dashboard <- function(fig_width = 6.0,
   # add template
   args <- c(args, "--template",
             pandoc_path_arg(resource("default.html")))
+
+  # handle logo
+  if (!is.null(logo))
+    args <- c(args, pandoc_variable_arg("logo", logo))
 
   # handle automatic navbar links
   navbar <- append(navbar, navbar_links(social, source_code))
@@ -229,6 +238,23 @@ flex_dashboard <- function(fig_width = 6.0,
                              files_dir, output_dir) {
 
     args <- c()
+
+    # logo
+    if (!is.null(logo)) {
+      logo_path <- logo
+      if (!self_contained) {
+        # use same extension as specified logo (default is png if unspecified)
+        logo_ext <- tools::file_ext(logo)
+        if (nchar(logo_ext) < 1)
+          logo_ext <- "png"
+        logo_path <- file.path(files_dir, paste("logo", logo_ext, sep = "."))
+        file.copy(from = logo, to = logo_path)
+        logo_path <- normalized_relative_to(output_dir, logo_path)
+      } else {
+        logo_path <- pandoc_path_arg(logo_path)
+      }
+      args <- c(args, pandoc_variable_arg("logo", logo_path))
+    }
 
     # include flexdashboard.css and flexdashboard.js (but not in devel
     # mode, in that case relative filesystem references to
