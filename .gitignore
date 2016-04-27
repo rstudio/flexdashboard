@@ -3,5 +3,4 @@
 .RData
 .Ruserdata
 .DS_Store
-*.Rnb.cached
-.*.Rnb.cached
+*.nb.html
