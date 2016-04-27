@@ -574,7 +574,7 @@ div.tocify {
 </div>
 <div id="title-and-notes" class="section level4">
 <h4>Title and Notes</h4>
-<p>Each compontent within a dashboard includes optional title and notes sections. The title is simply the text after the level 3 (<code>###</code>) section heading. The notes are any text prefaced with <code>&gt;</code> after the code chunk which yields the component’s output. For example:</p>
+<p>Each component within a dashboard includes optional title and notes sections. The title is simply the text after the level 3 (<code>###</code>) section heading. The notes are any text prefaced with <code>&gt;</code> after the code chunk which yields the component’s output. For example:</p>
 <div id="texttitleandnotes">
 
 </div>
@@ -704,7 +704,7 @@ div.tocify {
 <div id="medium-screens" class="section level3">
 <h3>Medium Screens</h3>
 <p>The layout of dashboard components for medium sized mobile screens (e.g. tablets) is the same as for larger desktop screens (any screen with width greater than 768 pixels is considered a medium screen).</p>
-<p>Rows and columns are allocated using the default figures sizes and respect the relative proportions established via the use of <code>data-width</code>attributes. The only exception are <a href="shiny.html#input-sidebar">sidebars</a>, which are reduced to 220 pixels wide whenever the screen is less than 993 pixels wide.</p>
+<p>Rows and columns are allocated using the default figure sizes and respect the relative proportions established via the use of <code>data-width</code>attributes. The only exception are <a href="shiny.html#input-sidebar">sidebars</a>, which are reduced to 220 pixels wide whenever the screen is less than 993 pixels wide.</p>
 </div>
 <div id="small-screens" class="section level3">
 <h3>Small Screens</h3>
@@ -712,10 +712,23 @@ div.tocify {
 <p>For mobile phones (any screen less than or equal to 768 pixels wide) flexdashboard uses special layout behavior. Since these screens don’t generally have the width to show multiple side-by-side columns, all dashboard components are “flattened” into one single column layout.</p>
 <p>In addition, some flexdashboard components have special behavior to adapt themselves to smaller mobile screens:</p>
 <ol style="list-style-type: decimal">
-<li><p>By default R graphics are rendered twice, once at their natural <code>fig.width</code> and <code>fig.height</code>, and once at a mobile-optmized size (3.75 x 4.8 inches). When displaying on a mobile phone in portait orientation the mobile size is used (this can be controlled via the <code>fig_mobile</code> option).</p></li>
-<li><p>Simple tables always show all of their rows (this is so that scrolling the table doesn’t interfere with scrolling the mobile display).</p></li>
-<li><p>DataTables always use pagination (again, so that scrolling the DataTable doesn’t interfere with scrolling the overall display).</p></li>
+<li><p>By default R graphics are rendered twice, once at their natural <code>fig.width</code> and <code>fig.height</code>, and once at a mobile-optimized size (3.75 x 4.8 inches). When displaying on a mobile phone in portrait orientation the mobile size is used (this can be controlled via the <code>fig_mobile</code> option).</p></li>
+<li><p><a href="#simple-table">Simple tables</a> always show all of their rows (this is so that scrolling the table doesn’t interfere with scrolling the mobile display).</p></li>
+<li><p><a href="#data-table">DataTables</a> always use pagination (again, so that scrolling the DataTable doesn’t interfere with scrolling the overall display).</p></li>
 </ol>
+</div>
+<div id="mobile-css" class="section level3">
+<h3>Mobile CSS</h3>
+<p>If certain components of your dashboard don’t work well on smaller mobile devices you can exclude them by applying the <code>.no-mobile</code> class attribute to a dashboard section. For example, this dashboard hides it’s second component on mobile devices:</p>
+<div id="nomobile">
+
+</div>
+<script type="text/javascript">loadSnippet('nomobile')</script>
+<p>It’s also possible to create a mobile-specific version of a given dashboard component that will be used in place of the default version. You can do this by creating two identically titled sections and applying the <code>.mobile</code> class attribute to one of them. For example:</p>
+<div id="mobile">
+
+</div>
+<script type="text/javascript">loadSnippet('mobile')</script>
 </div>
 </div>
 <div id="themes" class="section level2">

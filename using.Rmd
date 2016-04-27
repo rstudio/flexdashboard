@@ -300,7 +300,7 @@ For example, the following dashboard includes some content at the top and a dash
 
 #### Title and Notes
 
-Each compontent within a dashboard includes optional title and notes sections. The title is simply the text after the level 3 (`###`) section heading. The notes are any text prefaced with `>` after the code chunk which yields the component's output. For example:
+Each component within a dashboard includes optional title and notes sections. The title is simply the text after the level 3 (`###`) section heading. The notes are any text prefaced with `>` after the code chunk which yields the component's output. For example:
 
 <div id="texttitleandnotes"></div>
 <script type="text/javascript">loadSnippet('texttitleandnotes')</script>
@@ -440,7 +440,7 @@ The flexdashboard layout system adapts itself intelligently for display on mobil
 
 The layout of dashboard components for medium sized mobile screens (e.g. tablets) is the same as for larger desktop screens (any screen with width greater than 768 pixels is considered a medium screen). 
 
-Rows and columns are allocated using the default figures sizes and respect the relative proportions established via the use of `data-width`attributes. The only exception are [sidebars](shiny.html#input-sidebar), which are reduced to 220 pixels wide whenever the screen is less than 993 pixels wide.
+Rows and columns are allocated using the default figure sizes and respect the relative proportions established via the use of `data-width`attributes. The only exception are [sidebars](shiny.html#input-sidebar), which are reduced to 220 pixels wide whenever the screen is less than 993 pixels wide.
 
 ### Small Screens
 
@@ -450,11 +450,23 @@ For mobile phones (any screen less than or equal to 768 pixels wide) flexdashboa
 
 In addition, some flexdashboard components have special behavior to adapt themselves to smaller mobile screens:
 
-1) By default R graphics are rendered twice, once at their natural `fig.width` and `fig.height`, and once at a mobile-optmized size (3.75 x 4.8 inches). When displaying on a mobile phone in portait orientation the mobile size is used (this can be controlled via the `fig_mobile` option).
+1) By default R graphics are rendered twice, once at their natural `fig.width` and `fig.height`, and once at a mobile-optimized size (3.75 x 4.8 inches). When displaying on a mobile phone in portrait orientation the mobile size is used (this can be controlled via the `fig_mobile` option).
 
-2) Simple tables always show all of their rows (this is so that scrolling the table doesn't interfere with scrolling the mobile display).
+2) [Simple tables](#simple-table) always show all of their rows (this is so that scrolling the table doesn't interfere with scrolling the mobile display).
 
-3) DataTables always use pagination (again, so that scrolling the DataTable doesn't interfere with scrolling the overall display).
+3) [DataTables](#data-table) always use pagination (again, so that scrolling the DataTable doesn't interfere with scrolling the overall display).
+
+### Mobile CSS
+
+If certain components of your dashboard don't work well on smaller mobile devices you can exclude them by applying the `.no-mobile` class attribute to a dashboard section. For example, this dashboard hides it's second component on mobile devices:
+
+<div id="nomobile"></div>
+<script type="text/javascript">loadSnippet('nomobile')</script>
+
+It's also possible to create a mobile-specific version of a given dashboard component that will be used in place of the default version. You can do this by creating two identically titled sections and applying the `.mobile` class attribute to one of them. For example:
+
+<div id="mobile"></div>
+<script type="text/javascript">loadSnippet('mobile')</script>
 
 ## Themes
 
