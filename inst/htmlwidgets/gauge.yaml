@@ -1,0 +1,10 @@
+dependencies:
+  - name: raphael
+    version: 2.1.4
+    src: "htmlwidgets/lib/raphael"
+    script: "raphael-2.1.4.min.js"
+  - name: justgage
+    version: 1.2.2.1
+    src: "htmlwidgets/lib/justgage"
+    script: "justgage.js"
+    stylesheet: "justgage.css"
