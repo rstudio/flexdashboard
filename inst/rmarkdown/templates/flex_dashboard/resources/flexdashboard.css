@@ -275,6 +275,7 @@ body hr {
 
 .image-container img {
   opacity: 0;
+  overflow: hidden;
 }
 
 /* Value box */
@@ -428,7 +429,9 @@ table.dataTable thead th {
   display: none;
 }
 
-
+.mobile-figure {
+  display: none;
+}
 
 
 

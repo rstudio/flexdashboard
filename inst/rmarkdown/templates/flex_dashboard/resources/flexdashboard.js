@@ -13,7 +13,10 @@ var FlexDashboard = (function () {
       orientation: 'columns',
       defaultFigWidth: 576,
       defaultFigHeight: 461,
-      isMobile: false
+      defaultFigWidthMobile: 360,
+      defaultFigHeightMobile: 461,
+      isMobile: false,
+      isPortrait: false
     });
   };
 
@@ -124,12 +127,15 @@ var FlexDashboard = (function () {
     // intialize prism highlighting
     initPrismHighlighting();
 
-    // record mobile state the register a handler
+    // record mobile and orientation state then register a handler
     // to refresh if it changes
     _options.isMobile = isMobilePhone();
+    _options.isPortrait = isPortrait();
     $(window).on('resize', function() {
-      if (_options.isMobile !== isMobilePhone())
+      if (_options.isMobile !== isMobilePhone() ||
+          _options.isPortrait !== isPortrait()) {
         window.location.reload();
+      }
     });
 
     // trigger layoutcomplete event
@@ -366,6 +372,22 @@ var FlexDashboard = (function () {
         level2.children().unwrap();
       });
       page.wrapInner('<div class="section level2"></div>');
+
+      // substitute mobile images
+      if (isPortrait()) {
+        var mobileFigures = $('img.mobile-figure');
+        mobileFigures.each(function() {
+          // get the src (might be base64 encoded)
+          var src = $(this).attr('src');
+
+          // find it's peer
+          var id = $(this).attr('data-mobile-figure-id');
+          var img = $('img[data-figure-id=' + id + "]");
+          img.attr('src', src)
+             .attr('width', _options.defaultFigWidthMobile)
+             .attr('height', _options.defaultFigHeightMobile);
+        });
+      }
 
       // force a non full screen layout by columns
       orientation = _options.orientation = 'columns';
@@ -824,11 +846,17 @@ var FlexDashboard = (function () {
 
   // extract chart notes
   function extractChartNotes(chartContent, chartNotes) {
-    // look for a terminating blockquote
+    // look for a terminating blockquote or image caption
     var blockquote = chartContent.children('blockquote:last-child');
+    var caption = chartContent.children('div.image-container')
+                              .children('p.caption');
     if (blockquote.length) {
       chartNotes.html(blockquote.children('p:first-child').html());
       blockquote.remove();
+      return true;
+    } else if (caption.length) {
+      chartNotes.html(caption.html());
+      caption.remove();
       return true;
     } else {
       return false;
@@ -848,6 +876,15 @@ var FlexDashboard = (function () {
     catch(e) {
       return false;
     }
+  }
+
+  function isFillPage() {
+    return _options.fillPage;
+  }
+
+  // detect portrait mode
+  function isPortrait() {
+    return ($(window).width() < $(window).height());
   }
 
   // safely detect rendering on a tablet
@@ -950,7 +987,8 @@ var FlexDashboard = (function () {
   FlexDashboard.prototype = {
     constructor: FlexDashboard,
     init: init,
-    isMobilePhone: isMobilePhone
+    isMobilePhone: isMobilePhone,
+    isFillPage: isFillPage
   };
 
   return FlexDashboard;
@@ -958,6 +996,19 @@ var FlexDashboard = (function () {
 })();
 
 window.FlexDashboard = new FlexDashboard();
+
+// utils
+window.FlexDashboardUtils = {
+  resizableImage: function(img) {
+    var src = img.attr('src');
+    var url = 'url("' + src + '")';
+    img.parent().css('background', url)
+                .css('background-size', 'contain')
+                .css('background-repeat', 'no-repeat')
+                .css('background-position', 'center')
+                .addClass('image-container');
+  }
+};
 
 // empty content
 window.FlexDashboardComponents.push({
@@ -978,18 +1029,19 @@ window.FlexDashboardComponents.push({
   },
 
   layout: function(title, container, element, fillPage) {
-    // apply the image container style to the parent <p>
-    var img = element;
-    var p = img.parent();
-    p.addClass('image-container');
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
 
-    // grab the url and make it the background image of the <p>
-    var src = img.attr('src');
-    var url = 'url("' + src + '")';
-    p.css('background', url)
-     .css('background-size', 'contain')
-     .css('background-repeat', 'no-repeat')
-     .css('background-position', 'center');
+// plot image (figure style)
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.figure').children('img');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
   }
 });
 

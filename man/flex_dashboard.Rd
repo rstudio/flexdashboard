@@ -5,12 +5,13 @@
 \title{R Markdown Format for Flexible Dashboards}
 \usage{
 flex_dashboard(fig_width = 6, fig_height = 4.8, fig_retina = 2,
-  dev = "png", smart = TRUE, self_contained = TRUE, social = NULL,
-  source_code = NULL, navbar = NULL, orientation = c("columns", "rows"),
-  vertical_layout = c("fill", "scroll"), theme = "default",
-  highlight = "default", mathjax = "default", extra_dependencies = NULL,
-  css = NULL, includes = NULL, lib_dir = NULL, md_extensions = NULL,
-  pandoc_args = NULL, devel = FALSE, ...)
+  fig_mobile = TRUE, dev = "png", smart = TRUE, self_contained = TRUE,
+  social = NULL, source_code = NULL, navbar = NULL,
+  orientation = c("columns", "rows"), vertical_layout = c("fill", "scroll"),
+  theme = "default", highlight = "default", mathjax = "default",
+  extra_dependencies = NULL, css = NULL, includes = NULL,
+  lib_dir = NULL, md_extensions = NULL, pandoc_args = NULL,
+  devel = FALSE, ...)
 }
 \arguments{
 \item{fig_width}{Default width (in inches) for figures}
@@ -21,6 +22,13 @@ flex_dashboard(fig_width = 6, fig_height = 4.8, fig_retina = 2,
 Note that for flexdashboard enabling retina scaling provides for both
 crisper graphics on retina screens but also much higher quality
 auto-scaling of R graphics within flexdashboard containers.}
+
+\item{fig_mobile}{Create an additional rendering of each R graphics figure
+optimized for rendering on mobile devices oriented in portrait mode.
+If \code{TRUE}, creates a figure which is 3.75 x 4.80 inches wide;
+if \code{FALSE}, create no additional figure for mobile devices;
+if a numeric vector of length 2, creates a mobile figure with the
+specified width and height.}
 
 \item{dev}{Graphics device to use for figure output (defaults to png)}
 
