@@ -50,7 +50,6 @@ This layout is a simple stack of three charts. To provide enough room to display
 </div>
 </div>
 
-
 ## Focal Chart (Top)
 
 This layout fills the page completely and gives prominence to a single chart at the top (with two secondary charts included below). To achieve this layout it uses `orientation: rows` and specifies `data-height` attributes on each row to establish their relative sizes.
@@ -73,7 +72,6 @@ This layout fills the page completely and gives prominence to a single chart at 
 </div>
 </div>
 </div>
-
 
 ## Focal Chart (Left)
 
@@ -99,7 +97,6 @@ This layout fills the page completely and gives prominence to a single chart on 
 </div>
 
 </div>
-
 
 ## Chart Grid (2x2)
 
@@ -173,7 +170,20 @@ If you have a layout that uses [Multiple Pages] you may want the sidebar to be g
 
 <div id="sidebarmultiplepages"></div>
 <script type="text/javascript">loadSnippet('sidebarmultiplepages')</script>
-</div>
+
+## Mobile Specific
+
+To customize your dashboard for display on small mobile screens you can either exclude selected components entirely or create mobile-specific variations of components. To exclude components you apply the `{.no-mobile}` class attribute. To use a mobile-specific rendering you create two identically titled components and apply the `{.mobile}` attribute to one of them. 
+
+For example, the following dashboard has a "Chart 1" that is included in mobile and desktop layouts, a "Chart 2" that is excluded from mobile layouts, and a "Chart 3" that has a custom variation for mobile:
+
+
+<div id="mobilelayout"></div>
+<script type="text/javascript">loadSnippet('mobilelayout')</script>
+
+
+
+
 
 
 
