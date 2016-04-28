@@ -10,3 +10,7 @@ body {
 .bg-primary {
   background-color: rgba(235, 104, 100, 0.7);
 }
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: rgba(235, 104, 100, 0.7);
+}

@@ -6,3 +6,8 @@ body {
   top: 51px;
   background-color: rgba(3, 60, 115, 0.1);
 }
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: #2fa4e7;
+}
+

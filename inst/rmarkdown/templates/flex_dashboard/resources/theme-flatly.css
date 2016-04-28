@@ -15,6 +15,11 @@ body {
   background-color: rgba(44, 62, 80, 0.7);
 }
 
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: rgba(44, 62, 80, 0.7);
+}
+
+
 .bg-info {
   background-color: rgba(52, 152, 219, 0.7);
 }

@@ -14,3 +14,16 @@ body {
 .bg-primary {
   background-color: rgba(50, 93, 136, 0.3);
 }
+
+.nav-tabs-custom > .nav-tabs > li > a {
+  border-top-color: white;
+  border-right-color: white;
+  border-left-color: white;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: rgba(50, 93, 136, 0.7);
+}
+
+
+

@@ -14,3 +14,7 @@ body {
 .bg-primary {
   background-color: rgba(217, 35, 15, 0.25);
 }
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: rgba(217, 35, 15, 0.7);
+}
