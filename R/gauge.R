@@ -24,13 +24,10 @@
 #'  heading
 #' @param symbol Optional symbol to show next to value (e.g. 'kg')
 #' @param label Optional label to display beneath the value
-#' @param width Width in pixels (optional, defaults to automatic sizing)
-#' @param height Height in pixels (optional, defaults to automatic sizing)
 #'
 #' @export
 gauge <- function(value, min, max, sectors = gaugeSectors(),
-                  title = NULL, symbol = NULL, label = NULL,
-                  width = NULL, height = NULL) {
+                  title = NULL, symbol = NULL, label = NULL) {
 
   x <- list(
     value = value,
@@ -46,8 +43,6 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
   htmlwidgets::createWidget(
     name = 'gauge',
     x,
-    width = width,
-    height = height,
     package = 'flexdashboard',
     dependencies = rmarkdown::html_dependency_jquery()
   )

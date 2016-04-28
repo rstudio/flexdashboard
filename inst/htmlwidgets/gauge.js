@@ -82,23 +82,10 @@ HTMLWidgets.widget({
           justgage = new JustGage(config);
         else
           justgage.refresh(x.value, x.max, config);
-
-        // manage size
-        this.manageSize(width);
-
       },
 
       resize: function(width, height) {
-        this.manageSize(width);
-      },
-
-      manageSize: function(width) {
-        if (width <= 350)
-          $(el).addClass('narrow');
-        else
-          $(el).removeClass('narrow');
       }
-
     };
   }
 });
