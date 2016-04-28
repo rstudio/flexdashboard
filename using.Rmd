@@ -20,7 +20,9 @@ You can use flexdashboard to publish groups of related data visualizations as a 
 
 4. Value boxes for highlighting important summary data. 
 
-5. Text annotations of various kinds.
+5. Gauges for displaying values on a meter within a specified range.
+
+6. Text annotations of various kinds.
 
 Flexible options for [component layout](#layout) are available and dashboards with many components can be organized into [multiple pages]. The flexdashboard layout system also adapts itself intelligently for display on [mobile devices](#mobile-layout).
 
@@ -220,9 +222,9 @@ On desktop and tablet displays, both the [Simple Table] and [Data Table] compone
 
 ### Value Boxes
 
-Sometimes you want to include one or more simple values within a dashboard (as opposed to data visualizations or tabular displays). You can use the `{.value-box}` attribute to indicate that a section should display only a single value. For example, here are three side-by-side sections each displaying a single value:
+Sometimes you want to include one or more simple values within a dashboard. You can use the `valueBox` function to display single values along with a title and optional icon. For example, here are three side-by-side sections each displaying a single value:
 
-![](images/value-box.png)
+![](images/value-box.png){.snippet}
 
 Here is the code which was used to generate these value boxes:
 
@@ -232,6 +234,7 @@ Here is the code which was used to generate these value boxes:
 The `valueBox` function is called to emit a value and specify an icon (see [Icon Sets] below for details on available icons).
 
 The third code chunk ("Spam per Day") makes the background color of the value box dynamic using the `color` parameter. Available colors include "primary", "info", "success", "warning", and "danger" (the default is "primary"). For custom colors you can also specify any valid CSS color (e.g. "#ffffff", "rgb(100,100,100)", etc.).
+
 
 #### Icon Sets
 
@@ -251,6 +254,33 @@ To include a value box within a Shiny flexdashboard you need to be sure to wrap 
 
 <div id="valueboxshiny"></div>
 <script type="text/javascript">loadSnippet('valueboxshiny')</script>
+
+### Gauges
+
+Gauges display values on a meter within a specified range. For example, here is a set of 3 gauges:
+
+![](images/gauges.png){.snippet}
+
+Here is the code used to generate these gauges:
+
+<div id="justgage"></div>
+<script type="text/javascript">loadSnippet('justgage')</script>
+
+There are a few things to note about this example:
+
+1. The `gauge` function is used to output a gauge. It has three required arguments: `value`, `min`, and `max` (these can be any numeric values).
+
+2. You can specify an optional `symbol` to be displayed alongside the value (in the example "%" is used to denote a percentage).
+
+3. You can specify a set of custom color `sectors` using the `gaugeSectors` function. By default the current theme's "success" color (typically green) is used for the gauge color. The `sectors` option enables you to specify a set of three value ranges ("success", "warning", and "danger") which cause the gauge's color to change based on it's value. 
+
+#### Shiny
+
+To include a gauge within a Shiny flexdashboard you need to be sure to wrap the gauge output in `renderGauge` (so that it is updated when inputs it depends on change). For example:
+
+<div id="justgageshiny"></div>
+<script type="text/javascript">loadSnippet('justgageshiny')</script>
+
 
 ### Navigation Bar
 

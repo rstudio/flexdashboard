@@ -62,7 +62,9 @@ You can use flexdashboard to publish groups of related data visualizations as a 
 
 4. Value boxes for highlighting important summary data. 
 
-5. Text annotations of various kinds.
+5. Gauges for displaying values on a meter within a specified range.
+
+6. Text annotations of various kinds.
 
 See the [dashboard components](using.html#components) documentation for additional details on the use of each component type.
 

@@ -323,6 +323,7 @@ div.tocify {
 <li><p>R graphical output including base, lattice, and grid graphics.</p></li>
 <li><p>Tabular data (with optional sorting, filtering, and paging).</p></li>
 <li><p>Value boxes for highlighting important summary data.</p></li>
+<li><p>Gauges for displaying values on a meter within a specified range.</p></li>
 <li><p>Text annotations of various kinds.</p></li>
 </ol>
 <p>Flexible options for <a href="#layout">component layout</a> are available and dashboards with many components can be organized into <a href="#multiple-pages">multiple pages</a>. The flexdashboard layout system also adapts itself intelligently for display on <a href="#mobile-layout">mobile devices</a>.</p>
@@ -495,9 +496,9 @@ div.tocify {
 </div>
 <div id="value-boxes" class="section level3">
 <h3>Value Boxes</h3>
-<p>Sometimes you want to include one or more simple values within a dashboard (as opposed to data visualizations or tabular displays). You can use the <code>{.value-box}</code> attribute to indicate that a section should display only a single value. For example, here are three side-by-side sections each displaying a single value:</p>
+<p>Sometimes you want to include one or more simple values within a dashboard. You can use the <code>valueBox</code> function to display single values along with a title and optional icon. For example, here are three side-by-side sections each displaying a single value:</p>
 <div class="figure">
-<img src="images/value-box.png" />
+<img src="images/value-box.png" class="snippet" />
 
 </div>
 <p>Here is the code which was used to generate these value boxes:</p>
@@ -524,6 +525,33 @@ div.tocify {
 
 </div>
 <script type="text/javascript">loadSnippet('valueboxshiny')</script>
+</div>
+</div>
+<div id="gauges" class="section level3">
+<h3>Gauges</h3>
+<p>Gauges display values on a meter within a specified range. For example, here is a set of 3 gauges:</p>
+<div class="figure">
+<img src="images/gauges.png" class="snippet" />
+
+</div>
+<p>Here is the code used to generate these gauges:</p>
+<div id="justgage">
+
+</div>
+<script type="text/javascript">loadSnippet('justgage')</script>
+<p>There are a few things to note about this example:</p>
+<ol style="list-style-type: decimal">
+<li><p>The <code>gauge</code> function is used to output a gauge. It has three required arguments: <code>value</code>, <code>min</code>, and <code>max</code> (these can be any numeric values).</p></li>
+<li><p>You can specify an optional <code>symbol</code> to be displayed alongside the value (in the example “%” is used to denote a percentage).</p></li>
+<li><p>You can specify a set of custom color <code>sectors</code> using the <code>gaugeSectors</code> function. By default the current theme’s “success” color (typically green) is used for the gauge color. The <code>sectors</code> option enables you to specify a set of three value ranges (“success”, “warning”, and “danger”) which cause the gauge’s color to change based on it’s value.</p></li>
+</ol>
+<div id="shiny-2" class="section level4">
+<h4>Shiny</h4>
+<p>To include a gauge within a Shiny flexdashboard you need to be sure to wrap the gauge output in <code>renderGauge</code> (so that it is updated when inputs it depends on change). For example:</p>
+<div id="justgageshiny">
+
+</div>
+<script type="text/javascript">loadSnippet('justgageshiny')</script>
 </div>
 </div>
 <div id="navigation-bar" class="section level3">
