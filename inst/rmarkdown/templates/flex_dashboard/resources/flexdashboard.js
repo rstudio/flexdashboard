@@ -474,11 +474,17 @@ var FlexDashboard = (function () {
       // remove the h2
       $(this).children('h2').remove();
 
-      // make it a dashboard row
-      $(this).addClass('dashboard-row');
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset) {
+        $(this).addClass('dashboard-column');
+        layoutTabset($(this));
+      } else {
+        $(this).addClass('dashboard-row');
+      }
 
       // find all of the level 3 subheads
-      var columns = $(this).children('div.section.level3');
+      var columns = $(this).find('div.section.level3');
 
       // determine figureSizes sizes
       var figureSizes = chartFigureSizes(columns);
@@ -509,7 +515,11 @@ var FlexDashboard = (function () {
       if (!haveNotes)
         $(this).find('.chart-notes').remove();
 
-       // make it a flexbox row
+      // tabsets automatically get flex height
+      if (isTabset)
+        haveFlexHeight = true;
+
+      // make it a flexbox row
       if (haveFlexHeight)
         $(this).addClass('dashboard-row-flex');
 
