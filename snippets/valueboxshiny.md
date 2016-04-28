@@ -1,4 +1,4 @@
-### Articles per Day {.value-box}
+### Articles per Day
 
 ```{r}
 renderValueBox({

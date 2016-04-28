@@ -1,21 +1,21 @@
 Row
 -----------------------------------------------------------------------
 
-### Articles per Day {.value-box}
+### Articles per Day
 
 ```{r}
 articles <- computeArticles()
 valueBox(articles, icon = "fa-pencil")
 ```
 
-### Comments per Day {.value-box}
+### Comments per Day
 
 ```{r}
 comments <- computeComments()
 valueBox(comments, icon = "fa-comments")
 ```
 
-### Spam per Day {.value-box}
+### Spam per Day
 
 ```{r}
 spam <- computeSpam()

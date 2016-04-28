@@ -229,13 +229,9 @@ Here is the code which was used to generate these value boxes:
 <div id="valuebox"></div>
 <script type="text/javascript">loadSnippet('valuebox')</script>
 
-A few things to note about the example:
+The `valueBox` function is called to emit a value and specify an icon (see [Icon Sets] below for details on available icons).
 
-1. The `{.value-box}` attribute is added to each section, indicating it should display as a value box.
-
-2. The R code chunk within the section calls the `valueBox` function to emit a value and specify an icon (see [Icon Sets] below for details on available icons).
-
-3. The third code chunk makes the background color of the value box dynamic using the `color` parameter. Available colors include "primary", "info", "success", "warning", and "danger" (the default is "primary"). For custom colors you can also specify any valid CSS color (e.g. "#ffffff", "rgb(100,100,100)", etc.).
+The third code chunk ("Spam per Day") makes the background color of the value box dynamic using the `color` parameter. Available colors include "primary", "info", "success", "warning", and "danger" (the default is "primary"). For custom colors you can also specify any valid CSS color (e.g. "#ffffff", "rgb(100,100,100)", etc.).
 
 #### Icon Sets
 
