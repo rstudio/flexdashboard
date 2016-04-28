@@ -9,7 +9,7 @@ var FlexDashboard = (function () {
 
     // default options
     _options = $.extend(_options, {
-      theme: "bootstrap",
+      theme: "cosmo",
       fillPage: false,
       orientation: 'columns',
       defaultFigWidth: 576,
@@ -1300,7 +1300,7 @@ window.FlexDashboardComponents.push({
   type: "custom",
 
   find: function(container) {
-    if (container.hasClass('value-box'))
+    if (container.find('span.value-output, .shiny-valuebox-output').length)
       return container;
     else
       return $();
@@ -1316,12 +1316,15 @@ window.FlexDashboardComponents.push({
     var chartTitle = title;
     var valueBox = element;
 
+    // add value-box class to container
+    container.addClass('value-box');
+
     // value paragraph
     var value = $('<p class="value"></p>');
 
     // if we have shiny-text-output then just move it in
     var valueOutputSpan = [];
-    var shinyOutput = valueBox.find('.shiny-text-output, .shiny-html-output').detach();
+    var shinyOutput = valueBox.find('.shiny-valuebox-output').detach();
     if (shinyOutput.length) {
       valueBox.children().remove();
       shinyOutput.html("&mdash;");

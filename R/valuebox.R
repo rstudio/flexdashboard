@@ -9,10 +9,6 @@
 #' @param color Background color for the box. This can be one of the built-in
 #'   background colors ("primary", "info", "success", "warning", "danger") or
 #'   any valid CSS color value.
-#' @param expr An expression that generates a value box
-#' @param env The environment in which to evaluate \code{expr}.
-#' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
-#'   is useful if you want to save an expression in a variable.
 #'
 #' @export
 valueBox <- function(value, caption = NULL, icon = NULL, color = NULL) {
@@ -46,10 +42,36 @@ valueBox <- function(value, caption = NULL, icon = NULL, color = NULL) {
   valueOutput
 }
 
-#' @rdname valueBox
+
+#' Shiny bindings for valueBox
+#'
+#' Output and render functions for using valueBox within Shiny
+#' applications and interactive Rmd documents.
+#'
+#' @param outputId output variable to read from
+#' @param width,height Must be a valid CSS unit (like \code{'100\%'},
+#'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
+#'   string and have \code{'px'} appended.
+#' @param expr An expression that generates a gauge
+#' @param env The environment in which to evaluate \code{expr}.
+#' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
+#'   is useful if you want to save an expression in a variable.
+#'
+#' @name valueBox-shiny
+#'
+#' @export
+valueBoxOutput <- function(outputId, width = '100%', height = '160px') {
+  shiny::uiOutput(outputId, class = 'shiny-html-output shiny-valuebox-output',
+                  width = width, height = height)
+}
+
+
+#' @rdname valueBox-shiny
 #' @export
 renderValueBox <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  renderUI(expr, env, quoted = TRUE)
+  renderFunc <- shiny::renderUI(expr, env, quoted = TRUE)
+  attr(renderFunc, "outputFunc") <- valueBoxOutput
+  renderFunc
 }
 
