@@ -19,22 +19,18 @@
 #'  "warning", "danger", "primary", and "info") or any other valid CSS color
 #'  specifier. Note that if no custom sector ranges are defined, this parameter
 #'  can be a single color value rather than a vector of three values
-#' @param title Title to display for gauge. Note that within a flexdashboard this
-#'  parameter is unnecessary as the title can be drawn from the component's section
-#'  heading
 #' @param symbol Optional symbol to show next to value (e.g. 'kg')
 #' @param label Optional label to display beneath the value
 #'
 #' @export
 gauge <- function(value, min, max, sectors = gaugeSectors(),
-                  title = NULL, symbol = NULL, label = NULL) {
+                  symbol = NULL, label = NULL) {
 
   x <- list(
     value = value,
     min = min,
     max = max,
     customSectors = I(resolveSectors(sectors, min, max)),
-    title = title,
     symbol = symbol,
     label = label
   )

@@ -1,18 +1,10 @@
 
 
 .html-widget.gauge {
-  height: 250px;
-}
-
-.html-widget.gauge svg {
-  height: 250px;
-}
-
-.html-widget.gauge.notitle {
   height: 200px;
 }
 
-.html-widget.gauge.notitle svg {
+.html-widget.gauge svg {
   height: 200px;
   margin-top: -10px;
   margin-bottom: -40px;

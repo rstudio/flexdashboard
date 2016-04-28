@@ -5,8 +5,8 @@
 \alias{gaugeSectors}
 \title{Create a gauge component for a dashboard.}
 \usage{
-gauge(value, min, max, sectors = gaugeSectors(), title = NULL,
-  symbol = NULL, label = NULL, width = NULL, height = NULL)
+gauge(value, min, max, sectors = gaugeSectors(), symbol = NULL,
+  label = NULL)
 
 gaugeSectors(success = NULL, warning = NULL, danger = NULL,
   colors = c("success", "warning", "danger"))
@@ -21,17 +21,9 @@ gaugeSectors(success = NULL, warning = NULL, danger = NULL,
 \item{sectors}{Custom colored sectors (e.g. "success", "warning", "danger"). By
 default all values are colored using the "success" theme color}
 
-\item{title}{Title to display for gauge. Note that within a flexdashboard this
-parameter is unnecessary as the title can be drawn from the component's section
-heading}
-
 \item{symbol}{Optional symbol to show next to value (e.g. 'kg')}
 
 \item{label}{Optional label to display beneath the value}
-
-\item{width}{Width in pixels (optional, defaults to automatic sizing)}
-
-\item{height}{Height in pixels (optional, defaults to automatic sizing)}
 
 \item{success}{Two-element numeric vector defining the range of values to
 color as "success" (specific color provided by theme or custom \code{colors})}

@@ -46,28 +46,13 @@ HTMLWidgets.widget({
           value: x.value,
           min: x.min,
           max: x.max,
-          titlePosition: window.FlexDashboard ? "below" : "above",
+          titlePosition: "below",
           relativeGaugeSize: true,
           formatNumber: true,
           humanFriendly: true,
           humanFriendlyDecimal: 2,
           customSectors: x.customSectors
         };
-
-        // if a title is specified then handle as appropriate
-        if (x.title !== null) {
-          // flexdahsboard hoists the title up to the chart stage
-          if (window.FlexDashboard) {
-            $(el).closest('.chart-wrapper').children('.chart-title').text(x.title);
-            $(el).addClass('notitle');
-          // otherwise apply it directly to the gauge
-          } else {
-            config.title = x.title;
-          }
-        // otherwise layout with no title
-        } else {
-          $(el).addClass('notitle');
-        }
 
         // add symbol if specified
         if (x.symbol !== null)
