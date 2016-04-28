@@ -48,8 +48,15 @@ HTMLWidgets.widget({
           max: x.max,
           titlePosition: "below",
           relativeGaugeSize: true,
+          formatNumber: true,
+          humanFriendly: true,
+          humanFriendlyDecimal: 2,
           customSectors: x.customSectors
         };
+
+        // add symbol if specified
+        if (x.symbol !== null)
+          config.symbol = x.symbol;
 
         // add label if specifed
         if (x.label !== null)

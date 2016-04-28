@@ -5,7 +5,8 @@
 \alias{gaugeSectors}
 \title{<Add Title>}
 \usage{
-gauge(value, min, max, label = NULL, sectors = gaugeSectors())
+gauge(value, min, max, symbol = NULL, label = NULL,
+  sectors = gaugeSectors())
 
 gaugeSectors(success = NULL, warning = NULL, danger = NULL,
   colors = c("success", "warning", "danger"))

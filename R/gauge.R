@@ -5,12 +5,15 @@
 #' @import htmlwidgets
 #'
 #' @export
-gauge <- function(value, min, max, label = NULL, sectors = gaugeSectors()) {
+gauge <- function(value, min, max,
+                  symbol = NULL, label = NULL,
+                  sectors = gaugeSectors()) {
 
   x <- list(
     value = value,
     min = min,
     max = max,
+    symbol = symbol,
     label = label,
     customSectors = I(resolveSectors(sectors, min, max))
   )
