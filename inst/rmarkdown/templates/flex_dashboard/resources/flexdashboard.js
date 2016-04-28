@@ -527,6 +527,15 @@ var FlexDashboard = (function () {
       // figure height + room for title and notes, or data-height on the
       // container if specified). However, don't do this if there is
       // no flex on any of the constituent columns
+      function setRowFlexHeight(el, flexHeight) {
+        if (fillPage)
+          setFlex(el, flexHeight + ' ' + flexHeight + ' 0px');
+        else {
+          el.css('height', flexHeight + 'px');
+          setFlex(el, '0 0 ' + flexHeight + 'px');
+        }
+      }
+
       var flexHeight = null;
       var dataHeight = parseInt($(this).attr('data-height'));
       if (dataHeight)
@@ -534,14 +543,10 @@ var FlexDashboard = (function () {
       else if (haveFlexHeight)
         flexHeight = maxChartHeight(figureSizes, columns);
       if (flexHeight) {
-        if (fillPage)
-          setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
-        else {
-          $(this).css('height', flexHeight + 'px');
-          setFlex($(this), '0 0 ' + flexHeight + 'px');
-        }
+        setRowFlexHeight($(this), flexHeight);
+        if (isTabset)
+          setRowFlexHeight($(this).children('.tab-content'), flexHeight);
       }
-
     });
   }
 
@@ -571,9 +576,8 @@ var FlexDashboard = (function () {
 
       // check for a tabset
       var isTabset = $(this).hasClass('tabset');
-      if (isTabset) {
+      if (isTabset)
         layoutTabset($(this));
-      }
 
       // find all the h3 elements
       var rows = $(this).find('div.section.level3');
@@ -588,7 +592,10 @@ var FlexDashboard = (function () {
         flexWidth = dataWidth;
       else
         flexWidth = maxChartWidth(figureSizes);
-      setFlex($(this), flexWidth + ' ' + flexWidth + ' 0px');
+      var flex = flexWidth + ' ' + flexWidth + ' 0px';
+      setFlex($(this), flex);
+      if (isTabset)
+        setFlex($(this).children('.tab-content'), flex);
 
       // layout each chart
       rows.each(function(index) {
@@ -814,7 +821,6 @@ var FlexDashboard = (function () {
     var tabList = $('<ul class="nav ' + navClass + '" role="tablist"></ul>');
     $(tabs[0]).before(tabList);
     var tabContent = $('<div class="tab-content"></div>');
-    setFlex(tabContent, 1);
     $(tabs[0]).before(tabContent);
 
     // build the tabset
