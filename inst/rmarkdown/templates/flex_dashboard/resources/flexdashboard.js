@@ -559,8 +559,14 @@ var FlexDashboard = (function () {
       // make it a flexbox column
       $(this).addClass('dashboard-column');
 
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset) {
+        layoutTabset($(this));
+      }
+
       // find all the h3 elements
-      var rows = $(this).children('div.section.level3');
+      var rows = $(this).find('div.section.level3');
 
       // get the figure sizes for the rows
       var figureSizes = chartFigureSizes(rows);
@@ -687,14 +693,6 @@ var FlexDashboard = (function () {
     // extract the title
     var title = extractTitle(chart);
 
-      // check for a tabset
-    if (chart.hasClass('tabset')) {
-      layoutTabset(chart);
-      result.notes = false;
-      result.flex = true;
-      return result;
-    }
-
     // find components that apply to this container
     var components = componentsFind(chart);
 
@@ -786,10 +784,9 @@ var FlexDashboard = (function () {
   // build a tabset from a section div with the .tabset class
   function layoutTabset(tabset) {
 
-    // check for fade and pills options
+    // check for fade option
     var fade = tabset.hasClass("tabset-fade");
-    var pills = tabset.hasClass("tabset-pills");
-    var navClass = pills ? "nav-pills" : "nav-tabs";
+    var navClass = "nav-tabs";
 
     // determine the heading level of the tabset and tabs
     var match = tabset.attr('class').match(/level(\d) /);
@@ -807,6 +804,7 @@ var FlexDashboard = (function () {
     var tabList = $('<ul class="nav ' + navClass + '" role="tablist"></ul>');
     $(tabs[0]).before(tabList);
     var tabContent = $('<div class="tab-content"></div>');
+    setFlex(tabContent, 1);
     $(tabs[0]).before(tabContent);
 
     // build the tabset
@@ -822,10 +820,9 @@ var FlexDashboard = (function () {
       id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
       tab.attr('id', id);
 
-      // get the heading element within it, grab it's text, then remove it
+      // get the heading element within it and grab it's text
       var heading = tab.find('h' + tabLevel + ':first');
       var headingText = heading.html();
-      heading.remove();
 
       // build and append the tab list item
       var a = $('<a role="tab" data-toggle="tab">' + headingText + '</a>');
@@ -841,6 +838,7 @@ var FlexDashboard = (function () {
       tab.attr('role', 'tabpanel');
       tab.addClass('tab-pane');
       tab.addClass('tabbed-pane');
+      tab.addClass('no-title');
       if (fade)
         tab.addClass('fade');
       if (i === 0) {
