@@ -1,4 +1,4 @@
-#' Create a value box for the main body of a dashboard.
+#' Create a value box component for a dashboard.
 #'
 #' A value box displays a value (usually a number) in large text, with a smaller
 #' caption beneath, and a large icon on the right side.

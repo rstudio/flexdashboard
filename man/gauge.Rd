@@ -3,15 +3,53 @@
 \name{gauge}
 \alias{gauge}
 \alias{gaugeSectors}
-\title{<Add Title>}
+\title{Create a gauge component for a dashboard.}
 \usage{
-gauge(value, min, max, symbol = NULL, label = NULL,
-  sectors = gaugeSectors())
+gauge(value, min, max, sectors = gaugeSectors(), title = NULL,
+  symbol = NULL, label = NULL, width = NULL, height = NULL)
 
 gaugeSectors(success = NULL, warning = NULL, danger = NULL,
   colors = c("success", "warning", "danger"))
 }
+\arguments{
+\item{value}{Numeric value to display}
+
+\item{min}{Minimum numeric value}
+
+\item{max}{Maximum numeric value}
+
+\item{sectors}{Custom colored sectors (e.g. "success", "warning", "danger"). By
+default all values are colored using the "success" theme color}
+
+\item{title}{Title to display for gauge. Note that within a flexdashboard this
+parameter is unnecessary as the title can be drawn from the component's section
+heading}
+
+\item{symbol}{Optional symbol to show next to value (e.g. 'kg')}
+
+\item{label}{Optional label to display beneath the value}
+
+\item{width}{Width in pixels (optional, defaults to automatic sizing)}
+
+\item{height}{Height in pixels (optional, defaults to automatic sizing)}
+
+\item{success}{Two-element numeric vector defining the range of values to
+color as "success" (specific color provided by theme or custom \code{colors})}
+
+\item{warning}{Two-element numeric vector defining the range of values to
+color as "warning" (specific color provided by theme or custom \code{colors})}
+
+\item{danger}{Two-element numeric vector defining the range of values to
+color as "danger" (specific color provided by theme or custom \code{colors})}
+
+\item{colors}{Vector of colors to use for the \code{success}, \code{warning},
+and \code{danger} ranges. Colors can be standard theme colors ("success",
+"warning", "danger", "primary", and "info") or any other valid CSS color
+specifier. Note that if no custom sector ranges are defined, this parameter
+can be a single color value rather than a vector of three values}
+}
 \description{
-<Add Description>
+A gauge displays a numeric value on a meter that runs between
+specified minimum and maximum values.
 }
 

@@ -1,10 +1,11 @@
 
-.html-widget.gauge svg {
+
+.html-widget.gauge.notitle svg {
   margin-top: -20px;
   margin-bottom: -60px;
 }
 
-.html-widget.gauge.narrow svg {
+.html-widget.gauge.notitle.narrow svg {
   margin-top: -10px;
   margin-bottom: -40px;
 }

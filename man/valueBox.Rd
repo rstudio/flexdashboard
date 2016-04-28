@@ -3,7 +3,7 @@
 \name{valueBox}
 \alias{renderValueBox}
 \alias{valueBox}
-\title{Create a value box for the main body of a dashboard.}
+\title{Create a value box component for a dashboard.}
 \usage{
 valueBox(value, caption = NULL, icon = NULL, color = NULL)
 

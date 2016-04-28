@@ -6,7 +6,7 @@
 \alias{renderGauge}
 \title{Shiny bindings for gauge}
 \usage{
-gaugeOutput(outputId, width = "100\%", height = "400px")
+gaugeOutput(outputId, width = "100\%", height = "200px")
 
 renderGauge(expr, env = parent.frame(), quoted = FALSE)
 }
