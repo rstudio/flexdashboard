@@ -115,6 +115,10 @@ In many cases tabsets are a better solution than `vertical_layout: scroll` for d
 
 To layout a row or column as a tabset you simply add the `{.tabset}` attribute to the section heading. For example, the following code lays out the second column in tabset:
 
+<div id="tabsetcolumn"></div>
+<script type="text/javascript">loadSnippet('tabsetcolumn')</script>
+
+<!--
 <div class="row">
 
 <div class="col-md-6">
@@ -134,9 +138,14 @@ To layout a row or column as a tabset you simply add the `{.tabset}` attribute t
 </div>
 
 </div>
+-->
 
 Rows can also be laid out as a tabset as illustrated here:
 
+<div id="tabsetrow"></div>
+<script type="text/javascript">loadSnippet('tabsetrow')</script>
+
+<!--
 <div class="row">
 
 <div class="col-md-6">
@@ -152,6 +161,7 @@ Rows can also be laid out as a tabset as illustrated here:
 </div>
 
 </div>
+-->
 
 Note that here we also apply the `{.tabset-fade}` attribute which results in a fade in/out effect when switching tabs.
 

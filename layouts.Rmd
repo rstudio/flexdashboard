@@ -136,6 +136,10 @@ This layout is a 2x2 grid of charts. This layout uses the default `vertical_scro
 
 This layout displays the right column as a set of two tabs. Tabs are especially useful when you have a large number of components to display and prefer not to require the user to scroll to access everything.
 
+<div id="tabsetcolumn"></div>
+<script type="text/javascript">loadSnippet('tabsetcolumn')</script>
+
+<!--
 <div class="row">
 
 <div class="col-md-6">
@@ -155,11 +159,16 @@ This layout displays the right column as a set of two tabs. Tabs are especially 
 </div>
 
 </div>
+-->
 
 ## Tabset Row
 
 This layout displays the bottom row as a set of two tabs. Note that the `{.tabset-fade}` attribute is also used to enable a fade in/out effect when switching tabs.
 
+<div id="tabsetrow"></div>
+<script type="text/javascript">loadSnippet('tabsetrow')</script>
+
+<!--
 <div class="row">
 
 <div class="col-md-6">
@@ -175,7 +184,7 @@ This layout displays the bottom row as a set of two tabs. Note that the `{.tabse
 </div>
 
 </div>
-
+-->
 
 ## Multiple Pages
 
