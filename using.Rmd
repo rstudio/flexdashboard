@@ -440,6 +440,13 @@ To specify that a page should be accessed via a navigation bar menu you use the 
 <div id="pagenavmenu"></div>
 <script type="text/javascript">loadSnippet('pagenavmenu')</script>
 
+### Page Links
+
+You can form links directly to dashboard pages using markdown link syntax: `[Page 2]`. To use custom link text you can also create a link via the page's anchor: `[Page Two](#page-2)`. Both styles of page linking are demonstrated in this example:
+
+<div id="pagelinks"></div>
+<script type="text/javascript">loadSnippet('pagelinks')</script>
+
 
 ### Page Icons
 
