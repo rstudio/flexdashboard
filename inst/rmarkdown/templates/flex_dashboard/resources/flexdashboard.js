@@ -1022,6 +1022,21 @@ var FlexDashboard = (function () {
       window.location.replace(href)
       window.scrollTo(0,0);
     });
+
+    // handle clicks of other links that should activate pages
+    var navPages = $('ul.navbar-nav li a[data-toggle=tab]');
+    navPages.each(function() {
+      var href =  $(this).attr('href');
+      var links = $('a[href="' + href + '"][data-toggle!=tab]');
+      links.each(function() {
+        $(this).on('click', function(e) {
+          $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
+          setTimeout(function() {
+             window.scrollTo(0,0);
+          }, 10);
+        });
+      });
+    });
   }
 
   function urlWithoutHash(url) {
