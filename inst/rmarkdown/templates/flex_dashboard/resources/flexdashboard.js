@@ -413,8 +413,11 @@ var FlexDashboard = (function () {
 
     // give it and it's parent divs height: 100% if we are in fillPage mode
     if (fillPage) {
+      page.addClass('vertical-layout-fill');
       page.css('height', '100%');
       page.parents('div').css('height', '100%');
+    } else {
+      page.addClass('vertical-layout-scroll');
     }
 
     // perform the layout
