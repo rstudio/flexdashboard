@@ -479,12 +479,10 @@ var FlexDashboard = (function () {
 
       // check for a tabset
       var isTabset = $(this).hasClass('tabset');
-      if (isTabset) {
-        $(this).addClass('dashboard-column');
+      if (isTabset)
         layoutTabset($(this));
-      } else {
+      else
         $(this).addClass('dashboard-row');
-      }
 
       // find all of the level 3 subheads
       var columns = $(this).find('div.section.level3');
@@ -495,8 +493,8 @@ var FlexDashboard = (function () {
       // fixup the columns
       columns.each(function(index) {
 
-        // layout the chart
-        var result = layoutChart($(this));
+        // layout the chart (force flex if we are in a tabset)
+        var result = layoutChart($(this), isTabset);
 
         // update flexHeight state
         if (!result.flex)
@@ -507,20 +505,18 @@ var FlexDashboard = (function () {
           haveNotes = true;
 
         // set the column flex based on the figure width
-        // (value boxes will just get the default figure width)
-        var chartWidth = figureSizes[index].width;
-        setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
-
+        // (don't do this for tabsets since they occupy
+        // the full width anyway)
+        if (!isTabset) {
+          var chartWidth = figureSizes[index].width;
+          setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
+        }
       });
 
       // if we don't have any notes in this row then remove
       // the chart notes divs
       if (!haveNotes)
         $(this).find('.chart-notes').remove();
-
-      // tabsets automatically get flex height
-      if (isTabset)
-        haveFlexHeight = true;
 
       // make it a flexbox row
       if (haveFlexHeight)
@@ -530,15 +526,6 @@ var FlexDashboard = (function () {
       // figure height + room for title and notes, or data-height on the
       // container if specified). However, don't do this if there is
       // no flex on any of the constituent columns
-      function setRowFlexHeight(el, flexHeight) {
-        if (fillPage)
-          setFlex(el, flexHeight + ' ' + flexHeight + ' 0px');
-        else {
-          el.css('height', flexHeight + 'px');
-          setFlex(el, '0 0 ' + flexHeight + 'px');
-        }
-      }
-
       var flexHeight = null;
       var dataHeight = parseInt($(this).attr('data-height'));
       if (dataHeight)
@@ -546,9 +533,12 @@ var FlexDashboard = (function () {
       else if (haveFlexHeight)
         flexHeight = maxChartHeight(figureSizes, columns);
       if (flexHeight) {
-        setRowFlexHeight($(this), flexHeight);
-        if (isTabset)
-          setRowFlexHeight($(this).children('.tab-content'), flexHeight);
+        if (fillPage)
+          setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
+        else {
+          $(this).css('height', flexHeight + 'px');
+          setFlex($(this), flexHeight);
+        }
       }
     });
   }
@@ -597,14 +587,12 @@ var FlexDashboard = (function () {
         flexWidth = maxChartWidth(figureSizes);
       var flex = flexWidth + ' ' + flexWidth + ' 0px';
       setFlex($(this), flex);
-      if (isTabset)
-        setFlex($(this).children('.tab-content'), flex);
 
       // layout each chart
       rows.each(function(index) {
 
         // perform the layout
-        var result = layoutChart($(this));
+        var result = layoutChart($(this), false);
 
         // ice the notes if there are none
         if (!result.notes)
@@ -702,7 +690,7 @@ var FlexDashboard = (function () {
   }
 
   // layout a chart
-  function layoutChart(chart) {
+  function layoutChart(chart, forceFlex) {
 
     // state to return
     var result = {
@@ -721,7 +709,7 @@ var FlexDashboard = (function () {
     if (customComponents.length) {
       componentsLayout(customComponents, title, chart);
       result.notes = false;
-      result.flex = componentsFlex(customComponents);
+      result.flex = forceFlex || componentsFlex(customComponents);
       return result;
     }
 
@@ -731,7 +719,7 @@ var FlexDashboard = (function () {
     var chartContent = chart.children('.chart-stage');
 
     // flex the content if appropriate
-    result.flex = componentsFlex(components);
+    result.flex = forceFlex || componentsFlex(components);
     if (result.flex) {
       // add flex classes
       chart.addClass('chart-wrapper-flex');
@@ -769,7 +757,7 @@ var FlexDashboard = (function () {
           // we can't tell what type of output we have until after the
           // value is bound)
           var components = componentsFind(element);
-          var flex = componentsFlex(components);
+          var flex = forceFlex || componentsFlex(components);
           if (!flex) {
             chart.css('height', "");
             setFlex(chart, "");
@@ -872,6 +860,10 @@ var FlexDashboard = (function () {
 
     // add nav-tabs-custom
     tabset.addClass('nav-tabs-custom');
+
+    // internal layout is dashboard-column with tab-content flexing
+    tabset.addClass('dashboard-column');
+    setFlex(tabContent, 1);
   }
 
   // one time global initialization for components
