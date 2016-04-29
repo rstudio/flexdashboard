@@ -513,8 +513,11 @@ var FlexDashboard = (function () {
 
       });
 
-      // if we don't have any notes in this row then remove
-      // the chart notes divs
+      // remove empty chart note divs
+      if (isTabset)
+        $(this).find('.chart-notes').filter(function() {
+            return $(this).html() === "&nbsp;";
+        }).remove();
       if (!haveNotes)
         $(this).find('.chart-notes').remove();
 
