@@ -585,8 +585,7 @@ var FlexDashboard = (function () {
         flexWidth = dataWidth;
       else
         flexWidth = maxChartWidth(figureSizes);
-      var flex = flexWidth + ' ' + flexWidth + ' 0px';
-      setFlex($(this), flex);
+      setFlex($(this), flexWidth + ' ' + flexWidth + ' 0px');
 
       // layout each chart
       rows.each(function(index) {
