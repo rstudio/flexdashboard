@@ -537,7 +537,7 @@ var FlexDashboard = (function () {
           setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
         else {
           $(this).css('height', flexHeight + 'px');
-          setFlex($(this), flexHeight);
+          setFlex($(this), '0 0 ' + flexHeight + 'px');
         }
       }
     });
