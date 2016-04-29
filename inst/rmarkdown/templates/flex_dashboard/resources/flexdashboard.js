@@ -507,8 +507,10 @@ var FlexDashboard = (function () {
           haveNotes = true;
 
         // set the column flex based on the figure width
+        // (value boxes will just get the default figure width)
         var chartWidth = figureSizes[index].width;
         setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
+
       });
 
       // if we don't have any notes in this row then remove
