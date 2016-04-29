@@ -35,3 +35,12 @@ body {
   background-color: rgba(63, 182, 24, 0.7);
 }
 
+.chart-title {
+  font-weight: 500;
+}
+
+.nav-tabs-custom > .nav-tabs > li > a,
+.nav-tabs-custom > .nav-tabs > li > a:active {
+  font-weight: 500;
+}
+
