@@ -1,0 +1,9 @@
+name: shiny-biclust
+account: jjallaire
+server: beta.rstudioconnect.com
+appId: 846
+bundleId: 1557
+url: https://beta.rstudioconnect.com/jjallaire/shiny-biclust/
+when: 1461942810.21101
+asMultiple: FALSE
+asStatic: FALSE

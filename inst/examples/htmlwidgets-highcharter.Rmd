@@ -3,7 +3,7 @@ title: "Sales Report with Highcharter"
 author: "Joshua Kunst"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: rows
+    orientation: columns
     social: menu
     source_code: embed
 ---
@@ -30,7 +30,7 @@ thm <-
 
 ```
 
-Row 
+Column {data-width=600}
 -----------------------------------------------------------------------
 
 ### Sales Forecast
@@ -68,7 +68,7 @@ highchart() %>%
   hc_add_theme(thm)
 ```
 
-Row
+Column {.tabset data-width=400}
 -----------------------------------------------------------------------
 
 ### Sales by Category
