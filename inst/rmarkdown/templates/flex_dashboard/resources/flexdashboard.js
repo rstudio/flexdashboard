@@ -482,7 +482,7 @@ var FlexDashboard = (function () {
       if (isTabset)
         layoutTabset($(this));
 
-      // give it row layout semenatics if it's not a tabset
+      // give it row layout semantics if it's not a tabset
       if (!isTabset)
         $(this).addClass('dashboard-row');
 
