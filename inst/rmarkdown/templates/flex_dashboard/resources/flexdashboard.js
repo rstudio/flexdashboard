@@ -507,12 +507,8 @@ var FlexDashboard = (function () {
           haveNotes = true;
 
         // set the column flex based on the figure width
-        // (don't do this for tabsets since they occupy
-        // the full width anyway)
-        if (!isTabset) {
-          var chartWidth = figureSizes[index].width;
-          setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
-        }
+        var chartWidth = figureSizes[index].width;
+        setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
       });
 
       // if we don't have any notes in this row then remove
