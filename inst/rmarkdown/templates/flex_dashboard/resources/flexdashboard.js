@@ -520,7 +520,7 @@ var FlexDashboard = (function () {
       if (!haveNotes)
         $(this).find('.chart-notes').remove();
 
-      // make it a flexbox row
+       // make it a flexbox row
       if (haveFlexHeight)
         $(this).addClass('dashboard-row-flex');
 
@@ -542,6 +542,7 @@ var FlexDashboard = (function () {
           setFlex($(this), '0 0 ' + flexHeight + 'px');
         }
       }
+
     });
   }
 
