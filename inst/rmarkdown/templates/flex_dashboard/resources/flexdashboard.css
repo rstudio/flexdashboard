@@ -176,7 +176,7 @@ body hr {
   left: 0; top: 0; right: 0; bottom: 0;
 }
 
-.bootstrap-table-shim {
+.flowing-content-shim {
   overflow: auto;
   left: 0; top: 0; right: 0; bottom: 0;
   padding-left: 8px;

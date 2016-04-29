@@ -880,12 +880,35 @@ var FlexDashboard = (function () {
 
   // find components that apply within a container
   function componentsFind(container) {
+
+    // look for components
     var components = [];
     for (var i=0; i<window.FlexDashboardComponents.length; i++) {
       var component = window.FlexDashboardComponents[i];
       if (component.find(container).length)
         components.push(component);
     }
+
+    // if there were none then use a special flowing content component
+    // that just adds a scrollbar in fillPage mode
+    components.push({
+      find: function(container) {
+        return container;
+      },
+
+      flex: function(fillPage) {
+        return fillPage;
+      },
+
+      layout: function(title, container, element, fillPage) {
+        if (fillPage) {
+          container.addClass('flowing-content-shim');
+          element.css('padding-top', '6px');
+        }
+      }
+    });
+
+
     return components;
   }
 
@@ -1342,7 +1365,7 @@ window.FlexDashboardComponents.push({
     // for fill page provide scrolling w/ sticky headers
     if (fillPage) {
       // force scrollbar on overflow
-      container.addClass('bootstrap-table-shim');
+      container.addClass('flowing-content-shim');
 
       // stable table headers when scrolling
       bsTable.stickyTableHeaders({
