@@ -26,7 +26,7 @@ You can use flexdashboard to publish groups of related data visualizations as a 
 
 Flexible options for [component layout](#layout) are available and dashboards with many components can be organized into [multiple pages]. The flexdashboard layout system also adapts itself intelligently for display on [mobile devices](#mobile-layout).
 
-There are also several ways to add interactivity to flexdashboards. You can use [htmlwidgets] to add client-side JavaScript interactivity (data tips, panning, zooming, etc.) and [Shiny](shiny.html) to build fully custom interactions in R.
+There are also several ways to add interactivity to flexdashboards. You can use [htmlwidgets](#html-widgets) to add client-side JavaScript interactivity (data tips, panning, zooming, etc.) and [Shiny](shiny.html) to build fully custom interactions in R.
 
 ## Layout 
 
@@ -111,7 +111,7 @@ For example, the following layout includes 3 charts and requests that the page s
 
 ## Components
 
-### htmlwidgets
+### HTML Widgets
 
 The [htmlwidgets](http://www.htmlwidgets.org) framework provides high-level R bindings for JavaScript data visualization libraries. Charts based on htmlwidgets are ideal for use with flexdashboard because they can dynamically re-size themselves, so will nearly always fit perfectly within the bounds of their flexdashboard containers.
 
