@@ -481,7 +481,9 @@ var FlexDashboard = (function () {
       var isTabset = $(this).hasClass('tabset');
       if (isTabset)
         layoutTabset($(this));
-      else
+
+      // give it row layout semenatics if it's not a tabset
+      if (!isTabset)
         $(this).addClass('dashboard-row');
 
       // find all of the level 3 subheads
