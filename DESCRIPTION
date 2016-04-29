@@ -6,7 +6,7 @@ Authors@R: c(
   person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
   person(family = "RStudio", role = "cph"),
   person(family = "Keen IO", role = c("ctb", "cph"), comment = "Dashboard CSS"),
-  person(family = "Almasaeed Studio", role = c("ctb", "cph"), comment = "Dashboard CSS"),
+  person("Abdullah", "Almsaeed", role = c("ctb", "cph"), comment = "Dashboard CSS"),
   person("Dave", "Gandy", role = c("ctb", "cph"), comment = "Font-Awesome"),
   person("Ben", "Sperry", role = "ctb", comment = "Ionicons"),
   person(family = "Drifty", role = "cph", comment = "Ionicons"),
