@@ -891,23 +891,24 @@ var FlexDashboard = (function () {
 
     // if there were none then use a special flowing content component
     // that just adds a scrollbar in fillPage mode
-    components.push({
-      find: function(container) {
-        return container;
-      },
+    if (components.length == 0) {
+      components.push({
+        find: function(container) {
+          return container;
+        },
 
-      flex: function(fillPage) {
-        return fillPage;
-      },
+        flex: function(fillPage) {
+          return fillPage;
+        },
 
-      layout: function(title, container, element, fillPage) {
-        if (fillPage) {
-          container.addClass('flowing-content-shim');
-          element.css('padding-top', '6px');
+        layout: function(title, container, element, fillPage) {
+          if (fillPage) {
+            container.addClass('flowing-content-shim');
+            element.css('padding-top', '6px');
+          }
         }
-      }
-    });
-
+      });
+    }
 
     return components;
   }
