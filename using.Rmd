@@ -107,6 +107,53 @@ For example, the following layout includes 3 charts and requests that the page s
 
 </div>
 
+### Tabsets
+
+If you have several components you'd like to display within a row or column then rather than attempting to fit them all on screen at the same time you can lay them out as a tabset. This is especially appropriate when one component is primary (i.e. should be seen by all readers) and the others provide secondary information that might be of interest to only some readers. 
+
+In many cases tabsets are a better solution than `vertical_layout: scroll` for displaying large numbers of components since they are so straightforward to navigate.
+
+To layout a row or column as a tabset you simply add the `{.tabset}` attribute to the section heading. For example, the following code lays out the second column in tabset:
+
+<div class="row">
+
+<div class="col-md-6">
+<div id="tabsetcolumn"></div>
+<script type="text/javascript">loadSnippet('tabsetcolumn')</script>
+</div>
+
+<div class="col-md-6 nopadding">
+<div height="422px" width="100%">
+<div style="float: left; width: 50%;">
+<img class="holder" data-src="holder.js/100px422?size=28&amp;text=Chart 1">
+</div>
+<div style="margin-left: 50%;">
+<img class="holder" data-src="holder.js/100px422?size=28&amp;text=Chart 2">
+</div>
+</div>
+</div>
+
+</div>
+
+Rows can also be laid out as a tabset as illustrated here:
+
+<div class="row">
+
+<div class="col-md-6">
+<div id="tabsetrow"></div>
+<script type="text/javascript">loadSnippet('tabsetrow')</script>
+</div>
+
+<div class="col-md-6 nopadding">
+<div height="454px" width="100%">
+<img class="holder" data-src="holder.js/100px227?size=28&amp;text=Chart 1">
+<img class="holder" data-src="holder.js/100px227?size=28&amp;text=Chart 2">
+</div>
+</div>
+
+</div>
+
+Note that here we also apply the `{.tabset-fade}` attribute which results in a fade in/out effect when switching tabs.
 
 
 ## Components
