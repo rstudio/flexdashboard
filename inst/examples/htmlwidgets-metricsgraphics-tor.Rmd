@@ -56,24 +56,8 @@ filter(servers, !is.na(relays)) %>%
   spread(version, n) -> relays_by_version
 ```
 
-Row
+Row  {data-height=600}
 -----------------------------------------------------------------------
-
-### Active Bridges in the Tor Network
-
-```{r}
-mjs_plot(bridges, date, n, top=0, left=30) %>% 
-  mjs_line(area=TRUE) %>% 
-  mjs_axis_x(xax_format="date") %>%
-  mjs_add_mouseover("function(d, i) {
-                $('{{ID}} svg .mg-active-datapoint')
-                    .html('<b>Relay count</b><br/>' +
-                          d3.time.format('%Y-%m-%d')(d.date) + ': ' +
-                          d3.format('0,000')(d.n));
-                 }") %>% 
-  mjs_add_marker("2016-01-16", "Targeted DDoS Attacks")
-
-```
 
 ### Active Relays in the Tor Network
 
@@ -89,8 +73,32 @@ mjs_plot(relays, date, n, top=0, left=30) %>%
                  }")
 ``` 
 
-Row
+### Hidden-service statistics
+
+```{r}
+mjs_plot(hidden, date, "wmean", top=0, left=30) %>% 
+  mjs_line() %>% 
+  mjs_add_line("wmedian") %>% 
+  mjs_add_line("wiqm") %>% 
+  mjs_axis_x(xax_format="date") %>% 
+  mjs_add_legend(c("wmean", "wmedian", "wiqm"))
+```
+
+Row {.tabset}
 -----------------------------------------------------------------------
+
+### Relays with Exit, Fast, Guard, HSDir & Stable flags
+
+```{r}
+mjs_plot(relays_by_flag, date, Exit, top=0, left=30) %>% 
+  mjs_line() %>% 
+  mjs_add_line(Fast) %>% 
+  mjs_add_line(Guard) %>% 
+  mjs_add_line(HSDir) %>% 
+  mjs_add_line(Stable) %>% 
+  mjs_axis_x(xax_format="date") %>% 
+  mjs_add_legend(c("Exit", "Fast", "Guard", "HSDir", "Stable"))
+```
 
 ### Relays by OS (log scale)
 
@@ -106,22 +114,6 @@ mjs_plot(relays_by_platform, date, BSD, top=0, left=30) %>%
   mjs_add_legend(c("BSD", "Darwin", "Linux", "Other", "Windows"))
 ```
 
-### Relays with Exit, Fast, Guard, HSDir & Stable flags
-
-```{r}
-mjs_plot(relays_by_flag, date, Exit, top=0, left=30) %>% 
-  mjs_line() %>% 
-  mjs_add_line(Fast) %>% 
-  mjs_add_line(Guard) %>% 
-  mjs_add_line(HSDir) %>% 
-  mjs_add_line(Stable) %>% 
-  mjs_axis_x(xax_format="date") %>% 
-  mjs_add_legend(c("Exit", "Fast", "Guard", "HSDir", "Stable"))
-```
-
-Row
------------------------------------------------------------------------
-
 ### Relays by version
 
 ```{r}
@@ -136,13 +128,3 @@ mjs_plot(relays_by_version, date, "v0.2.4", top=0, left=30) %>%
   mjs_add_legend(c("v0.2.4", "v0.2.5", "v0.2.6", "v0.2.7", "v0.2.8", "Other"))
 ```
 
-### Hidden-service statistics
-
-```{r}
-mjs_plot(hidden, date, "wmean", top=0, left=30) %>% 
-  mjs_line() %>% 
-  mjs_add_line("wmedian") %>% 
-  mjs_add_line("wiqm") %>% 
-  mjs_axis_x(xax_format="date") %>% 
-  mjs_add_legend(c("wmean", "wmedian", "wiqm"))
-```

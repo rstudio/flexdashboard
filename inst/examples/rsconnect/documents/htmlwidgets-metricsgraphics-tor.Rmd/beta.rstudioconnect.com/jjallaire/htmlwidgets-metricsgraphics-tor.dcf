@@ -2,8 +2,8 @@ name: htmlwidgets-metricsgraphics-tor
 account: jjallaire
 server: beta.rstudioconnect.com
 appId: 678
-bundleId: 1183
+bundleId: 1570
 url: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-metricsgraphics-tor/
-when: 1458637344.68995
+when: 1461946323.75328
 asMultiple: FALSE
 asStatic: TRUE
