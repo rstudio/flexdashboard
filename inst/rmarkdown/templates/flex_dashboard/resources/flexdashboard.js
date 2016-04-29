@@ -1036,7 +1036,7 @@ var FlexDashboard = (function () {
     // restore tab/page from bookmark
     var hash = window.location.hash;
     if (hash.length > 0)
-      $('.navbar-nav ul.nav a[href="' + hash + '"]').tab('show');
+      $('ul.nav a[href="' + hash + '"]').tab('show');
 
     // add a hash to the URL when the user clicks on a tab/page
     $('.navbar-nav a[data-toggle="tab"]').on('click', function(e) {
