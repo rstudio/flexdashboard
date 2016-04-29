@@ -344,11 +344,20 @@ body hr {
   margin-bottom: -1px;
   margin-right: 5px;
 }
-.nav-tabs-custom > .nav-tabs > li > a {
-  color: #444;
+.nav-tabs-custom > .nav-tabs > li > a,
+.nav-tabs-custom > .nav-tabs > li > a:active {
+  color: #666;
+  font-weight: 300;
+  font-size: 14px;
   border-radius: 0;
   padding: 3px 10px 5px;
+  text-transform: none;
 }
+
+.nav-tabs-custom > .nav-tabs > li:not(.active) > a {
+  border-bottom-color: transparent;
+}
+
 .nav-tabs-custom > .nav-tabs > li > a.text-muted {
   color: #999;
 }
@@ -371,7 +380,7 @@ body hr {
 .nav-tabs-custom > .nav-tabs > li.active > a,
 .nav-tabs-custom > .nav-tabs > li.active:hover > a {
   background-color: #fff;
-  color: #444;
+  color: #666;
 }
 .nav-tabs-custom > .nav-tabs > li.active > a {
   border-top-color: transparent;
@@ -404,7 +413,7 @@ body hr {
   line-height: 35px;
   padding: 0 10px;
   font-size: 20px;
-  color: #444;
+  color: #666;
 }
 .nav-tabs-custom > .nav-tabs > li.header > .fa,
 .nav-tabs-custom > .nav-tabs > li.header > .glyphicon,
