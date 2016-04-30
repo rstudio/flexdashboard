@@ -22,6 +22,10 @@
 #' @param symbol Optional symbol to show next to value (e.g. 'kg')
 #' @param label Optional label to display beneath the value
 #'
+#' @details See the flexdashboard website for additional documentation:
+#'  \href{https://rstudio.github.io/flexdashboard/using.html#gauges}{https://rstudio.github.io/flexdashboard/using.html#gauges}
+#'
+#'
 #' @export
 gauge <- function(value, min, max, sectors = gaugeSectors(),
                   symbol = NULL, label = NULL) {

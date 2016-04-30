@@ -10,6 +10,9 @@
 #'   background colors ("primary", "info", "success", "warning", "danger") or
 #'   any valid CSS color value.
 #'
+#' @details See the flexdashboard website for additional documentation:
+#'  \href{https://rstudio.github.io/flexdashboard/using.html#value_boxes}{https://rstudio.github.io/flexdashboard/using.html#value_boxes}
+#'
 #' @export
 valueBox <- function(value, caption = NULL, icon = NULL, color = NULL) {
 

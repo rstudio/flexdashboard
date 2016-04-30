@@ -107,7 +107,7 @@ to its containing web page.
 }
 \details{
 See the flexdashboard website for additional documentation:
- http://rstudio.github.io/flexdashboard
+ \href{https://rstudio.github.io/flexdashboard}{https://rstudio.github.io/flexdashboard}
 }
 \examples{
 \dontrun{

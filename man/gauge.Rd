@@ -44,4 +44,8 @@ can be a single color value rather than a vector of three values}
 A gauge displays a numeric value on a meter that runs between
 specified minimum and maximum values.
 }
+\details{
+See the flexdashboard website for additional documentation:
+ \href{https://rstudio.github.io/flexdashboard/using.html#gauges}{https://rstudio.github.io/flexdashboard/using.html#gauges}
+}
 
