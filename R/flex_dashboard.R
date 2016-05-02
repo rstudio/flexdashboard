@@ -19,6 +19,16 @@
 #'  if a numeric vector of length 2, creates a mobile figure with the
 #'  specified width and height.
 #'
+#'@param favicon Path to graphic to be used as a favicon for the dashboard.
+#' Pass \code{NULL} to use no favicon.
+#'
+#'@param logo Path to graphic to be used as a logo for the dashboard. Pass
+#'  \code{NULL} to not include a logo. Note
+#'  that no scaling is performed on the logo image, so it should fit exactly
+#'  within the dimensions of the navigation bar (48 pixels high for the
+#'  default "cosmo" theme, other themes may have slightly different navigation
+#'  bar heights).
+#'
 #'@param social Specify a character vector of social sharing services to
 #'  automatically add sharing links for them on the \code{navbar}. Valid values
 #'  are "twitter", "facebook", "google-plus", "linkedin", and "pinterest" (more
@@ -79,6 +89,8 @@ flex_dashboard <- function(fig_width = 6.0,
                            dev = "png",
                            smart = TRUE,
                            self_contained = TRUE,
+                           favicon = NULL,
+                           logo = NULL,
                            social = NULL,
                            source_code = NULL,
                            navbar = NULL,
@@ -229,6 +241,29 @@ flex_dashboard <- function(fig_width = 6.0,
                              files_dir, output_dir) {
 
     args <- c()
+
+    # helper function to add a graphic file dependency/variable
+    add_graphic <- function(name, graphic) {
+      if (!is.null(graphic)) {
+        graphic_path <- graphic
+        if (!self_contained) {
+          # use same extension as specified graphic (default is png if unspecified)
+          graphic_ext <- tools::file_ext(graphic)
+          if (nchar(graphic_ext) < 1)
+            graphic_ext <- "png"
+          graphic_path <- file.path(files_dir, paste(name, graphic_ext, sep = "."))
+          file.copy(from = graphic, to = graphic_path)
+          graphic_path <- normalized_relative_to(output_dir, graphic_path)
+        } else {
+          graphic_path <- pandoc_path_arg(graphic_path)
+        }
+        args <<- c(args, pandoc_variable_arg(name, graphic_path))
+      }
+    }
+
+    # include logo and favicon
+    add_graphic("logo", logo)
+    add_graphic("favicon", favicon)
 
     # include flexdashboard.css and flexdashboard.js (but not in devel
     # mode, in that case relative filesystem references to

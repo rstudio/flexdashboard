@@ -6,12 +6,12 @@
 \usage{
 flex_dashboard(fig_width = 6, fig_height = 4.8, fig_retina = 2,
   fig_mobile = TRUE, dev = "png", smart = TRUE, self_contained = TRUE,
-  social = NULL, source_code = NULL, navbar = NULL,
-  orientation = c("columns", "rows"), vertical_layout = c("fill", "scroll"),
-  theme = "default", highlight = "default", mathjax = "default",
-  extra_dependencies = NULL, css = NULL, includes = NULL,
-  lib_dir = NULL, md_extensions = NULL, pandoc_args = NULL,
-  devel = FALSE, ...)
+  favicon = "default", logo = NULL, social = NULL, source_code = NULL,
+  navbar = NULL, orientation = c("columns", "rows"),
+  vertical_layout = c("fill", "scroll"), theme = "default",
+  highlight = "default", mathjax = "default", extra_dependencies = NULL,
+  css = NULL, includes = NULL, lib_dir = NULL, md_extensions = NULL,
+  pandoc_args = NULL, devel = FALSE, ...)
 }
 \arguments{
 \item{fig_width}{Default width (in inches) for figures}
@@ -41,6 +41,16 @@ dependencies, using data: URIs to incorporate the contents of linked
 scripts, stylesheets, images, and videos. Note that even for self contained
 documents MathJax is still loaded externally (this is necessary because of
 it's size).}
+
+\item{favicon}{Path to graphic to be used as a favicon for the dashboard.
+Pass \code{NULL} to use no favicon.}
+
+\item{logo}{Path to graphic to be used as a logo for the dashboard. Pass
+\code{NULL} to not include a logo. Note
+that no scaling is performed on the logo image, so it should fit exactly
+within the dimensions of the navigation bar (48 pixels high for the
+default "cosmo" theme, other themes may have slightly different navigation
+bar heights).}
 
 \item{social}{Specify a character vector of social sharing services to
 automatically add sharing links for them on the \code{navbar}. Valid values

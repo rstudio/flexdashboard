@@ -24,6 +24,13 @@ knitMetaAdd = function(meta, label = '') {
   # }
 }
 
+# A variant of relative_to that normalizes its inputs.
+normalized_relative_to <- function(dir, file) {
+  rmarkdown::relative_to(
+    normalizePath(dir, winslash = "/", mustWork = FALSE),
+    normalizePath(file, winslash = "/", mustWork = FALSE))
+}
+
 # devel mode
 knit_devel <- function(input, ...) {
   rmarkdown::render(input,

@@ -19,6 +19,14 @@ body hr {
   text-decoration: none;
 }
 
+.navbar-logo {
+  margin-top: 1px;
+}
+
+.navbar-logo img {
+  margin-right: 12px;
+}
+
 .navbar .dropdown-menu .fa {
   min-width: 20px;
 }
