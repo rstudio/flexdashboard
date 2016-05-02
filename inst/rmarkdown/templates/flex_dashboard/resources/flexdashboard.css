@@ -321,6 +321,14 @@ body hr {
   color: rgba(0, 0, 0, 0.15);
 }
 
+.linked-value:hover {
+  cursor: pointer;
+}
+
+.linked-value:hover i {
+  font-size: 82px;
+}
+
 /* NAV TABS */
 .nav-tabs-custom {
   background: #fff;

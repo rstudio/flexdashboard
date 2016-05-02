@@ -4,7 +4,7 @@
 \alias{valueBox}
 \title{Create a value box component for a dashboard.}
 \usage{
-valueBox(value, caption = NULL, icon = NULL, color = NULL)
+valueBox(value, caption = NULL, icon = NULL, color = NULL, href = NULL)
 }
 \arguments{
 \item{value}{The value to display in the box. Usually a number or short text.}
@@ -16,6 +16,9 @@ valueBox(value, caption = NULL, icon = NULL, color = NULL)
 \item{color}{Background color for the box. This can be one of the built-in
 background colors ("primary", "info", "success", "warning", "danger") or
 any valid CSS color value.}
+
+\item{href}{An optional URL to link to. Note that this can be an anchor of
+another dashboard page (e.g. "#details").}
 }
 \description{
 A value box displays a value (usually a number) in large text, with a smaller

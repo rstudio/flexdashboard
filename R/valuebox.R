@@ -9,12 +9,14 @@
 #' @param color Background color for the box. This can be one of the built-in
 #'   background colors ("primary", "info", "success", "warning", "danger") or
 #'   any valid CSS color value.
+#' @param href An optional URL to link to. Note that this can be an anchor of
+#'   another dashboard page (e.g. "#details").
 #'
 #' @details See the flexdashboard website for additional documentation:
 #'  \href{http://rmarkdown.rstudio.com/flexdashboard/using.html#value_boxes}{http://rmarkdown.rstudio.com/flexdashboard/using.html#value_boxes}
 #'
 #' @export
-valueBox <- function(value, caption = NULL, icon = NULL, color = NULL) {
+valueBox <- function(value, caption = NULL, icon = NULL, color = NULL, href = NULL) {
 
   # resolve background color
   if (!is.null(color) && color %in% c("primary", "info", "success", "warning", "danger"))
@@ -25,6 +27,7 @@ valueBox <- function(value, caption = NULL, icon = NULL, color = NULL) {
             `data-caption` = caption,
             `data-icon` = icon,
             `data-color` = color,
+            `data-href` = href,
     value
   )
 

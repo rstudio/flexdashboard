@@ -1054,10 +1054,7 @@ var FlexDashboard = (function () {
       var links = $('a[href="' + href + '"][data-toggle!=tab]');
       links.each(function() {
         $(this).on('click', function(e) {
-          $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
-          setTimeout(function() {
-             window.scrollTo(0,0);
-          }, 10);
+          window.FlexDashboardUtils.showPage(href);
         });
       });
     });
@@ -1229,8 +1226,6 @@ var FlexDashboard = (function () {
 
 })();
 
-window.FlexDashboard = new FlexDashboard();
-
 // utils
 window.FlexDashboardUtils = {
   resizableImage: function(img) {
@@ -1241,8 +1236,23 @@ window.FlexDashboardUtils = {
                 .css('background-repeat', 'no-repeat')
                 .css('background-position', 'center')
                 .addClass('image-container');
+  },
+  showPage: function(href) {
+    $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
+    setTimeout(function() {
+      window.scrollTo(0,0);
+    }, 10);
+  },
+  showLinkedValue: function(href) {
+    // check for a page link
+    if ($('ul.navbar-nav li a[data-toggle=tab][href="' + href + '"]').length > 0)
+      this.showPage(href);
+    else
+      window.open(href);
   }
 };
+
+window.FlexDashboard = new FlexDashboard();
 
 // empty content
 window.FlexDashboardComponents.push({
@@ -1536,6 +1546,15 @@ window.FlexDashboardComponents.push({
           valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
           valueBox.css('background-color', dataColor);
         }
+      }
+
+      // url
+      var dataHref = valueOutput.attr('data-href');
+      if (dataHref) {
+        valueBox.addClass('linked-value');
+        valueBox.on('click', function(e) {
+          window.FlexDashboardUtils.showLinkedValue(dataHref);
+        });
       }
     }
 
