@@ -17,6 +17,6 @@ Create interactive dashboards using \pkg{rmarkdown}.
 }
 
 See the flexdashboard website for additional documentation:
-\href{https://rstudio.github.io/flexdashboard}{https://rstudio.github.io/flexdashboard}
+\href{http://rmarkdown.rstudio.com/flexdashboard/}{http://rmarkdown.rstudio.com/flexdashboard/}
 }
 

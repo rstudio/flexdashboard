@@ -46,6 +46,6 @@ specified minimum and maximum values.
 }
 \details{
 See the flexdashboard website for additional documentation:
- \href{https://rstudio.github.io/flexdashboard/using.html#gauges}{https://rstudio.github.io/flexdashboard/using.html#gauges}
+ \href{http://rmarkdown.rstudio.com/flexdashboard/using.html#gauges}{http://rmarkdown.rstudio.com/flexdashboard/using.html#gauges}
 }
 

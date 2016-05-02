@@ -23,6 +23,6 @@ caption beneath, and a large icon on the right side.
 }
 \details{
 See the flexdashboard website for additional documentation:
- \href{https://rstudio.github.io/flexdashboard/using.html#value_boxes}{https://rstudio.github.io/flexdashboard/using.html#value_boxes}
+ \href{http://rmarkdown.rstudio.com/flexdashboard/using.html#value_boxes}{http://rmarkdown.rstudio.com/flexdashboard/using.html#value_boxes}
 }
 
