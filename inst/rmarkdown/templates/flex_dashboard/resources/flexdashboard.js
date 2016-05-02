@@ -1040,8 +1040,8 @@ var FlexDashboard = (function () {
 
     // add a hash to the URL when the user clicks on a tab/page
     $('.navbar-nav a[data-toggle="tab"]').on('click', function(e) {
-      var baseUrl = urlWithoutHash(window.location.href);
-      var hash = urlHash($(this).attr('href'));
+      var baseUrl = FlexDashboardUtils.urlWithoutHash(window.location.href);
+      var hash = FlexDashboardUtils.urlHash($(this).attr('href'));
       var href = baseUrl + hash;
       window.location.replace(href)
       window.scrollTo(0,0);
@@ -1058,22 +1058,6 @@ var FlexDashboard = (function () {
         });
       });
     });
-  }
-
-  function urlWithoutHash(url) {
-    var hashLoc = url.indexOf('#');
-    if (hashLoc != -1)
-      return url.substring(0, hashLoc);
-    else
-      return url;
-  }
-
-  function urlHash(url) {
-    var hashLoc = url.indexOf('#');
-    if (hashLoc != -1)
-      return url.substring(hashLoc);
-    else
-      return "";
   }
 
   function manageActiveNavbarMenu() {
@@ -1239,6 +1223,8 @@ window.FlexDashboardUtils = {
   },
   showPage: function(href) {
     $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
+    var baseUrl = this.urlWithoutHash(window.location.href);
+    window.location.replace(baseUrl + href);
     setTimeout(function() {
       window.scrollTo(0,0);
     }, 10);
@@ -1249,6 +1235,20 @@ window.FlexDashboardUtils = {
       this.showPage(href);
     else
       window.open(href);
+  },
+  urlWithoutHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(0, hashLoc);
+    else
+      return url;
+  },
+  urlHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(hashLoc);
+    else
+      return "";
   }
 };
 
