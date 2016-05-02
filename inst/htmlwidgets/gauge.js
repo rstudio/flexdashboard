@@ -62,6 +62,14 @@ HTMLWidgets.widget({
         if (x.label !== null)
           config.label = x.label;
 
+        // add linked value class if appropriate
+        if (x.href !== null && window.FlexDashboard) {
+          $(el).addClass('linked-value');
+          $(el).on('click', function(e) {
+            window.FlexDashboardUtils.showLinkedValue(x.href);
+          });
+        }
+
         // create the justgage if we need to
         if (justgage === null)
           justgage = new JustGage(config);

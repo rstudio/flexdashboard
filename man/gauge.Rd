@@ -6,7 +6,7 @@
 \title{Create a gauge component for a dashboard.}
 \usage{
 gauge(value, min, max, sectors = gaugeSectors(), symbol = NULL,
-  label = NULL)
+  label = NULL, href = NULL)
 
 gaugeSectors(success = NULL, warning = NULL, danger = NULL,
   colors = c("success", "warning", "danger"))
@@ -24,6 +24,9 @@ default all values are colored using the "success" theme color}
 \item{symbol}{Optional symbol to show next to value (e.g. 'kg')}
 
 \item{label}{Optional label to display beneath the value}
+
+\item{href}{An optional URL to link to. Note that this can be an anchor of
+another dashboard page (e.g. "#details").}
 
 \item{success}{Two-element numeric vector defining the range of values to
 color as "success" (specific color provided by theme or custom \code{colors})}

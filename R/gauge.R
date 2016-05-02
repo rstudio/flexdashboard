@@ -21,6 +21,8 @@
 #'  can be a single color value rather than a vector of three values
 #' @param symbol Optional symbol to show next to value (e.g. 'kg')
 #' @param label Optional label to display beneath the value
+#' @param href An optional URL to link to. Note that this can be an anchor of
+#'   another dashboard page (e.g. "#details").
 #'
 #' @details See the flexdashboard website for additional documentation:
 #'  \href{http://rmarkdown.rstudio.com/flexdashboard/using.html#gauges}{http://rmarkdown.rstudio.com/flexdashboard/using.html#gauges}
@@ -28,7 +30,7 @@
 #'
 #' @export
 gauge <- function(value, min, max, sectors = gaugeSectors(),
-                  symbol = NULL, label = NULL) {
+                  symbol = NULL, label = NULL, href = NULL) {
 
   x <- list(
     value = value,
@@ -36,7 +38,8 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
     max = max,
     customSectors = I(resolveSectors(sectors, min, max)),
     symbol = symbol,
-    label = label
+    label = label,
+    href = href
   )
 
   # create widget
