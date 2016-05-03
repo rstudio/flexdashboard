@@ -12,7 +12,7 @@ body {
 }
 
 .storyboard-nav .frame ul li.active {
-  background-color: #73a839;
+  background-color: rgba(47, 164, 231, 0.7);
 }
 
 
