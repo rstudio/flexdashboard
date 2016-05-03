@@ -122,9 +122,6 @@ var FlexDashboard = (function () {
     // handle location hash
     handleLocationHash();
 
-    // manage menu status
-    manageActiveNavbarMenu();
-
     // intialize prism highlighting
     initPrismHighlighting();
 
@@ -1035,16 +1032,29 @@ var FlexDashboard = (function () {
 
     // restore tab/page from bookmark
     var hash = window.location.hash;
-    if (hash.length > 0)
+    if (hash.length > 0) {
       $('ul.nav a[href="' + hash + '"]').tab('show');
+      FlexDashboardUtils.manageActiveNavbarMenu();
+    }
+
+    // navigate to a tab when the history changes
+    window.addEventListener("popstate", function(e) {
+      var hash = window.location.hash;
+      var activeTab = $('ul.nav a[href="' + hash + '"]');
+      if (activeTab.length) {
+        activeTab.tab('show');
+      } else {
+        $('ul.nav a:first').tab('show');
+      }
+      FlexDashboardUtils.manageActiveNavbarMenu();
+    });
 
     // add a hash to the URL when the user clicks on a tab/page
     $('.navbar-nav a[data-toggle="tab"]').on('click', function(e) {
       var baseUrl = FlexDashboardUtils.urlWithoutHash(window.location.href);
       var hash = FlexDashboardUtils.urlHash($(this).attr('href'));
       var href = baseUrl + hash;
-      window.location.replace(href)
-      window.scrollTo(0,0);
+      FlexDashboardUtils.setLocation(href);
     });
 
     // handle clicks of other links that should activate pages
@@ -1058,16 +1068,6 @@ var FlexDashboard = (function () {
         });
       });
     });
-  }
-
-  function manageActiveNavbarMenu() {
-    // find the active tab
-    var activeTab = $('.dashboard-page-wrapper.tab-pane.active');
-    if (activeTab.length > 0) {
-      var tabId = activeTab.attr('id');
-      if (tabId)
-        $("ul.nav a[href='#" + tabId + "']").parents('li').addClass('active');
-    }
   }
 
   // tweak Prism highlighting
@@ -1221,13 +1221,22 @@ window.FlexDashboardUtils = {
                 .css('background-position', 'center')
                 .addClass('image-container');
   },
+  setLocation: function(href) {
+    if (history && history.pushState) {
+      history.pushState(null, null, href);
+    } else {
+      window.location.replace(href);
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 10);
+    }
+    this.manageActiveNavbarMenu();
+  },
   showPage: function(href) {
     $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
     var baseUrl = this.urlWithoutHash(window.location.href);
-    window.location.replace(baseUrl + href);
-    setTimeout(function() {
-      window.scrollTo(0,0);
-    }, 10);
+    var loc = baseUrl + href;
+    this.setLocation(loc);
   },
   showLinkedValue: function(href) {
     // check for a page link
@@ -1249,6 +1258,17 @@ window.FlexDashboardUtils = {
       return url.substring(hashLoc);
     else
       return "";
+  },
+  manageActiveNavbarMenu: function () {
+    // remove active from anyone currently active
+    $('.navbar ul.nav').find('li').removeClass('active');
+    // find the active tab
+    var activeTab = $('.dashboard-page-wrapper.tab-pane.active');
+    if (activeTab.length > 0) {
+      var tabId = activeTab.attr('id');
+      if (tabId)
+        $(".navbar ul.nav a[href='#" + tabId + "']").parents('li').addClass('active');
+    }
   }
 };
 
