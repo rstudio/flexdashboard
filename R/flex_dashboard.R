@@ -245,18 +245,7 @@ flex_dashboard <- function(fig_width = 6.0,
     # helper function to add a graphic file dependency/variable
     add_graphic <- function(name, graphic) {
       if (!is.null(graphic)) {
-        graphic_path <- graphic
-        if (!self_contained) {
-          # use same extension as specified graphic (default is png if unspecified)
-          graphic_ext <- tools::file_ext(graphic)
-          if (nchar(graphic_ext) < 1)
-            graphic_ext <- "png"
-          graphic_path <- file.path(files_dir, paste(name, graphic_ext, sep = "."))
-          file.copy(from = graphic, to = graphic_path)
-          graphic_path <- normalized_relative_to(output_dir, graphic_path)
-        } else {
-          graphic_path <- pandoc_path_arg(graphic_path)
-        }
+        graphic_path <- pandoc_path_arg(graphic)
         args <<- c(args, pandoc_variable_arg(name, graphic_path))
       }
     }
