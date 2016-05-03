@@ -12,24 +12,6 @@ flexdashboard_dependency <- function(name) {
   system.file("www", name, package = "flexdashboard")
 }
 
-html_dependency_font_awesome <- function() {
-  htmlDependency(
-    "font-awesome",
-    "4.5.0",
-    src = flexdashboard_dependency("font-awesome"),
-    stylesheet = "css/font-awesome.min.css"
-  )
-}
-
-html_dependency_ionicons <- function() {
-  htmlDependency(
-    "ionicons",
-    "2.0.1",
-    src = flexdashboard_dependency("ionicons"),
-    stylesheet = "css/ionicons.min.css"
-  )
-}
-
 html_dependency_stickytableheaders <- function() {
   htmlDependency(
     "stickytableheaders",

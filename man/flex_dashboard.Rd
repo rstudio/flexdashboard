@@ -6,7 +6,7 @@
 \usage{
 flex_dashboard(fig_width = 6, fig_height = 4.8, fig_retina = 2,
   fig_mobile = TRUE, dev = "png", smart = TRUE, self_contained = TRUE,
-  favicon = "default", logo = NULL, social = NULL, source_code = NULL,
+  favicon = NULL, logo = NULL, social = NULL, source_code = NULL,
   navbar = NULL, orientation = c("columns", "rows"),
   vertical_layout = c("fill", "scroll"), theme = "default",
   highlight = "default", mathjax = "default", extra_dependencies = NULL,
