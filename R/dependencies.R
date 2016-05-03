@@ -41,13 +41,4 @@ html_dependency_prism <- function() {
   )
 }
 
-html_dependency_featherlight <- function() {
-  htmlDependency(
-    "featherlight",
-    "1.3.5",
-    src = flexdashboard_dependency("featherlight"),
-    stylesheet = "featherlight.min.css",
-    script = "featherlight.min.js"
-  )
-}
 
