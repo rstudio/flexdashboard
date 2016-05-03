@@ -8,10 +8,11 @@ flex_dashboard(fig_width = 6, fig_height = 4.8, fig_retina = 2,
   fig_mobile = TRUE, dev = "png", smart = TRUE, self_contained = TRUE,
   favicon = NULL, logo = NULL, social = NULL, source_code = NULL,
   navbar = NULL, orientation = c("columns", "rows"),
-  vertical_layout = c("fill", "scroll"), theme = "default",
-  highlight = "default", mathjax = "default", extra_dependencies = NULL,
-  css = NULL, includes = NULL, lib_dir = NULL, md_extensions = NULL,
-  pandoc_args = NULL, devel = FALSE, ...)
+  vertical_layout = c("fill", "scroll"), storyboard = FALSE,
+  theme = "default", highlight = "default", mathjax = "default",
+  extra_dependencies = NULL, css = NULL, includes = NULL,
+  lib_dir = NULL, md_extensions = NULL, pandoc_args = NULL,
+  devel = FALSE, ...)
 }
 \arguments{
 \item{fig_width}{Default width (in inches) for figures}
@@ -72,6 +73,13 @@ dashboard rows or dashboard columns.}
 \item{vertical_layout}{Vertical layout behavior: "fill" to vertically resize
 charts so they completely fill the page; "scroll" to layout charts at their
 natural height, scrolling the page if necessary.}
+
+\item{storyboard}{\code{TRUE} to use a storyboard layout scheme that places
+each dashboard component in a navigable storyboard frame. When a
+storyboard layout is used the \code{orientation} and \code{vertical_layout}
+arguments are ignored. When creating a dashbaord with multiple pages you
+should apply the `{.storyboard}` attribute to individual pages rather
+than using the global \code{storyboard} option.}
 
 \item{theme}{Visual theme ("default", "bootstrap", "cerulean", "journal",
 "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",

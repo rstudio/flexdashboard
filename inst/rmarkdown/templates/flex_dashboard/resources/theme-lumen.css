@@ -15,6 +15,10 @@ body {
   background-color: rgba(21, 140, 186, 0.7);
 }
 
+.storyboard-nav .frame ul li.active {
+  background-color: #28b62c;
+}
+
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus,
 .nav-tabs > li.active > a,

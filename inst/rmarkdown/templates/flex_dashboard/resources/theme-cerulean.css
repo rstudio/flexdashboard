@@ -11,3 +11,8 @@ body {
   border-top-color: #2fa4e7;
 }
 
+.storyboard-nav .frame ul li.active {
+  background-color: #73a839;
+}
+
+

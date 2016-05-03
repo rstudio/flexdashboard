@@ -12,6 +12,7 @@ var FlexDashboard = (function () {
       theme: "cosmo",
       fillPage: false,
       orientation: 'columns',
+      storyboard: false,
       defaultFigWidth: 576,
       defaultFigHeight: 461,
       defaultFigWidthMobile: 360,
@@ -105,6 +106,10 @@ var FlexDashboard = (function () {
         $('#navbar').remove();
         $('#navbar-button').remove();
       }
+
+      // add the storyboard class if requested
+      if (_options.storyboard)
+        dashboardContainer.addClass('storyboard');
 
       // layout the entire page
       layoutDashboardPage(dashboardContainer);
@@ -347,7 +352,7 @@ var FlexDashboard = (function () {
     });
 
     // determine orientation and fillPage behavior for distinct media
-    var orientation, fillPage;
+    var orientation, fillPage, storyboard;
 
     // media: mobile phone
     if (isMobilePhone()) {
@@ -390,6 +395,7 @@ var FlexDashboard = (function () {
       // force a non full screen layout by columns
       orientation = _options.orientation = 'columns';
       fillPage = _options.fillPage = false;
+      storyboard = _options.storyboard = false;
 
     // media: desktop
     } else {
@@ -399,8 +405,11 @@ var FlexDashboard = (function () {
       if (orientation !== 'rows' && orientation != 'columns')
         orientation = _options.orientation;
 
-      // fillPage based on options
-      fillPage = _options.fillPage;
+      // determine storyboard mode
+      storyboard = page.hasClass('storyboard');
+
+      // fillPage based on options (force for storyboard)
+      fillPage = _options.fillPage || storyboard;
 
       // handle sidebar
       var sidebar = page.find('.section.level2.sidebar');
@@ -418,7 +427,9 @@ var FlexDashboard = (function () {
     }
 
     // perform the layout
-    if (orientation === 'rows')
+    if (storyboard)
+      layoutPageAsStoryboard(page);
+    else if (orientation === 'rows')
       layoutPageByRows(page, fillPage);
     else if (orientation === 'columns')
       layoutPageByColumns(page, fillPage);
@@ -448,6 +459,14 @@ var FlexDashboard = (function () {
 
     // wrap it's contents in a form
     sidebar.wrapInner($('<form></form>'));
+  }
+
+  function layoutPageAsStoryboard(page) {
+
+    // column orientation
+
+
+
   }
 
   function layoutPageByRows(page, fillPage) {

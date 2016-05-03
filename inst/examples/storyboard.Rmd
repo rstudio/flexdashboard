@@ -1,0 +1,63 @@
+---
+title: "Flex Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    storyboard: true
+    source_code: embed
+    theme: cosmo
+knit: flexdashboard:::knit_devel
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+
+<div id="example" class="storyboard-nav">
+
+<!-- prev and next buttons -->
+<button class="prev"><i class="fa fa-angle-left"></i></button>
+<button class="next"><i class="fa fa-angle-right"></i></button>
+
+<!-- storyboard frame -->
+<div class="frame">
+<ul>
+<li>This is the first page. Let's see what happens when it overflows.</li><li>2</li><li>3</li>
+<li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+
+</ul>
+</div>
+
+</div>
+
+
+
+```{js}
+var $example = $('#example');
+var $frame = $example.find('.frame');
+var sly = new Sly($frame, {
+		horizontal: true,
+		itemNav: 'basic',
+		smart: true,
+		activateOn: 'click',
+		startAt: 0,
+		scrollBar: $example.find('.scrollbar'),
+		scrollBy: 1,
+		pagesBar: $example.find('.pages'),
+		activatePageOn: 'click',
+		speed: 200,
+		moveBy: 600,
+		dragHandle: true,
+		dynamicHandle: true,
+		clickBar: true,
+		keyboardNavBy: 'items',
+
+		// Buttons
+		next: $example.find('.next'),
+		prev: $example.find('.prev')
+	}).init();
+```
+
+
