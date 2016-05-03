@@ -31,6 +31,12 @@ body hr {
   min-width: 20px;
 }
 
+.navbar .dropdown-menu {
+  min-width: 150px;
+  max-height: 500px;
+  overflow: auto;
+}
+
 .chart-wrapper {
   background: #fff;
   border: 1px solid #e2e2e2;
