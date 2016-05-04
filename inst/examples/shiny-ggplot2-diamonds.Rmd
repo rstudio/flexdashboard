@@ -22,8 +22,8 @@ dataset <- diamonds
 sliderInput('sampleSize', 'Sample Size', min=1, max=nrow(dataset),
             value=min(1000, nrow(dataset)), step=500, round=0)
 
-checkboxInput('jitter', 'Jitter')
-checkboxInput('smooth', 'Smooth')
+checkboxInput('jitter', 'Jitter', value = TRUE)
+checkboxInput('smooth', 'Smooth', value = TRUE)
 
 selectInput('x', 'X', names(dataset))
 selectInput('y', 'Y', names(dataset), names(dataset)[[2]])
@@ -45,7 +45,7 @@ dataset <- reactive({
   diamonds[sample(nrow(diamonds), input$sampleSize),]
 })
 
-renderPlot(res = 96, {
+renderPlot({
   p <- ggplot(dataset(), aes_string(x=input$x, y=input$y)) + geom_point()
   
   if (input$color != 'None')
