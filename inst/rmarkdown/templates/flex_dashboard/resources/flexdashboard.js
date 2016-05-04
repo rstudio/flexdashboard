@@ -1552,7 +1552,6 @@ window.FlexDashboardComponents.push({
   layout: function(title, container, element, fillPage) {
     if (fillPage) {
       element.attr('height', '100%');
-      element.unwrap();
     } else {
       // provide default height if necessary
       var height = element.get(0).style.height;
