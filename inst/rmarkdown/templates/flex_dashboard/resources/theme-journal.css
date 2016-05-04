@@ -11,7 +11,7 @@ body {
   background-color: rgba(235, 104, 100, 0.7);
 }
 
-.storyboard-nav .frame ul li.active {
+.storyboard-nav .sbframelist ul li.active {
   background-color: rgba(235, 104, 100, 0.7);
 }
 

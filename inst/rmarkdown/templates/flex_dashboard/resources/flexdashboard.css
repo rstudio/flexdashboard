@@ -38,8 +38,8 @@ body hr {
 }
 
 .chart-wrapper,
-.storyboard,
-.nav-tabs-custom
+.nav-tabs-custom,
+.sbframe-commentary
 {
   background: #fff;
   border: 1px solid #e2e2e2;
@@ -198,6 +198,11 @@ body hr {
   left: 0; top: 0; right: 0; bottom: 0;
   padding-left: 8px;
   padding-right: 8px;
+}
+
+.flowing-content-container {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .chart-stage .table-bordered {
@@ -366,26 +371,26 @@ body hr {
   opacity: .1;
 }
 
-.storyboard-nav .next,
-.storyboard-nav .prev {
+.storyboard-nav .sbnext,
+.storyboard-nav .sbprev {
   float: left;
   width: 2%;
   height: 120px;
   font-size: 50px;
 }
 
-.storyboard-nav .prev {
+.storyboard-nav .sbprev {
   text-align: left;
   width: 2%;
 }
 
-.storyboard-nav .next {
+.storyboard-nav .sbnext {
   float: right;
   text-align: right;
   margin-right: 8px;
 }
 
-.storyboard-nav .frame {
+.storyboard-nav .sbframelist {
   margin: 0 auto;
   width: 94%;
   height: 120px;
@@ -394,17 +399,16 @@ body hr {
   margin-bottom: 8px;
 }
 
-.storyboard-nav .frame ul {
+.storyboard-nav .sbframelist ul {
   list-style: none;
   margin: 0;
   padding: 0;
   height: 100%;
-  font-size: 14px;
 }
 
-.storyboard-nav .frame ul li {
+.storyboard-nav .sbframelist ul li {
   float: left;
-  width: 230px;
+  width: 270px;
   height: 100%;
   padding: 10px 10px 10px 10px;
   margin-right: 8px;
@@ -416,14 +420,19 @@ body hr {
   cursor: pointer;
 }
 
-.storyboard-nav .frame ul li:last-child {
+.storyboard-nav .sbframelist ul li:last-child {
   margin-right: 0px;
 }
 
-.storyboard-nav .frame ul li.active {
+.storyboard-nav .sbframelist ul li.active {
   color: #fff;
   background: #B8B8B8;
 }
+
+.sbframe-commentary {
+  width: 300px;
+}
+
 
 /* NAV TABS */
 

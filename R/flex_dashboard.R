@@ -578,7 +578,9 @@ storyboard_dependencies <- function(source = NULL) {
     deps <- TRUE
 
   if (deps)
-    list(html_dependency_jquery(), html_dependency_sly())
+    list(html_dependency_jquery(),
+         html_dependency_font_awesome(),
+         html_dependency_sly())
   else
     NULL
 }
