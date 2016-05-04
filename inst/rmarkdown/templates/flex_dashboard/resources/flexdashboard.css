@@ -433,6 +433,13 @@ body hr {
   width: 300px;
 }
 
+.sbframe.active {
+  display: flex;
+}
+
+.sbframe:not(.active) {
+  display: none;
+}
 
 /* NAV TABS */
 

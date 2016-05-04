@@ -494,13 +494,16 @@ var FlexDashboard = (function () {
     var frames = page.find('div.section.level3');
     frames.each(function() {
 
+      // mark it
+      $(this).addClass('sbframe');
+
       // divide it into chart content and (optional) commentary
       $(this).addClass('dashboard-column-orientation');
 
       // stuff the chart into it's own div w/ flex
-      $(this).wrapInner('<div class="sbframe"></div>');
+      $(this).wrapInner('<div class="sbframe-component"></div>');
       setFlex($(this), 1);
-      var frame = $(this).children('.sbframe');
+      var frame = $(this).children('.sbframe-component');
 
       // extract the title from the h3
       var li = $('<li></li>');
@@ -568,13 +571,13 @@ var FlexDashboard = (function () {
     	}).init();
 
     // make first frame active
-    frames.css('display', 'none');
-    frames.first().css('display', 'flex');
+    frames.removeClass('active');
+    frames.first().addClass('active');
 
     // subscribe to frame changed events
     sly.on('active', function (eventName, itemIndex) {
-      frames.css('display', 'none');
-      frames.eq(itemIndex).css('display', 'flex')
+      frames.removeClass('active');
+      frames.eq(itemIndex).addClass('active')
                           .trigger('shown');
     });
   }
