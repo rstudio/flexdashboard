@@ -343,6 +343,12 @@ var FlexDashboard = (function () {
     var wrapper = $('<div class="dashboard-page-wrapper"></div>');
     page.wrap(wrapper);
 
+    // if there are no level2 or level3 headers synthesize a level3
+    // header to contain the (e.g. frame it, scroll container, etc.)
+    var headers = page.find('h2,h3');
+    if (headers.length === 0)
+      page.wrapInner('<div class="section level3"></div>');
+
     // hoist up any content before level 2 or level 3 headers
     var children = page.children();
     children.each(function(index) {
