@@ -431,10 +431,11 @@ body hr {
 
 .sbframe-commentary {
   width: 300px;
+  background: #fbfbfb;
 }
 
 .sbframe-commentary ul {
-  padding-left: 25px;
+  padding-left: 22px;
 }
 
 .sbframe.active {
