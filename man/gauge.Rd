@@ -6,7 +6,7 @@
 \title{Create a gauge component for a dashboard.}
 \usage{
 gauge(value, min, max, sectors = gaugeSectors(), symbol = NULL,
-  label = NULL, href = NULL)
+  label = NULL, abbreviate = TRUE, abbreviateDecimals = 1, href = NULL)
 
 gaugeSectors(success = NULL, warning = NULL, danger = NULL,
   colors = c("success", "warning", "danger"))
@@ -24,6 +24,12 @@ default all values are colored using the "success" theme color}
 \item{symbol}{Optional symbol to show next to value (e.g. 'kg')}
 
 \item{label}{Optional label to display beneath the value}
+
+\item{abbreviate}{Abbreviate large numbers for min, max, and value
+(e.g. 1234567 -> 1.23M). Defaults to \code{TRUE}.}
+
+\item{abbreviateDecimals}{Number of decimal places for abbreviated
+numbers to contain (defaults to 1).}
 
 \item{href}{An optional URL to link to. Note that this can be an anchor of
 another dashboard page (e.g. "#details").}

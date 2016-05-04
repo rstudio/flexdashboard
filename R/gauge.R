@@ -21,6 +21,10 @@
 #'  can be a single color value rather than a vector of three values
 #' @param symbol Optional symbol to show next to value (e.g. 'kg')
 #' @param label Optional label to display beneath the value
+#' @param abbreviate Abbreviate large numbers for min, max, and value
+#'    (e.g. 1234567 -> 1.23M). Defaults to \code{TRUE}.
+#' @param abbreviateDecimals Number of decimal places for abbreviated
+#'   numbers to contain (defaults to 1).
 #' @param href An optional URL to link to. Note that this can be an anchor of
 #'   another dashboard page (e.g. "#details").
 #'
@@ -30,7 +34,9 @@
 #'
 #' @export
 gauge <- function(value, min, max, sectors = gaugeSectors(),
-                  symbol = NULL, label = NULL, href = NULL) {
+                  symbol = NULL, label = NULL,
+                  abbreviate = TRUE, abbreviateDecimals = 1,
+                  href = NULL) {
 
   x <- list(
     value = value,
@@ -39,6 +45,8 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
     customSectors = I(resolveSectors(sectors, min, max)),
     symbol = symbol,
     label = label,
+    humanFriendly = abbreviate,
+    humanFriendlyDecimal = abbreviateDecimals,
     href = href
   )
 

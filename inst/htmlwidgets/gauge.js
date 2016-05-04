@@ -49,8 +49,8 @@ HTMLWidgets.widget({
           titlePosition: "below",
           relativeGaugeSize: true,
           formatNumber: true,
-          humanFriendly: true,
-          humanFriendlyDecimal: 2,
+          humanFriendly: x.humanFriendly,
+          humanFriendlyDecimal: x.humanFriendlyDecimal,
           customSectors: x.customSectors
         };
 
