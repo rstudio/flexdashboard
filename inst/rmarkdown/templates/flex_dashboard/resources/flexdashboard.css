@@ -433,6 +433,10 @@ body hr {
   width: 300px;
 }
 
+.sbframe-commentary ul {
+  padding-left: 25px;
+}
+
 .sbframe.active {
   display: flex;
 }
