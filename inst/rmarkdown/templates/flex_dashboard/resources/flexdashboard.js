@@ -394,7 +394,7 @@ var FlexDashboard = (function () {
 
       // hoist storyboard commentary into it's own section
       if (page.hasClass('storyboard')) {
-        var commentaryHR = page.find('div.section.level3 hr');
+        var commentaryHR = page.find('div.section.level3 hr').last();
         if (commentaryHR.length) {
           var commentary = commentaryHR.nextAll().detach();
           var commentarySection = $('<div class="section level3"></div>');
@@ -510,7 +510,7 @@ var FlexDashboard = (function () {
       ul.append(li);
 
       // extract commentary
-      var hr = frame.children('hr');
+      var hr = frame.children('hr').last();
       if (hr.length) {
         var commentary = hr.nextAll().detach();
         hr.remove();
