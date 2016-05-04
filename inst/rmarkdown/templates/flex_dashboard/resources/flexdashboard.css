@@ -417,6 +417,7 @@ body hr {
   border-radius: 3px;
   color: #3a3c47;
   text-align: left;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -432,6 +433,7 @@ body hr {
 .sbframe-commentary {
   width: 300px;
   background: #fbfbfb;
+  font-size: 14px;
 }
 
 .sbframe-commentary ul {
