@@ -41,4 +41,14 @@ html_dependency_prism <- function() {
   )
 }
 
+html_dependency_sly <- function() {
+  htmlDependency(
+    "sly",
+    "1.6.1",
+    src = flexdashboard_dependency("sly"),
+    script = "sly.min.js"
+  )
+}
+
+
 

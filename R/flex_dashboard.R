@@ -50,6 +50,13 @@
 #'  charts so they completely fill the page; "scroll" to layout charts at their
 #'  natural height, scrolling the page if necessary.
 #'
+#'@param storyboard \code{TRUE} to use a storyboard layout scheme that places
+#'  each dashboard component in a navigable storyboard frame. When a
+#'  storyboard layout is used the \code{orientation} and \code{vertical_layout}
+#'  arguments are ignored. When creating a dashbaord with multiple pages you
+#'  should apply the `{.storyboard}` attribute to individual pages rather
+#'  than using the global \code{storyboard} option.
+#'
 #'@param theme Visual theme ("default", "bootstrap", "cerulean", "journal",
 #'  "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
 #'  "sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
@@ -96,6 +103,7 @@ flex_dashboard <- function(fig_width = 6.0,
                            navbar = NULL,
                            orientation = c("columns", "rows"),
                            vertical_layout = c("fill", "scroll"),
+                           storyboard = FALSE,
                            theme = "default",
                            highlight = "default",
                            mathjax = "default",
@@ -181,11 +189,14 @@ flex_dashboard <- function(fig_width = 6.0,
     paste(knitrOptions, x, sep = '\n')
   }
 
-  # kntir hook to determine if we need to add icon libraries
+  # kntir hook to determine if we need to add various libraries
   knitr_options$knit_hooks$document <- function(x) {
     iconDeps <- icon_dependencies(x)
     if (length(iconDeps) > 0)
       knitMetaAdd(list(iconDeps))
+    storyboardDeps <- storyboard_dependencies(x)
+    if (length(storyboardDeps) > 0)
+      knitMetaAdd(list(storyboardDeps))
     x
   }
 
@@ -298,6 +309,7 @@ flex_dashboard <- function(fig_width = 6.0,
       paste0('    theme: "', theme, '",'),
       paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
       paste0('    orientation: "', orientation, '",'),
+      paste0('    storyboard: ', ifelse(storyboard,'true','false'), ','),
       paste0('    defaultFigWidth: ', figSizePixels(fig_width), ','),
       paste0('    defaultFigHeight: ', figSizePixels(fig_height), ','),
       paste0('    defaultFigWidthMobile: ', figSizePixels(fig_mobile[[1]]), ','),
@@ -361,6 +373,10 @@ flex_dashboard <- function(fig_width = 6.0,
 
     args
   }
+
+  # depend on sly for storyboard mode
+  if (storyboard)
+    extra_dependencies <- append(extra_dependencies, storyboard_dependencies())
 
   # depend on stickytable headers
   extra_dependencies <- append(extra_dependencies,
@@ -553,6 +569,20 @@ icon_dependencies <- function(source) {
 
   # return their dependencies
   html_dependencies_fonts("fa" %in% libs, "ion" %in% libs)
+}
+
+storyboard_dependencies <- function(source = NULL) {
+  if (!is.null(source))
+    deps <- any(grepl('\\.storyboard', source))
+  else
+    deps <- TRUE
+
+  if (deps)
+    list(html_dependency_jquery(),
+         html_dependency_font_awesome(),
+         html_dependency_sly())
+  else
+    NULL
 }
 
 

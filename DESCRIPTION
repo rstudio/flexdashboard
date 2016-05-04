@@ -13,6 +13,7 @@ Authors@R: c(
   person("Dmitry", "Baranovskiy", role = c("ctb", "cph"), comment = "Raphael.js"),
   person(family = "Sencha Labs", role = c("ctb", "cph"), comment = "Raphael.js"),
   person("Bojan", "Djuricic", role = c("ctb", "cph"), comment = "JustGage"),
+  person("Tomas", "Sardyha", role = c("ctb", "cph"), comment = "Sly"),
   person("Bryan", "Lewis", role = c("ctb", "cph"), comment = "Examples"),
   person("Carson", "Sievert", role = c("ctb", "cph"), comment = "Examples"),
   person("Joshua", "Kunst", role = c("ctb", "cph"), comment = "Examples"),

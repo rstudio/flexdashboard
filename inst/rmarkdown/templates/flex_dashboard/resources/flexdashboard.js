@@ -12,6 +12,7 @@ var FlexDashboard = (function () {
       theme: "cosmo",
       fillPage: false,
       orientation: 'columns',
+      storyboard: false,
       defaultFigWidth: 576,
       defaultFigHeight: 461,
       defaultFigWidthMobile: 360,
@@ -105,6 +106,10 @@ var FlexDashboard = (function () {
         $('#navbar').remove();
         $('#navbar-button').remove();
       }
+
+      // add the storyboard class if requested
+      if (_options.storyboard)
+        dashboardContainer.addClass('storyboard');
 
       // layout the entire page
       layoutDashboardPage(dashboardContainer);
@@ -347,7 +352,7 @@ var FlexDashboard = (function () {
     });
 
     // determine orientation and fillPage behavior for distinct media
-    var orientation, fillPage;
+    var orientation, fillPage, storyboard;
 
     // media: mobile phone
     if (isMobilePhone()) {
@@ -387,9 +392,22 @@ var FlexDashboard = (function () {
         });
       }
 
+      // hoist storyboard commentary into it's own section
+      if (page.hasClass('storyboard')) {
+        var commentaryHR = page.find('div.section.level3 hr');
+        if (commentaryHR.length) {
+          var commentary = commentaryHR.nextAll().detach();
+          var commentarySection = $('<div class="section level3"></div>');
+          commentarySection.append(commentary);
+          commentarySection.insertAfter(commentaryHR.closest('div.section.level3'));
+          commentaryHR.remove();
+        }
+      }
+
       // force a non full screen layout by columns
       orientation = _options.orientation = 'columns';
       fillPage = _options.fillPage = false;
+      storyboard = _options.storyboard = false;
 
     // media: desktop
     } else {
@@ -399,8 +417,11 @@ var FlexDashboard = (function () {
       if (orientation !== 'rows' && orientation != 'columns')
         orientation = _options.orientation;
 
-      // fillPage based on options
-      fillPage = _options.fillPage;
+      // determine storyboard mode
+      storyboard = page.hasClass('storyboard');
+
+      // fillPage based on options (force for storyboard)
+      fillPage = _options.fillPage || storyboard;
 
       // handle sidebar
       var sidebar = page.find('.section.level2.sidebar');
@@ -418,7 +439,9 @@ var FlexDashboard = (function () {
     }
 
     // perform the layout
-    if (orientation === 'rows')
+    if (storyboard)
+      layoutPageAsStoryboard(page);
+    else if (orientation === 'rows')
       layoutPageByRows(page, fillPage);
     else if (orientation === 'columns')
       layoutPageByColumns(page, fillPage);
@@ -448,6 +471,112 @@ var FlexDashboard = (function () {
 
     // wrap it's contents in a form
     sidebar.wrapInner($('<form></form>'));
+  }
+
+  function layoutPageAsStoryboard(page) {
+
+    // create storyboard navigation
+    var nav = $('<div class="storyboard-nav"></div>');
+
+    // add navigation buttons
+    var prev = $('<button class="sbprev"><i class="fa fa-angle-left"></i></button>');
+    nav.append(prev);
+    var next= $('<button class="sbnext"><i class="fa fa-angle-right"></i></button>');
+    nav.append(next);
+
+    // add navigation frame
+    var frameList = $('<div class="sbframelist"></div>');
+    nav.append(frameList);
+    var ul = $('<ul></ul>');
+    frameList.append(ul);
+
+     // find all the level3 sections (those are the storyboard frames)
+    var frames = page.find('div.section.level3');
+    frames.each(function() {
+
+      // divide it into chart content and (optional) commentary
+      $(this).addClass('dashboard-column-orientation');
+
+      // stuff the chart into it's own div w/ flex
+      $(this).wrapInner('<div class="sbframe"></div>');
+      setFlex($(this), 1);
+      var frame = $(this).children('.sbframe');
+
+      // extract the title from the h3
+      var li = $('<li></li>');
+      var h3 = frame.children('h3');
+      li.html(h3.html());
+      h3.remove();
+      ul.append(li);
+
+      // extract commentary
+      var hr = frame.children('hr');
+      if (hr.length) {
+        var commentary = hr.nextAll().detach();
+        hr.remove();
+        var commentaryFrame = $('<div class="sbframe-commentary"></div>');
+        commentaryFrame.addClass('flowing-content-shim');
+        commentaryFrame.addClass('flowing-content-container');
+        commentaryFrame.append(commentary);
+        $(this).append(commentaryFrame);
+
+        // look for a data-commentary-width attribute
+        var commentaryWidth = $(this).attr('data-commentary-width');
+        if (commentaryWidth)
+          commentaryFrame.css('width', commentaryWidth + 'px');
+      }
+
+      // layout the chart (force flex)
+      var result = layoutChart(frame, true);
+
+      // ice the notes if there are none
+      if (!result.notes)
+        frame.find('.chart-notes').remove();
+
+      // set flex on chart
+      setFlex(frame, 1);
+    });
+
+    // create a div to hold all the frames
+    var frameContent = $('<div class="sbframe-content"></div>');
+    frameContent.addClass('dashboard-row-orientation');
+    frameContent.append(frames.detach());
+
+    // row orientation to stack nav and frame content
+    page.addClass('dashboard-row-orientation');
+    page.append(nav);
+    page.append(frameContent);
+    setFlex(frameContent, 1);
+
+    // initialize sly
+    var sly = new Sly(frameList, {
+    		horizontal: true,
+    		itemNav: 'basic',
+    		smart: true,
+    		activateOn: 'click',
+    		startAt: 0,
+    		scrollBy: 1,
+    		activatePageOn: 'click',
+    		speed: 200,
+    		moveBy: 600,
+    		dragHandle: true,
+    		dynamicHandle: true,
+    		clickBar: true,
+    		keyboardNavBy: 'items',
+    		next: next,
+    		prev: prev
+    	}).init();
+
+    // make first frame active
+    frames.css('display', 'none');
+    frames.first().css('display', 'flex');
+
+    // subscribe to frame changed events
+    sly.on('active', function (eventName, itemIndex) {
+      frames.css('display', 'none');
+      frames.eq(itemIndex).css('display', 'flex')
+                          .trigger('shown');
+    });
   }
 
   function layoutPageByRows(page, fillPage) {
@@ -901,7 +1030,7 @@ var FlexDashboard = (function () {
         layout: function(title, container, element, fillPage) {
           if (fillPage) {
             container.addClass('flowing-content-shim');
-            element.css('padding-top', '6px');
+            container.addClass('flowing-content-container');
           }
         }
       });
