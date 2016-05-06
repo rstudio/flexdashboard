@@ -5,6 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+$for(author-meta)$
+<meta name="author" content="$author-meta$" />
+$endfor$
+
+$if(date-meta)$
+<meta name="date" content="$date-meta$" />
+$endif$
+
 
 <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
 
@@ -60,6 +68,18 @@ $endfor$
 <span class="navbar-brand">
   $if(title-prefix)$$title-prefix$ - $endif$$pagetitle$
 </span>
+
+$if(author)$
+<p class="navbar-text">
+$author$$if(date)$ &mdash; $date$$endif$
+</p>
+$else$
+$if(date)$
+<p class="navbar-text">
+$date$
+</p>
+$endif$
+$endif$
 
 </div>
 <div id="navbar" class="navbar-collapse collapse">
