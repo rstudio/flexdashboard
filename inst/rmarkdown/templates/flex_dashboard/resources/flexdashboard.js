@@ -1170,10 +1170,9 @@ var FlexDashboard = (function () {
 
     // restore tab/page from bookmark
     var hash = window.location.hash;
-    if (hash.length > 0) {
+    if (hash.length > 0)
       $('ul.nav a[href="' + hash + '"]').tab('show');
-      FlexDashboardUtils.manageActiveNavbarMenu();
-    }
+    FlexDashboardUtils.manageActiveNavbarMenu();
 
     // navigate to a tab when the history changes
     window.addEventListener("popstate", function(e) {
