@@ -2,8 +2,8 @@ name: shiny-ggplot2-diamonds
 account: jjallaire
 server: shinyapps.io
 appId: 87861
-bundleId: 441712
+bundleId: 447976
 url: https://jjallaire.shinyapps.io/shiny-ggplot2-diamonds/
-when: 1462381595.03885
+when: 1462982925.38704
 asMultiple: FALSE
 asStatic: FALSE

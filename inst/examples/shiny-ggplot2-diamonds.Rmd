@@ -10,6 +10,7 @@ runtime: shiny
 
 ```{r setup, include=FALSE}
 library(ggplot2)
+library(mgcv)
 library(flexdashboard)
 ```
 
