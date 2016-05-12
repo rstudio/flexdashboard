@@ -1363,10 +1363,10 @@ window.FlexDashboardUtils = {
       history.pushState(null, null, href);
     } else {
       window.location.replace(href);
-      setTimeout(function() {
-        window.scrollTo(0, 0);
-      }, 10);
     }
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 10);
     this.manageActiveNavbarMenu();
   },
   showPage: function(href) {
