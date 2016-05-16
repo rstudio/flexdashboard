@@ -193,10 +193,10 @@ flex_dashboard <- function(fig_width = 6.0,
   knitr_options$knit_hooks$document <- function(x) {
     iconDeps <- icon_dependencies(x)
     if (length(iconDeps) > 0)
-      knitMetaAdd(list(iconDeps))
+      knitr::knit_meta_add(list(iconDeps))
     storyboardDeps <- storyboard_dependencies(x)
     if (length(storyboardDeps) > 0)
-      knitMetaAdd(list(storyboardDeps))
+      knitr::knit_meta_add(list(storyboardDeps))
     x
   }
 
