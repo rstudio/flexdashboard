@@ -202,12 +202,6 @@ flex_dashboard <- function(fig_width = 6.0,
 
   # knitr options hook to add mobile graphics device
 
-  # only do this with recent enough version of rmarkdown
-  if (packageVersion("rmarkdown") < "0.9.6") {
-    stop("flexdashboard requires rmarkdown version 0.9.6 or greater. ",
-         "Please install the latest version of rmarkdown from CRAN")
-  }
-
   # resovle fig_mobile
   default_fig_mobile <- c(3.75, 4.80)
   if (is.logical(fig_mobile)) {
