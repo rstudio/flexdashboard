@@ -28,4 +28,12 @@ caption beneath, and a large icon on the right side.
 See the flexdashboard website for additional documentation:
  \href{http://rmarkdown.rstudio.com/flexdashboard/using.html#value_boxes}{http://rmarkdown.rstudio.com/flexdashboard/using.html#value_boxes}
 }
+\examples{
+library(flexdashboard)
+
+valueBox(42, caption = "Errors", icon="fa-thumbs-down")
+valueBox(107, caption = "Trials", icon="fa-tag")
+valueBox(247, caption = "Connections", icon="fa-random")
+
+}
 

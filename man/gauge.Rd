@@ -57,4 +57,12 @@ specified minimum and maximum values.
 See the flexdashboard website for additional documentation:
  \href{http://rmarkdown.rstudio.com/flexdashboard/using.html#gauges}{http://rmarkdown.rstudio.com/flexdashboard/using.html#gauges}
 }
+\examples{
+library(flexdashboard)
+
+gauge(42, min = 0, max = 100, symbol = '\%', gaugeSectors(
+  success = c(80, 100), warning = c(40, 79), danger = c(0, 39)
+))
+
+}
 
