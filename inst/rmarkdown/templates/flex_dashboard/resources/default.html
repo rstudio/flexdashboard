@@ -67,19 +67,16 @@ $endfor$
 </span>
 <span class="navbar-brand">
   $if(title-prefix)$$title-prefix$ - $endif$$pagetitle$
+  <span class="navbar-author">
+  $if(author)$
+  $author$$if(date)$ &mdash; $date$$endif$
+  $else$
+  $if(date)$
+  $date$
+  $endif$
+  $endif$
+  </span>
 </span>
-
-$if(author)$
-<p class="navbar-text">
-$author$$if(date)$ &mdash; $date$$endif$
-</p>
-$else$
-$if(date)$
-<p class="navbar-text">
-$date$
-</p>
-$endif$
-$endif$
 
 </div>
 <div id="navbar" class="navbar-collapse collapse">

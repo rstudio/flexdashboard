@@ -27,6 +27,11 @@ body hr {
   margin-right: 12px;
 }
 
+.navbar-author {
+  margin-left: 10px;
+  font-size: 15px;
+}
+
 .navbar .dropdown-menu .fa {
   min-width: 20px;
 }
