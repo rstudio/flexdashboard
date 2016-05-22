@@ -1,0 +1,11 @@
+
+flexdashboard 0.3 (unreleased)
+-----------------------------------------------------------------------
+
+- Scroll sidebar when content overflows vertically
+
+
+flexdashboard 0.2
+-----------------------------------------------------------------------
+
+- Initial release to CRAN

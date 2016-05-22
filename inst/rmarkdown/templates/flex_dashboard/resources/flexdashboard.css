@@ -599,6 +599,7 @@ body hr {
   padding-left: 10px;
   padding-right: 10px;
   visibility: hidden;
+  overflow: auto;
 }
 
 .section.sidebar form p:first-child {
