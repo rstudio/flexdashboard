@@ -243,6 +243,12 @@ flex_dashboard <- function(fig_width = 6.0,
     }
   }
 
+  # capture the source file
+  source_file <- NULL
+  pre_knit <- function(input, ...) {
+    source_file <<- basename(input)
+  }
+
   # preprocessor
   pre_processor <- function (metadata, input_file, runtime, knit_meta,
                              files_dir, output_dir) {
@@ -331,18 +337,6 @@ flex_dashboard <- function(fig_width = 6.0,
     # source code embed if requested
     if (source_code_embed(source_code)) {
 
-      # determine the source file based on the input file
-      input_file <- basename(input_file)
-      source_file <- paste0(
-        file_path_sans_ext(file_path_sans_ext(basename(input_file))),
-        ".Rmd"
-      )
-
-      # if the file doesn't exist this could be runtime: shiny
-      # so try another way
-      if (!file.exists(source_file))
-        source_file <- parent.frame(n = 2)$knit_input
-
       # validate we have a file
       if (!file.exists(source_file))
         stop("source code file for embed not found: ", source_file, call. = FALSE)
@@ -397,6 +391,7 @@ flex_dashboard <- function(fig_width = 6.0,
                             args = args),
     keep_md = FALSE,
     clean_supporting = self_contained,
+    pre_knit = pre_knit,
     pre_processor = pre_processor,
     base_format = html_document_base(smart = smart, theme = theme,
                                      self_contained = self_contained,

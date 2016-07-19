@@ -27,7 +27,7 @@ Authors@R: c(
 URL: http://rmarkdown.rstudio.com/flexdashboard
 BugReports: https://github.com/rstudio/flexdashboard/issues
 Depends: R (>= 3.0.2)
-Imports: tools, jsonlite, htmltools, knitr (>= 1.13), htmlwidgets (>= 0.6), rmarkdown (>= 0.9.6), shiny (>= 0.13)
+Imports: tools, jsonlite, htmltools, knitr (>= 1.13), htmlwidgets (>= 0.6), rmarkdown (>= 1.0), shiny (>= 0.13)
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE
