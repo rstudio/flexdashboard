@@ -239,6 +239,10 @@ var FlexDashboard = (function () {
     var icon = page.attr('data-icon');
     var navmenu = page.attr('data-navmenu');
 
+    // sanitize the id for use with bootstrap tabs
+    id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
+    page.attr('id', id);
+
     // get the wrapper
     var wrapper = page.closest('.dashboard-page-wrapper');
 
