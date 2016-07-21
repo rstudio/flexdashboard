@@ -401,13 +401,13 @@ var FlexDashboard = (function () {
       // hoist storyboard commentary into it's own section
       if (page.hasClass('storyboard')) {
         var commentaryHR = page.find('div.section.level3 hr');
-        if (commentaryHR.length) {
-          var commentary = commentaryHR.nextAll().detach();
+        commentaryHR.each(function() {
+          var commentary = $(this).nextAll().detach();
           var commentarySection = $('<div class="section level3"></div>');
           commentarySection.append(commentary);
-          commentarySection.insertAfter(commentaryHR.closest('div.section.level3'));
-          commentaryHR.remove();
-        }
+          commentarySection.insertAfter($(this).closest('div.section.level3'));
+          $(this).remove();
+        });
       }
 
       // force a non full screen layout by columns
