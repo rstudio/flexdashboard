@@ -6,6 +6,8 @@ flexdashboard 0.3 (unreleased)
 
 - Correct handling for storyboard notes in mobile layout
 
+- Handle titles with extended characters (auto-assign id if pandoc doesn't)
+
 - Use pre_knit hook to get access to the source file path
 
 
