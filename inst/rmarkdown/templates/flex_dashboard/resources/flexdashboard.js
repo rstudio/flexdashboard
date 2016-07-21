@@ -239,6 +239,10 @@ var FlexDashboard = (function () {
     var icon = page.attr('data-icon');
     var navmenu = page.attr('data-navmenu');
 
+    // get hidden state (transfer this to navbar)
+    var hidden = page.hasClass('hidden');
+    page.removeClass('hidden');
+
     // sanitize the id for use with bootstrap tabs
     id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
     page.attr('id', id);
@@ -275,6 +279,10 @@ var FlexDashboard = (function () {
     } else {
       container.append(li);
     }
+
+    // hide it if requested
+    if (hidden)
+      li.addClass('hidden');
   }
 
   function navbarLink(icon, title, href) {

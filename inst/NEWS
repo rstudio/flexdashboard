@@ -2,6 +2,8 @@
 flexdashboard 0.3 (unreleased)
 -----------------------------------------------------------------------
 
+- Support `.hidden` attribute for pages to hide them from the navbar
+
 - Scroll sidebar when content overflows vertically
 
 - Correct handling for storyboard notes in mobile layout
