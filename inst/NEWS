@@ -14,6 +14,8 @@ flexdashboard 0.3 (unreleased)
 
 - Use pre_knit hook to get access to the source file path
 
+- Restore original DT options after rendering
+
 
 flexdashboard 0.2
 -----------------------------------------------------------------------

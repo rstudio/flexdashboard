@@ -116,6 +116,13 @@ flex_dashboard <- function(fig_width = 6.0,
                            devel = FALSE,
                            ...) {
 
+  # manage list of exit_actions (backing out changes to knitr options)
+  exit_actions <- list()
+  on_exit <- function() {
+    for (action in exit_actions)
+      try(action())
+  }
+
   # function for resolving resources
   resource <- function(name) {
     system.file("rmarkdown/templates/flex_dashboard/resources", name,
@@ -168,12 +175,19 @@ flex_dashboard <- function(fig_width = 6.0,
   knitr_options$opts_chunk$comment = NA
 
   # force to fill it's container (unless the option is already set)
-  if (is.na(getOption('DT.fillContainer', NA)))
+  if (is.na(getOption('DT.fillContainer', NA))) {
     options(DT.fillContainer = TRUE)
+    exit_actions <- c(exit_actions, function() {
+      options(DT.fillContainer = NULL)
+    })
+  }
 
   # request that DT auto-hide navigation (unless the option is already set)
-  if (is.na(getOption('DT.autoHideNavigation', NA)))
-    options(DT.autoHideNavigation = TRUE);
+  if (is.na(getOption('DT.autoHideNavigation', NA))) {
+    exit_actions <- c(exit_actions, function() {
+      options(DT.autoHideNavigation = NULL)
+    })
+  }
 
   # add hook to capture fig.width and fig.height and serialized
   # them into the DOM
@@ -393,6 +407,7 @@ flex_dashboard <- function(fig_width = 6.0,
     clean_supporting = self_contained,
     pre_knit = pre_knit,
     pre_processor = pre_processor,
+    on_exit = on_exit,
     base_format = html_document_base(smart = smart, theme = theme,
                                      self_contained = self_contained,
                                      lib_dir = lib_dir, mathjax = mathjax,
