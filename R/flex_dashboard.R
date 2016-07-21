@@ -269,6 +269,10 @@ flex_dashboard <- function(fig_width = 6.0,
 
     args <- c()
 
+    # initialize includes if needed
+    if (is.null(includes))
+      includes <- list()
+
     # helper function to add a graphic file dependency/variable
     add_graphic <- function(name, graphic) {
       if (!is.null(graphic)) {
@@ -315,24 +319,6 @@ flex_dashboard <- function(fig_width = 6.0,
     if (is.null(fig_mobile))
       fig_mobile <- default_fig_mobile
 
-    # add FlexDashboard initialization
-    dashboardScript <- c(dashboardScript,
-      '<script type="text/javascript">',
-      '$(document).ready(function () {',
-      '  FlexDashboard.init({',
-      paste0('    theme: "', theme, '",'),
-      paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
-      paste0('    orientation: "', orientation, '",'),
-      paste0('    storyboard: ', ifelse(storyboard,'true','false'), ','),
-      paste0('    defaultFigWidth: ', figSizePixels(fig_width), ','),
-      paste0('    defaultFigHeight: ', figSizePixels(fig_height), ','),
-      paste0('    defaultFigWidthMobile: ', figSizePixels(fig_mobile[[1]]), ','),
-      paste0('    defaultFigHeightMobile: ', figSizePixels(fig_mobile[[2]])),
-      '  });',
-      '});',
-      '</script>'
-    )
-
     # css
     if (!is.null(dashboardCss)) {
       dashboardCssFile <- tempfile(fileext = "html")
@@ -343,7 +329,28 @@ flex_dashboard <- function(fig_width = 6.0,
     # script
     dashboardScriptFile <- tempfile(fileext = ".html")
     writeLines(dashboardScript, dashboardScriptFile)
-    args <- c(args, pandoc_include_args(before_body = dashboardScriptFile))
+    includes$before_body <- c(includes$before_body, dashboardScriptFile)
+
+    # dashboard init script
+    dashboardInitScript <- c(
+       '<script type="text/javascript">',
+       '$(document).ready(function () {',
+       '  FlexDashboard.init({',
+       paste0('    theme: "', theme, '",'),
+       paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
+       paste0('    orientation: "', orientation, '",'),
+       paste0('    storyboard: ', ifelse(storyboard,'true','false'), ','),
+       paste0('    defaultFigWidth: ', figSizePixels(fig_width), ','),
+       paste0('    defaultFigHeight: ', figSizePixels(fig_height), ','),
+       paste0('    defaultFigWidthMobile: ', figSizePixels(fig_mobile[[1]]), ','),
+       paste0('    defaultFigHeightMobile: ', figSizePixels(fig_mobile[[2]])),
+       '  });',
+       '});',
+       '</script>'
+    )
+    dashboardInitScriptFile <- tempfile(fileext = ".html")
+    writeLines(dashboardInitScript, dashboardInitScriptFile)
+    includes$after_body <- c(includes$after_body, dashboardInitScriptFile)
 
     # mobile figures
     args <- c(args, mobile_figure_args(mobile_figures))
@@ -363,8 +370,6 @@ flex_dashboard <- function(fig_width = 6.0,
     args <- c(args, pandoc_highlight_args(highlight, default = "pygments"))
 
     # user includes
-    if (is.null(includes))
-      includes <- list()
     args <- c(args, pandoc_include_args(in_header = includes$in_header,
                                         before_body = includes$before_body,
                                         after_body = includes$after_body))
