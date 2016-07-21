@@ -27,6 +27,13 @@ var FlexDashboard = (function () {
     // extend default options
     $.extend(true, _options, options);
 
+    // add ids to sections that don't have them (pandoc won't assign ids
+    // to e.g. sections with titles consisting of only chinese characters)
+    var nextId = 1;
+    $('.level1:not([id]),.level2:not([id]),.level3:not([id])').each(function() {
+      $(this).attr('id', 'dashboard-' + nextId++);
+    });
+
     // find navbar items
     var navbarItems = $('#flexdashboard-navbar');
     if (navbarItems.length)
