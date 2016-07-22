@@ -1119,21 +1119,34 @@ var FlexDashboard = (function () {
 
   // extract chart notes
   function extractChartNotes(chartContent, chartNotes) {
-    // look for a terminating blockquote or image caption
+
+    // terminating blockquote
     var blockquote = chartContent.children('blockquote:last-child');
-    var caption = chartContent.children('div.image-container')
-                              .children('p.caption');
     if (blockquote.length) {
       chartNotes.html(blockquote.children('p:first-child').html());
       blockquote.remove();
       return true;
-    } else if (caption.length) {
+    }
+
+    // image caption
+    var caption = chartContent.children('div.image-container')
+                              .children('p.caption');
+    if (caption.length) {
       chartNotes.html(caption.html());
       caption.remove();
       return true;
-    } else {
-      return false;
     }
+
+    // table caption
+    var tableCaption = chartContent.find('table > caption');
+    if (tableCaption.length) {
+      chartNotes.html(tableCaption.html());
+      tableCaption.remove();
+      return true;
+    }
+
+    // none found
+    return false;
   }
 
   function findShinyOutput(chartContent) {

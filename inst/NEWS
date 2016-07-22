@@ -16,6 +16,7 @@ flexdashboard 0.3 (unreleased)
 
 - Restore original DT options after rendering
 
+- Render `<table>` captions as notes
 
 flexdashboard 0.2
 -----------------------------------------------------------------------
