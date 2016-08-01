@@ -1,5 +1,5 @@
 
-flexdashboard 0.3 (unreleased)
+flexdashboard 0.3
 -----------------------------------------------------------------------
 
 - Support `.hidden` attribute for pages to hide them from the navbar
