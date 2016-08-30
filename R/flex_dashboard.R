@@ -263,6 +263,42 @@ flex_dashboard <- function(fig_width = 6.0,
     source_file <<- basename(input)
   }
 
+  #  special handling of 'global' chunk within runtime: shiny
+  if (!is.null(shiny::getDefaultReactiveDomain())) {
+
+    # options hook to (a) capture the chunk options for inspection below and
+    # (b) to ensure that 'global' chunks are not displayed in the document
+    chunk_options <- list()
+    knitr::opts_hooks$set(include = function(options) {
+      chunk_options <<- options
+      if (identical(chunk_options$label, "global")) {
+        options$echo <- FALSE
+        options$include <- FALSE
+      }
+      options
+    })
+
+    # evaluate the 'global' chunk only once, and in the global environment
+    knitr::knit_hooks$set(evaluate = function(code, envir, ...) {
+      if (identical(chunk_options$label, "global")) {
+        # evaluate the global chunk for this source file if it hasn't
+        # been evaluated already
+        if (!code %in% .globals$evaluated_global_chunks) {
+          .globals$evaluated_global_chunks <- c(.globals$evaluated_global_chunks, code)
+          evaluate::evaluate(code, envir = globalenv(), ...)
+        }
+        # delegate to standard evaluate for everything else
+      } else {
+        evaluate::evaluate(code, envir, ...)
+      }
+    })
+
+    # cleanup evaluated flag on reactive domain ended
+    shiny::onReactiveDomainEnded(shiny::getDefaultReactiveDomain(), function() {
+      .globals$evaluated_global_chunks <- character()
+    })
+  }
+
   # preprocessor
   pre_processor <- function (metadata, input_file, runtime, knit_meta,
                              files_dir, output_dir) {
@@ -593,5 +629,11 @@ storyboard_dependencies <- function(source = NULL) {
   else
     NULL
 }
+
+# package level globals
+.globals <- new.env(parent = emptyenv())
+.globals$evaluated_global_chunks <- character()
+
+
 
 
