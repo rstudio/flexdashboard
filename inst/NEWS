@@ -4,7 +4,7 @@ flexdashboard 0.4 (unreleased)
 
 - Special 'global' chunk label for runtime: shiny which designates
   a chunk to be run once and only once in the global environment
-  (startup performanceimprovement for multi-user shiny flexdashboards)
+  (startup performance improvement for multi-user shiny flexdashboards)
 
 
 flexdashboard 0.3
