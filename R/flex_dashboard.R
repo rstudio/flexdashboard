@@ -286,6 +286,8 @@ flex_dashboard <- function(fig_width = 6.0,
         if (!code %in% .globals$evaluated_global_chunks) {
           .globals$evaluated_global_chunks <- c(.globals$evaluated_global_chunks, code)
           evaluate::evaluate(code, envir = globalenv(), ...)
+        } else {
+          list()
         }
         # delegate to standard evaluate for everything else
       } else {
