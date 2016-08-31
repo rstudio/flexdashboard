@@ -1,9 +1,10 @@
 name: shiny-kmeans
+title: "Iris K-Means Clustering"
 account: jjallaire
 server: shinyapps.io
 appId: 86820
-bundleId: 390706
+bundleId: 545817
 url: https://jjallaire.shinyapps.io/shiny-kmeans/
-when: 1457462243.48312
+when: 1472665178.64413
 asMultiple: FALSE
 asStatic: FALSE
