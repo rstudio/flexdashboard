@@ -9,10 +9,9 @@ output:
 runtime: shiny
 ---
 
-```{r setup, include=FALSE}
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared by all users of the dashboard
 library(biclust)
-library(flexdashboard)
-
 data(BicatYeast)
 set.seed(1)
 res <- biclust(BicatYeast, method=BCPlaid(), verbose=FALSE)

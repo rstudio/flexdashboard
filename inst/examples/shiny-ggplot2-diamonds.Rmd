@@ -8,18 +8,16 @@ output:
 runtime: shiny
 ---
 
-```{r setup, include=FALSE}
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared by all users of the dashboard
 library(ggplot2)
-library(mgcv)
-library(flexdashboard)
+dataset <- diamonds
 ```
 
 Inputs {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
-dataset <- diamonds
-
 sliderInput('sampleSize', 'Sample Size', min=1, max=nrow(dataset),
             value=min(1000, nrow(dataset)), step=500, round=0)
 
