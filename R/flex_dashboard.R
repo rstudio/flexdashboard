@@ -263,6 +263,35 @@ flex_dashboard <- function(fig_width = 6.0,
     source_file <<- basename(input)
   }
 
+  #  special handling of 'global' chunk within runtime: shiny
+  if (!is.null(shiny::getDefaultReactiveDomain())) {
+
+    # evaluate the 'global' chunk only once, and in the global environment
+    knitr::knit_hooks$set(evaluate = function(code, envir, ...) {
+      if (identical(knitr::opts_current$get("label"), "global")) {
+        # evaluate the global chunk for this source file if it hasn't
+        # been evaluated already (flatten to code_string so the lookups
+        # work correctly for multi-line strings)
+        code_string <- paste(code, collapse = '\n')
+        if (!code_string %in% .globals$evaluated_global_chunks) {
+          .globals$evaluated_global_chunks <-
+                          c(.globals$evaluated_global_chunks, code_string)
+          evaluate::evaluate(code, envir = globalenv(), ...)
+        } else {
+          list()
+        }
+        # delegate to standard evaluate for everything else
+      } else {
+        evaluate::evaluate(code, envir, ...)
+      }
+    })
+
+    # cleanup evaluated cache on reactive domain ended
+    shiny::onReactiveDomainEnded(shiny::getDefaultReactiveDomain(), function() {
+      .globals$evaluated_global_chunks <- character()
+    })
+  }
+
   # preprocessor
   pre_processor <- function (metadata, input_file, runtime, knit_meta,
                              files_dir, output_dir) {
@@ -593,5 +622,11 @@ storyboard_dependencies <- function(source = NULL) {
   else
     NULL
 }
+
+# package level globals
+.globals <- new.env(parent = emptyenv())
+.globals$evaluated_global_chunks <- character()
+
+
 
 
