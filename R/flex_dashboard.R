@@ -282,10 +282,12 @@ flex_dashboard <- function(fig_width = 6.0,
     knitr::knit_hooks$set(evaluate = function(code, envir, ...) {
       if (identical(chunk_options$label, "global")) {
         # evaluate the global chunk for this source file if it hasn't
-        # been evaluated already
-        code <- paste(code, collapse = '\n')
-        if (!code %in% .globals$evaluated_global_chunks) {
-          .globals$evaluated_global_chunks <- c(.globals$evaluated_global_chunks, code)
+        # been evaluated already (flatten to code_string so the lookups
+        # work correctly for multi-line strings)
+        code_string <- paste(code, collapse = '\n')
+        if (!code_string %in% .globals$evaluated_global_chunks) {
+          .globals$evaluated_global_chunks <-
+                          c(.globals$evaluated_global_chunks, code_string)
           evaluate::evaluate(code, envir = globalenv(), ...)
         } else {
           list()
