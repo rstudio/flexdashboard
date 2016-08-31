@@ -266,21 +266,9 @@ flex_dashboard <- function(fig_width = 6.0,
   #  special handling of 'global' chunk within runtime: shiny
   if (!is.null(shiny::getDefaultReactiveDomain())) {
 
-    # options hook to (a) capture the chunk options for inspection below and
-    # (b) to ensure that 'global' chunks are not displayed in the document
-    chunk_options <- list()
-    knitr::opts_hooks$set(include = function(options) {
-      chunk_options <<- options
-      if (identical(chunk_options$label, "global")) {
-        options$echo <- FALSE
-        options$include <- FALSE
-      }
-      options
-    })
-
     # evaluate the 'global' chunk only once, and in the global environment
     knitr::knit_hooks$set(evaluate = function(code, envir, ...) {
-      if (identical(chunk_options$label, "global")) {
+      if (identical(knitr::opts_current$get("label"), "global")) {
         # evaluate the global chunk for this source file if it hasn't
         # been evaluated already (flatten to code_string so the lookups
         # work correctly for multi-line strings)
@@ -298,7 +286,7 @@ flex_dashboard <- function(fig_width = 6.0,
       }
     })
 
-    # cleanup evaluated flag on reactive domain ended
+    # cleanup evaluated cache on reactive domain ended
     shiny::onReactiveDomainEnded(shiny::getDefaultReactiveDomain(), function() {
       .globals$evaluated_global_chunks <- character()
     })
