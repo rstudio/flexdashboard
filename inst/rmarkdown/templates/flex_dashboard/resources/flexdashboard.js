@@ -189,12 +189,12 @@ var FlexDashboard = (function () {
         for (var j = 0; j<item.items.length; j++) {
           var subItem = item.items[j];
           var li = $('<li></li>');
-          li.append(navbarLink(subItem.icon, subItem.title, subItem.href));
+          li.append(navbarLink(subItem.icon, subItem.title, subItem.href, subItem.target));
           menu.append(li);
         }
       } else {
         var li = $('<li></li>');
-        li.append(navbarLink(item.icon, item.title, item.href));
+        li.append(navbarLink(item.icon, item.title, item.href, item.target));
         container.append(li);
       }
     }
@@ -285,7 +285,7 @@ var FlexDashboard = (function () {
       li.addClass('hidden');
   }
 
-  function navbarLink(icon, title, href) {
+  function navbarLink(icon, title, href, target) {
 
     var a = $('<a></a>');
     if (icon) {
@@ -324,6 +324,10 @@ var FlexDashboard = (function () {
         a.attr('href', href);
       }
     }
+
+    // add the arget
+    if (target)
+      a.attr('target', target);
 
     return a;
   }

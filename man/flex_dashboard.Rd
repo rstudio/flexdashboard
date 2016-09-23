@@ -64,8 +64,8 @@ item which links to the source code.}
 
 \item{navbar}{Optional list of elements to be placed on the flexdashboard
 navigation bar. Each element should be a list containing a \code{title}
-and/or \code{icon} field, an \code{href} field and an optional \code{align}
-("left" or "right") field.}
+and/or \code{icon} field, an \code{href} field. Optional fields \code{target}
+(e.g. "_blank") and \code{align} ("left" or "right") are also supported.}
 
 \item{orientation}{Determines whether level 2 headings are treated as
 dashboard rows or dashboard columns.}

@@ -1,4 +1,10 @@
 
+flexdashboard 0.4 (unreleased)
+-----------------------------------------------------------------------
+
+- Add support for `target` field in navbar links (e.g. target: "_blank")
+
+
 flexdashboard 0.3
 -----------------------------------------------------------------------
 
