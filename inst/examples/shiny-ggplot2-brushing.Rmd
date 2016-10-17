@@ -5,17 +5,16 @@ output:
     orientation: columns
     social: menu
     source_code: embed
-runtime: shiny
+runtime: shiny_prerendered
 ---
 
-```{r global, include=FALSE}
-# load data in 'global' chunk so it can be shared by all users of the dashboard
+```{r, context="data", include=FALSE}
 library(datasets)
 mtcars2 <- mtcars[, c("mpg", "cyl", "wt")]
 ```
 
 
-```{r}
+```{r, context="server"}
 # Reactive that returns the whole dataset if there is no brush
 selectedData <- reactive({
   data <- brushedPoints(mtcars2, input$plot1_brush)
@@ -33,15 +32,23 @@ Column {data-width=650}
 ```{r}
 library(ggplot2)
 plotOutput("plot1", brush = brushOpts(id = "plot1_brush"))
+```
+
+```{r, context="server"}
 output$plot1 <- renderPlot({
   ggplot(mtcars2, aes(wt, mpg)) + geom_point()
 })
 ```
 
+
 ### Miles Per Gallon and Cylinders
 
 ```{r}
-renderPlot({
+plotOutput("cylinders")
+```
+
+```{r, context="server"}
+output$cylinders <- renderPlot({
   ggplot(selectedData(), aes(factor(cyl), mpg))  + geom_boxplot()
 })
 ```
@@ -52,7 +59,11 @@ Column {data-width=350}
 ### Car Details {data-width=400}
 
 ```{r}
-renderTable({
+tableOutput("details")
+```
+
+```{r, context="server"}
+output$details <- renderTable({
   selectedData()
 })
 ```

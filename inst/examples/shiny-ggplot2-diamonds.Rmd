@@ -5,15 +5,18 @@ output:
     orientation: columns
     social: menu
     source_code: embed
-runtime: shiny
+runtime: shiny_prerendered
 ---
 
-```{r global, include=FALSE}
-# load data in 'global' chunk so it can be shared by all users of the dashboard
+```{r, context="setup", include=FALSE}
 library(ggplot2)
 library(mgcv)
+```
+
+```{r, context="data"}
 dataset <- diamonds
 ```
+
 
 Inputs {.sidebar}
 -----------------------------------------------------------------------
@@ -41,11 +44,16 @@ Outputs
 ### Diamonds
 
 ```{r}
+plotOutput("diamonds")
+```
+
+
+```{r, context="server"}
 dataset <- reactive({
   diamonds[sample(nrow(diamonds), input$sampleSize),]
 })
 
-renderPlot({
+output$diamonds <- renderPlot({
   p <- ggplot(dataset(), aes_string(x=input$x, y=input$y)) + geom_point()
   
   if (input$color != 'None')

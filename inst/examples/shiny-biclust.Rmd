@@ -6,11 +6,10 @@ output:
     orientation: rows
     social: menu
     source_code: embed
-runtime: shiny
+runtime: shiny_prerendered
 ---
 
-```{r global, include=FALSE}
-# load data in 'global' chunk so it can be shared by all users of the dashboard
+```{r context="data", include=FALSE}
 library(biclust)
 data(BicatYeast)
 set.seed(1)
@@ -38,13 +37,16 @@ Row
 -----------------------------------------------------------------------
 
 ### Heatmap
-    
-```{r}
 
+```{r}
+plotOutput("heatmap")
+```
+
+```{r, context="server"}
 num <- reactive(as.integer(input$clusterNum))
 
 col = colorRampPalette(c("red", "white", "darkblue"), space="Lab")(10)
-renderPlot({
+output$heatmap <- renderPlot({
     p = par(mai=c(0,0,0,0))
     heatmapBC(BicatYeast, res, number=num(), xlab="", ylab="",
       order=TRUE, useRaster=TRUE, col=col)
@@ -57,9 +59,13 @@ Row {.tabset}
 -----------------------------------------------------------------------
 
 ### Parallel Coordinates
-    
+
 ```{r}
-renderPlot(
+plotOutput("coords")
+```
+
+```{r, context="server"}
+output$coords <- renderPlot(
   parallelCoordinates(BicatYeast, res, number=num())
 )
 ```
@@ -67,8 +73,13 @@ renderPlot(
 ### Data for Selected Cluster
 
 ```{r}
+tableOutput("data")
+```
+
+
+```{r, context="server"}
 # only display table for values in cluster 4
-renderTable(
+output$data <- renderTable(
   BicatYeast[which(res@RowxNumber[, num()]), which(res@NumberxCol[num(), ])]
 )
 ```

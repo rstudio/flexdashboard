@@ -5,11 +5,10 @@ output:
     orientation: rows
     social: menu
     source_code: embed
-runtime: shiny
+runtime: shiny_prerendered
 ---
 
-```{r global, include=FALSE}
-# load data in 'global' chunk so it can be shared by all users of the dashboard
+```{r, context="data", include=FALSE}
 library(datasets)
 data(faithful)
 ```
@@ -34,7 +33,11 @@ Column
 ### Geyser Eruption Duration
 
 ```{r}
-renderPlot({
+plotOutput("eruption_duration")
+```
+
+```{r, context="server"}
+output$eruption_duration <- renderPlot({
   hist(faithful$eruptions, probability = TRUE, breaks = as.numeric(input$n_breaks),
        xlab = "Duration (minutes)", main = "Geyser Eruption Duration")
   

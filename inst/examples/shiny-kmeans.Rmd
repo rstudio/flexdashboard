@@ -5,11 +5,10 @@ output:
     orientation: columns
     social: menu
     source_code: embed
-runtime: shiny
+runtime: shiny_prerendered
 ---
 
-```{r global, include=FALSE}
-# load data in 'global' chunk so it can be shared by all users of the dashboard
+```{r context="data", include=FALSE}
 library(datasets)
 data(iris)
 ```
@@ -34,6 +33,10 @@ Column
 ### K Means
 
 ```{r}
+plotOutput("kmeans")
+```
+
+```{r, context="server"}
 palette(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
   "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999"))
 
@@ -46,7 +49,7 @@ clusters <- reactive({
   kmeans(selectedData(), input$clusters)
 })
 
-renderPlot({
+output$kmeans <- renderPlot({
   par(mar = c(5.1, 4.1, 0, 1))
   plot(selectedData(),
        col = clusters()$cluster,

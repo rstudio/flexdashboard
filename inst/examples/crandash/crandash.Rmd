@@ -5,12 +5,16 @@ output:
     orientation: rows
     social: menu
     source_code: https://git.io/vaZdx
-runtime: shiny
+runtime: shiny_prerendered
 ---
 
-```{r setup, include=FALSE}
+```{r, context="setup"}
 library(flexdashboard)
+library(bubbles)
+```
 
+
+```{r context="server"}
 # Access to CRAN packages data stream
 source("package_stream.R")
 
@@ -54,6 +58,10 @@ Row
 ### Downloads per sec (last 5 min) {.value-box}
 
 ```{r}
+valueBoxOutput("download_rate")
+```
+
+```{r, context="server"}
 # downloadRate is a reactive expression that computes the download
 # rate during this dashboard's lifetime.
 startTime <- as.numeric(Sys.time())
@@ -63,7 +71,7 @@ downloadRate <- reactive({
 })
 
 # Emit the download rate
-renderValueBox({
+output$download_rate <- renderValueBox({
   rate <- formatC(downloadRate(), digits = 1, format = "f")
   valueBox(
     value = rate,
@@ -76,12 +84,16 @@ renderValueBox({
 ### Total downloads {.value-box}
 
 ```{r}
+valueBoxOutput("total_downloads")
+```
+
+```{r, context="server"}
 # dlCount is a reactive expression that keeps track of the total
 # number of rows that have ever appeared through pkgStream.
 dlCount <- downloadCount(pkgStream)
 
 # Emit the download count
-renderValueBox({
+output$total_downloads <- renderValueBox({
   valueBox(dlCount(), icon = "fa-download")
 })
 ```
@@ -89,13 +101,17 @@ renderValueBox({
 ### Unique users {.value-box}
 
 ```{r}
+valueBoxOutput("unique_users")
+```
+
+```{r, context="server"}
 # usrCount is a reactive expression that keeps an approximate
 # count of all of the unique users that have been seen since the
 # app started.
 usrCount <- userCount(pkgStream)
 
 # Emit the user count
-renderValueBox({
+output$unique_users <- renderValueBox({
   valueBox(value = usrCount(), icon = "fa-users")
 })
 ```
@@ -106,7 +122,12 @@ Row
 ### Popularity by package (last 5 min) {data-width=700}
 
 ```{r}
-renderBubbles({
+bubblesOutput("popularity")
+```
+
+
+```{r, context="server"}
+output$popularity <- renderBubbles({
   if (nrow(pkgData()) == 0)
     return()
 
@@ -125,7 +146,11 @@ renderBubbles({
 ### Percent of downloads (last 5 min) {data-width=340}
 
 ```{r}
-renderTable({
+tableOutput("percent_downloads")
+```
+
+```{r, context="server"}
+output$percent_downloads <- renderTable({
   pkgData() %>%
     group_by(package) %>%
     tally() %>%
@@ -144,7 +169,12 @@ Recent Downloads
 ### Recent Downlads
 
 ```{r}
-renderTable({
+tableOutput("recent_downloads")
+```
+
+
+```{r, context="server"}
+output$recent_downloads <- renderTable({
   downloads <- tail(pkgData(), n = input$maxrows)
   downloads <- downloads[,c("date", "time", "size", "r_version", 
                             "r_arch", "r_os", "package")]
