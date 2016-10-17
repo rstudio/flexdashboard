@@ -75,6 +75,19 @@ HTMLWidgets.widget({
           justgage = new JustGage(config);
         else
           justgage.refresh(x.value, x.max, config);
+
+        // fixup svg path filters so they don't use relative hrefs
+        // e.g. url(#inner-shadow-htmlwidget-068c4cc821772b0a2ef5)
+        // (see https://github.com/rstudio/flexdashboard/issues/94)
+        var baseUrl = window.location.href.replace(window.location.hash, "");
+        $(el).find('svg>path').each(function() {
+          var filter = $(this).attr('filter');
+          if (filter) {
+            var match = /url\(#([^\)]+)\)/.exec(filter);
+            if (match)
+              $(this).attr('filter', 'url(' + baseUrl + '#' + match[1] + ')');
+          }
+        });
       },
 
       resize: function(width, height) {
