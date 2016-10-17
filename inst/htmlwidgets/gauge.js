@@ -75,6 +75,10 @@ HTMLWidgets.widget({
           justgage = new JustGage(config);
         else
           justgage.refresh(x.value, x.max, config);
+
+        // remove the svg path filters
+        // (see https://github.com/rstudio/flexdashboard/issues/94)
+        $(el).find('svg>path').attr('filter', null);
       },
 
       resize: function(width, height) {
