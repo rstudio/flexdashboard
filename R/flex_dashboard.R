@@ -327,9 +327,11 @@ flex_dashboard <- function(fig_width = 6.0,
     }
 
     # script
-    dashboardScriptFile <- tempfile(fileext = ".html")
-    writeLines(dashboardScript, dashboardScriptFile)
-    includes$before_body <- c(includes$before_body, dashboardScriptFile)
+    if (!is.null(dashboardScript)) {
+      dashboardScriptFile <- tempfile(fileext = ".html")
+      writeLines(dashboardScript, dashboardScriptFile)
+      includes$before_body <- c(includes$before_body, dashboardScriptFile)
+    }
 
     # dashboard init script
     dashboardInitScript <- c(
