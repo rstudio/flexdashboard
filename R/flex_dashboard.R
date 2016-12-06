@@ -260,7 +260,7 @@ flex_dashboard <- function(fig_width = 6.0,
   # capture the source file
   source_file <- NULL
   pre_knit <- function(input, ...) {
-    source_file <<- basename(input)
+    source_file <<- input
   }
 
   # preprocessor

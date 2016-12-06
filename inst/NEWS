@@ -4,6 +4,8 @@ flexdashboard 0.4 (unreleased)
 
 - Add support for `target` field in navbar links (e.g. target: "_blank")
 
+- Fix problem w/ embedding source code for Rmd w/ spaces in path (#100)
+
 
 flexdashboard 0.3
 -----------------------------------------------------------------------
