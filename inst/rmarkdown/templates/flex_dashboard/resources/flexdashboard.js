@@ -1718,11 +1718,11 @@ window.FlexDashboardComponents.push({
         if (dataColor.indexOf('bg-') === 0) {
           valueBox.css('background-color', '');
           if (!valueBox.hasClass(dataColor)) {
-             valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
+             valueBox.removeClass('bg-primary bg-info bg-warning bg-danger bg-success');
              valueBox.addClass(dataColor);
           }
         } else {
-          valueBox.removeClass('bg-primary bg-info bg-warning bg-info bg-success');
+          valueBox.removeClass('bg-primary bg-info bg-warning bg-danger bg-success');
           valueBox.css('background-color', dataColor);
         }
       }

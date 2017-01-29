@@ -6,6 +6,8 @@ flexdashboard 0.4 (unreleased)
 
 - Fix problem w/ embedding source code for Rmd w/ spaces in path (#100)
 
+- Ensure that previous bg class on valueBox is cleared (#106)
+
 
 flexdashboard 0.3
 -----------------------------------------------------------------------
