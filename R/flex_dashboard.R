@@ -237,6 +237,13 @@ flex_dashboard <- function(fig_width = 6.0,
   if (!is.null(fig_mobile)) {
     next_figure_id <- 1
     knitr_options$opts_hooks$dev <- function(options) {
+
+      # don't provide an extra 'png' device for context=data chunks
+      # used in shiny_prerendered (it breaks data chunk caching)
+      if (identical(options$label, "data") || identical(options$context, "data")) {
+        return(options)
+      }
+
       if (identical(options$dev, 'png')) {
         figure_id <- paste0('fig', next_figure_id)
         options$dev <- c('png', 'png')
