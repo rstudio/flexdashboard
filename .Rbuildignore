@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-README.Rmd
+README.R?md
 ^inst/examples/.*rsconnect$
 ^inst/examples/.+\.html
 ^inst/examples/.+_files
