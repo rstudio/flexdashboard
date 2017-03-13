@@ -31,4 +31,4 @@ Imports: tools, jsonlite, htmltools, knitr (>= 1.13), htmlwidgets (>= 0.6), rmar
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

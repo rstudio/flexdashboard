@@ -142,4 +142,3 @@ render("pres.Rmd", flex_dashboard(theme = "yeti"))
 
 
 }
-

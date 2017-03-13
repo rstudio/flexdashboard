@@ -36,4 +36,3 @@ valueBox(107, caption = "Trials", icon="fa-tag")
 valueBox(247, caption = "Connections", icon="fa-random")
 
 }
-
