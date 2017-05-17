@@ -5,6 +5,7 @@ output:
     orientation: rows
     social: menu
     source_code: embed
+    self_contained: false
 ---
 
 ```{r setup, include=FALSE}
@@ -25,7 +26,7 @@ d3heatmap(nba_players, scale = "column")
 ### Top Scorers {data-width=350}
 
 ```{r}
-knitr::kable(nba_players[1:20,c("G", "MIN", "PTS")])
+rmarkdown::paged_table(nba_players)
 ```
 
 

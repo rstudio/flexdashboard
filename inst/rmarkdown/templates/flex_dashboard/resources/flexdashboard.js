@@ -1522,6 +1522,28 @@ window.FlexDashboardComponents.push({
   }
 });
 
+
+// pagedtables
+window.FlexDashboardComponents.push({
+  init: function(dashboardContainer) {
+    if (window.PagedTableDoc)
+      window.PagedTableDoc.initAll();
+  },
+  find: function(container) {
+    if (window.PagedTableDoc)
+      return container.find('.pagedtable-wrapper');
+    else
+      return $();
+  },
+  flex: function(fillPage) {
+    return fillPage;
+  },
+  layout: function(title, container, element, fillPage) {
+    var pagedTable = new PagedTable(element.get(0));
+    console.log(pagedTable);
+  }
+});
+
 // bootstrap table
 window.FlexDashboardComponents.push({
 
