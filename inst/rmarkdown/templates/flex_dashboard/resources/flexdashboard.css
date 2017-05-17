@@ -668,6 +668,22 @@ body hr {
   padding-top: 0;
 }
 
+/* PagedTable Tweaks */
+
+.pagedtable-wrapper {
+  border: none;
+  width: 100% !important;
+}
+
+.chart-stage-flex .pagedtable-wrapper,
+.chart-stage-flex .pagedtable {
+  height: 100% !important;
+}
+
+.pagedtable {
+  padding: none;
+}
+
 
 table.dataTable thead th {
   border-bottom: 1px solid #d7d7d7;
