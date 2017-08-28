@@ -1731,7 +1731,8 @@ window.FlexDashboardComponents.push({
       var dataHref = valueOutput.attr('data-href');
       if (dataHref) {
         valueBox.addClass('linked-value');
-        valueBox.on('click', function(e) {
+        valueBox.off('click.value-box');
+        valueBox.on('click.value-box', function(e) {
           window.FlexDashboardUtils.showLinkedValue(dataHref);
         });
       }
