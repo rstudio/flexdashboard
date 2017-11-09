@@ -414,9 +414,10 @@ flex_dashboard <- function(fig_width = 6.0,
   # return format
   output_format(
     knitr = knitr_options,
-    pandoc = pandoc_options(to = "html",
+    pandoc = pandoc_options(to = "html4",
                             from = rmarkdown_format(md_extensions),
-                            args = args),
+                            args = args,
+                            ext = ".html"),
     keep_md = FALSE,
     clean_supporting = self_contained,
     pre_knit = pre_knit,
