@@ -90,10 +90,10 @@ is specified.}
 "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
 and "haddock". Pass NULL to prevent syntax highlighting.}
 
-\item{mathjax}{Include mathjax. The "default" option uses an https URL from
-the official MathJax CDN. The "local" option uses a local version of MathJax
-(which is copied into the output directory). You can pass an alternate URL
-or pass \code{NULL} to exclude MathJax entirely.}
+\item{mathjax}{Include mathjax. The "default" option uses an https URL from a
+MathJax CDN. The "local" option uses a local version of MathJax (which is
+copied into the output directory). You can pass an alternate URL or pass
+\code{NULL} to exclude MathJax entirely.}
 
 \item{extra_dependencies}{Additional function arguments to pass to the
 base R Markdown HTML output formatter \code{\link{html_document_base}}}
