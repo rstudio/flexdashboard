@@ -1,0 +1,30 @@
+---
+title: "NBA Scoring (2008)"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(d3heatmap)
+library(flexdashboard)
+
+url <- "http://datasets.flowingdata.com/ppg2008.csv"
+nba_players <- read.csv(url, row.names = 1)
+```
+
+### Stats by Player {data-width=650}
+
+```{r}
+d3heatmap(nba_players, scale = "column")
+```
+
+### Top Scorers {data-width=350}
+
+```{r}
+knitr::kable(nba_players[1:20,c("G", "MIN", "PTS")])
+```
+

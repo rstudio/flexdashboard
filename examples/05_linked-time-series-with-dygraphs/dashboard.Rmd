@@ -1,0 +1,37 @@
+---
+title: "Dygraphs Linked Time Series"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    social: menu
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+library(dygraphs)
+library(quantmod)
+library(flexdashboard)
+
+getSymbols(c("MSFT", "HPQ", "INTC"), from = "2014-01-01", auto.assign=TRUE)
+```
+
+### Microsoft
+
+```{r}
+dygraph(MSFT[,2:4], group = "stocks") %>% 
+  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
+```
+
+### HP
+
+```{r}
+dygraph(HPQ[,2:4], group = "stocks") %>% 
+  dySeries(c("HPQ.Low", "HPQ.Close", "HPQ.High"), label = "HPQ")
+```
+
+### Intel
+
+```{r}
+dygraph(INTC[,2:4], group = "stocks") %>% 
+  dySeries(c("INTC.Low", "INTC.Close", "INTC.High"), label = "INTC")
+```

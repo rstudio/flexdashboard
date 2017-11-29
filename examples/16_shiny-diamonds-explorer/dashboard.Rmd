@@ -1,0 +1,65 @@
+---
+title: "ggplot2 Diamonds Explorer"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    social: menu
+    source_code: embed
+runtime: shiny
+---
+
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+library(ggplot2)
+library(mgcv)
+dataset <- diamonds
+```
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+sliderInput('sampleSize', 'Sample Size', min=1, max=nrow(dataset),
+            value=min(1000, nrow(dataset)), step=500, round=0)
+
+checkboxInput('jitter', 'Jitter', value = TRUE)
+checkboxInput('smooth', 'Smooth', value = TRUE)
+
+selectInput('x', 'X', names(dataset))
+selectInput('y', 'Y', names(dataset), names(dataset)[[2]])
+selectInput('color', 'Color', c('None', names(dataset)))
+
+selectInput('facet_row', 'Facet Row',
+            c(None='.', names(diamonds[sapply(diamonds, is.factor)])))
+selectInput('facet_col', 'Facet Column',
+            c(None='.', names(diamonds[sapply(diamonds, is.factor)])))
+```
+
+Outputs
+-----------------------------------------------------------------------
+
+### Diamonds
+
+```{r}
+dataset <- reactive({
+  diamonds[sample(nrow(diamonds), input$sampleSize),]
+})
+
+renderPlot({
+  p <- ggplot(dataset(), aes_string(x=input$x, y=input$y)) + geom_point()
+  
+  if (input$color != 'None')
+    p <- p + aes_string(color=input$color)
+  
+  facets <- paste(input$facet_row, '~', input$facet_col)
+  if (facets != '. ~ .')
+    p <- p + facet_grid(facets)
+  
+  if (input$jitter)
+    p <- p + geom_jitter()
+  if (input$smooth)
+    p <- p + geom_smooth()
+  
+  print(p)
+})
+```

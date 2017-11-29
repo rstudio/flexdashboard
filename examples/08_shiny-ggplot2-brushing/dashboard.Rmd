@@ -1,0 +1,57 @@
+---
+title: "ggplot2 Brushing"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    social: menu
+    source_code: embed
+runtime: shiny
+---
+
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+library(datasets)
+mtcars2 <- mtcars[, c("mpg", "cyl", "wt")]
+```
+
+
+```{r}
+# Reactive that returns the whole dataset if there is no brush
+selectedData <- reactive({
+  data <- brushedPoints(mtcars2, input$plot_brush)
+  if (nrow(data) == 0)
+    data <- mtcars2
+  data
+})
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Miles Per Gallon vs. Weight {data-width=600}
+
+```{r}
+library(ggplot2)
+renderPlot({
+  ggplot(mtcars2, aes(wt, mpg)) + geom_point()
+}, outputArgs = list(brush = brushOpts(id = "plot_brush")))
+```
+
+### Miles Per Gallon and Cylinders
+
+```{r}
+renderPlot({
+  ggplot(selectedData(), aes(factor(cyl), mpg)) + geom_boxplot()
+})
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Car Details {data-width=400}
+
+```{r}
+renderTable({
+  selectedData()
+})
+```
