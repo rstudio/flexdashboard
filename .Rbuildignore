@@ -5,6 +5,5 @@ README.R?md
 ^inst/examples/.+\.html
 ^inst/examples/.+_files
 ^inst/examples/.+\.Rnb\.cached
-
-
+^examples/*
 
