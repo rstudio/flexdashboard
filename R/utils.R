@@ -2,7 +2,7 @@
 as_tmpfile <- function(str) {
   if (length(str) > 0) {
     str_tmpfile <- tempfile("rmarkdown-str", fileext = ".html")
-    writeLines(str, str_tmpfile)
+    writeLines(str, str_tmpfile, useBytes = TRUE)
     str_tmpfile
   } else {
     NULL
