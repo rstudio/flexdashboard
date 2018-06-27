@@ -1,0 +1,120 @@
+---
+title: "MetricsGraphics: Tor Project"
+author: "Bob Rudis"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    source_code: embed
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(metricsgraphics)
+library(readr)
+library(dplyr)
+library(tidyr)
+```
+
+```{r, echo=FALSE, message=FALSE}
+servers <- read_csv("https://metrics.torproject.org/stats/servers.csv",
+                    col_types="Dcccccii")
+hidden <- read_csv("https://metrics.torproject.org/stats/hidserv.csv",
+                   col_types="Dcddddd")
+
+servers <- filter(servers, date >= as.Date('2016-01-01'))
+hidden <- filter(hidden, 
+                 date >= as.Date('2016-01-01'),
+                 type=="dir-onions-seen")
+relays <- count(filter(servers, !is.na(relays)), date, wt=relays)
+bridges <- count(filter(servers, !is.na(bridges)), date, wt=bridges)
+
+filter(servers, !is.na(relays)) %>% 
+  mutate(platform=ifelse(is.na(platform), "Linux", platform)) %>% 
+  count(date, platform, wt=relays) %>% 
+  spread(platform, n) -> relays_by_platform
+
+filter(servers, !is.na(relays)) %>% 
+  count(date, flag, wt=relays) %>% 
+  filter(!is.na(flag)) %>% 
+  spread(flag, n) -> relays_by_flag
+
+filter(servers, !is.na(relays)) %>% 
+  count(date, version, wt=relays) %>% 
+  filter(!is.na(version)) %>% 
+  mutate(version=gsub("^0", "v0", version)) %>% 
+  spread(version, n) -> relays_by_version
+```
+
+Row  {data-height=600}
+-----------------------------------------------------------------------
+
+### Active Relays in the Tor Network
+
+```{r}
+mjs_plot(relays, date, n, top=0, left=30) %>% 
+  mjs_line(area=TRUE) %>% 
+  mjs_axis_x(xax_format="date") %>%
+  mjs_add_mouseover("function(d, i) {
+                $('{{ID}} svg .mg-active-datapoint')
+                    .html('Relay count' +
+                          d3.time.format('%Y-%m-%d')(d.date) + ': ' +
+                          d3.format('0,000')(d.n));
+                 }")
+``` 
+
+### Hidden-service statistics
+
+```{r}
+mjs_plot(hidden, date, "wmean", top=0, left=30) %>% 
+  mjs_line() %>% 
+  mjs_add_line("wmedian") %>% 
+  mjs_add_line("wiqm") %>% 
+  mjs_axis_x(xax_format="date") %>% 
+  mjs_add_legend(c("wmean", "wmedian", "wiqm"))
+```
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+### Relays with Exit, Fast, Guard, HSDir & Stable flags
+
+```{r}
+mjs_plot(relays_by_flag, date, Exit, top=0, left=30) %>% 
+  mjs_line() %>% 
+  mjs_add_line(Fast) %>% 
+  mjs_add_line(Guard) %>% 
+  mjs_add_line(HSDir) %>% 
+  mjs_add_line(Stable) %>% 
+  mjs_axis_x(xax_format="date") %>% 
+  mjs_add_legend(c("Exit", "Fast", "Guard", "HSDir", "Stable"))
+```
+
+### Relays by OS (log scale)
+
+```{r}
+mjs_plot(relays_by_platform, date, BSD, top=0, left=30) %>% 
+  mjs_line() %>% 
+  mjs_add_line(Darwin) %>% 
+  mjs_add_line(Linux) %>% 
+  mjs_add_line(Other) %>% 
+  mjs_add_line(Windows) %>% 
+  mjs_axis_x(xax_format="date") %>% 
+  mjs_axis_y(y_scale_type="log") %>% 
+  mjs_add_legend(c("BSD", "Darwin", "Linux", "Other", "Windows"))
+```
+
+### Relays by version
+
+```{r}
+mjs_plot(relays_by_version, date, "v0.2.4", top=0, left=30) %>% 
+  mjs_line() %>% 
+  mjs_add_line("v0.2.5") %>% 
+  mjs_add_line("v0.2.6") %>% 
+  mjs_add_line("v0.2.7") %>% 
+  mjs_add_line("v0.2.8") %>% 
+  mjs_add_line("Other") %>% 
+  mjs_axis_x(xax_format="date") %>% 
+  mjs_add_legend(c("v0.2.4", "v0.2.5", "v0.2.6", "v0.2.7", "v0.2.8", "Other"))
+```

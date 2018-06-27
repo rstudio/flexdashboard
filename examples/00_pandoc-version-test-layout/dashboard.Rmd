@@ -1,0 +1,40 @@
+---
+title: "Pandoc 1.x -> 2.x test"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    source_code: embed
+---
+
+```{r, include = FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+```{r}
+paste("Pandoc version:", rmarkdown::pandoc_version())
+```
+
+Column
+-------------------------------------
+    
+### Chart 1
+    
+```{r}
+DT::datatable(mtcars)
+```
+   
+Column
+-------------------------------------
+    
+### Chart 2
+    
+```{r}
+ggplot(mtcars, aes(mpg, wt)) + geom_boxplot()
+```
+    
+### Chart 3
+
+```{r}
+ggplot(mtcars, aes(mpg, wt)) + geom_point()
+```
