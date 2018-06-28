@@ -1,13 +1,15 @@
 Package: flexdashboard
 Type: Package
 Title: R Markdown Format for Flexible Dashboards
-Version: 0.5.1
+Version: 0.5.1.1
 Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's components to the
   containing web page.
 Authors@R: c(
-  person("Barbara", "Borges", role = c("aut", "cre"), email = "barbara@rstudio.com"),
+  person("Richard", "Iannone", role = c("aut", "cre"), email = "rich@rstudio.com",
+         comment = c(ORCID = "0000-0003-3925-190X")),
   person("JJ", "Allaire", role = "aut", email = "jj@rstudio.com"),
+  person("Barbara", "Borges", role = c("aut"), email = "barb.b.ribeiro@gmail.com"),
   person(family = "RStudio", role = "cph"),
   person(family = "Keen IO", role = c("ctb", "cph"), comment = "Dashboard CSS"),
   person("Abdullah", "Almsaeed", role = c("ctb", "cph"), comment = "Dashboard CSS"),

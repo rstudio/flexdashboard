@@ -1,3 +1,8 @@
+flexdashboard 0.5.1.1
+===========
+
+* Changed maintainer.
+
 flexdashboard 0.5.1
 ===========
 
