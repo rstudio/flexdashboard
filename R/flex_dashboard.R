@@ -564,7 +564,7 @@ navbar_dependencies <- function(navbar) {
 
   for (item in navbar) {
     if (!is.null(item$icon)) {
-      if (grepl('^fa-', item$icon))
+      if (grepl('fa-', item$icon))
         font_awesome <- TRUE
       if (grepl('^ion-', item$icon))
         ionicons <- TRUE
