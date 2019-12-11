@@ -69,7 +69,7 @@
 #'@param devel Enable development mode (used for development of the format
 #'  itself, not useful for users of the format).
 #'
-#'@param auto_reload Disable the auto-reloading behavior when the window is resized.
+#'@param resize_reload Disable the auto-reloading behavior when the window is resized.
 #' Useful when debugging large flexdashboard applications and this functionality
 #' is not needed.
 #'
@@ -118,7 +118,7 @@ flex_dashboard <- function(fig_width = 6.0,
                            md_extensions = NULL,
                            pandoc_args = NULL,
                            devel = FALSE,
-                           auto_reload = TRUE,
+                           resize_reload = TRUE,
                            ...) {
 
   # manage list of exit_actions (backing out changes to knitr options)
@@ -169,9 +169,10 @@ flex_dashboard <- function(fig_width = 6.0,
     theme <- "default"
 
   # resolve auto_reload
-  if (auto_reload == 'no' | grepl("fa?l?s?e?", auto_reload, ignore.case = T))
-    auto_reload <- F
-  else auto_reload <- T
+  if (resize_reload == 'no' | grepl("fa?l?s?e?", resize_reload, ignore.case = T))
+    resize_reload <- F
+  else
+    resize_reload <- T
 
   # determine knitr options
   knitr_options <- knitr_options_html(fig_width = fig_width,
@@ -363,7 +364,7 @@ flex_dashboard <- function(fig_width = 6.0,
        paste0('    defaultFigHeight: ', figSizePixels(fig_height), ','),
        paste0('    defaultFigWidthMobile: ', figSizePixels(fig_mobile[[1]]), ','),
        paste0('    defaultFigHeightMobile: ', figSizePixels(fig_mobile[[2]])),
-       paste0('    auto_reload: ', ifelse(auto_reload,'true','false'), ','),
+       paste0('    resize_reload: ', ifelse(resize_reload,'true','false'), ','),
        '  });',
        '});',
        '</script>'
