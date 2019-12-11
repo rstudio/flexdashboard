@@ -18,7 +18,8 @@ var FlexDashboard = (function () {
       defaultFigWidthMobile: 360,
       defaultFigHeightMobile: 461,
       isMobile: false,
-      isPortrait: false
+      isPortrait: false,
+      auto_reload: true
     });
   };
 
@@ -138,12 +139,12 @@ var FlexDashboard = (function () {
     initPrismHighlighting();
 
     // record mobile and orientation state then register a handler
-    // to refresh if it changes
+    // to refresh if auto_reload is set to true and it changes
     _options.isMobile = isMobilePhone();
     _options.isPortrait = isPortrait();
     $(window).on('resize', function() {
-      if (_options.isMobile !== isMobilePhone() ||
-          _options.isPortrait !== isPortrait()) {
+      if ((_options.isMobile !== isMobilePhone() && _options.auto_reload) ||
+          (_options.isPortrait !== isPortrait() && _options.auto_reload)) {
         window.location.reload();
       }
     });
