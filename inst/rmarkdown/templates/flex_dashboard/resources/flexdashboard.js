@@ -261,7 +261,7 @@ var FlexDashboard = (function () {
     if (active)
       wrapper.addClass('active');
 
-    // get a reference to the h1, discover it's id and title, then remove it
+    // get a reference to the h1, discover its inner contens, then detach it
     var h1 = wrapper.find('h1').first();
     var title = h1.contents();
     h1.detach();
@@ -409,7 +409,7 @@ var FlexDashboard = (function () {
       // wipeout h2 elements then enclose them in a single h2
       var level2 = page.find('div.section.level2');
       level2.each(function() {
-        level2.children('h2').detach();
+        level2.children('h2').remove();
         level2.children().unwrap();
       });
       page.wrapInner('<div class="section level2"></div>');
@@ -1667,7 +1667,7 @@ window.FlexDashboardComponents.push({
       chartValue = chartValue.replace("[1] ", "");
       valueOutputSpan = valueBox.find('span.value-output').detach();
       valueBox.children().remove();
-      value.append(chartValue);
+      value.text(chartValue);
     }
 
     // caption
