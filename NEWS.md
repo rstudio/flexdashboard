@@ -1,4 +1,4 @@
-flexdashboard 0.5.2 (unreleased)
+flexdashboard 0.5.2
 ===========
 
 * Support use of Font Awesome icon sets (e.g. "fab fa-r-project")
