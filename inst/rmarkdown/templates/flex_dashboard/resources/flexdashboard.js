@@ -410,15 +410,13 @@ var FlexDashboard = (function () {
       // if there is a sidebar we need to ensure it's content
       // is properly framed as an h3
       var sidebar = page.find('.section.sidebar');
-      if (sidebar.length > 0) {
-        sidebar.removeClass('sidebar');
-        sidebar.wrapInner('<div class="section level3"></div>');
-        var h2 = sidebar.find('h2');
-        var h3 = $('<h3></h3>');
-        h3.append(h2.contents());
-        h3.insertBefore(h2);
-        h2.detatch();
-      }
+      sidebar.removeClass('sidebar');
+      sidebar.wrapInner('<div class="section level3"></div>');
+      var h2 = sidebar.find('h2');
+      var h3 = $('<h3></h3>');
+      h3.append(h2.contents());
+      h3.insertBefore(h2);
+      h2.detach();
 
       // wipeout h2 elements then enclose them in a single h2
       var level2 = page.find('div.section.level2');
