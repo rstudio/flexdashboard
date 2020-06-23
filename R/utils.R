@@ -1,8 +1,11 @@
 # return a string as a tempfile
 as_tmpfile <- function(str) {
   if (length(str) > 0) {
+    str <- enc2utf8(str)
     str_tmpfile <- tempfile("rmarkdown-str", fileext = ".html")
-    writeLines(str, str_tmpfile)
+    con <- file(str_tmpfile, open = "w+", encoding = "native.enc")
+    writeLines(str, con = con, useBytes = TRUE)
+    close(con)
     str_tmpfile
   } else {
     NULL

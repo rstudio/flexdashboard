@@ -6,8 +6,8 @@ Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's components to the
   containing web page.
 Authors@R: c(
-  person("Barbara", "Borges", role = c("aut", "cre"), email = "barbara@rstudio.com"),
-  person("JJ", "Allaire", role = "aut", email = "jj@rstudio.com"),
+  person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
+  person("Barbara", "Borges", role = c("ctb"), email = "barbara@rstudio.com"),
   person(family = "RStudio", role = "cph"),
   person(family = "Keen IO", role = c("ctb", "cph"), comment = "Dashboard CSS"),
   person("Abdullah", "Almsaeed", role = c("ctb", "cph"), comment = "Dashboard CSS"),
@@ -28,8 +28,11 @@ Authors@R: c(
 URL: http://rmarkdown.rstudio.com/flexdashboard
 BugReports: https://github.com/rstudio/flexdashboard/issues
 Depends: R (>= 3.0.2)
-Imports: tools, jsonlite, htmltools, knitr (>= 1.13), htmlwidgets (>= 0.6), rmarkdown (>= 1.0), shiny (>= 0.13)
+Imports: tools, jsonlite, htmltools, knitr (>= 1.13), htmlwidgets (>= 0.6), rmarkdown (>= 1.10.3), shiny (>= 0.13)
 Suggests: testthat
+Remotes:
+  rstudio/rmarkdown
 LazyData: TRUE
 License: MIT + file LICENSE
 RoxygenNote: 6.0.1
+
