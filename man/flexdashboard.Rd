@@ -3,7 +3,6 @@
 \docType{package}
 \name{flexdashboard}
 \alias{flexdashboard}
-\alias{flexdashboard-package}
 \title{flexdashboard: Interactive dashboards for R}
 \description{
 Create interactive dashboards using \pkg{rmarkdown}.
