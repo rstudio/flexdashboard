@@ -33,8 +33,6 @@ Encoding: UTF-8
 Depends: R (>= 3.0.2)
 Imports: tools, jsonlite, htmltools, knitr (>= 1.13), htmlwidgets (>= 0.6), rmarkdown (>= 1.10.3), shiny (>= 0.13)
 Suggests: testthat
-Remotes:
-  rstudio/rmarkdown
 LazyData: TRUE
 License: MIT + file LICENSE
 RoxygenNote: 7.1.0.9000
