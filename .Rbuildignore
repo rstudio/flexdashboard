@@ -7,3 +7,6 @@ README.R?md
 ^inst/examples/.+\.Rnb\.cached
 ^examples/*
 
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
