@@ -1,0 +1,8 @@
+navbar:
+  structure:
+    right: [reference, news, github]
+  components:
+    home: ~
+    news:
+      text: News
+      href: news/index.html
