@@ -23,3 +23,18 @@ navbar:
     news:
       text: News
       href: news/index.html
+
+reference:
+- title: Output format
+  desc: >
+    Specify in your document's YAML frontmatter to knit,
+    or specify as the `output_format` with `rmarkdown::render()`.
+  contents:
+  - '`flex_dashboard`'
+- title: Static components
+  contents:
+  - gauge
+  - valueBox
+- title: Shiny components
+  contents:
+  - contains("shiny")
