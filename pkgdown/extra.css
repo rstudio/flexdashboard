@@ -153,6 +153,7 @@ a {
   padding-left: 0;
   list-style: none;
   margin-bottom: 1.2em;
+  font-size: 1.5rem;
 }
 
 
@@ -162,6 +163,7 @@ a {
   margin-bottom: 0;
   line-height: 1.6em;
   letter-spacing: 0.4pt;
+  font-size: 1.5rem;
 }
 
 #pkgdown-sidebar small.roles {
