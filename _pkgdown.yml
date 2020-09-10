@@ -1,8 +1,11 @@
 navbar:
   structure:
-    right: [reference, news, github]
+    right: [start, articles, reference, news, github]
   components:
     home: ~
+    start:
+      text: "Get started"
+      href: articles/start.html
     news:
       text: News
       href: news/index.html

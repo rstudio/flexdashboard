@@ -10,3 +10,4 @@ README.R?md
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^vignettes
