@@ -23,15 +23,30 @@ body {
   line-height: 1.6em;
 }
 
+/*
 h1 {font-size: 40px;}
 h2 {font-size: 30px;}
 h3 {font-size: 23px;}
 h4 {font-size: 20px;}
+*/
+
+h1 {font-size: 1.3em;}
+h2 {font-size: 1.2em;}
+h3 {
+  font-size: 1.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+h4 {
+  font-size: 1.0em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
 
 h1, h2, h3, h4 {
   font-family: 'Work Sans', sans-serif;
-  font-weight: normal;
-  font-size: 1.3em;
+/*font-weight: normal;*/
+/* font-size: 1.3em; */
   letter-spacing: 1.2pt;
   /*text-transform: uppercase;*/
 }
@@ -61,6 +76,10 @@ a {
   color: var(--pg-header);
 }
 
+p a {
+  text-decoration: underline var(--pg-header) dotted;
+}
+
 
 /* navbar ----------------------------------------------- */
 
@@ -79,7 +98,7 @@ a {
 
 .navbar-nav li a {
   /*text-transform: uppercase;*/
-  letter-spacing: 1.5pt;
+  letter-spacing: 0.1rem;
   font-size: 1em;
 }
 
@@ -94,6 +113,7 @@ a {
 .navbar-default .navbar-nav > .active > a:focus {
   color: #013631;
   background-color: inherit;
+  text-decoration: none;
 }
 
 .navbar-default .navbar-brand,
@@ -110,6 +130,15 @@ a {
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > .open > a:hover {
 	color: #555;
+	background-color: var(--nav-bkg);
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+	color: var(--pg-header);
+	text-decoration: none;
+	outline: 0;
 	background-color: var(--nav-bkg);
 }
 
@@ -174,6 +203,7 @@ a {
 
 #pkgdown-sidebar a {
   color: var(--a-hover);
+  text-decoration: none;
 }
 
 #pkgdown-sidebar a:hover {
@@ -240,15 +270,15 @@ nav[data-toggle='toc'] .nav .nav > .active:focus > a {
 /*----Copy Buttons ----*/
 
 .btn-primary {
-  background-color: #E7C5CB;
-  border-color: #E7C5CB;
+  background-color: var(--pg-header);
+  border-color: var(--pg-header);
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active:hover {
-  background-color: #187BA2;
-  border-color: #187BA2;
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 
 /*----- COLORED LIST BULLET----*/

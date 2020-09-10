@@ -1,5 +1,5 @@
 ---
-title: "flexdashboard"
+title: "Dashboard basics"
 output: rmarkdown::html_vignette
 resource_files:
   - utils.R
@@ -7,7 +7,7 @@ resource_files:
   - images/
   - assets/
 vignette: >
-  %\VignetteIndexEntry{flexdashboard}
+  %\VignetteIndexEntry{basics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,61 +22,7 @@ source("utils.R")
 <script src="assets/snippets/snippets.js" type="text/javascript" charset="utf-8"></script>
 
 
-
-* Use [R Markdown](http://rmarkdown.rstudio.com) to publish a group of related data visualizations as a dashboard.
-
-* Support for a wide variety of components including [htmlwidgets](http://www.htmlwidgets.org); base, lattice, and grid graphics; tabular data; gauges and value boxes; and text annotations.
-
-* Flexible and easy to specify row and column-based [layouts](layouts.html). Components are intelligently re-sized to fill the browser and adapted for display on mobile devices.
-
-* [Storyboard](using.html#storyboards) layouts for presenting sequences of visualizations and related commentary.
-
-* Optionally use [Shiny](http://shiny.rstudio.com) to drive visualizations dynamically.
-
-
-
-<!--html_preserve--><div class="row">
-<div class="col-sm-4">
-<a class="thumbnail" title="NBA scoring with d3heatmap" href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/">
-<img src="images/htmlwidgets-d3heatmap.png"/>
-<div class=""></div>
-</a>
-</div>
-<div class="col-sm-4">
-<a class="thumbnail" title="ggplotly: ggplot2 geoms" href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/">
-<img src="images/plotly.png"/>
-<div class=""></div>
-</a>
-</div>
-<div class="col-sm-4">
-<a class="thumbnail" title="Shiny: biclust example" href="https://jjallaire.shinyapps.io/shiny-biclust/">
-<img src="images/shiny-biclust.png"/>
-<div class=""></div>
-</a>
-</div>
-</div><!--/html_preserve-->
-
-## Getting Started
-
-Install the **flexdashboard** package from CRAN as follows:
-
-```r
-install.packages("flexdashboard")
-```
-
-To author a flexdashboard you create an [R Markdown](http://rmarkdown.rstudio.com) document with the `flexdashboard::flex_dashboard` output format. You can do this from within RStudio using the **New R Markdown** dialog:
-
-![](images/NewRMarkdown.png){width=579 height=465}
-
-If you are not using RStudio, you can create a new `flexdashboard` R Markdown file from the R console:
-
-```r
-rmarkdown::draft("dashboard.Rmd", template = "flex_dashboard", package = "flexdashboard")
-```
-
-## Dashboard Basics
-
-### Components
+## Components
 
 You can use flexdashboard to publish groups of related data visualizations as a dashboard. A flexdashboard can either be static (a standard web page) or dynamic (a [Shiny](http://shiny.rstudio.com) interactive document). A wide variety of components can be included in flexdashboard layouts, including:
 
@@ -94,9 +40,9 @@ You can use flexdashboard to publish groups of related data visualizations as a 
 
 See the [dashboard components](using.html#components) documentation for additional details on the use of each component type.
 
-### Layout
+## Layout
 
-#### Single Column (Fill)
+### Single Column (Fill)
 
 Dashboards are divided into columns and rows, with output components delineated using level 3 markdown headers (`###`). By default, dashboards are laid out within a single column, with charts  stacked vertically within a column and sized to fill available browser height. For example, this layout defines a single column with two charts that fills available browser space:
 
@@ -116,7 +62,7 @@ Dashboards are divided into columns and rows, with output components delineated 
 
 </div>
 
-#### Single Column (Scroll)
+### Single Column (Scroll)
 
 Depending on the nature of your dashboard (number of components, ideal height of components, etc.) you may prefer a scrolling layout where components occupy their natural height and the browser scrolls when additional vertical space is needed. You can specify this behavior via the `vertical_layout: scroll` option. For example, here is the definition of a single column scrolling layout with three charts:
 
@@ -138,7 +84,7 @@ Depending on the nature of your dashboard (number of components, ideal height of
 </div>
 
 
-#### Multiple Columns
+### Multiple Columns
 
 To lay out charts using multiple columns you introduce a level 2 markdown header (`--------------`) for each column. For example, this dashboard displays 3 charts split across two columns:
 
@@ -165,7 +111,7 @@ To lay out charts using multiple columns you introduce a level 2 markdown header
 
 In this example we've moved Chart 1 into its own column which it will fill entirely. We've also given the column a larger size via the `data-width` attribute to provide additional emphasis to Chart 1.
 
-#### Row Orientation
+### Row Orientation
 
 You can also choose to orient dashboards row-wise rather than column-wise by specifying the `orientation: rows` option. For example, this layout defines two rows, the first of which has a single chart and the second of which has two charts:
 

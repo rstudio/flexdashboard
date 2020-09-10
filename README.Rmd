@@ -22,8 +22,37 @@ The goal of flexdashboard is to make it easy to create interactive dashboards fo
 
 * Optionally use [Shiny](http://shiny.rstudio.com) to drive visualizations dynamically.
 
+Learn more about flexdashboard: <https://flexdashboard.rmarkdown.io>
+
+## Examples
+
+<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/htmlwidgets-d3heatmap.png" width=265 height=212></img></a>&nbsp;&nbsp;<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/plotly.png" width=265 height=212></img></a>&nbsp;&nbsp;<a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/shiny-biclust.png" width=265 height=212></img></a>
 
 
-<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/htmlwidgets-d3heatmap.png" width=276 height=220></img></a>&nbsp;&nbsp;&nbsp;<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/plotly.png" width=276 height=220></img></a>&nbsp;&nbsp;&nbsp;<a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/shiny-biclust.png" width=276 height=220></img></a>
+## Installation
 
-Learn more about flexdashboard: <http://rmarkdown.rstudio.com/flexdashboard/>
+Install the **flexdashboard** package from CRAN as follows:
+
+```{r eval=FALSE}
+install.packages("flexdashboard")
+```
+
+To author a flexdashboard you create an [R Markdown](http://rmarkdown.rstudio.com) document with the `flexdashboard::flex_dashboard` output format. You can do this from within RStudio using the **New R Markdown** dialog:
+
+![](man/figures/NewRMarkdown.png){width=579 height=465}
+
+If you are not using RStudio, you can create a new `flexdashboard` R Markdown file from the R console:
+
+```{r eval=FALSE}
+rmarkdown::draft("dashboard.Rmd", 
+                 template = "flex_dashboard", 
+                 package = "flexdashboard")
+```
+
+## Getting help
+
+There are two main places to get help with flexdashboard:
+
++ The [RStudio community](https://community.rstudio.com/tag/flexdashboard) is a friendly place to ask any questions about flexdashboard.
+
++ [Stack Overflow](https://stackoverflow.com/questions/tagged/flexdashboard) is a great source of answers to common flexdashboard questions. It is also a great place to get help, once you have created a reproducible example that illustrates your problem.
