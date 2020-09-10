@@ -2,11 +2,15 @@
 output: github_document
 ---
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## flexdashboard: Easy interactive dashboards for R
+# flexdashboard <a href='https://flexdashboard.rmarkdown.io'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
+
+The goal of flexdashboard is to make it easy to create interactive dashboards for R, using R Markdown.
 
 * Use [R Markdown](http://rmarkdown.rstudio.com) to publish a group of related data visualizations as a dashboard.
 
