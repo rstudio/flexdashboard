@@ -7,6 +7,7 @@
 :root {
   --pg-header: #096B72; /*green*/
   --a-hover: #405359;   /*dark grey*/
+  --a-alpha: #6C797C;   /*dark grey white added*/
   --nav-bkg: #e6f3fc;   /*pale blue*/
   --accent: #79beee;    /*sky blue*/
 }
@@ -92,7 +93,7 @@ a {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: var(--a-hover);
+  color: #013631;
   background-color: inherit;
 }
 
@@ -103,6 +104,14 @@ a {
 
 .navbar-default .navbar-link:hover {
 	color: #013631;
+}
+
+/* dropdowns in navbar */
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover {
+	color: #555;
+	background-color: var(--nav-bkg);
 }
 
 /* White Space */
@@ -163,12 +172,12 @@ a {
 }
 
 #pkgdown-sidebar a {
-  color: var(--pg-header);
+  color: var(--a-hover);
 }
 
 #pkgdown-sidebar a:hover {
   text-decoration: underline;
-  color: var(--a-hover);
+  color: #013631;
 }
 
 
