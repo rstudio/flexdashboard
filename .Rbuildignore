@@ -11,3 +11,4 @@ README.R?md
 ^docs$
 ^pkgdown$
 ^vignettes
+^\.github$
