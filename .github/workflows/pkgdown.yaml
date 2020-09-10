@@ -35,6 +35,8 @@ jobs:
           install.packages("remotes")
           remotes::install_deps(dependencies = TRUE)
           install.packages("pkgdown")
+          install.packages("yaml")
+          install.packages("plyr")
         shell: Rscript {0}
 
       - name: Install package
