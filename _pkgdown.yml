@@ -1,25 +1,23 @@
 navbar:
   structure:
-    right: [start, articles, reference, news, github]
+    right: [start, examples, articles, reference, news, github]
   components:
     home: ~
     start:
       text: "Get started"
       href: articles/basics.html
+    examples:
+      text: "Examples"
+      href: articles/examples.html
     articles:
       text: Articles
       menu:
-      - text: Learn
       - text: Using flexdashboard
         href: articles/using.html
       - text: Using shiny with flexdashboard
         href: articles/shiny.html
-      - text: -------
-      - text: Examples
       - text: Sample layouts
         href: articles/layouts.html
-      - text: Example projects
-        href: articles/examples.html
     news:
       text: News
       href: news/index.html
