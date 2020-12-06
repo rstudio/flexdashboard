@@ -5,11 +5,24 @@
 \alias{gaugeSectors}
 \title{Create a gauge component for a dashboard.}
 \usage{
-gauge(value, min, max, sectors = gaugeSectors(), symbol = NULL,
-  label = NULL, abbreviate = TRUE, abbreviateDecimals = 1, href = NULL)
+gauge(
+  value,
+  min,
+  max,
+  sectors = gaugeSectors(),
+  symbol = NULL,
+  label = NULL,
+  abbreviate = TRUE,
+  abbreviateDecimals = 1,
+  href = NULL
+)
 
-gaugeSectors(success = NULL, warning = NULL, danger = NULL,
-  colors = c("success", "warning", "danger"))
+gaugeSectors(
+  success = NULL,
+  warning = NULL,
+  danger = NULL,
+  colors = c("success", "warning", "danger")
+)
 }
 \arguments{
 \item{value}{Numeric value to display}
