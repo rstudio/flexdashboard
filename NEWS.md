@@ -1,10 +1,14 @@
-flexdashboard 0.5.2 (unreleased)
+flexdashboard 0.5.2
 ===========
 
 * Support use of Font Awesome icon sets (e.g. "fab fa-r-project")
 
 * Fixed [#245](https://github.com/rstudio/flexdashboard/issues/245): Shiny (1.4.0+) outputs not rendering in modified flexdashboard html. ([#250](https://github.com/rstudio/flexdashboard/pull/250))
 
+flexdashboard 0.5.1.1
+===========
+
+Changed maintainer.
 
 flexdashboard 0.5.1
 ===========
