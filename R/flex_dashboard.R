@@ -7,32 +7,31 @@
 #'
 #'@inheritParams rmarkdown::html_document
 #'
-#'@param fig_retina Scaling to perform for retina displays (defaults to 2).
-#'  Note that for flexdashboard enabling retina scaling provides for both
-#'  crisper graphics on retina screens but also much higher quality
-#'  auto-scaling of R graphics within flexdashboard containers.
+#'@param fig_retina Scaling to perform for retina displays (defaults to 2). Note
+#'  that for flexdashboard enabling retina scaling provides for both crisper
+#'  graphics on retina screens but also much higher quality auto-scaling of R
+#'  graphics within flexdashboard containers.
 #'
 #'@param fig_mobile Create an additional rendering of each R graphics figure
-#'  optimized for rendering on mobile devices oriented in portrait mode.
-#'  If \code{TRUE}, creates a figure which is 3.75 x 4.80 inches wide;
-#'  if \code{FALSE}, create no additional figure for mobile devices;
-#'  if a numeric vector of length 2, creates a mobile figure with the
-#'  specified width and height.
+#'  optimized for rendering on mobile devices oriented in portrait mode. If
+#'  \code{TRUE}, creates a figure which is 3.75 x 4.80 inches wide; if
+#'  \code{FALSE}, create no additional figure for mobile devices; if a numeric
+#'  vector of length 2, creates a mobile figure with the specified width and
+#'  height.
 #'
-#'@param favicon Path to graphic to be used as a favicon for the dashboard.
-#' Pass \code{NULL} to use no favicon.
+#'@param favicon Path to graphic to be used as a favicon for the dashboard. Pass
+#'  \code{NULL} to use no favicon.
 #'
 #'@param logo Path to graphic to be used as a logo for the dashboard. Pass
-#'  \code{NULL} to not include a logo. Note
-#'  that no scaling is performed on the logo image, so it should fit exactly
-#'  within the dimensions of the navigation bar (48 pixels high for the
-#'  default "cosmo" theme, other themes may have slightly different navigation
-#'  bar heights).
+#'  \code{NULL} to not include a logo. Note that no scaling is performed on the
+#'  logo image, so it should fit exactly within the dimensions of the navigation
+#'  bar (48 pixels high for the default "cosmo" theme, other themes may have
+#'  slightly different navigation bar heights).
 #'
 #'@param social Specify a character vector of social sharing services to
 #'  automatically add sharing links for them on the \code{navbar}. Valid values
-#'  are "twitter", "facebook", "linkedin", and "pinterest" (more
-#'  than one service can be specified).
+#'  are "twitter", "facebook", "linkedin", and "pinterest" (more than one
+#'  service can be specified).
 #'
 #'@param source_code URL for source code of dashboard (used primarily for
 #'  publishing flexdashboard examples). Automatically creates a \code{navbar}
@@ -40,8 +39,9 @@
 #'
 #'@param navbar Optional list of elements to be placed on the flexdashboard
 #'  navigation bar. Each element should be a list containing a \code{title}
-#'  and/or \code{icon} field, an \code{href} field. Optional fields \code{target}
-#'  (e.g. "_blank") and \code{align} ("left" or "right") are also supported.
+#'  and/or \code{icon} field, an \code{href} field. Optional fields
+#'  \code{target} (e.g. "_blank") and \code{align} ("left" or "right") are also
+#'  supported.
 #'
 #'@param orientation Determines whether level 2 headings are treated as
 #'  dashboard rows or dashboard columns.
@@ -51,11 +51,11 @@
 #'  natural height, scrolling the page if necessary.
 #'
 #'@param storyboard \code{TRUE} to use a storyboard layout scheme that places
-#'  each dashboard component in a navigable storyboard frame. When a
-#'  storyboard layout is used the \code{orientation} and \code{vertical_layout}
-#'  arguments are ignored. When creating a dashbaord with multiple pages you
-#'  should apply the `{.storyboard}` attribute to individual pages rather
-#'  than using the global \code{storyboard} option.
+#'  each dashboard component in a navigable storyboard frame. When a storyboard
+#'  layout is used the \code{orientation} and \code{vertical_layout} arguments
+#'  are ignored. When creating a dashbaord with multiple pages you should apply
+#'  the `{.storyboard}` attribute to individual pages rather than using the
+#'  global \code{storyboard} option.
 #'
 #'@param theme Visual theme ("default", "bootstrap", "cerulean", "journal",
 #'  "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
@@ -69,9 +69,9 @@
 #'@param devel Enable development mode (used for development of the format
 #'  itself, not useful for users of the format).
 #'
-#'@param resize_reload Disable the auto-reloading behavior when the window is resized.
-#' Useful when debugging large flexdashboard applications and this functionality
-#' is not needed.
+#'@param resize_reload Disable the auto-reloading behavior when the window is
+#'  resized. Useful when debugging large flexdashboard applications and this
+#'  functionality is not needed.
 #'
 #'@param ... Unused
 #'
