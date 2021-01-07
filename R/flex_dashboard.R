@@ -31,7 +31,7 @@
 #'
 #'@param social Specify a character vector of social sharing services to
 #'  automatically add sharing links for them on the \code{navbar}. Valid values
-#'  are "twitter", "facebook", "google-plus", "linkedin", and "pinterest" (more
+#'  are "twitter", "facebook", "linkedin", and "pinterest" (more
 #'  than one service can be specified).
 #'
 #'@param source_code URL for source code of dashboard (used primarily for
@@ -534,7 +534,6 @@ navbar_links <- function(social, source_code) {
       menu$items <- list(
         list(title = "Twitter", icon = "fa-twitter"),
         list(title = "Facebook", icon = "fa-facebook"),
-        list(title = "Google+", icon = "fa-google-plus"),
         list(title = "LinkedIn", icon = "fa-linkedin"),
         list(title = "Pinterest", icon = "fa-pinterest")
       )
