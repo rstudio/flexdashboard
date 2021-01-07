@@ -596,6 +596,7 @@ body hr {
   bottom: 0;
   border-right: 1px solid #e2e2e2;
   background-color: white; /* overridden by theme */
+  padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
   visibility: hidden;
