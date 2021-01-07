@@ -1,3 +1,9 @@
+flexdashboard 0.5.2.9000
+===========
+
+* Added padding to the top of the sidebar. (#294)
+
+
 flexdashboard 0.5.2
 ===========
 
