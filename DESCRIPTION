@@ -38,7 +38,7 @@ Imports:
   htmltools, 
   knitr (>= 1.13), 
   htmlwidgets (>= 0.6), 
-  rmarkdown (>= 1.10.3), 
+  rmarkdown (>= 2.2), 
   shiny (>= 0.13), 
   scales, 
   bslib
