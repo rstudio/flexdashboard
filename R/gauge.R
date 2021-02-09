@@ -73,7 +73,7 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
         htmltools::parseCssColors(vars[c("bg", "fg")])
       )
       defaults <- list(
-        gaugeColor = gray_pal(0.2),
+        gaugeColor = gray_pal(0.1),
         valueFontColor = gray_pal(0.9),
         labelFontColor = gray_pal(0.7),
         valueFontFamily = vars[["font-family-base"]],
