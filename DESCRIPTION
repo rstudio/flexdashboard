@@ -32,7 +32,7 @@ URL: http://rmarkdown.rstudio.com/flexdashboard
 BugReports: https://github.com/rstudio/flexdashboard/issues
 Encoding: UTF-8
 Depends: R (>= 3.0.2)
-Imports: tools, jsonlite, htmltools, knitr (>= 1.13), htmlwidgets (>= 0.6), rmarkdown (>= 1.10.3), shiny (>= 0.13)
+Imports: tools, jsonlite, htmltools, knitr (>= 1.13), htmlwidgets (>= 0.6), rmarkdown (>= 1.10.3), shiny (>= 0.13), scales
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE

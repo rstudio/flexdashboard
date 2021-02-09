@@ -24,8 +24,9 @@ HTMLWidgets.widget({
             return defaultColor;
           }
         }
-        for (var i=0; i<x.customSectors.length; i++) {
-          var sector = x.customSectors[i];
+        var sectors = x.customSectors.ranges;
+        for (var i=0; i<sectors.length; i++) {
+          var sector = sectors[i];
           if (sector.color === "primary")
             sector.color = themeColor("primary",  "#a9d70b");
           else if (sector.color === "info")
@@ -41,12 +42,9 @@ HTMLWidgets.widget({
         // justgage config
         var config = {
           id: el.id,
-          title: " ",
-          valueFontColor: "gray",
           value: x.value,
           min: x.min,
           max: x.max,
-          titlePosition: "below",
           relativeGaugeSize: true,
           formatNumber: true,
           humanFriendly: x.humanFriendly,
@@ -54,13 +52,15 @@ HTMLWidgets.widget({
           customSectors: x.customSectors
         };
 
-        // add symbol if specified
-        if (x.symbol !== null)
-          config.symbol = x.symbol;
-
-        // add label if specifed
-        if (x.label !== null)
-          config.label = x.label;
+        // Add these props to the config if specified
+        var optional_props = [
+          "symbol", "label", "gaugeColor", "valueFontColor",
+          "valueFontFamily", "labelFontColor", "labelFontFamily"
+        ]
+        for (var i = 0; i < optional_props.length; i++) {
+          var prop = optional_props[i];
+          if (x[prop]) config[prop] = x[prop];
+        }
 
         // add linked value class if appropriate
         if (x.href !== null && window.FlexDashboard) {
@@ -70,11 +70,17 @@ HTMLWidgets.widget({
           });
         }
 
+debugger;
         // create the justgage if we need to
-        if (justgage === null)
+        if (justgage === null) {
           justgage = new JustGage(config);
-        else
-          justgage.refresh(x.value, x.max, config);
+        } else {
+          justgage.refresh(x.value, x.max, x.min, x.label);
+          gauge.update({
+            valueFontColor: x.valueFontColor,
+            labelFontColor: x.labelFontColor
+          });
+        }
 
         // fixup svg path filters so they don't use relative hrefs
         // e.g. url(#inner-shadow-htmlwidget-068c4cc821772b0a2ef5)

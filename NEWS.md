@@ -1,8 +1,9 @@
 flexdashboard 0.5.2.9000
 ===========
 
+* Closed #300: When a `{bslib}` theme is relevant, `gauge()` now derives it's default styles from it.
+* Closed #297, #254: `gauge()` now bundles justgage.js version 1.4.0, allowing labels to be updated via `renderGauge()`.
 * Added padding to the top of the sidebar. (#294)
-
 
 flexdashboard 0.5.2
 ===========
