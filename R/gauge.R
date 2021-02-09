@@ -61,7 +61,27 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
     name = 'gauge',
     x,
     package = 'flexdashboard',
-    dependencies = rmarkdown::html_dependency_jquery()
+    dependencies = rmarkdown::html_dependency_jquery(),
+    preRenderHook = function(widget) {
+      theme <- bslib::bs_current_theme()
+      if (is.null(theme)) {
+        return(widget)
+      }
+
+      vars <- bslib::bs_get_variables(theme, c("bg", "fg", "font-family-base"))
+      gray_pal <- scales::colour_ramp(
+        htmltools::parseCssColors(vars[c("bg", "fg")])
+      )
+      defaults <- list(
+        gaugeColor = gray_pal(0.1),
+        valueFontColor = gray_pal(0.9),
+        labelFontColor = gray_pal(0.65),
+        valueFontFamily = vars[["font-family-base"]],
+        labelFontFamily = vars[["font-family-base"]]
+      )
+      widget$x <- utils::modifyList(widget$x, defaults)
+      widget
+    }
   )
 }
 
@@ -107,7 +127,7 @@ resolveSectors <- function(sectors, min, max) {
 
   # create default sectors if necessary
   if (is.null(sectors)) {
-    sectors = sectors(
+    sectors <- sectors(
       success = c(min, max),
       warning = NULL,
       danger = NULL,
@@ -142,6 +162,6 @@ resolveSectors <- function(sectors, min, max) {
   addSector(sectors$danger, sectors$colors[[3]])
 
   # return
-  customSectors
+  list(percents = FALSE, ranges = customSectors)
 }
 

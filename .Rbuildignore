@@ -7,3 +7,4 @@ README.R?md
 ^inst/examples/.+\.Rnb\.cached
 ^examples/*
 
+^\.github$

@@ -1,8 +1,17 @@
 flexdashboard 0.5.2.9000
 ===========
 
-* Added padding to the top of the sidebar. (#294)
+### Possibly breaking changes
 
+* The `smart` argument was removed from `flexdashboard::flex_dashboard` since it was removed in rmarkdown 2.2 (relatedly, we now require rmarkdown 2.2 or higher). (#301)
+
+### Improvements & fixes
+
+* Closed #300: When a `{bslib}` theme is relevant, `gauge()` now derives it's default styles from it. (#301)
+
+* Closed #297, #254: `gauge()` now bundles justgage.js version 1.4.0, allowing labels to be updated via `renderGauge()`. (#301)
+
+* Added padding to the top of the sidebar. (#294)
 
 flexdashboard 0.5.2
 ===========
