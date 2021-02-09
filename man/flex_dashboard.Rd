@@ -10,7 +10,6 @@ flex_dashboard(
   fig_retina = 2,
   fig_mobile = TRUE,
   dev = "png",
-  smart = TRUE,
   self_contained = TRUE,
   favicon = NULL,
   logo = NULL,
