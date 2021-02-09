@@ -70,7 +70,6 @@ HTMLWidgets.widget({
           });
         }
 
-debugger;
         // create the justgage if we need to
         if (justgage === null) {
           justgage = new JustGage(config);
