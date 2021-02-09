@@ -1,6 +1,27 @@
 flexdashboard 0.5.2.9000
 ===========
 
+This release is focuses primarily on integration with the new [`{bslib}` package](https://rstudio.github.io/bslib/index.html). As a result, customizing main colors and fonts of `{flexdashboard}` is now much easier, by providing a custom `bslib::bs_theme()` specification to `flex_dashboard`'s `theme` parameter. 
+
+The yaml below demonstrates how to implement a custom dark mode with custom fonts. By default, providing a custom `{bslib}` `theme` in this way upgrades your app from Bootstrap 3 to 4, but if you run into any issues, you can add `version: 3` to the `theme` to use Bootstrap 3 instead of 4.
+
+````yaml
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme:
+      bg: "#101010"
+      fg: "#FDF7F7"
+      primary: "#ED79F9"
+      base_font: !expr bslib::font_google("Prompt")
+      code_font: !expr bslib::font_google("JetBrains Mono")
+---
+````
+
+TODO: image?
+
+Moreover, you can also now theme dashboards in real-time by adding a `runtime: shiny` to the yaml matter, then calling `bslib::bs_themer()` inside a code chunk.
+
 ### Possibly breaking changes
 
 * The `smart` argument was removed from `flexdashboard::flex_dashboard` since it was removed in rmarkdown 2.2 (relatedly, we now require rmarkdown 2.2 or higher). (#301)
