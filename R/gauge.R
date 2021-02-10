@@ -127,6 +127,7 @@ gaugeSectors <- function(success = NULL, warning = NULL, danger = NULL,
     ),
     class = "gaugeSectors"
   )
+<<<<<<< HEAD
 }
 
 resolveAccentColors <- function(colors, theme) {
@@ -152,6 +153,21 @@ getSassAccentColors <- function(theme, accents = accent_colors()) {
   )
 }
 
+=======
+}
+
+resolveSectorColors <- function(sectors, accentMap) {
+  sectors$ranges <- lapply(sectors$ranges, function(x) {
+    if (is_accent_color(x$color)) {
+      x$color <- accentMap[[x$color]]
+    }
+    x$color <- htmltools::parseCssColors(x$color)
+    x
+  })
+  sectors
+}
+
+>>>>>>> 30b38db (Allow gaugeSectors() to updated on redraw (and also add bslib integration))
 
 #' Shiny bindings for gauge
 #'
