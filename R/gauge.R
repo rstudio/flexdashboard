@@ -44,11 +44,31 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
                   abbreviate = TRUE, abbreviateDecimals = 1,
                   href = NULL) {
 
+  if (!inherits(sectors, "gaugeSectors")) {
+    stop("sectors must be a gaugeSectors() object")
+  }
+
+  # make sure at least one sector range is populated
+  if (is.null(sectors$warning) && is.null(sectors$danger)) {
+    sectors$success <- sectors$success %||% c(min, max)
+  }
+
+  # create the customSectors.ranges justgage payload
+  ranges <- Map(
+    sectors[c("success", "warning", "danger")], sectors$colors,
+    f = function(sector, color) {
+      if (is.null(sector)) return(NULL)
+      if (!is.numeric(sector) || length(sector) != 2)
+        stop("gaugeSector() ranges must be a numeric vector of length 2", call. = FALSE)
+      list(lo = sector[[1]], hi = sector[[2]], color = color)
+    }, USE.NAMES = FALSE
+  )
+
   x <- list(
     value = value,
     min = min,
     max = max,
-    customSectors = I(resolveSectors(sectors, min, max)),
+    customSectors = list(percents = FALSE, ranges = dropNulls(ranges)),
     symbol = symbol,
     label = label,
     humanFriendly = abbreviate,
@@ -58,8 +78,7 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'gauge',
-    x,
+    name = 'gauge', x,
     package = 'flexdashboard',
     dependencies = rmarkdown::html_dependency_jquery(),
     preRenderHook = function(widget) {
@@ -67,7 +86,12 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
       if (is.null(theme)) {
         return(widget)
       }
-
+      # Resolve any accent colors in the sectors
+      widget$x$customSectors <- resolveSectorColors(
+        widget$x$customSectors,
+        bslib::bs_get_variables(theme, accent_colors())
+      )
+      # Supply smarter defaults for grayscale colors and fonts
       vars <- bslib::bs_get_variables(theme, c("bg", "fg", "font-family-base"))
       gray_pal <- scales::colour_ramp(
         htmltools::parseCssColors(vars[c("bg", "fg")])
@@ -89,11 +113,26 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
 #' @rdname gauge
 gaugeSectors <- function(success = NULL, warning = NULL, danger = NULL,
                          colors = c("success", "warning", "danger")) {
-  list(success = success,
-       warning = warning,
-       danger = danger,
-       colors = colors)
+  structure(
+    list(
+      success = success, warning = warning, danger = danger,
+      colors = rep_len(colors %||% c("success", "warning", "danger"), 3)
+    ),
+    class = "gaugeSectors"
+  )
 }
+
+resolveSectorColors <- function(sectors, accentMap) {
+  sectors$ranges <- lapply(sectors$ranges, function(x) {
+    if (is_accent_color(x$color)) {
+      x$color <- accentMap[[x$color]]
+    }
+    x$color <- htmltools::parseCssColors(x$color)
+    x
+  })
+  sectors
+}
+
 
 #' Shiny bindings for gauge
 #'
@@ -112,7 +151,7 @@ gaugeSectors <- function(success = NULL, warning = NULL, danger = NULL,
 #' @name gauge-shiny
 #'
 #' @export
-gaugeOutput <- function(outputId, width = '100%', height = '200px'){
+gaugeOutput <- function(outputId, width = '100%', height = '200px') {
   htmlwidgets::shinyWidgetOutput(outputId, 'gauge', width, height, package = 'flexdashboard')
 }
 
@@ -122,46 +161,3 @@ renderGauge <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, gaugeOutput, env, quoted = TRUE)
 }
-
-resolveSectors <- function(sectors, min, max) {
-
-  # create default sectors if necessary
-  if (is.null(sectors)) {
-    sectors <- sectors(
-      success = c(min, max),
-      warning = NULL,
-      danger = NULL,
-      colors = c("success", "warning", "danger")
-    )
-  }
-  # provide default success range if only colors were specified
-  if (is.null(sectors$success) &&
-      is.null(sectors$warning) &&
-      is.null(sectors$danger)) {
-    sectors$success <- c(min, max)
-  }
-  # provide default colors if none were specified
-  if (is.null(sectors$colors))
-    sectors$colors <- c("success", "warning", "danger")
-
-  # create custom sectors to pass to justgage
-  customSectors <- list()
-  addSector <- function(sector, color) {
-    if (!is.null(sector)) {
-      # validate
-      if (!is.numeric(sector) || length(sector) != 2)
-        stop("sectors must be numeric vectors of length 2", call. = FALSE)
-      # add sector
-      customSectors[[length(customSectors) + 1]] <<-
-        list(lo = sector[[1]], hi = sector[[2]], color = color)
-    }
-  }
-  sectors$colors <- rep_len(sectors$colors, 3)
-  addSector(sectors$success, sectors$colors[[1]])
-  addSector(sectors$warning, sectors$colors[[2]])
-  addSector(sectors$danger, sectors$colors[[3]])
-
-  # return
-  list(percents = FALSE, ranges = customSectors)
-}
-

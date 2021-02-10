@@ -25,3 +25,20 @@ knit_devel <- function(input, ...) {
                     output_options = list(devel = TRUE),
                     quiet = TRUE)
 }
+
+is_accent_color <- function(x) {
+  stopifnot(length(x) == 1)
+  x %in% accent_colors()
+}
+
+accent_colors <- function() {
+  c("primary", "info", "success", "warning", "danger")
+}
+
+"%||%" <- function(x, y) {
+  if (is.null(x)) y else x
+}
+
+dropNulls <- function(x) {
+  x[!vapply(x, is.null, FUN.VALUE = logical(1))]
+}

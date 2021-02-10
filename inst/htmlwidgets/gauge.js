@@ -7,6 +7,7 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
 
     var justgage = null;
+    var previousValue = null;
 
     return {
 
@@ -74,12 +75,18 @@ HTMLWidgets.widget({
         if (justgage === null) {
           justgage = new JustGage(config);
         } else {
-          justgage.refresh(x.value, x.max, x.min, x.label);
-          gauge.update({
-            valueFontColor: x.valueFontColor,
-            labelFontColor: x.labelFontColor
-          });
+          // justgage currently doesn't support an .update() or .refresh()
+          // of customSectors, so we first to a full redraw with the previous
+          // value with no initial animation, then refresh with the new value
+          config.value = previousValue;
+          config.startAnimationTime = 0;
+          justgage.destroy();
+          justgage = new JustGage(config);
+          setTimeout(function() {
+            justgage.refresh(x.value);
+          }, 20);
         }
+        previousValue = x.value;
 
         // fixup svg path filters so they don't use relative hrefs
         // e.g. url(#inner-shadow-htmlwidget-068c4cc821772b0a2ef5)

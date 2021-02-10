@@ -35,7 +35,7 @@ Depends: R (>= 3.0.2)
 Imports: 
   tools, 
   jsonlite, 
-  htmltools, 
+  htmltools (>= 0.5.1), 
   knitr (>= 1.13), 
   htmlwidgets (>= 0.6), 
   rmarkdown (>= 2.2), 
