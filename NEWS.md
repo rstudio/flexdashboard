@@ -11,6 +11,8 @@ flexdashboard 0.5.2.9000
 
 * Closed #297, #254: `gauge()` now bundles justgage.js version 1.4.0, allowing labels to be updated via `renderGauge()`. (#301)
 
+* Closed #227: Fixed a bug with `source_code: embed` producing errors because code wasn't being escaped before being included in HTML. (#228, thanks @cderv) 
+
 * Added padding to the top of the sidebar. (#294)
 
 flexdashboard 0.5.2
