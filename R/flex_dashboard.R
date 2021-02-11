@@ -475,6 +475,9 @@ source_code_embed_args <- function(source_file) {
   # embed it
   if (length(code) > 0) {
 
+    # escape in case there is html in code
+    code <- htmlEscape(code)
+
     # ensure we don't start with an emtpy line
     code[[1]] <- paste0(
       '<pre class="line-numbers"><code class="language-r">',
