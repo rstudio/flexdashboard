@@ -127,12 +127,6 @@ flex_dashboard <- function(fig_width = 6.0,
       try(action())
   }
 
-  # function for resolving resources
-  resource <- function(name) {
-    system.file("rmarkdown/templates/flex_dashboard/resources", name,
-                package = "flexdashboard")
-  }
-
   # force self_contained to FALSE in devel mode
   if (devel)
     self_contained <- FALSE
@@ -355,7 +349,7 @@ flex_dashboard <- function(fig_width = 6.0,
        '<script type="text/javascript">',
        '$(document).ready(function () {',
        '  FlexDashboard.init({',
-       paste0('    theme: "', theme, '",'),
+      paste0('    theme: "', if (is.character(theme)) theme else 'cosmo', '",'),
        paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
        paste0('    orientation: "', orientation, '",'),
        paste0('    storyboard: ', ifelse(storyboard,'true','false'), ','),
@@ -413,6 +407,10 @@ flex_dashboard <- function(fig_width = 6.0,
   # depend on font libraries for navbar
   extra_dependencies <- append(extra_dependencies,
                                navbar_dependencies(navbar))
+
+  if (is.character(theme)) {
+    extra_dependencies <- append(extra_dependencies, list(valueBoxStaticAccentCSS(theme)))
+  }
 
   # depend on featherlight and prism for embedded source code
   if (source_code_embed(source_code)) {
@@ -618,3 +616,8 @@ storyboard_dependencies <- function(source = NULL) {
 }
 
 
+# function for resolving resources
+resource <- function(name) {
+  system.file("rmarkdown/templates/flex_dashboard/resources", name,
+              package = "flexdashboard")
+}
