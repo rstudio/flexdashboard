@@ -18,6 +18,7 @@
 #' @import htmltools
 #' @importFrom jsonlite toJSON
 #' @importFrom tools file_path_sans_ext
+#' @importFrom utils packageVersion
 #'
 #' @docType package
 #' @name flexdashboard
