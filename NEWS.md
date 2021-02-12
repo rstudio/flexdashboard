@@ -7,9 +7,11 @@ flexdashboard 0.5.2.9000
 
 ### Improvements & fixes
 
-* Closed #300: When a `{bslib}` theme is relevant, `gauge()` now derives it's default styles from it. (#301)
+* Closed #306: A `.tabset-pills` class may now be added to `.tabset` to render pills instead of tabs. (#307)
 
-* Closed #297, #254: `gauge()` now bundles justgage.js version 1.4.0, allowing labels to be updated via `renderGauge()`. (#301)
+* Closed #297, #254: `gauge()` now uses justgage.js 1.4.0, allowing  `renderGauge()` to properly update various labels and `sectors` on redraw. (#301)
+
+* Closed #300: When a custom `{bslib}` theme is provided to `flex_dashboard`, `gauge()` and `viewBox()` now generate default styles to match it. (#301, #305)
 
 * Closed #227: Fixed a bug with `source_code: embed` producing errors because code wasn't being escaped before being included in HTML. (#228, thanks @cderv) 
 
