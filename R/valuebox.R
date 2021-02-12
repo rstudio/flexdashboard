@@ -29,10 +29,7 @@ valueBox <- function(value, caption = NULL, icon = NULL, color = NULL, href = NU
 
   if (is_accent_color(color)) {
     attachDependencies(
-      valueBoxTag(
-        value, caption, icon, color, href,
-        `data-color-accent` = color
-      ),
+      valueBoxTag(value, caption, icon, href, `data-color-accent` = color),
       # Accent colors can be customized in "real-time"
       # https://rstudio.github.io/bslib/articles/theming.html#dynamically-themeable-component
       bslib::bs_dependency_defer(valueBoxDynamicAccentCSS),
@@ -54,12 +51,11 @@ valueBox <- function(value, caption = NULL, icon = NULL, color = NULL, href = NU
   }
 }
 
-valueBoxTag <- function(value, caption, icon, color, href, ...) {
+valueBoxTag <- function(value, caption, icon, href, ...) {
   tag <- tags$span(
     class = "value-output",
     `data-caption` = caption,
     `data-icon` = icon,
-    `data-color` = color,
     `data-href` = href,
     ...,
     value
