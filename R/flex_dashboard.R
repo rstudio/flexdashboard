@@ -156,10 +156,11 @@ flex_dashboard <- function(fig_width = 6.0,
   fill_page <- identical(vertical_layout, "fill")
 
   # resolve theme
-  if (identical(theme, "default"))
-    theme <- "cosmo"
-  else if (identical(theme, "bootstrap"))
-    theme <- "default"
+  theme <- resolve_theme(theme)
+  options(flexdashboard.theme = theme) # so gauge() can resolve accent colors at render-time
+  exit_actions <- c(exit_actions, function() {
+    options(flexdashboard.theme = NULL)
+  })
 
   # resolve auto_reload
   if (resize_reload == 'no' | grepl("fa?l?s?e?", resize_reload, ignore.case = T))
