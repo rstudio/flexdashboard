@@ -975,7 +975,8 @@ var FlexDashboard = (function () {
 
     // check for fade option
     var fade = tabset.hasClass("tabset-fade");
-    var navClass = "nav-tabs";
+    var pills = tabset.hasClass("tabset-pills");
+    var navClass = pills ? "nav-pills" : "nav-tabs";
 
     // determine the heading level of the tabset and tabs
     var match = tabset.attr('class').match(/level(\d) /);
