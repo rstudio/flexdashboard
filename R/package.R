@@ -16,6 +16,8 @@
 #'
 #' @import rmarkdown
 #' @import htmltools
+#' @import sass
+#' @import bslib
 #' @importFrom jsonlite toJSON
 #' @importFrom tools file_path_sans_ext
 #' @importFrom utils packageVersion
