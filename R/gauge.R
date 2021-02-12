@@ -139,7 +139,7 @@ resolveAccentColors <- function(colors, theme) {
     accentMap <- getSassAccentColors(theme, unique(colors[idx]))
     colors[idx] <- accentMap[colors[idx]]
   }
-  colors
+  as.character(colors)
 }
 
 getSassAccentColors <- function(theme, accents = accent_colors()) {
