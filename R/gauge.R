@@ -53,22 +53,11 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
     sectors$success <- sectors$success %||% c(min, max)
   }
 
-  # create the customSectors.ranges justgage payload
-  ranges <- Map(
-    sectors[c("success", "warning", "danger")], sectors$colors,
-    f = function(sector, color) {
-      if (is.null(sector)) return(NULL)
-      if (!is.numeric(sector) || length(sector) != 2)
-        stop("gaugeSector() ranges must be a numeric vector of length 2", call. = FALSE)
-      list(lo = sector[[1]], hi = sector[[2]], color = color)
-    }, USE.NAMES = FALSE
-  )
-
   x <- list(
     value = value,
     min = min,
     max = max,
-    customSectors = list(percents = FALSE, ranges = dropNulls(ranges)),
+    customSectors = sectors,
     symbol = symbol,
     label = label,
     humanFriendly = abbreviate,
@@ -82,15 +71,33 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
     package = 'flexdashboard',
     dependencies = rmarkdown::html_dependency_jquery(),
     preRenderHook = function(widget) {
-      theme <- bslib::bs_current_theme()
-      if (is.null(theme)) {
+      # bs_current_theme() will tell us if bslib is relevant, but we also need to
+      # resolve accent colors in the non-bslib case
+      theme <-  bslib::bs_current_theme() %||% getOption("flexdashboard.theme", "cosmo")
+
+      # create the customSectors justgage payload
+      sectors <- widget$x$customSectors
+      colors <- resolveAccentColors(sectors$colors, theme)
+      ranges <- Map(
+        sectors[c("success", "warning", "danger")], colors,
+        f = function(sector, color) {
+          if (is.null(sector)) return(NULL)
+          if (!is.numeric(sector) || length(sector) != 2)
+            stop("gaugeSector() ranges must be a numeric vector of length 2", call. = FALSE)
+          list(lo = min(sector), hi = max(sector), color = color)
+        }, USE.NAMES = FALSE
+      )
+
+      widget$x$customSectors <- list(
+        percents = FALSE,
+        ranges = dropNulls(ranges)
+      )
+
+      # Do no more if bslib isn't relevant
+      if (!bslib::is_bs_theme(theme)) {
         return(widget)
       }
-      # Resolve any accent colors in the sectors
-      widget$x$customSectors <- resolveSectorColors(
-        widget$x$customSectors,
-        bslib::bs_get_variables(theme, accent_colors())
-      )
+
       # Supply smarter defaults for grayscale colors and fonts
       vars <- bslib::bs_get_variables(theme, c("bg", "fg", "font-family-base"))
       gray_pal <- scales::colour_ramp(
@@ -122,15 +129,27 @@ gaugeSectors <- function(success = NULL, warning = NULL, danger = NULL,
   )
 }
 
-resolveSectorColors <- function(sectors, accentMap) {
-  sectors$ranges <- lapply(sectors$ranges, function(x) {
-    if (is_accent_color(x$color)) {
-      x$color <- accentMap[[x$color]]
-    }
-    x$color <- htmltools::parseCssColors(x$color)
-    x
-  })
-  sectors
+resolveAccentColors <- function(colors, theme) {
+  if (!length(colors)) return(colors)
+
+  idx <- vapply(colors, is_accent_color, logical(1))
+  if (is.character(theme)) {
+    colors[idx] <- themeColors[[theme]][colors[idx]]
+  } else if (bslib::is_bs_theme(theme)) {
+    accentMap <- getSassAccentColors(theme, unique(colors[idx]))
+    colors[idx] <- accentMap[colors[idx]]
+  }
+  colors
+}
+
+getSassAccentColors <- function(theme, accents = accent_colors()) {
+  if ("3" %in% bslib::theme_version(theme)) {
+    accents <- paste0("brand-", accents)
+  }
+  setNames(
+    bslib::bs_get_variables(theme, accents),
+    sub("^brand-", "", accents)
+  )
 }
 
 

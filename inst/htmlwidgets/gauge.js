@@ -13,33 +13,6 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
-        // resolve theme colors for sectors
-        function themeColor(colorName, defaultColor) {
-          // just in case someone tries to use this outside of flexdashboard
-          if (window.FlexDashboard) {
-            var color = window.FlexDashboard.themeColor(colorName);
-            if (!color)
-              color = defaultColor;
-            return color;
-          } else {
-            return defaultColor;
-          }
-        }
-        var sectors = x.customSectors.ranges;
-        for (var i=0; i<sectors.length; i++) {
-          var sector = sectors[i];
-          if (sector.color === "primary")
-            sector.color = themeColor("primary",  "#a9d70b");
-          else if (sector.color === "info")
-            sector.color = themeColor("info",  "#a9d70b");
-          else if (sector.color === "success")
-            sector.color = themeColor("success",  "#a9d70b");
-          else if (sector.color === "warning")
-            sector.color = themeColor("warning",  "#f9c802");
-          else if (sector.color === "danger")
-            sector.color = themeColor("danger", "#ff0000");
-        }
-
         // justgage config
         var config = {
           id: el.id,
