@@ -44,11 +44,20 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
                   abbreviate = TRUE, abbreviateDecimals = 1,
                   href = NULL) {
 
+  if (!inherits(sectors, "gaugeSectors")) {
+    stop("sectors must be a gaugeSectors() object")
+  }
+
+  # make sure at least one sector range is populated
+  if (is.null(sectors$warning) && is.null(sectors$danger)) {
+    sectors$success <- sectors$success %||% c(min, max)
+  }
+
   x <- list(
     value = value,
     min = min,
     max = max,
-    customSectors = I(resolveSectors(sectors, min, max)),
+    customSectors = sectors,
     symbol = symbol,
     label = label,
     humanFriendly = abbreviate,
@@ -58,16 +67,38 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'gauge',
-    x,
+    name = 'gauge', x,
     package = 'flexdashboard',
     dependencies = rmarkdown::html_dependency_jquery(),
     preRenderHook = function(widget) {
-      theme <- bslib::bs_current_theme()
-      if (is.null(theme)) {
+      # bs_current_theme() will tell us if bslib is relevant, but we also need to
+      # resolve accent colors in the non-bslib case
+      theme <-  bslib::bs_current_theme() %||% getOption("flexdashboard.theme", "cosmo")
+
+      # create the customSectors justgage payload
+      sectors <- widget$x$customSectors
+      colors <- resolveAccentColors(sectors$colors, theme)
+      ranges <- Map(
+        sectors[c("success", "warning", "danger")], colors,
+        f = function(sector, color) {
+          if (is.null(sector)) return(NULL)
+          if (!is.numeric(sector) || length(sector) != 2)
+            stop("gaugeSector() ranges must be a numeric vector of length 2", call. = FALSE)
+          list(lo = min(sector), hi = max(sector), color = color)
+        }, USE.NAMES = FALSE
+      )
+
+      widget$x$customSectors <- list(
+        percents = FALSE,
+        ranges = dropNulls(ranges)
+      )
+
+      # Do no more if bslib isn't relevant
+      if (!bslib::is_bs_theme(theme)) {
         return(widget)
       }
 
+      # Supply smarter defaults for grayscale colors and fonts
       vars <- bslib::bs_get_variables(theme, c("bg", "fg", "font-family-base"))
       gray_pal <- scales::colour_ramp(
         htmltools::parseCssColors(vars[c("bg", "fg")])
@@ -89,11 +120,38 @@ gauge <- function(value, min, max, sectors = gaugeSectors(),
 #' @rdname gauge
 gaugeSectors <- function(success = NULL, warning = NULL, danger = NULL,
                          colors = c("success", "warning", "danger")) {
-  list(success = success,
-       warning = warning,
-       danger = danger,
-       colors = colors)
+  structure(
+    list(
+      success = success, warning = warning, danger = danger,
+      colors = rep_len(colors %||% c("success", "warning", "danger"), 3)
+    ),
+    class = "gaugeSectors"
+  )
 }
+
+resolveAccentColors <- function(colors, theme) {
+  if (!length(colors)) return(colors)
+
+  idx <- vapply(colors, is_accent_color, logical(1))
+  if (is.character(theme)) {
+    colors[idx] <- themeColors[[theme]][colors[idx]]
+  } else if (bslib::is_bs_theme(theme)) {
+    accentMap <- getSassAccentColors(theme, unique(colors[idx]))
+    colors[idx] <- accentMap[colors[idx]]
+  }
+  as.character(colors)
+}
+
+getSassAccentColors <- function(theme, accents = accent_colors()) {
+  if ("3" %in% bslib::theme_version(theme)) {
+    accents <- paste0("brand-", accents)
+  }
+  setNames(
+    bslib::bs_get_variables(theme, accents),
+    sub("^brand-", "", accents)
+  )
+}
+
 
 #' Shiny bindings for gauge
 #'
@@ -112,7 +170,7 @@ gaugeSectors <- function(success = NULL, warning = NULL, danger = NULL,
 #' @name gauge-shiny
 #'
 #' @export
-gaugeOutput <- function(outputId, width = '100%', height = '200px'){
+gaugeOutput <- function(outputId, width = '100%', height = '200px') {
   htmlwidgets::shinyWidgetOutput(outputId, 'gauge', width, height, package = 'flexdashboard')
 }
 
@@ -122,46 +180,3 @@ renderGauge <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, gaugeOutput, env, quoted = TRUE)
 }
-
-resolveSectors <- function(sectors, min, max) {
-
-  # create default sectors if necessary
-  if (is.null(sectors)) {
-    sectors <- sectors(
-      success = c(min, max),
-      warning = NULL,
-      danger = NULL,
-      colors = c("success", "warning", "danger")
-    )
-  }
-  # provide default success range if only colors were specified
-  if (is.null(sectors$success) &&
-      is.null(sectors$warning) &&
-      is.null(sectors$danger)) {
-    sectors$success <- c(min, max)
-  }
-  # provide default colors if none were specified
-  if (is.null(sectors$colors))
-    sectors$colors <- c("success", "warning", "danger")
-
-  # create custom sectors to pass to justgage
-  customSectors <- list()
-  addSector <- function(sector, color) {
-    if (!is.null(sector)) {
-      # validate
-      if (!is.numeric(sector) || length(sector) != 2)
-        stop("sectors must be numeric vectors of length 2", call. = FALSE)
-      # add sector
-      customSectors[[length(customSectors) + 1]] <<-
-        list(lo = sector[[1]], hi = sector[[2]], color = color)
-    }
-  }
-  sectors$colors <- rep_len(sectors$colors, 3)
-  addSector(sectors$success, sectors$colors[[1]])
-  addSector(sectors$warning, sectors$colors[[2]])
-  addSector(sectors$danger, sectors$colors[[3]])
-
-  # return
-  list(percents = FALSE, ranges = customSectors)
-}
-

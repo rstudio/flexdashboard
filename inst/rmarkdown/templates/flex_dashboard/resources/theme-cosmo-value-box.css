@@ -1,0 +1,19 @@
+.value-box-primary, .bg-primary {
+  background-color: rgba(39, 128, 227, 0.7);
+}
+
+.value-box-info, .bg-info {
+  background-color: rgba(153, 84, 187, 0.7);
+}
+
+.value-box-success, .bg-success {
+  background-color: rgba(63, 182, 24, 0.7);
+}
+
+.value-box-warning, .bg-warning {
+  background-color: rgba(255, 117, 24, 0.7);
+}
+
+.value-box-danger, .bg-danger {
+  background-color: rgba(255, 0, 57, 0.7);
+}

@@ -1,0 +1,7 @@
+$theme-colors: null !default;
+@each $color, $value in $theme-colors {
+  .value-box-#{$color}, .bg-#{$color} {
+    background-color: $value;
+  }
+}
+

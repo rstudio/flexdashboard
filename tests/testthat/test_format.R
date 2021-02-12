@@ -1,7 +1,5 @@
 
-context("Format")
-
-test_that("flex_dashbaord format", {
+test_that("flex_dashboard format", {
 
   # don't run on cran because pandoc is required
   skip_on_cran()
