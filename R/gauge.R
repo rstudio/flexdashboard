@@ -146,10 +146,9 @@ getSassAccentColors <- function(theme, accents = accent_colors()) {
   if ("3" %in% bslib::theme_version(theme)) {
     accents <- paste0("brand-", accents)
   }
-  setNames(
-    bslib::bs_get_variables(theme, accents),
-    sub("^brand-", "", accents)
-  )
+  vals <- bslib::bs_get_variables(theme, accents)
+  names(vals) <- sub("^brand-", "", accents)
+  vals
 }
 
 

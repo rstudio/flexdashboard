@@ -20,6 +20,7 @@ flex_dashboard(
   vertical_layout = c("fill", "scroll"),
   storyboard = FALSE,
   theme = "default",
+  navbar_bg = "primary",
   highlight = "default",
   mathjax = "default",
   extra_dependencies = NULL,
