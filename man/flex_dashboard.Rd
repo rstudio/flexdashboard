@@ -102,6 +102,9 @@ global \code{storyboard} option.}
 "sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
 is specified.}
 
+\item{navbar_bg}{A background color for the navbar. Can be an accent color
+("primary", "info", "success", "warning", "danger") or a CSS color string.}
+
 \item{highlight}{Syntax highlighting style. Supported styles include
 "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
 and "haddock". Pass NULL to prevent syntax highlighting.}
