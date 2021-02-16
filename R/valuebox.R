@@ -125,7 +125,9 @@ sassValue <- function(expr, defaults = "") {
     list(defaults, sprintf("foo{bar:%s}", expr)),
     options = sass::sass_options(output_style = "compressed")
   )
-  sub("}", "", sub("foo{bar:", "", out, fixed = TRUE), fixed = TRUE)
+  out <- sub("foo{bar:", "", out, fixed = TRUE)
+  out <- sub("}", "", out, fixed = TRUE)
+  gsub("\n", "", out, fixed = TRUE)
 }
 
 
