@@ -99,7 +99,19 @@ $body$
 
 <script>
 
-$$(document).ready(function () {
+// Navbar padding adjustments
+function adjustForNavHeight() {
+  var navHeight = $$(".navbar").first().outerHeight();
+  var body = $$("body").first().css("padding-top", (navHeight + 8) + "px");
+  var sidebar = $$(".section.sidebar").first().css("top", navHeight + "px");
+}
+
+$$(document).on("shiny:restyle", function() {
+  setTimeout(adjustForNavHeight, 100);
+});
+
+$$(document).ready(function() {
+  adjustForNavHeight();
 
   // add bootstrap table styles to pandoc tables
   var bs3 = $$.fn.tab.Constructor.VERSION.match(/^3/);
