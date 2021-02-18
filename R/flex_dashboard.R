@@ -393,6 +393,10 @@ flex_dashboard <- function(fig_width = 6.0,
   }
 
   if (is_bs_theme(theme)) {
+    if (!is_available("rmarkdown", "2.6.7")) {
+      stop("Using a {bslib} theme requires rmarkdown v2.6.7 or higher")
+    }
+
     # Attach the dynamic CSS dependency to the theme so that the dependency
     # is restyled if and when `session$setCurrentTheme()` gets called
     flexdb_css <- bslib::bs_dependency_defer(html_dependencies_flexdb)
@@ -408,10 +412,6 @@ flex_dashboard <- function(fig_width = 6.0,
         "navbar-bg" = "$primary"
       )
     }
-
-    # TODO: rmarkdown::html_document() should probably call shiny::bootstrapLib()
-    # when in shiny: runtime to avoid this issue
-    set_current_theme(theme)
   } else {
     extra_dependencies <- append(extra_dependencies, html_dependencies_flexdb(theme))
   }
@@ -437,14 +437,6 @@ flex_dashboard <- function(fig_width = 6.0,
                                      extra_dependencies = extra_dependencies,
                                      ...)
   )
-}
-
-
-set_current_theme <- function(theme) {
-  if (!"shiny" %in% loadedNamespaces()) return(NULL)
-  session <- shiny::getDefaultReactiveDomain()
-  if (is.null(session)) return(NULL)
-  session$setCurrentTheme(theme)
 }
 
 
