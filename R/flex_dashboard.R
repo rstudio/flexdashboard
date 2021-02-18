@@ -62,9 +62,6 @@
 #'  "sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
 #'  is specified.
 #'
-#'@param navbar_bg A background color for the navbar. Can be an accent color
-#'  ("primary", "info", "success", "warning", "danger") or a CSS color string.
-#'
 #'@param highlight Syntax highlighting style. Supported styles include
 #'  "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
 #'  and "haddock". Pass NULL to prevent syntax highlighting.
@@ -111,7 +108,6 @@ flex_dashboard <- function(fig_width = 6.0,
                            vertical_layout = c("fill", "scroll"),
                            storyboard = FALSE,
                            theme = "default",
-                           navbar_bg = "primary",
                            highlight = "default",
                            mathjax = "default",
                            extra_dependencies = NULL,
@@ -364,13 +360,6 @@ flex_dashboard <- function(fig_width = 6.0,
     for (css_file in css)
       args <- c(args, "--css", pandoc_path_arg(css_file))
 
-    navbar_bg <- resolveAccentColors(navbar_bg, theme)
-    args <- c(args, pandoc_variable_arg("navbar-bg", navbar_bg))
-
-    navbar_contrast <- parseCssColors(getColorContrast(navbar_bg))
-    navbar_type <- if (col2rgb(navbar_contrast)[1,1] < 127.5) "default" else "inverse"
-    args <- c(args, pandoc_variable_arg("navbar-type", navbar_type))
-
     args
   }
 
@@ -404,8 +393,25 @@ flex_dashboard <- function(fig_width = 6.0,
   }
 
   if (is_bs_theme(theme)) {
-    dynamic_flexdb <- bslib::bs_dependency_defer(html_dependencies_flexdb)
-    theme <- bslib::bs_bundle(theme, sass::sass_layer(html_deps = dynamic_flexdb))
+    # Attach the dynamic CSS dependency to the theme so that the dependency
+    # is restyled if and when `session$setCurrentTheme()` gets called
+    flexdb_css <- bslib::bs_dependency_defer(html_dependencies_flexdb)
+    theme <- bslib::bs_bundle(theme, sass::sass_layer(html_deps = flexdb_css))
+
+    # If no opinions about the navbar (i.e., no bootswatch or $navbar-bg),
+    # then change it's default to $navbar-bg: $primary; (in a way that the
+    # value cascades to the downstream contrasting Sass variables)
+    navbar_bg <- bslib::bs_get_variables(theme, "navbar-bg")
+    if (is.na(navbar_bg)) {
+      theme <- bslib::bs_add_variables(
+        theme, primary = unname(getSassAccentColors(theme, "primary")),
+        "navbar-bg" = "$primary"
+      )
+    }
+
+    # TODO: rmarkdown::html_document() should probably call shiny::bootstrapLib()
+    # when in shiny: runtime to avoid this issue
+    set_current_theme(theme)
   } else {
     extra_dependencies <- append(extra_dependencies, html_dependencies_flexdb(theme))
   }
@@ -431,6 +437,14 @@ flex_dashboard <- function(fig_width = 6.0,
                                      extra_dependencies = extra_dependencies,
                                      ...)
   )
+}
+
+
+set_current_theme <- function(theme) {
+  if (!"shiny" %in% loadedNamespaces()) return(NULL)
+  session <- shiny::getDefaultReactiveDomain()
+  if (is.null(session)) return(NULL)
+  session$setCurrentTheme(theme)
 }
 
 
