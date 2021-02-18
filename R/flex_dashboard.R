@@ -402,13 +402,12 @@ flex_dashboard <- function(fig_width = 6.0,
     flexdb_css <- bslib::bs_dependency_defer(html_dependencies_flexdb)
     theme <- bslib::bs_bundle(theme, sass::sass_layer(html_deps = flexdb_css))
 
-    # If no opinions about the navbar (i.e., no bootswatch or $navbar-bg),
-    # then change it's default to $navbar-bg: $primary; (in a way that the
-    # value cascades to the downstream contrasting Sass variables)
+    # If $navbar-bg wasn't specified by user, default it to $primary
+    # (instead of $dark, since the template has .navbar-inverse)
     navbar_bg <- bslib::bs_get_variables(theme, "navbar-bg")
     if (is.na(navbar_bg)) {
       theme <- bslib::bs_add_variables(
-        theme, primary = unname(getSassAccentColors(theme, "primary")),
+        theme, primary = getSassAccentColors(theme, "primary"),
         "navbar-bg" = "$primary"
       )
     }
