@@ -24,6 +24,10 @@ $border-width: 1px !default;
 $border-color: mix($body-bg, $body-color, 84.3%) !default;
 $border-radius: .25rem !default;
 
+// Sidebar
+$sidebar-bg: rgba($primary, 0.1) !default;
+
+
 // Mixin shims (for BS3 compat)
 @mixin border-radius-shim($radius) {
   @if mixin-exists("border-radius") {
@@ -48,8 +52,7 @@ $border-radius: .25rem !default;
 
 body {
   background: mix($body-bg, $body-color, 95%); // #f2f2f2
-  // TODO: what to do about padding-top? Does bslib handle it?
-  padding: 60px 0 0 8px; /* padding-top overridden by theme */
+  padding: 60px 0 0 8px; /* padding-top overridden by output template */
 }
 
 body hr {
@@ -299,7 +302,6 @@ body hr {
   padding-right: 5px;
 }
 
-// TODO: remove?
 .shiny-input-container label {
   font-weight: normal;
 }
@@ -588,12 +590,11 @@ body hr {
 
 .section.sidebar {
   position: fixed;
-  // TODO: what to do about padding-top?
-  top: 51px; /* overridden by theme */
+  top: 51px; /* overridden by output template */
   left: 0;
   bottom: 0;
   border-right: $border-width solid $border-color;
-  background-color: $body-bg;
+  background-color: $sidebar-bg;
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
