@@ -10,7 +10,7 @@ $theme-colors: ("primary": $brand-primary, "info": $brand-info, "warning": $bran
 // for their background and the icon uses the actual primary color
 @each $color, $value in $theme-colors {
   $bg-vb: mix(white, $value, 20%);
-  $fg-vb: color-contrast($bg-vb); // TODO: mute the contrast?
+  $fg-vb: color-contrast($bg-vb, #1a1a1a);
 
   .value-box.value-box-#{$color} {
     background-color: $bg-vb;
