@@ -1,9 +1,7 @@
 flexdashboard 0.5.2.9000
 ===========
 
-This release is focuses primarily on integration with the new [`{bslib}` package](https://rstudio.github.io/bslib/index.html). As a result, customizing main colors and fonts of `{flexdashboard}` is now much easier, by providing a custom `bslib::bs_theme()` specification to `flex_dashboard`'s `theme` parameter. 
-
-The yaml below demonstrates how to implement a custom dark mode with custom fonts. By default, providing a custom `{bslib}` `theme` in this way upgrades your app from Bootstrap 3 to 4, but if you run into any issues, you can add `version: 3` to the `theme` to use Bootstrap 3 instead of 4.
+This release adds integration with the new [`{bslib}` package](https://rstudio.github.io/bslib/index.html), making the customization of main colors and fonts much easier via `flex_dashboard`'s `theme` parameter. For example, here's a custom dark mode with custom Google Fonts:
 
 ````yaml
 ---
@@ -18,13 +16,36 @@ output:
 ---
 ````
 
-TODO: image?
+Furthermore, all of `{flexdashboard}` now also works sensible with `{bslib}`'s real-time theming widget (`bs_themer()`). To use it, add a `runtime: shiny` to the top of the yaml matter and call `bslib::bs_themer()` in a server context. Also, if your dashboard contains static plots, you can add `thematic::thematic_shiny(font = "auto")` to theme plots in real-time too (just make sure the plots are generated through `renderPlot()`).
 
-Moreover, you can also now theme dashboards in real-time by adding a `runtime: shiny` to the yaml matter, then calling `bslib::bs_themer()` inside a code chunk.
+````yaml
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme:
+      version: 4
+---
+
+```{r, include = FALSE}
+bslib::bs_themer()
+thematic::thematic_shiny(font = "auto")
+```
+
+## Row
+
+### My plot
+
+```{r}
+renderPlot(plot(1:10))
+```
+````
+
+By default, using `{bslib}` with `{` will also upgrade your dashboard from Bootstrap 3 to 4. If you run into any issues with custom widgets rendering not quite right, note that you can add `version: 3` to the `theme` to use Bootstrap 3 instead of 4. To learn more about `{bslib}`[See here](https://github.com/rstudio/bslib#basic-theming-options) to learn more about the theming options that `{bslib}` provides.
 
 ### Possibly breaking changes
 
 * The `smart` argument was removed from `flexdashboard::flex_dashboard` since it was removed in rmarkdown 2.2 (relatedly, we now require rmarkdown 2.2 or higher). (#301)
+* The `window.FlexDashboard.themeColor` JavaScript object property is no longer available. Resolving of theming accent colors should now be done server-side via `{bslib}`'s [dynamic theming tools](https://rstudio.github.io/bslib/articles/theming.html#custom-components-1). (#305) 
 
 ### Improvements & fixes
 
