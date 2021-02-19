@@ -40,7 +40,7 @@ renderPlot(plot(1:10))
 ```
 ````
 
-By default, using `{bslib}` with `{` will also upgrade your dashboard from Bootstrap 3 to 4. If you run into any issues with custom widgets rendering not quite right, note that you can add `version: 3` to the `theme` to use Bootstrap 3 instead of 4. To learn more about `{bslib}`[See here](https://github.com/rstudio/bslib#basic-theming-options) to learn more about the theming options that `{bslib}` provides.
+By default, using this `{bslib}` integration will also upgrade your dashboard from Bootstrap 3 to 4. If you run into any issues with custom widgets rendering not quite right, note that you can add `version: 3` to the `theme` in order to use Bootstrap 3 instead of 4. To learn more about `{bslib}`[See here](https://github.com/rstudio/bslib#basic-theming-options) to learn more about the theming options that `{bslib}` provides.
 
 ### Possibly breaking changes
 
