@@ -20,7 +20,6 @@ flex_dashboard(
   vertical_layout = c("fill", "scroll"),
   storyboard = FALSE,
   theme = "default",
-  navbar_bg = "primary",
   highlight = "default",
   mathjax = "default",
   extra_dependencies = NULL,
@@ -101,9 +100,6 @@ global \code{storyboard} option.}
 "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
 "sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
 is specified.}
-
-\item{navbar_bg}{A background color for the navbar. Can be an accent color
-("primary", "info", "success", "warning", "danger") or a CSS color string.}
 
 \item{highlight}{Syntax highlighting style. Supported styles include
 "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
