@@ -100,19 +100,50 @@ $body$
 
 <script>
 
+// https://davidwalsh.name/javascript-debounce-function
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
 // Navbar padding adjustments
-function adjustForNavHeight() {
+function addNavbarPadding() {
   var navHeight = $$(".navbar").first().outerHeight();
   var body = $$("body").first().css("padding-top", (navHeight + 8) + "px");
   var sidebar = $$(".section.sidebar").first().css("top", navHeight + "px");
 }
 
 $$(document).on("shiny:restyle", function() {
-  setTimeout(adjustForNavHeight, 100);
+  setTimeout(addNavbarPadding, 200);
 });
 
 $$(document).ready(function() {
-  adjustForNavHeight();
+  // Wait until the navbar exists (for runtime: shiny) before scheduling
+  // the addition of the navbar padding
+  function waitForNavbar(func) {
+    var navbarExists = $$(".navbar").length > 0;
+    if (navbarExists) {
+      setTimeout(func, 200);
+      return;
+    }
+    setTimeout(waitForNavbar, 200);
+  }
+  waitForNavbar(addNavbarPadding);
 
   // add bootstrap table styles to pandoc tables
   var bs3 = $$.fn.tab.Constructor.VERSION.match(/^3/);
