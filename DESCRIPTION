@@ -44,10 +44,12 @@ Imports:
   shiny (>= 0.13), 
   scales,
   sass, 
-  bslib
+  bslib (>= 0.2.4.9002)
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE
 RoxygenNote: 7.1.1
 Config/testthat/edition: 3
-Remotes: rstudio/rmarkdown#2049
+Remotes: 
+  rstudio/bslib,
+  rstudio/rmarkdown#2049
