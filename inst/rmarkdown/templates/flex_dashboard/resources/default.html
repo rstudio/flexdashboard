@@ -99,35 +99,9 @@ $body$
 </div>
 
 <script>
-
-// Navbar padding adjustments
-function addNavbarPadding() {
-  var navHeight = $$(".navbar").first().outerHeight();
-  var body = $$("body").first().css("padding-top", (navHeight + 8) + "px");
-  var sidebar = $$(".section.sidebar").first().css("top", navHeight + "px");
-}
-
-$$(document).on("shiny:restyle", function() {
-  setTimeout(addNavbarPadding, 200);
-});
-
 $$(document).ready(function() {
-  // Wait until the navbar exists (for runtime: shiny) before scheduling
-  // the addition of the navbar padding
-  function waitForNavbar(func) {
-    var navbarExists = $$(".navbar").length > 0;
-    if (navbarExists) {
-      setTimeout(func, 200);
-      return;
-    }
-    setTimeout(waitForNavbar, 200);
-  }
-  waitForNavbar(addNavbarPadding);
-
   // add bootstrap table styles to pandoc tables
-  var bs3 = $$.fn.tab.Constructor.VERSION.match(/^3/);
-  var tableClass = bs3 ? 'table table-condensed' : 'table table-sm';
-  $$('tr.header').parent('thead').parent('table').addClass(tableClass);
+  $$('tr.header').parent('thead').parent('table').addClass('table table-condensed table-sm');
 
   // initialize mathjax
 $if(mathjax-url)$
