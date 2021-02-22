@@ -32,7 +32,8 @@ URL: http://rmarkdown.rstudio.com/flexdashboard
 BugReports: https://github.com/rstudio/flexdashboard/issues
 Encoding: UTF-8
 Depends: R (>= 3.0.2)
-Imports: 
+Imports:
+  grDevices, 
   tools,
   utils, 
   jsonlite, 
@@ -43,9 +44,12 @@ Imports:
   shiny (>= 0.13), 
   scales,
   sass, 
-  bslib
+  bslib (>= 0.2.4.9002)
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE
 RoxygenNote: 7.1.1
 Config/testthat/edition: 3
+Remotes: 
+  rstudio/bslib,
+  rstudio/rmarkdown#2049

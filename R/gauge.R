@@ -133,11 +133,11 @@ resolveAccentColors <- function(colors, theme) {
   if (!length(colors)) return(colors)
 
   idx <- vapply(colors, is_accent_color, logical(1))
-  if (is.character(theme)) {
-    colors[idx] <- themeColors[[theme]][colors[idx]]
-  } else if (bslib::is_bs_theme(theme)) {
+  if (bslib::is_bs_theme(theme)) {
     accentMap <- getSassAccentColors(theme, unique(colors[idx]))
     colors[idx] <- accentMap[colors[idx]]
+  } else if (is.character(theme)) {
+    colors[idx] <- themeColors[[theme]][colors[idx]]
   }
   as.character(colors)
 }
@@ -146,10 +146,9 @@ getSassAccentColors <- function(theme, accents = accent_colors()) {
   if ("3" %in% bslib::theme_version(theme)) {
     accents <- paste0("brand-", accents)
   }
-  setNames(
-    bslib::bs_get_variables(theme, accents),
-    sub("^brand-", "", accents)
-  )
+  vals <- bslib::bs_get_variables(theme, accents)
+  names(vals) <- sub("^brand-", "", accents)
+  vals
 }
 
 

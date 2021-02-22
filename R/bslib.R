@@ -1,8 +1,5 @@
 resolve_theme <- function(theme) {
   if (is.list(theme)) {
-    if (!is_available("rmarkdown", "2.6.6")) {
-      stop("Providing a list to `theme` requires the rmarkdown verion 2.6.6 or higher.", call. = FALSE)
-    }
     return(as_bs_theme(theme))
   }
   if (identical(theme, "default")) {

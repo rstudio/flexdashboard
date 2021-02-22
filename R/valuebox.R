@@ -111,11 +111,8 @@ valueBoxDynamicAccentCSS <- function(theme) {
 getColorContrast <- function(color) {
   sass_func <- system.file("sass-utils", "color-contrast.scss", package = "bslib")
   sassValue(
-    sprintf("color-contrast(%s)", color),
-    defaults = list(
-      "color-contrast-dark" = "#1a1a1a",  # TODO: better way to get a muted contrast?
-      sass::sass_file(sass_func)
-    )
+    sprintf("color-contrast(%s, #1a1a1a)", color),
+    defaults = sass::sass_file(sass_func)
   )
 }
 
@@ -125,7 +122,9 @@ sassValue <- function(expr, defaults = "") {
     list(defaults, sprintf("foo{bar:%s}", expr)),
     options = sass::sass_options(output_style = "compressed")
   )
-  sub("}", "", sub("foo{bar:", "", out, fixed = TRUE), fixed = TRUE)
+  out <- sub("foo{bar:", "", out, fixed = TRUE)
+  out <- sub("}", "", out, fixed = TRUE)
+  gsub("\n", "", out, fixed = TRUE)
 }
 
 

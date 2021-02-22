@@ -21,6 +21,7 @@
 #' @importFrom jsonlite toJSON
 #' @importFrom tools file_path_sans_ext
 #' @importFrom utils packageVersion
+#' @importFrom grDevices col2rgb
 #'
 #' @docType package
 #' @name flexdashboard
