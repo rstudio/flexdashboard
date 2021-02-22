@@ -49,6 +49,8 @@ By default, using this `{bslib}` integration will also upgrade your dashboard fr
 
 ### Improvements & fixes
 
+* Closed #310: An `.active` class may now be added to a particular `.tabset` tab to control which tab is shown by default. (#311)
+
 * Closed #306: A `.tabset-pills` class may now be added to `.tabset` to render pills instead of tabs. (#307)
 
 * Closed #297, #254: `gauge()` now uses justgage.js 1.4.0, allowing  `renderGauge()` to properly update various labels and `sectors` on redraw. (#301)
