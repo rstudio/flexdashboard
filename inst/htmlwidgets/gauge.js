@@ -19,6 +19,7 @@ HTMLWidgets.widget({
           value: x.value,
           min: x.min,
           max: x.max,
+          valueMinFontSize: 20,
           relativeGaugeSize: true,
           formatNumber: true,
           humanFriendly: x.humanFriendly,
