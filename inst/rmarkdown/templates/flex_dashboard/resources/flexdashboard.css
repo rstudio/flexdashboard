@@ -3,13 +3,13 @@
  (https://github.com/keen/dashboards)
 */
 body {
-  background: #f4f4f4;
+  background: whitesmoke;
   padding: 60px 0 0 8px;
-  /* padding-top overridden by theme */
+  /* padding-top overridden by output template */
 }
 
 body hr {
-  border-color: #dcdddd;
+  border-color: #dfdfdf;
   margin: 10px 0;
 }
 
@@ -28,7 +28,7 @@ body hr {
 
 .navbar-author {
   margin-left: 10px;
-  font-size: 1.1rem;
+  font-size: 15.4px;
 }
 
 .navbar .dropdown-menu .fa {
@@ -45,15 +45,15 @@ body hr {
 .nav-tabs-custom,
 .sbframe-commentary {
   background: #fff;
-  border: 1px solid #dee2e6;
+  border: 1px solid #dfdfdf;
   border-radius: 0.25rem;
   margin-bottom: 8px;
   margin-right: 8px;
 }
 
 .chart-title {
-  border-bottom: 1px solid #dee2e6;
-  font-size: 1rem;
+  border-bottom: 1px solid #dfdfdf;
+  font-size: 14px;
   font-weight: 300;
   padding: 7px 10px 4px;
 }
@@ -70,9 +70,9 @@ body hr {
 
 .chart-wrapper .chart-notes {
   background: #fcfcfc;
-  border-top: 1px solid #dee2e6;
-  color: #909294;
-  font-size: 0.875rem;
+  border-top: 1px solid #dfdfdf;
+  color: #999999;
+  font-size: 12.25px;
   padding: 8px 10px 5px;
 }
 
@@ -227,12 +227,12 @@ body hr {
 }
 
 .chart-stage .table-bordered > tbody > tr > td {
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid #dfdfdf;
 }
 
 .chart-stage .table-bordered > thead > tr > th {
   border: none;
-  border-bottom: 2px solid #dee2e6;
+  border-bottom: 2px solid #dfdfdf;
 }
 
 .bootstrap-table table > thead {
@@ -247,7 +247,7 @@ body hr {
 .bootstrap-table table.data > tbody > tr > th,
 .bootstrap-table table.shiny-table > tbody > tr > th {
   border-top: none;
-  border-bottom: 2px solid #dee2e6;
+  border-bottom: 2px solid #dfdfdf;
   padding: 5px;
 }
 
@@ -332,8 +332,8 @@ body hr {
   float: left;
   width: 2%;
   height: 120px;
-  font-size: 3.5rem;
-  color: #212529;
+  font-size: 49px;
+  color: #333333;
 }
 
 .storyboard-nav .sbprev {
@@ -370,11 +370,11 @@ body hr {
   padding: 10px 10px 10px 10px;
   margin-right: 8px;
   background: #fff;
-  border: 1px solid #dee2e6;
+  border: 1px solid #dfdfdf;
   border-radius: 0.25rem;
-  color: #595c5f;
+  color: #666666;
   text-align: left;
-  font-size: 1rem;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -384,13 +384,13 @@ body hr {
 
 .storyboard-nav .sbframelist ul li.active {
   color: #fff;
-  background-color: rgba(0, 123, 255, 0.7);
+  background-color: rgba(51, 122, 183, 0.7);
 }
 
 .sbframe-commentary {
   width: 300px;
-  background: #fbfcfc;
-  font-size: 1rem;
+  background: #fcfcfc;
+  font-size: 14px;
 }
 
 .sbframe-commentary ul {
@@ -408,9 +408,9 @@ body hr {
 /* NAV TABS */
 .nav-tabs-custom > .nav-tabs {
   margin: 0;
-  border-bottom: 1px solid #dee2e6;
-  color: #7a7c7f;
-  font-size: 1rem;
+  border-bottom: 1px solid #dfdfdf;
+  color: #858585;
+  font-size: 14px;
   font-weight: 300;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
@@ -424,9 +424,9 @@ body hr {
 
 .nav-tabs-custom > .nav-tabs > li > a,
 .nav-tabs-custom > .nav-tabs > li > a:active {
-  color: #7a7c7f;
+  color: #858585;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 14px;
   border-radius: 0;
   padding: 3px 10px 5px;
   text-transform: none;
@@ -437,7 +437,7 @@ body hr {
 }
 
 .nav-tabs-custom > .nav-tabs > li > a.text-muted {
-  color: #a6a8a9;
+  color: #adadad;
 }
 
 .nav-tabs-custom > .nav-tabs > li > a,
@@ -447,7 +447,7 @@ body hr {
 }
 
 .nav-tabs-custom > .nav-tabs > li > a:hover {
-  color: #a6a8a9;
+  color: #adadad;
 }
 
 .nav-tabs-custom > .nav-tabs > li:not(.active) > a:hover,
@@ -457,19 +457,19 @@ body hr {
 }
 
 .nav-tabs-custom > .nav-tabs > li.active {
-  border-top-color: #007bff;
+  border-top-color: #337ab7;
 }
 
 .nav-tabs-custom > .nav-tabs > li.active > a,
 .nav-tabs-custom > .nav-tabs > li.active:hover > a {
   background-color: #fff;
-  color: #7a7c7f;
+  color: #858585;
 }
 
 .nav-tabs-custom > .nav-tabs > li.active > a {
   border-top-color: transparent;
-  border-left-color: #dcdddd;
-  border-right-color: #dcdddd;
+  border-left-color: #dfdfdf;
+  border-right-color: #dfdfdf;
 }
 
 .nav-tabs-custom > .nav-tabs > li:first-of-type {
@@ -497,15 +497,15 @@ body hr {
 }
 
 .nav-tabs-custom > .nav-tabs.pull-right > li.active:first-of-type > a {
-  border-left-color: #dcdddd;
+  border-left-color: #dfdfdf;
   border-right-color: transparent;
 }
 
 .nav-tabs-custom > .nav-tabs > li.header {
   line-height: 35px;
   padding: 0 10px;
-  font-size: 1.5rem;
-  color: #7a7c7f;
+  font-size: 21px;
+  color: #858585;
 }
 
 .nav-tabs-custom > .nav-tabs > li.header > .fa,
@@ -541,7 +541,7 @@ body hr {
 .nav-tabs-custom .dropdown.open > a:active,
 .nav-tabs-custom .dropdown.open > a:focus {
   background: transparent;
-  color: #a6a8a9;
+  color: #adadad;
 }
 
 @media (max-width: 767px) {
@@ -558,11 +558,11 @@ body hr {
 .section.sidebar {
   position: fixed;
   top: 51px;
-  /* overridden by theme */
+  /* overridden by output template */
   left: 0;
   bottom: 0;
-  border-right: 1px solid #dee2e6;
-  background-color: #fff;
+  border-right: 1px solid #dfdfdf;
+  background-color: rgba(51, 122, 183, 0.1);
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
@@ -591,7 +591,7 @@ body hr {
 }
 
 .featherlight:last-of-type {
-  background: rgba(33, 37, 41, 0.7);
+  background: rgba(51, 51, 51, 0.7);
 }
 
 .featherlight-inner {
@@ -602,7 +602,7 @@ body hr {
   margin: 0;
   border: 0;
   background: #fff;
-  font-size: 0.875rem;
+  font-size: 12.25px;
 }
 
 .unselectable {
@@ -635,11 +635,11 @@ body hr {
 }
 
 table.dataTable thead th {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 /* Mobile phone only CSS */
