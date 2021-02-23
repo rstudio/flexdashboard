@@ -30,11 +30,11 @@ navbar:
       text: Articles
       menu:
         - text: "Using flexdashboard"
-          href: articles/articles/using.html
+          href: articles/using.html
         - text: "Using Shiny with flexdashboard"
-          href: articles/articles/shiny.html
+          href: articles/shiny.html
         - text: "Sample layouts"
-          href: articles/articles/layouts.html
+          href: articles/layouts.html
     reference:
       text: Reference
       href: reference/index.html
