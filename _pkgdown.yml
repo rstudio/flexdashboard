@@ -65,3 +65,8 @@ reference:
 - title: Shiny components
   contents:
   - contains("shiny")
+
+- title: The flexdashboard package
+  desc: ~
+  contents:
+  - flexdashboard-package
