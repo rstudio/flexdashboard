@@ -1,0 +1,27 @@
+// This scss can be compiled standalone, with BS3 or BS4
+$brand-primary: darken(#428bca, 6.5%) !default;
+$brand-success: #5cb85c !default;
+$brand-info: #5bc0de !default;
+$brand-warning: #f0ad4e !default;
+$brand-danger: #d9534f !default;
+$theme-colors: ("primary": $brand-primary, "info": $brand-info, "warning": $brand-warning, "danger": $brand-danger) !default;
+
+// Value boxes use a less saturated version of the actual accent color
+// for their background and the icon uses the actual primary color
+@each $color, $value in $theme-colors {
+  $bg-vb: mix(white, $value, 20%);
+  $fg-vb: color-contrast($bg-vb, #1a1a1a);
+
+  .value-box.value-box-#{$color} {
+    background-color: $bg-vb;
+    color: $fg-vb;
+    box-shadow: 0 1px 1px rgba($fg-vb, 0.1);
+    icon i {
+      color: $value;
+    }
+    &.linked-value:hover {
+      box-shadow: 0 2px 2px rgba($bg-vb, 0.3);
+    }
+  }
+}
+

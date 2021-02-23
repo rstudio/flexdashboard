@@ -12,6 +12,8 @@ flexdashboard_dependency <- function(name) {
   system.file("www", name, package = "flexdashboard")
 }
 
+# Might have an issue with jQuery 3?
+# https://github.com/jmosbech/StickyTableHeaders/pull/157
 html_dependency_stickytableheaders <- function() {
   htmlDependency(
     "stickytableheaders",

@@ -1,26 +1,55 @@
+destination: reference
+
+url: https://pkgs.rstudio.com/flexdashboard
+
+template:
+  package: quillt
+  opengraph:
+    image:
+      src: man/figures/logo.png
+      alt: "flexdashboard package"
+    twitter:
+      creator: "@rstudio"
+      card: summary
+
+development:
+  version_tooltip: "Development version"
+
 navbar:
+  title: ~
+  type: default
   structure:
-    right: [start, examples, articles, reference, news, github]
+    left:  [intro, examples, articles]
+    right: [reference, news, github]
   components:
     home: ~
-    start:
-      text: "Get started"
-      href: articles/basics.html
     examples:
-      text: "Examples"
-      href: articles/examples.html
+      text: Examples
+      href: articles/articles/examples.html
     articles:
       text: Articles
       menu:
-      - text: Using flexdashboard
-        href: articles/using.html
-      - text: Using shiny with flexdashboard
-        href: articles/shiny.html
-      - text: Sample layouts
-        href: articles/layouts.html
+        - text: "Using flexdashboard"
+          href: articles/articles/using.html
+        - text: "Using Shiny with flexdashboard"
+          href: articles/articles/shiny.html
+        - text: "Sample layouts"
+          href: articles/articles/layouts.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/rstudio/flexdashboard
     news:
       text: News
-      href: news/index.html
+      menu:
+        - text: "Changelog"
+          href: news/index.html
+        - text: "------------------"
+        - text: "Blog posts"
+        - text: "Version 0.2"
+          href: https://blog.rstudio.com/2016/05/17/flexdashboard-easy-interactive-dashboards-for-r/
 
 reference:
 - title: Output format

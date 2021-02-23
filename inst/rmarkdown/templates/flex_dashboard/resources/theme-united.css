@@ -11,10 +11,6 @@ body {
   color: inherit;
 }
 
-.bg-primary {
-  background-color: rgba(221, 72, 20, 0.3);
-}
-
 .storyboard-nav .sbframelist ul li.active {
   background-color: rgba(221, 72, 20, 0.7);
 }

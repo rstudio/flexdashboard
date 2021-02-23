@@ -6,9 +6,8 @@ README.R?md
 ^inst/examples/.+_files
 ^inst/examples/.+\.Rnb\.cached
 ^examples/*
-
 ^_pkgdown\.yml$
-^docs$
+^reference$
 ^pkgdown$
 ^vignettes
 ^\.github$

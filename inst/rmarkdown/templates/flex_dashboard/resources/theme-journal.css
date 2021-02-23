@@ -7,10 +7,6 @@ body {
   background-color: rgba(235, 104, 100, 0.15);
 }
 
-.bg-primary {
-  background-color: rgba(235, 104, 100, 0.7);
-}
-
 .storyboard-nav .sbframelist ul li.active {
   background-color: rgba(235, 104, 100, 0.7);
 }

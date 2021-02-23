@@ -1,0 +1,19 @@
+.value-box-primary, .bg-primary {
+  background-color: rgba(51, 122, 183, 0.4);
+}
+
+.value-box-info, .bg-info {
+  background-color: #d9edf7;
+}
+
+.value-box-success, .bg-success {
+  background-color: #dff0d8;
+}
+
+.value-box-warning, .bg-warning {
+  background-color: #fcf8e3;
+}
+
+.value-box-danger, .bg-danger {
+  background-color: #f2dede;
+}

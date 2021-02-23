@@ -7,46 +7,19 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
 
     var justgage = null;
+    var previousValue = null;
 
     return {
 
       renderValue: function(x) {
 
-        // resolve theme colors for sectors
-        function themeColor(colorName, defaultColor) {
-          // just in case someone tries to use this outside of flexdashboard
-          if (window.FlexDashboard) {
-            var color = window.FlexDashboard.themeColor(colorName);
-            if (!color)
-              color = defaultColor;
-            return color;
-          } else {
-            return defaultColor;
-          }
-        }
-        for (var i=0; i<x.customSectors.length; i++) {
-          var sector = x.customSectors[i];
-          if (sector.color === "primary")
-            sector.color = themeColor("primary",  "#a9d70b");
-          else if (sector.color === "info")
-            sector.color = themeColor("info",  "#a9d70b");
-          else if (sector.color === "success")
-            sector.color = themeColor("success",  "#a9d70b");
-          else if (sector.color === "warning")
-            sector.color = themeColor("warning",  "#f9c802");
-          else if (sector.color === "danger")
-            sector.color = themeColor("danger", "#ff0000");
-        }
-
         // justgage config
         var config = {
           id: el.id,
-          title: " ",
-          valueFontColor: "gray",
           value: x.value,
           min: x.min,
           max: x.max,
-          titlePosition: "below",
+          valueMinFontSize: 20,
           relativeGaugeSize: true,
           formatNumber: true,
           humanFriendly: x.humanFriendly,
@@ -54,13 +27,15 @@ HTMLWidgets.widget({
           customSectors: x.customSectors
         };
 
-        // add symbol if specified
-        if (x.symbol !== null)
-          config.symbol = x.symbol;
-
-        // add label if specifed
-        if (x.label !== null)
-          config.label = x.label;
+        // Add these props to the config if specified
+        var optional_props = [
+          "symbol", "label", "gaugeColor", "valueFontColor",
+          "valueFontFamily", "labelFontColor", "labelFontFamily"
+        ]
+        for (var i = 0; i < optional_props.length; i++) {
+          var prop = optional_props[i];
+          if (x[prop]) config[prop] = x[prop];
+        }
 
         // add linked value class if appropriate
         if (x.href !== null && window.FlexDashboard) {
@@ -71,10 +46,21 @@ HTMLWidgets.widget({
         }
 
         // create the justgage if we need to
-        if (justgage === null)
+        if (justgage === null) {
           justgage = new JustGage(config);
-        else
-          justgage.refresh(x.value, x.max, config);
+        } else {
+          // justgage currently doesn't support an .update() or .refresh()
+          // of customSectors, so we first to a full redraw with the previous
+          // value with no initial animation, then refresh with the new value
+          config.value = previousValue;
+          config.startAnimationTime = 0;
+          justgage.destroy();
+          justgage = new JustGage(config);
+          setTimeout(function() {
+            justgage.refresh(x.value);
+          }, 20);
+        }
+        previousValue = x.value;
 
         // fixup svg path filters so they don't use relative hrefs
         // e.g. url(#inner-shadow-htmlwidget-068c4cc821772b0a2ef5)

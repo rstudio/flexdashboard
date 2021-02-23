@@ -21,7 +21,7 @@ library(leaflet)
 library(plotly)
 
 sites <- fromJSON(flatten=TRUE,
-  "https://cdn.rawgit.com/52vis/2016-15/1c72426c/ottlngr/sites.json")
+  "https://raw.githubusercontent.com/52vis/2016-15/ec4b0ef/sites.json")
 
 sites$locations <- map(sites$locations, function(x) {
   if (nrow(x) == 0) {

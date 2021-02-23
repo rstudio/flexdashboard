@@ -1,13 +1,17 @@
 Package: flexdashboard
 Type: Package
 Title: R Markdown Format for Flexible Dashboards
-Version: 0.5.1.9000
+Version: 0.5.2.9000
 Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's components to the
   containing web page.
 Authors@R: c(
-  person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
-  person("Barbara", "Borges", role = c("ctb"), email = "barbara@rstudio.com"),
+  person("Carson", "Sievert", role = c("aut", "cre"),
+    email = "carson@rstudio.com", comment = c(ORCID = "0000-0002-4958-2844")),
+  person("Richard", "Iannone", role = "aut", email = "rich@rstudio.com",
+         comment = c(ORCID = "0000-0003-3925-190X")),
+  person("JJ", "Allaire", role = "aut", email = "jj@rstudio.com"),
+  person("Barbara", "Borges", role = c("aut"), email = "barb.b.ribeiro@gmail.com"),
   person(family = "RStudio", role = "cph"),
   person(family = "Keen IO", role = c("ctb", "cph"), comment = "Dashboard CSS"),
   person("Abdullah", "Almsaeed", role = c("ctb", "cph"), comment = "Dashboard CSS"),
@@ -19,7 +23,6 @@ Authors@R: c(
   person("Bojan", "Djuricic", role = c("ctb", "cph"), comment = "JustGage"),
   person("Tomas", "Sardyha", role = c("ctb", "cph"), comment = "Sly"),
   person("Bryan", "Lewis", role = c("ctb", "cph"), comment = "Examples"),
-  person("Carson", "Sievert", role = c("ctb", "cph"), comment = "Examples"),
   person("Joshua", "Kunst", role = c("ctb", "cph"), comment = "Examples"),
   person("Ryan", "Hafen", role = c("ctb", "cph"), comment = "Examples"),
   person("Bob", "Rudis", role = c("ctb", "cph"), comment = "Examples"),
@@ -27,12 +30,26 @@ Authors@R: c(
   )
 URL: http://rmarkdown.rstudio.com/flexdashboard, https://github.com/rstudio/flexdashboard/
 BugReports: https://github.com/rstudio/flexdashboard/issues
+Encoding: UTF-8
 Depends: R (>= 3.0.2)
-Imports: tools, jsonlite, htmltools, knitr (>= 1.13), htmlwidgets (>= 0.6), rmarkdown (>= 1.10.3), shiny (>= 0.13)
+Imports:
+  grDevices, 
+  tools,
+  utils, 
+  jsonlite, 
+  htmltools (>= 0.5.1), 
+  knitr (>= 1.13), 
+  htmlwidgets (>= 0.6), 
+  rmarkdown (>= 2.2), 
+  shiny (>= 0.13), 
+  scales,
+  sass, 
+  bslib (>= 0.2.4.9002)
 Suggests: testthat
-Remotes:
-  rstudio/rmarkdown
 LazyData: TRUE
 License: MIT + file LICENSE
-RoxygenNote: 6.0.1
-
+RoxygenNote: 7.1.1
+Config/testthat/edition: 3
+Remotes: 
+  rstudio/bslib,
+  rstudio/rmarkdown

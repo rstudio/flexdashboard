@@ -7,32 +7,31 @@
 #'
 #'@inheritParams rmarkdown::html_document
 #'
-#'@param fig_retina Scaling to perform for retina displays (defaults to 2).
-#'  Note that for flexdashboard enabling retina scaling provides for both
-#'  crisper graphics on retina screens but also much higher quality
-#'  auto-scaling of R graphics within flexdashboard containers.
+#'@param fig_retina Scaling to perform for retina displays (defaults to 2). Note
+#'  that for flexdashboard enabling retina scaling provides for both crisper
+#'  graphics on retina screens but also much higher quality auto-scaling of R
+#'  graphics within flexdashboard containers.
 #'
 #'@param fig_mobile Create an additional rendering of each R graphics figure
-#'  optimized for rendering on mobile devices oriented in portrait mode.
-#'  If \code{TRUE}, creates a figure which is 3.75 x 4.80 inches wide;
-#'  if \code{FALSE}, create no additional figure for mobile devices;
-#'  if a numeric vector of length 2, creates a mobile figure with the
-#'  specified width and height.
+#'  optimized for rendering on mobile devices oriented in portrait mode. If
+#'  \code{TRUE}, creates a figure which is 3.75 x 4.80 inches wide; if
+#'  \code{FALSE}, create no additional figure for mobile devices; if a numeric
+#'  vector of length 2, creates a mobile figure with the specified width and
+#'  height.
 #'
-#'@param favicon Path to graphic to be used as a favicon for the dashboard.
-#' Pass \code{NULL} to use no favicon.
+#'@param favicon Path to graphic to be used as a favicon for the dashboard. Pass
+#'  \code{NULL} to use no favicon.
 #'
 #'@param logo Path to graphic to be used as a logo for the dashboard. Pass
-#'  \code{NULL} to not include a logo. Note
-#'  that no scaling is performed on the logo image, so it should fit exactly
-#'  within the dimensions of the navigation bar (48 pixels high for the
-#'  default "cosmo" theme, other themes may have slightly different navigation
-#'  bar heights).
+#'  \code{NULL} to not include a logo. Note that no scaling is performed on the
+#'  logo image, so it should fit exactly within the dimensions of the navigation
+#'  bar (48 pixels high for the default "cosmo" theme, other themes may have
+#'  slightly different navigation bar heights).
 #'
 #'@param social Specify a character vector of social sharing services to
 #'  automatically add sharing links for them on the \code{navbar}. Valid values
-#'  are "twitter", "facebook", "google-plus", "linkedin", and "pinterest" (more
-#'  than one service can be specified).
+#'  are "twitter", "facebook", "linkedin", and "pinterest" (more than one
+#'  service can be specified).
 #'
 #'@param source_code URL for source code of dashboard (used primarily for
 #'  publishing flexdashboard examples). Automatically creates a \code{navbar}
@@ -40,8 +39,9 @@
 #'
 #'@param navbar Optional list of elements to be placed on the flexdashboard
 #'  navigation bar. Each element should be a list containing a \code{title}
-#'  and/or \code{icon} field, an \code{href} field. Optional fields \code{target}
-#'  (e.g. "_blank") and \code{align} ("left" or "right") are also supported.
+#'  and/or \code{icon} field, an \code{href} field. Optional fields
+#'  \code{target} (e.g. "_blank") and \code{align} ("left" or "right") are also
+#'  supported.
 #'
 #'@param orientation Determines whether level 2 headings are treated as
 #'  dashboard rows or dashboard columns.
@@ -51,11 +51,11 @@
 #'  natural height, scrolling the page if necessary.
 #'
 #'@param storyboard \code{TRUE} to use a storyboard layout scheme that places
-#'  each dashboard component in a navigable storyboard frame. When a
-#'  storyboard layout is used the \code{orientation} and \code{vertical_layout}
-#'  arguments are ignored. When creating a dashbaord with multiple pages you
-#'  should apply the `{.storyboard}` attribute to individual pages rather
-#'  than using the global \code{storyboard} option.
+#'  each dashboard component in a navigable storyboard frame. When a storyboard
+#'  layout is used the \code{orientation} and \code{vertical_layout} arguments
+#'  are ignored. When creating a dashbaord with multiple pages you should apply
+#'  the `{.storyboard}` attribute to individual pages rather than using the
+#'  global \code{storyboard} option.
 #'
 #'@param theme Visual theme ("default", "bootstrap", "cerulean", "journal",
 #'  "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
@@ -69,9 +69,9 @@
 #'@param devel Enable development mode (used for development of the format
 #'  itself, not useful for users of the format).
 #'
-#'@param resize_reload Disable the auto-reloading behavior when the window is resized.
-#' Useful when debugging large flexdashboard applications and this functionality
-#' is not needed.
+#'@param resize_reload Disable the auto-reloading behavior when the window is
+#'  resized. Useful when debugging large flexdashboard applications and this
+#'  functionality is not needed.
 #'
 #'@param ... Unused
 #'
@@ -98,7 +98,6 @@ flex_dashboard <- function(fig_width = 6.0,
                            fig_retina = 2,
                            fig_mobile = TRUE,
                            dev = "png",
-                           smart = TRUE,
                            self_contained = TRUE,
                            favicon = NULL,
                            logo = NULL,
@@ -126,12 +125,6 @@ flex_dashboard <- function(fig_width = 6.0,
   on_exit <- function() {
     for (action in exit_actions)
       try(action())
-  }
-
-  # function for resolving resources
-  resource <- function(name) {
-    system.file("rmarkdown/templates/flex_dashboard/resources", name,
-                package = "flexdashboard")
   }
 
   # force self_contained to FALSE in devel mode
@@ -163,10 +156,11 @@ flex_dashboard <- function(fig_width = 6.0,
   fill_page <- identical(vertical_layout, "fill")
 
   # resolve theme
-  if (identical(theme, "default"))
-    theme <- "cosmo"
-  else if (identical(theme, "bootstrap"))
-    theme <- "default"
+  theme <- resolve_theme(theme)
+  options(flexdashboard.theme = theme) # so gauge() can resolve accent colors at render-time
+  exit_actions <- c(exit_actions, function() {
+    options(flexdashboard.theme = NULL)
+  })
 
   # resolve auto_reload
   if (resize_reload == 'no' | grepl("fa?l?s?e?", resize_reload, ignore.case = T))
@@ -303,60 +297,27 @@ flex_dashboard <- function(fig_width = 6.0,
     add_graphic("logo", logo)
     add_graphic("favicon", favicon)
 
-    # include flexdashboard.css and flexdashboard.js (but not in devel
-    # mode, in that case relative filesystem references to
-    # them are included in the template along with live reload)
+    # Include flexdashboard.js unless we're in devel mode.
+    # In that case, relative filesystem references to
+    # them are included in the template, along with live reload
     if (devel) {
       args <- c(args, pandoc_variable_arg("devel", "1"))
-      dashboardCss <- NULL
-      dashboardScript <- NULL
     } else {
-      if (fill_page) {
-        fillPageCss <- readLines(resource("fillpage.css"))
-      } else {
-        fillPageCss <- NULL
-      }
-
-      theme <- ifelse(identical(theme, "default"), "bootstrap", theme)
-      dashboardCss <- c(
-        '<style type="text/css">',
-        readLines(resource("flexdashboard.css")),
-        readLines(resource(paste0("theme-", theme, ".css"))),
-        fillPageCss,
-        '</style>'
-      )
-
-      dashboardScript <- c(
-        '<script type="text/javascript">',
-        readLines(resource("flexdashboard.js")),
-        '</script>'
-      )
+      dashboardScriptFile <- tempfile(fileext = ".html")
+      dashboardScript <- c('<script type="text/javascript">', readLines(resource("flexdashboard.js")), '</script>')
+      writeLines(dashboardScript, dashboardScriptFile)
+      includes$before_body <- c(includes$before_body, dashboardScriptFile)
     }
 
     # if there is no fig_mobile height and width then pass the default
     if (is.null(fig_mobile))
       fig_mobile <- default_fig_mobile
 
-    # css
-    if (!is.null(dashboardCss)) {
-      dashboardCssFile <- tempfile(fileext = "html")
-      writeLines(dashboardCss, dashboardCssFile)
-      args <- c(args, pandoc_include_args(in_header = dashboardCssFile))
-    }
-
-    # script
-    if (!is.null(dashboardScript)) {
-      dashboardScriptFile <- tempfile(fileext = ".html")
-      writeLines(dashboardScript, dashboardScriptFile)
-      includes$before_body <- c(includes$before_body, dashboardScriptFile)
-    }
-
     # dashboard init script
     dashboardInitScript <- c(
        '<script type="text/javascript">',
        '$(document).ready(function () {',
        '  FlexDashboard.init({',
-       paste0('    theme: "', theme, '",'),
        paste0('    fillPage: ', ifelse(fill_page,'true','false'), ','),
        paste0('    orientation: "', orientation, '",'),
        paste0('    storyboard: ', ifelse(storyboard,'true','false'), ','),
@@ -365,6 +326,18 @@ flex_dashboard <- function(fig_width = 6.0,
        paste0('    defaultFigWidthMobile: ', figSizePixels(fig_mobile[[1]]), ','),
        paste0('    defaultFigHeightMobile: ', figSizePixels(fig_mobile[[2]]), ','),
        paste0('    resize_reload: ', ifelse(resize_reload,'true','false')),
+       '  });',
+       '  var navbar = $(".navbar").first();',
+       '  var body = $("body").first();',
+       '  var sidebar = $(".section.sidebar").first();',
+       '  function addNavbarPadding() {',
+       '    var navHeight = navbar.outerHeight();',
+       '    body.css("padding-top", (navHeight + 8) + "px");',
+       '    sidebar.css("top", navHeight + "px");',
+       '  }',
+       '  setTimeout(addNavbarPadding, 50);',
+       '  $(document).on("shiny:idle", function() {',
+       '    setTimeout(addNavbarPadding, 50);',
        '  });',
        '});',
        '</script>'
@@ -415,12 +388,43 @@ flex_dashboard <- function(fig_width = 6.0,
   extra_dependencies <- append(extra_dependencies,
                                navbar_dependencies(navbar))
 
+  if (is.character(theme)) {
+    extra_dependencies <- append(extra_dependencies, list(valueBoxStaticAccentCSS(theme)))
+  }
+
   # depend on featherlight and prism for embedded source code
   if (source_code_embed(source_code)) {
     extra_dependencies <- append(extra_dependencies,
                                  list(html_dependency_jquery(),
                                       html_dependency_featherlight(),
                                       html_dependency_prism()))
+  }
+
+  if (fill_page) {
+    extra_dependencies <- append(extra_dependencies, html_dependencies_fillpage())
+  }
+
+  if (is_bs_theme(theme)) {
+    if (!is_available("rmarkdown", "2.7.1")) {
+      stop("Using a {bslib} theme requires rmarkdown v2.7.1 or higher")
+    }
+
+    # Attach the dynamic CSS dependency to the theme so that the dependency
+    # is restyled if and when `session$setCurrentTheme()` gets called
+    flexdb_css <- bslib::bs_dependency_defer(html_dependencies_flexdb)
+    theme <- bslib::bs_bundle(theme, sass::sass_layer(html_deps = flexdb_css))
+
+    # If $navbar-bg wasn't specified by user, default it to $primary
+    # (instead of $dark, since the template has .navbar-inverse)
+    navbar_bg <- bslib::bs_get_variables(theme, "navbar-bg")
+    if (is.na(navbar_bg)) {
+      theme <- bslib::bs_add_variables(
+        theme, primary = getSassAccentColors(theme, "primary"),
+        "navbar-bg" = "$primary"
+      )
+    }
+  } else {
+    extra_dependencies <- append(extra_dependencies, html_dependencies_flexdb(theme))
   }
 
   # return format
@@ -435,7 +439,7 @@ flex_dashboard <- function(fig_width = 6.0,
     pre_knit = pre_knit,
     pre_processor = pre_processor,
     on_exit = on_exit,
-    base_format = html_document_base(smart = smart, theme = theme,
+    base_format = html_document_base(theme = theme,
                                      self_contained = self_contained,
                                      lib_dir = lib_dir, mathjax = mathjax,
                                      template = "default",
@@ -475,6 +479,9 @@ source_code_embed_args <- function(source_file) {
 
   # embed it
   if (length(code) > 0) {
+
+    # escape in case there is html in code
+    code <- htmlEscape(code)
 
     # ensure we don't start with an emtpy line
     code[[1]] <- paste0(
@@ -534,7 +541,6 @@ navbar_links <- function(social, source_code) {
       menu$items <- list(
         list(title = "Twitter", icon = "fa-twitter"),
         list(title = "Facebook", icon = "fa-facebook"),
-        list(title = "Google+", icon = "fa-google-plus"),
         list(title = "LinkedIn", icon = "fa-linkedin"),
         list(title = "Pinterest", icon = "fa-pinterest")
       )
@@ -617,3 +623,47 @@ storyboard_dependencies <- function(source = NULL) {
 }
 
 
+html_dependencies_fillpage <- function() {
+  list(htmlDependency(
+    name = "flexdashboard-fillpage",
+    version = packageVersion("flexdashboard"),
+    src = "rmarkdown/templates/flex_dashboard/resources",
+    package = "flexdashboard",
+    stylesheet = "fillpage.css"
+  ))
+}
+
+html_dependencies_flexdb <- function(theme) {
+  name <- "flexdashboard-css"
+  version <- packageVersion("flexdashboard")
+
+  if (is.character(theme)) {
+    dep <- htmlDependency(
+      name = name, version = version,
+      src = "rmarkdown/templates/flex_dashboard/resources",
+      package = "flexdashboard",
+      stylesheet = c(
+        "flexdashboard.css",
+        paste0("theme-", theme, ".css")
+      )
+    )
+    return(list(dep))
+  }
+
+  if (bslib::is_bs_theme(theme)) {
+    dep <- bslib::bs_dependency(
+      sass::sass_file(resource("flexdashboard.scss")),
+      theme = theme, name = name, version = version,
+      cache_key_extra = version
+    )
+    return(list(dep))
+  }
+
+  stop("Didn't recognize a theme object with class: ", class(theme))
+}
+
+# function for resolving resources
+resource <- function(name) {
+  system.file("rmarkdown/templates/flex_dashboard/resources", name,
+              package = "flexdashboard")
+}

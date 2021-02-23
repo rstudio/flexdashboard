@@ -1,10 +1,77 @@
-flexdashboard 0.5.2 (unreleased)
+flexdashboard 0.5.2.9000
+===========
+
+This release adds integration with the new [`{bslib}` package](https://rstudio.github.io/bslib/index.html), making the customization of main colors and fonts much easier via `flex_dashboard`'s `theme` parameter. For example, here's a custom dark mode with custom Google Fonts:
+
+````yaml
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme:
+      bg: "#101010"
+      fg: "#FDF7F7"
+      primary: "#ED79F9"
+      base_font: !expr bslib::font_google("Prompt")
+      code_font: !expr bslib::font_google("JetBrains Mono")
+---
+````
+
+Furthermore, all of `{flexdashboard}` now also works sensible with `{bslib}`'s real-time theming widget (`bs_themer()`). To use it, add a `runtime: shiny` to the top of the yaml matter and call `bslib::bs_themer()` in a server context. Also, if your dashboard contains static plots, you can add `thematic::thematic_shiny(font = "auto")` to theme plots in real-time too (just make sure the plots are generated through `renderPlot()`).
+
+````yaml
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme:
+      version: 4
+---
+
+```{r, include = FALSE}
+bslib::bs_themer()
+thematic::thematic_shiny(font = "auto")
+```
+
+## Row
+
+### My plot
+
+```{r}
+renderPlot(plot(1:10))
+```
+````
+
+By default, using this `{bslib}` integration will also upgrade your dashboard from Bootstrap 3 to 4. If you run into any issues with custom widgets rendering not quite right, note that you can add `version: 3` to the `theme` in order to use Bootstrap 3 instead of 4. To learn more about `{bslib}`[See here](https://github.com/rstudio/bslib#basic-theming-options) to learn more about the theming options that `{bslib}` provides.
+
+### Possibly breaking changes
+
+* The `smart` argument was removed from `flexdashboard::flex_dashboard` since it was removed in rmarkdown 2.2 (relatedly, we now require rmarkdown 2.2 or higher). (#301)
+* The `window.FlexDashboard.themeColor` JavaScript object property is no longer available. Resolving of theming accent colors should now be done server-side via `{bslib}`'s [dynamic theming tools](https://rstudio.github.io/bslib/articles/theming.html#custom-components-1). (#305) 
+
+### Improvements & fixes
+
+* Closed #310: An `.active` class may now be added to a particular `.tabset` tab to control which tab is shown by default. (#311)
+
+* Closed #306: A `.tabset-pills` class may now be added to `.tabset` to render pills instead of tabs. (#307)
+
+* Closed #297, #254: `gauge()` now uses justgage.js 1.4.0, allowing  `renderGauge()` to properly update various labels and `sectors` on redraw. (#301)
+
+* Closed #300: When a custom `{bslib}` theme is provided to `flex_dashboard`, `gauge()` and `viewBox()` now generate default styles to match it. (#301, #305)
+
+* Closed #227: Fixed a bug with `source_code: embed` producing errors because code wasn't being escaped before being included in HTML. (#228, thanks @cderv) 
+
+* Added padding to the top of the sidebar. (#294)
+
+flexdashboard 0.5.2
 ===========
 
 * Support use of Font Awesome icon sets (e.g. "fab fa-r-project")
 
 * Fixed [#245](https://github.com/rstudio/flexdashboard/issues/245): Shiny (1.4.0+) outputs not rendering in modified flexdashboard html. ([#250](https://github.com/rstudio/flexdashboard/pull/250))
 
+flexdashboard 0.5.1.1
+===========
+
+Changed maintainer.
 
 flexdashboard 0.5.1
 ===========

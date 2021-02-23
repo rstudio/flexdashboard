@@ -4,59 +4,73 @@
 \alias{flex_dashboard}
 \title{R Markdown Format for Flexible Dashboards}
 \usage{
-flex_dashboard(fig_width = 6, fig_height = 4.8, fig_retina = 2,
-  fig_mobile = TRUE, dev = "png", smart = TRUE, self_contained = TRUE,
-  favicon = NULL, logo = NULL, social = NULL, source_code = NULL,
-  navbar = NULL, orientation = c("columns", "rows"),
-  vertical_layout = c("fill", "scroll"), storyboard = FALSE,
-  theme = "default", highlight = "default", mathjax = "default",
-  extra_dependencies = NULL, css = NULL, includes = NULL,
-  lib_dir = NULL, md_extensions = NULL, pandoc_args = NULL,
-  devel = FALSE, ...)
+flex_dashboard(
+  fig_width = 6,
+  fig_height = 4.8,
+  fig_retina = 2,
+  fig_mobile = TRUE,
+  dev = "png",
+  self_contained = TRUE,
+  favicon = NULL,
+  logo = NULL,
+  social = NULL,
+  source_code = NULL,
+  navbar = NULL,
+  orientation = c("columns", "rows"),
+  vertical_layout = c("fill", "scroll"),
+  storyboard = FALSE,
+  theme = "default",
+  highlight = "default",
+  mathjax = "default",
+  extra_dependencies = NULL,
+  css = NULL,
+  includes = NULL,
+  lib_dir = NULL,
+  md_extensions = NULL,
+  pandoc_args = NULL,
+  devel = FALSE,
+  resize_reload = TRUE,
+  ...
+)
 }
 \arguments{
 \item{fig_width}{Default width (in inches) for figures}
 
-\item{fig_height}{Default width (in inches) for figures}
+\item{fig_height}{Default height (in inches) for figures}
 
-\item{fig_retina}{Scaling to perform for retina displays (defaults to 2).
-Note that for flexdashboard enabling retina scaling provides for both
-crisper graphics on retina screens but also much higher quality
-auto-scaling of R graphics within flexdashboard containers.}
+\item{fig_retina}{Scaling to perform for retina displays (defaults to 2). Note
+that for flexdashboard enabling retina scaling provides for both crisper
+graphics on retina screens but also much higher quality auto-scaling of R
+graphics within flexdashboard containers.}
 
 \item{fig_mobile}{Create an additional rendering of each R graphics figure
-optimized for rendering on mobile devices oriented in portrait mode.
-If \code{TRUE}, creates a figure which is 3.75 x 4.80 inches wide;
-if \code{FALSE}, create no additional figure for mobile devices;
-if a numeric vector of length 2, creates a mobile figure with the
-specified width and height.}
+optimized for rendering on mobile devices oriented in portrait mode. If
+\code{TRUE}, creates a figure which is 3.75 x 4.80 inches wide; if
+\code{FALSE}, create no additional figure for mobile devices; if a numeric
+vector of length 2, creates a mobile figure with the specified width and
+height.}
 
 \item{dev}{Graphics device to use for figure output (defaults to png)}
-
-\item{smart}{Produce typographically correct output, converting straight
-quotes to curly quotes, --- to em-dashes, -- to en-dashes, and ... to
-ellipses.}
 
 \item{self_contained}{Produce a standalone HTML file with no external
 dependencies, using data: URIs to incorporate the contents of linked
 scripts, stylesheets, images, and videos. Note that even for self contained
 documents MathJax is still loaded externally (this is necessary because of
-it's size).}
+its size).}
 
-\item{favicon}{Path to graphic to be used as a favicon for the dashboard.
-Pass \code{NULL} to use no favicon.}
+\item{favicon}{Path to graphic to be used as a favicon for the dashboard. Pass
+\code{NULL} to use no favicon.}
 
 \item{logo}{Path to graphic to be used as a logo for the dashboard. Pass
-\code{NULL} to not include a logo. Note
-that no scaling is performed on the logo image, so it should fit exactly
-within the dimensions of the navigation bar (48 pixels high for the
-default "cosmo" theme, other themes may have slightly different navigation
-bar heights).}
+\code{NULL} to not include a logo. Note that no scaling is performed on the
+logo image, so it should fit exactly within the dimensions of the navigation
+bar (48 pixels high for the default "cosmo" theme, other themes may have
+slightly different navigation bar heights).}
 
 \item{social}{Specify a character vector of social sharing services to
 automatically add sharing links for them on the \code{navbar}. Valid values
-are "twitter", "facebook", "google-plus", "linkedin", and "pinterest" (more
-than one service can be specified).}
+are "twitter", "facebook", "linkedin", and "pinterest" (more than one
+service can be specified).}
 
 \item{source_code}{URL for source code of dashboard (used primarily for
 publishing flexdashboard examples). Automatically creates a \code{navbar}
@@ -64,8 +78,9 @@ item which links to the source code.}
 
 \item{navbar}{Optional list of elements to be placed on the flexdashboard
 navigation bar. Each element should be a list containing a \code{title}
-and/or \code{icon} field, an \code{href} field. Optional fields \code{target}
-(e.g. "_blank") and \code{align} ("left" or "right") are also supported.}
+and/or \code{icon} field, an \code{href} field. Optional fields
+\code{target} (e.g. "_blank") and \code{align} ("left" or "right") are also
+supported.}
 
 \item{orientation}{Determines whether level 2 headings are treated as
 dashboard rows or dashboard columns.}
@@ -75,11 +90,11 @@ charts so they completely fill the page; "scroll" to layout charts at their
 natural height, scrolling the page if necessary.}
 
 \item{storyboard}{\code{TRUE} to use a storyboard layout scheme that places
-each dashboard component in a navigable storyboard frame. When a
-storyboard layout is used the \code{orientation} and \code{vertical_layout}
-arguments are ignored. When creating a dashbaord with multiple pages you
-should apply the `{.storyboard}` attribute to individual pages rather
-than using the global \code{storyboard} option.}
+each dashboard component in a navigable storyboard frame. When a storyboard
+layout is used the \code{orientation} and \code{vertical_layout} arguments
+are ignored. When creating a dashbaord with multiple pages you should apply
+the `{.storyboard}` attribute to individual pages rather than using the
+global \code{storyboard} option.}
 
 \item{theme}{Visual theme ("default", "bootstrap", "cerulean", "journal",
 "flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
@@ -96,25 +111,29 @@ copied into the output directory). You can pass an alternate URL or pass
 \code{NULL} to exclude MathJax entirely.}
 
 \item{extra_dependencies}{Additional function arguments to pass to the
-base R Markdown HTML output formatter \code{\link{html_document_base}}}
+base R Markdown HTML output formatter \code{\link[rmarkdown]{html_document_base}}}
 
 \item{css}{One or more css files to include}
 
 \item{includes}{Named list of additional content to include within the
-document (typically created using the \code{\link{includes}} function).}
+document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
 \item{lib_dir}{Directory to copy dependent HTML libraries (e.g. jquery,
 bootstrap, etc.) into. By default this will be the name of the document with
 \code{_files} appended to it.}
 
 \item{md_extensions}{Markdown extensions to be added or removed from the
-default definition or R Markdown. See the \code{\link{rmarkdown_format}} for
+default definition or R Markdown. See the \code{\link[rmarkdown]{rmarkdown_format}} for
 additional details.}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
 
 \item{devel}{Enable development mode (used for development of the format
 itself, not useful for users of the format).}
+
+\item{resize_reload}{Disable the auto-reloading behavior when the window is
+resized. Useful when debugging large flexdashboard applications and this
+functionality is not needed.}
 
 \item{...}{Unused}
 }
