@@ -1,5 +1,7 @@
 ---
 title: "Using shiny with flexdashboard"
+resource_files:
+  - snippets
 ---
 
 ```{r setup, include=FALSE}

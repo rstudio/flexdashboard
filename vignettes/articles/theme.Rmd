@@ -1,0 +1,10 @@
+---
+title: "Theming flexdashboard"
+resource_files:
+  - snippets
+---
+
+```{r setup, include=FALSE}
+library(quillt)
+```
+

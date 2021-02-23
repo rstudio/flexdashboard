@@ -1,5 +1,7 @@
 ---
 title: "Sample layouts"
+resource_files:
+  - snippets
 ---
 
 ```{r setup, include=FALSE}

@@ -62,4 +62,5 @@
 - title: "Shiny: Neighborhood diversity"
   img: images/shiny-neighborhood-diversity.png
   href: https://walkerke.shinyapps.io/neighborhood_diversity/
+  source: https://github.com/walkerke/neighborhood_diversity
   shiny: false
