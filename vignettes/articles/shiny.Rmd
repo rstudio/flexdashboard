@@ -9,9 +9,9 @@ library(quillt)
 
 ## Overview
 
-By adding [Shiny](http://shiny.rstudio.com) to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see [`reactiveFileReader`](http://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html) and [`reactivePoll`](http://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html)). This is done by adding `runtime: shiny` to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the components within the dashboard.
+By adding [Shiny](https://shiny.rstudio.com) to a flexdashboard, you can create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes (see [`reactiveFileReader`](https://shiny.rstudio.com/reference/shiny/latest/reactiveFileReader.html) and [`reactivePoll`](https://shiny.rstudio.com/reference/shiny/latest/reactivePoll.html)). This is done by adding `runtime: shiny` to a standard flexdashboard and then adding one or more input controls and/or reactive expressions that dynamically drive the appearance of the components within the dashboard.
 
-Using Shiny with flexdashboard turns a static R Markdown report into an [Interactive Document](http://rmarkdown.rstudio.com/authoring_shiny.html). It's important to note that interactive documents need to be [deployed](http://rmarkdown.rstudio.com/authoring_shiny.html#deployment) to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).
+Using Shiny with flexdashboard turns a static R Markdown report into an [Interactive Document](https://rmarkdown.rstudio.com/authoring_shiny.html). It's important to note that interactive documents need to be [deployed](https://rmarkdown.rstudio.com/authoring_shiny.html#deployment) to a Shiny Server to be shared broadly (whereas static R Markdown documents are standalone web pages that can be attached to emails or served from any standard web server).
 
 Note that the [shinydashboard](https://rstudio.github.io/shinydashboard/) package provides another way to create dashboards with Shiny. 
 
@@ -25,7 +25,7 @@ The steps required to add Shiny components to a flexdashboard are as follows:
 
 3. Add Shiny inputs and outputs as appropriate.
 
-4. When including plots, be sure to wrap them in a call to [renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html). This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.
+4. When including plots, be sure to wrap them in a call to [renderPlot](https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html). This is important not only for dynamically responding to changes but also to ensure that they are automatically re-sized when their container changes.
 
 ### Simple Example
 
@@ -72,26 +72,26 @@ As illustrated above, inputs are added by calling an R function (e.g. `sliderInp
 
 R Function           | Input Type
 -------------------- | -------------------------------------------------
-[selectInput](http://shiny.rstudio.com/reference/shiny/latest/selectInput.html)        | A box with choices to select from
-[sliderInput](http://shiny.rstudio.com/reference/shiny/latest/sliderInput.html)        | A slider bar
-[radioButtons](http://shiny.rstudio.com/reference/shiny/latest/radioButtons.html)        | A set of radio buttons
-[textInput](http://shiny.rstudio.com/reference/shiny/latest/textInput.html)          | A field to enter text
-[numericInput](http://shiny.rstudio.com/reference/shiny/latest/numericInput.html)       | A field to enter numbers
-[checkboxInput](http://shiny.rstudio.com/reference/shiny/latest/checkboxInput.html)      | A single check box
-[dateInput](http://shiny.rstudio.com/reference/shiny/latest/dateInput.html)          | A calendar to aid date selection
-[dateRangeInput](http://shiny.rstudio.com/reference/shiny/latest/dateRangeInput.html)     | A pair of calendars for selecting a date range
-[fileInput](http://shiny.rstudio.com/reference/shiny/latest/fileInput.html)          | A file upload control wizard
+[selectInput](https://shiny.rstudio.com/reference/shiny/latest/selectInput.html)        | A box with choices to select from
+[sliderInput](https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html)        | A slider bar
+[radioButtons](https://shiny.rstudio.com/reference/shiny/latest/radioButtons.html)        | A set of radio buttons
+[textInput](https://shiny.rstudio.com/reference/shiny/latest/textInput.html)          | A field to enter text
+[numericInput](https://shiny.rstudio.com/reference/shiny/latest/numericInput.html)       | A field to enter numbers
+[checkboxInput](https://shiny.rstudio.com/reference/shiny/latest/checkboxInput.html)      | A single check box
+[dateInput](https://shiny.rstudio.com/reference/shiny/latest/dateInput.html)          | A calendar to aid date selection
+[dateRangeInput](https://shiny.rstudio.com/reference/shiny/latest/dateRangeInput.html)     | A pair of calendars for selecting a date range
+[fileInput](https://shiny.rstudio.com/reference/shiny/latest/fileInput.html)          | A file upload control wizard
 
 Outputs react to changes in input by running their render code (e.g. the `renderPlot` example above) and displaying updated output. The Shiny package also includes a wide variety of render functions, including:
 
 R Function           | Output Type
 -------------------- | -------------------------------------------------
-[renderPlot](http://shiny.rstudio.com/reference/shiny/latest/renderPlot.html)  | R graphics output
-[renderPrint](http://shiny.rstudio.com/reference/shiny/latest/renderPrint.html) | R printed output
-[renderTable](http://shiny.rstudio.com/reference/shiny/latest/renderTable.html) | Data frame, matrix, other table like structures
-[renderText](http://shiny.rstudio.com/reference/shiny/latest/renderText.html) | Character vectors
+[renderPlot](https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html)  | R graphics output
+[renderPrint](https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html) | R printed output
+[renderTable](https://shiny.rstudio.com/reference/shiny/latest/renderTable.html) | Data frame, matrix, other table like structures
+[renderText](https://shiny.rstudio.com/reference/shiny/latest/renderText.html) | Character vectors
 
-In the sections below we'll cover additional details on how to use Shiny components within a flexdashboard. If you aren't already familiar with Shiny you may also want to consult the [Shiny Dev Center](http://shiny.rstudio.com), which includes extensive articles, tutorials, and examples to help you learn more about Shiny.
+In the sections below we'll cover additional details on how to use Shiny components within a flexdashboard. If you aren't already familiar with Shiny you may also want to consult the [Shiny Dev Center](https://shiny.rstudio.com), which includes extensive articles, tutorials, and examples to help you learn more about Shiny.
 
 ### Input Sidebar
 
@@ -124,11 +124,11 @@ examples(shinyOnly = TRUE)
 
 The following articles are excellent resources for learning more about Shiny and creating interactive documents:
 
-1. The [Shiny Dev Center](http://shiny.rstudio.com) includes extensive articles, tutorials, and examples to help you learn more about Shiny.
+1. The [Shiny Dev Center](https://shiny.rstudio.com) includes extensive articles, tutorials, and examples to help you learn more about Shiny.
 
-2. The [Introduction to Interactive Documents](http://shiny.rstudio.com/articles/interactive-docs.html) article provides a great resources for getting started with Shiny and R Markdown.
+2. The [Introduction to Interactive Documents](https://shiny.rstudio.com/articles/interactive-docs.html) article provides a great resources for getting started with Shiny and R Markdown.
 
-3. The R Markdown website includes additional details on the various options for [deploying interactive documents](http://rmarkdown.rstudio.com/authoring_shiny.html#deployment).
+3. The R Markdown website includes additional details on the various options for [deploying interactive documents](https://rmarkdown.rstudio.com/authoring_shiny.html#deployment).
 
 
 ## Advanced
@@ -143,11 +143,11 @@ There are a couple different approaches to laying out Shiny components within a 
 
 2. Mix inputs and output(s) within a single flexdashboard panel.
 
-The first option is the most straightforward and is highly encouraged if it meets the layout and interactivity requirements of your dashboard. The second option provides for more customized layout but requires the use of Shiny [fill layouts](http://shiny.rstudio.com/reference/shiny/latest/fillRow.html).
+The first option is the most straightforward and is highly encouraged if it meets the layout and interactivity requirements of your dashboard. The second option provides for more customized layout but requires the use of Shiny [fill layouts](https://shiny.rstudio.com/reference/shiny/latest/fillRow.html).
 
 #### Fill Layout
 
-When you mix multiple Shiny inputs and/or outputs within a flexdashboard panel it's good practice to have them fill the bounds of their container in the same way that other flexdashboard components like plots and htmlwidgets do. This is possible using the Shiny [`fillRow`](http://shiny.rstudio.com/reference/shiny/latest/fillRow.html) and [`fillCol`](http://shiny.rstudio.com/reference/shiny/latest/fillRow.html) layout functions.
+When you mix multiple Shiny inputs and/or outputs within a flexdashboard panel it's good practice to have them fill the bounds of their container in the same way that other flexdashboard components like plots and htmlwidgets do. This is possible using the Shiny [`fillRow`](https://shiny.rstudio.com/reference/shiny/latest/fillRow.html) and [`fillCol`](https://shiny.rstudio.com/reference/shiny/latest/fillRow.html) layout functions.
 
 For example, here's how you'd use `fillCol` within a code chunk to ensure that a Shiny input and plot output naturally fill their flexdashboard container:
 
@@ -166,7 +166,7 @@ For those familiar with Shiny here are further details on how this example works
 
 4. Finally, note that unlike the simpler layout examples above this examples uses an explicit `plotOutput / renderPlot` pairing rather than just a standalone `renderPlot`. This is so that the plot can be included in a more sophisticated layout scheme (i.e. one more like traditional `ui.R` layout).
 
-You can learn more about flexible layouts in the Shiny Dev Center [article on fill layouts](http://shiny.rstudio.com/articles/gadget-ui.html#fillrowfillcol) as well as the [reference documentation](http://shiny.rstudio.com/reference/shiny/latest/fillRow.html) for the `fillCol` and `fillRow` functions.
+You can learn more about flexible layouts in the Shiny Dev Center [article on fill layouts](https://shiny.rstudio.com/articles/gadget-ui.html#fillrowfillcol) as well as the [reference documentation](https://shiny.rstudio.com/reference/shiny/latest/fillRow.html) for the `fillCol` and `fillRow` functions.
 
 #### Scrolling Height 
 
@@ -176,7 +176,7 @@ However, when flexdashboards are displayed on mobile phones they automatically s
 
 ### Shiny Modules
 
-[Shiny Modules](http://shiny.rstudio.com/articles/modules.html) enable you to define a piece of Shiny UI and server logic that can be embedded within a larger Shiny application or interactive document. There are a couple of significant benefits to using Shiny Modules in the context of flexdashboard:
+[Shiny Modules](https://shiny.rstudio.com/articles/modules.html) enable you to define a piece of Shiny UI and server logic that can be embedded within a larger Shiny application or interactive document. There are a couple of significant benefits to using Shiny Modules in the context of flexdashboard:
 
 1. You can define Shiny Modules within a separate R script. For Shiny components that require a lot of R code this is often preferable to including all the code inline.
 
@@ -194,11 +194,11 @@ Here is the code to include the module within a flexdashboard:
 <div id="shinyembeddedmodulecall"></div>
 <script type="text/javascript">loadSnippet('shinyembeddedmodulecall', 'r')</script>
 
-You can learn more about creating and using Shiny Modules at the [Shiny Dev Center](http://shiny.rstudio.com/articles/modules.html). 
+You can learn more about creating and using Shiny Modules at the [Shiny Dev Center](https://shiny.rstudio.com/articles/modules.html). 
 
 ### Inline Applications
 
-While Shiny applications are often defined in standalone R source files (e.g. ui.R and server.R) it's also possible to define a full application inline using the [`shinyApp`](http://shiny.rstudio.com/reference/shiny/latest/shinyApp.html) function.
+While Shiny applications are often defined in standalone R source files (e.g. ui.R and server.R) it's also possible to define a full application inline using the [`shinyApp`](https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html) function.
 
 You can embed inline Shiny applications within a flexdashboard. For example, the following code chunk defines a simple Shiny application consisting of a select input and a plot:
 
