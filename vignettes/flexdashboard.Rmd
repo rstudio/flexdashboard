@@ -5,14 +5,16 @@ vignette: >
   %\VignetteIndexEntry{basics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - snippets
 ---
 
 
 ## Components
 
-You can use flexdashboard to publish groups of related data visualizations as a dashboard. A flexdashboard can either be static (a standard web page) or dynamic (a [Shiny](http://shiny.rstudio.com) interactive document). A wide variety of components can be included in flexdashboard layouts, including:
+You can use flexdashboard to publish groups of related data visualizations as a dashboard. A flexdashboard can either be static (a standard web page) or dynamic (a [Shiny](https://shiny.rstudio.com) interactive document). A wide variety of components can be included in flexdashboard layouts, including:
 
-1. Interactive JavaScript data visualizations based on [htmlwidgets](http://www.htmlwidgets.org).
+1. Interactive JavaScript data visualizations based on [htmlwidgets](https://www.htmlwidgets.org).
 
 2. R graphical output including base, lattice, and grid graphics.
 
