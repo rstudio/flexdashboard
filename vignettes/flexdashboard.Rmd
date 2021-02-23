@@ -128,12 +128,12 @@ You can also choose to orient dashboards row-wise rather than column-wise by spe
 
 ## Learning More
 
-+ The [Using](using.html) page includes documentation on all of the features and options of flexdashboard, including layout orientations (row vs. column based), chart sizing, the various supported components, theming, and creating dashboards with multiple pages.
++ The [Using](articles/using.html) page includes documentation on all of the features and options of flexdashboard, including layout orientations (row vs. column based), chart sizing, the various supported components, theming, and creating dashboards with multiple pages.
 
-+ The [Shiny](shiny.html) page describes how to create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes.
++ The [Shiny](articles/shiny.html) page describes how to create dashboards that enable viewers to change underlying parameters and see the results immediately, or that update themselves incrementally as their underlying data changes.
 
-+ The [Layouts](layouts.html) page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
++ The [Layouts](articles/layouts.html) page includes a variety of sample layouts which you can use as a starting point for your own dashboards.
 
-+ The [Examples](examples.html) page includes several examples of flexdashboard in action (including links to source code if you want to dig into how each example was created).
++ The [Examples](articles/examples.html) page includes several examples of flexdashboard in action (including links to source code if you want to dig into how each example was created).
 
 
