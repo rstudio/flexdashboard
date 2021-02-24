@@ -2,6 +2,12 @@
 title: "Untitled"
 output: 
   flexdashboard::flex_dashboard:
+    theme:
+      bg: "#101010"
+      fg: "#FDF7F7" 
+      primary: "#ED79F9"
+      base_font: !expr bslib::font_google("Prompt")
+      code_font: !expr bslib::font_google("JetBrains Mono")
     orientation: columns
     vertical_layout: fill
 ---
