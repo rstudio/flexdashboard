@@ -7,8 +7,6 @@ $body-color: $text-color !default; // BS3 compat
 $gray-1: mix($body-bg, $body-color, 84.3%) !default; // #d7d7d7
 $gray-2: mix($body-bg, $body-color, 88.6%) !default; // #e2e2e2
 $gray-3: mix($body-bg, $body-color, 86.7%) !default; // #dddddd
-$gray-4: mix($body-bg, $body-color, 40%) !default; // #666
-$gray-5: mix($body-bg, $body-color, 60%) !default; // #999
 $primary: $brand-primary !default; // BS3 compat
 
 // Fonts
@@ -27,6 +25,9 @@ $border-radius: .25rem !default;
 // Sidebar
 $sidebar-bg: rgba($primary, 0.1) !default;
 
+// Custom nav
+$custom-nav-active-color: if($headings-color, $headings-color, mix($body-bg, $body-color, 40%)) !default;
+$custom-nav-color: rgba($custom-nav-active-color, 0.6) !default;
 
 // Mixin shims (for BS3 compat)
 @mixin border-radius-shim($radius) {
@@ -104,8 +105,7 @@ body hr {
   @include font-size-shim($font-size-base);
   font-weight: $font-weight-light;
   padding: 7px 10px 4px;
-  //setting color here isn't great idea if we want this to work with .bg-* utility classes
-  //color: $gray-4;
+  color: $headings-color;
 }
 
 .chart-wrapper .chart-title:empty {
@@ -457,7 +457,7 @@ body hr {
 .nav-tabs-custom > .nav-tabs {
   margin: 0;
   border-bottom: $border-width solid $border-color;
-  color: $gray-4;
+  color: $custom-nav-color;
   @include font-size-shim($font-size-base);
   font-weight: $font-weight-light;
   border-top-right-radius: 3px;
@@ -470,7 +470,7 @@ body hr {
 }
 .nav-tabs-custom > .nav-tabs > li > a,
 .nav-tabs-custom > .nav-tabs > li > a:active {
-  color: $gray-4;
+  color: $custom-nav-active-color;
   font-weight: $font-weight-light;
   @include font-size-shim($font-size-base);
   border-radius: 0;
@@ -483,7 +483,7 @@ body hr {
 }
 
 .nav-tabs-custom > .nav-tabs > li > a.text-muted {
-  color: $gray-5;
+  color: $custom-nav-color; // TODO: should this be dimmed more?
 }
 .nav-tabs-custom > .nav-tabs > li > a,
 .nav-tabs-custom > .nav-tabs > li > a:hover {
@@ -491,7 +491,7 @@ body hr {
   margin: 0;
 }
 .nav-tabs-custom > .nav-tabs > li > a:hover {
-  color: $gray-5;
+  color: $custom-nav-color;
 }
 .nav-tabs-custom > .nav-tabs > li:not(.active) > a:hover,
 .nav-tabs-custom > .nav-tabs > li:not(.active) > a:focus,
@@ -504,7 +504,7 @@ body hr {
 .nav-tabs-custom > .nav-tabs > li.active > a,
 .nav-tabs-custom > .nav-tabs > li.active:hover > a {
   background-color: $body-bg;
-  color: $gray-4;
+  color: $custom-nav-active-color;
 }
 .nav-tabs-custom > .nav-tabs > li.active > a {
   border-top-color: transparent;
@@ -537,7 +537,7 @@ body hr {
   line-height: 35px;
   padding: 0 10px;
   @include font-size-shim($h4-font-size);
-  color: $gray-4;
+  color: $custom-nav-active-color;
 }
 .nav-tabs-custom > .nav-tabs > li.header > .fa,
 .nav-tabs-custom > .nav-tabs > li.header > .glyphicon,
@@ -572,7 +572,7 @@ body hr {
 .nav-tabs-custom .dropdown.open > a:active,
 .nav-tabs-custom .dropdown.open > a:focus {
   background: transparent;
-  color: $gray-5;
+  color: $custom-nav-active-color;
 }
 
 
