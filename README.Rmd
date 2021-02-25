@@ -63,6 +63,6 @@ rmarkdown::draft("dashboard.Rmd",
 
 There are two main places to get help with flexdashboard:
 
-+ The [RStudio community](https://community.rstudio.com/tag/flexdashboard) is a friendly place to ask any questions about flexdashboard.
++ The [RStudio community](https://community.rstudio.com/tags/c/R-Markdown/10/flexdashboard) is a friendly place to ask any questions about flexdashboard. Be sure to use the `flexdashboard` tag. Add also the `shiny` tag is you are using a Shiny runtime.
 
-+ [Stack Overflow](https://stackoverflow.com/questions/tagged/flexdashboard) is a great source of answers to common flexdashboard questions. It is also a great place to get help, once you have created a reproducible example that illustrates your problem.
++ [Stack Overflow](https://stackoverflow.com/questions/tagged/flexdashboard) is a great source of answers to common flexdashboard questions. It is also a great place to get help, once you have created a reproducible example that illustrates your problem. Use the tags [`[r][flexdashboard]`](https://stackoverflow.com/questions/tagged/flexdashboard+r) if you ask a question. Add the tag `[shiny]` if you are using a Shinyy runtime.
