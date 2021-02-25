@@ -1,6 +1,6 @@
 destination: reference
 
-url: https://pkgs.rstudio.com/flexdashboard
+url: https://pkgs.rstudio.com/flexdashboard/
 
 template:
   package: quillt
@@ -14,6 +14,12 @@ template:
 
 development:
   version_tooltip: "Development version"
+
+home:
+  strip_header: false
+  links:
+  - text: Learn more
+    href: https://rmarkdown.rstudio.com/flexdashboard/
 
 navbar:
   title: ~
@@ -59,11 +65,13 @@ reference:
     Specify in your document's YAML frontmatter to knit,
     or specify as the `output_format` with `rmarkdown::render()`.
   contents:
-  - '`flex_dashboard`'
+  - flex_dashboard
+
 - title: Static components
   contents:
   - gauge
   - valueBox
+
 - title: Shiny components
   contents:
   - contains("shiny")
