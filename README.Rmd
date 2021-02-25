@@ -42,6 +42,11 @@ Install the **flexdashboard** package from CRAN as follows:
 install.packages("flexdashboard")
 ```
 
+If you want to use the development version of the flexdashboard package, you can install the package from GitHub via the [**remotes** package](https://remotes.r-lib.org):
+
+```r
+remotes::install_github('rstudio/flexdashboard')
+```
 To author a flexdashboard you create an [R Markdown](https://rmarkdown.rstudio.com) document with the `flexdashboard::flex_dashboard` output format. You can do this from within RStudio using the **New R Markdown** dialog:
 
 ![](man/figures/NewRMarkdown.png){width=579 height=465}
