@@ -1,10 +1,6 @@
 on:
   push:
     branches: pkgdown
-  workflow_run:
-    workflows: ["R-CMD-check"]
-    branches: [main,master]
-    types: completed
 
 name: pkgdown
 
