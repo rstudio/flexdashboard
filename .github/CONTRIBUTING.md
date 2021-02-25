@@ -1,4 +1,4 @@
-# Contributing to bookdown
+# Contributing to flexdashboard
 
 We welcome contributions to the **flexdashboard** package.
 
