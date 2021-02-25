@@ -47,6 +47,16 @@ Install the **flexdashboard** package from CRAN as follows:
 install.packages("flexdashboard")
 ```
 
+If you want to use the development version of the flexdashboard package,
+you can install the package from GitHub via the [**remotes**
+package](https://remotes.r-lib.org):
+
+``` r
+remotes::install_github('rstudio/flexdashboard')
+```
+
+## Usage
+
 To author a flexdashboard you create an [R
 Markdown](https://rmarkdown.rstudio.com) document with the
 `flexdashboard::flex_dashboard` output format. You can do this from
@@ -68,11 +78,23 @@ rmarkdown::draft("dashboard.Rmd",
 There are two main places to get help with flexdashboard:
 
 -   The [RStudio
-    community](https://community.rstudio.com/tag/flexdashboard) is a
-    friendly place to ask any questions about flexdashboard.
+    community](https://community.rstudio.com/tags/c/R-Markdown/10/flexdashboard)
+    is a friendly place to ask any questions about flexdashboard. Be
+    sure to use the `flexdashboard` tag. Add also the `shiny` tag is you
+    are using a Shiny runtime.
 
 -   [Stack
     Overflow](https://stackoverflow.com/questions/tagged/flexdashboard)
     is a great source of answers to common flexdashboard questions. It
     is also a great place to get help, once you have created a
-    reproducible example that illustrates your problem.
+    reproducible example that illustrates your problem. Use the tags
+    [`[r][flexdashboard]`](https://stackoverflow.com/questions/tagged/flexdashboard+r)
+    if you ask a question. Add the tag `[shiny]` if you are using a
+    Shinyy runtime.
+
+## Code of Conduct
+
+Please note that the flexdashboard project is released with a
+[Contributor Code of
+Conduct](https://pkgs.rstudio.com/flexdashboard/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
