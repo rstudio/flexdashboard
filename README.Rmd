@@ -47,6 +47,8 @@ If you want to use the development version of the flexdashboard package, you can
 ```r
 remotes::install_github('rstudio/flexdashboard')
 ```
+## Usage
+
 To author a flexdashboard you create an [R Markdown](https://rmarkdown.rstudio.com) document with the `flexdashboard::flex_dashboard` output format. You can do this from within RStudio using the **New R Markdown** dialog:
 
 ![](man/figures/NewRMarkdown.png){width=579 height=465}
