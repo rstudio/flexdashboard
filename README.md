@@ -3,6 +3,13 @@
 
 # flexdashboard <a href='https://pkgs.rstudio.com/flexdashboard'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/flexdashboard)](https://CRAN.R-project.org/package=flexdashboard)
+[![R-CMD-check](https://github.com/rstudio/flexdashboard/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/flexdashboard/actions)
+<!-- badges: end -->
+
 The goal of flexdashboard is to make it easy to create interactive
 dashboards for R, using R Markdown.
 
