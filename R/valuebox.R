@@ -69,7 +69,7 @@ valueBoxCoreDependencies <- function(icon) {
     name = "value-box-core",
     version = packageVersion("flexdashboard"),
     package = "flexdashboard",
-    src = "rmarkdown/templates/flex_dashboard/resources",
+    src = "www/flex_dashboard",
     stylesheet = "value-box.css"
   ))
   icons <- html_dependencies_fonts(
@@ -89,7 +89,7 @@ valueBoxStaticAccentCSS <- function(theme) {
     name = "value-box-accent-static",
     version = packageVersion("flexdashboard"),
     package = "flexdashboard",
-    src = "rmarkdown/templates/flex_dashboard/resources",
+    src = "www/flex_dashboard",
     stylesheet = paste0("theme-", theme, "-value-box.css")
   )
 }

@@ -26,7 +26,7 @@ $border-radius: .25rem !default;
 $sidebar-bg: rgba($primary, 0.1) !default;
 
 // Custom nav
-$custom-nav-active-color: if($headings-color, $headings-color, mix($body-bg, $body-color, 40%)) !default;
+$custom-nav-active-color: if(typeof($headings-color) == color, $headings-color, mix($body-bg, $body-color, 20%)) !default;
 $custom-nav-color: rgba($custom-nav-active-color, 0.6) !default;
 
 // Mixin shims (for BS3 compat)
