@@ -30,8 +30,12 @@ dashboards for R, using R Markdown.
     layouts for presenting sequences of visualizations and related
     commentary.
 
--   Optionally use [Shiny](http://shiny.rstudio.com) to drive
+-   Optionally use [Shiny](https://shiny.rstudio.com) to drive
     visualizations dynamically.
+
+-   Optionally use [bslib](https://rstudio.github.io/bslib/) to easily
+    [customize main colors and
+    fonts](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/theme.html).
 
 Learn more about flexdashboard: <https://pkgs.rstudio.com/flexdashboard>
 
@@ -62,14 +66,17 @@ Markdown](https://rmarkdown.rstudio.com) document with the
 `flexdashboard::flex_dashboard` output format. You can do this from
 within RStudio using the **New R Markdown** dialog:
 
-<img src="man/figures/NewRMarkdown.png" width="579" height="465" />
+![](man/figures/NewRMarkdown.png)
 
 If you are not using RStudio, you can create a new `flexdashboard` R
-Markdown file from the R console:
+Markdown file from the R console. Currently there are two `templates`:
+`"flex_dashboard"` (basic) and `"flex_dashboard_bslib"` (demonstrates an
+example of [theming with
+`{bslib}`](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/theme.html)):
 
 ``` r
 rmarkdown::draft("dashboard.Rmd", 
-                 template = "flex_dashboard", 
+                 template = "flex_dashboard_bslib", 
                  package = "flexdashboard")
 ```
 

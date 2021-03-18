@@ -7,4 +7,65 @@ resource_files:
 ```{r setup, include=FALSE}
 library(quillt)
 ```
+  
+The `flex_dashboard` output format includes a `theme` parameter for customizing the overall appearance of the dashboard. This parameter has special awareness of the `{bslib}` package, and as a result, provides access to Bootstrap 4 (or 3), Bootswatch 4  (or 3) themes, and makes it very easy to customize main colors and fonts. For example, here's how you could give your dashboard a [(Bootswatch 4) Minty theme](https://bootswatch.com/minty/).
 
+```yaml
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+```
+
+This screenshot shows the result of applying the above `theme` to [this example dashboard](https://gist.github.com/cpsievert/04bedbe9af652fab8c24a5e5eee0d721) (subsequent screenshots also use this example, but swap out different `theme`s).
+
+![](images/theme-minty.png){.snippet}
+
+In addition to choosing from a handful of [Bootswatch themes](https://bootswatch.com/), you can also accomplish a significant amount of custom theming by changing the [main colors and fonts](https://rstudio.github.io/bslib/articles/theming.html#main-colors-fonts) (e.g., `bg`, `fg`, `primary`, `base_font`, `code_font`, etc.) as well as more specific theming options, [such as `navbar-bg`](https://rstudio.github.io/bslib/articles/bs4-variables.html#navbar-bg). Under the hood, this works by passing the `theme` to `bslib::bs_theme()` which influences the final look of the page by creating a custom build of Bootstrap (and Flexdashboard) CSS.
+
+```r
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme:
+      version: 4
+      bg: "#101010"
+      fg: "#FDF7F7" 
+      primary: "#ED79F9"
+      navbar-bg: "#3ADAC6"
+      base_font: !expr bslib::font_google("Prompt")
+      code_font: !expr bslib::font_google("JetBrains Mono")
+---
+```
+
+![](images/theme-dark.png){.snippet}
+
+As shown above, a major benefit of theming via `{bslib}` is that theming of things like `gauge()`, `valueBox()`, and even `DT::datatable()` "just work" (that is, their styling defaults are informed by the `{bslib}` theme). In fact, these components even work with `{bslib}`'s real-time theming widget, which you can add to `flex_dashboard` by adding `runtime: shiny` to the documents yaml matter and calling `bslib::bs_themer()` (you can also do this with `runtime: shinyrmd`, but make sure `bslib::bs_themer()` is called in a code chunk with `context='server'`):
+
+![](images/real-time.gif){.snippet}
+
+
+More generally, most "un-opinionated" HTML content rendered by the web browser "just works" with `{bslib}`, but things that aren't rendered by the browser aren't necessarily aware of `{bslib}` (or CSS in general). Thankfully, at least for static R plots (e.g., `{ggplot2}`), you can call `thematic::thematic_rmd()` in a setup chunk to translate the `{bslib}` theme main colors to R plot theming defaults. Additionally, if you're using Google Fonts, or some other font that you've registered with R, you can safely include `font = "auto"` to translate fonts as well:
+
+````
+`r ''````{r setup, include = FALSE}
+thematic::thematic_rmd(font = "auto")
+```
+````
+
+![](images/theme-plot.png){.snippet}
+
+If you're comfortable writing CSS, you may be looking to go above and beyond `{bslib}`'s theming features and add your own custom CSS. For this, you can provide relevant file(s) to `flex_dashboard`'s `css` argument, and if you're using `{bslib}`, you can provide `.scss` file(s) with additional [Sass](https://sass-lang.com/) rules. When compiled, those Sass rules have access to Bootstrap Sass variables, functions, and mixins. This allows you to [write custom CSS styles in a "themeable" way](https://rstudio.github.io/bslib/articles/theming.html#a-basic-themeable-component) and/or simply leverage useful Sass functions like [`color-contrast()`](https://github.com/rstudio/bslib/blob/df10a878e0e9d1e42c83b4c2101bc8d9f00ad314/inst/sass-utils/color-contrast.scss#L9).
+
+```yaml
+---
+output:
+  flexdashboard::flex_dashboard:
+    css: my-custom-rules.scss
+    theme: 
+      version: 4
+---
+```
