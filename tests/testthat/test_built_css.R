@@ -10,10 +10,10 @@ test_that("flexdashboard.min.css has been built", {
   )
 
   # Remove class and attributes
-  new_css <- as.character(new_css)
+  new_css <- sub("\n", "", as.character(new_css), fixed = TRUE)
 
   pkg_css_file <- system.file("www/flex_dashboard/flexdashboard.min.css", package = "flexdashboard")
-  pkg_css <- readChar(pkg_css_file, file.size(pkg_css_file), useBytes = TRUE)
+  pkg_css <- readLines(pkg_css_file)
 
   # If this fails, that means that tools/updateShinyCSS.R needs to be run.
   expect_identical(new_css, pkg_css)
