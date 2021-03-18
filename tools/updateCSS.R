@@ -6,5 +6,6 @@ sass_partial(
   sass_file(src),
   bundle = bslib::bs_theme(version = 3),
   cache = NULL,
-  output = sub("flexdashboard\\.scss$", "flexdashboard.css", src)
+  options = sass::sass_options(output_style = "compressed"),
+  output = sub("flexdashboard\\.scss$", "flexdashboard.min.css", src)
 )

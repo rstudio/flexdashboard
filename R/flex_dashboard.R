@@ -643,7 +643,7 @@ html_dependencies_flexdb <- function(theme) {
       src = "www/flex_dashboard",
       package = "flexdashboard",
       stylesheet = c(
-        "flexdashboard.css",
+        "flexdashboard.min.css",
         paste0("theme-", theme, ".css")
       )
     )
