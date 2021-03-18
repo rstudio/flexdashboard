@@ -56,6 +56,7 @@ body hr {
   font-size: 14px;
   font-weight: 300;
   padding: 7px 10px 4px;
+  color: inherit;
 }
 
 .chart-wrapper .chart-title:empty {
@@ -409,7 +410,7 @@ body hr {
 .nav-tabs-custom > .nav-tabs {
   margin: 0;
   border-bottom: 1px solid #dfdfdf;
-  color: #858585;
+  color: rgba(92, 92, 92, 0.6);
   font-size: 14px;
   font-weight: 300;
   border-top-right-radius: 3px;
@@ -424,7 +425,7 @@ body hr {
 
 .nav-tabs-custom > .nav-tabs > li > a,
 .nav-tabs-custom > .nav-tabs > li > a:active {
-  color: #858585;
+  color: #5c5c5c;
   font-weight: 300;
   font-size: 14px;
   border-radius: 0;
@@ -437,7 +438,7 @@ body hr {
 }
 
 .nav-tabs-custom > .nav-tabs > li > a.text-muted {
-  color: #adadad;
+  color: rgba(92, 92, 92, 0.6);
 }
 
 .nav-tabs-custom > .nav-tabs > li > a,
@@ -447,7 +448,7 @@ body hr {
 }
 
 .nav-tabs-custom > .nav-tabs > li > a:hover {
-  color: #adadad;
+  color: rgba(92, 92, 92, 0.6);
 }
 
 .nav-tabs-custom > .nav-tabs > li:not(.active) > a:hover,
@@ -463,7 +464,7 @@ body hr {
 .nav-tabs-custom > .nav-tabs > li.active > a,
 .nav-tabs-custom > .nav-tabs > li.active:hover > a {
   background-color: #fff;
-  color: #858585;
+  color: #5c5c5c;
 }
 
 .nav-tabs-custom > .nav-tabs > li.active > a {
@@ -505,7 +506,7 @@ body hr {
   line-height: 35px;
   padding: 0 10px;
   font-size: 21px;
-  color: #858585;
+  color: #5c5c5c;
 }
 
 .nav-tabs-custom > .nav-tabs > li.header > .fa,
@@ -541,7 +542,7 @@ body hr {
 .nav-tabs-custom .dropdown.open > a:active,
 .nav-tabs-custom .dropdown.open > a:focus {
   background: transparent;
-  color: #adadad;
+  color: #5c5c5c;
 }
 
 @media (max-width: 767px) {
