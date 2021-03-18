@@ -1,15 +1,63 @@
+// This Sass file wants to be compiled with Bootstrap Sass headers
+
+// Colors
+$body-bg: #fff !default;
+$body-color: $text-color !default; // BS3 compat
+// TODO: combine gray-1 to gray-3 into one var?
+$gray-1: mix($body-bg, $body-color, 84.3%) !default; // #d7d7d7
+$gray-2: mix($body-bg, $body-color, 88.6%) !default; // #e2e2e2
+$gray-3: mix($body-bg, $body-color, 86.7%) !default; // #dddddd
+$primary: $brand-primary !default; // BS3 compat
+
+// Fonts
+$font-size-base: 14px !default;
+$font-size-lg:   $font-size-base * 1.25 !default;
+$font-size-sm:   $font-size-base * .875 !default;
+$h1-font-size:   $font-size-base * 2.5 !default;
+$h4-font-size:   $font-size-base * 1.5 !default;
+$font-weight-light: 300 !default;
+
+// Borders
+$border-width: 1px !default;
+$border-color: mix($body-bg, $body-color, 84.3%) !default;
+$border-radius: .25rem !default;
+
+// Sidebar
+$sidebar-bg: rgba($primary, 0.1) !default;
+
+// Custom nav
+$custom-nav-active-color: if(typeof($headings-color) == color, $headings-color, mix($body-bg, $body-color, 20%)) !default;
+$custom-nav-color: rgba($custom-nav-active-color, 0.6) !default;
+
+// Mixin shims (for BS3 compat)
+@mixin border-radius-shim($radius) {
+  @if mixin-exists("border-radius") {
+    @include border-radius($radius);
+  } @else {
+    border-radius: $radius;
+  }
+}
+@mixin font-size-shim($size) {
+  @if mixin-exists("font-size") {
+    @include font-size($size);
+  } @else {
+    font-size: $size;
+  }
+}
+
+
 /*
  Dashboard CSS derives from Keen IO Dashboards
  (https://github.com/keen/dashboards)
 */
+
 body {
-  background: whitesmoke;
-  padding: 60px 0 0 8px;
-  /* padding-top overridden by output template */
+  background: mix($body-bg, $body-color, 95%); // #f2f2f2
+  padding: 60px 0 0 8px; /* padding-top overridden by output template */
 }
 
 body hr {
-  border-color: #dfdfdf;
+  border-color: $gray-1;
   margin: 10px 0;
 }
 
@@ -28,7 +76,7 @@ body hr {
 
 .navbar-author {
   margin-left: 10px;
-  font-size: 15.4px;
+  @include font-size-shim($font-size-base * 1.1);
 }
 
 .navbar .dropdown-menu .fa {
@@ -43,19 +91,21 @@ body hr {
 
 .chart-wrapper,
 .nav-tabs-custom,
-.sbframe-commentary {
-  background: #fff;
-  border: 1px solid #dfdfdf;
-  border-radius: 0.25rem;
+.sbframe-commentary
+{
+  background: $body-bg;
+  border: $border-width solid $border-color;
+  @include border-radius-shim($border-radius);
   margin-bottom: 8px;
   margin-right: 8px;
 }
 
 .chart-title {
-  border-bottom: 1px solid #dfdfdf;
-  font-size: 14px;
-  font-weight: 300;
+  border-bottom: $border-width solid $border-color;
+  @include font-size-shim($font-size-base);
+  font-weight: $font-weight-light;
   padding: 7px 10px 4px;
+  color: $headings-color;
 }
 
 .chart-wrapper .chart-title:empty {
@@ -69,21 +119,22 @@ body hr {
 }
 
 .chart-wrapper .chart-notes {
-  background: #fcfcfc;
-  border-top: 1px solid #dfdfdf;
-  color: #999999;
-  font-size: 12.25px;
+  background: mix($body-bg, $body-color, 98.5%);
+  border-top: $border-width solid $border-color;
+  color: mix($body-bg, $body-color, 50%);
+  @include font-size-shim($font-size-sm);
   padding: 8px 10px 5px;
 }
 
 /*
  CSS for handling flexbox layout
 */
+
 #dashboard-container {
   visibility: hidden;
 }
 
-.tab-content > .dashboard-page-wrapper.active {
+.tab-content>.dashboard-page-wrapper.active {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -98,8 +149,8 @@ body hr {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .dashboard-row-orientation {
@@ -110,8 +161,8 @@ body hr {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .dashboard-row {
@@ -122,15 +173,15 @@ body hr {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .dashboard-row-flex {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .dashboard-column-orientation {
@@ -141,15 +192,15 @@ body hr {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .dashboard-column {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -157,15 +208,15 @@ body hr {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .chart-wrapper-flex {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -173,39 +224,30 @@ body hr {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .chart-stage-flex {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   position: relative;
 }
 
 .chart-shim {
   position: absolute;
-  left: 8px;
-  top: 8px;
-  right: 8px;
-  bottom: 8px;
+  left: 8px; top: 8px; right: 8px; bottom: 8px;
 }
 
 .no-padding .chart-shim {
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  left: 0; top: 0; right: 0; bottom: 0;
 }
 
 .flowing-content-shim {
   overflow: auto;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  left: 0; top: 0; right: 0; bottom: 0;
   padding-left: 8px;
   padding-right: 8px;
 }
@@ -227,16 +269,16 @@ body hr {
 }
 
 .chart-stage .table-bordered > tbody > tr > td {
-  border-top: 1px solid #dfdfdf;
+  border-top: $border-width solid $border-color;
 }
 
 .chart-stage .table-bordered > thead > tr > th {
   border: none;
-  border-bottom: 2px solid #dfdfdf;
+  border-bottom: ($border-width*2) solid $border-color;
 }
 
-.bootstrap-table table > thead {
-  background-color: #fff;
+.bootstrap-table table>thead {
+  background-color: $body-bg;
 }
 
 .bootstrap-table table.data,
@@ -244,10 +286,10 @@ body hr {
   width: inherit !important;
 }
 
-.bootstrap-table table.data > tbody > tr > th,
-.bootstrap-table table.shiny-table > tbody > tr > th {
+.bootstrap-table table.data>tbody>tr>th,
+.bootstrap-table table.shiny-table>tbody>tr>th {
   border-top: none;
-  border-bottom: 2px solid #dfdfdf;
+  border-bottom: ($border-width*2) solid $border-color;
   padding: 5px;
 }
 
@@ -280,20 +322,23 @@ body hr {
 }
 
 /* Omit display of empty paragraphs */
-.chart-shim > p:empty {
+
+.chart-shim>p:empty {
   display: none;
 }
 
-.chart-stage > p:empty {
+.chart-stage>p:empty {
   display: none;
 }
 
 /* Omit display of special knitr options div*/
+
 .chart-stage .knitr-options {
   display: none;
 }
 
 /* Automatically resizing images */
+
 .image-container {
   position: absolute;
   top: 0;
@@ -309,6 +354,7 @@ body hr {
 }
 
 /* STORYBOARD */
+
 .storyboard-nav button {
   background: transparent;
   border: 0;
@@ -332,8 +378,8 @@ body hr {
   float: left;
   width: 2%;
   height: 120px;
-  font-size: 49px;
-  color: #333333;
+  @include font-size-shim($font-size-base * 3.5);
+  color: $body-color;
 }
 
 .storyboard-nav .sbprev {
@@ -369,12 +415,12 @@ body hr {
   height: 100%;
   padding: 10px 10px 10px 10px;
   margin-right: 8px;
-  background: #fff;
-  border: 1px solid #dfdfdf;
-  border-radius: 0.25rem;
-  color: #666666;
+  background: $body-bg;
+  border: $border-width solid $border-color;
+  @include border-radius-shim($border-radius);
+  color: mix($body-bg, $body-color, 25%); // #3a3c47
   text-align: left;
-  font-size: 14px;
+  @include font-size-shim($font-size-base);
   cursor: pointer;
 }
 
@@ -383,14 +429,15 @@ body hr {
 }
 
 .storyboard-nav .sbframelist ul li.active {
-  color: #fff;
-  background-color: rgba(51, 122, 183, 0.7);
+  color: $body-bg;
+  //background: mix($body-bg, $body-color, 72.2%); // #B8B8B8
+  background-color: rgba($primary, 0.7);
 }
 
 .sbframe-commentary {
   width: 300px;
-  background: #fcfcfc;
-  font-size: 14px;
+  background: mix($body-bg, $body-color, 98.4%); // #fbfbfb
+  @include font-size-shim($font-size-base);
 }
 
 .sbframe-commentary ul {
@@ -406,27 +453,26 @@ body hr {
 }
 
 /* NAV TABS */
+
 .nav-tabs-custom > .nav-tabs {
   margin: 0;
-  border-bottom: 1px solid #dfdfdf;
-  color: #858585;
-  font-size: 14px;
-  font-weight: 300;
+  border-bottom: $border-width solid $border-color;
+  color: $custom-nav-color;
+  @include font-size-shim($font-size-base);
+  font-weight: $font-weight-light;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
 }
-
 .nav-tabs-custom > .nav-tabs > li {
-  border-top: 3px solid transparent;
+  border-top: ($border-width*3) solid transparent;
   margin-bottom: -1px;
   margin-right: 5px;
 }
-
 .nav-tabs-custom > .nav-tabs > li > a,
 .nav-tabs-custom > .nav-tabs > li > a:active {
-  color: #858585;
-  font-weight: 300;
-  font-size: 14px;
+  color: $custom-nav-active-color;
+  font-weight: $font-weight-light;
+  @include font-size-shim($font-size-base);
   border-radius: 0;
   padding: 3px 10px 5px;
   text-transform: none;
@@ -437,85 +483,69 @@ body hr {
 }
 
 .nav-tabs-custom > .nav-tabs > li > a.text-muted {
-  color: #adadad;
+  color: $custom-nav-color;
 }
-
 .nav-tabs-custom > .nav-tabs > li > a,
 .nav-tabs-custom > .nav-tabs > li > a:hover {
   background: transparent;
   margin: 0;
 }
-
 .nav-tabs-custom > .nav-tabs > li > a:hover {
-  color: #adadad;
+  color: $custom-nav-color;
 }
-
 .nav-tabs-custom > .nav-tabs > li:not(.active) > a:hover,
 .nav-tabs-custom > .nav-tabs > li:not(.active) > a:focus,
 .nav-tabs-custom > .nav-tabs > li:not(.active) > a:active {
   border-color: transparent;
 }
-
 .nav-tabs-custom > .nav-tabs > li.active {
-  border-top-color: #337ab7;
+  border-top-color: $primary;
 }
-
 .nav-tabs-custom > .nav-tabs > li.active > a,
 .nav-tabs-custom > .nav-tabs > li.active:hover > a {
-  background-color: #fff;
-  color: #858585;
+  background-color: $body-bg;
+  color: $custom-nav-active-color;
 }
-
 .nav-tabs-custom > .nav-tabs > li.active > a {
   border-top-color: transparent;
-  border-left-color: #dfdfdf;
-  border-right-color: #dfdfdf;
+  border-left-color: $gray-1;
+  border-right-color: $gray-1;
 }
-
 .nav-tabs-custom > .nav-tabs > li:first-of-type {
   margin-left: 0;
 }
-
-.nav-tabs-custom > .nav-tabs > li.active:first-of-type > a {
+.nav-tabs-custom > .nav-tabs > li:first-of-type.active > a {
   border-left-color: transparent;
 }
-
 .nav-tabs-custom > .nav-tabs.pull-right {
   float: none !important;
 }
-
 .nav-tabs-custom > .nav-tabs.pull-right > li {
   float: right;
 }
-
 .nav-tabs-custom > .nav-tabs.pull-right > li:first-of-type {
   margin-right: 0;
 }
-
 .nav-tabs-custom > .nav-tabs.pull-right > li:first-of-type > a {
   border-left-width: 1px;
 }
-
-.nav-tabs-custom > .nav-tabs.pull-right > li.active:first-of-type > a {
-  border-left-color: #dfdfdf;
+.nav-tabs-custom > .nav-tabs.pull-right > li:first-of-type.active > a {
+  border-left-color: $gray-1;
   border-right-color: transparent;
 }
-
 .nav-tabs-custom > .nav-tabs > li.header {
   line-height: 35px;
   padding: 0 10px;
-  font-size: 21px;
-  color: #858585;
+  @include font-size-shim($h4-font-size);
+  color: $custom-nav-active-color;
 }
-
 .nav-tabs-custom > .nav-tabs > li.header > .fa,
 .nav-tabs-custom > .nav-tabs > li.header > .glyphicon,
 .nav-tabs-custom > .nav-tabs > li.header > .ion {
   margin-right: 5px;
 }
-
 .nav-tabs-custom > .tab-content {
-  background: #fff;
+  background: $body-bg;
   padding: 0;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -526,10 +556,11 @@ body hr {
 }
 
 .nav-tabs-custom > .tab-content > .chart-wrapper {
-  background: #fff;
+  background: $body-bg;
   border: none;
   margin: 0;
 }
+
 
 .nav-tabs-custom > .tab-content > .active {
   display: -webkit-box;
@@ -541,8 +572,9 @@ body hr {
 .nav-tabs-custom .dropdown.open > a:active,
 .nav-tabs-custom .dropdown.open > a:focus {
   background: transparent;
-  color: #adadad;
+  color: $custom-nav-active-color;
 }
+
 
 @media (max-width: 767px) {
   .value-box {
@@ -555,14 +587,14 @@ body hr {
 }
 
 /* Fixed position sidebar */
+
 .section.sidebar {
   position: fixed;
-  top: 51px;
-  /* overridden by output template */
+  top: 51px; /* overridden by output template */
   left: 0;
   bottom: 0;
-  border-right: 1px solid #dfdfdf;
-  background-color: rgba(51, 122, 183, 0.1);
+  border-right: $border-width solid $border-color;
+  background-color: $sidebar-bg;
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
@@ -575,6 +607,7 @@ body hr {
 }
 
 /* Embedded source code */
+
 #flexdashboard-source-code {
   display: none;
 }
@@ -591,7 +624,7 @@ body hr {
 }
 
 .featherlight:last-of-type {
-  background: rgba(51, 51, 51, 0.7);
+  background: rgba($body-color, 0.7);
 }
 
 .featherlight-inner {
@@ -601,8 +634,8 @@ body hr {
 .featherlight-content pre {
   margin: 0;
   border: 0;
-  background: #fff;
-  font-size: 12.25px;
+  background: $body-bg;
+  @include font-size-shim($font-size-sm);
 }
 
 .unselectable {
@@ -624,6 +657,7 @@ body hr {
 }
 
 /* DataTables Tweaks */
+
 .dataTables_filter input[type="search"] {
   -webkit-appearance: searchfield;
   outline: none;
@@ -634,15 +668,17 @@ body hr {
   padding-top: 0;
 }
 
+
 table.dataTable thead th {
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: $border-width solid $border-color;
 }
 
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: $border-width solid $border-color;
 }
 
 /* Mobile phone only CSS */
+
 .desktop-layout div.section.mobile {
   display: none;
 }
@@ -654,3 +690,4 @@ table.dataTable thead th {
 .mobile-figure {
   display: none;
 }
+

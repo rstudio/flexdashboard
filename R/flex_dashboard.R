@@ -627,7 +627,7 @@ html_dependencies_fillpage <- function() {
   list(htmlDependency(
     name = "flexdashboard-fillpage",
     version = packageVersion("flexdashboard"),
-    src = "rmarkdown/templates/flex_dashboard/resources",
+    src = "www/flex_dashboard",
     package = "flexdashboard",
     stylesheet = "fillpage.css"
   ))
@@ -640,10 +640,10 @@ html_dependencies_flexdb <- function(theme) {
   if (is.character(theme)) {
     dep <- htmlDependency(
       name = name, version = version,
-      src = "rmarkdown/templates/flex_dashboard/resources",
+      src = "www/flex_dashboard",
       package = "flexdashboard",
       stylesheet = c(
-        "flexdashboard.css",
+        "flexdashboard.min.css",
         paste0("theme-", theme, ".css")
       )
     )
@@ -664,6 +664,5 @@ html_dependencies_flexdb <- function(theme) {
 
 # function for resolving resources
 resource <- function(name) {
-  system.file("rmarkdown/templates/flex_dashboard/resources", name,
-              package = "flexdashboard")
+  system.file("www/flex_dashboard", name, package = "flexdashboard")
 }
