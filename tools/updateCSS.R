@@ -1,6 +1,6 @@
 library(sass)
 
-src <- rprojroot::find_package_root_file("inst/rmarkdown/templates/flex_dashboard/resources/flexdashboard.scss")
+src <- rprojroot::find_package_root_file("inst/www/flex_dashboard/flexdashboard.scss")
 
 sass_partial(
   sass_file(src),
