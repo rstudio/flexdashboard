@@ -49,6 +49,8 @@ By default, using this `{bslib}` integration will also upgrade your dashboard fr
 
 ### Improvements & fixes
 
+* Closed #315 and #286: `DT::datatable()` now fills its container correctly inside of `flexdashboard::flex_dashboard()`. (#322) 
+
 * Closed #310: An `.active` class may now be added to a particular `.tabset` tab to control which tab is shown by default. (#311)
 
 * Closed #306: A `.tabset-pills` class may now be added to `.tabset` to render pills instead of tabs. (#307)
