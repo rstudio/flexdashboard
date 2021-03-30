@@ -419,7 +419,7 @@ flex_dashboard <- function(fig_width = 6.0,
     navbar_bg <- bslib::bs_get_variables(theme, "navbar-bg")
     if (is.na(navbar_bg)) {
       theme <- bslib::bs_add_variables(
-        theme, primary = getSassAccentColors(theme, "primary"),
+        theme, primary = unname(getSassAccentColors(theme, "primary")),
         "navbar-bg" = "$primary"
       )
     }
