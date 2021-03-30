@@ -120,12 +120,7 @@ flex_dashboard <- function(fig_width = 6.0,
                            resize_reload = TRUE,
                            ...) {
 
-  # manage list of exit_actions (backing out changes to knitr options)
-  exit_actions <- list()
-  on_exit <- function() {
-    for (action in exit_actions)
-      try(action())
-  }
+
 
   # force self_contained to FALSE in devel mode
   if (devel)
@@ -155,12 +150,14 @@ flex_dashboard <- function(fig_width = 6.0,
   vertical_layout <- match.arg(vertical_layout)
   fill_page <- identical(vertical_layout, "fill")
 
+  # Keep track of any options() we modify, so we can restore them post-knit
+  # (and in the event this is a shiny runtime, restore them onStop())
+  opts_orig <- NULL
+
   # resolve theme
   theme <- resolve_theme(theme)
-  options(flexdashboard.theme = theme) # so gauge() can resolve accent colors at render-time
-  exit_actions <- c(exit_actions, function() {
-    options(flexdashboard.theme = NULL)
-  })
+  # Set internal option so that gauge() can resolve accent colors at render-time
+  opts_orig <- c(opts_orig, options(flexdashboard.theme = theme))
 
   # resolve auto_reload
   if (resize_reload == 'no' | grepl("fa?l?s?e?", resize_reload, ignore.case = T))
@@ -181,17 +178,7 @@ flex_dashboard <- function(fig_width = 6.0,
 
   # force to fill it's container (unless the option is already set)
   if (is.na(getOption('DT.fillContainer', NA))) {
-    options(DT.fillContainer = TRUE)
-    exit_actions <- c(exit_actions, function() {
-      options(DT.fillContainer = NULL)
-    })
-  }
-
-  # request that DT auto-hide navigation (unless the option is already set)
-  if (is.na(getOption('DT.autoHideNavigation', NA))) {
-    exit_actions <- c(exit_actions, function() {
-      options(DT.autoHideNavigation = NULL)
-    })
+    opts_orig <- c(opts_orig, options(DT.fillContainer = TRUE))
   }
 
   # add hook to capture fig.width and fig.height and serialized
@@ -280,6 +267,12 @@ flex_dashboard <- function(fig_width = 6.0,
                              files_dir, output_dir) {
 
     args <- c()
+
+    if (is_shiny_runtime(runtime)) {
+      shiny::onStop(function() { options(opts_orig) })
+    } else {
+      options(opts_orig)
+    }
 
     # initialize includes if needed
     if (is.null(includes))
@@ -438,7 +431,6 @@ flex_dashboard <- function(fig_width = 6.0,
     clean_supporting = self_contained,
     pre_knit = pre_knit,
     pre_processor = pre_processor,
-    on_exit = on_exit,
     base_format = html_document_base(theme = theme,
                                      self_contained = self_contained,
                                      lib_dir = lib_dir, mathjax = mathjax,
@@ -665,4 +657,9 @@ html_dependencies_flexdb <- function(theme) {
 # function for resolving resources
 resource <- function(name) {
   system.file("www/flex_dashboard", name, package = "flexdashboard")
+}
+
+# copied from rmarkdown:::is_shiny
+is_shiny_runtime <- function(runtime) {
+  !is.null(runtime) && grepl("^shiny", runtime)
 }
