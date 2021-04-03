@@ -28,7 +28,7 @@ output:
 
 <!--Carson- can you expand on when you need to specify Bootstrap version- should we recommend always? what is the default if not stated?-->
 
-This screenshot shows the result of applying the above `theme` to [this example dashboard](https://gist.github.com/cpsievert/04bedbe9af652fab8c24a5e5eee0d721) that [uses Shiny](theme.html) (subsequent screenshots also use this example, but swap out different `theme`s).
+This screenshot shows the result of applying the above `theme` to [this example dashboard](https://gist.github.com/cpsievert/04bedbe9af652fab8c24a5e5eee0d721) that [uses Shiny](shiny.html) (subsequent screenshots also use this example, but swap out different `theme`s).
 
 ![](images/theme-minty.png){.snippet}
 
