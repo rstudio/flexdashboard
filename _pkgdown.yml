@@ -31,18 +31,18 @@ navbar:
     home: ~
     examples:
       text: Examples
-      href: articles/articles/examples.html
+      href: articles/examples.html
     articles:
       text: Articles
       menu:
         - text: "Using flexdashboard"
-          href: articles/articles/using.html
+          href: articles/using.html
         - text: "Using Shiny with flexdashboard"
-          href: articles/articles/shiny.html
+          href: articles/shiny.html
         - text: "Sample layouts"
-          href: articles/articles/layouts.html
+          href: articles/layouts.html
         - text: "Theming flexdashboards"
-          href: articles/articles/theme.html
+          href: articles/theme.html
     reference:
       text: Reference
       href: reference/index.html

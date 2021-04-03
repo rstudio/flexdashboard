@@ -7,7 +7,11 @@ resource_files:
 ```{r setup, include=FALSE}
 library(quillt)
 ```
-  
+
+## Using Bootstrap
+
+The `flex_dashboard` output format gives you access to the [Bootstrap CSS framework](https://getbootstrap.com/). Bootstrap is a library of reusable chunks of HTML, CSS, and JavaScript code that you can call on to modify your flexdashboard without writing that code yourself. Originally [created by and for Twitter](https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)), it is a free and open source project; you can view the repository on [GitHub](https://github.com/twbs/bootstrap). Bootstrap has several versions (at the time of writing, version 4 is the most recent). If you are starting on a fresh project, we recommend using the latest version.
+
 ## Using themes
 
 The `flex_dashboard` output format includes a `theme` parameter for customizing the overall appearance of the dashboard. This parameter has special awareness of the [`{bslib}` package](https://rstudio.github.io/bslib/), which provides tools for using the [Bootstrap CSS framework](https://getbootstrap.com/) directly from R. 
@@ -26,7 +30,7 @@ output:
 ---
 ```
 
-<!--Carson- can you expand on when you need to specify Bootstrap version- should we recommend always? what is the default if not stated?-->
+We recommend you set the Bootstrap version in your YAML for better reproducibility.
 
 This screenshot shows the result of applying the above `theme` to [this example dashboard](https://gist.github.com/cpsievert/04bedbe9af652fab8c24a5e5eee0d721) that [uses Shiny](theme.html) (subsequent screenshots also use this example, but swap out different `theme`s).
 
@@ -35,8 +39,6 @@ This screenshot shows the result of applying the above `theme` to [this example 
 ## Custom themes
 
 You can also create your own custom theme by setting the [main colors and fonts](https://rstudio.github.io/bslib/articles/theming.html#main-colors-fonts) (e.g., `bg`, `fg`, `primary`, `base_font`, `code_font`, etc.) as well as more specific theming options, [such as `navbar-bg`](https://rstudio.github.io/bslib/articles/bs4-variables.html#navbar-bg). Under the hood, this works by passing the `theme` to `bslib::bs_theme()` which influences the final look of the page by creating a custom build of Bootstrap (and Flexdashboard) CSS.
-
-<!--Carson- do these variables only work for version 4? also, can you combine with a theme- maybe worth saying you can do theme plus variables, or just use variables on their own?-->
 
 ```r
 ---
@@ -61,13 +63,15 @@ As shown above, a major benefit of theming via `{bslib}` is that theming of thin
 
 These components work with `{bslib}`'s real-time theming widget, which you can add to `flex_dashboard` by adding either:
 
-+ `runtime: shiny` to the document's yaml matter and calling `bslib::bs_themer()`, or
++ `runtime: shiny` to the document's yaml matter and calling `bslib::bs_themer()` in any code chunk, or
 
-<!--where should the bs_themer call happen? does it matter?-->
++ `runtime: shinyrmd` to the document's yaml matter and calling `bslib::bs_themer()` in a code chunk with `context='server'`:
 
-+ `runtime: shinyrmd` to the document's yaml matter and calling `bslib::bs_themer()` in a code chunk with `context='server'`.
-
-<!--example code chunk? I don't know what to do here-->
+    ````
+    ```{r setup, include = FALSE, context = "server"}`r ''`
+    bslib::bs_themer()
+    ```
+    ````
 
 ![](images/real-time.gif){.snippet}
 
