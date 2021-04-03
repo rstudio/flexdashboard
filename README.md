@@ -41,7 +41,10 @@ Learn more about flexdashboard: <https://pkgs.rstudio.com/flexdashboard>
 
 ## Examples
 
-<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/htmlwidgets-d3heatmap.png" width=250 height=200></img></a>  <a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/plotly.png" width=250 height=200></img></a>  <a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/shiny-biclust.png" width=250 height=200></img></a>
+<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>  <a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>  <a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
+
+View more examples
+[here](https://flexdashboard-pkg.netlify.app/articles/articles/examples.html).
 
 ## Installation
 
@@ -70,9 +73,11 @@ within RStudio using the **New R Markdown** dialog:
 
 If you are not using RStudio, you can create a new `flexdashboard` R
 Markdown file from the R console. Currently there are two `templates`:
-`"flex_dashboard"` (basic) and `"flex_dashboard_bslib"` (demonstrates an
-example of [theming with
-`{bslib}`](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/theme.html)):
+
+-   `"flex_dashboard"` (basic) and
+
+-   `"flex_dashboard_bslib"` (an example of [theming with
+    `{bslib}`](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/theme.html)):
 
 ``` r
 rmarkdown::draft("dashboard.Rmd", 
