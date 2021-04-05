@@ -73,7 +73,7 @@
 #'  resized. Useful when debugging large flexdashboard applications and this
 #'  functionality is not needed.
 #'
-#'@param ... Unused
+#'@param ... Other arguments to [rmarkdown::html_document_base()].
 #'
 #'@details See the flexdashboard website for additional documentation:
 #'  \href{http://rmarkdown.rstudio.com/flexdashboard/}{http://rmarkdown.rstudio.com/flexdashboard/}
@@ -111,7 +111,6 @@ flex_dashboard <- function(fig_width = 6.0,
                            highlight = "default",
                            mathjax = "default",
                            extra_dependencies = NULL,
-                           css = NULL,
                            includes = NULL,
                            lib_dir = NULL,
                            md_extensions = NULL,
@@ -367,10 +366,6 @@ flex_dashboard <- function(fig_width = 6.0,
     args <- c(args, pandoc_include_args(in_header = includes$in_header,
                                         before_body = includes$before_body,
                                         after_body = includes$after_body))
-
-    # additional user css
-    for (css_file in css)
-      args <- c(args, "--css", pandoc_path_arg(css_file))
 
     args
   }
