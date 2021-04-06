@@ -73,7 +73,7 @@
 #'  resized. Useful when debugging large flexdashboard applications and this
 #'  functionality is not needed.
 #'
-#'@param ... Unused
+#'@param ... Other arguments to [rmarkdown::html_document_base()].
 #'
 #'@details See the flexdashboard website for additional documentation:
 #'  \href{http://rmarkdown.rstudio.com/flexdashboard/}{http://rmarkdown.rstudio.com/flexdashboard/}
@@ -368,9 +368,17 @@ flex_dashboard <- function(fig_width = 6.0,
                                         before_body = includes$before_body,
                                         after_body = includes$after_body))
 
-    # additional user css
-    for (css_file in css)
-      args <- c(args, "--css", pandoc_path_arg(css_file))
+    # html_document_base gained a css argument in v2.7.7
+    # (which also handles scss/sass files), so only do the
+    # CSS -> Pandoc conversion if these are css files
+    if (!is_available("rmarkdown", "2.7.7")) {
+      for (css_file in css) {
+        if (grepl("\\.s[ac]ss$", css_file)) {
+          stop("Compilation of Sass -> CSS requires rmarkdown version 2.7.7 or higher")
+        }
+        args <- c(args, "--css", pandoc_path_arg(css_file))
+      }
+    }
 
     args
   }
@@ -446,6 +454,7 @@ flex_dashboard <- function(fig_width = 6.0,
                                      pandoc_args = pandoc_args,
                                      bootstrap_compatible = TRUE,
                                      extra_dependencies = extra_dependencies,
+                                     css = css,
                                      ...)
   )
 }
