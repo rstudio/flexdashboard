@@ -1439,16 +1439,6 @@ window.FlexDashboardComponents.push({
   }
 });
 
-// datatables
-window.FlexDashboardComponents.push({
-  find: function(container) {
-    return container.find('.datatables');
-  },
-  flex: function(fillPage) {
-    return fillPage;
-  }
-});
-
 // bootstrap table
 window.FlexDashboardComponents.push({
 
