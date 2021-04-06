@@ -8,21 +8,39 @@ resource_files:
 library(quillt)
 ```
 
-## Using fonts {#using-fonts}
+## Using Bootstrap
 
-You can quickly change the fonts in your `flex_dashboard` using functions from the [`{sass}` package](https://rstudio.github.io/sass/index.html), which are imported in the [`{bslib}` package](https://rstudio.github.io/bslib/). For now, you'll need to install the development version:
+The `flex_dashboard` output format gives you access to the [Bootstrap CSS framework](https://getbootstrap.com/). Bootstrap is a library of reusable chunks of HTML, CSS, and JavaScript code that you can call on to modify your flexdashboard without writing that code yourself. Originally [created by and for Twitter](https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)), it is a free and open source project; you can view the repository on [GitHub](https://github.com/twbs/bootstrap). 
+
+The `flex_dashboard` output format includes a `theme` parameter for customizing the overall appearance of the dashboard. This parameter has special awareness of the [`{bslib}` package](https://rstudio.github.io/bslib/), which provides tools for using the [Bootstrap CSS framework](https://getbootstrap.com/) directly from R. For now, you'll need to install the development version of the package to use it:
 
 ``` {.r}
 # install.packages("remotes")
 remotes::install_github("rstudio/bslib")
 ```
 
-You can change the `heading_font`, `base_font`, and `code_font` by setting them in your document's YAML. For example, here we use three [Google fonts](https://fonts.google.com/):
+The minimum YAML for invoking the `{bslib}` package is:
+
+``` {.yaml}
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+---
+```
+
+Bootstrap has several versions (at the time of writing, version 4 is the most recent). If you are starting on a fresh project, we recommend using the latest version. We also recommend you set the Bootstrap version in your YAML for better reproducibility. 
+
+### Using fonts {#using-fonts}
+
+You can quickly change the `heading_font`, `base_font`, and `code_font` from your document's YAML. For example, here we use three [Google fonts](https://fonts.google.com/):
 
 ``` {.yaml}
 output:
   flexdashboard::flex_dashboard:
     theme:
+      version: 4
       heading_font:
         google: Fraunces
       base_font: 
@@ -44,28 +62,14 @@ If you want to use only specific font weights, you can further nest your font se
 output:
   flexdashboard::flex_dashboard:
     theme:
+      version: 4
       heading_font:
         google: 
           family: Fraunces
           wght: "100..300"
 ```
 
-## Using Bootstrap
 
-The `flex_dashboard` output format gives you access to the [Bootstrap CSS framework](https://getbootstrap.com/). Bootstrap is a library of reusable chunks of HTML, CSS, and JavaScript code that you can call on to modify your flexdashboard without writing that code yourself. Originally [created by and for Twitter](https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)), it is a free and open source project; you can view the repository on [GitHub](https://github.com/twbs/bootstrap). 
-
-The `flex_dashboard` output format includes a `theme` parameter for customizing the overall appearance of the dashboard. This parameter has special awareness of the [`{bslib}` package](https://rstudio.github.io/bslib/), which provides tools for using the [Bootstrap CSS framework](https://getbootstrap.com/) directly from R. The minimum YAML for invoking the `{bslib}` package is:
-
-``` {.yaml}
----
-output:
-  flexdashboard::flex_dashboard:
-    theme: 
-      version: 4
----
-```
-
-Bootstrap has several versions (at the time of writing, version 4 is the most recent). If you are starting on a fresh project, we recommend using the latest version. We recommend you set the Bootstrap version in your YAML for better reproducibility. 
 
 ### Using Bootswatch themes
 
