@@ -10,11 +10,11 @@ library(quillt)
 
 ## Using fonts {#using-fonts}
 
-You can quickly change the fonts in your `flex_dashboard` using functions from the [sass package](https://rstudio.github.io/sass/index.html). For now, you'll need to install the development version of the sass package:
+You can quickly change the fonts in your `flex_dashboard` using functions from the [`{sass}` package](https://rstudio.github.io/sass/index.html), which are imported in the [`{bslib}` package](https://rstudio.github.io/bslib/). For now, you'll need to install the development version:
 
 ``` {.r}
 # install.packages("remotes")
-remotes::install_github("rstudio/sass")
+remotes::install_github("rstudio/bslib")
 ```
 
 You can change the `heading_font`, `base_font`, and `code_font` by setting them in your document's YAML. For example, here we use three [Google fonts](https://fonts.google.com/):
