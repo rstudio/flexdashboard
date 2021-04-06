@@ -23,6 +23,7 @@ flex_dashboard(
   highlight = "default",
   mathjax = "default",
   extra_dependencies = NULL,
+  css = NULL,
   includes = NULL,
   lib_dir = NULL,
   md_extensions = NULL,
@@ -112,6 +113,8 @@ copied into the output directory). You can pass an alternate URL or pass
 \item{extra_dependencies}{Additional function arguments to pass to the
 base R Markdown HTML output formatter \code{\link[rmarkdown]{html_document_base}}}
 
+\item{css}{One or more css files to include}
+
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
@@ -132,7 +135,7 @@ itself, not useful for users of the format).}
 resized. Useful when debugging large flexdashboard applications and this
 functionality is not needed.}
 
-\item{...}{Other arguments to [rmarkdown::html_document_base()].}
+\item{...}{Unused}
 }
 \description{
 Format for converting an R Markdown document to a grid oriented dashboard
