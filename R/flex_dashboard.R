@@ -120,7 +120,10 @@ flex_dashboard <- function(fig_width = 6.0,
                            resize_reload = TRUE,
                            ...) {
 
-
+  opts_orig <- NULL
+  on_exit <- function() {
+    options(opts_orig)
+  }
 
   # force self_contained to FALSE in devel mode
   if (devel)
@@ -149,10 +152,6 @@ flex_dashboard <- function(fig_width = 6.0,
   # resolve vertical_layout
   vertical_layout <- match.arg(vertical_layout)
   fill_page <- identical(vertical_layout, "fill")
-
-  # Keep track of any options() we modify, so we can restore them post-knit
-  # (and in the event this is a shiny runtime, restore them onStop())
-  opts_orig <- NULL
 
   # resolve theme
   theme <- resolve_theme(theme)
@@ -268,10 +267,12 @@ flex_dashboard <- function(fig_width = 6.0,
 
     args <- c()
 
+    # Restore the original options when the server stops
+    # running (instead of when render() is done executing)
     if (is_shiny_runtime(runtime)) {
-      shiny::onStop(function() { options(opts_orig) })
-    } else {
-      options(opts_orig)
+      opts_orig2 <- opts_orig
+      shiny::onStop(function() { options(opts_orig2) })
+      opts_orig <<- NULL
     }
 
     # initialize includes if needed
@@ -431,6 +432,7 @@ flex_dashboard <- function(fig_width = 6.0,
     clean_supporting = self_contained,
     pre_knit = pre_knit,
     pre_processor = pre_processor,
+    on_exit = on_exit,
     base_format = html_document_base(theme = theme,
                                      self_contained = self_contained,
                                      lib_dir = lib_dir, mathjax = mathjax,
