@@ -54,7 +54,7 @@ This screenshot shows the result of applying these fonts to a simple `flex_dashb
 
 ![](images/penguin-fonts.png){.snippet}
 
-By default, the sass package downloads, caches, and serves the relevant font file(s) locally. By locally serving files, there's a guarantee that the font can render in any client browser, even when the client doesn't have internet access.
+By default, [`{bslib}`](https://rstudio.github.io/bslib/) (via the [`{sass}` package](https://rstudio.github.io/sass/)) downloads, caches, and serves the relevant font file(s) locally. By locally serving files, there's a guarantee that the font can render in any client browser, even when the client doesn't have internet access.
 
 If you want to use only specific font weights, you can further nest your font selections; for example:
 
