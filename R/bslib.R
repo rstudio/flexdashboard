@@ -18,7 +18,7 @@ resolve_theme <- function(theme) {
       theme <- bs_theme_update(theme, bootswatch = "cosmo")
     }
     # Also default to enable-rounded: true
-    if (!grepl("$enable-rounded:", sass::as_sass(theme))) {
+    if (!grepl("^\\s*\\$enable-rounded:", sass::as_sass(theme))) {
       theme <- bs_theme_update(theme, "enable-rounded" = TRUE)
     }
   }
