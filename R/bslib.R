@@ -1,23 +1,26 @@
 resolve_theme <- function(theme) {
-  if (is.list(theme)) {
-    return(as_bs_theme(theme))
-  }
   if (identical(theme, "default")) {
     return("cosmo")
   }
   if (identical(theme, "bootstrap")) {
     return("default")
   }
-  # html_document() handles invalid theme input
-  theme
-}
-
-as_bs_theme <- function(theme) {
-  if (bslib::is_bs_theme(theme)) {
+  if (is.character(theme)) {
     return(theme)
   }
   if (is.list(theme)) {
-    return(do.call(bslib::bs_theme, theme))
+    if (!is_bs_theme(theme)) {
+      theme <- do.call(bs_theme, theme)
+    }
+    # Default to cosmo theme (just like the non-bslib usage does)
+    # (Users can explictly opt-out with bootswatch: default)
+    if (is.null(theme_bootswatch(theme))) {
+      theme <- bs_theme_update(theme, bootswatch = "cosmo")
+    }
+    # Also default to enable-rounded: true
+    if (!grepl("^\\s*\\$enable-rounded:", sass::as_sass(theme))) {
+      theme <- bs_theme_update(theme, "enable-rounded" = TRUE)
+    }
   }
-  NULL
+  theme
 }
