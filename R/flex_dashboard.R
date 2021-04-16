@@ -662,7 +662,11 @@ html_dependencies_flexdb <- function(theme) {
     return(list(dep))
   }
 
-  stop("Didn't recognize a theme object with class: ", class(theme))
+  if (!is.null(theme)) {
+    warning("Didn't recognize a theme object with class: ", class(theme))
+  }
+
+  NULL
 }
 
 # function for resolving resources
