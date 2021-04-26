@@ -641,6 +641,9 @@ html_dependencies_flexdb <- function(theme) {
   version <- packageVersion("flexdashboard")
 
   if (is.character(theme)) {
+    if (identical(theme, "default")) {
+      theme <- "bootstrap"
+    }
     dep <- htmlDependency(
       name = name, version = version,
       src = "www/flex_dashboard",
