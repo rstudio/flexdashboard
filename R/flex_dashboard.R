@@ -297,6 +297,25 @@ flex_dashboard <- function(fig_width = 6.0,
     if (devel) {
       args <- c(args, pandoc_variable_arg("devel", "1"))
     } else {
+
+      # It's important that this CSS is included this way (i.e., not a
+      # htmlDependency()) so that the storyboard container has a defined size
+      # when sly's JS executes (#329). Unfortunately, this means this CSS is
+      # duplicated in the bslib case, but I'd rather err on the side of caution
+      # than performance for now. To reduce duplication in the future, we should
+      # pull out the storyboard sizing CSS, include that here then include the
+      # rest of the CSS via an HTML dependency
+      dashboardCss <- c(
+        '<style type="text/css">',
+        readLines(resource("flexdashboard.min.css")),
+        readLines(resource(paste0("theme-", theme, ".css"))),
+        if (fill_page) readLines(resource("fillpage.css")),
+        '</style>'
+      )
+      dashboardCssFile <- tempfile(fileext = "html")
+      writeLines(dashboardCss, dashboardCssFile)
+      includes$in_header <- c(includes$in_header, dashboardCssFile)
+
       dashboardScriptFile <- tempfile(fileext = ".html")
       dashboardScript <- c('<script type="text/javascript">', readLines(resource("flexdashboard.js")), '</script>')
       writeLines(dashboardScript, dashboardScriptFile)
@@ -402,10 +421,6 @@ flex_dashboard <- function(fig_width = 6.0,
                                       html_dependency_prism()))
   }
 
-  if (fill_page) {
-    extra_dependencies <- append(extra_dependencies, html_dependencies_fillpage())
-  }
-
   if (is_bs_theme(theme)) {
     if (!is_available("rmarkdown", "2.7.1")) {
       stop("Using a {bslib} theme requires rmarkdown v2.7.1 or higher")
@@ -418,15 +433,13 @@ flex_dashboard <- function(fig_width = 6.0,
 
     # If $navbar-bg wasn't specified by user, default it to $primary
     # (instead of $dark, since the template has .navbar-inverse)
-    navbar_bg <- bslib::bs_get_variables(theme, "navbar-bg")
-    if (is.na(navbar_bg)) {
+    navbar_bg <- grepl("$navbar-bg:", sass::as_sass(theme), fixed = TRUE)
+    if (!navbar_bg) {
       theme <- bslib::bs_add_variables(
         theme, primary = unname(getSassAccentColors(theme, "primary")),
         "navbar-bg" = "$primary"
       )
     }
-  } else {
-    extra_dependencies <- append(extra_dependencies, html_dependencies_flexdb(theme))
   }
 
   # return format
@@ -626,34 +639,14 @@ storyboard_dependencies <- function(source = NULL) {
 }
 
 
-html_dependencies_fillpage <- function() {
-  list(htmlDependency(
-    name = "flexdashboard-fillpage",
-    version = packageVersion("flexdashboard"),
-    src = "www/flex_dashboard",
-    package = "flexdashboard",
-    stylesheet = "fillpage.css"
-  ))
-}
-
 html_dependencies_flexdb <- function(theme) {
   name <- "flexdashboard-css"
   version <- packageVersion("flexdashboard")
 
   if (is.character(theme)) {
-    if (identical(theme, "default")) {
-      theme <- "bootstrap"
-    }
-    dep <- htmlDependency(
-      name = name, version = version,
-      src = "www/flex_dashboard",
-      package = "flexdashboard",
-      stylesheet = c(
-        "flexdashboard.min.css",
-        paste0("theme-", theme, ".css")
-      )
-    )
-    return(list(dep))
+    # The preprocessor hook includes this CSS in the header via pandoc
+    # (see comments in that part of the code for why it works this way)
+    return(NULL)
   }
 
   if (bslib::is_bs_theme(theme)) {
