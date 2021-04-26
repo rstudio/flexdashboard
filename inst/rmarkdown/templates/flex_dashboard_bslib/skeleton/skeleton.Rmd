@@ -6,8 +6,10 @@ output:
       bg: "#101010"
       fg: "#FDF7F7" 
       primary: "#ED79F9"
-      base_font: !expr bslib::font_google("Prompt")
-      code_font: !expr bslib::font_google("JetBrains Mono")
+      base_font:
+        google: Prompt
+      code_font:
+        google: JetBrains Mono
     orientation: columns
     vertical_layout: fill
 ---
