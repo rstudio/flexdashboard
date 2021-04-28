@@ -297,6 +297,19 @@ flex_dashboard <- function(fig_width = 6.0,
     if (devel) {
       args <- c(args, pandoc_variable_arg("devel", "1"))
     } else {
+      # It's important that this CSS is included this way (i.e., not a
+      # htmlDependency()) so that the storyboard container has a defined size
+      # when sly JS executes (#332).
+      dashboardCss <- c(
+        '<style type="text/css">',
+        readLines(resource("storyboard.css")),
+        if (fill_page) readLines(resource("fillpage.css")),
+        '</style>'
+      )
+      dashboardCssFile <- tempfile(fileext = "html")
+      writeLines(dashboardCss, dashboardCssFile)
+      includes$in_header <- c(includes$in_header, dashboardCssFile)
+
       dashboardScriptFile <- tempfile(fileext = ".html")
       dashboardScript <- c('<script type="text/javascript">', readLines(resource("flexdashboard.js")), '</script>')
       writeLines(dashboardScript, dashboardScriptFile)
@@ -400,10 +413,6 @@ flex_dashboard <- function(fig_width = 6.0,
                                  list(html_dependency_jquery(),
                                       html_dependency_featherlight(),
                                       html_dependency_prism()))
-  }
-
-  if (fill_page) {
-    extra_dependencies <- append(extra_dependencies, html_dependencies_fillpage())
   }
 
   if (is_bs_theme(theme)) {
@@ -625,16 +634,6 @@ storyboard_dependencies <- function(source = NULL) {
     NULL
 }
 
-
-html_dependencies_fillpage <- function() {
-  list(htmlDependency(
-    name = "flexdashboard-fillpage",
-    version = packageVersion("flexdashboard"),
-    src = "www/flex_dashboard",
-    package = "flexdashboard",
-    stylesheet = "fillpage.css"
-  ))
-}
 
 html_dependencies_flexdb <- function(theme) {
   name <- "flexdashboard-css"
