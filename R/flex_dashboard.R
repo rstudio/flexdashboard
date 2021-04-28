@@ -418,8 +418,8 @@ flex_dashboard <- function(fig_width = 6.0,
 
     # If $navbar-bg wasn't specified by user, default it to $primary
     # (instead of $dark, since the template has .navbar-inverse)
-    navbar_bg <- bslib::bs_get_variables(theme, "navbar-bg")
-    if (is.na(navbar_bg)) {
+    navbar_bg <- grepl("$navbar-bg:", sass::as_sass(theme), fixed = TRUE)
+    if (!navbar_bg) {
       theme <- bslib::bs_add_variables(
         theme, primary = unname(getSassAccentColors(theme, "primary")),
         "navbar-bg" = "$primary"
