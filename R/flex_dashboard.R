@@ -297,18 +297,12 @@ flex_dashboard <- function(fig_width = 6.0,
     if (devel) {
       args <- c(args, pandoc_variable_arg("devel", "1"))
     } else {
-
       # It's important that this CSS is included this way (i.e., not a
       # htmlDependency()) so that the storyboard container has a defined size
-      # when sly's JS executes (#329). Unfortunately, this means this CSS is
-      # duplicated in the bslib case, but I'd rather err on the side of caution
-      # than performance for now. To reduce duplication in the future, we should
-      # pull out the storyboard sizing CSS, include that here then include the
-      # rest of the CSS via an HTML dependency
+      # when sly JS executes (#332).
       dashboardCss <- c(
         '<style type="text/css">',
-        readLines(resource("flexdashboard.min.css")),
-        readLines(resource(paste0("theme-", theme, ".css"))),
+        readLines(resource("storyboard.css")),
         if (fill_page) readLines(resource("fillpage.css")),
         '</style>'
       )
@@ -440,6 +434,8 @@ flex_dashboard <- function(fig_width = 6.0,
         "navbar-bg" = "$primary"
       )
     }
+  } else {
+    extra_dependencies <- append(extra_dependencies, html_dependencies_flexdb(theme))
   }
 
   # return format
@@ -644,9 +640,19 @@ html_dependencies_flexdb <- function(theme) {
   version <- packageVersion("flexdashboard")
 
   if (is.character(theme)) {
-    # The preprocessor hook includes this CSS in the header via pandoc
-    # (see comments in that part of the code for why it works this way)
-    return(NULL)
+    if (identical(theme, "default")) {
+      theme <- "bootstrap"
+    }
+    dep <- htmlDependency(
+      name = name, version = version,
+      src = "www/flex_dashboard",
+      package = "flexdashboard",
+      stylesheet = c(
+        "flexdashboard.min.css",
+        paste0("theme-", theme, ".css")
+      )
+    )
+    return(list(dep))
   }
 
   if (bslib::is_bs_theme(theme)) {
