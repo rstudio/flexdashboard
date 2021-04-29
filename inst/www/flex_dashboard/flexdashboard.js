@@ -365,6 +365,7 @@ var FlexDashboard = (function () {
 
     var makeSocialLink = function(a, href) {
       a.attr('href', '#');
+      a.attr('role', 'menuitem');
       a.on('click', function(e) {
         e.preventDefault();
         window.open(href);
