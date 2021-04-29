@@ -282,6 +282,7 @@ var FlexDashboard = (function () {
     var li = $('<li></li>');
     var a = navbarLink(icon, title, '#' + id);
     a.attr('data-toggle', 'tab');
+    a.attr('role', 'menuitem');
     li.append(a);
 
     // add it to the navbar (or navbar menu if specified)
