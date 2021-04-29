@@ -61,7 +61,7 @@ If you are not using RStudio, you can create a new `flexdashboard` R Markdown fi
 
 + `"flex_dashboard"` (basic) and 
 
-+ `"flex_dashboard_bslib"` (an example of [theming with `{bslib}`](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/theme.html)):
++ `"flex_dashboard_bslib"` (an example of [theming with `{bslib}`](https://pkgs.rstudio.com/flexdashboard/reference/articles/theme.html)):
 
 ```{r eval=FALSE}
 rmarkdown::draft("dashboard.Rmd", 
@@ -80,4 +80,3 @@ There are two main places to get help with flexdashboard:
 ## Code of Conduct
 
 Please note that the flexdashboard project is released with a [Contributor Code of Conduct](https://pkgs.rstudio.com/flexdashboard/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
-
