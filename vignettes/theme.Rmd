@@ -30,7 +30,7 @@ output:
 ---
 ```
 
-Bootstrap has several versions (at the time of writing, version 4 is the most recent). If you are starting on a fresh project, we recommend using the latest version. We also recommend you set the Bootstrap version in your YAML for better reproducibility. 
+`{bslib}` [supports multiple versions](https://rstudio.github.io/bslib/articles/bslib.html#bootstrap-versions) of Bootstrap so that both new and legacy projects can leverage [custom themes](https://rstudio.github.io/bslib/articles/bslib.html#custom-themes). If you are starting on a fresh project, we recommend using the latest version. We also recommend you set the Bootstrap version in your YAML (e.g., `version = 4`) for better reproducibility. 
 
 ### Using fonts {#using-fonts}
 
