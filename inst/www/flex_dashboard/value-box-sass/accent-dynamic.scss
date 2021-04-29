@@ -6,18 +6,22 @@ $brand-warning: #f0ad4e !default;
 $brand-danger: #d9534f !default;
 $theme-colors: ("primary": $brand-primary, "info": $brand-info, "warning": $brand-warning, "danger": $brand-danger) !default;
 
-// Value boxes use a less saturated version of the actual accent color
-// for their background and the icon uses the actual primary color
 @each $color, $value in $theme-colors {
-  $bg-vb: mix(white, $value, 20%);
-  $fg-vb: color-contrast($bg-vb, #1a1a1a);
+  // Value boxes use a less saturated version of the actual accent color
+  // for their background and the icon uses the actual accent color
+  $bg-vb: rgba($value, 0.7);
+  // Use white as a fg color as long as it provides a 2 contrast ratio
+  // (or higher). This value was chosen so that we get a white fg
+  // against the primary accent bg color (to match RStudio branding)
+  $min-contrast-ratio: 2;
+  $fg-vb: color-contrast(opaque($body-bg, $bg-vb), white);
 
   .value-box.value-box-#{$color} {
     background-color: $bg-vb;
     color: $fg-vb;
     box-shadow: 0 1px 1px rgba($fg-vb, 0.1);
-    icon i {
-      color: $value;
+    .icon i {
+      color: rgba($fg-vb, 0.2);
     }
     &.linked-value:hover {
       box-shadow: 0 2px 2px rgba($bg-vb, 0.3);

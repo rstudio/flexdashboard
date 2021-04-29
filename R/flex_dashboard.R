@@ -73,7 +73,7 @@
 #'  resized. Useful when debugging large flexdashboard applications and this
 #'  functionality is not needed.
 #'
-#'@param ... Unused
+#'@param ... Other arguments to [rmarkdown::html_document_base()].
 #'
 #'@details See the flexdashboard website for additional documentation:
 #'  \href{http://rmarkdown.rstudio.com/flexdashboard/}{http://rmarkdown.rstudio.com/flexdashboard/}
@@ -120,11 +120,9 @@ flex_dashboard <- function(fig_width = 6.0,
                            resize_reload = TRUE,
                            ...) {
 
-  # manage list of exit_actions (backing out changes to knitr options)
-  exit_actions <- list()
+  opts_orig <- NULL
   on_exit <- function() {
-    for (action in exit_actions)
-      try(action())
+    options(opts_orig)
   }
 
   # force self_contained to FALSE in devel mode
@@ -157,10 +155,8 @@ flex_dashboard <- function(fig_width = 6.0,
 
   # resolve theme
   theme <- resolve_theme(theme)
-  options(flexdashboard.theme = theme) # so gauge() can resolve accent colors at render-time
-  exit_actions <- c(exit_actions, function() {
-    options(flexdashboard.theme = NULL)
-  })
+  # Set internal option so that gauge() can resolve accent colors at render-time
+  opts_orig <- c(opts_orig, options(flexdashboard.theme = theme))
 
   # resolve auto_reload
   if (resize_reload == 'no' | grepl("fa?l?s?e?", resize_reload, ignore.case = T))
@@ -181,17 +177,7 @@ flex_dashboard <- function(fig_width = 6.0,
 
   # force to fill it's container (unless the option is already set)
   if (is.na(getOption('DT.fillContainer', NA))) {
-    options(DT.fillContainer = TRUE)
-    exit_actions <- c(exit_actions, function() {
-      options(DT.fillContainer = NULL)
-    })
-  }
-
-  # request that DT auto-hide navigation (unless the option is already set)
-  if (is.na(getOption('DT.autoHideNavigation', NA))) {
-    exit_actions <- c(exit_actions, function() {
-      options(DT.autoHideNavigation = NULL)
-    })
+    opts_orig <- c(opts_orig, options(DT.fillContainer = TRUE))
   }
 
   # add hook to capture fig.width and fig.height and serialized
@@ -281,6 +267,14 @@ flex_dashboard <- function(fig_width = 6.0,
 
     args <- c()
 
+    # Restore the original options when the server stops
+    # running (instead of when render() is done executing)
+    if (is_shiny_runtime(runtime)) {
+      opts_orig2 <- opts_orig
+      shiny::onStop(function() { options(opts_orig2) })
+      opts_orig <<- NULL
+    }
+
     # initialize includes if needed
     if (is.null(includes))
       includes <- list()
@@ -303,6 +297,19 @@ flex_dashboard <- function(fig_width = 6.0,
     if (devel) {
       args <- c(args, pandoc_variable_arg("devel", "1"))
     } else {
+      # It's important that this CSS is included this way (i.e., not a
+      # htmlDependency()) so that the storyboard container has a defined size
+      # when sly JS executes (#332).
+      dashboardCss <- c(
+        '<style type="text/css">',
+        readLines(resource("storyboard.css")),
+        if (fill_page) readLines(resource("fillpage.css")),
+        '</style>'
+      )
+      dashboardCssFile <- tempfile(fileext = "html")
+      writeLines(dashboardCss, dashboardCssFile)
+      includes$in_header <- c(includes$in_header, dashboardCssFile)
+
       dashboardScriptFile <- tempfile(fileext = ".html")
       dashboardScript <- c('<script type="text/javascript">', readLines(resource("flexdashboard.js")), '</script>')
       writeLines(dashboardScript, dashboardScriptFile)
@@ -335,7 +342,7 @@ flex_dashboard <- function(fig_width = 6.0,
        '    body.css("padding-top", (navHeight + 8) + "px");',
        '    sidebar.css("top", navHeight + "px");',
        '  }',
-       '  setTimeout(addNavbarPadding, 50);',
+       '  if (!window.Shiny) setTimeout(addNavbarPadding, 100);',
        '  $(document).on("shiny:idle", function() {',
        '    setTimeout(addNavbarPadding, 50);',
        '  });',
@@ -368,9 +375,17 @@ flex_dashboard <- function(fig_width = 6.0,
                                         before_body = includes$before_body,
                                         after_body = includes$after_body))
 
-    # additional user css
-    for (css_file in css)
-      args <- c(args, "--css", pandoc_path_arg(css_file))
+    # html_document_base gained a css argument in v2.7.7
+    # (which also handles scss/sass files), so only do the
+    # CSS -> Pandoc conversion if these are css files
+    if (!is_available("rmarkdown", "2.7.7")) {
+      for (css_file in css) {
+        if (grepl("\\.s[ac]ss$", css_file)) {
+          stop("Compilation of Sass -> CSS requires rmarkdown version 2.7.7 or higher")
+        }
+        args <- c(args, "--css", pandoc_path_arg(css_file))
+      }
+    }
 
     args
   }
@@ -400,10 +415,6 @@ flex_dashboard <- function(fig_width = 6.0,
                                       html_dependency_prism()))
   }
 
-  if (fill_page) {
-    extra_dependencies <- append(extra_dependencies, html_dependencies_fillpage())
-  }
-
   if (is_bs_theme(theme)) {
     if (!is_available("rmarkdown", "2.7.1")) {
       stop("Using a {bslib} theme requires rmarkdown v2.7.1 or higher")
@@ -416,10 +427,10 @@ flex_dashboard <- function(fig_width = 6.0,
 
     # If $navbar-bg wasn't specified by user, default it to $primary
     # (instead of $dark, since the template has .navbar-inverse)
-    navbar_bg <- bslib::bs_get_variables(theme, "navbar-bg")
-    if (is.na(navbar_bg)) {
+    navbar_bg <- grepl("$navbar-bg:", sass::as_sass(theme), fixed = TRUE)
+    if (!navbar_bg) {
       theme <- bslib::bs_add_variables(
-        theme, primary = getSassAccentColors(theme, "primary"),
+        theme, primary = unname(getSassAccentColors(theme, "primary")),
         "navbar-bg" = "$primary"
       )
     }
@@ -446,6 +457,7 @@ flex_dashboard <- function(fig_width = 6.0,
                                      pandoc_args = pandoc_args,
                                      bootstrap_compatible = TRUE,
                                      extra_dependencies = extra_dependencies,
+                                     css = css,
                                      ...)
   )
 }
@@ -623,21 +635,14 @@ storyboard_dependencies <- function(source = NULL) {
 }
 
 
-html_dependencies_fillpage <- function() {
-  list(htmlDependency(
-    name = "flexdashboard-fillpage",
-    version = packageVersion("flexdashboard"),
-    src = "www/flex_dashboard",
-    package = "flexdashboard",
-    stylesheet = "fillpage.css"
-  ))
-}
-
 html_dependencies_flexdb <- function(theme) {
   name <- "flexdashboard-css"
   version <- packageVersion("flexdashboard")
 
   if (is.character(theme)) {
+    if (identical(theme, "default")) {
+      theme <- "bootstrap"
+    }
     dep <- htmlDependency(
       name = name, version = version,
       src = "www/flex_dashboard",
@@ -659,10 +664,19 @@ html_dependencies_flexdb <- function(theme) {
     return(list(dep))
   }
 
-  stop("Didn't recognize a theme object with class: ", class(theme))
+  if (!is.null(theme)) {
+    warning("Didn't recognize a theme object with class: ", class(theme))
+  }
+
+  NULL
 }
 
 # function for resolving resources
 resource <- function(name) {
   system.file("www/flex_dashboard", name, package = "flexdashboard")
+}
+
+# copied from rmarkdown:::is_shiny
+is_shiny_runtime <- function(runtime) {
+  !is.null(runtime) && grepl("^shiny", runtime)
 }

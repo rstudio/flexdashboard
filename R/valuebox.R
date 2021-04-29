@@ -84,7 +84,9 @@ valueBoxCoreDependencies <- function(icon) {
 
 valueBoxStaticAccentCSS <- function(theme) {
   if (!is.character(theme)) return(NULL)
-
+  if (identical(theme, "default")) {
+    theme <- "bootstrap"
+  }
   htmltools::htmlDependency(
     name = "value-box-accent-static",
     version = packageVersion("flexdashboard"),

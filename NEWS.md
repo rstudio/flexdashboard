@@ -11,8 +11,10 @@ output:
       bg: "#101010"
       fg: "#FDF7F7"
       primary: "#ED79F9"
-      base_font: !expr bslib::font_google("Prompt")
-      code_font: !expr bslib::font_google("JetBrains Mono")
+      base_font:
+        google: "Prompt"
+      code_font:
+        google: "JetBrains Mono"
 ---
 ````
 
@@ -48,6 +50,8 @@ By default, using this `{bslib}` integration will also upgrade your dashboard fr
 * The `window.FlexDashboard.themeColor` JavaScript object property is no longer available. Resolving of theming accent colors should now be done server-side via `{bslib}`'s [dynamic theming tools](https://rstudio.github.io/bslib/articles/theming.html#custom-components-1). (#305) 
 
 ### Improvements & fixes
+
+* Closed #315, #321, and #286: `DT::datatable()` now fills its container correctly inside of `flexdashboard::flex_dashboard()`. (#322) 
 
 * Closed #310: An `.active` class may now be added to a particular `.tabset` tab to control which tab is shown by default. (#311)
 
