@@ -94,7 +94,7 @@ This screenshot shows the result of applying the above `theme` to [this example 
 
 ### Custom Bootstrap themes
 
-You can also create your own custom theme by setting the [main colors and fonts](https://rstudio.github.io/bslib/articles/theming.html#main-colors-fonts) (e.g., `bg`, `fg`, `primary`, `base_font`, `code_font`, etc.) as well as more specific theming options, [such as `navbar-bg`](https://rstudio.github.io/bslib/articles/bs4-variables.html#navbar-bg). Under the hood, this works by passing the `theme` to `bslib::bs_theme()` which influences the final look of the page by creating a custom build of Bootstrap (and Flexdashboard) CSS.
+You can also create your own [custom `{bslib}` theme](https://rstudio.github.io/bslib/articles/bslib.html#custom-themes) by setting the main colors and fonts (e.g., `bg`, `fg`, `primary`, `base_font`, `code_font`, etc.) as well as [more specific theming](https://rstudio.github.io/bslib/articles/bslib.html#everything-else) options, [such as `navbar-bg`](https://rstudio.github.io/bslib/articles/bs4-variables.html#navbar-bg). Under the hood, this works by passing the `theme` to `bslib::bs_theme()` which influences the final look of the page by creating a custom build of Bootstrap (and Flexdashboard) CSS.
 
 ``` {.r}
 ---
