@@ -131,7 +131,7 @@ These components work with `{bslib}`'s real-time theming widget, which you can a
 
 ### Theme output
 
-Generally, most "un-opinionated" HTML content rendered by the web browser "just works" with `{bslib}`. This means that the styles you specify for your document will cascade correctly. However, some HTML elements that aren't rendered by the browser aren't necessarily aware of `{bslib}` (or CSS in general).
+Generally, most "un-opinionated" HTML content rendered by the web browser should "just work" with your `theme` settings. However, some HTML elements that aren't rendered by the browser aren't necessarily aware of `{bslib}` (or CSS in general).
 
 To theme static R plots (e.g., `{ggplot2}`), you can call `thematic::thematic_rmd()` in a setup chunk to translate the `{bslib}` theme main colors to R plot theming defaults.
 
