@@ -318,4 +318,4 @@ This vignette just scratches the surface of how to use Bootstrap variables and S
 -   Sass docs: <https://sass-lang.com/documentation>
 -   The bslib package docs (for Bootstrap): https://rstudio.github.io/bslib/
 -   The sass package docs (for fonts): https://rstudio.github.io/sass/
--   The thematic package docs (for theming output): https://rstudio.github.io/thematic/
+-   The thematic package docs (for theming plot output): https://rstudio.github.io/thematic/
