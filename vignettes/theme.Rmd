@@ -8,18 +8,18 @@ resource_files:
 library(quillt)
 ```
 
-## Using Bootstrap
+## Bootstrap and bslib
 
 The `flex_dashboard` output format builds upon the [Bootstrap CSS framework](https://getbootstrap.com/). Bootstrap is a library of reusable chunks of HTML, CSS, and JavaScript code that you can call on to modify your flexdashboard without writing that code yourself. Originally [created by and for Twitter](https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)), it is a free and open source project; you can view the repository on [GitHub](https://github.com/twbs/bootstrap). 
 
-The `flex_dashboard` output format includes a `theme` parameter for customizing the overall appearance of the dashboard. This parameter has special awareness of the [`{bslib}` package](https://rstudio.github.io/bslib/), which provides tools for using the [Bootstrap CSS framework](https://getbootstrap.com/) directly from R. For now, you'll need to install the development version of the package to use it:
+The `flex_dashboard` output format includes a `theme` parameter for customizing the overall appearance of the dashboard. This parameter has special integration with the [`{bslib}` package](https://rstudio.github.io/bslib/), which makes it easy to customize [Bootstrap CSS](https://getbootstrap.com/) styles directly from R. For now, you'll want to install the development version of the package for the best experience:
 
 ``` {.r}
 # install.packages("remotes")
 remotes::install_github("rstudio/bslib")
 ```
 
-The minimum YAML for invoking the `{bslib}` package is:
+`{bslib}` [supports multiple versions](https://rstudio.github.io/bslib/articles/bslib.html#bootstrap-versions) of Bootstrap so that both new and legacy projects can leverage [custom themes](https://rstudio.github.io/bslib/articles/bslib.html#custom-themes). If you are starting on a fresh project, we recommend choosing the latest supported version (currently, `version: 4`), but legacy projects may want to set `version: 3`:
 
 ``` {.yaml}
 ---
@@ -30,52 +30,9 @@ output:
 ---
 ```
 
-`{bslib}` [supports multiple versions](https://rstudio.github.io/bslib/articles/bslib.html#bootstrap-versions) of Bootstrap so that both new and legacy projects can leverage [custom themes](https://rstudio.github.io/bslib/articles/bslib.html#custom-themes). If you are starting on a fresh project, we recommend using the latest version. We also recommend you set the Bootstrap version in your YAML (e.g., `version = 4`) for better reproducibility. 
+### Bootswatch themes
 
-### Using fonts {#using-fonts}
-
-You can quickly change the `heading_font`, `base_font`, and `code_font` from your document's YAML. For example, here we use three [Google fonts](https://fonts.google.com/):
-
-``` {.yaml}
-output:
-  flexdashboard::flex_dashboard:
-    theme:
-      version: 4
-      heading_font:
-        google: Fraunces
-      base_font: 
-        google: Sen
-      code_font: 
-        google: DM Mono
-```
-
-
-This screenshot shows the result of applying these fonts to a simple `flex_dashboard`:
-
-![](images/penguin-fonts.png){.snippet}
-
-By default, [`{bslib}`](https://rstudio.github.io/bslib/) (via the [`{sass}` package](https://rstudio.github.io/sass/)) downloads, caches, and serves the relevant font file(s) locally. By locally serving files, there's a guarantee that the font can render in any client browser, even when the client doesn't have internet access.
-
-If you want to use only specific font weights, you can further nest your font selections; for example:
-
-``` {.yaml}
-output:
-  flexdashboard::flex_dashboard:
-    theme:
-      version: 4
-      heading_font:
-        google: 
-          family: Fraunces
-          wght: "100..300"
-```
-
-
-
-### Using Bootswatch themes
-
-Using the `theme` parameter, you have access to a library of pre-made custom themes built for Bootstrap called [Bootswatch](https://bootswatch.com/). The `theme` parameter can be set to any named Bootswatch theme (in lowercase) built for [Bootstrap version 3](https://bootswatch.com/3/) or [version 4](https://bootswatch.com/).
-
-For example, here's how you could give your dashboard a [(Bootswatch 4) Minty theme](https://bootswatch.com/minty/).
+`{bslib}` provides access to any [Bootswatch 4](https://bootswatch.com/) (new projects) or [3](https://bootswatch.com/3) (legacy projects). For example, here's how you could give your dashboard a [(Bootswatch 4) Minty theme](https://bootswatch.com/minty/).
 
 ``` {.yaml}
 ---
@@ -87,14 +44,13 @@ output:
 ---
 ```
 
-
 This screenshot shows the result of applying the above `theme` to [this example dashboard](https://gist.github.com/cpsievert/04bedbe9af652fab8c24a5e5eee0d721) that [uses Shiny](shiny.html) (subsequent screenshots also use this example, but swap out different `theme`s).
 
 ![](images/theme-minty.png){.snippet}
 
-### Custom Bootstrap themes
+### Custom themes {#custom-themes}
 
-You can also create your own [custom `{bslib}` theme](https://rstudio.github.io/bslib/articles/bslib.html#custom-themes) by setting the main colors and fonts (e.g., `bg`, `fg`, `primary`, `base_font`, `code_font`, etc.) as well as [more specific theming](https://rstudio.github.io/bslib/articles/bslib.html#everything-else) options, [such as `navbar-bg`](https://rstudio.github.io/bslib/articles/bs4-variables.html#navbar-bg). Under the hood, this works by passing the `theme` to `bslib::bs_theme()` which influences the final look of the page by creating a custom build of Bootstrap (and Flexdashboard) CSS.
+You can also create your own [custom `{bslib}` theme](https://rstudio.github.io/bslib/articles/bslib.html#custom-themes) by setting the [main colors and fonts](https://rstudio.github.io/bslib/articles/bslib.html#main-colors-fonts) as well as [more specific theming](https://rstudio.github.io/bslib/articles/bslib.html#everything-else) options, [such as `navbar-bg`](https://rstudio.github.io/bslib/articles/bs4-variables.html#navbar-bg). For custom font settings, adding a `google:` keyword triggers `sass::font_google()`'s ability to automatically import Google Font files. By default, `google:` will bundle font files with your dashboard, so that when you share it with someone else, the fonts are guaranteed to render, even without an internet connection (`local: false` imports files via URL instead of serving them locally).
 
 ``` {.r}
 ---
@@ -108,16 +64,23 @@ output:
       navbar-bg: "#3ADAC6"
       base_font: 
         google: Prompt
+      heading_font:
+        google: Sen
       code_font:
-        google: JetBrains Mono
+        google: 
+          # arguments to sass::font_google() 
+          family: JetBrains Mono
+          local: false
 ---
 ```
 
 ![](images/theme-dark.png){.snippet}
 
-As shown above, a major benefit of theming via `{bslib}` is that theming of things like `gauge()`, `valueBox()`, and even `DT::datatable()` "just work" (that is, their styling defaults are informed by the `{bslib}` theme).
+[See here](https://rstudio.github.io/bslib/articles/bslib.html#custom-themes) to learn more about `{bslib}`'s custom themes.
 
-These components work with `{bslib}`'s real-time theming widget, which you can add to `flex_dashboard` by adding either:
+## Real-time theming {#real-time-themes}
+
+[`{bslib}`'s real-time theming widget](https://rstudio.github.io/bslib/articles/bslib.html#real-time-theming) allows you to interactively customize `theme:` by adding:
 
 -   `runtime: shiny` to the document's yaml matter and calling `bslib::bs_themer()` in any code chunk, or
 
@@ -129,9 +92,10 @@ These components work with `{bslib}`'s real-time theming widget, which you can a
 
 ![](images/real-time.gif){.snippet}
 
-### Theme output
 
-Generally, most "un-opinionated" HTML content rendered by the web browser should "just work" with your `theme` settings. However, some HTML elements that aren't rendered by the browser aren't necessarily aware of `{bslib}` (or CSS in general).
+### Auto-theming R plots
+
+Generally, most "un-opinionated" HTML content rendered by the web browser should "just work" with your `theme` settings. However, some outputs that aren't rendered by the browser (e.g., R plots) aren't necessarily aware of `{bslib}` (or CSS in general).
 
 To theme static R plots (e.g., `{ggplot2}`), you can call `thematic::thematic_rmd()` in a setup chunk to translate the `{bslib}` theme main colors to R plot theming defaults.
 
@@ -143,20 +107,11 @@ Additionally, if you're using Google Fonts, or some other font that you've regis
 
 ![](images/theme-plot.png){.snippet}
 
-If you use one of the `{ggplot2}` [complete themes](https://ggplot2.tidyverse.org/reference/ggtheme.html) (like `theme_bw()` or `theme_minimal()`, for example), we recommend setting the theme globally for the `flex_dashboard` in a `setup` chunk, then turning thematic on *after*.
+To learn more about `{thematic}`, see <https://rstudio.github.io/thematic>
 
-    ```{r setup, include = FALSE}`r ''`
-    library(ggplot2)
-    theme_set(theme_minimal())
-    thematic::thematic_rmd(font = "auto")
-    ```
-    
-Read more about the `{thematic}` package here: 
-`vignette("custom", package = "thematic")`.
+## Add CSS styles
 
-## Using CSS
-
-Whether or not you use [Bootstrap](#using-bootstrap), you may add your own CSS file to customize how your `flex_dashboard` looks. This file can contain plain CSS rules, like:
+Although [custom theming](#custom-themes) is great for customizing Bootstrap and Flexdashboard CSS, you still may want to add more styling rules to customize the appearance of your dashboard. This file can contain plain CSS rules, like:
 
 ``` {.css}
 .my-purple {
@@ -208,9 +163,9 @@ Here is the knitted output that includes these custom rules:
 
 You can read more about Pandoc's custom blocks in the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html).
 
-## Using SASS
+## Add Sass rules
 
-If you want to go beyond `{bslib}`'s theming features, you can provide `.scss` file(s) with additional [Sass](https://sass-lang.com/) rules. Sass is only supported if using `{bslib}` (inferred from using the `theme` in the YAML):
+[Sass](https://sass-lang.com/) is a language designed for writing better CSS. Thankfully, the `css` parameters also understands `.scss` (i.e., Sass) file(s):
 
 ``` {.yaml}
 ---
@@ -222,7 +177,7 @@ output:
 ---
 ```
 
-This file can contain [plain CSS rules](#using-css), as well as rules that use Bootstrap Sass variables. These variables are denoted by `$` followed by a variable name, like `$cyan`:
+Sass files can contain [plain CSS rules](#using-css), as well as rules that use [Bootstrap Sass variables](https://rstudio.github.io/bslib/articles/bs4-variables.html). These variables are denoted by `$` followed by a variable name, like `$cyan`:
 
 ``` {.scss}
 .bs4-bright {
@@ -249,7 +204,7 @@ Here is the knitted output that includes these custom rules:
 
 You can find a full list of variables in `vignette("bs4-variables", package = "bslib")`.
 
-When compiled, those Sass rules have access to Bootstrap Sass variables, functions, and mixins. This allows you to [write custom CSS styles in a "themeable" way](https://rstudio.github.io/bslib/articles/theming.html#a-basic-themeable-component) and/or simply leverage useful Sass functions like [`color-contrast()`](https://github.com/rstudio/bslib/blob/df10a878e0e9d1e42c83b4c2101bc8d9f00ad314/inst/sass-utils/color-contrast.scss#L9).
+When compiled, those Sass rules have access to Bootstrap Sass variables, functions, and mixins. This allows you to [write custom CSS styles in a "themeable" way](https://rstudio.github.io/bslib/articles/custom-components.html) and/or simply leverage useful Sass functions like [`color-contrast()`](https://github.com/rstudio/bslib/blob/df10a87/inst/sass-utils/color-contrast.scss#L9).
 
 For example, we can use the Sass [`@extend`](https://sass-lang.com/documentation/at-rules/extend) rule in our `.scss` file to bundle together multiple Bootstrap variables and tell Sass that one selector should inherit the styles of another:
 
@@ -282,7 +237,7 @@ Here is the knitted output that includes these custom rules:
 
 ![](images/penguin-extend.png){.snippet}
 
-You may also reuse any [fonts](#using-fonts) specified in your YAML with SASS variables.
+You may also reuse any [fonts](#custom-themes) specified in your YAML with Sass variables.
 
 | YAML key       | Bootstrap 4 variable     |
 |----------------|--------------------------|
@@ -291,6 +246,7 @@ You may also reuse any [fonts](#using-fonts) specified in your YAML with SASS va
 | `code_font`    | `$font-family-monospace` |
 
 So we could set up the following rule:
+
 ``` {.scss}
 .pkg-name {
   background-color: $cyan;
@@ -312,10 +268,10 @@ Here is the knitted output:
 
 ## Resources
 
-This vignette just scratches the surface of how to use Bootstrap variables and SASS together. Both are powerful tools for customizing the look and feel of your HTML documents. To learn more, see:
+This vignette provides a brief overview of `{bslib}`'s integration with `{flexdashboard}`, but there's a lot more to theming with `{bslib}` (i.e. Bootstrap Sass), `{sass}` (i.e., Sass), and `{thematic}`. To learn more, see:
 
+-   The `{bslib}` package docs: <https://rstudio.github.io/bslib/>
+-   The `{sass}` package docs (for writing Sass code in R): <https://rstudio.github.io/sass/>
+-   The `{thematic}` package docs (for theming plot output): <https://rstudio.github.io/thematic/>
+-   Sass language docs: <https://sass-lang.com/documentation>
 -   Bootstrap docs: <https://getbootstrap.com/docs/4.0/>
--   Sass docs: <https://sass-lang.com/documentation>
--   The bslib package docs (for Bootstrap): https://rstudio.github.io/bslib/
--   The sass package docs (for fonts): https://rstudio.github.io/sass/
--   The thematic package docs (for theming plot output): https://rstudio.github.io/thematic/
