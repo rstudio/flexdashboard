@@ -549,7 +549,7 @@ navbar_links <- function(social, source_code) {
   # social links
   for (service in social) {
     if (identical(service, "menu")) {
-      menu <- list(title = "Share", icon = "fa-share-alt")
+      menu <- list(icon = "fa-share-alt")
       menu$items <- list(
         list(title = "Twitter", icon = "fa-twitter"),
         list(title = "Facebook", icon = "fa-facebook"),
