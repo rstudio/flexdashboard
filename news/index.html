@@ -191,40 +191,7 @@
 <h1 class="page-header" data-toc-text="0.5.2.9000">
 <a href="#flexdashboard-0529000" class="anchor" aria-hidden="true"></a>flexdashboard 0.5.2.9000<small> Unreleased </small>
 </h1>
-<p>This release adds integration with the new <a href="https://rstudio.github.io/bslib/index.html" class="external-link"><code>{bslib}</code> package</a>, making the customization of main colors and fonts much easier via <code>flex_dashboard</code>’s <code>theme</code> parameter. For example, here’s a custom dark mode with custom Google Fonts:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">---</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">output</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="at">  flexdashboard:</span><span class="fu">:flex_dashboard</span><span class="kw">:</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="at">      </span><span class="fu">bg</span><span class="kw">:</span><span class="at"> </span><span class="st">"#101010"</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="at">      </span><span class="fu">fg</span><span class="kw">:</span><span class="at"> </span><span class="st">"#FDF7F7"</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="at">      </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#ED79F9"</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="at">      </span><span class="fu">base_font</span><span class="kw">:</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="at">        </span><span class="fu">google</span><span class="kw">:</span><span class="at"> </span><span class="st">"Prompt"</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="at">      </span><span class="fu">code_font</span><span class="kw">:</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="at">        </span><span class="fu">google</span><span class="kw">:</span><span class="at"> </span><span class="st">"JetBrains Mono"</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="pp">---</span></span></code></pre></div>
-<p>Furthermore, all of <a href="http://rmarkdown.rstudio.com/flexdashboard" class="external-link">flexdashboard</a> now also works sensible with <a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a>’s real-time theming widget (<code>bs_themer()</code>). To use it, add a <code>runtime: shiny</code> to the top of the yaml matter and call <code><a href="https://rstudio.github.io/bslib//reference/run_with_themer.html" class="external-link">bslib::bs_themer()</a></code> in a server context. Also, if your dashboard contains static plots, you can add <code>thematic::thematic_shiny(font = "auto")</code> to theme plots in real-time too (just make sure the plots are generated through <code>renderPlot()</code>).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">output</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="at">  flexdashboard:</span><span class="fu">:flex_dashboard</span><span class="kw">:</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="at">      </span><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="dv">4</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="pp">---</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="at">```{r, include = FALSE}</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="at">bslib::bs_themer()</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="at">thematic::thematic_shiny(font = "auto")</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="at">```</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">## Row</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">### My plot</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="at">```{r}</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="at">renderPlot(plot(1:10))</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="at">```</span></span></code></pre></div>
-<p>By default, using this <a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a> integration will also upgrade your dashboard from Bootstrap 3 to 4. If you run into any issues with custom widgets rendering not quite right, note that you can add <code>version: 3</code> to the <code>theme</code> in order to use Bootstrap 3 instead of 4. To learn more about <a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a><a href="https://github.com/rstudio/bslib#basic-theming-options" class="external-link">See here</a> to learn more about the theming options that <a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a> provides.</p>
+<p>This release adds integration with the new <a href="https://rstudio.github.io/bslib/index.html" class="external-link"><code>{bslib}</code> package</a>, making it much easier to customize the overall appearance of the dashboard (and/or upgrade to Bootstrap 4). See the <a href="https://rmarkdown.rstudio.com/flexdashboard" class="external-link">new website’s</a> new <a href="https://rmarkdown.rstudio.com/flexdashboard/articles/theme.html" class="external-link">article on theming</a> to learn more.</p>
 <div id="possibly-breaking-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#possibly-breaking-changes" class="anchor" aria-hidden="true"></a>Possibly breaking changes</h3>
