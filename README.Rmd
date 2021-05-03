@@ -33,7 +33,7 @@ Learn more about **flexdashboard**: <https://pkgs.rstudio.com/flexdashboard>
 
 ## Examples
 
-<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>&nbsp;&nbsp;<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>&nbsp;&nbsp;<a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="http://rmarkdown.rstudio.com/flexdashboard/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
+<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="https://rmarkdown.rstudio.com/flexdashboard/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>&nbsp;&nbsp;<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/"><img src="https://rmarkdown.rstudio.com/flexdashboard/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>&nbsp;&nbsp;<a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="https://rmarkdown.rstudio.com/flexdashboard/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
 
 View more examples [here](https://flexdashboard-pkg.netlify.app/articles/articles/examples.html).
 
@@ -57,15 +57,15 @@ To author a **flexdashboard** you create an [R Markdown](https://rmarkdown.rstud
 
 ![](man/figures/NewRMarkdown.png)
 
-If you are not using RStudio, you can create a new `flexdashboard` R Markdown file from the R console. Currently there are two `templates`: 
+If you are not using RStudio, you can create a new `flexdashboard` R Markdown file from the R console. Currently there are two `templates`:
 
-+ `"flex_dashboard"` (basic) and 
++ `"flex_dashboard"` (basic) and
 
 + `"flex_dashboard_bslib"` (an example of [theming with `{bslib}`](https://pkgs.rstudio.com/flexdashboard/reference/articles/theme.html)):
 
 ```{r eval=FALSE}
-rmarkdown::draft("dashboard.Rmd", 
-                 template = "flex_dashboard_bslib", 
+rmarkdown::draft("dashboard.Rmd",
+                 template = "flex_dashboard_bslib",
                  package = "flexdashboard")
 ```
 
