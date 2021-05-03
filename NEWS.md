@@ -1,48 +1,7 @@
 flexdashboard 0.5.2.9000
 ===========
 
-This release adds integration with the new [`{bslib}` package](https://rstudio.github.io/bslib/index.html), making the customization of main colors and fonts much easier via `flex_dashboard`'s `theme` parameter. For example, here's a custom dark mode with custom Google Fonts:
-
-````yaml
----
-output:
-  flexdashboard::flex_dashboard:
-    theme:
-      bg: "#101010"
-      fg: "#FDF7F7"
-      primary: "#ED79F9"
-      base_font:
-        google: "Prompt"
-      code_font:
-        google: "JetBrains Mono"
----
-````
-
-Furthermore, all of `{flexdashboard}` now also works sensible with `{bslib}`'s real-time theming widget (`bs_themer()`). To use it, add a `runtime: shiny` to the top of the yaml matter and call `bslib::bs_themer()` in a server context. Also, if your dashboard contains static plots, you can add `thematic::thematic_shiny(font = "auto")` to theme plots in real-time too (just make sure the plots are generated through `renderPlot()`).
-
-````yaml
----
-output:
-  flexdashboard::flex_dashboard:
-    theme:
-      version: 4
----
-
-```{r, include = FALSE}
-bslib::bs_themer()
-thematic::thematic_shiny(font = "auto")
-```
-
-## Row
-
-### My plot
-
-```{r}
-renderPlot(plot(1:10))
-```
-````
-
-By default, using this `{bslib}` integration will also upgrade your dashboard from Bootstrap 3 to 4. If you run into any issues with custom widgets rendering not quite right, note that you can add `version: 3` to the `theme` in order to use Bootstrap 3 instead of 4. To learn more about `{bslib}`[See here](https://github.com/rstudio/bslib#basic-theming-options) to learn more about the theming options that `{bslib}` provides.
+This release adds integration with the new [`{bslib}` package](https://rstudio.github.io/bslib/index.html), making it much easier to customize the overall appearance of the dashboard (and/or upgrade to Bootstrap 4). See the [new website's](https://rmarkdown.rstudio.com/flexdashboard) new [article on theming](https://rmarkdown.rstudio.com/flexdashboard/articles/theme.html) to learn more.
 
 ### Possibly breaking changes
 
