@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Themed dashboard"
 output: 
   flexdashboard::flex_dashboard:
     theme:
@@ -16,9 +16,11 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+# Install thematic and un-comment for themed static plots (i.e., ggplot2)
+# thematic::thematic_rmd()
 ```
 
-Column {data-width=650}
+Column {data-width=650 .tabset}
 -----------------------------------------------------------------------
 
 ### Chart A
@@ -27,16 +29,22 @@ Column {data-width=650}
 
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
-
 ### Chart B
 
 ```{r}
 
 ```
 
+Column {data-width=350}
+-----------------------------------------------------------------------
+
 ### Chart C
+
+```{r}
+
+```
+
+### Chart D
 
 ```{r}
 

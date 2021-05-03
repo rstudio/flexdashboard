@@ -1,0 +1,14 @@
+---
+title: "Example projects"
+resource_files:
+  - images/
+---
+
+
+The examples below illustrate the use of flexdashboard with various packages and layouts. If you want to learn more about how the dashboards were created each example includes a link to its source code. 
+
+
+```{r, echo=FALSE}
+quillt::examples(yml = "examples.yml")
+```
+
