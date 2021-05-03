@@ -8,3 +8,6 @@ README.R?md
 ^examples/*
 ^sandbox/*
 ^\.github$
+^vignettes/*
+^pkgdown/*
+^_pkgdown\.yml$
