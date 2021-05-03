@@ -10,7 +10,7 @@ status](https://www.r-pkg.org/badges/version/flexdashboard)](https://CRAN.R-proj
 [![R-CMD-check](https://github.com/rstudio/flexdashboard/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/flexdashboard/actions)
 <!-- badges: end -->
 
-The goal of flexdashboard is to make it easy to create interactive
+The goal of **flexdashboard** is to make it easy to create interactive
 dashboards for R, using R Markdown.
 
 -   Use [R Markdown](https://rmarkdown.rstudio.com) to publish a group
@@ -34,10 +34,11 @@ dashboards for R, using R Markdown.
     visualizations dynamically.
 
 -   Optionally use [bslib](https://rstudio.github.io/bslib/) to easily
-    [customize main colors and
-    fonts](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/theme.html).
+    [customize main colors, fonts, and
+    more](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/theme.html).
 
-Learn more about flexdashboard: <https://pkgs.rstudio.com/flexdashboard>
+Learn more about **flexdashboard**:
+<https://pkgs.rstudio.com/flexdashboard>
 
 ## Examples
 
@@ -54,8 +55,8 @@ Install the **flexdashboard** package from CRAN as follows:
 install.packages("flexdashboard")
 ```
 
-If you want to use the development version of the flexdashboard package,
-you can install the package from GitHub via the [**remotes**
+If you want to use the development version of the **flexdashboard**
+package, you can install the package from GitHub via the [**remotes**
 package](https://remotes.r-lib.org):
 
 ``` r
@@ -64,7 +65,7 @@ remotes::install_github('rstudio/flexdashboard')
 
 ## Usage
 
-To author a flexdashboard you create an [R
+To author a **flexdashboard** you create an [R
 Markdown](https://rmarkdown.rstudio.com) document with the
 `flexdashboard::flex_dashboard` output format. You can do this from
 within RStudio using the **New R Markdown** dialog:
@@ -77,7 +78,7 @@ Markdown file from the R console. Currently there are two `templates`:
 -   `"flex_dashboard"` (basic) and
 
 -   `"flex_dashboard_bslib"` (an example of [theming with
-    `{bslib}`](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/theme.html)):
+    `{bslib}`](https://pkgs.rstudio.com/flexdashboard/reference/articles/theme.html)):
 
 ``` r
 rmarkdown::draft("dashboard.Rmd", 
@@ -97,8 +98,8 @@ There are two main places to get help with flexdashboard:
 
 -   [Stack
     Overflow](https://stackoverflow.com/questions/tagged/flexdashboard)
-    is a great source of answers to common flexdashboard questions. It
-    is also a great place to get help, once you have created a
+    is a great source of answers to common **flexdashboard** questions.
+    It is also a great place to get help, once you have created a
     reproducible example that illustrates your problem. Use the tags
     [`[r][flexdashboard]`](https://stackoverflow.com/questions/tagged/flexdashboard+r)
     if you ask a question. Add the tag `[shiny]` if you are using a
@@ -106,7 +107,7 @@ There are two main places to get help with flexdashboard:
 
 ## Code of Conduct
 
-Please note that the flexdashboard project is released with a
+Please note that the **flexdashboard** project is released with a
 [Contributor Code of
 Conduct](https://pkgs.rstudio.com/flexdashboard/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
