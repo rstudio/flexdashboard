@@ -73,16 +73,6 @@ jobs:
         run: pkgdown::build_site(new_process = FALSE)
         shell: Rscript {0}
 
-      - name: Git setup (push)
-        if: github.event_name == 'push'
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-
-      - name: Deploy package (push)
-        if: github.event_name == 'push'
-        run: pkgdown::deploy_to_branch(new_process = FALSE)
-        shell: Rscript {0}
 
       - name: Deploy to Netlify (push)
         if: github.event_name == 'push'
