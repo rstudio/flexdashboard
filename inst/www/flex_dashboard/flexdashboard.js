@@ -286,7 +286,6 @@ var FlexDashboard = (function () {
     var li = $('<li></li>');
     var a = navbarLink(icon, title, '#' + id);
     a.attr('data-toggle', 'tab');
-    a.attr('role', 'menuitem');
     li.append(a);
 
     // add it to the navbar (or navbar menu if specified)
@@ -294,6 +293,8 @@ var FlexDashboard = (function () {
     if (navmenu) {
       var menuId = navmenu.replace(/\s+/g, '');
       var menu = navbarMenu(menuId, null, navmenu, container);
+      if (menu.attr('role') === 'menu')
+        a.attr('role', 'menuitem');
       menu.append(li);
     } else {
       container.append(li);
