@@ -227,8 +227,12 @@ var FlexDashboard = (function () {
         li.attr('id', id);
       li.addClass('dropdown');
       // auto add "Share" title on mobile if necessary
-      if (!title && icon && (icon === "fa-share-alt") && isMobilePhone())
-        title = "Share";
+      if (!title && icon && (icon === "fa-share-alt")) {
+        if (isMobilePhone())
+          title = "Share";
+        else
+          title = '<span class="sr-only">Share</span>';
+      }
       if (title) {
         title = title + ' <span class="caret"></span>';
       }
