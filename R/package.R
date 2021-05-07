@@ -24,7 +24,6 @@
 #' @importFrom grDevices col2rgb
 #'
 #' @docType package
-#' @name flexdashboard
-NULL
+"_PACKAGE"
 
 
