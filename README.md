@@ -13,29 +13,29 @@ status](https://www.r-pkg.org/badges/version/flexdashboard)](https://CRAN.R-proj
 The goal of **flexdashboard** is to make it easy to create interactive
 dashboards for R, using R Markdown.
 
-  - Use [R Markdown](https://rmarkdown.rstudio.com) to publish a group
+-   Use [R Markdown](https://rmarkdown.rstudio.com) to publish a group
     of related data visualizations as a dashboard.
 
-  - Support for a wide variety of components including
+-   Support for a wide variety of components including
     [htmlwidgets](https://www.htmlwidgets.org); base, lattice, and grid
     graphics; tabular data; gauges and value boxes; and text
     annotations.
 
-  - Flexible and easy to specify row and column-based
-    [layouts](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/layouts.html).
+-   Flexible and easy to specify row and column-based
+    [layouts](https://pkgs.rstudio.com/flexdashboard/articles/layouts.html).
     Components are intelligently re-sized to fill the browser and
     adapted for display on mobile devices.
 
-  - [Storyboard](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/using.html#storyboards-1)
+-   [Storyboard](https://pkgs.rstudio.com/flexdashboard/articles/using.html#storyboards-1)
     layouts for presenting sequences of visualizations and related
     commentary.
 
-  - Optionally use [Shiny](https://shiny.rstudio.com) to drive
+-   Optionally use [Shiny](https://shiny.rstudio.com) to drive
     visualizations dynamically.
 
-  - Optionally use [bslib](https://rstudio.github.io/bslib/) to easily
+-   Optionally use [bslib](https://rstudio.github.io/bslib/) to easily
     [customize main colors, fonts, and
-    more](https://pkgs.rstudio.com/flexdashboard/reference/articles/articles/theme.html).
+    more](https://pkgs.rstudio.com/flexdashboard/articles/theme.html).
 
 Learn more about **flexdashboard**:
 <https://pkgs.rstudio.com/flexdashboard>
@@ -45,7 +45,7 @@ Learn more about **flexdashboard**:
 <a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>  <a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>  <a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
 
 View more examples
-[here](https://flexdashboard-pkg.netlify.app/articles/examples.html).
+[here](https://pkgs.rstudio.com/flexdashboard/articles/examples.html).
 
 ## Installation
 
@@ -75,12 +75,10 @@ within RStudio using the **New R Markdown** dialog:
 If you are not using RStudio, you can create a new `flexdashboard` R
 Markdown file from the R console. Currently there are two `templates`:
 
-  - `"flex_dashboard"` (basic) and
+-   `"flex_dashboard"` (basic) and
 
-  - `"flex_dashboard_bslib"` (an example of [theming with
-    `{bslib}`](https://pkgs.rstudio.com/flexdashboard/reference/articles/theme.html)):
-
-<!-- end list -->
+-   `"flex_dashboard_bslib"` (an example of [theming with
+    `{bslib}`](https://pkgs.rstudio.com/flexdashboard/articles/theme.html)):
 
 ``` r
 rmarkdown::draft("dashboard.Rmd",
@@ -92,13 +90,13 @@ rmarkdown::draft("dashboard.Rmd",
 
 There are two main places to get help with flexdashboard:
 
-  - The [RStudio
+-   The [RStudio
     community](https://community.rstudio.com/tags/c/R-Markdown/10/flexdashboard)
     is a friendly place to ask any questions about flexdashboard. Be
     sure to use the `flexdashboard` tag. Add also the `shiny` tag is you
     are using a Shiny runtime.
 
-  - [Stack
+-   [Stack
     Overflow](https://stackoverflow.com/questions/tagged/flexdashboard)
     is a great source of answers to common **flexdashboard** questions.
     It is also a great place to get help, once you have created a

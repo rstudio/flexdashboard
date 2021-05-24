@@ -29,7 +29,7 @@
 #'   another dashboard page (e.g. "#details").
 #'
 #' @details See the flexdashboard website for additional documentation:
-#'  \href{http://rmarkdown.rstudio.com/flexdashboard/using.html#gauges}{http://rmarkdown.rstudio.com/flexdashboard/using.html#gauges}
+#'  <https://pkgs.rstudio.com/flexdashboard/articles/using.html#gauges>
 #'
 #' @examples
 #' library(flexdashboard)

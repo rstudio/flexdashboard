@@ -17,12 +17,12 @@ Create interactive dashboards using \pkg{rmarkdown}.
 }
 
 See the flexdashboard website for additional documentation:
-\href{http://rmarkdown.rstudio.com/flexdashboard/}{http://rmarkdown.rstudio.com/flexdashboard/}
+\href{https://pkgs.rstudio.com/flexdashboard/}{https://pkgs.rstudio.com/flexdashboard/}
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://rmarkdown.rstudio.com/flexdashboard}
+  \item \url{https://pkgs.rstudio.com/flexdashboard/}
   \item \url{https://github.com/rstudio/flexdashboard/}
   \item Report bugs at \url{https://github.com/rstudio/flexdashboard/issues}
 }

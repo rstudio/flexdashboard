@@ -13,7 +13,7 @@
 #'   another dashboard page (e.g. "#details").
 #'
 #' @details See the flexdashboard website for additional documentation:
-#'  \href{http://rmarkdown.rstudio.com/flexdashboard/using.html#value_boxes}{http://rmarkdown.rstudio.com/flexdashboard/using.html#value_boxes}
+#'  <https://pkgs.rstudio.com/flexdashboard/articles/using.html#value-boxes-1>
 #'
 #' @examples
 #' library(flexdashboard)
