@@ -4,5 +4,5 @@ source("worldPhones.R")
 
 # call the module
 worldPhonesUI("phones")
-callModule(worldPhones, "phones")
+worldPhones("phones")
 ```

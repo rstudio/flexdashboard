@@ -12,9 +12,11 @@ worldPhonesUI <- function(id) {
 }
 
 # Server function
-worldPhones <- function(input, output, session) {
-  output$phonePlot <- renderPlot({
-    barplot(WorldPhones[,input$region]*1000, 
-            ylab = "Number of Telephones", xlab = "Year")
+worldPhones <- function(id) {
+  moduleServer(id, function(input, output, session) {
+    output$phonePlot <- renderPlot({
+      barplot(WorldPhones[, input$region] * 1000,
+              ylab = "Number of Telephones", xlab = "Year")
+    })
   })
 }
