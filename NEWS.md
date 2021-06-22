@@ -10,6 +10,8 @@ This release adds integration with the new [`{bslib}` package](https://rstudio.g
 
 ### Improvements & fixes
 
+* Close #343: Fix an issue with order of dependencies with `shiny_prerendered` following previous changes in rmarkdown - rstudio/rmarkdown#2064. (#344)  
+
 * Closed #315, #321, and #286: `DT::datatable()` now fills its container correctly inside of `flexdashboard::flex_dashboard()`. (#322) 
 
 * Closed #310: An `.active` class may now be added to a particular `.tabset` tab to control which tab is shown by default. (#311)
