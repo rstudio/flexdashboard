@@ -35,6 +35,9 @@ window.FlexDashboardComponents = [];
 $for(header-includes)$
 $header-includes$
 $endfor$
+$if(shiny-prerendered)$
+<!-- HEAD_CONTENT -->
+$endif$
 
 $if(devel)$
 <link rel="stylesheet" href="../rmarkdown/templates/flex_dashboard/resources/flexdashboard.css" type="text/css" />
