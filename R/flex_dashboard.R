@@ -341,6 +341,13 @@ flex_dashboard <- function(fig_width = 6.0,
        '    var navHeight = navbar.outerHeight();',
        '    body.css("padding-top", (navHeight + 8) + "px");',
        '    sidebar.css("top", navHeight + "px");',
+       # Trigger browser resize in a way that's supported on IE11
+       # https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events#the_old-fashioned_way
+       # This is primarily here to make sure htmlwidgets (or anything else with
+       # resize callback) can size itself appropriately after padding is added
+       '    var resizeEvent = window.document.createEvent("UIEvents");',
+       '    resizeEvent.initUIEvent("resize", true, false, window, 0);',
+       '    window.dispatchEvent(resizeEvent);',
        '  }',
        '  if (!window.Shiny) setTimeout(addNavbarPadding, 100);',
        '  $(document).on("shiny:idle", function() {',
