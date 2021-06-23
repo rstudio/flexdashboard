@@ -40,17 +40,13 @@ Imports:
   htmltools (>= 0.5.1), 
   knitr (>= 1.13), 
   htmlwidgets (>= 0.6), 
-  rmarkdown (>= 2.2), 
+  rmarkdown (>= 2.8), 
   shiny (>= 0.13), 
   scales,
   sass, 
-  bslib (>= 0.2.4.9002)
+  bslib (>= 0.2.5)
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE
 RoxygenNote: 7.1.1
 Config/testthat/edition: 3
-Remotes: 
-  rstudio/sass,
-  rstudio/bslib,
-  rstudio/rmarkdown
