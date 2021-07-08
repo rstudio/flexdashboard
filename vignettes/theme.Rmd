@@ -12,12 +12,7 @@ library(quillt)
 
 The `flex_dashboard` output format builds upon the [Bootstrap CSS framework](https://getbootstrap.com/). Bootstrap is a library of reusable chunks of HTML, CSS, and JavaScript code that you can call on to modify your flexdashboard without writing that code yourself. Originally [created by and for Twitter](https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)), it is a free and open source project; you can view the repository on [GitHub](https://github.com/twbs/bootstrap). 
 
-The `flex_dashboard` output format includes a `theme` parameter for customizing the overall appearance of the dashboard. This parameter has special integration with the [`{bslib}` package](https://rstudio.github.io/bslib/), which makes it easy to customize [Bootstrap CSS](https://getbootstrap.com/) styles directly from R. For now, you'll want to install the development version of the package for the best experience:
-
-``` {.r}
-# install.packages("remotes")
-remotes::install_github("rstudio/bslib")
-```
+The `flex_dashboard` output format includes a `theme` parameter for customizing the overall appearance of the dashboard. This parameter has special integration with the [`{bslib}` package](https://rstudio.github.io/bslib/), which makes it easy to customize [Bootstrap CSS](https://getbootstrap.com/) styles directly from R.
 
 `{bslib}` [supports multiple versions](https://rstudio.github.io/bslib/articles/bslib.html#bootstrap-versions) of Bootstrap so that both new and legacy projects can leverage [custom themes](https://rstudio.github.io/bslib/articles/bslib.html#custom-themes). If you are starting on a fresh project, we recommend choosing the latest supported version (currently, `version: 4`), but legacy projects may want to set `version: 3`:
 

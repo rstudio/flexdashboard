@@ -96,10 +96,20 @@ are ignored. When creating a dashbaord with multiple pages you should apply
 the `{.storyboard}` attribute to individual pages rather than using the
 global \code{storyboard} option.}
 
-\item{theme}{Visual theme ("default", "bootstrap", "cerulean", "journal",
-"flatly", "readable", "spacelab", "united", "cosmo", "lumen", "paper",
-"sandstone", "simplex", or "yeti"). The "cosmo" theme is used when "default"
-is specified.}
+\item{theme}{One of the following:
+* A [bslib::bs_theme()] object (or a list of [bslib::bs_theme()] argument values)
+* Use this option to choose any [Bootstrap
+    version](https://rstudio.github.io/bslib/articles/bslib.html#bootstrap-versions),
+    [Bootswatch
+    theme](https://rstudio.github.io/bslib/articles/bslib.html#bootswatch-themes),
+    or implement a [custom
+    theme](https://rstudio.github.io/bslib/articles/bslib.html#custom-themes).
+  * In this case, any `.scss`/`.sass` files provided to the `css`
+    parameter may utilize the `theme`'s underlying Sass utilities
+    (e.g., variables, mixins, etc).
+* A character string specifying a [Bootswatch 3](https://bootswatch.com/3/)
+  theme name (for backwards-compatibility). The "cosmo" theme is used when
+  "default" is specified.}
 
 \item{highlight}{Syntax highlighting style. Supported styles include
 "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
