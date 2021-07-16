@@ -227,8 +227,12 @@ var FlexDashboard = (function () {
         li.attr('id', id);
       li.addClass('dropdown');
       // auto add "Share" title on mobile if necessary
-      if (!title && icon && (icon === "fa-share-alt") && isMobilePhone())
-        title = "Share";
+      if (!title && icon && (icon === "fa-share-alt")) {
+        if (isMobilePhone())
+          title = "Share";
+        else
+          title = '<span class="sr-only">Share</span>';
+      }
       if (title) {
         title = title + ' <span class="caret"></span>';
       }
@@ -289,6 +293,8 @@ var FlexDashboard = (function () {
     if (navmenu) {
       var menuId = navmenu.replace(/\s+/g, '');
       var menu = navbarMenu(menuId, null, navmenu, container);
+      if (menu.attr('role') === 'menu')
+        a.attr('role', 'menuitem');
       menu.append(li);
     } else {
       container.append(li);
@@ -365,6 +371,7 @@ var FlexDashboard = (function () {
 
     var makeSocialLink = function(a, href) {
       a.attr('href', '#');
+      a.attr('role', 'menuitem');
       a.on('click', function(e) {
         e.preventDefault();
         window.open(href);
