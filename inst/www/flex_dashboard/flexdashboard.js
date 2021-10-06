@@ -1625,6 +1625,7 @@ window.FlexDashboardComponents.push({
       // in through HTML dependencies
       var dataColorAccent = valueOutput.attr('data-color-accent');
       if (dataColorAccent) {
+        valueBox.removeClass('value-box-danger value-box-primary value-box-info value-box-warning value-box-danger value-box-success');
         valueBox.addClass('value-box-' + dataColorAccent);
       }
 
@@ -1632,6 +1633,7 @@ window.FlexDashboardComponents.push({
       // attrs will be populated
       var dataColor = valueOutput.attr('data-color');
       if (dataColor) {
+        valueBox.removeClass('value-box-danger value-box-primary value-box-info value-box-warning value-box-danger value-box-success');
         valueBox.css('background-color', dataColor);
       }
       var dataColorText = valueOutput.attr('data-color-text');
