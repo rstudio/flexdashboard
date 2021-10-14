@@ -1624,7 +1624,9 @@ window.FlexDashboardComponents.push({
       // be populated with the accent color and the relevant CSS comes
       // in through HTML dependencies
       var dataColorAccent = valueOutput.attr('data-color-accent');
+      var valueBoxClasses = "value-box-" + (["primary", "info", "danger", "warning", "success"].join(" value-box-"));
       if (dataColorAccent) {
+        valueBox.removeClass(valueBoxClasses);
         valueBox.addClass('value-box-' + dataColorAccent);
       }
 
@@ -1632,6 +1634,7 @@ window.FlexDashboardComponents.push({
       // attrs will be populated
       var dataColor = valueOutput.attr('data-color');
       if (dataColor) {
+        valueBox.removeClass(valueBoxClasses);
         valueBox.css('background-color', dataColor);
       }
       var dataColorText = valueOutput.attr('data-color-text');
