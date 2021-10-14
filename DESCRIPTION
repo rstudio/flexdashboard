@@ -1,7 +1,7 @@
 Package: flexdashboard
 Type: Package
 Title: R Markdown Format for Flexible Dashboards
-Version: 0.5.2.9000
+Version: 0.6.0
 Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's components to the
   containing web page.

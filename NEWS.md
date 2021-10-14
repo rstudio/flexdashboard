@@ -1,4 +1,4 @@
-flexdashboard 0.5.2.9000
+flexdashboard 0.6.0
 ===========
 
 This release adds integration with the new [`{bslib}` package](https://rstudio.github.io/bslib/index.html), making it much easier to customize the overall appearance of the dashboard (and/or upgrade to Bootstrap 4). See the [new website's](https://pkgs.rstudio.com/flexdashboard/) new [article on theming](https://pkgs.rstudio.com/flexdashboard//articles/theme.html) to learn more.
