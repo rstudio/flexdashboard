@@ -203,11 +203,13 @@ var FlexDashboard = (function () {
         for (var j = 0; j<item.items.length; j++) {
           var subItem = item.items[j];
           var li = $('<li></li>');
-          li.append(navbarLink(subItem.icon, subItem.title, subItem.href, subItem.target));
+          var a = navbarLink(subItem.icon, subItem.title, subItem.href, subItem.target)
+          a.removeClass("nav-link").addClass("dropdown-item")
+          li.append(a);
           menu.append(li);
         }
       } else {
-        var li = $('<li></li>');
+        var li = $('<li class="nav-item"></li>');
         li.append(navbarLink(item.icon, item.title, item.href, item.target));
         container.append(li);
       }
@@ -222,7 +224,7 @@ var FlexDashboard = (function () {
     if (existingMenu.length > 0) {
       return existingMenu.children('ul');
     } else {
-      var li = $('<li></li>');
+      var li = $('<li class="nav-item"></li>');
       if (id)
         li.attr('id', id);
       li.addClass('dropdown');
@@ -289,8 +291,10 @@ var FlexDashboard = (function () {
     if (navmenu) {
       var menuId = navmenu.replace(/\s+/g, '');
       var menu = navbarMenu(menuId, null, navmenu, container);
+      li.find("> a").removeClass("nav-link").addClass("dropdown-item");
       menu.append(li);
     } else {
+      li.addClass("nav-item")
       container.append(li);
     }
 
@@ -301,7 +305,7 @@ var FlexDashboard = (function () {
 
   function navbarLink(icon, title, href, target) {
 
-    var a = $('<a></a>');
+    var a = $('<a class="nav-link"></a>');
     if (icon) {
 
       // get the name of the icon set and icon
@@ -1019,11 +1023,11 @@ var FlexDashboard = (function () {
       var headingDom = heading.contents();
 
       // build and append the tab list item
-      var a = $('<a role="tab" data-toggle="tab"></a>');
+      var a = $('<a role="tab" data-toggle="tab" class="nav-link"></a>');
       a.append(headingDom);
       a.attr('href', '#' + id);
       a.attr('aria-controls', id);
-      var li = $('<li role="presentation"></li>');
+      var li = $('<li role="presentation" class="nav-item"></li>');
       li.append(a);
       tabList.append(li);
 
@@ -1040,9 +1044,10 @@ var FlexDashboard = (function () {
     });
 
     // set active tab
-    $(tabList.children('li')[activeTab]).addClass('active');
+    $(tabList.children()[activeTab]).tab("show");
     var active = $(tabContent.children('div.section')[activeTab]);
     active.addClass('active');
+
     if (fade)
       active.addClass('in');
 
@@ -1299,6 +1304,7 @@ var FlexDashboard = (function () {
 
 // utils
 window.FlexDashboardUtils = {
+  isBS3: !window.bootstrap,
   resizableImage: function(img) {
     var src = img.attr('src');
     var url = 'url("' + src + '")';
@@ -1348,13 +1354,14 @@ window.FlexDashboardUtils = {
   },
   manageActiveNavbarMenu: function () {
     // remove active from anyone currently active
-    $('.navbar ul.nav').find('li').removeClass('active');
+    var sel = window.FlexDashboardUtils.isBS3 ? 'li': 'li > a';
+    $('.navbar ul.nav').find(sel).removeClass('active');
     // find the active tab
     var activeTab = $('.dashboard-page-wrapper.tab-pane.active');
     if (activeTab.length > 0) {
       var tabId = activeTab.attr('id');
       if (tabId)
-        $(".navbar ul.nav a[href='#" + tabId + "']").parents('li').addClass('active');
+        $(".navbar ul.nav a[href='#" + tabId + "']").tab("show");
     }
   }
 };
