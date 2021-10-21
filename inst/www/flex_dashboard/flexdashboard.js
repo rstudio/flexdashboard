@@ -203,8 +203,8 @@ var FlexDashboard = (function () {
         for (var j = 0; j<item.items.length; j++) {
           var subItem = item.items[j];
           var li = $('<li></li>');
-          var a = navbarLink(subItem.icon, subItem.title, subItem.href, subItem.target)
-          a.removeClass("nav-link").addClass("dropdown-item")
+          var a = navbarLink(subItem.icon, subItem.title, subItem.href, subItem.target);
+          a.removeClass("nav-link").addClass("dropdown-item");
           li.append(a);
           menu.append(li);
         }
@@ -1047,7 +1047,6 @@ var FlexDashboard = (function () {
     $(tabList.children()[activeTab]).tab("show");
     var active = $(tabContent.children('div.section')[activeTab]);
     active.addClass('active');
-
     if (fade)
       active.addClass('in');
 
@@ -1304,7 +1303,6 @@ var FlexDashboard = (function () {
 
 // utils
 window.FlexDashboardUtils = {
-  isBS3: !window.bootstrap,
   resizableImage: function(img) {
     var src = img.attr('src');
     var url = 'url("' + src + '")';
@@ -1353,9 +1351,8 @@ window.FlexDashboardUtils = {
       return "";
   },
   manageActiveNavbarMenu: function () {
-    // remove active from anyone currently active
-    var sel = window.FlexDashboardUtils.isBS3 ? 'li': 'li > a';
-    $('.navbar ul.nav').find(sel).removeClass('active');
+    // remove active from currently active tabs
+    $('.navbar ul.nav .active').removeClass('active');
     // find the active tab
     var activeTab = $('.dashboard-page-wrapper.tab-pane.active');
     if (activeTab.length > 0) {
