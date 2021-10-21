@@ -235,6 +235,7 @@ var FlexDashboard = (function () {
       var a = navbarLink(icon, title, "#");
       a.addClass('dropdown-toggle');
       a.attr('data-toggle', 'dropdown');
+      a.attr('data-bs-toggle', 'dropdown');
       a.attr('role', 'button');
       a.attr('aria-expanded', 'false');
       li.append(a);
