@@ -33,20 +33,22 @@ BugReports: https://github.com/rstudio/flexdashboard/issues
 Encoding: UTF-8
 Depends: R (>= 3.0.2)
 Imports:
-  grDevices, 
+  grDevices,
   tools,
-  utils, 
-  jsonlite, 
-  htmltools (>= 0.5.1), 
-  knitr (>= 1.13), 
-  htmlwidgets (>= 0.6), 
-  rmarkdown (>= 2.8), 
-  shiny (>= 0.13), 
+  utils,
+  jsonlite,
+  htmltools (>= 0.5.1),
+  knitr (>= 1.13),
+  htmlwidgets (>= 0.6),
+  rmarkdown (>= 2.8),
+  shiny (>= 0.13),
   scales,
-  sass, 
+  sass,
   bslib (>= 0.2.5)
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE
 RoxygenNote: 7.1.1
 Config/testthat/edition: 3
+Config/Needs/website:
+    rstudio/quillt
