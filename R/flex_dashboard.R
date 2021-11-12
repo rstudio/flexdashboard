@@ -654,7 +654,7 @@ storyboard_dependencies <- function(source = NULL) {
 
 html_dependencies_flexdb <- function(theme) {
   name <- "flexdashboard-css"
-  version <- packageVersion("flexdashboard")
+  version <- get_package_version("flexdashboard")
 
   if (is.character(theme)) {
     if (identical(theme, "default")) {
@@ -690,7 +690,7 @@ html_dependencies_flexdb <- function(theme) {
 
 # function for resolving resources
 resource <- function(name) {
-  system.file("www/flex_dashboard", name, package = "flexdashboard")
+  system_file("www/flex_dashboard", name, package = "flexdashboard")
 }
 
 # copied from rmarkdown:::is_shiny
