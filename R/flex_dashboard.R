@@ -395,7 +395,7 @@ flex_dashboard <- function(fig_width = 6.0,
     # html_document_base gained a css argument in v2.7.7
     # (which also handles scss/sass files), so only do the
     # CSS -> Pandoc conversion if these are css files
-    if (!is_available("rmarkdown", "2.7.7")) {
+    if (!is_installed("rmarkdown", "2.7.7")) {
       for (css_file in css) {
         if (grepl("\\.s[ac]ss$", css_file)) {
           stop("Compilation of Sass -> CSS requires rmarkdown version 2.7.7 or higher")
@@ -433,7 +433,7 @@ flex_dashboard <- function(fig_width = 6.0,
   }
 
   if (is_bs_theme(theme)) {
-    if (!is_available("rmarkdown", "2.7.1")) {
+    if (!is_installed("rmarkdown", "2.7.1")) {
       stop("Using a {bslib} theme requires rmarkdown v2.7.1 or higher")
     }
 
@@ -654,7 +654,7 @@ storyboard_dependencies <- function(source = NULL) {
 
 html_dependencies_flexdb <- function(theme) {
   name <- "flexdashboard-css"
-  version <- packageVersion("flexdashboard")
+  version <- get_package_version("flexdashboard")
 
   if (is.character(theme)) {
     if (identical(theme, "default")) {
@@ -690,7 +690,7 @@ html_dependencies_flexdb <- function(theme) {
 
 # function for resolving resources
 resource <- function(name) {
-  system.file("www/flex_dashboard", name, package = "flexdashboard")
+  system_file("www/flex_dashboard", name, package = "flexdashboard")
 }
 
 # copied from rmarkdown:::is_shiny

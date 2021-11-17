@@ -70,7 +70,7 @@ valueBoxTag <- function(value, caption, icon, href, ...) {
 valueBoxCoreDependencies <- function(icon) {
   deps <- list(htmlDependency(
     name = "value-box-core",
-    version = packageVersion("flexdashboard"),
+    version = get_package_version("flexdashboard"),
     package = "flexdashboard",
     src = "www/flex_dashboard",
     stylesheet = "value-box.css"
@@ -92,7 +92,7 @@ valueBoxStaticAccentCSS <- function(theme) {
   }
   htmltools::htmlDependency(
     name = "value-box-accent-static",
-    version = packageVersion("flexdashboard"),
+    version = get_package_version("flexdashboard"),
     package = "flexdashboard",
     src = "www/flex_dashboard",
     stylesheet = paste0("theme-", theme, "-value-box.css")
@@ -102,7 +102,7 @@ valueBoxStaticAccentCSS <- function(theme) {
 valueBoxDynamicAccentCSS <- function(theme) {
   if (!bslib::is_bs_theme(theme)) return(NULL)
 
-  version <- packageVersion("flexdashboard")
+  version <- get_package_version("flexdashboard")
   bslib::bs_dependency(
     sass::sass_file(resource("value-box-sass/accent-dynamic.scss")),
     theme = theme,
@@ -114,7 +114,7 @@ valueBoxDynamicAccentCSS <- function(theme) {
 
 
 getColorContrast <- function(color) {
-  sass_func <- system.file("sass-utils", "color-contrast.scss", package = "bslib")
+  sass_func <- system_file("sass-utils", "color-contrast.scss", package = "bslib")
   sassValue(
     sprintf("color-contrast(%s, #1a1a1a)", color),
     defaults = sass::sass_file(sass_func)

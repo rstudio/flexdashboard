@@ -9,7 +9,7 @@ html_dependencies_fonts <- function(font_awesome, ionicons) {
 
 # function for resolving resources
 flexdashboard_dependency <- function(name) {
-  system.file("www", name, package = "flexdashboard")
+  system_file("www", name, package = "flexdashboard")
 }
 
 # Might have an issue with jQuery 3?

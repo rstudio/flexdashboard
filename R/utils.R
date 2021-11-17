@@ -1,3 +1,6 @@
+# @staticimports pkg:staticimports
+#   is_installed system_file get_package_version %||%
+
 # return a string as a tempfile
 as_tmpfile <- function(str) {
   if (length(str) > 0) {
@@ -35,18 +38,6 @@ accent_colors <- function() {
   c("primary", "info", "success", "warning", "danger")
 }
 
-"%||%" <- function(x, y) {
-  if (is.null(x)) y else x
-}
-
 dropNulls <- function(x) {
   x[!vapply(x, is.null, FUN.VALUE = logical(1))]
-}
-
-is_available <- function(package, version = NULL) {
-  installed <- nzchar(system.file(package = package))
-  if (is.null(version)) {
-    return(installed)
-  }
-  installed && isTRUE(utils::packageVersion(package) >= version)
 }
