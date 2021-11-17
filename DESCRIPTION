@@ -48,7 +48,7 @@ Imports:
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Config/testthat/edition: 3
 Config/Needs/website:
     rstudio/quillt
