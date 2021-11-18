@@ -7,7 +7,7 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/flexdashboard)](https://CRAN.R-project.org/package=flexdashboard)
-[![R-CMD-check](https://github.com/rstudio/flexdashboard/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/flexdashboard/actions)
+[![R-CMD-check](https://github.com/rstudio/flexdashboard/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rstudio/flexdashboard/actions)
 <!-- badges: end -->
 
 The goal of **flexdashboard** is to make it easy to create interactive
