@@ -6,6 +6,7 @@
 #'to its containing web page.
 #'
 #'@inheritParams rmarkdown::html_document
+#'@inheritParams rmarkdown::html_document_base
 #'
 #'@param fig_retina Scaling to perform for retina displays (defaults to 2). Note
 #'  that for flexdashboard enabling retina scaling provides for both crisper

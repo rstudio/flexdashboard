@@ -9,5 +9,6 @@ README.R?md
 ^sandbox/*
 ^\.github$
 ^vignettes/*
+revdep
 ^pkgdown/*
 ^_pkgdown\.yml$
