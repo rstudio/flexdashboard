@@ -1,7 +1,9 @@
 flexdashboard 0.6.0.9000
 ===========
 
+### Bug fixes
 
+* Closed #398: The logo is now positioned to the left (instead of the right) of the title (regression introduced by 0.6.0).
 
 flexdashboard 0.6.0
 ===========
