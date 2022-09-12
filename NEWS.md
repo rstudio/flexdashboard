@@ -1,4 +1,4 @@
-flexdashboard 0.5.2.9000
+flexdashboard 0.6.0
 ===========
 
 This release adds integration with the new [`{bslib}` package](https://rstudio.github.io/bslib/index.html), making it much easier to customize the overall appearance of the dashboard (and/or upgrade to Bootstrap 4). See the [new website's](https://pkgs.rstudio.com/flexdashboard/) new [article on theming](https://pkgs.rstudio.com/flexdashboard//articles/theme.html) to learn more.
@@ -6,7 +6,7 @@ This release adds integration with the new [`{bslib}` package](https://rstudio.g
 ### Possibly breaking changes
 
 * The `smart` argument was removed from `flexdashboard::flex_dashboard` since it was removed in rmarkdown 2.2 (relatedly, we now require rmarkdown 2.2 or higher). (#301)
-* The `window.FlexDashboard.themeColor` JavaScript object property is no longer available. Resolving of theming accent colors should now be done server-side via `{bslib}`'s [dynamic theming tools](https://rstudio.github.io/bslib/articles/theming.html#custom-components-1). (#305) 
+* The `window.FlexDashboard.themeColor` JavaScript object property is no longer available. Resolving of theming accent colors should now be done server-side via `{bslib}`'s [dynamic theming tools](https://rstudio.github.io/bslib/articles/custom-components.html). (#305) 
 
 ### Improvements & fixes
 
