@@ -23,7 +23,7 @@ jobs:
   R-CMD-check:
     uses: rstudio/shiny-workflows/.github/workflows/R-CMD-check.yaml@v1
   deploy:
-    if: github.repository == 'rstudio/flexdashboard' && github.event_name == 'push'
+    if: github.repository == 'rstudio/flexdashboard'
     runs-on: ubuntu-20.04
   
     name: "Deploy to shinyapps.io"
