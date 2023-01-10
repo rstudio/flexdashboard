@@ -2,7 +2,7 @@ library(rsconnect)
 
 example_dir <- rprojroot::find_package_root_file("examples")
 app_basename <- grep("^[0-9][0-9]_", list.dirs(example_dir, full.names = FALSE), value = TRUE)
-app_name <- vapply(strsplit(apps, "_"), function(x) x[[2]], character(1))
+app_name <- vapply(strsplit(app_basename, "_"), function(x) x[[2]], character(1))
 
 
 Map(
