@@ -1,8 +1,0 @@
-name: shiny-biclust
-title: Gene Expression Biclustering
-account: jjallaire
-server: shinyapps.io
-appId: 87410
-bundleId: 545776
-url: https://jjallaire.shinyapps.io/shiny-biclust/
-when: 1472663904.74212

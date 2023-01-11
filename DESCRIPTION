@@ -48,7 +48,36 @@ Imports:
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Config/testthat/edition: 3
 Config/Needs/website:
     rstudio/quillt
+Config/Needs/deploy:
+    dplyr,
+    ggplot2,
+    DT,
+    talgalili/d3heatmap,
+    plotly,
+    plyr,
+    biclust,
+    webshot,
+    bit,
+    jcheng5/bubbles,
+    digest,
+    hadley/shinySignals,
+    dygraphs,
+    quantmod,
+    forecast,
+    highcharter,
+    treemap,
+    viridisLite,
+    leaflet,
+    metricsgraphics,
+    rbokeh,
+    readr,
+    tidyr,
+    jsonlite,
+    maptools,
+    purrr,
+    maps,
+    hexbin
