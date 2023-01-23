@@ -1,4 +1,4 @@
-flexdashboard 0.6.0.9000
+flexdashboard 0.6.1
 ===========
 
 ### Bug fixes
