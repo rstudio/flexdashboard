@@ -1,12 +1,8 @@
-flexdashboard 0.6.1
-===========
-
-### Bug fixes
+# flexdashboard 0.6.1
 
 * Closed #398: The logo is now positioned to the left (instead of the right) of the title (regression introduced by 0.6.0).
 
-flexdashboard 0.6.0
-===========
+# flexdashboard 0.6.0
 
 This release adds integration with the new [`{bslib}` package](https://rstudio.github.io/bslib/index.html), making it much easier to customize the overall appearance of the dashboard (and/or upgrade to Bootstrap 4). See the [new website's](https://pkgs.rstudio.com/flexdashboard/) new [article on theming](https://pkgs.rstudio.com/flexdashboard//articles/theme.html) to learn more.
 
@@ -33,20 +29,17 @@ This release adds integration with the new [`{bslib}` package](https://rstudio.g
 
 * Added padding to the top of the sidebar. (#294)
 
-flexdashboard 0.5.2
-===========
+# flexdashboard 0.5.2
 
 * Support use of Font Awesome icon sets (e.g. "fab fa-r-project")
 
 * Fixed [#245](https://github.com/rstudio/flexdashboard/issues/245): Shiny (1.4.0+) outputs not rendering in modified flexdashboard html. ([#250](https://github.com/rstudio/flexdashboard/pull/250))
 
-flexdashboard 0.5.1.1
-===========
+# flexdashboard 0.5.1.1
 
 Changed maintainer.
 
-flexdashboard 0.5.1
-===========
+# flexdashboard 0.5.1
 
 * Fixed [#149](https://github.com/rstudio/flexdashboard/issues/149): a compatability issue when using Pandoc 2.0. ([#150](https://github.com/rstudio/flexdashboard/pull/150))
 
@@ -54,16 +47,15 @@ flexdashboard 0.5.1
 
 * Update to roxygen2 6.0.
 
-flexdashboard 0.5.0
-===========
+# flexdashboard 0.5.0
 
 (tagged @ commit [#d99dd62](https://github.com/rstudio/flexdashboard/commit/d99dd62d49375d414336386e11da8d1807c01fae))
 
 * Don't hook graphics device option for `fig_mobile` if it's a data chunk (this broke knitr caching for `shiny_prerendered` data chunks).
 
 
-flexdashboard 0.4.0
-===========
+# flexdashboard 0.4.0
+
 (tagged @ commit [#0a88a91](https://github.com/rstudio/flexdashboard/commit/0a88a91654a1a18b30b23b60097f6fb16ad2c317))
 
 * Add support for `target` field in navbar links (e.g. target: "_blank").
@@ -73,8 +65,8 @@ flexdashboard 0.4.0
 * Fixed [#106](https://github.com/rstudio/flexdashboard/issues/106): ensure that previous bg class on valueBox is cleared.
 
 
-flexdashboard 0.3.0
-===========
+# flexdashboard 0.3.0
+
 (tagged @ commit [#2b6eb71](https://github.com/rstudio/flexdashboard/commit/2b6eb71b1f75078ea36b33d5aa3c9f8d4ace639b))
 
 * Support `.hidden` attribute for pages to hide them from the navbar.
@@ -92,15 +84,15 @@ flexdashboard 0.3.0
 * Restore original DT options after rendering.
 
 
-flexdashboard 0.2.0
-===========
+# flexdashboard 0.2.0
+
 (tagged @ commit [#64d975f](https://github.com/rstudio/flexdashboard/commit/64d975f962dd3eca8ab2067f55a35ec05d72d4ac))
 
 * Initial release to CRAN.
 
 
-flexdashboard 0.1.0
-===========
+# flexdashboard 0.1.0
+
 (tagged @ commit [#990d10c](https://github.com/rstudio/flexdashboard/commit/990d10c2b3c4a8fa2029a7723f7e1a4ce86d3717))
 
 * init commit!
