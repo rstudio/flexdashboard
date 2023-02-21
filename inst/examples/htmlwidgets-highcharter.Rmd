@@ -55,7 +55,7 @@ n <- 4
 colstops <- data.frame(
   q = 0:n/n,
   c = substring(viridis(n + 1), 0, 7)) %>%
-  list.parse2()
+  list_parse2()
 
 highchart() %>%
   hc_add_series_map(usgeojson, USArrests, name = "Sales",
