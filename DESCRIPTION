@@ -69,6 +69,7 @@ Config/Needs/deploy:
     quantmod,
     forecast,
     highcharter,
+    arules,
     treemap,
     viridisLite,
     leaflet,
