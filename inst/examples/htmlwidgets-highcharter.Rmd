@@ -14,6 +14,7 @@ library(dplyr)
 library(viridisLite)
 library(forecast)
 library(treemap)
+library(arules)
 library(flexdashboard)
 
 thm <- 
@@ -91,9 +92,7 @@ tm <- treemap(dfitemsg, index = c("category", "subcategory"),
               vSize = "sales", vColor = "sales",
               type = "value", palette = rev(viridis(6)))
 
-highchart() %>% 
-  hc_add_series_treemap(tm, allowDrillToNode = TRUE,
-                        layoutAlgorithm = "squarified") %>% 
+hctreemap(tm, allowDrillToNode = TRUE, layoutAlgorithm = "squarified") %>% 
   hc_add_theme(thm)
 ```
 
