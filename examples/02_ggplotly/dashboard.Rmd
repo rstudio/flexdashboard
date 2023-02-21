@@ -106,7 +106,7 @@ p <- ggplot(data=mydf, aes(x=dim1, y=dim2, colour=as.factor(cat))) +
                position="identity", geom="line")
 
 # extract the x range to make the new densities align with y-axis
-xrange <- ggplot_build(p)$layout$panel_ranges[[1]]$x.range
+xrange <- ggplot_build(p)$layout$panel_scales_x[[1]]$range$range
 
 ## Get densities of dim2
 ds <- do.call(rbind, lapply(unique(mydf$cat), function(lev) {
