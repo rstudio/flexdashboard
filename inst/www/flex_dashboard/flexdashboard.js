@@ -298,10 +298,8 @@ var FlexDashboard = (function () {
     }
 
     // mark active tab and corresponding nav menu item
-    if (active) {
-      wrapper.addClass('active');
-      li.addClass('active');
-    }
+    if (active)
+      $(a).tab("show");
 
     // hide it if requested
     if (hidden)
