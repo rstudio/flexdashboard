@@ -273,8 +273,6 @@ var FlexDashboard = (function () {
 
     // add the tab-pane class to the wrapper
     wrapper.addClass('tab-pane');
-    if (active)
-      wrapper.addClass('active');
 
     // get a reference to the h1, discover its inner contens, then detach it
     var h1 = wrapper.find('h1').first();
@@ -299,7 +297,9 @@ var FlexDashboard = (function () {
       container.append(li);
     }
 
+    // mark active tab and corresponding nav menu item
     if (active) {
+      wrapper.addClass('active');
       li.addClass('active');
     }
 
