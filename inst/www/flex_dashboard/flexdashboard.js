@@ -299,6 +299,10 @@ var FlexDashboard = (function () {
       container.append(li);
     }
 
+    if (active) {
+      li.addClass('active');
+    }
+
     // hide it if requested
     if (hidden)
       li.addClass('hidden');
