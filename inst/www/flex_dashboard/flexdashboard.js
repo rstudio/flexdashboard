@@ -1229,7 +1229,6 @@ var FlexDashboard = (function () {
     var hash = window.decodeURIComponent(window.location.hash);
     if (hash.length > 0)
       $('ul.nav a[href="' + hash + '"]').tab('show');
-    FlexDashboardUtils.manageActiveNavbarMenu();
 
     // navigate to a tab when the history changes
     window.addEventListener("popstate", function(e) {
@@ -1240,7 +1239,6 @@ var FlexDashboard = (function () {
       } else {
         $('ul.nav a:first').tab('show');
       }
-      FlexDashboardUtils.manageActiveNavbarMenu();
     });
 
     // add a hash to the URL when the user clicks on a tab/page
@@ -1248,6 +1246,8 @@ var FlexDashboard = (function () {
       var baseUrl = FlexDashboardUtils.urlWithoutHash(window.location.href);
       var hash = FlexDashboardUtils.urlHash($(this).attr('href'));
       var href = baseUrl + hash;
+      // the BS tab plugin handles changing the page and managing the navbar
+      // but flexdashboard needs to update the location and history
       FlexDashboardUtils.setLocation(href);
     });
 
@@ -1324,7 +1324,6 @@ window.FlexDashboardUtils = {
     setTimeout(function() {
         window.scrollTo(0, 0);
     }, 10);
-    this.manageActiveNavbarMenu();
   },
   showPage: function(href) {
     $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
@@ -1352,17 +1351,6 @@ window.FlexDashboardUtils = {
       return url.substring(hashLoc);
     else
       return "";
-  },
-  manageActiveNavbarMenu: function () {
-    // remove active from currently active tabs
-    $('.navbar ul.nav .active').removeClass('active');
-    // find the active tab
-    var activeTab = $('.dashboard-page-wrapper.tab-pane.active');
-    if (activeTab.length > 0) {
-      var tabId = activeTab.attr('id');
-      if (tabId)
-        $(".navbar ul.nav a[href='#" + tabId + "']").tab("show");
-    }
   }
 };
 
