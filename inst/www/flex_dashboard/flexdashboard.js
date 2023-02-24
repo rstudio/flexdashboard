@@ -1227,8 +1227,10 @@ var FlexDashboard = (function () {
 
     // restore tab/page from bookmark
     var hash = window.decodeURIComponent(window.location.hash);
-    if (hash.length > 0)
+    if (hash.length > 0) {
+      // Update the tab without .showPage() so that we don't change page history
       $('ul.nav a[href="' + hash + '"]').tab('show');
+    }
 
     // navigate to a tab when the history changes
     window.addEventListener("popstate", function(e) {
@@ -1237,6 +1239,7 @@ var FlexDashboard = (function () {
       if (activeTab.length) {
         activeTab.tab('show');
       } else {
+        // returning to the base page URL without a hash activates first tab
         $('ul.nav a:first').tab('show');
       }
     });
