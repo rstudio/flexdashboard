@@ -283,6 +283,7 @@ var FlexDashboard = (function () {
     var li = $('<li></li>');
     var a = navbarLink(icon, title, '#' + id);
     a.attr('data-toggle', 'tab');
+    a.attr('data-bs-toggle', 'tab');
     li.append(a);
 
     // add it to the navbar (or navbar menu if specified)
@@ -1026,7 +1027,7 @@ var FlexDashboard = (function () {
       var headingDom = heading.contents();
 
       // build and append the tab list item
-      var a = $('<a role="tab" data-toggle="tab" class="nav-link"></a>');
+      var a = $('<a role="tab" data-toggle="tab" data-bs-toggle="tab" class="nav-link"></a>');
       a.append(headingDom);
       a.attr('href', '#' + id);
       a.attr('aria-controls', id);
