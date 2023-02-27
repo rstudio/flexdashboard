@@ -1249,8 +1249,6 @@ var FlexDashboard = (function () {
       var baseUrl = FlexDashboardUtils.urlWithoutHash(window.location.href);
       var hash = FlexDashboardUtils.urlHash($(this).attr('href'));
       var href = baseUrl + hash;
-      // the BS tab plugin handles changing the page and managing the navbar
-      // but flexdashboard needs to update the location and history
       FlexDashboardUtils.setLocation(href);
     });
 
