@@ -85,11 +85,9 @@ system_file <- function(..., package = "base") {
   normalizePath(files, winslash = "/")
 }
 
-# A wrapper for `system.file()`, which caches the results, because
-# `system.file()` can be slow. Note that because of caching, if
-# `system_file_cached()` is called on a package that isn't installed, then the
-# package is installed, and then `system_file_cached()` is called again, it will
-# still return "".
+# A wrapper for `system.file()`, which caches the package path because
+# `system.file()` can be slow. If a package is not installed, the result won't
+# be cached.
 system_file_cached <- local({
   pkg_dir_cache <- character()
 
@@ -101,7 +99,9 @@ system_file_cached <- local({
     not_cached <- is.na(match(package, names(pkg_dir_cache)))
     if (not_cached) {
       pkg_dir <- system.file(package = package)
-      pkg_dir_cache[[package]] <<- pkg_dir
+      if (nzchar(pkg_dir)) {
+        pkg_dir_cache[[package]] <<- pkg_dir
+      }
     } else {
       pkg_dir <- pkg_dir_cache[[package]]
     }
