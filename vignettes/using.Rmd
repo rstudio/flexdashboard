@@ -501,7 +501,7 @@ To specify that a page should be accessed via a navigation bar menu you use the 
 <div id="pagenavmenu"></div>
 <script type="text/javascript">loadSnippet('pagenavmenu')</script>
 
-You can optionally provide icons for the navigation bar menus by including the `data-navmenu-icon` attribute when you first assign a page to a navigation bar menu.
+You can optionally provide icons for the navigation bar menus by including the `data-navmenu-icon` attribute when you first assign a page to a navigation bar menu. This attribute inherits the same icon set and syntax as [Page Icons](#page-icons), which are described below.
 
 ### Page Links
 
