@@ -2,6 +2,8 @@
 
 * Fixed #411: Improved support for Bootstrap 5 to ensure correct handling of the active dashboard page. (#418)
 
+* Improved support for page selection in navigation dropdown menus in Bootstrap 5. (#421)
+
 # flexdashboard 0.6.1
 
 * Closed #398: The logo is now positioned to the left (instead of the right) of the title (regression introduced by 0.6.0).
