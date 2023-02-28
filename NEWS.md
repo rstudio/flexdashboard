@@ -1,6 +1,6 @@
 # flexdashboard 0.6.1.9000
 
-
+* Fixed #411: Improved support for Bootstrap 5 to ensure correct handling of the active dashboard page. (#418)
 
 # flexdashboard 0.6.1
 
