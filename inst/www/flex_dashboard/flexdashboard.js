@@ -274,8 +274,6 @@ var FlexDashboard = (function () {
 
     // add the tab-pane class to the wrapper
     wrapper.addClass('tab-pane');
-    if (active)
-      wrapper.addClass('active');
 
     // get a reference to the h1, discover its inner contens, then detach it
     var h1 = wrapper.find('h1').first();
@@ -286,6 +284,7 @@ var FlexDashboard = (function () {
     var li = $('<li></li>');
     var a = navbarLink(icon, title, '#' + id);
     a.attr('data-toggle', 'tab');
+    a.attr('data-bs-toggle', 'tab');
     li.append(a);
 
     // add it to the navbar (or navbar menu if specified)
@@ -299,6 +298,10 @@ var FlexDashboard = (function () {
       li.addClass("nav-item")
       container.append(li);
     }
+
+    // mark active tab and corresponding nav menu item
+    if (active)
+      $(a).tab("show");
 
     // hide it if requested
     if (hidden)
@@ -1025,7 +1028,7 @@ var FlexDashboard = (function () {
       var headingDom = heading.contents();
 
       // build and append the tab list item
-      var a = $('<a role="tab" data-toggle="tab" class="nav-link"></a>');
+      var a = $('<a role="tab" data-toggle="tab" data-bs-toggle="tab" class="nav-link"></a>');
       a.append(headingDom);
       a.attr('href', '#' + id);
       a.attr('aria-controls', id);
@@ -1226,9 +1229,10 @@ var FlexDashboard = (function () {
 
     // restore tab/page from bookmark
     var hash = window.decodeURIComponent(window.location.hash);
-    if (hash.length > 0)
+    if (hash.length > 0) {
+      // Update the tab without .showPage() so that we don't change page history
       $('ul.nav a[href="' + hash + '"]').tab('show');
-    FlexDashboardUtils.manageActiveNavbarMenu();
+    }
 
     // navigate to a tab when the history changes
     window.addEventListener("popstate", function(e) {
@@ -1237,9 +1241,9 @@ var FlexDashboard = (function () {
       if (activeTab.length) {
         activeTab.tab('show');
       } else {
+        // returning to the base page URL without a hash activates first tab
         $('ul.nav a:first').tab('show');
       }
-      FlexDashboardUtils.manageActiveNavbarMenu();
     });
 
     // add a hash to the URL when the user clicks on a tab/page
@@ -1323,7 +1327,6 @@ window.FlexDashboardUtils = {
     setTimeout(function() {
         window.scrollTo(0, 0);
     }, 10);
-    this.manageActiveNavbarMenu();
   },
   showPage: function(href) {
     $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
@@ -1351,17 +1354,6 @@ window.FlexDashboardUtils = {
       return url.substring(hashLoc);
     else
       return "";
-  },
-  manageActiveNavbarMenu: function () {
-    // remove active from currently active tabs
-    $('.navbar ul.nav .active').removeClass('active');
-    // find the active tab
-    var activeTab = $('.dashboard-page-wrapper.tab-pane.active');
-    if (activeTab.length > 0) {
-      var tabId = activeTab.attr('id');
-      if (tabId)
-        $(".navbar ul.nav a[href='#" + tabId + "']").tab("show");
-    }
   }
 };
 
