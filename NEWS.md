@@ -4,6 +4,8 @@
 
 * Improved support for page selection in navigation dropdown menus in Bootstrap 5. (#421)
 
+* Fixed #234: Use the correct social sharing link for Facebook.
+
 # flexdashboard 0.6.1
 
 * Closed #398: The logo is now positioned to the left (instead of the right) of the title (regression introduced by 0.6.0).
