@@ -152,17 +152,32 @@ Rows can also be laid out as a tabset as illustrated here:
 
 Note that here we also apply the `{.tabset-fade}` attribute which results in a fade in/out effect when switching tabs.
 
-#### Header Attributes
+### Header Attributes
 
-These attributes are part of [pandoc's header attribute syntax](https://pandoc.org/MANUAL.html#extension-header_attributes).
+flexdashboard relies heavily on [pandoc's header attribute syntax](https://pandoc.org/MANUAL.html#extension-header_attributes) and you'll see the syntax referenced throughout our documentation.
+In fact, the tabset examples above use two examples of header attributes:
+```
+Column {.tabset}
+-------------------------------------
+```
+```
+Row {.tabset .tabset-fade}
+-------------------------------------
+```
+Header attributes appear directly after the header name and are surrounded in braces.
+The tabset example uses class attributes, which are denoted with a `.` (period) prefix.
+In the final HTML, the CSS classes `tabset` and `tabset tabset-fade` are added to the sections defined by the Column and Row headings.
+
+Similarly, header attributes can be used to provide a unique identifier for a section.
 Identifiers are assigned using a `#` (number sign) prefix (e.g., `#identifier`).
-Classes are assigned using a `.` (period) prefix (e.g., `.class`).
-Key-values pairs are assigned using an `=` (equal sign) between the key and value (e.g., `key=value`).
+flexdashboard layouts don't make use of these identifiers, but you may find them helpful to include if you want to write custom CSS to provide styles for a specific box, column or row.
 
-Attributes should be wrapped in curly braces and separated by a single space.
-There should be no space between key-value pairs.
-You can include multiple classes and key-value pairs.
-For example, `{#identifier .class .class2 key1=value1 key2=value2}` is a valid set of header attributes.
+Many flexdashboard layout options use attributes in the form of a key-value pair, such as `data-height=600`, in which the key and value are separated by an `=` (equal sign).
+Be careful, you cannot have spaces beween the key and the value!
+If the value contains spaces, you can wrap it in quotes, e.g. `data-navmenu="More Info"`.
+
+You're allowed to attach one ID and multiple classes or key-value pairs.
+For example, `{#plot-tabs .tabset .tabset-fade data-height=200}` is a valid set of header attributes that you might use in flexdashboard.
 
 ## Components
 
