@@ -152,6 +152,17 @@ Rows can also be laid out as a tabset as illustrated here:
 
 Note that here we also apply the `{.tabset-fade}` attribute which results in a fade in/out effect when switching tabs.
 
+#### Header Attributes
+
+These attributes are part of [pandoc's header attribute syntax](https://pandoc.org/MANUAL.html#extension-header_attributes).
+Identifiers are assigned using a `#` (number sign) prefix (e.g., `#identifier`).
+Classes are assigned using a `.` (period) prefix (e.g., `.class`).
+Key-values pairs are assigned using an `=` (equal sign) between the key and value (e.g., `key=value`).
+
+Attributes should be wrapped in curly braces and separated by a single space.
+There should be no space between key-value pairs.
+You can include multiple classes and key-value pairs.
+For example, `{#identifier .class .class2 key1=value1 key2=value2}` is a valid set of header attributes.
 
 ## Components
 
