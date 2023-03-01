@@ -155,7 +155,7 @@ Note that here we also apply the `{.tabset-fade}` attribute which results in a f
 ### Header Attributes
 
 flexdashboard relies heavily on [pandoc's header attribute syntax](https://pandoc.org/MANUAL.html#extension-header_attributes) and you'll see the syntax referenced throughout our documentation.
-In fact, the tabset examples above use two examples of header attributes:
+In fact, the tabset examples above use header attributes in two places:
 ```
 Column {.tabset}
 -------------------------------------
@@ -166,7 +166,7 @@ Row {.tabset .tabset-fade}
 ```
 Header attributes appear directly after the header name and are surrounded in braces.
 The tabset example uses class attributes, which are denoted with a `.` (period) prefix.
-In the final HTML, the CSS classes `tabset` and `tabset tabset-fade` are added to the sections defined by the Column and Row headings.
+In the rendered HTML, the CSS classes `tabset` and `tabset tabset-fade` are added to the sections defined by the Column and Row headings.
 
 Similarly, header attributes can be used to provide a unique identifier for a section.
 Identifiers are assigned using a `#` (number sign) prefix (e.g., `#identifier`).
