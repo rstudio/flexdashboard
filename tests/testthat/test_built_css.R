@@ -1,4 +1,5 @@
 test_that("flexdashboard.min.css has been built", {
+  skip_on_cran()
 
   src <- system.file("www/flex_dashboard/flexdashboard.scss", package = "flexdashboard")
 

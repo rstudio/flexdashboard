@@ -1,63 +1,63 @@
 - title: "NBA scoring with d3heatmap"
   img: images/htmlwidgets-d3heatmap.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/
+  href: https://testing-apps.shinyapps.io/flexdashboard-d3heatmap/
   showcase: true
 - title: "ggplotly: ggplot2 geoms"
   img: images/plotly.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/
+  href: https://testing-apps.shinyapps.io/flexdashboard-ggplotly/
   showcase: true
 - title: "Shiny: biclust example"
   img: images/shiny-biclust.png
-  href: https://jjallaire.shinyapps.io/shiny-biclust/
+  href: https://testing-apps.shinyapps.io/flexdashboard-shiny-biclust/
   showcase: true
   shiny: true
 - title: "Shiny: CRAN downloads"
   img: images/shiny-cran-dash.png
-  href: https://jjallaire.shinyapps.io/shiny-crandash/
+  href: https://testing-apps.shinyapps.io/flexdashboard-shiny-crandash/
   shiny: true
 - title: "Linked time-series with dygraphs"
   img: images/dygraphs.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/
+  href: https://testing-apps.shinyapps.io/flexdashboard-dygraphs/
 - title: "Sales report with highcharter"
   img: images/htmlwidgets-highcharter.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/
+  href: https://testing-apps.shinyapps.io/flexdashboard-highcharter/
 - title: "Storyboard: htmlwidgets showcase"
   img: images/htmlwidgets-showcase-storyboard.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/
+  href: https://testing-apps.shinyapps.io/flexdashboard-storyboard/
 - title: "Shiny: ggplot2 linked brushing"
   img: images/shiny-ggplot2-brushing.png
-  href: https://jjallaire.shinyapps.io/shiny-ggplot2-brushing/
+  href: https://testing-apps.shinyapps.io/flexdashboard-shiny-ggplot2-brushing/
   shiny: true
 - title: "rbokeh: iris dataset"
   img: images/htmlwidgets-rbokeh-iris.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-rbokeh-iris/
+  href: https://testing-apps.shinyapps.io/flexdashboard-rbokeh/
 - title: "MetricsGraphics: Tor Project"
   img: images/htmlwidgets-metricsgraphics-tor.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-metricsgraphics-tor/
+  href: https://testing-apps.shinyapps.io/flexdashboard-metricsgraphics-tor/
 - title: "Shiny: kmeans clustering"
   img: images/shiny-kmeans.png
-  href: https://jjallaire.shinyapps.io/shiny-kmeans/
+  href: https://testing-apps.shinyapps.io/flexdashboard-shiny-kmeans/
   shiny: true
 - title: "leaflet: nuclear waste sites"
   img: images/htmlwidgets-waste-sites.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-waste-sites/
+  href: https://testing-apps.shinyapps.io/flexdashboard-leaflet-waste/
 - title: "ggplotly: various examples"
   img: images/htmlwidgets-ggplotly-examples.png
-  href: https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-examples/
+  href: https://testing-apps.shinyapps.io/flexdashboard-ggplotly-examples/
 - title: "Pokemon characters with highcharter"
   img: images/highcharter-pokemon.png
-  href: https://jkunst.com/flexdashboard-highcharter-examples/pokemon/
+  href: https://testing-apps.shinyapps.io/flexdashboard-highcharter-pokemon/
 - title: "Shiny: Old faithful eruptions"
   img: images/shiny-eruptions.png
-  href: https://beta.rstudioconnect.com/jjallaire/shiny-eruptions/
+  href: https://testing-apps.shinyapps.io/flexdashboard-shiny-eruptions/
   shiny: false
 - title: "Shiny: Diamonds explorer"
   img: images/shiny-diamonds-explorer.png
-  href: https://jjallaire.shinyapps.io/shiny-ggplot2-diamonds/
+  href: https://testing-apps.shinyapps.io/flexdashboard-shiny-ggplot2-diamonds/
   shiny: true
 - title: "Shiny: Embedding"
   img: images/shiny-embedding.png
-  href: https://beta.rstudioconnect.com/jjallaire/shiny-embedding/
+  href: https://testing-apps.shinyapps.io/flexdashboard-shiny-embedding/
   shiny: true
 - title: "Shiny: Neighborhood diversity"
   img: images/shiny-neighborhood-diversity.png

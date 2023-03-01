@@ -1,7 +1,7 @@
 Package: flexdashboard
 Type: Package
 Title: R Markdown Format for Flexible Dashboards
-Version: 0.5.2.9000
+Version: 0.6.1.9000
 Description: Format for converting an R Markdown document to a grid oriented
   dashboard. The dashboard flexibly adapts the size of it's components to the
   containing web page.
@@ -48,7 +48,37 @@ Imports:
 Suggests: testthat
 LazyData: TRUE
 License: MIT + file LICENSE
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Config/testthat/edition: 3
 Config/Needs/website:
     rstudio/quillt
+Config/Needs/deploy:
+    dplyr,
+    ggplot2,
+    DT,
+    talgalili/d3heatmap,
+    plotly,
+    plyr,
+    biclust,
+    webshot,
+    bit,
+    jcheng5/bubbles,
+    digest,
+    hadley/shinySignals,
+    dygraphs,
+    quantmod,
+    forecast,
+    highcharter,
+    arules,
+    treemap,
+    viridisLite,
+    leaflet,
+    metricsgraphics,
+    rbokeh,
+    readr,
+    tidyr,
+    jsonlite,
+    maptools,
+    purrr,
+    maps,
+    hexbin

@@ -6,6 +6,7 @@
 #'to its containing web page.
 #'
 #'@inheritParams rmarkdown::html_document
+#'@inheritParams rmarkdown::html_document_base
 #'
 #'@param fig_retina Scaling to perform for retina displays (defaults to 2). Note
 #'  that for flexdashboard enabling retina scaling provides for both crisper
@@ -86,7 +87,7 @@
 #'@param ... Other arguments to [rmarkdown::html_document_base()].
 #'
 #'@details See the flexdashboard website for additional documentation:
-#'  \href{http://rmarkdown.rstudio.com/flexdashboard/}{http://rmarkdown.rstudio.com/flexdashboard/}
+#'  \href{https://pkgs.rstudio.com/flexdashboard/}{https://pkgs.rstudio.com/flexdashboard/}
 #'
 #' @examples
 #' \dontrun{

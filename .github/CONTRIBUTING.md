@@ -13,7 +13,7 @@ You can contribute in many ways:
 
 1. [Fork](https://github.com/rstudio/flexdashboard/fork) the repository and make your changes in a new branch specific to the PR. It is ok to edit a file in this repository using the `Edit` button on Github if the change is simple enough.
 
-2. Submit the [pull request](https://help.github.com/articles/using-pull-requests). It is ok to submit as draft in your are still working on it but would like some feedback from us. It always good to share in the open that you are working on it.
+2. Submit the [pull request](https://help.github.com/articles/using-pull-requests). It is ok to submit as draft if your are still working on it but would like some feedback from us. It always good to share in the open that you are working on it.
 
 3. You will be prompted to read and agree to the "RStudio Corporate and Individual Contributor Agreement."
 
