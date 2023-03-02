@@ -6,6 +6,8 @@
 
 * Fixed #234: Use the correct social sharing link for Facebook.
 
+* knitr's `collapse` chunk option will now work as expected in flexdashboard, fixing #102. This also ensures that other knitr options that modify the chunk option, like `class.chunk` and others are applied correctly. (#428)
+
 # flexdashboard 0.6.1
 
 * Closed #398: The logo is now positioned to the left (instead of the right) of the title (regression introduced by 0.6.0).
