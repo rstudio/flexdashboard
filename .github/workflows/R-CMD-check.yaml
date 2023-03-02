@@ -25,22 +25,22 @@ jobs:
   deploy:
     if: github.repository == 'rstudio/flexdashboard'
     runs-on: ubuntu-20.04
-  
+
     name: "Deploy to shinyapps.io"
     needs: [R-CMD-check]
-  
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-  
+
     steps:
       - uses: actions/checkout@v2
-  
+
       - uses: rstudio/shiny-workflows/setup-r-package@v1
         with:
           extra-packages: any::XML
           needs: deploy
-          
-  
+
+
       # Install from GitHub so that rsconnect can find the package
       - name: Install bslib from GitHub
         shell: Rscript {0}
@@ -48,7 +48,16 @@ jobs:
           install.packages("rsconnect")
           pak::pkg_install("rstudio/flexdashboard", dependencies = TRUE, upgrade = TRUE)
 
+      - name: Deploy example apps to shinyapps.io?
+        id: examples
+        if: >
+          github.event_name == 'push' &&
+          github.ref_name == 'main' &&
+          github.repository == 'rstudio/flexdashboard'
+        run: echo "deploy=true" >> $GITHUB_OUTPUT
+
       - name: Register account
+        if: ${{ steps.examples.deploy == 'true' }}
         shell: Rscript {0}
         run: |
           rsconnect::setAccountInfo(
@@ -57,5 +66,6 @@ jobs:
             secret = '${{ secrets.SHINYAPPS_SECRET }}'
           )
       - name: Deploy
+        if: ${{ steps.examples.deploy == 'true' }}
         run: |
           Rscript 'examples/deploy.R'
