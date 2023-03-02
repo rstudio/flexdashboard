@@ -24,7 +24,8 @@ test_that("flex_dashboard format", {
     output_format <- flex_dashboard()
     rmarkdown::render(testdoc,
                       output_format = output_format,
-                      output_file = output_file)
+                      output_file = output_file,
+                      quiet = TRUE)
     expect_true(file.exists(output_file))
   })
 })
