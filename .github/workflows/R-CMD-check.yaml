@@ -23,24 +23,27 @@ jobs:
   R-CMD-check:
     uses: rstudio/shiny-workflows/.github/workflows/R-CMD-check.yaml@v1
   deploy:
-    if: github.repository == 'rstudio/flexdashboard'
+    if: >
+      github.event_name == 'push' &&
+      github.ref_name == 'main' &&
+      github.repository == 'rstudio/flexdashboard'
+
     runs-on: ubuntu-20.04
-  
+
     name: "Deploy to shinyapps.io"
     needs: [R-CMD-check]
-  
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-  
+
     steps:
       - uses: actions/checkout@v2
-  
+
       - uses: rstudio/shiny-workflows/setup-r-package@v1
         with:
           extra-packages: any::XML
           needs: deploy
-          
-  
+
       # Install from GitHub so that rsconnect can find the package
       - name: Install bslib from GitHub
         shell: Rscript {0}
