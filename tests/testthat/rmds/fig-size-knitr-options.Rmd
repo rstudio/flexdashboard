@@ -19,24 +19,4 @@ hist(faithful$waiting)
 hist(faithful$waiting)
 ```
 
-## Column 2
-
-### 75 DPI, Retina 1
-
-```{r, fig.width=5, fig.height=5, dpi=75, fig.retina=1}
-hist(faithful$waiting)
-```
-
-### 150 DPI, Retina 1
-
-```{r, fig.width=5, fig.height=5, dpi=150, fig.retina=1}
-hist(faithful$waiting)
-```
-
-### 75 DPI, Retina 2
-
-```{r, fig.width=5, fig.height=5, dpi=75, fig.retina=2}
-hist(faithful$waiting)
-```
-
 <!-- TEST -->

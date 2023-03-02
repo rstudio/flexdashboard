@@ -31,7 +31,7 @@ test_that("flex_dashboard format", {
 })
 
 test_that("figure size knitr options are written into the document", {
-  skip_on_cran() # because it requires pandoc
+  skip_if_not(rmarkdown::pandoc_available())
 
   rmd_src <- test_path("rmds", "fig-size-knitr-options.Rmd")
   rmd <- tempfile(fileext = ".Rmd")
