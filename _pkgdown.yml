@@ -80,3 +80,10 @@ reference:
   desc: ~
   contents:
   - flexdashboard
+
+redirects:
+  - ["examples.html", "articles/examples.html"]
+  - ["layouts.html", "articles/layouts.html"]
+  - ["shiny.html", "articles/shiny.html"]
+  - ["theme.html", "articles/theme.html"]
+  - ["using.html", "articles/using.html"]
