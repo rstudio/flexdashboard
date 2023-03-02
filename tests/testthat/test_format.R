@@ -55,5 +55,5 @@ test_that("figure size knitr options are written into the document", {
   # Replace base64 data with static content
   test_lines <- gsub("data:([^;]+);base64,[^\"]+", "data:\\1;base64,...", test_lines)
 
-  expect_snapshot(test_lines)
+  expect_snapshot(cat(test_lines, sep = "\n"))
 })
