@@ -290,7 +290,7 @@ You can specify icons from three different icon sets:
 
 1. [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/)
 
-2. [Ionicons](https://ionicons.com/)
+2. [Ionicons (v2)](https://ionic.io/ionicons/v2/cheatsheet.html)
 
 3. [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
 
@@ -527,7 +527,7 @@ You can specify icons for navigation bar items from three different icon sets:
 
 1. [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/)
 
-2. [Ionicons](https://ionicons.com/)
+2. [Ionicons (v2)](https://ionic.io/ionicons/v2/cheatsheet.html)
 
 3. [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
 
