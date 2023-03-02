@@ -60,5 +60,5 @@ jobs:
             secret = '${{ secrets.SHINYAPPS_SECRET }}'
           )
       - name: Deploy
-        if: ${{ steps.examples.deploy == 'true' }}        run: |
+        run: |
           Rscript 'examples/deploy.R'
