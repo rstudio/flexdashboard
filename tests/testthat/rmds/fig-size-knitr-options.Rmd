@@ -1,0 +1,42 @@
+---
+title: Test Fig Size Knitr Options
+output: flexdashboard::flex_dashboard
+---
+
+<!-- TEST -->
+
+## Column 1
+
+### A wide plot
+
+```{r, fig.width=10, fig.height=5}
+hist(faithful$waiting)
+```
+
+### A tall plot
+
+```{r, fig.width=5, fig.height=10}
+hist(faithful$waiting)
+```
+
+## Column 2
+
+### 75 DPI, Retina 1
+
+```{r, fig.width=5, fig.height=5, dpi=75, fig.retina=1}
+hist(faithful$waiting)
+```
+
+### 150 DPI, Retina 1
+
+```{r, fig.width=5, fig.height=5, dpi=150, fig.retina=1}
+hist(faithful$waiting)
+```
+
+### 75 DPI, Retina 2
+
+```{r, fig.width=5, fig.height=5, dpi=75, fig.retina=2}
+hist(faithful$waiting)
+```
+
+<!-- TEST -->
