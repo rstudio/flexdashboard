@@ -191,18 +191,19 @@ flex_dashboard <- function(fig_width = 6.0,
     opts_orig <- c(opts_orig, options(DT.fillContainer = TRUE))
   }
 
-  # add hook to capture fig.width and fig.height and serialized
-  # them into the DOM
+  # add hook to capture fig.width and fig.height and serialize them into the DOM
   figSizePixels <- function(size) as.integer(size * 96)
+  default_knitr_chunk_hook <- knitr::hooks_markdown()[["chunk"]]
   knitr_options$knit_hooks <- list()
-  knitr_options$knit_hooks$chunk  <- function(x, options) {
+  knitr_options$knit_hooks$chunk <- function(x, options) {
+    x <- default_knitr_chunk_hook(x, options)
     knitrOptions <- paste0(
       '<div class="knitr-options" ',
            'data-fig-width="', figSizePixels(options$fig.width[[1]]), '" ',
            'data-fig-height="', figSizePixels(options$fig.height[[1]]), '">',
       '</div>'
     )
-    paste(knitrOptions, x, sep = '\n')
+    paste(knitrOptions, x, sep = "\n")
   }
 
   # kntir hook to determine if we need to add various libraries
