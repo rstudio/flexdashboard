@@ -38,7 +38,7 @@ Imports:
   utils,
   jsonlite,
   htmltools (>= 0.5.1),
-  knitr (>= 1.13),
+  knitr (>= 1.30),
   htmlwidgets (>= 0.6),
   rmarkdown (>= 2.8),
   shiny (>= 0.13),
