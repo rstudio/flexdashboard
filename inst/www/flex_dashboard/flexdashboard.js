@@ -255,6 +255,7 @@ var FlexDashboard = (function () {
     var id = page.attr('id');
     var icon = page.attr('data-icon');
     var navmenu = page.attr('data-navmenu');
+    var navmenuIcon = page.attr('data-navmenu-icon');
 
     // get hidden state (transfer this to navbar)
     var hidden = page.hasClass('hidden');
@@ -290,7 +291,7 @@ var FlexDashboard = (function () {
     var container = $('ul.navbar-left');
     if (navmenu) {
       var menuId = navmenu.replace(/\s+/g, '');
-      var menu = navbarMenu(menuId, null, navmenu, container);
+      var menu = navbarMenu(menuId, navmenuIcon, navmenu, container);
       li.find("> a").removeClass("nav-link").addClass("dropdown-item");
       menu.append(li);
     } else {
