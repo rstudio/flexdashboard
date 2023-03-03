@@ -1,0 +1,22 @@
+---
+title: Test Fig Size Knitr Options
+output: flexdashboard::flex_dashboard
+---
+
+<!-- TEST -->
+
+## Column 1
+
+### A wide plot
+
+```{r, fig.width=10, fig.height=5}
+hist(faithful$waiting)
+```
+
+### A tall plot
+
+```{r, fig.width=5, fig.height=10}
+hist(faithful$waiting)
+```
+
+<!-- TEST -->
