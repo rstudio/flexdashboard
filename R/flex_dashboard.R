@@ -192,7 +192,6 @@ flex_dashboard <- function(fig_width = 6.0,
   }
 
   # add hook to capture fig.width and fig.height and serialize them into the DOM
-  figSizePixels <- function(size) as.integer(size * 96)
   default_knitr_chunk_hook <- knitr::hooks_markdown()[["chunk"]]
   knitr_options$knit_hooks <- list()
   knitr_options$knit_hooks$chunk <- function(x, options) {
@@ -481,6 +480,7 @@ flex_dashboard <- function(fig_width = 6.0,
   )
 }
 
+figSizePixels <- function(size) as.integer(size * 96)
 
 mobile_figure_args <- function(mobile_figures) {
   if (length(mobile_figures) > 0) {
