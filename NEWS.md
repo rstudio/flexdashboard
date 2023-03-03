@@ -4,6 +4,8 @@
 
 * Improved support for page selection in navigation dropdown menus in Bootstrap 5. (#421)
 
+* flexdashboard now supports icons for navigation dropdown menus. Pages are created with level-1 headings and can be added to a dropdown menu with the `data-navmenu` attribute. You can now also assign an icon to this dropdown menu by providing a `data-navmenu-icon` attribute, using the same icon selections as described in [Page Icons](https://pkgs.rstudio.com/flexdashboard/articles/using.html#page-icons). (#419)
+
 * Fixed #234: Use the correct social sharing link for Facebook.
 
 # flexdashboard 0.6.1
