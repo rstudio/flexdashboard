@@ -6,7 +6,7 @@
 
 * Fixed #234: Use the correct social sharing link for Facebook.
 
-* knitr's `collapse` chunk option will now work as expected in flexdashboard, fixing #102. This also ensures that other knitr options that modify the chunk option, like `class.chunk` and others are applied correctly. (#428)
+* Fixed #102: knitr's `collapse` chunk option now works as expected. This fix also ensures that other knitr options that modify the chunk option, like `class.chunk` and others are applied correctly. (#428)
 
 # flexdashboard 0.6.1
 
