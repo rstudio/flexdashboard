@@ -1,0 +1,10 @@
+.html-widget.gauge {
+  height: 160px;
+}
+
+.html-widget.gauge svg {
+  height: 110px;
+  margin-top: 5px;
+  margin-bottom: -10px;
+  overflow: visible !important;
+}
