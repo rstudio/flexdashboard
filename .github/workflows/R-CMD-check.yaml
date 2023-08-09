@@ -14,10 +14,7 @@ name: Package checks
 
 jobs:
   website:
-    uses: rstudio/shiny-workflows/.github/workflows/website-netlify.yaml@v1
-    secrets:
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+    uses: rstudio/shiny-workflows/.github/workflows/website.yaml@v1
   routine:
     uses: rstudio/shiny-workflows/.github/workflows/routine.yaml@v1
   R-CMD-check:
