@@ -101,7 +101,7 @@ There are two main places to get help with flexdashboard:
   also a great place to get help, once you have created a reproducible
   example that illustrates your problem. Use the tags
   [`[r][flexdashboard]`](https://stackoverflow.com/questions/tagged/flexdashboard+r)
-  if you ask a question. Add the tag `[shiny]` if you are using a Shinyy
+  if you ask a question. Add the tag `[shiny]` if you are using a Shiny
   runtime.
 
 ## Code of Conduct
