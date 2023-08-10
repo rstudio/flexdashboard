@@ -29,7 +29,7 @@ dashboards for R, using R Markdown.
   layouts for presenting sequences of visualizations and related
   commentary.
 
-- Optionally use [Shiny](https://shiny.rstudio.com) to drive
+- Optionally use [Shiny](https://shiny.posit.co/) to drive
   visualizations dynamically.
 
 - Optionally use [bslib](https://rstudio.github.io/bslib/) to easily

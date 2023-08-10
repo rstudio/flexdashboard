@@ -25,7 +25,7 @@ The goal of **flexdashboard** is to make it easy to create interactive dashboard
 
 * [Storyboard](https://pkgs.rstudio.com/flexdashboard/articles/using.html#storyboards-1) layouts for presenting sequences of visualizations and related commentary.
 
-* Optionally use [Shiny](https://shiny.rstudio.com) to drive visualizations dynamically.
+* Optionally use [Shiny](https://shiny.posit.co/) to drive visualizations dynamically.
 
 * Optionally use [bslib](https://rstudio.github.io/bslib/) to easily [customize main colors, fonts, and more](https://pkgs.rstudio.com/flexdashboard/articles/theme.html).
 
