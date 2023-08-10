@@ -13,29 +13,28 @@ status](https://www.r-pkg.org/badges/version/flexdashboard)](https://CRAN.R-proj
 The goal of **flexdashboard** is to make it easy to create interactive
 dashboards for R, using R Markdown.
 
-  - Use [R Markdown](https://rmarkdown.rstudio.com) to publish a group
-    of related data visualizations as a dashboard.
+- Use [R Markdown](https://rmarkdown.rstudio.com) to publish a group of
+  related data visualizations as a dashboard.
 
-  - Support for a wide variety of components including
-    [htmlwidgets](https://www.htmlwidgets.org); base, lattice, and grid
-    graphics; tabular data; gauges and value boxes; and text
-    annotations.
+- Support for a wide variety of components including
+  [htmlwidgets](https://www.htmlwidgets.org); base, lattice, and grid
+  graphics; tabular data; gauges and value boxes; and text annotations.
 
-  - Flexible and easy to specify row and column-based
-    [layouts](https://pkgs.rstudio.com/flexdashboard/articles/layouts.html).
-    Components are intelligently re-sized to fill the browser and
-    adapted for display on mobile devices.
+- Flexible and easy to specify row and column-based
+  [layouts](https://pkgs.rstudio.com/flexdashboard/articles/layouts.html).
+  Components are intelligently re-sized to fill the browser and adapted
+  for display on mobile devices.
 
-  - [Storyboard](https://pkgs.rstudio.com/flexdashboard/articles/using.html#storyboards-1)
-    layouts for presenting sequences of visualizations and related
-    commentary.
+- [Storyboard](https://pkgs.rstudio.com/flexdashboard/articles/using.html#storyboards-1)
+  layouts for presenting sequences of visualizations and related
+  commentary.
 
-  - Optionally use [Shiny](https://shiny.rstudio.com) to drive
-    visualizations dynamically.
+- Optionally use [Shiny](https://shiny.rstudio.com) to drive
+  visualizations dynamically.
 
-  - Optionally use [bslib](https://rstudio.github.io/bslib/) to easily
-    [customize main colors, fonts, and
-    more](https://pkgs.rstudio.com/flexdashboard/articles/theme.html).
+- Optionally use [bslib](https://rstudio.github.io/bslib/) to easily
+  [customize main colors, fonts, and
+  more](https://pkgs.rstudio.com/flexdashboard/articles/theme.html).
 
 Learn more about **flexdashboard**:
 <https://pkgs.rstudio.com/flexdashboard>
@@ -75,12 +74,10 @@ within RStudio using the **New R Markdown** dialog:
 If you are not using RStudio, you can create a new `flexdashboard` R
 Markdown file from the R console. Currently there are two `templates`:
 
-  - `"flex_dashboard"` (basic) and
+- `"flex_dashboard"` (basic) and
 
-  - `"flex_dashboard_bslib"` (an example of [theming with
-    `{bslib}`](https://pkgs.rstudio.com/flexdashboard/articles/theme.html)):
-
-<!-- end list -->
+- `"flex_dashboard_bslib"` (an example of [theming with
+  `{bslib}`](https://pkgs.rstudio.com/flexdashboard/articles/theme.html)):
 
 ``` r
 rmarkdown::draft("dashboard.Rmd",
@@ -92,20 +89,20 @@ rmarkdown::draft("dashboard.Rmd",
 
 There are two main places to get help with flexdashboard:
 
-  - The [RStudio
-    community](https://community.rstudio.com/tags/c/R-Markdown/10/flexdashboard)
-    is a friendly place to ask any questions about flexdashboard. Be
-    sure to use the `flexdashboard` tag. Add also the `shiny` tag is you
-    are using a Shiny runtime.
+- The [RStudio
+  community](https://community.rstudio.com/tags/c/R-Markdown/10/flexdashboard)
+  is a friendly place to ask any questions about flexdashboard. Be sure
+  to use the `flexdashboard` tag. Add also the `shiny` tag is you are
+  using a Shiny runtime.
 
-  - [Stack
-    Overflow](https://stackoverflow.com/questions/tagged/flexdashboard)
-    is a great source of answers to common **flexdashboard** questions.
-    It is also a great place to get help, once you have created a
-    reproducible example that illustrates your problem. Use the tags
-    [`[r][flexdashboard]`](https://stackoverflow.com/questions/tagged/flexdashboard+r)
-    if you ask a question. Add the tag `[shiny]` if you are using a
-    Shinyy runtime.
+- [Stack
+  Overflow](https://stackoverflow.com/questions/tagged/flexdashboard) is
+  a great source of answers to common **flexdashboard** questions. It is
+  also a great place to get help, once you have created a reproducible
+  example that illustrates your problem. Use the tags
+  [`[r][flexdashboard]`](https://stackoverflow.com/questions/tagged/flexdashboard+r)
+  if you ask a question. Add the tag `[shiny]` if you are using a Shinyy
+  runtime.
 
 ## Code of Conduct
 
