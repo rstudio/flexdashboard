@@ -1,3 +1,5 @@
+# flexdashboard 0.6.2
+
 # flexdashboard 0.6.1.9000
 
 ## New features

@@ -1,7 +1,7 @@
 Type: Package
 Package: flexdashboard
 Title: R Markdown Format for Flexible Dashboards
-Version: 0.6.1.9000
+Version: 0.6.2
 Authors@R: c(
     person("Garrick", "Aden-Buie", , "garrick@posit.co", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7111-0077")),
