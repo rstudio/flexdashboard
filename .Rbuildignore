@@ -12,3 +12,4 @@ README.R?md
 revdep
 ^pkgdown/*
 ^_pkgdown\.yml$
+^cran-comments\.md$
