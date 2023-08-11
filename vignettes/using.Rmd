@@ -12,13 +12,13 @@ library(quillt)
 
 You can use flexdashboard to publish groups of related data visualizations as a dashboard. A wide variety of components can be included in flexdashboard layouts, including:
 
-1. Interactive JavaScript data visualizations based on [htmlwidgets](https://www.htmlwidgets.org). 
+1. Interactive JavaScript data visualizations based on [htmlwidgets](https://www.htmlwidgets.org).
 
 2. R graphical output including base, lattice, and grid graphics.
 
 3. Tabular data (with optional sorting, filtering, and paging).
 
-4. Value boxes for highlighting important summary data. 
+4. Value boxes for highlighting important summary data.
 
 5. Gauges for displaying values on a meter within a specified range.
 
@@ -28,7 +28,7 @@ Flexible options for [component layout](#layout) are available and dashboards wi
 
 There are also several ways to add interactivity to flexdashboards. You can use [htmlwidgets](#html-widgets) to add client-side JavaScript interactivity (data tips, panning, zooming, etc.) and [Shiny](shiny.html) to build fully custom interactions in R.
 
-## Layout 
+## Layout
 
 ### Orientation
 
@@ -109,7 +109,7 @@ For example, the following layout includes 3 charts and requests that the page s
 
 ### Tabsets
 
-If you have several components you'd like to display within a row or column then rather than attempting to fit them all on screen at the same time you can lay them out as a tabset. This is especially appropriate when one component is primary (i.e. should be seen by all readers) and the others provide secondary information that might be of interest to only some readers. 
+If you have several components you'd like to display within a row or column then rather than attempting to fit them all on screen at the same time you can lay them out as a tabset. This is especially appropriate when one component is primary (i.e. should be seen by all readers) and the others provide secondary information that might be of interest to only some readers.
 
 ![](images/tabsets.png){.screenshot width=824 height=57}
 
@@ -195,7 +195,7 @@ Available htmlwidgets include:
 
 4. [rbokeh](https://hafen.github.io/rbokeh), an interface to Bokeh, a powerful declarative Bokeh framework for creating web-based plots.
 
-5. [Highcharter](https://jkunst.com/highcharter/), a rich R interface to the popular Highcharts JavaScript graphics library. 
+5. [Highcharter](https://jkunst.com/highcharter/), a rich R interface to the popular Highcharts JavaScript graphics library.
 
 6. [visNetwork](https://dataknowledge.github.io/visNetwork), an interface to the network visualization capabilities of the vis.js library.
 
@@ -208,15 +208,15 @@ You include htmlwidgets in an R Markdown document just like you include R plots.
 
 Note that one disadvantage of htmlwidgets is that they embed their data directly in their host web page, so may encounter performance problems for larger datasets. For larger dataset sizes the use of standard R graphics (described below) may be preferable.
 
-### R Graphics 
+### R Graphics
 
-You can use any chart created with standard R graphics (base, lattice, grid, etc.) with flexdashboard. 
+You can use any chart created with standard R graphics (base, lattice, grid, etc.) with flexdashboard.
 
 Within dynamic ([Shiny](shiny.html)) dashboards these charts are automatically sized to fit within their dashboard containers so long as they are wrapped within a call to [renderPlot](https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html).
 
 Within static dashboards standard R graphics are also scaled (with aspect ratios preserved so there is no stretching or distortion). However, since these charts are PNG images it's not possible for them to seamlessly fill the bounds of their container. The following section provides tips on how to get the best possible fit for a given graphic.
 
-#### Figure Scaling 
+#### Figure Scaling
 
 When creating static (non-Shiny) dashboards containing standard R graphics it's critical to define knitr `fig.width` and `fig.height` values as close as possible to what they'll actually be on the page. This enables them to fit into their layout container as closely as possible when the dashboard is laid out.
 
@@ -226,7 +226,7 @@ Here's an example of a row based layout that includes 3 charts from R base graph
 <script type="text/javascript">loadSnippet('figuresizes')</script>
 
 
-We've specified an explicit `fig.height` and `fig.width` for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation. 
+We've specified an explicit `fig.height` and `fig.width` for each chart so that their rendered size fits their flex container as closely as possible. Note that the ideal values for these dimensions typically need to be determined by experimentation.
 
 ### Tabular Data
 
@@ -265,7 +265,7 @@ To include a DataTable you use the `DT::datatable` function:
 <div id="datatablesimple"></div>
 <script type="text/javascript">loadSnippet('datatablesimple')</script>
 
-Note that we specified the `bPaginate = FALSE` option. This is appropriate for smaller datasets where scrolling provides a comfortable way of navigating through the data. 
+Note that we specified the `bPaginate = FALSE` option. This is appropriate for smaller datasets where scrolling provides a comfortable way of navigating through the data.
 
 If you have a large dataset where you want to enable pagination, you should be sure to specify the `pageLength` option to show more than the default 10 rows of your dataset per page:
 
@@ -320,7 +320,7 @@ You can specify icons from three different icon sets:
 
 3. [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
 
-When referring to an icon you should use its full name including the icon set prefix (e.g. "fa-github", "ion-social-twitter", "glyphicon-time", etc.). 
+When referring to an icon you should use its full name including the icon set prefix (e.g. "fa-github", "ion-social-twitter", "glyphicon-time", etc.).
 
 #### Shiny
 
@@ -346,7 +346,7 @@ There are a few things to note about this example:
 
 2. You can specify an optional `symbol` to be displayed alongside the value (in the example "%" is used to denote a percentage).
 
-3. You can specify a set of custom color `sectors` using the `gaugeSectors` function. By default the current theme's "success" color (typically green) is used for the gauge color. The `sectors` option enables you to specify a set of three value ranges ("success", "warning", and "danger") which cause the gauge's color to change based on its value. 
+3. You can specify a set of custom color `sectors` using the `gaugeSectors` function. By default the current theme's "success" color (typically green) is used for the gauge color. The `sectors` option enables you to specify a set of three value ranges ("success", "warning", and "danger") which cause the gauge's color to change based on its value.
 
 #### Linking
 
@@ -518,9 +518,9 @@ Note that in this example both pages use the default "columns" orientation. It i
 <div id="pageorientation"></div>
 <script type="text/javascript">loadSnippet('pageorientation')</script>
 
-### Page Navigation 
+### Page Navigation
 
-By default each page you define is given its own top level tab on the navigation bar. However, if you have a large number of pages (more than 5) you might want to organize your pages into menus on the navigation bar. 
+By default each page you define is given its own top level tab on the navigation bar. However, if you have a large number of pages (more than 5) you might want to organize your pages into menus on the navigation bar.
 
 To specify that a page should be accessed via a navigation bar menu you use the `data-navmenu` attribute. For example, the following dashboard has 4 pages, 2 of which are located on "Menu A" and two of which are located on "Menu B":
 
@@ -563,7 +563,7 @@ When referring to an icon you should use its full name including the icon set pr
 
 ## Storyboards
 
-[![](images/htmlwidgets-showcase-storyboard.png){.screenshot .screenshot-right width=275 height=203}](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/)
+[![](images/htmlwidgets-showcase-storyboard.png){.screenshot .screenshot-right width=275 height=203}](https://testing-apps.shinyapps.io/flexdashboard-storyboard/)
 
 Storyboards are an alternative to the row and column based layout schemes described above that are well suited to presenting a sequence of data visualizations and related commentary.
 
@@ -575,18 +575,18 @@ To create a storyboard layout you do the following:
 
 2. Include a set of level 3 (`###`) dashboard components. Each component will be allocated its own frame in the storyboard, with the section title used as the navigation caption.
 
-The basics of creating storyboards are explained below. For a more complete example, see the [HTML Widgets Showcase](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/) storyboard.
+The basics of creating storyboards are explained below. For a more complete example, see the [HTML Widgets Showcase](https://testing-apps.shinyapps.io/flexdashboard-storyboard/) storyboard.
 
 The following code creates a storyboard with 3 frames:
 
 <div id="storyboard"></div>
 <script type="text/javascript">loadSnippet('storyboard')</script>
 
-Note that the level 3 section titles (e.g. "Frame 1") will be used as navigation captions. These captions should provide a one or two sentence summary of the frame, so will typically be longer than illustrated here. 
+Note that the level 3 section titles (e.g. "Frame 1") will be used as navigation captions. These captions should provide a one or two sentence summary of the frame, so will typically be longer than illustrated here.
 
 ### Storyboard Pages
 
-You can layout one or more pages of a dashboard as storyboards and then use traditional row and column layout on the other pages. To do this, you exclude the `storyboard: true` option and instead add the `{.storyboard}` class to pages you want laid out as storyboards. 
+You can layout one or more pages of a dashboard as storyboards and then use traditional row and column layout on the other pages. To do this, you exclude the `storyboard: true` option and instead add the `{.storyboard}` class to pages you want laid out as storyboards.
 
 For example, the following dashboard includes a storyboard on the first page ("Analysis") as well as another page ("Details") that uses conventional layout:
 
@@ -608,15 +608,15 @@ The flexdashboard layout system adapts itself intelligently for display on mobil
 
 ### Medium Screens
 
-The layout of dashboard components for medium sized mobile screens (e.g. tablets) is the same as for larger desktop screens (any screen with width greater than 768 pixels is considered a medium screen). 
+The layout of dashboard components for medium sized mobile screens (e.g. tablets) is the same as for larger desktop screens (any screen with width greater than 768 pixels is considered a medium screen).
 
 Rows and columns are allocated using the default figure sizes and respect the relative proportions established via the use of `data-width`attributes. The only exception are [sidebars](shiny.html#input-sidebar), which are reduced to 220 pixels wide whenever the screen is less than 993 pixels wide.
 
 ### Small Screens
 
-![](images/mobile-phone.png){.screenshot .screenshot-right width=187 height=332} 
+![](images/mobile-phone.png){.screenshot .screenshot-right width=187 height=332}
 
-For mobile phones (any screen less than or equal to 768 pixels wide) flexdashboard uses special layout behavior. Since these screens don't generally have the width to show multiple side-by-side columns, all dashboard components are "flattened" into one single column layout. 
+For mobile phones (any screen less than or equal to 768 pixels wide) flexdashboard uses special layout behavior. Since these screens don't generally have the width to show multiple side-by-side columns, all dashboard components are "flattened" into one single column layout.
 
 In addition, some flexdashboard components have special behavior to adapt themselves to smaller mobile screens:
 
@@ -644,7 +644,7 @@ It's also possible to create a mobile-specific version of a given dashboard comp
 
 A variety of themes are available to modify the base appearance of flexdashboard. Available themes include:
 
-- default 
+- default
 - cosmo
 - bootstrap
 - cerulean
@@ -657,7 +657,7 @@ A variety of themes are available to modify the base appearance of flexdashboard
 - paper
 - sandstone
 - simplex
-- yeti 
+- yeti
 
 The "cosmo" theme is used when "default" is specified. These themes are all based on the themes available in the [R Markdown](https://rmarkdown.rstudio.com) package (which are in turn based on [Bootswatch](https://bootswatch.com/) themes).
 
@@ -666,7 +666,7 @@ Use the `theme` option to specify an alternate theme:
 <div id="themesexample"></div>
 <script type="text/javascript">loadSnippet('themesexample')</script>
 
-If you are looking for a theme that embeds well inside another content frame (e.g. one that doesn't use such a strong color for the navigation bar) then the "bootstrap" theme is a good choice. 
+If you are looking for a theme that embeds well inside another content frame (e.g. one that doesn't use such a strong color for the navigation bar) then the "bootstrap" theme is a good choice.
 
 ### CSS Styles
 
@@ -679,7 +679,7 @@ Note that the base CSS styles are defined both the active [Bootswatch](https://b
 
 #### Navigation Bar Colors
 
-You can use CSS to customize the colors used within the navigation bar of each theme. If you do this, realize that themes define colors for many elements and states, so you should be careful to override all of the required elements. 
+You can use CSS to customize the colors used within the navigation bar of each theme. If you do this, realize that themes define colors for many elements and states, so you should be careful to override all of the required elements.
 
 The navigation bar for flexdashboard uses the `navbar-inverse` class for each of its themes. Here is the `navabar-inverse` CSS for the default "cosmo" theme used by flexdashboard:
 
