@@ -13,3 +13,4 @@ revdep
 ^pkgdown/*
 ^_pkgdown\.yml$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
