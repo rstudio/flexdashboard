@@ -1,10 +1,14 @@
-# flexdashboard 0.6.1.9000
+# flexdashboard 0.6.2
 
-* Fixed #411: Improved support for Bootstrap 5 to ensure correct handling of the active dashboard page. (#418)
+## New features
+
+* flexdashboard now supports icons for navigation dropdown menus. Pages are created with level-1 headings and can be added to a dropdown menu with the `data-navmenu` attribute. You can now also assign an icon to this dropdown menu by providing a `data-navmenu-icon` attribute, using the same icon selections as described in [Page Icons](https://pkgs.rstudio.com/flexdashboard/articles/using.html#page-icons). (#419)
 
 * Improved support for page selection in navigation dropdown menus in Bootstrap 5. (#421)
 
-* flexdashboard now supports icons for navigation dropdown menus. Pages are created with level-1 headings and can be added to a dropdown menu with the `data-navmenu` attribute. You can now also assign an icon to this dropdown menu by providing a `data-navmenu-icon` attribute, using the same icon selections as described in [Page Icons](https://pkgs.rstudio.com/flexdashboard/articles/using.html#page-icons). (#419)
+## Minor improvements and fixes
+
+* Fixed #411: Improved support for Bootstrap 5 to ensure correct handling of the active dashboard page. (#418)
 
 * Fixed #234: Use the correct social sharing link for Facebook.
 
@@ -21,13 +25,13 @@ This release adds integration with the new [`{bslib}` package](https://rstudio.g
 ### Possibly breaking changes
 
 * The `smart` argument was removed from `flexdashboard::flex_dashboard` since it was removed in rmarkdown 2.2 (relatedly, we now require rmarkdown 2.2 or higher). (#301)
-* The `window.FlexDashboard.themeColor` JavaScript object property is no longer available. Resolving of theming accent colors should now be done server-side via `{bslib}`'s [dynamic theming tools](https://rstudio.github.io/bslib/articles/custom-components.html). (#305) 
+* The `window.FlexDashboard.themeColor` JavaScript object property is no longer available. Resolving of theming accent colors should now be done server-side via `{bslib}`'s [dynamic theming tools](https://rstudio.github.io/bslib/articles/custom-components.html). (#305)
 
 ### Improvements & fixes
 
-* Close #343: Fix an issue with order of dependencies with `shiny_prerendered` following previous changes in rmarkdown - rstudio/rmarkdown#2064. (#344)  
+* Close #343: Fix an issue with order of dependencies with `shiny_prerendered` following previous changes in rmarkdown - rstudio/rmarkdown#2064. (#344)
 
-* Closed #315, #321, and #286: `DT::datatable()` now fills its container correctly inside of `flexdashboard::flex_dashboard()`. (#322) 
+* Closed #315, #321, and #286: `DT::datatable()` now fills its container correctly inside of `flexdashboard::flex_dashboard()`. (#322)
 
 * Closed #310: An `.active` class may now be added to a particular `.tabset` tab to control which tab is shown by default. (#311)
 
@@ -37,7 +41,7 @@ This release adds integration with the new [`{bslib}` package](https://rstudio.g
 
 * Closed #300: When a custom `{bslib}` theme is provided to `flex_dashboard`, `gauge()` and `viewBox()` now generate default styles to match it. (#301, #305)
 
-* Closed #227: Fixed a bug with `source_code: embed` producing errors because code wasn't being escaped before being included in HTML. (#228, thanks @cderv) 
+* Closed #227: Fixed a bug with `source_code: embed` producing errors because code wasn't being escaped before being included in HTML. (#228, thanks @cderv)
 
 * Added padding to the top of the sidebar. (#294)
 

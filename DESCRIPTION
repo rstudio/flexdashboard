@@ -1,86 +1,76 @@
-Package: flexdashboard
 Type: Package
+Package: flexdashboard
 Title: R Markdown Format for Flexible Dashboards
-Version: 0.6.1.9000
-Description: Format for converting an R Markdown document to a grid oriented
-  dashboard. The dashboard flexibly adapts the size of it's components to the
-  containing web page.
+Version: 0.6.2
 Authors@R: c(
-  person("Garrick", "Aden-Buie", role = c("aut", "cre"),
-    email = "garrick@posit.co", comment = c(ORCID = "0000-0002-7111-0077")),
-  person("Carson", "Sievert", role = "aut",
-    email = "carson@rstudio.com", comment = c(ORCID = "0000-0002-4958-2844")),
-  person("Richard", "Iannone", role = "aut", email = "rich@rstudio.com",
-         comment = c(ORCID = "0000-0003-3925-190X")),
-  person("JJ", "Allaire", role = "aut", email = "jj@rstudio.com"),
-  person("Barbara", "Borges", role = c("aut"), email = "barb.b.ribeiro@gmail.com"),
-  person(family = "RStudio", role = "cph"),
-  person(family = "Keen IO", role = c("ctb", "cph"), comment = "Dashboard CSS"),
-  person("Abdullah", "Almsaeed", role = c("ctb", "cph"), comment = "Dashboard CSS"),
-  person("Jonas", "Mosbech", role = c("ctb", "cph"), comment = "StickyTableHeaders"),
-  person("Noel", "Bossart", role = c("ctb", "cph"), comment = "Featherlight"),
-  person("Lea", "Verou", role = c("ctb", "cph"), comment = "Prism"),
-  person("Dmitry", "Baranovskiy", role = c("ctb", "cph"), comment = "Raphael.js"),
-  person(family = "Sencha Labs", role = c("ctb", "cph"), comment = "Raphael.js"),
-  person("Bojan", "Djuricic", role = c("ctb", "cph"), comment = "JustGage"),
-  person("Tomas", "Sardyha", role = c("ctb", "cph"), comment = "Sly"),
-  person("Bryan", "Lewis", role = c("ctb", "cph"), comment = "Examples"),
-  person("Joshua", "Kunst", role = c("ctb", "cph"), comment = "Examples"),
-  person("Ryan", "Hafen", role = c("ctb", "cph"), comment = "Examples"),
-  person("Bob", "Rudis", role = c("ctb", "cph"), comment = "Examples"),
-  person("Joe", "Cheng", role = c("ctb"), comment = "Examples")
+    person("Garrick", "Aden-Buie", , "garrick@posit.co", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7111-0077")),
+    person("Carson", "Sievert", , "carson@posit.co", role = "aut",
+           comment = c(ORCID = "0000-0002-4958-2844")),
+    person("Richard", "Iannone", , "rich@posit.co", role = "aut",
+           comment = c(ORCID = "0000-0003-3925-190X")),
+    person("JJ", "Allaire", , "jj@posit.co", role = "aut"),
+    person("Barbara", "Borges", , "barb.b.ribeiro@gmail.com", role = "aut"),
+    person("Posit Software, PBC", role = c("cph", "fnd")),
+    person(, "Keen IO", role = c("ctb", "cph"),
+           comment = "Dashboard CSS"),
+    person("Abdullah", "Almsaeed", role = c("ctb", "cph"),
+           comment = "Dashboard CSS"),
+    person("Jonas", "Mosbech", role = c("ctb", "cph"),
+           comment = "StickyTableHeaders"),
+    person("Noel", "Bossart", role = c("ctb", "cph"),
+           comment = "Featherlight"),
+    person("Lea", "Verou", role = c("ctb", "cph"),
+           comment = "Prism"),
+    person("Dmitry", "Baranovskiy", role = c("ctb", "cph"),
+           comment = "Raphael.js"),
+    person(, "Sencha Labs", role = c("ctb", "cph"),
+           comment = "Raphael.js"),
+    person("Bojan", "Djuricic", role = c("ctb", "cph"),
+           comment = "JustGage"),
+    person("Tomas", "Sardyha", role = c("ctb", "cph"),
+           comment = "Sly"),
+    person("Bryan", "Lewis", role = c("ctb", "cph"),
+           comment = "Examples"),
+    person("Joshua", "Kunst", role = c("ctb", "cph"),
+           comment = "Examples"),
+    person("Ryan", "Hafen", role = c("ctb", "cph"),
+           comment = "Examples"),
+    person("Bob", "Rudis", role = c("ctb", "cph"),
+           comment = "Examples"),
+    person("Joe", "Cheng", role = "ctb",
+           comment = "Examples")
   )
-URL: https://pkgs.rstudio.com/flexdashboard/, https://github.com/rstudio/flexdashboard/
-BugReports: https://github.com/rstudio/flexdashboard/issues
-Encoding: UTF-8
-Depends: R (>= 3.0.2)
-Imports:
-  grDevices,
-  tools,
-  utils,
-  jsonlite,
-  htmltools (>= 0.5.1),
-  knitr (>= 1.30),
-  htmlwidgets (>= 0.6),
-  rmarkdown (>= 2.8),
-  shiny (>= 0.13),
-  scales,
-  sass,
-  bslib (>= 0.2.5)
-Suggests: testthat
-LazyData: TRUE
+Description: Format for converting an R Markdown document to a grid
+    oriented dashboard. The dashboard flexibly adapts the size of it's
+    components to the containing web page.
 License: MIT + file LICENSE
-RoxygenNote: 7.2.3
-Config/testthat/edition: 3
-Config/Needs/website:
-    rstudio/quillt
-Config/Needs/deploy:
-    dplyr,
-    ggplot2,
-    DT,
-    talgalili/d3heatmap,
-    plotly,
-    plyr,
-    biclust,
-    webshot,
-    bit,
-    jcheng5/bubbles,
-    digest,
-    hadley/shinySignals,
-    dygraphs,
-    quantmod,
-    forecast,
-    highcharter,
-    arules,
-    treemap,
-    viridisLite,
-    leaflet,
-    metricsgraphics,
-    rbokeh,
-    readr,
-    tidyr,
+URL: https://pkgs.rstudio.com/flexdashboard/,
+    https://github.com/rstudio/flexdashboard/
+BugReports: https://github.com/rstudio/flexdashboard/issues
+Depends:
+    R (>= 3.0.2)
+Imports:
+    bslib (>= 0.2.5),
+    grDevices,
+    htmltools (>= 0.5.1),
+    htmlwidgets (>= 0.6),
     jsonlite,
-    maptools,
-    purrr,
-    maps,
-    hexbin
+    knitr (>= 1.30),
+    rmarkdown (>= 2.8),
+    sass,
+    scales,
+    shiny (>= 0.13),
+    tools,
+    utils
+Suggests:
+    testthat
+Config/Needs/deploy: dplyr, ggplot2, DT, talgalili/d3heatmap, plotly,
+    plyr, biclust, webshot, bit, jcheng5/bubbles, digest,
+    hadley/shinySignals, dygraphs, quantmod, forecast, highcharter,
+    arules, treemap, viridisLite, leaflet, metricsgraphics, rbokeh, readr,
+    tidyr, jsonlite, maptools, purrr, maps, hexbin
+Config/Needs/website: rstudio/quillt
+Config/testthat/edition: 3
+Encoding: UTF-8
+RoxygenNote: 7.2.3

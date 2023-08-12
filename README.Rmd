@@ -25,7 +25,7 @@ The goal of **flexdashboard** is to make it easy to create interactive dashboard
 
 * [Storyboard](https://pkgs.rstudio.com/flexdashboard/articles/using.html#storyboards-1) layouts for presenting sequences of visualizations and related commentary.
 
-* Optionally use [Shiny](https://shiny.rstudio.com) to drive visualizations dynamically.
+* Optionally use [Shiny](https://shiny.posit.co/) to drive visualizations dynamically.
 
 * Optionally use [bslib](https://rstudio.github.io/bslib/) to easily [customize main colors, fonts, and more](https://pkgs.rstudio.com/flexdashboard/articles/theme.html).
 
@@ -33,7 +33,7 @@ Learn more about **flexdashboard**: <https://pkgs.rstudio.com/flexdashboard>
 
 ## Examples
 
-<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-d3heatmap/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>&nbsp;&nbsp;<a href="https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>&nbsp;&nbsp;<a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
+<a href="https://testing-apps.shinyapps.io/flexdashboard-d3heatmap/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>&nbsp;&nbsp;<a href="https://testing-apps.shinyapps.io/flexdashboard-ggplotly/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>&nbsp;&nbsp;<a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
 
 View more examples [here](https://pkgs.rstudio.com/flexdashboard/articles/examples.html).
 
