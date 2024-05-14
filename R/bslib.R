@@ -24,7 +24,13 @@ resolve_theme <- function(theme) {
     # Default to cosmo theme (just like the non-bslib usage does)
     # (Users can explictly opt-out with bootswatch: default)
     if (!is_bs_theme(theme)) {
-      theme <- utils::modifyList(list(bootswatch = "cosmo"), theme)
+      theme_default <- list()
+      # bslib 0.5.1 added the "preset" option, which flexdashboard users may provide
+      # However, `preset` should not be set with `bootswatch`
+      if (packageVersion("bslib") < "0.5.1" && !"preset" %in% names(theme)) {
+        theme_default$bootswatch <- "cosmo"
+      }
+      theme <- utils::modifyList(theme_default, theme)
       theme <- do.call(bs_theme, theme)
     }
     # Also default to enable-rounded: true
