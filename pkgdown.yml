@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.0.9
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   examples: examples.html
@@ -8,8 +8,7 @@ articles:
   shiny: shiny.html
   theme: theme.html
   using: using.html
-last_built: 2024-05-01T15:35Z
+last_built: 2025-11-21T20:12Z
 urls:
   reference: https://pkgs.rstudio.com/flexdashboard/reference
   article: https://pkgs.rstudio.com/flexdashboard/articles
-

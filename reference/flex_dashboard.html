@@ -11,7 +11,7 @@ to its containing web page."><meta property="og:image" content="https://pkgs.rst
 
   gtag('config', 'UA-115082821-1');
 </script><!-- javascript assets for rmarkdown --><script src="../ace-1.2.3/ace.js" type="text/javascript" charset="utf-8"></script><script src="../holder-2.9.0/holder.min.js" type="text/javascript" charset="utf-8"></script><script src="../snippets/snippets.js" type="text/javascript" charset="utf-8"></script></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -48,7 +48,7 @@ to its containing web page."><meta property="og:image" content="https://pkgs.rst
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -70,7 +70,7 @@ to its containing web page."><meta property="og:image" content="https://pkgs.rst
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -85,20 +85,20 @@ to its containing web page."><meta property="og:image" content="https://pkgs.rst
 <li>
   <a href="https://github.com/rstudio/flexdashboard" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>R Markdown Format for Flexible Dashboards</h1>
-    <small class="dont-index">Source: <a href="https://github.com/rstudio/flexdashboard/blob/HEAD/R/flex_dashboard.R" class="external-link"><code>R/flex_dashboard.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/rstudio/flexdashboard/blob/main/R/flex_dashboard.R" class="external-link"><code>R/flex_dashboard.R</code></a></small>
     <div class="hidden name"><code>flex_dashboard.Rd</code></div>
     </div>
 
@@ -141,22 +141,24 @@ to its containing web page.</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>fig_width</dt>
+
+
+<dl><dt id="arg-fig-width">fig_width<a class="anchor" aria-label="anchor" href="#arg-fig-width"></a></dt>
 <dd><p>Default width (in inches) for figures</p></dd>
 
 
-<dt>fig_height</dt>
+<dt id="arg-fig-height">fig_height<a class="anchor" aria-label="anchor" href="#arg-fig-height"></a></dt>
 <dd><p>Default height (in inches) for figures</p></dd>
 
 
-<dt>fig_retina</dt>
+<dt id="arg-fig-retina">fig_retina<a class="anchor" aria-label="anchor" href="#arg-fig-retina"></a></dt>
 <dd><p>Scaling to perform for retina displays (defaults to 2). Note
 that for flexdashboard enabling retina scaling provides for both crisper
 graphics on retina screens but also much higher quality auto-scaling of R
 graphics within flexdashboard containers.</p></dd>
 
 
-<dt>fig_mobile</dt>
+<dt id="arg-fig-mobile">fig_mobile<a class="anchor" aria-label="anchor" href="#arg-fig-mobile"></a></dt>
 <dd><p>Create an additional rendering of each R graphics figure
 optimized for rendering on mobile devices oriented in portrait mode. If
 <code>TRUE</code>, creates a figure which is 3.75 x 4.80 inches wide; if
@@ -165,11 +167,11 @@ vector of length 2, creates a mobile figure with the specified width and
 height.</p></dd>
 
 
-<dt>dev</dt>
+<dt id="arg-dev">dev<a class="anchor" aria-label="anchor" href="#arg-dev"></a></dt>
 <dd><p>Graphics device to use for figure output (defaults to png)</p></dd>
 
 
-<dt>self_contained</dt>
+<dt id="arg-self-contained">self_contained<a class="anchor" aria-label="anchor" href="#arg-self-contained"></a></dt>
 <dd><p>Produce a standalone HTML file with no external
 dependencies, using data: URIs to incorporate the contents of linked
 scripts, stylesheets, images, and videos. Note that even for self contained
@@ -177,12 +179,12 @@ documents MathJax is still loaded externally (this is necessary because of
 its size).</p></dd>
 
 
-<dt>favicon</dt>
+<dt id="arg-favicon">favicon<a class="anchor" aria-label="anchor" href="#arg-favicon"></a></dt>
 <dd><p>Path to graphic to be used as a favicon for the dashboard. Pass
 <code>NULL</code> to use no favicon.</p></dd>
 
 
-<dt>logo</dt>
+<dt id="arg-logo">logo<a class="anchor" aria-label="anchor" href="#arg-logo"></a></dt>
 <dd><p>Path to graphic to be used as a logo for the dashboard. Pass
 <code>NULL</code> to not include a logo. Note that no scaling is performed on the
 logo image, so it should fit exactly within the dimensions of the navigation
@@ -190,20 +192,20 @@ bar (48 pixels high for the default "cosmo" theme, other themes may have
 slightly different navigation bar heights).</p></dd>
 
 
-<dt>social</dt>
+<dt id="arg-social">social<a class="anchor" aria-label="anchor" href="#arg-social"></a></dt>
 <dd><p>Specify a character vector of social sharing services to
 automatically add sharing links for them on the <code>navbar</code>. Valid values
 are "twitter", "facebook", "linkedin", and "pinterest" (more than one
 service can be specified).</p></dd>
 
 
-<dt>source_code</dt>
+<dt id="arg-source-code">source_code<a class="anchor" aria-label="anchor" href="#arg-source-code"></a></dt>
 <dd><p>URL for source code of dashboard (used primarily for
 publishing flexdashboard examples). Automatically creates a <code>navbar</code>
 item which links to the source code.</p></dd>
 
 
-<dt>navbar</dt>
+<dt id="arg-navbar">navbar<a class="anchor" aria-label="anchor" href="#arg-navbar"></a></dt>
 <dd><p>Optional list of elements to be placed on the flexdashboard
 navigation bar. Each element should be a list containing a <code>title</code>
 and/or <code>icon</code> field, an <code>href</code> field. Optional fields
@@ -211,27 +213,27 @@ and/or <code>icon</code> field, an <code>href</code> field. Optional fields
 supported.</p></dd>
 
 
-<dt>orientation</dt>
+<dt id="arg-orientation">orientation<a class="anchor" aria-label="anchor" href="#arg-orientation"></a></dt>
 <dd><p>Determines whether level 2 headings are treated as
 dashboard rows or dashboard columns.</p></dd>
 
 
-<dt>vertical_layout</dt>
+<dt id="arg-vertical-layout">vertical_layout<a class="anchor" aria-label="anchor" href="#arg-vertical-layout"></a></dt>
 <dd><p>Vertical layout behavior: "fill" to vertically resize
 charts so they completely fill the page; "scroll" to layout charts at their
 natural height, scrolling the page if necessary.</p></dd>
 
 
-<dt>storyboard</dt>
+<dt id="arg-storyboard">storyboard<a class="anchor" aria-label="anchor" href="#arg-storyboard"></a></dt>
 <dd><p><code>TRUE</code> to use a storyboard layout scheme that places
 each dashboard component in a navigable storyboard frame. When a storyboard
 layout is used the <code>orientation</code> and <code>vertical_layout</code> arguments
 are ignored. When creating a dashbaord with multiple pages you should apply
-the `.storyboard` attribute to individual pages rather than using the
+the <code>{.storyboard}</code> attribute to individual pages rather than using the
 global <code>storyboard</code> option.</p></dd>
 
 
-<dt>theme</dt>
+<dt id="arg-theme">theme<a class="anchor" aria-label="anchor" href="#arg-theme"></a></dt>
 <dd><p>One of the following:
 * A [bslib::bs_theme()] object (or a list of [bslib::bs_theme()] argument values)
 * Use this option to choose any [Bootstrap
@@ -248,65 +250,65 @@ global <code>storyboard</code> option.</p></dd>
   "default" is specified.</p></dd>
 
 
-<dt>highlight</dt>
+<dt id="arg-highlight">highlight<a class="anchor" aria-label="anchor" href="#arg-highlight"></a></dt>
 <dd><p>Syntax highlighting style. Supported styles include
 "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
 and "haddock". Pass NULL to prevent syntax highlighting.</p></dd>
 
 
-<dt>mathjax</dt>
+<dt id="arg-mathjax">mathjax<a class="anchor" aria-label="anchor" href="#arg-mathjax"></a></dt>
 <dd><p>Include mathjax. The "default" option uses an https URL from a
 MathJax CDN. The "local" option uses a local version of MathJax (which is
 copied into the output directory). You can pass an alternate URL or pass
 <code>NULL</code> to exclude MathJax entirely.</p></dd>
 
 
-<dt>extra_dependencies</dt>
+<dt id="arg-extra-dependencies">extra_dependencies<a class="anchor" aria-label="anchor" href="#arg-extra-dependencies"></a></dt>
 <dd><p>Extra dependencies as a list of the
 <code>html_dependency</code> class objects typically generated by
-<code><a href="https://rstudio.github.io/htmltools/reference/htmlDependency.html" class="external-link">htmltools:htmlDependency()</a></code>.</p></dd>
+<code><a href="https://rstudio.github.io/htmltools/reference/htmlDependency.html" class="external-link">htmltools::htmlDependency()</a></code>.</p></dd>
 
 
-<dt>css</dt>
+<dt id="arg-css">css<a class="anchor" aria-label="anchor" href="#arg-css"></a></dt>
 <dd><p>CSS and/or Sass files to include. Files with an extension of .sass
 or .scss are compiled to CSS via <code><a href="https://rstudio.github.io/sass/reference/sass.html" class="external-link">sass::sass()</a></code>. Also, if <code>theme</code> is a
-<code><a href="https://rdrr.io/pkg/bslib/man/bs_theme.html" class="external-link">bslib::bs_theme()</a></code> object, Sass code may reference the relevant Bootstrap
+<code><a href="https://rstudio.github.io/bslib/reference/bs_theme.html" class="external-link">bslib::bs_theme()</a></code> object, Sass code may reference the relevant Bootstrap
 Sass variables, functions, mixins, etc.</p></dd>
 
 
-<dt>includes</dt>
+<dt id="arg-includes">includes<a class="anchor" aria-label="anchor" href="#arg-includes"></a></dt>
 <dd><p>Named list of additional content to include within the
 document (typically created using the <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/includes.html" class="external-link">includes</a></code> function).</p></dd>
 
 
-<dt>lib_dir</dt>
+<dt id="arg-lib-dir">lib_dir<a class="anchor" aria-label="anchor" href="#arg-lib-dir"></a></dt>
 <dd><p>Directory to copy dependent HTML libraries (e.g. jquery,
 bootstrap, etc.) into. By default this will be the name of the document with
 <code>_files</code> appended to it.</p></dd>
 
 
-<dt>md_extensions</dt>
+<dt id="arg-md-extensions">md_extensions<a class="anchor" aria-label="anchor" href="#arg-md-extensions"></a></dt>
 <dd><p>Markdown extensions to be added or removed from the
 default definition of R Markdown. See the <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/rmarkdown_format.html" class="external-link">rmarkdown_format</a></code> for
 additional details.</p></dd>
 
 
-<dt>pandoc_args</dt>
+<dt id="arg-pandoc-args">pandoc_args<a class="anchor" aria-label="anchor" href="#arg-pandoc-args"></a></dt>
 <dd><p>Additional command line options to pass to pandoc</p></dd>
 
 
-<dt>devel</dt>
+<dt id="arg-devel">devel<a class="anchor" aria-label="anchor" href="#arg-devel"></a></dt>
 <dd><p>Enable development mode (used for development of the format
 itself, not useful for users of the format).</p></dd>
 
 
-<dt>resize_reload</dt>
+<dt id="arg-resize-reload">resize_reload<a class="anchor" aria-label="anchor" href="#arg-resize-reload"></a></dt>
 <dd><p>Disable the auto-reloading behavior when the window is
 resized. Useful when debugging large flexdashboard applications and this
 functionality is not needed.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Other arguments to [rmarkdown::html_document_base()].</p></dd>
 
 </dl></div>
@@ -318,7 +320,7 @@ functionality is not needed.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/rmarkdown" class="external-link">rmarkdown</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pkgs.rstudio.com/flexdashboard/">flexdashboard</a></span><span class="op">)</span></span></span>
@@ -328,7 +330,7 @@ functionality is not needed.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># specify the theme option</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="st">"pres.Rmd"</span>, <span class="fu">flex_dashboard</span><span class="op">(</span>theme <span class="op">=</span> <span class="st">"yeti"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -345,15 +347,15 @@ functionality is not needed.</p></dd>
 </div>
 
 <div class="author">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 

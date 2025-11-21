@@ -10,7 +10,7 @@ specified minimum and maximum values."><meta property="og:image" content="https:
 
   gtag('config', 'UA-115082821-1');
 </script><!-- javascript assets for rmarkdown --><script src="../ace-1.2.3/ace.js" type="text/javascript" charset="utf-8"></script><script src="../holder-2.9.0/holder.min.js" type="text/javascript" charset="utf-8"></script><script src="../snippets/snippets.js" type="text/javascript" charset="utf-8"></script></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -47,7 +47,7 @@ specified minimum and maximum values."><meta property="og:image" content="https:
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -69,7 +69,7 @@ specified minimum and maximum values."><meta property="og:image" content="https:
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -84,20 +84,20 @@ specified minimum and maximum values."><meta property="og:image" content="https:
 <li>
   <a href="https://github.com/rstudio/flexdashboard" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a gauge component for a dashboard.</h1>
-    <small class="dont-index">Source: <a href="https://github.com/rstudio/flexdashboard/blob/HEAD/R/gauge.R" class="external-link"><code>R/gauge.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/rstudio/flexdashboard/blob/main/R/gauge.R" class="external-link"><code>R/gauge.R</code></a></small>
     <div class="hidden name"><code>gauge.Rd</code></div>
     </div>
 
@@ -129,62 +129,64 @@ specified minimum and maximum values.</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>value</dt>
+
+
+<dl><dt id="arg-value">value<a class="anchor" aria-label="anchor" href="#arg-value"></a></dt>
 <dd><p>Numeric value to display</p></dd>
 
 
-<dt>min</dt>
+<dt id="arg-min">min<a class="anchor" aria-label="anchor" href="#arg-min"></a></dt>
 <dd><p>Minimum numeric value</p></dd>
 
 
-<dt>max</dt>
+<dt id="arg-max">max<a class="anchor" aria-label="anchor" href="#arg-max"></a></dt>
 <dd><p>Maximum numeric value</p></dd>
 
 
-<dt>sectors</dt>
+<dt id="arg-sectors">sectors<a class="anchor" aria-label="anchor" href="#arg-sectors"></a></dt>
 <dd><p>Custom colored sectors (e.g. "success", "warning", "danger"). By
 default all values are colored using the "success" theme color</p></dd>
 
 
-<dt>symbol</dt>
+<dt id="arg-symbol">symbol<a class="anchor" aria-label="anchor" href="#arg-symbol"></a></dt>
 <dd><p>Optional symbol to show next to value (e.g. 'kg')</p></dd>
 
 
-<dt>label</dt>
+<dt id="arg-label">label<a class="anchor" aria-label="anchor" href="#arg-label"></a></dt>
 <dd><p>Optional label to display beneath the value</p></dd>
 
 
-<dt>abbreviate</dt>
+<dt id="arg-abbreviate">abbreviate<a class="anchor" aria-label="anchor" href="#arg-abbreviate"></a></dt>
 <dd><p>Abbreviate large numbers for min, max, and value
 (e.g. 1234567 -&gt; 1.23M). Defaults to <code>TRUE</code>.</p></dd>
 
 
-<dt>abbreviateDecimals</dt>
+<dt id="arg-abbreviatedecimals">abbreviateDecimals<a class="anchor" aria-label="anchor" href="#arg-abbreviatedecimals"></a></dt>
 <dd><p>Number of decimal places for abbreviated
 numbers to contain (defaults to 1).</p></dd>
 
 
-<dt>href</dt>
+<dt id="arg-href">href<a class="anchor" aria-label="anchor" href="#arg-href"></a></dt>
 <dd><p>An optional URL to link to. Note that this can be an anchor of
 another dashboard page (e.g. "#details").</p></dd>
 
 
-<dt>success</dt>
+<dt id="arg-success">success<a class="anchor" aria-label="anchor" href="#arg-success"></a></dt>
 <dd><p>Two-element numeric vector defining the range of values to
 color as "success" (specific color provided by theme or custom <code>colors</code>)</p></dd>
 
 
-<dt>warning</dt>
+<dt id="arg-warning">warning<a class="anchor" aria-label="anchor" href="#arg-warning"></a></dt>
 <dd><p>Two-element numeric vector defining the range of values to
 color as "warning" (specific color provided by theme or custom <code>colors</code>)</p></dd>
 
 
-<dt>danger</dt>
+<dt id="arg-danger">danger<a class="anchor" aria-label="anchor" href="#arg-danger"></a></dt>
 <dd><p>Two-element numeric vector defining the range of values to
 color as "danger" (specific color provided by theme or custom <code>colors</code>)</p></dd>
 
 
-<dt>colors</dt>
+<dt id="arg-colors">colors<a class="anchor" aria-label="anchor" href="#arg-colors"></a></dt>
 <dd><p>Vector of colors to use for the <code>success</code>, <code>warning</code>,
 and <code>danger</code> ranges. Colors can be standard theme colors ("success",
 "warning", "danger", "primary", and "info") or any other valid CSS color
@@ -221,15 +223,15 @@ can be a single color value rather than a vector of three values</p></dd>
 </div>
 
 <div class="author">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 
