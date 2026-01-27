@@ -317,7 +317,7 @@ flex_dashboard <- function(fig_width = 6.0,
         if (fill_page) readLines(resource("fillpage.css")),
         '</style>'
       )
-      dashboardCssFile <- tempfile(fileext = "html")
+      dashboardCssFile <- tempfile(fileext = ".html")
       writeLines(dashboardCss, dashboardCssFile)
       includes$in_header <- c(includes$in_header, dashboardCssFile)
 
