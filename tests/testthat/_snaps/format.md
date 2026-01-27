@@ -9,11 +9,11 @@
       <h3>A wide plot</h3>
       <div class="knitr-options" data-fig-width="960" data-fig-height="480">
       </div>
-      <p><img src="data:image/png;base64,..." width="960" data-figure-id="fig1" /></p>
+      <p><img role="img" aria-label src="data:image/png;base64,..." alt width="960" data-figure-id="fig1" /></p>
       </div>
       <div id="a-tall-plot" class="section level3">
       <h3>A tall plot</h3>
       <div class="knitr-options" data-fig-width="480" data-fig-height="960">
       </div>
-      <p><img src="data:image/png;base64,..." width="480" data-figure-id="fig2" /></p>
+      <p><img role="img" aria-label src="data:image/png;base64,..." alt width="480" data-figure-id="fig2" /></p>
 
