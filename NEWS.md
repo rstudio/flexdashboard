@@ -4,6 +4,8 @@
 
 * Allow using `theme.preset` without needing to set `theme.bootswatch` to `null`. (#444)
 
+* Closed #459: Fixed lost braces in certain rendering scenarios (@eliocamp).
+
 # flexdashboard 0.6.2
 
 ## New features
