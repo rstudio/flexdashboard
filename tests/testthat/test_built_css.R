@@ -16,7 +16,10 @@ test_that("flexdashboard.min.css has been built", {
   pkg_css_file <- system.file("www/flex_dashboard/flexdashboard.min.css", package = "flexdashboard")
   pkg_css <- readLines(pkg_css_file)
 
-  # If this fails, that means that tools/updateShinyCSS.R needs to be run.
-  expect_identical(new_css, pkg_css)
+  # If this fails, that means that tools/updateCSS.R needs to be run.
+  expect_identical(
+    new_css,
+    pkg_css,
+    label = "Pre-built CSS is out of date, please run `Rscript tools/updateCSS.R`.\n"
+  )
 })
-

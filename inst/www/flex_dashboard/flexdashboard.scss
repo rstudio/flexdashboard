@@ -45,6 +45,11 @@ $custom-nav-color: rgba($custom-nav-active-color, 0.6) !default;
   }
 }
 
+@for $idx from 1 through 6 {
+  :where(.section.level#{$idx}) {
+    margin-top: 0;
+  }
+}
 
 /*
  Dashboard CSS derives from Keen IO Dashboards

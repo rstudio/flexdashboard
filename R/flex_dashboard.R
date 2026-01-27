@@ -55,7 +55,7 @@
 #'  each dashboard component in a navigable storyboard frame. When a storyboard
 #'  layout is used the \code{orientation} and \code{vertical_layout} arguments
 #'  are ignored. When creating a dashbaord with multiple pages you should apply
-#'  the `{.storyboard}` attribute to individual pages rather than using the
+#'  the \code{\{.storyboard\}} attribute to individual pages rather than using the
 #'  global \code{storyboard} option.
 #'
 #'@param theme One of the following:

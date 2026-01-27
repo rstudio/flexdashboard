@@ -89,8 +89,8 @@ rmarkdown::draft("dashboard.Rmd",
 
 There are two main places to get help with flexdashboard:
 
-- The [RStudio
-  community](https://community.rstudio.com/tags/c/R-Markdown/10/flexdashboard)
+- The [Posit
+  community](https://forum.posit.co/tag/flexdashboard)
   is a friendly place to ask any questions about flexdashboard. Be sure
   to use the `flexdashboard` tag. Add also the `shiny` tag is you are
   using a Shiny runtime.
