@@ -1,3 +1,5 @@
+# flexdashboard (development version)
+
 # flexdashboard 0.6.3
 
 * flexdashboard now prevents top margin from being applied to boxes created with flexdashboard's markdown syntax when Bootstrap 5 is used. (#443)
