@@ -30,7 +30,7 @@ jobs:
       github.ref_name == 'main' &&
       github.repository == 'rstudio/flexdashboard'
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     name: "Deploy to shinyapps.io"
     needs: [R-CMD-check]
