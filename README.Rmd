@@ -8,7 +8,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# flexdashboard <a href='https://pkgs.rstudio.com/flexdashboard'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
+# flexdashboard <a href='https://rstudio.github.io/flexdashboard'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/flexdashboard)](https://CRAN.R-project.org/package=flexdashboard)
@@ -21,21 +21,21 @@ The goal of **flexdashboard** is to make it easy to create interactive dashboard
 
 * Support for a wide variety of components including [htmlwidgets](https://www.htmlwidgets.org); base, lattice, and grid graphics; tabular data; gauges and value boxes; and text annotations.
 
-* Flexible and easy to specify row and column-based [layouts](https://pkgs.rstudio.com/flexdashboard/articles/layouts.html). Components are intelligently re-sized to fill the browser and adapted for display on mobile devices.
+* Flexible and easy to specify row and column-based [layouts](https://rstudio.github.io/flexdashboard/articles/layouts.html). Components are intelligently re-sized to fill the browser and adapted for display on mobile devices.
 
-* [Storyboard](https://pkgs.rstudio.com/flexdashboard/articles/using.html#storyboards-1) layouts for presenting sequences of visualizations and related commentary.
+* [Storyboard](https://rstudio.github.io/flexdashboard/articles/using.html#storyboards-1) layouts for presenting sequences of visualizations and related commentary.
 
 * Optionally use [Shiny](https://shiny.posit.co/) to drive visualizations dynamically.
 
-* Optionally use [bslib](https://rstudio.github.io/bslib/) to easily [customize main colors, fonts, and more](https://pkgs.rstudio.com/flexdashboard/articles/theme.html).
+* Optionally use [bslib](https://rstudio.github.io/bslib/) to easily [customize main colors, fonts, and more](https://rstudio.github.io/flexdashboard/articles/theme.html).
 
-Learn more about **flexdashboard**: <https://pkgs.rstudio.com/flexdashboard>
+Learn more about **flexdashboard**: <https://rstudio.github.io/flexdashboard>
 
 ## Examples
 
-<a href="https://testing-apps.shinyapps.io/flexdashboard-d3heatmap/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>&nbsp;&nbsp;<a href="https://testing-apps.shinyapps.io/flexdashboard-ggplotly/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>&nbsp;&nbsp;<a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
+<a href="https://testing-apps.shinyapps.io/flexdashboard-d3heatmap/"><img src="https://rstudio.github.io/flexdashboard/articles/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>&nbsp;&nbsp;<a href="https://testing-apps.shinyapps.io/flexdashboard-ggplotly/"><img src="https://rstudio.github.io/flexdashboard/articles/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>&nbsp;&nbsp;<a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="https://rstudio.github.io/flexdashboard/articles/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
 
-View more examples [here](https://pkgs.rstudio.com/flexdashboard/articles/examples.html).
+View more examples [here](https://rstudio.github.io/flexdashboard/articles/examples.html).
 
 
 ## Installation
@@ -61,7 +61,7 @@ If you are not using RStudio, you can create a new `flexdashboard` R Markdown fi
 
 + `"flex_dashboard"` (basic) and
 
-+ `"flex_dashboard_bslib"` (an example of [theming with `{bslib}`](https://pkgs.rstudio.com/flexdashboard/articles/theme.html)):
++ `"flex_dashboard_bslib"` (an example of [theming with `{bslib}`](https://rstudio.github.io/flexdashboard/articles/theme.html)):
 
 ```{r eval=FALSE}
 rmarkdown::draft("dashboard.Rmd",
@@ -79,4 +79,4 @@ There are two main places to get help with flexdashboard:
 
 ## Code of Conduct
 
-Please note that the **flexdashboard** project is released with a [Contributor Code of Conduct](https://pkgs.rstudio.com/flexdashboard/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+Please note that the **flexdashboard** project is released with a [Contributor Code of Conduct](https://rstudio.github.io/flexdashboard/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

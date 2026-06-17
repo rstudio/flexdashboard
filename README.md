@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# flexdashboard <a href='https://pkgs.rstudio.com/flexdashboard'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
+# flexdashboard <a href='https://rstudio.github.io/flexdashboard'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
 <!-- badges: start -->
 
@@ -21,11 +21,11 @@ dashboards for R, using R Markdown.
   graphics; tabular data; gauges and value boxes; and text annotations.
 
 - Flexible and easy to specify row and column-based
-  [layouts](https://pkgs.rstudio.com/flexdashboard/articles/layouts.html).
+  [layouts](https://rstudio.github.io/flexdashboard/articles/layouts.html).
   Components are intelligently re-sized to fill the browser and adapted
   for display on mobile devices.
 
-- [Storyboard](https://pkgs.rstudio.com/flexdashboard/articles/using.html#storyboards-1)
+- [Storyboard](https://rstudio.github.io/flexdashboard/articles/using.html#storyboards-1)
   layouts for presenting sequences of visualizations and related
   commentary.
 
@@ -34,17 +34,17 @@ dashboards for R, using R Markdown.
 
 - Optionally use [bslib](https://rstudio.github.io/bslib/) to easily
   [customize main colors, fonts, and
-  more](https://pkgs.rstudio.com/flexdashboard/articles/theme.html).
+  more](https://rstudio.github.io/flexdashboard/articles/theme.html).
 
 Learn more about **flexdashboard**:
-<https://pkgs.rstudio.com/flexdashboard>
+<https://rstudio.github.io/flexdashboard>
 
 ## Examples
 
-<a href="https://testing-apps.shinyapps.io/flexdashboard-d3heatmap/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>  <a href="https://testing-apps.shinyapps.io/flexdashboard-ggplotly/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>  <a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="https://pkgs.rstudio.com/flexdashboard/articles/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
+<a href="https://testing-apps.shinyapps.io/flexdashboard-d3heatmap/"><img src="https://rstudio.github.io/flexdashboard/articles/images/htmlwidgets-d3heatmap.png" width=250 height=200 alt="example flexdashboard with d3 heatmap"></img></a>  <a href="https://testing-apps.shinyapps.io/flexdashboard-ggplotly/"><img src="https://rstudio.github.io/flexdashboard/articles/images/plotly.png" width=250 height=200 alt="example flexdashboard using ggplotly"></img></a>  <a href="https://jjallaire.shinyapps.io/shiny-biclust/"><img src="https://rstudio.github.io/flexdashboard/articles/images/shiny-biclust.png" width=250 height=200 alt="example flexdashboard using Shiny"></img></a>
 
 View more examples
-[here](https://pkgs.rstudio.com/flexdashboard/articles/examples.html).
+[here](https://rstudio.github.io/flexdashboard/articles/examples.html).
 
 ## Installation
 
@@ -77,7 +77,7 @@ Markdown file from the R console. Currently there are two `templates`:
 - `"flex_dashboard"` (basic) and
 
 - `"flex_dashboard_bslib"` (an example of [theming with
-  `{bslib}`](https://pkgs.rstudio.com/flexdashboard/articles/theme.html)):
+  `{bslib}`](https://rstudio.github.io/flexdashboard/articles/theme.html)):
 
 ``` r
 rmarkdown::draft("dashboard.Rmd",
@@ -108,5 +108,5 @@ There are two main places to get help with flexdashboard:
 
 Please note that the **flexdashboard** project is released with a
 [Contributor Code of
-Conduct](https://pkgs.rstudio.com/flexdashboard/CODE_OF_CONDUCT.html).
+Conduct](https://rstudio.github.io/flexdashboard/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.

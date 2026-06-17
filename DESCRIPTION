@@ -71,6 +71,6 @@ Config/Needs/deploy: dplyr, ggplot2, DT, talgalili/d3heatmap, plotly,
     arules, treemap, viridisLite, leaflet, metricsgraphics, rbokeh, readr,
     tidyr, jsonlite, maptools, purrr, maps, hexbin
 Config/Needs/website: rstudio/quillt
+Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 Encoding: UTF-8
-RoxygenNote: 7.3.3

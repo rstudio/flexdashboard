@@ -1,6 +1,6 @@
 destination: reference
 
-url: https://pkgs.rstudio.com/flexdashboard/
+url: https://rstudio.github.io/flexdashboard/
 
 template:
   package: quillt
