@@ -33,6 +33,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Garrick Aden-Buie \email{garrick@posit.co} (\href{https://orcid.org/0000-0002-7111-0077}{ORCID})
   \item Carson Sievert \email{carson@posit.co} (\href{https://orcid.org/0000-0002-4958-2844}{ORCID})
   \item Richard Iannone \email{rich@posit.co} (\href{https://orcid.org/0000-0003-3925-190X}{ORCID})
   \item JJ Allaire \email{jj@posit.co}
