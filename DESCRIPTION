@@ -66,10 +66,10 @@ Imports:
 Suggests:
     testthat
 Config/Needs/deploy: dplyr, ggplot2, DT, talgalili/d3heatmap, plotly,
-    plyr, biclust, webshot, bit, jcheng5/bubbles, digest,
+    plyr, Biclustering/biclust, webshot, bit, jcheng5/bubbles, digest,
     hadley/shinySignals, dygraphs, quantmod, forecast, highcharter,
-    arules, treemap, viridisLite, leaflet, metricsgraphics, rbokeh, readr,
-    tidyr, jsonlite, maptools, purrr, maps, hexbin
+    arules, treemap, viridisLite, leaflet, hrbrmstr/metricsgraphics,
+    hafen/rbokeh, readr, tidyr, jsonlite, purrr, maps, hexbin
 Config/Needs/website: rstudio/quillt
 Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
